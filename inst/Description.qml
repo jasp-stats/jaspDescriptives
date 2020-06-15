@@ -5,7 +5,7 @@ Description
 {
 	name		: "Descriptives"
 	title		: qsTr("Descriptives")
-	description	: qsTr("This module offers the Descriptives and Reliability analyses.")
+	description	: qsTr("This module offers the Descriptives analysis.")
 	version		: "0.13"
 	author		: "JASP Team"
 	maintainer	: "JASP Team <jasp-stats.org>"
@@ -17,11 +17,5 @@ Description
 	{
 		title:	qsTr("Descriptive Statistics")
 		func:	"Descriptives"
-	}
-
-	Analysis
-	{
-		title:	qsTr("Reliability Analysis")
-		func:	"ReliabilityAnalysis"
 	}
 }
