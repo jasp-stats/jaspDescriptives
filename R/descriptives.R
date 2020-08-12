@@ -169,7 +169,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     }
 
     piePlots <- jaspResults[["pieCharts"]]
-    JASPgraphs::setGraphOption("palette", options[["colorPalette"]])
+    jaspGraphs::setGraphOption("palette", options[["colorPalette"]])
     for (var in variables) {
       # skip non-categorical variables
       if(is.double(dataset.factors[[.v(var)]]))next
@@ -604,8 +604,8 @@ Descriptives <- function(jaspResults, dataset, options) {
   # minor adjustments to plot margin to avoid cutting off the x-axis labels
   adjMargin <- ggplot2::theme(plot.margin = ggplot2::unit(c(.25, .40, .25, .25), "cm"))
 
-  oldFontSize <- JASPgraphs::getGraphOption("fontsize")
-  JASPgraphs::setGraphOption("fontsize", .85 * oldFontSize)
+  oldFontSize <- jaspGraphs::getGraphOption("fontsize")
+  jaspGraphs::setGraphOption("fontsize", .85 * oldFontSize)
 
   # first do the diagonal and store breaks
   for (row in seq_along(variables)) {
@@ -613,7 +613,7 @@ Descriptives <- function(jaspResults, dataset, options) {
       plotMat[[row, row]] <- .displayError(errorMessage=variable.statuses[[row]]$error)
     } else {
       plotMat[[row, row]] <- .plotMarginalCorDescriptives(dataset[[.v(variables[[row]])]]) + adjMargin
-      axisBreaks[[row]] <- JASPgraphs::getAxisBreaks(plotMat[[row, row]])
+      axisBreaks[[row]] <- jaspGraphs::getAxisBreaks(plotMat[[row, row]])
     }
   }
 
@@ -635,13 +635,13 @@ Descriptives <- function(jaspResults, dataset, options) {
     }
   }
 
-  JASPgraphs::setGraphOption("fontsize", oldFontSize)
+  jaspGraphs::setGraphOption("fontsize", oldFontSize)
 
   # slightly adjust the positions of the labels left and above the plots.
   labelPos <- matrix(.5, 4, 2)
   labelPos[1, 1] <- .55
   labelPos[4, 2] <- .65
-  p <- JASPgraphs::ggMatrixPlot(plotList = plotMat, leftLabels = variables, topLabels = variables,
+  p <- jaspGraphs::ggMatrixPlot(plotList = plotMat, leftLabels = variables, topLabels = variables,
                                 scaleXYlabels = NULL, labelPos = labelPos)
 
   return(createJaspPlot(plot=p, width=250 * l + 20, aspectRatio=1, title=name, dependencies=depends))
@@ -657,7 +657,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     p <- ggplot2::ggplot(data = data.frame(x = variable))
     h <- hist(variable, plot = FALSE)
     hdiff <- h$breaks[2L] - h$breaks[1L]
-    xBreaks <- JASPgraphs::getPrettyAxisBreaks(c(variable, h$breaks), min.n = 3)
+    xBreaks <- jaspGraphs::getPrettyAxisBreaks(c(variable, h$breaks), min.n = 3)
     dens <- h$density
     yBreaks <- c(0, 1.2*max(h$density))
 
@@ -703,7 +703,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   p <- p +
     ggplot2::scale_y_continuous(name = yName, breaks = yBreaks, labels = c("", ""), limits = yLim) +
     ggplot2::theme()
-  return(JASPgraphs::themeJasp(p) + thm)
+  return(jaspGraphs::themeJasp(p) + thm)
 }
 
 .poly.predDescriptives <- function(fit, plot = NULL, line=FALSE, xMin, xMax, lwd) {
@@ -751,7 +751,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     d$y <- as.factor(d$y)
 
   if (is.null(xBreaks))
-    xBreaks <- JASPgraphs::getPrettyAxisBreaks(d$x)
+    xBreaks <- jaspGraphs::getPrettyAxisBreaks(d$x)
 
   fit <- NULL
   
@@ -763,14 +763,14 @@ Descriptives <- function(jaspResults, dataset, options) {
 
     if (!all(is.na(yLimits))) { # this is NA in case both x and y only contain a single unique value
       if (is.null(yBreaks) || yLimits[1L] <= yBreaks[1L] || yLimits[2L] >= yBreaks[length(yBreaks)])
-        yBreaks <- JASPgraphs::getPrettyAxisBreaks(yLimits)
+        yBreaks <- jaspGraphs::getPrettyAxisBreaks(yLimits)
     }
   } else if (is.null(yBreaks)) {
-    yBreaks <- JASPgraphs::getPrettyAxisBreaks(d$y)
+    yBreaks <- jaspGraphs::getPrettyAxisBreaks(d$y)
   }
 
   p <- ggplot2::ggplot(data = d, ggplot2::aes(x = x, y = y)) +
-    JASPgraphs::geom_point()
+    jaspGraphs::geom_point()
 
   if (bothNumeric) {
     xr <- range(xBreaks)
@@ -789,7 +789,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     p <- p + ggplot2::scale_y_discrete(name = yName)
   }
 
-  return(JASPgraphs::themeJasp(p))
+  return(jaspGraphs::themeJasp(p))
 }
 
 
@@ -801,8 +801,8 @@ Descriptives <- function(jaspResults, dataset, options) {
     label = stringr::str_wrap(errorMessage, width = 40)
   )
   p <- ggplot2::ggplot(data = df, ggplot2::aes(x = x, y = y, label = label)) +
-    ggplot2::geom_text(size = .4*JASPgraphs::getGraphOption("fontsize")) +
-    JASPgraphs::getEmptyTheme()
+    ggplot2::geom_text(size = .4*jaspGraphs::getGraphOption("fontsize")) +
+    jaspGraphs::getEmptyTheme()
   return(p)
 }
 
@@ -921,7 +921,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     if (options$splitPlotColour) {
       thePlot$dependOn("colorPalette") # only add color as dependency if the user wants it
       palette <- options[["colorPalette"]]
-      p <- ggplot2::ggplot(plotDat, ggplot2::aes(x=group, y, fill=group)) + JASPgraphs::scale_JASPfill_discrete(palette) + JASPgraphs::scale_JASPcolor_discrete(palette)
+      p <- ggplot2::ggplot(plotDat, ggplot2::aes(x=group, y, fill=group)) + jaspGraphs::scale_JASPfill_discrete(palette) + jaspGraphs::scale_JASPcolor_discrete(palette)
     } else {
       p <- ggplot2::ggplot(plotDat, ggplot2::aes(x=group, y, fill=group)) + ggplot2::scale_fill_manual(values=rep("grey", nlevels(group))) + ggplot2::scale_colour_manual(values=rep("grey", nlevels(group)))
     }
@@ -962,13 +962,13 @@ Descriptives <- function(jaspResults, dataset, options) {
       p <- p + ggrepel::geom_text_repel(ggplot2::aes(label=label), hjust=-0.3)
     
     ### Theming & Cleaning
-    yBreaks <- JASPgraphs::getPrettyAxisBreaks(y)
+    yBreaks <- jaspGraphs::getPrettyAxisBreaks(y)
     p <- p +
       ggplot2::xlab(xlab) +
       ggplot2::ylab(variable) +
       ggplot2::scale_y_continuous(breaks = yBreaks) + #, limits = yLimits) +
-      JASPgraphs::geom_rangeframe(sides = "l") +
-      JASPgraphs::themeJaspRaw()
+      jaspGraphs::geom_rangeframe(sides = "l") +
+      jaspGraphs::themeJaspRaw()
 
     thePlot$plotObject <- p
   }
@@ -998,13 +998,13 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   if (!displayDensity) {
     p <-
-      JASPgraphs::drawAxis(
+      jaspGraphs::drawAxis(
         xName = variableName, yName = gettext("Counts"), xBreaks = xticks,
         yBreaks = base::pretty(c(0, h$counts)), force = TRUE, xLabels = xticks
       )
   } else {
     p <-
-      JASPgraphs::drawAxis(
+      jaspGraphs::drawAxis(
         xName = variableName, yName = gettext("Density"), xBreaks = xticks,
         yBreaks = c(0,  1.05 * yhigh), force = TRUE, yLabels = NULL,
         xLabels = xticks
@@ -1044,7 +1044,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     
 
   # JASP theme
-  p <- JASPgraphs::themeJasp(p,
+  p <- jaspGraphs::themeJasp(p,
                              axisTickWidth = .7,
                              bty = list(type = "n", ldwX = .7, lwdY = 1))
   # TODO: Fix jaspgraphs axis width X vs Y. See @vandenman.
@@ -1056,9 +1056,9 @@ Descriptives <- function(jaspResults, dataset, options) {
 }
 
 .barplotJASP <- function(column, variable, dontPlotData= FALSE) {
-  p <- JASPgraphs::drawAxis(xName = variable, xBreaks = 1:5, yBreaks = 1:5)
+  p <- jaspGraphs::drawAxis(xName = variable, xBreaks = 1:5, yBreaks = 1:5)
 
-  if (dontPlotData) return(JASPgraphs::themeJasp(p))
+  if (dontPlotData) return(jaspGraphs::themeJasp(p))
 
   tb <- as.data.frame(table(column))
   p  <- ggplot2::ggplot(data = data.frame(x = tb[, 1], y = tb[, 2]), ggplot2::aes(x = x, y = y)) +
@@ -1067,7 +1067,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     ggplot2::ylab(gettext("Counts"))
 
   # JASP theme
-  p <- JASPgraphs::themeJasp(p)
+  p <- jaspGraphs::themeJasp(p)
   
   return(p)
 }
@@ -1273,15 +1273,15 @@ Descriptives <- function(jaspResults, dataset, options) {
       yticks <- pretty(c(ylow, yhigh))
   
       # format axes labels
-      xLabs <- JASPgraphs::axesLabeller(xticks)
-      yLabs <- JASPgraphs::axesLabeller(yticks)
+      xLabs <- jaspGraphs::axesLabeller(xticks)
+      yLabs <- jaspGraphs::axesLabeller(yticks)
       
-      p <- JASPgraphs::drawAxis(xName = gettext("Theoretical Quantiles"), yName = gettext("Standardised Residuals"), xBreaks = xticks, yBreaks = xticks, yLabels = xLabs, xLabels = xLabs, force = TRUE)
+      p <- jaspGraphs::drawAxis(xName = gettext("Theoretical Quantiles"), yName = gettext("Standardised Residuals"), xBreaks = xticks, yBreaks = xticks, yLabels = xLabs, xLabels = xLabs, force = TRUE)
       p <- p + ggplot2::geom_line(data = data.frame(x = c(min(xticks), max(xticks)), y = c(min(xticks), max(xticks))), mapping = ggplot2::aes(x = x, y = y), col = "darkred", size = 1)
-      p <- JASPgraphs::drawPoints(p, dat = data.frame(xVar, yVar), size = 3)
+      p <- jaspGraphs::drawPoints(p, dat = data.frame(xVar, yVar), size = 3)
   
       # JASP theme
-      descriptivesQQPlot$plotObject <- JASPgraphs::themeJasp(p)
+      descriptivesQQPlot$plotObject <- jaspGraphs::themeJasp(p)
     }
   }
   
@@ -1324,7 +1324,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     pieChart$setError(gettextf("Plotting not possible: %s", errorMessage))
   } else if (length(column) > 0) {
     tb  <- as.data.frame(table(column))
-    pieChart$plotObject <- JASPgraphs::plotPieChart(tb[,2],tb[,1], legendName = variable,
+    pieChart$plotObject <- jaspGraphs::plotPieChart(tb[,2],tb[,1], legendName = variable,
                                                    palette = palette)
   }
 
@@ -1333,7 +1333,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
 .descriptivesScatterPlots <- function(jaspContainer, dataset, variables, split, options, name = NULL, dependOnVariables = TRUE) {
 
-  JASPgraphs::setGraphOption("palette", options[["colorPalette"]])
+  jaspGraphs::setGraphOption("palette", options[["colorPalette"]])
   if (!is.null(split) && split != "") {
     group <- dataset[, .v(split)]
     legendTitle <- split
@@ -1381,7 +1381,7 @@ Descriptives <- function(jaspResults, dataset, options) {
         scatterData <- na.omit(scatterData)
         scatterData <- apply(scatterData, 2, as.numeric) # ensure nominal ints are numeric
         
-        p <- try(JASPgraphs::JASPScatterPlot(
+        p <- try(jaspGraphs::JASPScatterPlot(
           x                 = scatterData[, variablesB64[i]],
           y                 = scatterData[, variablesB64[j]],
           group             = group,
