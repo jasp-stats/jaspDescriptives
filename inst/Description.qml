@@ -3,7 +3,7 @@ import JASP.Module 	1.0
 
 Description
 {
-	name		: "Descriptives"
+	name		: "jaspDescriptives"
 	title		: qsTr("Descriptives")
 	description	: qsTr("This module offers the Descriptives analysis.")
 	version		: "0.13"
