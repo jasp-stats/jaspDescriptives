@@ -8,3 +8,13 @@ Website: jasp-stats.org
 Maintainer: JASP Team <info@jasp-stats.org>
 Description: This module offers the Descriptives and Reliability analyses.
 License: GPL (>= 2)
+Encoding: UTF-8
+Imports:
+  ggplot2,
+  ggrepel,
+  jaspBase,
+  jaspGraphs,
+  stringr
+Remotes:
+  jasp-stats/jaspBase,
+  jasp-stats/jaspGraphs

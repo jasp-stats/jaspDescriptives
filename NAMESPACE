@@ -1,1 +1,4 @@
+import(jaspBase)
 export(Descriptives)
+export(.descriptivesScatterPlots)
+export(.poly.predDescriptives)
