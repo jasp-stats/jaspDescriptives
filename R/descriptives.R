@@ -184,6 +184,25 @@ Descriptives <- function(jaspResults, dataset, options) {
     }
   }
 
+  # Stem and leaf
+  if (options[["stemAndLeaf"]]) {
+    if(is.null(jaspResults[["stemAndLeaf"]])) {
+      jaspResults[["stemAndLeaf"]] <- createJaspContainer(gettext("Stem and Leaf"))
+      jaspResults[["stemAndLeaf"]]$dependOn(c("splitby", "stemAndLeaf", "stemAndLeafScale"))
+      jaspResults[["scatterPlots"]]$position <- 11
+    }
+
+    numericOrFactorVariables <- Filter(function(var) .descriptivesIsNumericColumn(dataset.factors, var), variables)
+
+    .descriptivesStemAndLeafTables(
+      container = jaspResults[["stemAndLeaf"]],
+      dataset   = if (makeSplit) splitDat.factors else dataset.factors,
+      variables = numericOrFactorVariables,
+      options   = options
+    )
+
+  }
+
   # Scatter plots
   if (options[["scatterPlot"]]) {
     if(is.null(jaspResults[["scatterPlots"]])) {
@@ -1427,4 +1446,67 @@ Descriptives <- function(jaspResults, dataset, options) {
     return(TRUE)
   else
     return(FALSE)
+}
+
+.descriptivesStemAndLeafTables <- function(container, dataset, variables, options, width = 120, atom = 1e-08) {
+
+  # parameters for graphics::stem
+  scale <- options[["stemAndLeafScale"]]
+  # width and atom are set to R's default values. We could allow the user to set them but the R documentation is unclear as to what it does.
+
+  if (!is.data.frame(dataset)) { # dataset is split
+
+    splitLevels <- names(dataset)
+
+    for (var in variables) {
+
+      subcontainer <- createJaspContainer(title = var)
+      subcontainer$dependOn(optionContainsValue = list(variables = var))
+      container[[var]] <- subcontainer
+
+      for (split in splitLevels) {
+
+        tableName <- paste0("stem_and_leaf_", var, "_", split)
+        subcontainer[[tableName]] <- .descriptivesStemAndLeafCreateSingleTable(dataset[[split]][[.v(var)]], split, scale, width, atom)
+        subcontainer[[tableName]]$dependOn(optionContainsValue = list(variables = var))
+
+      }
+    }
+
+  } else {
+
+    for (var in variables) {
+      tableName <- paste0("stem_and_leaf_", var)
+      container[[tableName]] <- .descriptivesStemAndLeafCreateSingleTable(dataset[[.v(var)]], var, scale, width, atom)
+      container[[tableName]]$dependOn(optionContainsValue = list(variables = var))
+    }
+
+  }
+}
+
+.descriptivesStemAndLeafCreateSingleTable <- function(x, title, scale = 1, width = 80, atom = 1e-08) {
+
+  # NOTE: graphics::stem is fast because it works in C, but it prints directly to the R output and returns NULL...
+  # so we resort to capturing the string and manipulating it.
+  # as.numeric ensures factors are handled correctly
+  temp <- capture.output(graphics::stem(as.numeric(x), scale, width, atom))
+  footnote <- temp[2L]
+  other <- temp[4:(length(temp) - 1L)]
+
+  text  <- strsplit(other, " | ", fixed = TRUE)
+  left  <- vapply(text, `[`, 1L, FUN.VALUE = character(1L))
+  right <- vapply(text, function(x) if (length(x) == 1L) "" else x[2L], FUN.VALUE = character(1L))
+
+  tb <- createJaspTable(title = title)
+  tb$addColumnInfo(name = "left",  title =  "Stem", type = "integer")
+  tb$addColumnInfo(name = "sep",   title =  "",     type = "separator")
+  tb$addColumnInfo(name = "right", title =  "Leaf", type = "string")
+
+  tb[["left"]]  <- left
+  tb[["sep"]]   <- rep("|", length(left))
+  tb[["right"]] <- right
+
+  tb$addFootnote(footnote)
+
+  return(tb)
 }
