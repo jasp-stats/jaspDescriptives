@@ -194,12 +194,14 @@ Descriptives <- function(jaspResults, dataset, options) {
 
     numericOrFactorVariables <- Filter(function(var) .descriptivesIsNumericColumn(dataset.factors, var), variables)
 
-    .descriptivesStemAndLeafTables(
-      container = jaspResults[["stemAndLeaf"]],
-      dataset   = if (makeSplit) splitDat.factors else dataset.factors,
-      variables = numericOrFactorVariables,
-      options   = options
-    )
+    if (length(variables) > 0L) {
+      .descriptivesStemAndLeafTables(
+        container = jaspResults[["stemAndLeaf"]],
+        dataset   = if (makeSplit) splitDat.factors else dataset.factors,
+        variables = numericOrFactorVariables,
+        options   = options
+      )
+    }
 
   }
 
@@ -1460,16 +1462,17 @@ Descriptives <- function(jaspResults, dataset, options) {
 
     for (var in variables) {
 
-      subcontainer <- createJaspContainer(title = var)
-      subcontainer$dependOn(optionContainsValue = list(variables = var))
-      container[[var]] <- subcontainer
+      if (is.null(container[[var]])) {
+        subcontainer <- createJaspContainer(title = var)
+        subcontainer$dependOn(optionContainsValue = list(variables = var))
+        container[[var]] <- subcontainer
 
-      for (split in splitLevels) {
+        for (split in splitLevels) {
 
-        tableName <- paste0("stem_and_leaf_", var, "_", split)
-        subcontainer[[tableName]] <- .descriptivesStemAndLeafCreateSingleTable(dataset[[split]][[.v(var)]], split, scale, width, atom)
-        subcontainer[[tableName]]$dependOn(optionContainsValue = list(variables = var))
+          tableName <- paste0("stem_and_leaf_", var, "_", split)
+          subcontainer[[tableName]] <- .descriptivesStemAndLeafCreateSingleTable(dataset[[split]][[var]], split, scale, width, atom)
 
+        }
       }
     }
 
@@ -1477,8 +1480,10 @@ Descriptives <- function(jaspResults, dataset, options) {
 
     for (var in variables) {
       tableName <- paste0("stem_and_leaf_", var)
-      container[[tableName]] <- .descriptivesStemAndLeafCreateSingleTable(dataset[[.v(var)]], var, scale, width, atom)
-      container[[tableName]]$dependOn(optionContainsValue = list(variables = var))
+      if (is.null(container[[tableName]])) {
+        container[[tableName]] <- .descriptivesStemAndLeafCreateSingleTable(dataset[[var]], var, scale, width, atom)
+        container[[tableName]]$dependOn(optionContainsValue = list(variables = var))
+      }
     }
 
   }
@@ -1490,8 +1495,29 @@ Descriptives <- function(jaspResults, dataset, options) {
   # so we resort to capturing the string and manipulating it.
   # as.numeric ensures factors are handled correctly
   temp <- capture.output(graphics::stem(as.numeric(x), scale, width, atom))
-  footnote <- temp[2L]
-  other <- temp[4:(length(temp) - 1L)]
+  other <- temp[4:max(4, (length(temp) - 1L))]
+
+  # parse the footnote so that we can translate it.
+  # see https://github.com/wch/r-source/blob/c6710da21a5d869cd02889352483919ec3487000/src/library/graphics/src/stem.c#L105-L110 for details
+  originalFootnote <- temp[2L]
+  if (grepl("at the |", originalFootnote, fixed = TRUE)) {
+    footnote <- gettext("The decimal point is at the |")
+  } else {
+
+    digits <- as.numeric(regmatches(originalFootnote, gregexpr("[[:digit:]]+", originalFootnote))[[1L]])
+
+    footnote <- if (grepl("right", originalFootnote)) {
+      ngettext(digits,
+        "The decimal point is %s digit to the right of the |",
+        "The decimal point is %s digits to the right of the |"
+      )
+    } else {
+      ngettext(digits,
+        "The decimal point is %s digit to the left of the |",
+        "The decimal point is %s digits to the left of the |"
+      )
+    }
+  }
 
   text  <- strsplit(other, " | ", fixed = TRUE)
   left  <- vapply(text, `[`, 1L, FUN.VALUE = character(1L))
