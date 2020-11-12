@@ -142,7 +142,7 @@ test_that("Pie chart matches", {
   options$descriptivesPiechart <- TRUE
   options$colorPalette <- "ggplot2"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
-  
+
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "pieChart", dir="Descriptives")
 })
@@ -155,9 +155,9 @@ test_that("Analysis handles identical variables", {
   options$shapiro <- TRUE
   options$skewness <- TRUE
   options$kurtosis <- TRUE
-  
+
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
-  
+
   jaspTools::expect_equal_tables(results[['results']][['stats']][['data']],
                       list(-1.19915675837133, 1, 1.007309698, -0.33853731055, -1.625143884,
                            0, 0.0819021844894419, 0.915696014062066, 0.338805595442952,
@@ -184,7 +184,7 @@ test_that("Analysis handles identical variables", {
                            0.512103336707757, 20, "debSame", 0, 0, 0, 0, "NaN", 5, 12.3,
                            12.3, 12.3, 0, "NaN", "NaN", "NaN", 0, 0.992383612541845, 0.512103336707757,
                            20, "debSame"))
-  
+
   # also check footnotes
   jaspTools::expect_equal_tables(results[['results']][['stats']][['footnotes']],
                       list("Kurtosis", "P-value of Shapiro-Wilk", "Shapiro-Wilk", "Skewness",
@@ -195,11 +195,49 @@ test_that("Analysis explains supremum and infimum of empty sets", {
   options <- analysisOptions("Descriptives")
   options$variables <- "debMiss99"
   options$splitby <- "contBinom"
-  
+
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
-  
+
   jaspTools::expect_equal_tables(results[['results']][['stats']][['footnotes']],
-                      list("Maximum", "Minimum", 22, "debMiss991", 0, 
+                      list("Maximum", "Minimum", 22, "debMiss991", 0,
                            "Infimum (minimum) of an empty set is <unicode>, supremum (maximum) of an empty set is -<unicode>.")
                       )
+})
+
+test_that("Stem and leaf tables match", {
+
+  options <- jaspTools::analysisOptions("Descriptives")
+  options$variables <- "contNormal"
+  options$stemAndLeaf <- TRUE
+  options$stemAndLeafScale <- 1.2
+  results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
+  table <- results[["results"]][["stemAndLeaf"]][["collection"]][["stemAndLeaf_stem_and_leaf_contNormal"]][["data"]]
+  expect_equal_tables(
+    table,
+    list(-3, 0, "|", -2, 320, "|", -1, 66644444431000, "|", 0, 9.99988888877778e+41,
+         "|", 0, 1.12223333334445e+27, "|", 1, 1469, "|", 2, 27, "|",
+         3, 4, "|"),
+    label = "stem and life without split"
+  )
+
+  options$splitby <- "contBinom"
+  results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
+  table0 <- results[["results"]][["stemAndLeaf"]][["collection"]][["stemAndLeaf_contNormal"]][["collection"]][["stemAndLeaf_contNormal_stem_and_leaf_contNormal_0"]][["data"]]
+  expect_equal_tables(
+    table0,
+    list(-2, 320, "|", -1, 6, "|", -1, 44430, "|", 0, 99988887777766672,
+         "|", 0, 4441, "|", 0, 11222333333444, "|", 0, 555668, "|", 1,
+         1, "|", 1, 6, "|", 2, "", "|", 2, 7, "|", 3, 4, "|"),
+    label = "stem and life with split - 0"
+  )
+
+  table1 <- results[["results"]][["stemAndLeaf"]][["collection"]][["stemAndLeaf_contNormal"]][["collection"]][["stemAndLeaf_contNormal_stem_and_leaf_contNormal_1"]][["data"]]
+  expect_equal_tables(
+    table1,
+    list(-3, 0, "|", -2, "", "|", -2, "", "|", -1, 66, "|", -1, 444100,
+         "|", 0, 988777665, "|", 0, 444443221111, "|", 0, 4, "|", 0,
+         5556689, "|", 1, 4, "|", 1, 9, "|", 2, 2, "|"),
+    label = "stem and life with split - 1"
+  )
+
 })
