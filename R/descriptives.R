@@ -189,7 +189,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     if(is.null(jaspResults[["stemAndLeaf"]])) {
       jaspResults[["stemAndLeaf"]] <- createJaspContainer(gettext("Stem and Leaf"))
       jaspResults[["stemAndLeaf"]]$dependOn(c("splitby", "stemAndLeaf", "stemAndLeafScale"))
-      jaspResults[["scatterPlots"]]$position <- 11
+      jaspResults[["stemAndLeaf"]]$position <- 11
     }
 
     numericOrFactorVariables <- Filter(function(var) .descriptivesIsNumericColumn(dataset.factors, var), variables)
