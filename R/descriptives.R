@@ -1491,6 +1491,16 @@ Descriptives <- function(jaspResults, dataset, options) {
 
 .descriptivesStemAndLeafCreateSingleTable <- function(x, title, scale = 1, width = 80, atom = 1e-08) {
 
+  tb <- createJaspTable(title = title)
+  tb$addColumnInfo(name = "left",  title =  "Stem", type = "integer")
+  tb$addColumnInfo(name = "sep",   title =  "",     type = "separator")
+  tb$addColumnInfo(name = "right", title =  "Leaf", type = "string")
+
+  if (length(na.omit(x)) < 2L) {
+    tb$setError(gettext("A stem and leaf table could not be made because there are fewer than 2 non-missing observations"))
+    return(tb)
+  }
+
   # NOTE: graphics::stem is fast because it works in C, but it prints directly to the R output and returns NULL...
   # so we resort to capturing the string and manipulating it.
   # as.numeric ensures factors are handled correctly
@@ -1507,26 +1517,21 @@ Descriptives <- function(jaspResults, dataset, options) {
     digits <- as.numeric(regmatches(originalFootnote, gregexpr("[[:digit:]]+", originalFootnote))[[1L]])
 
     footnote <- if (grepl("right", originalFootnote)) {
-      ngettext(digits,
+      sprintf(ngettext(digits,
         "The decimal point is %s digit to the right of the |",
         "The decimal point is %s digits to the right of the |"
-      )
+      ), digits)
     } else {
-      ngettext(digits,
+      sprintf(ngettext(digits,
         "The decimal point is %s digit to the left of the |",
         "The decimal point is %s digits to the left of the |"
-      )
+      ), digits)
     }
   }
 
   text  <- strsplit(other, " | ", fixed = TRUE)
   left  <- vapply(text, `[`, 1L, FUN.VALUE = character(1L))
   right <- vapply(text, function(x) if (length(x) == 1L) "" else x[2L], FUN.VALUE = character(1L))
-
-  tb <- createJaspTable(title = title)
-  tb$addColumnInfo(name = "left",  title =  "Stem", type = "integer")
-  tb$addColumnInfo(name = "sep",   title =  "",     type = "separator")
-  tb$addColumnInfo(name = "right", title =  "Leaf", type = "string")
 
   tb[["left"]]  <- left
   tb[["sep"]]   <- rep("|", length(left))
