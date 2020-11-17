@@ -184,6 +184,27 @@ Descriptives <- function(jaspResults, dataset, options) {
     }
   }
 
+  # Stem and leaf
+  if (options[["stemAndLeaf"]]) {
+    if(is.null(jaspResults[["stemAndLeaf"]])) {
+      jaspResults[["stemAndLeaf"]] <- createJaspContainer(gettext("Stem and Leaf"))
+      jaspResults[["stemAndLeaf"]]$dependOn(c("splitby", "stemAndLeaf", "stemAndLeafScale"))
+      jaspResults[["stemAndLeaf"]]$position <- 11
+    }
+
+    numericOrFactorVariables <- Filter(function(var) .descriptivesIsNumericColumn(dataset.factors, var), variables)
+
+    if (length(variables) > 0L) {
+      .descriptivesStemAndLeafTables(
+        container = jaspResults[["stemAndLeaf"]],
+        dataset   = if (makeSplit) splitDat.factors else dataset.factors,
+        variables = numericOrFactorVariables,
+        options   = options
+      )
+    }
+
+  }
+
   # Scatter plots
   if (options[["scatterPlot"]]) {
     if(is.null(jaspResults[["scatterPlots"]])) {
@@ -1427,4 +1448,96 @@ Descriptives <- function(jaspResults, dataset, options) {
     return(TRUE)
   else
     return(FALSE)
+}
+
+.descriptivesStemAndLeafTables <- function(container, dataset, variables, options, width = 120, atom = 1e-08) {
+
+  # parameters for graphics::stem
+  scale <- options[["stemAndLeafScale"]]
+  # width and atom are set to R's default values. We could allow the user to set them but the R documentation is unclear as to what it does.
+
+  if (!is.data.frame(dataset)) { # dataset is split
+
+    splitLevels <- names(dataset)
+
+    for (var in variables) {
+
+      if (is.null(container[[var]])) {
+        subcontainer <- createJaspContainer(title = var)
+        subcontainer$dependOn(optionContainsValue = list(variables = var))
+        container[[var]] <- subcontainer
+
+        for (split in splitLevels) {
+
+          tableName <- paste0("stem_and_leaf_", var, "_", split)
+          subcontainer[[tableName]] <- .descriptivesStemAndLeafCreateSingleTable(dataset[[split]][[var]], split, scale, width, atom)
+
+        }
+      }
+    }
+
+  } else {
+
+    for (var in variables) {
+      tableName <- paste0("stem_and_leaf_", var)
+      if (is.null(container[[tableName]])) {
+        container[[tableName]] <- .descriptivesStemAndLeafCreateSingleTable(dataset[[var]], var, scale, width, atom)
+        container[[tableName]]$dependOn(optionContainsValue = list(variables = var))
+      }
+    }
+
+  }
+}
+
+.descriptivesStemAndLeafCreateSingleTable <- function(x, title, scale = 1, width = 80, atom = 1e-08) {
+
+  tb <- createJaspTable(title = title)
+  tb$addColumnInfo(name = "left",  title =  "Stem", type = "integer")
+  tb$addColumnInfo(name = "sep",   title =  "",     type = "separator")
+  tb$addColumnInfo(name = "right", title =  "Leaf", type = "string")
+
+  if (length(na.omit(x)) < 2L) {
+    tb$setError(gettext("A stem and leaf table could not be made because there are fewer than 2 non-missing observations"))
+    return(tb)
+  }
+
+  # NOTE: graphics::stem is fast because it works in C, but it prints directly to the R output and returns NULL...
+  # so we resort to capturing the string and manipulating it.
+  # as.numeric ensures factors are handled correctly
+  temp <- capture.output(graphics::stem(as.numeric(x), scale, width, atom))
+  other <- temp[4:max(4, (length(temp) - 1L))]
+
+  # parse the footnote so that we can translate it.
+  # see https://github.com/wch/r-source/blob/c6710da21a5d869cd02889352483919ec3487000/src/library/graphics/src/stem.c#L105-L110 for details
+  originalFootnote <- temp[2L]
+  if (grepl("at the |", originalFootnote, fixed = TRUE)) {
+    footnote <- gettext("The decimal point is at the |")
+  } else {
+
+    digits <- as.numeric(regmatches(originalFootnote, gregexpr("[[:digit:]]+", originalFootnote))[[1L]])
+
+    footnote <- if (grepl("right", originalFootnote)) {
+      sprintf(ngettext(digits,
+        "The decimal point is %s digit to the right of the |",
+        "The decimal point is %s digits to the right of the |"
+      ), digits)
+    } else {
+      sprintf(ngettext(digits,
+        "The decimal point is %s digit to the left of the |",
+        "The decimal point is %s digits to the left of the |"
+      ), digits)
+    }
+  }
+
+  text  <- strsplit(other, " | ", fixed = TRUE)
+  left  <- vapply(text, `[`, 1L, FUN.VALUE = character(1L))
+  right <- vapply(text, function(x) if (length(x) == 1L) "" else x[2L], FUN.VALUE = character(1L))
+
+  tb[["left"]]  <- left
+  tb[["sep"]]   <- rep("|", length(left))
+  tb[["right"]] <- right
+
+  tb$addFootnote(footnote)
+
+  return(tb)
 }

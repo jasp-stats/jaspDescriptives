@@ -19,6 +19,7 @@
 import QtQuick			2.8
 import JASP.Controls	1.0
 import JASP.Widgets		1.0
+import JASP				1.0
 
 // All Analysis forms must be built with the From QML item
 Form
@@ -32,6 +33,17 @@ Form
 	}
 
 	CheckBox { name: "frequencyTables"; label: qsTr("Frequency tables (nominal and ordinal variables)"); }
+	CheckBox
+	{
+		name	: "stemAndLeaf";
+		label	: qsTr("Stem and leaf tables")
+		DoubleField
+		{
+			name: "stemAndLeafScale";	label: qsTr("scale");	negativeValues: false;	inclusive: JASP.MaxOnly;	max: 200;	defaultValue: 1.0;
+			info: qsTr("The scale parameter controls how much the table is expanded. For example, scale = 2 will cause the table to be roughly twice as long as the default (scale = 1).")
+		}
+		info	: qsTr("Create a Stem and leaf table.")
+	}
 
 	Section
 	{
