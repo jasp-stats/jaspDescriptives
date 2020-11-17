@@ -1,0 +1,173 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: R 3.6.1\n"
+"Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
+"POT-Creation-Date: 2020-11-17 13:03\n"
+"PO-Revision-Date: 2020-10-14 07:25+0000\n"
+"Last-Translator: JASP Stats <F.A.M.Meerhoff@uva.nl>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/jasp/jasp-engine/"
+"de/>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
+"X-Generator: Weblate 4.3-dev\n"
+
+msgid "Frequency Tables"
+msgstr "Häufigkeitstabellen"
+
+msgid "Correlation plots"
+msgstr "Korrelationsdiagramme"
+
+msgid "Correlation plot"
+msgstr "Korrelationsdiagramm"
+
+msgid "Distribution Plots"
+msgstr "Verteilungsabbildungen"
+
+msgid "Boxplots"
+msgstr "Boxplots"
+
+msgid "Q-Q Plots"
+msgstr "Q-Q-Diagramme"
+
+msgid "Q-Q Plot"
+msgstr "Q-Q-Diagramm"
+
+msgid "Plotting is not possible: Variable only contains NA!"
+msgstr "Abbilden unmöglich: Variable enthält nur NA!"
+
+msgid "Pie charts"
+msgstr "Tortendiagramme"
+
+msgid "Scatter Plots"
+msgstr "Streudiagramme"
+
+msgid "Descriptive Statistics"
+msgstr "Deskriptive Statistik"
+
+msgid ""
+"Excluded %1$i rows from the analysis that correspond to the missing values "
+"of the split-by variable %2$s"
+msgstr ""
+"Zeilen %1$i, die fehlenden Werten der Datenaufteilungs-Variable %2$s "
+"entsprechen, wurden aus der Analyse ausgeschlossen"
+
+msgid "Valid"
+msgstr "Gültig"
+
+msgid "Missing"
+msgstr "Fehlend"
+
+msgid "Mean"
+msgstr "Mittelwert"
+
+msgid "Std. Error of Mean"
+msgstr "Std.-Fehler Mittelwert"
+
+msgid "Median"
+msgstr "Median"
+
+msgid "Mode"
+msgstr "Modus"
+
+msgid "Std. Deviation"
+msgstr "Standardabweichung"
+
+msgid "MAD"
+msgstr "MAD"
+
+msgid "MAD Robust"
+msgstr "MAD Robust"
+
+msgid "IQR"
+msgstr "IQR"
+
+msgid "Variance"
+msgstr "Varianz"
+
+msgid "Skewness"
+msgstr "Schiefe"
+
+msgid "Std. Error of Skewness"
+msgstr "Std.-Fehler Schiefe"
+
+msgid "Kurtosis"
+msgstr "Kurtosis"
+
+msgid "Std. Error of Kurtosis"
+msgstr "Std.-Fehler Kurtosis"
+
+msgid "Shapiro-Wilk"
+msgstr "Shapiro-Wilk"
+
+msgid "P-value of Shapiro-Wilk"
+msgstr "P-Wert Shapiro-Wilk"
+
+msgid "Range"
+msgstr "Wertebereich"
+
+msgid "Minimum"
+msgstr "Minimum"
+
+msgid "Maximum"
+msgstr "Maximum"
+
+msgid "Sum"
+msgstr "Summe"
+
+msgid "%gth percentile"
+msgstr "%ges Perzentil"
+
+msgid "All values are identical"
+msgstr "Alle Werte sind identisch"
+
+msgid ""
+"Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set "
+"is %s."
+msgstr ""
+"Infimum (Minimum) einer leeren Menge ist %s, Supremum (Maximum) einer leeren "
+"Menge ist %s."
+
+msgid "Not all values are available for <i>Nominal Text</i> variables"
+msgstr ""
+
+msgid "More than one mode exists, only the first is reported"
+msgstr "Es gibt mehr als einen Modus, nur der erste ist berichtet"
+
+msgid "Frequencies for %s"
+msgstr "Häufigkeiten für %s"
+
+msgid "Frequency"
+msgstr "Häufigkeit"
+
+msgid "Percent"
+msgstr "Prozent"
+
+msgid "Valid Percent"
+msgstr "Prozent Gültig"
+
+msgid "Cumulative Percent"
+msgstr "Kumulative Prozent"
+
+msgid "Total"
+msgstr "Gesamt"
+
+msgid "Density"
+msgstr "Dichte"
+
+msgid "Plotting not possible: %s"
+msgstr "Abbilden nicht möglich: %s"
+
+msgid "Plotting is not possible: No plot type selected!"
+msgstr "Abbilden ist nicht möglich: Kein Abbildungstyp ausgewählt!"
+
+msgid "Counts"
+msgstr "Anzahlen"
+
+msgid "Theoretical Quantiles"
+msgstr "Theoretische Quantile"
+
+msgid "Standardised Residuals"
+msgstr "Standardisierte Residuen"
