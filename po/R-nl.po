@@ -1,0 +1,195 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: R 3.6.1\n"
+"Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
+"POT-Creation-Date: 2020-11-19 10:51\n"
+"PO-Revision-Date: 2020-10-14 09:57+0000\n"
+"Last-Translator: JASP Stats <F.A.M.Meerhoff@uva.nl>\n"
+"Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/jasp-engine/"
+"nl/>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
+"X-Generator: Weblate 4.3-dev\n"
+
+msgid "Frequency Tables"
+msgstr "Frequentietabellen"
+
+msgid "Correlation plots"
+msgstr "Spreidingsdiagrammen"
+
+msgid "Correlation plot"
+msgstr "Correlatiediagram"
+
+msgid "Distribution Plots"
+msgstr "Histogrammen"
+
+msgid "Boxplots"
+msgstr "Boxplots"
+
+msgid "Q-Q Plots"
+msgstr "Q-Q plots"
+
+msgid "Q-Q Plot"
+msgstr "Q-Q plot"
+
+msgid "Plotting is not possible: Variable only contains NA!"
+msgstr "Maken grafieken niet mogelijk: Variabele bevat slechts NA!"
+
+msgid "Pie charts"
+msgstr "Cirkelgrafieken"
+
+msgid "Stem and Leaf"
+msgstr ""
+
+msgid "Scatter Plots"
+msgstr "Spreidingsdiagrammen"
+
+msgid "Descriptive Statistics"
+msgstr "Beschrijvende Statistiek"
+
+msgid ""
+"Excluded %1$i rows from the analysis that correspond to the missing values "
+"of the split-by variable %2$s"
+msgstr ""
+"%1$i rijen van de analyse uitgesloten die corresponderen met de ontbrekende "
+"waarden van de splits variabele %2$s"
+
+msgid "Valid"
+msgstr "Geldig"
+
+msgid "Missing"
+msgstr "Ontbrekend"
+
+msgid "Mean"
+msgstr "Gemiddelde"
+
+msgid "Std. Error of Mean"
+msgstr "Std. fout van het gemiddelde"
+
+msgid "Median"
+msgstr "Mediaan"
+
+msgid "Mode"
+msgstr "Modus"
+
+msgid "Std. Deviation"
+msgstr "Standaardafwijking"
+
+msgid "MAD"
+msgstr "MAD"
+
+msgid "MAD Robust"
+msgstr "MAD Robuust"
+
+msgid "IQR"
+msgstr "IQR"
+
+msgid "Variance"
+msgstr "Variantie"
+
+msgid "Skewness"
+msgstr "Scheefheid"
+
+msgid "Std. Error of Skewness"
+msgstr "Std. fout van scheefheid"
+
+msgid "Kurtosis"
+msgstr "Gepiektheid"
+
+msgid "Std. Error of Kurtosis"
+msgstr "Std. fout van gepiektheid"
+
+msgid "Shapiro-Wilk"
+msgstr "Shapiro-Wilk"
+
+msgid "P-value of Shapiro-Wilk"
+msgstr "P-waarde van Shapiro-Wilk"
+
+msgid "Range"
+msgstr "Bereik"
+
+msgid "Minimum"
+msgstr "Minimum"
+
+msgid "Maximum"
+msgstr "Maximum"
+
+msgid "Sum"
+msgstr "Som"
+
+msgid "%gth percentile"
+msgstr "%ge percentiel"
+
+msgid "All values are identical"
+msgstr "Alle waarden zijn gelijk"
+
+msgid ""
+"Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set "
+"is %s."
+msgstr ""
+"Infimum (minimum) van een lege verzameling is %s, supremum (maximum) van een "
+"lege verzameling is %s."
+
+msgid "Not all values are available for <i>Nominal Text</i> variables"
+msgstr ""
+"Niet alle waarden zijn beschikbaar voor <i>Nominale Tekst</i> variabelen"
+
+msgid "More than one mode exists, only the first is reported"
+msgstr "Er is meer dan één modus, alleen de eerste wordt gerapporteerd"
+
+msgid "Frequencies for %s"
+msgstr "Frequenties voor %s"
+
+msgid "Frequency"
+msgstr "Frequentie"
+
+msgid "Percent"
+msgstr "Percentage"
+
+msgid "Valid Percent"
+msgstr "Geldig Percentage"
+
+msgid "Cumulative Percent"
+msgstr "Cumulatief Percentage"
+
+msgid "Total"
+msgstr "Totaal"
+
+msgid "Density"
+msgstr "Dichtheid"
+
+msgid "Plotting not possible: %s"
+msgstr "Grafiek maken niet mogelijk: %s"
+
+msgid "Plotting is not possible: No plot type selected!"
+msgstr "Plotten is niet mogelijk: Geen plottype geselecteerd!"
+
+msgid "Counts"
+msgstr "Aantallen"
+
+msgid "Theoretical Quantiles"
+msgstr "Theoretische Kwantielen"
+
+msgid "Standardised Residuals"
+msgstr "Gestandaardiseerde Residuen"
+
+msgid ""
+"A stem and leaf table could not be made because there are fewer than 2 non-"
+"missing observations"
+msgstr ""
+
+msgid "The decimal point is at the |"
+msgstr ""
+
+msgid "The decimal point is %s digit to the right of the |"
+msgid_plural "The decimal point is %s digits to the right of the |"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "The decimal point is %s digit to the left of the |"
+msgid_plural "The decimal point is %s digits to the left of the |"
+msgstr[0] ""
+msgstr[1] ""

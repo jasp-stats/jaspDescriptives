@@ -1,0 +1,409 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: en_US\n"
+"X-Source-Language: American English\n"
+"X-Qt-Contexts: true\n"
+
+msgctxt "Description|"
+msgid "Descriptives"
+msgstr "Beschrijvende statistiek"
+
+msgctxt "Description|"
+msgid "This module offers the Descriptives analysis."
+msgstr "Deze module biedt de Beschrijvende analyses."
+
+msgctxt "Description|"
+msgid "Descriptive Statistics"
+msgstr "Beschrijvende Statistiek"
+
+msgctxt "Descriptives|"
+msgid "Variables"
+msgstr "Variabelen"
+
+msgctxt "Descriptives|"
+msgid "Split"
+msgstr "Splits"
+
+msgctxt "Descriptives|"
+msgid "Frequency tables (nominal and ordinal variables)"
+msgstr "Frequentietabellen (nominale en ordinale variabelen)"
+
+msgctxt "Descriptives|"
+msgid "Stem and leaf tables"
+msgstr ""
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "scale"
+msgstr "schaal"
+
+msgctxt "Descriptives|"
+msgid ""
+"The scale parameter controls how much the table is expanded. For example, "
+"scale = 2 will cause the table to be roughly twice as long as the default "
+"(scale = 1)."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Create a Stem and leaf table."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Plots"
+msgstr "Grafieken"
+
+msgctxt "Descriptives|"
+msgid "Customizable plots"
+msgstr "Aanpasbare grafieken"
+
+msgctxt "Descriptives|"
+msgid "Color palette"
+msgstr "Kleurenpalet"
+
+msgctxt "Descriptives|"
+msgid "Colorblind"
+msgstr "Kleurenblind"
+
+msgctxt "Descriptives|"
+msgid "Colorblind Alt."
+msgstr "Kleurenblind alt."
+
+msgctxt "Descriptives|"
+msgid "Viridis"
+msgstr "Viridis"
+
+msgctxt "Descriptives|"
+msgid "ggplot2"
+msgstr "ggplot2"
+
+msgctxt "Descriptives|"
+msgid "Gray"
+msgstr "Grijs"
+
+msgctxt "Descriptives|"
+msgid "Boxplots"
+msgstr "Boxplots"
+
+msgctxt "Descriptives|"
+msgid "Boxplot element"
+msgstr "Boxplot element"
+
+msgctxt "Descriptives|"
+msgid "Violin element"
+msgstr "Vioolelement"
+
+msgctxt "Descriptives|"
+msgid "Jitter element"
+msgstr "Jitterelement"
+
+msgctxt "Descriptives|"
+msgid "Use color palette"
+msgstr "Gebruik kleurenpalet"
+
+msgctxt "Descriptives|"
+msgid "Label outliers"
+msgstr "Label uitschieters"
+
+msgctxt "Descriptives|"
+msgid "Scatter Plots"
+msgstr "Spreidingsdiagram"
+
+msgctxt "Descriptives|"
+msgid "Graph above scatter plot"
+msgstr "Grafiek boven spreidingsdiagram"
+
+msgctxt "Descriptives|"
+msgid "Density"
+msgstr "Dichtheid"
+
+msgctxt "Descriptives|"
+msgid "Histogram"
+msgstr "Histogram"
+
+msgctxt "Descriptives|"
+msgid "None"
+msgstr "Geen"
+
+msgctxt "Descriptives|"
+msgid "Graph right of scatter plot"
+msgstr "Grafiek rechts van spreidingsdiagram"
+
+msgctxt "Descriptives|"
+msgid "Add regression line"
+msgstr "Voeg regressielijn toe"
+
+msgctxt "Descriptives|"
+msgid "Smooth"
+msgstr "Egaal"
+
+msgctxt "Descriptives|"
+msgid "Linear"
+msgstr "Lineair"
+
+msgctxt "Descriptives|"
+msgid "Show confidence interval"
+msgstr "Toon betrouwbaarheidsinterval"
+
+msgctxt "Descriptives|"
+msgid "Show legend"
+msgstr "Toon legenda"
+
+msgctxt "Descriptives|"
+msgid "Basic plots"
+msgstr "Basisgrafieken"
+
+msgctxt "Descriptives|"
+msgid "Distribution plots"
+msgstr "Histogrammen"
+
+msgctxt "Descriptives|"
+msgid "Display density"
+msgstr "Toon verdeling"
+
+msgctxt "Descriptives|"
+msgid "Correlation plots"
+msgstr "Correlatiediagrammen"
+
+msgctxt "Descriptives|"
+msgid "Q-Q plots"
+msgstr "Q-Q plots"
+
+msgctxt "Descriptives|"
+msgid "Pie charts"
+msgstr "Taartdiagrammen"
+
+msgctxt "Descriptives|"
+msgid "Statistics"
+msgstr "Statistieken"
+
+msgctxt "Descriptives|"
+msgid "Percentile Values"
+msgstr "Percentielwaarden"
+
+msgctxt "Descriptives|"
+msgid "Quartiles"
+msgstr "Kwartielen"
+
+msgctxt "Descriptives|"
+msgid "Cut points for: "
+msgstr "Snij punten af voor: "
+
+msgctxt "Descriptives|"
+msgid " equal groups"
+msgstr " gelijke groepen"
+
+msgctxt "Descriptives|"
+msgid "Percentiles:"
+msgstr "Percentielen:"
+
+msgctxt "Descriptives|"
+msgid "Central Tendency"
+msgstr "Centrale tendens"
+
+msgctxt "Descriptives|"
+msgid "Mean"
+msgstr "Gemiddelde"
+
+msgctxt "Descriptives|"
+msgid "Median"
+msgstr "Mediaan"
+
+msgctxt "Descriptives|"
+msgid "Mode"
+msgstr "Modus"
+
+msgctxt "Descriptives|"
+msgid "Sum"
+msgstr "Som"
+
+msgctxt "Descriptives|"
+msgid "Dispersion"
+msgstr "Spreiding"
+
+msgctxt "Descriptives|"
+msgid "S. E. mean"
+msgstr "Std. fout gemiddelde"
+
+msgctxt "Descriptives|"
+msgid "Std.deviation"
+msgstr "Std. afwijking"
+
+msgctxt "Descriptives|"
+msgid "MAD"
+msgstr "MAD"
+
+msgctxt "Descriptives|"
+msgid "MAD Robust"
+msgstr "MAD robuust"
+
+msgctxt "Descriptives|"
+msgid "IQR"
+msgstr "IQR"
+
+msgctxt "Descriptives|"
+msgid "Variance"
+msgstr "Variantie"
+
+msgctxt "Descriptives|"
+msgid "Range"
+msgstr "Bereik"
+
+msgctxt "Descriptives|"
+msgid "Minimum"
+msgstr "Minimum"
+
+msgctxt "Descriptives|"
+msgid "Maximum"
+msgstr "Maximum"
+
+msgctxt "Descriptives|"
+msgid "Distribution"
+msgstr "Verdeling"
+
+msgctxt "Descriptives|"
+msgid "Skewness"
+msgstr "Scheefheid"
+
+msgctxt "Descriptives|"
+msgid "Kurtosis"
+msgstr "Gepiektheid"
+
+msgctxt "Descriptives|"
+msgid "Shapiro-Wilk test"
+msgstr "Shapiro-Wilk toets"
+
+msgctxt "Descriptives|"
+msgid "Values are group midpoints"
+msgstr "Waarden zijn middelpunten van groep"
+
+msgctxt "Descriptives|"
+msgid "Charts"
+msgstr "Grafieken"
+
+msgctxt "Descriptives|"
+msgid "Chart Type"
+msgstr "Type grafiek"
+
+msgctxt "Descriptives|"
+msgid "Bar charts"
+msgstr "Staafgrafieken"
+
+msgctxt "Descriptives|"
+msgid "Histograms"
+msgstr "Histogrammen"
+
+msgctxt "Descriptives|"
+msgid "Chart Values"
+msgstr "Grafiekwaarden"
+
+msgctxt "Descriptives|"
+msgid "Frequencies"
+msgstr "Frequenties"
+
+msgctxt "Descriptives|"
+msgid "Percentages"
+msgstr "Percentages"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Variables"
+msgstr "Variabelen"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Scale Statistics"
+msgstr "Schaalstatistieken"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "McDonald's ω"
+msgstr "McDonald's ω"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Cronbach's α"
+msgstr "Cronbach's α"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Unstandardized"
+msgstr "Ongestandaardiseerd"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Standardized"
+msgstr "Gestandaardiseerd"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Gutmann's λ6"
+msgstr "Gutmann's λ6"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Greatest lower bound"
+msgstr "Grootste ondergrens"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Average interitem correlation"
+msgstr "Gemiddelde inter-item correlatie"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Mean"
+msgstr "Gemiddelde"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Standard deviation"
+msgstr "Standaardafwijking"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Individual Item Statistics"
+msgstr "Individuele itemstatistieken"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "McDonald's ω (if item dropped)"
+msgstr "McDonald's ω (als item is verwijderd)"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Cronbach's α (if item dropped)"
+msgstr "Cronbach's α (als item is verwijderd)"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Gutmann's λ6 (if item dropped)"
+msgstr "Gutmann's λ6 (als item is verwijderd)"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Item-rest correlation"
+msgstr "Item-rest correlatie"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Reverse-Scaled Items"
+msgstr "Omgekeerd geschaalde items"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Normal-Scaled Items"
+msgstr "Normaal geschaalde items"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Advanced Options"
+msgstr "Geavanceerde opties"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Missing Values"
+msgstr "Ontbrekende waarden"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Exclude cases listwise"
+msgstr "Sluit waarnemingen uit per rij"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Exclude cases pairwise"
+msgstr "Sluit waarnemingen paarsgewijs uit"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Confidence Interval"
+msgstr "Betrouwbaarheidsinterval"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Cronbach's α analytical"
+msgstr "Cronbach's α analytisch"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Confidence"
+msgstr "Betrouwbaarheid"

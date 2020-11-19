@@ -1,0 +1,409 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: en_US\n"
+"X-Source-Language: American English\n"
+"X-Qt-Contexts: true\n"
+
+msgctxt "Description|"
+msgid "Descriptives"
+msgstr "Descriptivos"
+
+msgctxt "Description|"
+msgid "This module offers the Descriptives analysis."
+msgstr "Este módulo ofrece el análisis descriptivo."
+
+msgctxt "Description|"
+msgid "Descriptive Statistics"
+msgstr "Estadísticas descriptivas"
+
+msgctxt "Descriptives|"
+msgid "Variables"
+msgstr "Variables"
+
+msgctxt "Descriptives|"
+msgid "Split"
+msgstr "División"
+
+msgctxt "Descriptives|"
+msgid "Frequency tables (nominal and ordinal variables)"
+msgstr "Tablas de frecuencia (variables nominales y ordinales)"
+
+msgctxt "Descriptives|"
+msgid "Stem and leaf tables"
+msgstr ""
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "scale"
+msgstr "escala"
+
+msgctxt "Descriptives|"
+msgid ""
+"The scale parameter controls how much the table is expanded. For example, "
+"scale = 2 will cause the table to be roughly twice as long as the default "
+"(scale = 1)."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Create a Stem and leaf table."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Plots"
+msgstr "Parcelas"
+
+msgctxt "Descriptives|"
+msgid "Customizable plots"
+msgstr "Parcelas personalizables"
+
+msgctxt "Descriptives|"
+msgid "Color palette"
+msgstr "Paleta de color"
+
+msgctxt "Descriptives|"
+msgid "Colorblind"
+msgstr "Daltónico"
+
+msgctxt "Descriptives|"
+msgid "Colorblind Alt."
+msgstr "Daltonismo Alt."
+
+msgctxt "Descriptives|"
+msgid "Viridis"
+msgstr "Viridis"
+
+msgctxt "Descriptives|"
+msgid "ggplot2"
+msgstr "ggplot2"
+
+msgctxt "Descriptives|"
+msgid "Gray"
+msgstr "gris"
+
+msgctxt "Descriptives|"
+msgid "Boxplots"
+msgstr "Diagramas de caja"
+
+msgctxt "Descriptives|"
+msgid "Boxplot element"
+msgstr "Elemento de diagrama de caja"
+
+msgctxt "Descriptives|"
+msgid "Violin element"
+msgstr "Elemento de violín"
+
+msgctxt "Descriptives|"
+msgid "Jitter element"
+msgstr "Elemento jitter"
+
+msgctxt "Descriptives|"
+msgid "Use color palette"
+msgstr "Usar paleta de colores"
+
+msgctxt "Descriptives|"
+msgid "Label outliers"
+msgstr "Etiquetar valores atípicos"
+
+msgctxt "Descriptives|"
+msgid "Scatter Plots"
+msgstr "Gráfico de dispersión"
+
+msgctxt "Descriptives|"
+msgid "Graph above scatter plot"
+msgstr "Gráfico sobre el diagrama de dispersión"
+
+msgctxt "Descriptives|"
+msgid "Density"
+msgstr "Densidad"
+
+msgctxt "Descriptives|"
+msgid "Histogram"
+msgstr "Histograma"
+
+msgctxt "Descriptives|"
+msgid "None"
+msgstr "Ninguna"
+
+msgctxt "Descriptives|"
+msgid "Graph right of scatter plot"
+msgstr "Gráfico a la derecha del diagrama de dispersión"
+
+msgctxt "Descriptives|"
+msgid "Add regression line"
+msgstr "Agregar línea de regresión"
+
+msgctxt "Descriptives|"
+msgid "Smooth"
+msgstr "Suave"
+
+msgctxt "Descriptives|"
+msgid "Linear"
+msgstr "Lineal"
+
+msgctxt "Descriptives|"
+msgid "Show confidence interval"
+msgstr "Mostrar intervalo de confianza"
+
+msgctxt "Descriptives|"
+msgid "Show legend"
+msgstr "Mostrar leyenda"
+
+msgctxt "Descriptives|"
+msgid "Basic plots"
+msgstr "Parcelas básicas"
+
+msgctxt "Descriptives|"
+msgid "Distribution plots"
+msgstr "Parcelas de distribución"
+
+msgctxt "Descriptives|"
+msgid "Display density"
+msgstr "Densidad de pantalla"
+
+msgctxt "Descriptives|"
+msgid "Correlation plots"
+msgstr "Gráficos de correlación"
+
+msgctxt "Descriptives|"
+msgid "Q-Q plots"
+msgstr "Gráficos Q-Q"
+
+msgctxt "Descriptives|"
+msgid "Pie charts"
+msgstr "Gráficos circulares"
+
+msgctxt "Descriptives|"
+msgid "Statistics"
+msgstr "Estadísticas"
+
+msgctxt "Descriptives|"
+msgid "Percentile Values"
+msgstr "Valores percentiles"
+
+msgctxt "Descriptives|"
+msgid "Quartiles"
+msgstr "Cuartiles"
+
+msgctxt "Descriptives|"
+msgid "Cut points for: "
+msgstr "Puntos de corte para: "
+
+msgctxt "Descriptives|"
+msgid " equal groups"
+msgstr " grupos iguales"
+
+msgctxt "Descriptives|"
+msgid "Percentiles:"
+msgstr "Percentiles:"
+
+msgctxt "Descriptives|"
+msgid "Central Tendency"
+msgstr "Tendencia central"
+
+msgctxt "Descriptives|"
+msgid "Mean"
+msgstr "Media"
+
+msgctxt "Descriptives|"
+msgid "Median"
+msgstr "Mediana"
+
+msgctxt "Descriptives|"
+msgid "Mode"
+msgstr "Modo"
+
+msgctxt "Descriptives|"
+msgid "Sum"
+msgstr "Suma"
+
+msgctxt "Descriptives|"
+msgid "Dispersion"
+msgstr "Dispersión"
+
+msgctxt "Descriptives|"
+msgid "S. E. mean"
+msgstr "S. E. media"
+
+msgctxt "Descriptives|"
+msgid "Std.deviation"
+msgstr "Desviación estándar"
+
+msgctxt "Descriptives|"
+msgid "MAD"
+msgstr "ENOJADO"
+
+msgctxt "Descriptives|"
+msgid "MAD Robust"
+msgstr "MAD Robusto"
+
+msgctxt "Descriptives|"
+msgid "IQR"
+msgstr "IQR"
+
+msgctxt "Descriptives|"
+msgid "Variance"
+msgstr "Diferencia"
+
+msgctxt "Descriptives|"
+msgid "Range"
+msgstr "Rango"
+
+msgctxt "Descriptives|"
+msgid "Minimum"
+msgstr "Mínimo"
+
+msgctxt "Descriptives|"
+msgid "Maximum"
+msgstr "Máximo"
+
+msgctxt "Descriptives|"
+msgid "Distribution"
+msgstr "Distribución"
+
+msgctxt "Descriptives|"
+msgid "Skewness"
+msgstr "Oblicuidad"
+
+msgctxt "Descriptives|"
+msgid "Kurtosis"
+msgstr "Curtosis"
+
+msgctxt "Descriptives|"
+msgid "Shapiro-Wilk test"
+msgstr "Prueba de Shapiro-Wilk"
+
+msgctxt "Descriptives|"
+msgid "Values are group midpoints"
+msgstr "Los valores son puntos medios de grupo"
+
+msgctxt "Descriptives|"
+msgid "Charts"
+msgstr "Gráficos"
+
+msgctxt "Descriptives|"
+msgid "Chart Type"
+msgstr "Tipo de gráfico"
+
+msgctxt "Descriptives|"
+msgid "Bar charts"
+msgstr "Gráfica de barras"
+
+msgctxt "Descriptives|"
+msgid "Histograms"
+msgstr "Histogramas"
+
+msgctxt "Descriptives|"
+msgid "Chart Values"
+msgstr "Valores de gráfico"
+
+msgctxt "Descriptives|"
+msgid "Frequencies"
+msgstr "Frecuencias"
+
+msgctxt "Descriptives|"
+msgid "Percentages"
+msgstr "Porcentajes"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Variables"
+msgstr "Variables"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Scale Statistics"
+msgstr "Estadísticas de escala"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "McDonald's ω"
+msgstr "McDonald's ω"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Cronbach's α"
+msgstr "Α de Cronbach"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Unstandardized"
+msgstr "No estandarizado"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Standardized"
+msgstr "Estandarizado"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Gutmann's λ6"
+msgstr "Λ6 de Gutmann"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Greatest lower bound"
+msgstr "Mayor límite inferior"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Average interitem correlation"
+msgstr "Correlación media entre elementos"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Mean"
+msgstr "Media"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Standard deviation"
+msgstr "Desviación Estándar"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Individual Item Statistics"
+msgstr "Estadísticas de artículos individuales"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "McDonald's ω (if item dropped)"
+msgstr "McDonald's ω (si se cayó el artículo)"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Cronbach's α (if item dropped)"
+msgstr "Α de Cronbach (si el elemento cayó)"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Gutmann's λ6 (if item dropped)"
+msgstr "Λ6 de Gutmann (si el elemento se cayó)"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Item-rest correlation"
+msgstr "Correlación ítem-resto"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Reverse-Scaled Items"
+msgstr "Elementos de escala inversa"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Normal-Scaled Items"
+msgstr "Elementos de escala normal"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Advanced Options"
+msgstr "Opciones avanzadas"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Missing Values"
+msgstr "Valores faltantes"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Exclude cases listwise"
+msgstr "Excluir casos según la lista"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Exclude cases pairwise"
+msgstr "Excluir casos por pares"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Confidence Interval"
+msgstr "Intervalo de confianza"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Cronbach's α analytical"
+msgstr "Α analítico de Cronbach"
+
+msgctxt "ReliabilityAnalysis|"
+msgid "Confidence"
+msgstr "Confianza"
