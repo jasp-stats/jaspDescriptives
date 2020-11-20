@@ -232,6 +232,24 @@ Descriptives <- function(jaspResults, dataset, options) {
       if(is.null(intervalPlots[[var]]) && .descriptivesIsNumericColumn(dataset.factors, var)) {
         intervalPlots[[var]] <- .descriptivesIntervalPlot(dataset = dataset, options = options, variable = var)
         intervalPlots[[var]]$dependOn(optionContainsValue=list(variables=var))
+
+  # Dot plots
+  if(options[["descriptivesDotPlot"]]){
+    
+    if(is.null(jaspResults[["DotPlots"]])) {
+      jaspResults[["DotPlots"]] <- createJaspContainer(gettext("Dot Plots"))
+      jaspResults[["DotPlots"]]$dependOn(c("splitby", "descriptivesDotPlot"))
+      jaspResults[["DotPlots"]]$position <- 12
+    }
+    
+    dotPlots <- jaspResults[["DotPlots"]]
+    
+    for (var in variables) {
+      if(is.null(dotPlots[[var]])) {
+        dotPlots[[var]] <- .descriptivesDotPlots(dataset = if(makeSplit) splitDat.factors else dataset.factors,
+                                                 options = options,
+                                                 variable = var)
+        
       }
     }
   }
@@ -1199,6 +1217,64 @@ Descriptives <- function(jaspResults, dataset, options) {
     p <- p + ggplot2::theme(axis.ticks.y = ggplot2::element_blank())
 
   return(p)
+}
+
+.descriptivesDotPlots <- function(dataset, options, variable){
+  
+  
+  if (options$splitby != "" ) {
+    # return a collection
+    split <- names(dataset)
+    
+    plotResult <- createJaspContainer(title = variable)
+    plotResult$dependOn(optionContainsValue = list(variables = variable))
+    
+    for (l in split)
+      plotResult[[l]] <- .descriptivesDotPlots_SubFunc(dataset = dataset[[l]], variable = variable, title = l)
+    
+    return(plotResult)
+    
+  }else{
+    
+    dotplot <- .descriptivesDotPlots_SubFunc(dataset = dataset, variable = variable, title = variable)
+    dotplot$dependOn(optionContainsValue = list(variables = variable))
+    
+    return(dotplot)
+  }
+}
+
+.descriptivesDotPlots_SubFunc <- function(dataset, variable, title){
+  
+  dotplot <- createJaspPlot(title = title)
+  
+  x <- na.omit(dataset[[.v(variable)]])
+  
+  if (is.factor(x)){
+    tb <- as.data.frame(table(x))
+    p <- ggplot2::ggplot(data = data.frame(x = x), ggplot2::aes(x = x)) + 
+      ggplot2::geom_dotplot(binaxis = 'x', stackdir = 'up') + 
+      ggplot2::xlab(variable) +
+      ggplot2::ylab("") +
+      ggplot2::scale_x_discrete(limits = factor(tb[, 1]))
+    
+    p <- jaspGraphs::themeJasp(p, yAxis = FALSE) + ggplot2::theme(axis.ticks.y = ggplot2::element_blank(),
+                                                                  axis.title.y = ggplot2::element_blank(),
+                                                                  axis.text.y = ggplot2::element_blank())
+  } else {
+    p <- ggplot2::ggplot(data = data.frame(x = x), ggplot2::aes(x = x)) + 
+      ggplot2::geom_dotplot(binaxis = 'x', stackdir='up') + 
+      ggplot2::xlab(variable) +
+      ggplot2::ylab("")
+    
+    p <- jaspGraphs::themeJasp(p, yAxis = FALSE) + ggplot2::theme(axis.ticks.y = ggplot2::element_blank(),
+                                                                  axis.title.y = ggplot2::element_blank(),
+                                                                  axis.text.y = ggplot2::element_blank())
+  }
+  
+  dotplot$plotObject <- p
+  
+  return(dotplot)  
+  
 }
 
 .barplotJASP <- function(column, variable, dontPlotData= FALSE) {
