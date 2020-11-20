@@ -83,7 +83,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (options$plotVariables) {
     if(is.null(jaspResults[["distributionPlots"]])) {
       jaspResults[["distributionPlots"]] <- createJaspContainer(gettext("Distribution Plots"))
-      jaspResults[["distributionPlots"]]$dependOn(c("plotVariables", "splitby", "distPlotDensity"))
+      jaspResults[["distributionPlots"]]$dependOn(c("plotVariables", "splitby"))
       jaspResults[["distributionPlots"]]$position <- 5
     }
 
@@ -833,26 +833,26 @@ Descriptives <- function(jaspResults, dataset, options) {
     # return a collection
     split <- names(dataset)
 
-    plotResult <- createJaspContainer(title=variable)
-    plotResult$dependOn(options="splitby", optionContainsValue=list(variables=variable))
+    plotResult <- createJaspContainer(title = variable)
+    plotResult$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
 
     for (l in split) {
-      plotResult[[l]] <- .descriptivesFrequencyPlots_SubFunc(dataset=dataset[[l]], variable=variable, width=options$plotWidth, height=options$plotHeight, displayDensity = options$distPlotDensity, title = l)
-      plotResult[[l]]$dependOn(optionsFromObject=plotResult)
+      plotResult[[l]] <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset[[l]], variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDensity, rugs = options$distPlotRug, title = l, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
+      plotResult[[l]]$dependOn(optionsFromObject = plotResult)
     }
 
     return(plotResult)
   } else {
     column <- dataset[[.v(variable)]]
-    aPlot <- .descriptivesFrequencyPlots_SubFunc(dataset=dataset, variable=variable, width=options$plotWidth, height=options$plotHeight, displayDensity = options$distPlotDensity, title = variable)
-    aPlot$dependOn(options="splitby", optionContainsValue=list(variables=variable))
+    aPlot <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset, variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDensity, rugs = options$distPlotRug, title = variable, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
+    aPlot$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
 
     return(aPlot)
   }
 }
 
-.descriptivesFrequencyPlots_SubFunc <- function(dataset, variable, width, height, displayDensity, title) {
-  freqPlot <- createJaspPlot(title=title, width=width, height=height)
+.descriptivesFrequencyPlots_SubFunc <- function(dataset, variable, width, height, displayDensity, rugs, title,  binWidthType, numberOfBins) {
+  freqPlot <- createJaspPlot(title = title, width = width, height = height)
   
   errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 3")
   column <- dataset[[.v(variable)]]
@@ -862,7 +862,8 @@ Descriptives <- function(jaspResults, dataset, options) {
   else if (length(column) > 0 && is.factor(column))
     freqPlot$plotObject <- .barplotJASP(column, variable)
   else if (length(column) > 0 && !is.factor(column))
-    freqPlot$plotObject <- .plotMarginal(column, variableName=variable, displayDensity = displayDensity)
+    freqPlot$plotObject <- .plotMarginal(column, variableName = variable, displayDensity = displayDensity, rugs = rugs, binWidthType = binWidthType, numberOfBins = numberOfBins)
+    freqPlot$dependOn(options = c("binWidthType", "distPlotDensity", "distPlotRug", 'numberOfBins'))
   
   return(freqPlot)
 }
@@ -998,14 +999,30 @@ Descriptives <- function(jaspResults, dataset, options) {
 
 
 .plotMarginal <- function(column, variableName,
-                          rugs = FALSE, displayDensity = FALSE) {
+                          rugs = FALSE, displayDensity = FALSE, binWidthType = c("doane", "fd", "scott", "sturges", "manual"),
+                          numberOfBins = NA) {
+  binWidthType <- match.arg(binWidthType)
   column <- as.numeric(column)
   variable <- na.omit(column)
 
-  if(length(variable) == 0)
+  if (length(variable) == 0)
     return(NULL)
+  
+  if (binWidthType == "doane") {  # https://en.wikipedia.org/wiki/Histogram#Doane's_formula
+    sigma.g1 <- sqrt((6*(length(variable) - 2)) / ((length(variable) + 1)*(length(variable) + 3)))
+    g1 <- mean(abs(variable)^3)
+    k <- 1 + log2(length(variable)) + log2(1 + (g1 / sigma.g1))
+    binWidthType <- k
+  }
+  
+  if (binWidthType == "fd" & nclass.FD(variable) > 10000) # FD-method will produce extreme number of bins and crash ggplot, mention this in footnote
+    binWidthType <- 10000
+  
+  if (binWidthType == "manual")
+    binWidthType <- numberOfBins
+  
 
-  h <- hist(variable, plot = FALSE)
+  h <- hist(variable, plot = FALSE, breaks = binWidthType)
 
   if (!displayDensity)
     yhigh <- max(h$counts)
@@ -1062,6 +1079,9 @@ Descriptives <- function(jaspResults, dataset, options) {
         center    = ((h$breaks[2] - h$breaks[1])/2)
       )
   }
+  
+  if (rugs)
+    p <- p + ggplot2::geom_rug(data = data.frame(variable),mapping  = ggplot2::aes(x = variable), sides="b")
     
 
   # JASP theme
