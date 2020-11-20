@@ -64,13 +64,14 @@ Form
 
 		Group
 		{
+			title: qsTr("Customizable plots")
 			DropDown
 			{
 				name: "colorPalette"
 				label: qsTr("Color palette")
 				indexDefaultValue: 0
 				values:
-					[
+				[
 					{ label: qsTr("Colorblind"),		value: "colorblind"		},
 					{ label: qsTr("Colorblind Alt."),	value: "colorblind3"	},
 					{ label: qsTr("Viridis"),			value: "viridis"		},
@@ -189,7 +190,7 @@ Form
 			CheckBox {				name: "descriptivesQQPlot";		label: qsTr("Q-Q plots")						}
 			CheckBox {				name: "descriptivesPiechart";	label: qsTr("Pie charts")						}
 			CheckBox {				name: "descriptivesDotPlot";	label: qsTr("Dot plots")						}
-        }
+		}
 	}
 
 	Section
