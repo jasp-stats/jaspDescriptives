@@ -157,6 +157,42 @@ Form
 					}
 				}
 			}
+
+			CheckBox
+			{
+				name: "heatmap"; label: qsTr("Tile Heatmap")
+				DropDown
+				{
+					name: "heatmapHorizontal"
+					label: qsTr("Horizontal axis:")
+					showVariableTypeIcon: true
+					addEmptyValue: true
+				}
+				DropDown
+				{
+					name: "heatmapVertical"
+					label: qsTr("Vertical axis:")
+					showVariableTypeIcon: true
+					addEmptyValue: true
+				}
+				CheckBox { name: "heatmapPlotValue"; label: qsTr("Display value") }
+				DoubleField { name: "heatmapRectangleRatio"; label: qsTr("Width to height ratio of tiles"); negativeValues: false; defaultValue: 1 }
+				RadioButtonGroup
+				{
+					name: "heatmapStatisticContinuous"
+					title: qsTr("Statistic to plot (scale variables)")
+					RadioButton { value: "identity";	label: qsTr("Value itself") }
+					RadioButton { value: "mean";		label: qsTr("Mean") }
+					RadioButton { value: "median";		label: qsTr("Median") }
+				}
+				RadioButtonGroup
+				{
+					name: "heatmapStatisticDiscrete"
+					title: qsTr("Statistic to plot (nominal and ordinal variables)")
+					RadioButton { value: "identity";	label: qsTr("Value itself") }
+					RadioButton { value: "mode";		label: qsTr("Mode") }
+				}
+			}
 		}
 
 		Group
