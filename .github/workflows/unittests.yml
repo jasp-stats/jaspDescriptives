@@ -23,7 +23,8 @@ jobs:
       R_REMOTES_UPGRADE: never
       VDIFFR_RUN_TESTS: true
       REQUIRED_PKGS: ${{ matrix.config.clonedir }}
-      LIBPATH: ${{ matrix.config.libPath }}
+      #LIBPATH: ${{ matrix.config.libPath }}
+      R_LIBS_USER: ${{ matrix.config.libPath }}
 
     steps:
       - uses: actions/checkout@v2
@@ -35,24 +36,17 @@ jobs:
       - name: Clone jasp-required-files
         run: git clone --branch=${{ matrix.config.jaspRequiredFilesBranch }} https://github.com/jasp-stats/jasp-required-files.git ${{ matrix.config.clonedir }}
 
-# runner.os != matrix.config.os, see https://docs.github.com/en/free-pro-team@latest/actions/reference/context-and-expression-syntax-for-github-actions#runner-context
-      - name: Examine cloning result
-        if : runner.os == 'Windows'
-        run: dir ${{ matrix.config.clonedir }}
-
       - name: Setup XQuarz
         if : runner.os == 'macOS'
         run: brew cask install xquartz
 
       - name: Setup jaspTools
         run: |
-          if (.Platform$OS.type == "windows") {
-            .libPaths(c(.libPaths(), file.path(getwd(), Sys.getenv("LIBPATH"))))
-          } else {
-            .libPaths(c(.libPaths(), Sys.getenv("LIBPATH")))
-          }
-          print(.libPaths())
-          print(lapply(.libPaths(), dir))
+          #if (.Platform$OS.type == "windows") {
+            #.libPaths(c(.libPaths(), file.path(getwd(), Sys.getenv("LIBPATH"))))
+          #} else {
+            #.libPaths(c(.libPaths(), Sys.getenv("LIBPATH")))
+          #}
           install.packages('remotes')
           # remotes::install_github('jasp-stats/jaspTools')
           remotes::install_github('TimKDJ/jaspTools')
@@ -61,10 +55,10 @@ jobs:
 
       - name: Unit tests
         run: |
-          if (.Platform$OS.type == "windows") {
-            .libPaths(c(.libPaths(), file.path(getwd(), Sys.getenv("LIBPATH"))))
-          } else {
-            .libPaths(c(.libPaths(), Sys.getenv("LIBPATH")))
-          }
+          #if (.Platform$OS.type == "windows") {
+            #.libPaths(c(.libPaths(), file.path(getwd(), Sys.getenv("LIBPATH"))))
+          #} else {
+            #.libPaths(c(.libPaths(), Sys.getenv("LIBPATH")))
+          #}
           source("tests/testthat.R")
         shell: Rscript {0}
