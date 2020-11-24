@@ -14,8 +14,8 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: "3.6.1", jaspRequiredFilesBranch: "Windows", libPath: "pkgs/R/library/", clonedir: "pkgs"}
-          - {os: macOS-latest, r: "3.6.1",   jaspRequiredFilesBranch: "MacOS-Original", libPath: "~/pkgs/Frameworks/R.framework/Versions/3.6/Resources/library/", clonedir: "~pkgs"}
+          - {os: windows-latest, r: "3.6.1", jaspRequiredFilesBranch: "Windows", libPath: "pkgs/R/library/", clonedir: "../pkgs"}
+          - {os: macOS-latest, r: "3.6.1",   jaspRequiredFilesBranch: "MacOS-Original", libPath: "~/pkgs/Frameworks/R.framework/Versions/3.6/Resources/library/", clonedir: "~/pkgs"}
           # - {os: ubuntu-20.04, r: "release", R_LIBS: "", rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
 
     env:
