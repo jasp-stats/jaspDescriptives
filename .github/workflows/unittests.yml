@@ -46,10 +46,11 @@ jobs:
 
       - name: Setup jaspTools
         run: |
-          if (.Platform$OS.type == "windows")
+          if (.Platform$OS.type == "windows") {
             .libPaths(c(.libPaths(), Sys.getenv("LIBPATH")))
-          else
+          } else {
             .libPaths(c(.libPaths(), file.path(getwd(), Sys.getenv("LIBPATH"))))
+          }
           print(.libPaths())
           install.packages('remotes')
           # remotes::install_github('jasp-stats/jaspTools')
