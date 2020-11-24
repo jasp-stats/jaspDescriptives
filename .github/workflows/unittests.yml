@@ -47,9 +47,9 @@ jobs:
       - name: Setup jaspTools
         run: |
           if (.Platform$OS.type == "windows") {
-            .libPaths(c(.libPaths(), Sys.getenv("LIBPATH")))
-          } else {
             .libPaths(c(.libPaths(), file.path(getwd(), Sys.getenv("LIBPATH"))))
+          } else {
+            .libPaths(c(.libPaths(), Sys.getenv("LIBPATH")))
           }
           print(.libPaths())
           print(lapply(.libPaths(), dir))
