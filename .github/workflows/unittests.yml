@@ -14,8 +14,8 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: "3.6.1", jaspRequiredFilesBranch: "Windows"}
-          - {os: macOS-latest, r: "3.6.1",   jaspRequiredFilesBranch: "MacOS-Original"}
+          - {os: windows-latest, r: "3.6.1", jaspRequiredFilesBranch: "Windows", libPath: "~/pkgs/R/library/"}
+          - {os: macOS-latest, r: "3.6.1",   jaspRequiredFilesBranch: "MacOS-Original", libPath: "~/pkgs/Frameworks/R.framework/Versions/3.6/Resources/library/"}
           # - {os: ubuntu-20.04, r: "release", R_LIBS: "", rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
 
     env:
@@ -23,6 +23,7 @@ jobs:
       R_REMOTES_UPGRADE: never
       VDIFFR_RUN_TESTS: true
       REQUIRED_PKGS: ~/pkgs
+      LIBPATH: ${{ matrix.config.libPath }}
 
     steps:
       - uses: actions/checkout@v2
@@ -42,13 +43,13 @@ jobs:
 
       - name: Setup jaspTools
         run: |
-          .libPaths(c(.libPaths(), '~/pkgs/Frameworks/R.framework/Versions/3.6/Resources/library/'))
+          .libPaths(c(.libPaths(), Sys.getenv("LIBPATH")))
           install.packages('remotes')
           remotes::install_github('jasp-stats/jaspTools')
         shell: Rscript {0}
       
       - name: Unit tests
         run: |
-          #.libPaths(c(.libPaths(), '~/pkgs/Frameworks/R.framework/Versions/3.6/Resources/library/'))
+          .libPaths(c(.libPaths(), Sys.getenv("LIBPATH")))
           source("tests/testthat.R")
         shell: Rscript {0}
