@@ -35,23 +35,28 @@ jobs:
       - name: Clone jasp-required-files
         run: git clone --branch=${{ matrix.config.jaspRequiredFilesBranch }} https://github.com/jasp-stats/jasp-required-files.git ${{ matrix.config.clonedir }}
 
+# runner.os != matrix.config.os, see https://docs.github.com/en/free-pro-team@latest/actions/reference/context-and-expression-syntax-for-github-actions#runner-context
       - name: Examine cloning result
-        if : runner.os == 'windows-latest'
+        if : runner.os == 'Windows'
         run: dir pkgs
 
       - name: Setup XQuarz
-        if : runner.os == 'macOS-latest'
+        if : runner.os == 'macOS'
         run: brew cask install xquartz
 
       - name: Setup jaspTools
         run: |
           .libPaths(c(.libPaths(), Sys.getenv("LIBPATH")))
+          print(.libPaths())
           install.packages('remotes')
-          remotes::install_github('jasp-stats/jaspTools')
+          # remotes::install_github('jasp-stats/jaspTools')
+          remotes::install_github('TimKDJ/jaspTools')
+          jaspTools::setupJaspTools()
         shell: Rscript {0}
 
       - name: Unit tests
         run: |
           .libPaths(c(.libPaths(), Sys.getenv("LIBPATH")))
+          print(.libPaths())
           source("tests/testthat.R")
         shell: Rscript {0}
