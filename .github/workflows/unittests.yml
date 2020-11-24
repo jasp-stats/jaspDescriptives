@@ -61,10 +61,10 @@ jobs:
 
       - name: Unit tests
         run: |
-          #if (.Platform$OS.type == "windows")
-            #.libPaths(c(.libPaths(), Sys.getenv("LIBPATH")))
-          #else
-            #.libPaths(c(.libPaths(), file.path(getwd(), Sys.getenv("LIBPATH"))))
-          #print(.libPaths())
+          if (.Platform$OS.type == "windows") {
+            .libPaths(c(.libPaths(), file.path(getwd(), Sys.getenv("LIBPATH"))))
+          } else {
+            .libPaths(c(.libPaths(), Sys.getenv("LIBPATH")))
+          }
           source("tests/testthat.R")
         shell: Rscript {0}
