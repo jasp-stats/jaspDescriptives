@@ -33,7 +33,7 @@ jobs:
           r-version: ${{ matrix.config.r }}
 
       - name: Clone jasp-required-files
-        run: git clone --branch=${{ matrix.config.jaspRequiredFilesBranch }} https://github.com/jasp-stats/jasp-required-files.git ~/pkgs
+        run: git clone --branch=${{ matrix.config.jaspRequiredFilesBranch }} https://github.com/jasp-stats/jasp-required-files.git ${{ matrix.config.clonedir }}
 
       - name: Examine cloning result
         if : runner.os == 'windows-latest'
