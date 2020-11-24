@@ -14,15 +14,15 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: "3.6.1", jaspRequiredFilesBranch: "Windows", libPath: "~/pkgs/R/library/"}
-          - {os: macOS-latest, r: "3.6.1",   jaspRequiredFilesBranch: "MacOS-Original", libPath: "~/pkgs/Frameworks/R.framework/Versions/3.6/Resources/library/"}
+          - {os: windows-latest, r: "3.6.1", jaspRequiredFilesBranch: "Windows", libPath: "pkgs/R/library/", clonedir: "pkgs"}
+          - {os: macOS-latest, r: "3.6.1",   jaspRequiredFilesBranch: "MacOS-Original", libPath: "~/pkgs/Frameworks/R.framework/Versions/3.6/Resources/library/", , clonedir: "~pkgs"}
           # - {os: ubuntu-20.04, r: "release", R_LIBS: "", rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       R_REMOTES_UPGRADE: never
       VDIFFR_RUN_TESTS: true
-      REQUIRED_PKGS: ~/pkgs
+      REQUIRED_PKGS: ${{ matrix.config.clonedir }}
       LIBPATH: ${{ matrix.config.libPath }}
 
     steps:
@@ -36,9 +36,9 @@ jobs:
         run: git clone --branch=${{ matrix.config.jaspRequiredFilesBranch }} https://github.com/jasp-stats/jasp-required-files.git ~/pkgs
 
       - name: Examine cloning result
-        if : runner.os != 'macOS-latest'
-        run: dir ~/pkgs
-      
+        if : runner.os == 'windows-latest'
+        run: dir pkgs
+
       - name: Setup XQuarz
         if : runner.os == 'macOS-latest'
         run: brew cask install xquartz
@@ -49,7 +49,7 @@ jobs:
           install.packages('remotes')
           remotes::install_github('jasp-stats/jaspTools')
         shell: Rscript {0}
-      
+
       - name: Unit tests
         run: |
           .libPaths(c(.libPaths(), Sys.getenv("LIBPATH")))
