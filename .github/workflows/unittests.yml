@@ -24,7 +24,7 @@ jobs:
       VDIFFR_RUN_TESTS: true
       REQUIRED_PKGS: ${{ matrix.config.clonedir }}
       #LIBPATH: ${{ matrix.config.libPath }}
-      #R_LIBS_USER: ${{ matrix.config.libPath }}
+      R_LIBS_USER: ${{ matrix.config.libPath }}
 
     steps:
       - uses: actions/checkout@v2
@@ -40,10 +40,10 @@ jobs:
         if : runner.os == 'macOS'
         run: brew cask install xquartz
 
-      - name: Set libPath
-        run: |
-          echo "R_LIBS_USER=${ GITHUB_WORKSPACE }${{ matrix.config.libPath }}"
-          echo "R_LIBS_USER=${ GITHUB_WORKSPACE }${{ matrix.config.libPath }}" >> $GITHUB_ENV
+      #- name: Set libPath
+        #run: |
+          #echo "R_LIBS_USER=${ GITHUB_WORKSPACE }${{ matrix.config.libPath }}"
+          #echo "R_LIBS_USER=${ GITHUB_WORKSPACE }${{ matrix.config.libPath }}" >> $GITHUB_ENV
 
       - name: Setup jaspTools
         run: |
@@ -52,6 +52,7 @@ jobs:
           #} else {
             #.libPaths(c(.libPaths(), Sys.getenv("LIBPATH")))
           #}
+          print(.libPaths())
           install.packages('remotes')
           # remotes::install_github('jasp-stats/jaspTools')
           remotes::install_github('TimKDJ/jaspTools')
