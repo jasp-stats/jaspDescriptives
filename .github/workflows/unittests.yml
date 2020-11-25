@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: "3.6.1", jaspRequiredFilesBranch: "Windows",        clonedir: "../pkgs", libPath: "../pkgs/R/library/"}
+          - {os: windows-latest, r: "3.6.1", jaspRequiredFilesBranch: "Windows",        clonedir: "~/pkgs", libPath: "../pkgs/R/library/"}
           - {os: macOS-latest,   r: "3.6.1", jaspRequiredFilesBranch: "MacOS-Original", clonedir: "~/pkgs",  libPath: "~/pkgs/Frameworks/R.framework/Versions/3.6/Resources/library/"}
           # - {os: ubuntu-20.04, r: "release", R_LIBS: "", rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
 
@@ -23,8 +23,6 @@ jobs:
       R_REMOTES_UPGRADE: never
       VDIFFR_RUN_TESTS: true
       REQUIRED_PKGS: ${{ matrix.config.clonedir }}
-      #LIBPATH: ${{ matrix.config.libPath }}
-      R_LIBS_USER: ${{ matrix.config.libPath }}
 
     steps:
       - uses: actions/checkout@v2
@@ -36,23 +34,25 @@ jobs:
       - name: Clone jasp-required-files
         run: git clone --branch=${{ matrix.config.jaspRequiredFilesBranch }} https://github.com/jasp-stats/jasp-required-files.git ${{ matrix.config.clonedir }}
 
-      - name: Setup XQuarz
+      - name: Setup xquartz
         if : runner.os == 'macOS'
         run: brew cask install xquartz
 
-      #- name: Set libPath
-        #run: |
-          #echo "R_LIBS_USER=${ GITHUB_WORKSPACE }${{ matrix.config.libPath }}"
-          #echo "R_LIBS_USER=${ GITHUB_WORKSPACE }${{ matrix.config.libPath }}" >> $GITHUB_ENV
+      - name: Setup R_LIBS_USER
+        run: |
+          libpath="${HOME}${{ matrix.config.libPath }}"
+          echo "R_LIBS_USER=${libpath}"
+          echo "R_LIBS_USER=${libpath}" >> $GITHUB_ENV
+
+      - name: test environment variables
+        run: |
+          print(Sys.getenv("R_LIBS_USER"))
+          print(.libPaths())
+          print(sapply(.libPaths(), function(x) head(dir(x))))
+        shell: Rscript {0}
 
       - name: Setup jaspTools
         run: |
-          #if (.Platform$OS.type == "windows") {
-            #.libPaths(c(.libPaths(), file.path(getwd(), Sys.getenv("LIBPATH"))))
-          #} else {
-            #.libPaths(c(.libPaths(), Sys.getenv("LIBPATH")))
-          #}
-          print(.libPaths())
           install.packages('remotes')
           # remotes::install_github('jasp-stats/jaspTools')
           remotes::install_github('TimKDJ/jaspTools')
@@ -60,11 +60,5 @@ jobs:
         shell: Rscript {0}
 
       - name: Unit tests
-        run: |
-          #if (.Platform$OS.type == "windows") {
-            #.libPaths(c(.libPaths(), file.path(getwd(), Sys.getenv("LIBPATH"))))
-          #} else {
-            #.libPaths(c(.libPaths(), Sys.getenv("LIBPATH")))
-          #}
-          source("tests/testthat.R")
+        run: source("tests/testthat.R")
         shell: Rscript {0}
