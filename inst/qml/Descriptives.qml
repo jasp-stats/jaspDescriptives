@@ -175,22 +175,28 @@ Form
 					showVariableTypeIcon: true
 					addEmptyValue: true
 				}
-				CheckBox { name: "heatmapPlotValue"; label: qsTr("Display value") }
+				CheckBox
+				{
+					name: "heatmapPlotValue"; label: qsTr("Display value"); childrenOnSameRow: false;
+					DoubleField { name: "heatmapPlotValueSize"; label: qsTr("Relative text size"); negativeValues: false; defaultValue: 1 }
+				}
 				DoubleField { name: "heatmapRectangleRatio"; label: qsTr("Width to height ratio of tiles"); negativeValues: false; defaultValue: 1 }
 				RadioButtonGroup
 				{
 					name: "heatmapStatisticContinuous"
 					title: qsTr("Statistic to plot (scale variables)")
-					RadioButton { value: "identity";	label: qsTr("Value itself") }
 					RadioButton { value: "mean";		label: qsTr("Mean") }
 					RadioButton { value: "median";		label: qsTr("Median") }
+					RadioButton { value: "identity";	label: qsTr("Value itself") }
+					RadioButton { value: "length";		label: qsTr("Number of observations") }
 				}
 				RadioButtonGroup
 				{
 					name: "heatmapStatisticDiscrete"
 					title: qsTr("Statistic to plot (nominal and ordinal variables)")
-					RadioButton { value: "identity";	label: qsTr("Value itself") }
 					RadioButton { value: "mode";		label: qsTr("Mode") }
+					RadioButton { value: "identity";	label: qsTr("Value itself") }
+					RadioButton { value: "length";		label: qsTr("Number of observations") }
 				}
 			}
 		}

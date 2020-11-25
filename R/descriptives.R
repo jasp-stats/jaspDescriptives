@@ -22,7 +22,6 @@ gettextf <- function(fmt, ..., domain = NULL)  {
 }
 
 Descriptives <- function(jaspResults, dataset, options) {
-  # save(options, file = "~/Downloads/options.Rdata")
   variables <- unlist(options$variables)
   splitName <- options$splitby
   makeSplit <- splitName != ""
@@ -262,6 +261,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
       }
     }
+  }
 
   # Heatmap
   if (options[["heatmap"]]) {
@@ -270,7 +270,7 @@ Descriptives <- function(jaspResults, dataset, options) {
       jaspResults[["heatmaps"]]$dependOn(c("heatmapHorizontal", "heatmapVertical",
                                            "heatmapPlotValue", "heatmapRectangleRatio",
                                            "heatmapStatisticContinuous", "heatmapStatisticDiscrete",
-                                           "colorPalette"))
+                                           "colorPalette", "splitBy"))
       jaspResults[["heatmaps"]]$position <- 14
     }
 
@@ -1787,9 +1787,6 @@ Descriptives <- function(jaspResults, dataset, options) {
 
 
 .descriptivesHeatmaps <- function(container, dataset, variables, options) {
-  # options$heatmapHorizontal <- encodeColNames(options$heatmapHorizontal)
-  # options$heatmapVertical   <- encodeColNames(options$heatmapVertical)
-
   axesNames <- c(options[["heatmapHorizontal"]], options[["heatmapVertical"]])
 
   # we are not ready to plot
@@ -1801,56 +1798,78 @@ Descriptives <- function(jaspResults, dataset, options) {
     variableName  <- variables[[i]]
     variable <- dataset[, variableName]
 
-    .descriptivesCreateSingleHeatmap(container, axes, axesNames, variable, variableName, i, options)
+    if(options[["splitby"]] == "") {
+      .descriptivesCreateSingleHeatmap(container, axes, axesNames, variable, variableName, i, options)
+    } else {
+      container[[variableName]] <- createJaspContainer(variableName)
+      splitBy <- dataset[, options[["splitby"]]]
+      groups <- levels(splitBy)
+
+      for(g in seq_along(groups)) {
+        activeCases <- groups[g] == splitBy
+        .descriptivesCreateSingleHeatmap(container[[variableName]], axes[activeCases,], axesNames, variable[activeCases], groups[g], g, options)
+      }
+    }
   }
 }
 
-.descriptivesCreateSingleHeatmap <- function(container, axes, axesNames, variable, variableName, position, options) {
+.descriptivesCreateSingleHeatmap <- function(container, axes, axesNames, variable, plotName, position, options) {
 
   if(is.factor(variable)) {
-    if(options[["heatmapStatisticDiscrete"]] == "mode") {
-      mode <- function(x) names(which.max(table(x)))
-      data <- stats::aggregate(x = variable, by = axes, mode)
-    } else {
-      data <- cbind(axes, variable = variable)
-    }
-
-    colnames(data) <- c("horizontal", "vertical", "value")
-    data$label <- data$value
+    data <- .descriptivesHeatmapAggregateData(variable, axes, options[["heatmapStatisticDiscrete"]])
   } else {
-    if(options[["heatmapStatisticContinuous"]] == "mean") {
-      data <- stats::aggregate(x = variable, by = axes, mean)
-    } else if(options[["heatmapStatisticContinuous"]] == "median") {
-      data <- stats::aggregate(x = variable, by = axes, median)
-    } else {
-      data <- cbind(axes, variable = variable)
-    }
-
-    colnames(data) <- c("horizontal", "vertical", "value")
-    data$label <- round(data$value, 3)
+    data <- .descriptivesHeatmapAggregateData(variable, axes, options[["heatmapStatisticContinuous"]])
   }
 
-  if(nrow(unique(data)) != nrow(data)) {
-    jaspPlot <- createJaspPlot(title=variableName, error = gettext("Something went wrong with this plot!"))
-  } else {
-    jaspPlot <- createJaspPlot(title=variableName)
+  nLevels <- c(nlevels(data[["horizontal"]]), nlevels(data[["vertical"]]))
+  plotSize <- c(100 + nLevels * 30) * c(options[["heatmapRectangleRatio"]], 1)
 
-    jaspGraphs::setGraphOption("palette", options[["colorPalette"]])
+  if(any(table(data[["horizontal"]], data[["vertical"]]) > 1)) {
+    jaspPlot <- createJaspPlot(title=plotName, error = gettext("There must be a unique value per combination of levels of horizontal and vertical axis!"), position = position)
+  } else {
+    jaspPlot <- createJaspPlot(title=plotName, width = plotSize[1], height = plotSize[2], position = position)
+
     plot <- ggplot2::ggplot(data = data, mapping = ggplot2::aes(x = horizontal, y = vertical, fill = value)) +
-      ggplot2::geom_tile(color = "gray", width = 1, height = 1) +
+      ggplot2::geom_tile(color = "black", size = 1.5) +
       ggplot2::xlab(axesNames[1]) +
       ggplot2::ylab(axesNames[2]) +
       ggplot2::coord_fixed(ratio = 1/options[["heatmapRectangleRatio"]])
 
     if(options[["heatmapPlotValue"]])
-      plot <- plot + ggplot2::geom_text(ggplot2::aes(x = horizontal, y = vertical, label = label), size = 2)
+      plot <- plot + ggplot2::geom_text(ggplot2::aes(x = horizontal, y = vertical, label = label),
+                                        size = 8 * options[["heatmapPlotValueSize"]])
+
+    palette <- options[["colorPalette"]]
+    if(is.factor(data[["value"]]))
+      plot <- plot + jaspGraphs::scale_JASPfill_discrete(palette)
+    else
+      plot <- plot + jaspGraphs::scale_JASPfill_continuous(palette)
 
     plot <- jaspGraphs::themeJasp(plot)
 
     jaspPlot$plotObject <- plot
   }
 
-  jaspPlot$position <- position
-  container[[paste0("heatmap_", variableName)]] <- jaspPlot
+  container[[plotName]] <- jaspPlot
 }
 
+.descriptivesHeatmapAggregateData <- function(variable, groups, fun = c("identity", "mean", "median", "mode", "length")) {
+  fun  <- match.arg(fun)
+  mode <- function(x) {
+    levels <- levels(x)
+    out <- names(which.max(table(x)))
+    factor(out, levels = levels)
+  }
+  data <- switch(fun,
+                 identity = cbind(groups, variable = variable),
+                 mean     = stats::aggregate(x = variable, by = groups, mean  ),
+                 median   = stats::aggregate(x = variable, by = groups, median),
+                 mode     = stats::aggregate(x = variable, by = groups, mode  ),
+                 length   = stats::aggregate(x = variable, by = groups, length)
+                 )
+
+  colnames(data) <- c("horizontal", "vertical", "value")
+  data$label <- if(is.numeric(data$value)) round(data$value, digits = 2) else data$value
+
+  return(data)
+}
