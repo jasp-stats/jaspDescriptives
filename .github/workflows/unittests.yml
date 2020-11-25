@@ -14,8 +14,8 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: "3.6.1", jaspRequiredFilesBranch: "Windows",        clonedir: "~/pkgs", libPath: "../pkgs/R/library/"}
-          - {os: macOS-latest,   r: "3.6.1", jaspRequiredFilesBranch: "MacOS-Original", clonedir: "~/pkgs",  libPath: "~/pkgs/Frameworks/R.framework/Versions/3.6/Resources/library/"}
+          - {os: windows-latest, r: "3.6.1", jaspRequiredFilesBranch: "Windows",        clonedir: "~/pkgs", libPath: "\\pkgs\\R\\library"}
+          - {os: macOS-latest,   r: "3.6.1", jaspRequiredFilesBranch: "MacOS-Original", clonedir: "~/pkgs", libPath: "/pkgs/Frameworks/R.framework/Versions/3.6/Resources/library/"}
           # - {os: ubuntu-20.04, r: "release", R_LIBS: "", rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
 
     env:
@@ -33,16 +33,24 @@ jobs:
 
       - name: Clone jasp-required-files
         run: git clone --branch=${{ matrix.config.jaspRequiredFilesBranch }} https://github.com/jasp-stats/jasp-required-files.git ${{ matrix.config.clonedir }}
+        shell: bash # avoid any Windows shenanigans
 
-      - name: Setup xquartz
-        if : runner.os == 'macOS'
-        run: brew cask install xquartz
-
-      - name: Setup R_LIBS_USER
+      - name: Setup Windows
+        if: runner.os == 'Windows'
         run: |
+          # R libpath
+          $libpath="${HOME}${{ matrix.config.libPath }}"
+          echo "R_LIBS_USER=${libpath}"
+          echo "R_LIBS_USER=${libpath}" >> $GITHUB_ENV
+
+      - name: Setup macOS
+        if: runner.os == 'macOS'
+        run: |
+          # R libpath
           libpath="${HOME}${{ matrix.config.libPath }}"
           echo "R_LIBS_USER=${libpath}"
           echo "R_LIBS_USER=${libpath}" >> $GITHUB_ENV
+          brew cask install xquartz
 
       - name: test environment variables
         run: |
