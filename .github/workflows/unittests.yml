@@ -22,7 +22,6 @@ jobs:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
       R_REMOTES_UPGRADE: never
       VDIFFR_RUN_TESTS: true
-      REQUIRED_PKGS: ${{ matrix.config.clonedir }}
 
     steps:
       - uses: actions/checkout@v2
