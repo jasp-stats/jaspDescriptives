@@ -44,11 +44,9 @@ jobs:
           }
           # required pkgs location for jasptools
           req_pkgs=$(posix2windows "${HOME}/${{ matrix.config.required_pkgs}}")
-          echo "REQUIRED_PKGS=${req_pkgs}"
           echo "REQUIRED_PKGS=${req_pkgs}" >> $GITHUB_ENV
           # R libpath
           libpath=$(posix2windows "${HOME}${{ matrix.config.required_pkgs}}${{ matrix.config.libPath }}")
-          echo "R_LIBS_USER=${libpath}"
           echo "R_LIBS_USER=${libpath}" >> $GITHUB_ENV
         shell: bash
 
@@ -57,24 +55,12 @@ jobs:
         run: |
           # required pkgs location for jasptools
           req_pkgs="${HOME}${{ matrix.config.required_pkgs}}"
-          echo "REQUIRED_PKGS=${req_pkgs}"
           echo "REQUIRED_PKGS=${req_pkgs}" >> $GITHUB_ENV
           # R libpath
           libpath="${HOME}${{ matrix.config.required_pkgs}}${{ matrix.config.libPath }}"
-          echo "R_LIBS_USER=${libpath}"
           echo "R_LIBS_USER=${libpath}" >> $GITHUB_ENV
           # xquartz
           brew cask install xquartz
-
-      - name: test environment variables
-        run: |
-          print(paste("R_LIBS_USER", Sys.getenv("R_LIBS_USER")))
-          print(paste("JAGS_HOME",   Sys.getenv("JAGS_HOME")))
-          print(".libPaths()")
-          print(.libPaths())
-          print("sapply(.libPaths(), function(x) head(dir(x), 10))")
-          print(sapply(.libPaths(), function(x) head(dir(x))))
-        shell: Rscript {0}
 
       - name: Setup jaspTools
         run: |
