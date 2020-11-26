@@ -181,11 +181,12 @@ Form
 					DoubleField { name: "heatmapPlotValueSize"; label: qsTr("Relative text size"); negativeValues: false; defaultValue: 1 }
 				}
 				DoubleField { name: "heatmapRectangleRatio"; label: qsTr("Width to height ratio of tiles"); negativeValues: false; defaultValue: 1 }
+				CheckBox { name: "heatmapLegend"; label: qsTr("Display legend")	}
 				RadioButtonGroup
 				{
 					name: "heatmapStatisticContinuous"
 					title: qsTr("Statistic to plot (scale variables)")
-					RadioButton { value: "mean";		label: qsTr("Mean") }
+					RadioButton { value: "mean";		label: qsTr("Mean");	checked: true }
 					RadioButton { value: "median";		label: qsTr("Median") }
 					RadioButton { value: "identity";	label: qsTr("Value itself") }
 					RadioButton { value: "length";		label: qsTr("Number of observations") }
@@ -194,7 +195,7 @@ Form
 				{
 					name: "heatmapStatisticDiscrete"
 					title: qsTr("Statistic to plot (nominal and ordinal variables)")
-					RadioButton { value: "mode";		label: qsTr("Mode") }
+					RadioButton { value: "mode";		label: qsTr("Mode");	checked: true }
 					RadioButton { value: "identity";	label: qsTr("Value itself") }
 					RadioButton { value: "length";		label: qsTr("Number of observations") }
 				}

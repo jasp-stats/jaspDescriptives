@@ -268,7 +268,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     if(is.null(jaspResults[["heatmaps"]])) {
       jaspResults[["heatmaps"]] <- createJaspContainer(gettext("Heatmaps"))
       jaspResults[["heatmaps"]]$dependOn(c("heatmapHorizontal", "heatmapVertical",
-                                           "heatmapPlotValue", "heatmapRectangleRatio",
+                                           "heatmapPlotValue", "heatmapRectangleRatio", "heatmapLegend",
                                            "heatmapStatisticContinuous", "heatmapStatisticDiscrete",
                                            "colorPalette", "splitBy", "variables"))
       jaspResults[["heatmaps"]]$position <- 14
@@ -1822,7 +1822,11 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   nLevels <- c(nlevels(data[["horizontal"]]), nlevels(data[["vertical"]]))
-  plotSize <- c(100 + nLevels * 30) * c(options[["heatmapRectangleRatio"]], 1)
+  plotSize <- c(200 + nLevels * 20) * c(options[["heatmapRectangleRatio"]], 1)
+  if(any(plotSize > 700))
+    plotSize <- ( plotSize/max(plotSize) ) * 700
+  if(options[["heatmapLegend"]])
+    plotSize <- plotSize + c(50, 50)
 
   if(any(table(data[["horizontal"]], data[["vertical"]]) > 1)) {
     jaspPlot <- createJaspPlot(title=plotName, error = gettext("There must be a unique value per combination of levels of horizontal and vertical axis!"), position = position)
@@ -1830,7 +1834,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     jaspPlot <- createJaspPlot(title=plotName, width = plotSize[1], height = plotSize[2], position = position)
 
     plot <- ggplot2::ggplot(data = data, mapping = ggplot2::aes(x = horizontal, y = vertical, fill = value)) +
-      ggplot2::geom_tile(color = "black", size = 1.5) +
+      ggplot2::geom_tile(color = "black", size = 1) +
       ggplot2::xlab(axesNames[1]) +
       ggplot2::ylab(axesNames[2]) +
       ggplot2::coord_fixed(ratio = 1/options[["heatmapRectangleRatio"]])
@@ -1845,7 +1849,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     else
       plot <- plot + jaspGraphs::scale_JASPfill_continuous(palette)
 
-    plot <- jaspGraphs::themeJasp(plot)
+    plot <- jaspGraphs::themeJasp(plot, legend.position = if(options[["heatmapLegend"]]) "right" else "none")
 
     jaspPlot$plotObject <- plot
   }
