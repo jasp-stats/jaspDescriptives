@@ -27,9 +27,7 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
 
-      - uses: jasp-stats/jasp-actions/setup-r-env@master
-        with:
-          requiresJAGS: false
+      - uses: jasp-stats/jasp-actions/setup-test-env@master
 
       - name: Run unit tests
         run: source("tests/testthat.R")
