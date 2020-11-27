@@ -1,11 +1,9 @@
-# For help debugging build failures open an issue on the RStudio community with the 'github-actions' tag.
-# https://community.rstudio.com/new-topic?category=Package%20development&tags=github-actions
 on: [push, pull_request]
 
-name: unittests
+name: unit-tests
 
 jobs:
-  unittests:
+  unit-tests:
     runs-on: ${{ matrix.config.os }}
 
     name: ${{ matrix.config.os }} (${{ matrix.config.r }})
@@ -14,9 +12,8 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: windows-latest, r: "3.6.1", jaspRequiredFilesBranch: "Windows",        required_pkgs: "/pkgs", libPath: "/R/library"}
-          - {os: macOS-latest,   r: "3.6.1", jaspRequiredFilesBranch: "MacOS-Original", required_pkgs: "/pkgs", libPath: "/Frameworks/R.framework/Versions/3.6/Resources/library/"}
-          # - {os: ubuntu-20.04, r: "release", R_LIBS: "", rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+          - {os: windows-latest, r: "3.6.1"}
+          - {os: macOS-latest,   r: "3.6.1"}
 
     env:
       R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
@@ -30,45 +27,10 @@ jobs:
         with:
           r-version: ${{ matrix.config.r }}
 
-      - name: Clone jasp-required-files
-        run: git clone --branch=${{ matrix.config.jaspRequiredFilesBranch }} https://github.com/jasp-stats/jasp-required-files.git "${HOME}/${{ matrix.config.required_pkgs}}"
-        shell: bash
+      - uses: jasp-stats/jasp-actions/setup-r-env@master
+        with:
+          requiresJAGS: false
 
-      - name: Setup Windows
-        if: runner.os == 'Windows'
-        run: |
-          function posix2windows {
-            # convert POSIX to Windows https://stackoverflow.com/a/13701495/4917834
-            echo $1 | sed -e 's/^\///' -e 's/\//\\/g' -e 's/^./\0:/'
-          }
-          # required pkgs location for jasptools
-          req_pkgs=$(posix2windows "${HOME}${{ matrix.config.required_pkgs}}")
-          echo "REQUIRED_PKGS=${req_pkgs}" >> $GITHUB_ENV
-          # R libpath
-          libpath=$(posix2windows "${HOME}${{ matrix.config.required_pkgs}}${{ matrix.config.libPath }}")
-          echo "R_LIBS_USER=${libpath}" >> $GITHUB_ENV
-        shell: bash
-
-      - name: Setup macOS
-        if: runner.os == 'macOS'
-        run: |
-          # required pkgs location for jasptools
-          req_pkgs="${HOME}${{ matrix.config.required_pkgs}}"
-          echo "REQUIRED_PKGS=${req_pkgs}" >> $GITHUB_ENV
-          # R libpath
-          libpath="${HOME}${{ matrix.config.required_pkgs}}${{ matrix.config.libPath }}"
-          echo "R_LIBS_USER=${libpath}" >> $GITHUB_ENV
-          # xquartz
-          brew cask install xquartz
-
-      - name: Setup jaspTools
-        run: |
-          install.packages('remotes')
-          # remotes::install_github('jasp-stats/jaspTools')
-          remotes::install_github('TimKDJ/jaspTools')
-          jaspTools::setupJaspTools()
-        shell: Rscript {0}
-
-      - name: Unit tests
+      - name: Run unit tests
         run: source("tests/testthat.R")
         shell: Rscript {0}
