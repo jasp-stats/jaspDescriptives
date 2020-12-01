@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-12-01 12:30+0000\n"
+"PO-Revision-Date: 2020-12-01 13:03+0000\n"
 "Last-Translator: JASP Stats <F.A.M.Meerhoff@uva.nl>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/nl/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 
 msgctxt "Description|"
 msgid "Descriptives"
-msgstr "Beschrijvende statistiek!"
+msgstr "Beschrijvende statistiek"
 
 msgctxt "Description|"
 msgid "This module offers the Descriptives analysis."
@@ -40,9 +40,8 @@ msgstr "Frequentietabellen (nominale en ordinale variabelen)"
 
 msgctxt "Descriptives|"
 msgid "Stem and leaf tables"
-msgstr ""
+msgstr "Stam- en blad tabellen"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "scale"
 msgstr "schaal"
