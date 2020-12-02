@@ -234,9 +234,9 @@ Descriptives <- function(jaspResults, dataset, options) {
         intervalPlots[[var]]$dependOn(optionContainsValue=list(variables=var))
 
   # Dot plots
-  if(options[["descriptivesDotPlot"]]){
+  if (options[["descriptivesDotPlot"]]){
     
-    if(is.null(jaspResults[["DotPlots"]])) {
+    if (is.null(jaspResults[["DotPlots"]])) {
       jaspResults[["DotPlots"]] <- createJaspContainer(gettext("Dot Plots"))
       jaspResults[["DotPlots"]]$dependOn(c("splitby", "descriptivesDotPlot"))
       jaspResults[["DotPlots"]]$position <- 12
@@ -245,7 +245,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     dotPlots <- jaspResults[["DotPlots"]]
     
     for (var in variables) {
-      if(is.null(dotPlots[[var]])) {
+      if (is.null(dotPlots[[var]])) {
         dotPlots[[var]] <- .descriptivesDotPlots(dataset = if(makeSplit) splitDat.factors else dataset.factors,
                                                  options = options,
                                                  variable = var)
@@ -1224,15 +1224,15 @@ Descriptives <- function(jaspResults, dataset, options) {
   
   if (options$splitby != "" ) {
     # return a collection
-    split <- names(dataset)
+    levelsSplitFactor <- names(dataset)
     
-    plotResult <- createJaspContainer(title = variable)
-    plotResult$dependOn(optionContainsValue = list(variables = variable))
+    plotContainer <- createJaspContainer(title = variable)
+    plotContainer$dependOn(optionContainsValue = list(variables = variable))
     
-    for (l in split)
-      plotResult[[l]] <- .descriptivesDotPlots_SubFunc(dataset = dataset[[l]], variable = variable, title = l)
+    for (level in levelsSplitFactor)
+      plotContainer[[level]] <- .descriptivesDotPlots_SubFunc(dataset = dataset[[level]], variable = variable, title = level)
     
-    return(plotResult)
+    return(plotContainer)
     
   }else{
     
