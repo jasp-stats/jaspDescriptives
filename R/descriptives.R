@@ -216,6 +216,24 @@ Descriptives <- function(jaspResults, dataset, options) {
     }
     .descriptivesScatterPlots(jaspResults[["scatterPlots"]], dataset.factors, variables, splitName, options)
   }
+  
+  # Interval plots
+  if (options$descriptivesIntervalPlot) {
+    if(is.null(jaspResults[["IntervalPlots"]])) {
+      jaspResults[["IntervalPlots"]] <- createJaspContainer(gettext("Intervalplots"))
+      jaspResults[["IntervalPlots"]]$dependOn(c("descriptivesIntervalPlot", "splitby"))
+      jaspResults[["IntervalPlots"]]$position <- 11
+    }
+    
+    intervalPlots <- jaspResults[["IntervalPlots"]]
+    
+    for (var in variables) {
+      if(is.null(intervalPlots[[var]]) && .descriptivesIsNumericColumn(dataset.factors, var)) {
+        intervalPlots[[var]] <- .descriptivesIntervalPlot(dataset = dataset, options = options, variable = var)
+        intervalPlots[[var]]$dependOn(optionContainsValue=list(variables=var))
+      }
+    }
+  }
   return()
 }
 
@@ -996,6 +1014,52 @@ Descriptives <- function(jaspResults, dataset, options) {
   return(thePlot)
 }
 
+.descriptivesIntervalPlot <- function(dataset, options, variable) {
+  
+  thePlot <- createJaspPlot()
+  
+  errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 1")
+  if (!is.null(errorMessage)) {
+    thePlot$setError(gettextf("Plotting not possible: %s", errorMessage))
+  } else {
+    y               <- na.omit(dataset[[.v(variable)]])
+  }
+  
+  if (is.null(dataset[[.v(options$splitby)]])){
+    group     <- factor(rep("",length(y)))
+    xlab      <- "Total"
+    
+  } else {
+    group     <- as.factor(dataset[[.v(options$splitby)]])[!is.na(dataset[[.v(variable)]])]
+    xlab      <- options$splitby
+    
+  }
+  
+  plotDat <- data.frame(group = group, y = y)
+  
+  cdata <- plyr::ddply(plotDat, "group", "summarise",
+                       mean = mean(y),
+                       lower = mean - qnorm(0.975) * (sd(y) / sqrt(length(y))),
+                       upper = mean + qnorm(0.975) * (sd(y) / sqrt(length(y))))
+  
+  p <- ggplot2::ggplot(cdata, ggplot2::aes(x = group, y = mean, ymin = lower, ymax = upper)) +
+    ggplot2::stat_summary(fun.y = mean, geom = "point") +
+    ggplot2::geom_errorbar(width = .1)
+  
+  ### Theming & Cleaning
+  yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(cdata[["lower"]], cdata[["upper"]]))
+  p <- p +
+    ggplot2::xlab(xlab) +
+    ggplot2::scale_y_continuous(name = variable, breaks = yBreaks, limits = range(yBreaks)) +
+    jaspGraphs::geom_rangeframe(sides = "l") +
+    ggplot2::labs(title = gettext("Interval Plots"),
+                  subtitle = gettext("95% CI for the Mean"),
+                  caption = gettext("Individual standard deviations are used to calculate the mean"))
+  
+  thePlot$plotObject <- p
+  
+  return(thePlot)
+}
 
 .plotMarginal <- function(column, variableName,
                           rugs = FALSE, displayDensity = FALSE) {
