@@ -32,7 +32,20 @@ Form
 		AssignedVariablesList	{ name: "splitby";			title: qsTr("Split");		singleVariable: true; suggestedColumns: ["ordinal", "nominal"];	id: splitBy }
 	}
 
-	CheckBox { name: "frequencyTables"; label: qsTr("Frequency tables (nominal and ordinal variables)"); }
+	CheckBox
+	{
+		name:			"frequencyTables"
+		label:			qsTr("Frequency tables")
+		IntegerField
+		{
+			name:			"frequencyTablesMaximumAmount"
+			label:			qsTr("Maximum distinct values")
+			min:			1
+			defaultValue:	10
+			fieldWidth:		50
+			max:			2e2
+		}
+	}
 	CheckBox
 	{
 		name	: "stemAndLeaf";

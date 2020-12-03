@@ -53,7 +53,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (options$frequencyTables) {
     if(is.null(jaspResults[["tables"]])) {
       jaspResults[["tables"]] <- createJaspContainer(gettext("Frequency Tables"))
-      jaspResults[["tables"]]$dependOn(c("frequencyTables", "splitby"))
+      jaspResults[["tables"]]$dependOn(c("frequencyTables", "splitby", "frequencyTablesMaximumAmount"))
       jaspResults[["tables"]]$position <- 3
     }
 
@@ -497,26 +497,24 @@ Descriptives <- function(jaspResults, dataset, options) {
   splitFactor <- dataset[[.v(splitName)]]
   splitLevels <- levels(splitFactor)
 
+  omittedVariables <- character()
+  maximumDistinctValues <- options[["frequencyTablesMaximumAmount"]]
+
   for (variable in options$variables) {
-    column <- dataset[[.v(variable)]]
-    
-    if (!is.factor(column)) 
+    column <- dataset[[variable]]
+
+    noDistinctObservations <- if (is.factor(column)) nlevels(column) else length(unique(column))
+
+    if (noDistinctObservations > maximumDistinctValues) {
+      omittedVariables <- c(omittedVariables, variable)
       next
+    }
 
     if(!is.null(freqTabs[[variable]]))
       next
 
-    freqTab <- createJaspTable(gettextf("Frequencies for %s", variable))
-    freqTab$dependOn(optionContainsValue=list(variables=variable))
+    freqTab <- .descriptivesFrequencyTableMeta(variable, wantsSplit, splitName)
 
-    if (wantsSplit) freqTab$addColumnInfo(name = "factor", title = splitName, type = "string", combine=TRUE)
-
-    freqTab$addColumnInfo(name="Level",               title=variable,                       type="string")
-    freqTab$addColumnInfo(name="Frequency",           title=gettext("Frequency"),           type="integer")
-    freqTab$addColumnInfo(name="Percent",             title=gettext("Percent"),             type="number", format="dp:1")
-    freqTab$addColumnInfo(name="Valid Percent",       title=gettext("Valid Percent"),       type="number", format="dp:1")
-    freqTab$addColumnInfo(name="Cumulative Percent",  title=gettext("Cumulative Percent"),  type="number", format="dp:1")
-  
     freqTabs[[variable]] <- freqTab
     
     rows <- list()
@@ -598,6 +596,50 @@ Descriptives <- function(jaspResults, dataset, options) {
     freqTab$addRows(rows)
     freqTab$status <- "complete"
   }
+
+  if (length(omittedVariables) > 0L) {
+    variableFirstTable <- setdiff(options[["variables"]], omittedVariables)
+    if (length(variableFirstTable) > 0L) {
+      freqTabs[[variableFirstTable[[1L]]]]$addFootnote(
+        sprintf(
+          ngettext(
+            msg1 = "%2$s has more than %1$s distinct values and is omitted.",
+            msg2 = "The following variables have more than %1$s distinct values and are omitted: %2$s.",
+            n = length(omittedVariables)
+          ),
+          maximumDistinctValues,
+          paste(omittedVariables, collapse = ", ")
+        )
+      )
+      # It's actually only the footnote that introduces this dependency...
+      freqTabs$dependOn(options = "variables")
+    } else {
+      # all variables have more distinct values than the maximum, add a dummy table and add a footnote
+      freqTab <- .descriptivesFrequencyTableMeta(NULL, wantsSplit, splitName)
+      freqTab$addFootnote(gettextf(
+        "All variables have more than %1$s distinct values", maximumDistinctValues
+      ))
+      freqTabs[["dummy"]] <- freqTab
+    }
+  }
+}
+
+.descriptivesFrequencyTableMeta <- function(variable = NULL, wantsSplit, splitName) {
+  if (is.null(variable)) {
+    freqTab <- createJaspTable(gettext("Frequencies"))
+  } else {
+    freqTab <- createJaspTable(gettextf("Frequencies for %s", variable))
+    freqTab$dependOn(optionContainsValue=list(variables=variable))
+  }
+
+  if (wantsSplit) freqTab$addColumnInfo(name = "factor", title = splitName, type = "string", combine=TRUE)
+
+  freqTab$addColumnInfo(name="Level",               title=variable,                       type="string")
+  freqTab$addColumnInfo(name="Frequency",           title=gettext("Frequency"),           type="integer")
+  freqTab$addColumnInfo(name="Percent",             title=gettext("Percent"),             type="number", format="dp:1")
+  freqTab$addColumnInfo(name="Valid Percent",       title=gettext("Valid Percent"),       type="number", format="dp:1")
+  freqTab$addColumnInfo(name="Cumulative Percent",  title=gettext("Cumulative Percent"),  type="number", format="dp:1")
+  return(freqTab)
 }
 
 .descriptivesMatrixPlot <- function(dataset, options, name) {
