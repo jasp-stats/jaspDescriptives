@@ -29,14 +29,17 @@ msgid "Split"
 msgstr "Splits"
 
 msgctxt "Descriptives|"
-msgid "Frequency tables (nominal and ordinal variables)"
-msgstr "Frequentietabellen (nominale en ordinale variabelen)"
+msgid "Frequency tables"
+msgstr "Frequentietabellen"
+
+msgctxt "Descriptives|"
+msgid "Maximum distinct values"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Stem and leaf tables"
 msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "scale"
 msgstr "schaal"

@@ -29,14 +29,18 @@ msgid "Split"
 msgstr "Splits"
 
 msgctxt "Descriptives|"
-msgid "Frequency tables (nominal and ordinal variables)"
-msgstr "Häufigkeitstabellen (nominale und ordinale Variablen)"
+msgid "Frequency tables"
+msgstr "Häufigkeitstabellen"
+
+
+msgctxt "Descriptives|"
+msgid "Maximum distinct values"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Stem and leaf tables"
 msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "scale"
 msgstr "Skalenparameter"
@@ -166,7 +170,7 @@ msgstr "Dichte anzeigen"
 
 msgctxt "Descriptives|"
 msgid "Correlation plots"
-msgstr "Korrelationsdiagramme"
+msgstr "Streudiagramme"
 
 msgctxt "Descriptives|"
 msgid "Q-Q plots"
@@ -266,11 +270,11 @@ msgstr "Verteilung"
 
 msgctxt "Descriptives|"
 msgid "Skewness"
-msgstr "Scheefheid"
+msgstr "Schiefe"
 
 msgctxt "Descriptives|"
 msgid "Kurtosis"
-msgstr "Gepiektheid"
+msgstr "Wölbung / Kurtosis"
 
 msgctxt "Descriptives|"
 msgid "Shapiro-Wilk test"

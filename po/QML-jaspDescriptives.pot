@@ -26,7 +26,11 @@ msgid "Split"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Frequency tables (nominal and ordinal variables)"
+msgid "Frequency tables"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Maximum distinct values"
 msgstr ""
 
 msgctxt "Descriptives|"
