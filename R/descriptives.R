@@ -1322,29 +1322,35 @@ Descriptives <- function(jaspResults, dataset, options) {
       standResid <- na.omit(standResid)
       xVar <- standResid$x
       yVar <- standResid$y
-      yVar<-yVar-mean(yVar)
-      yVar<-yVar/(sd(yVar))
-  
+      yVar <- yVar - mean(yVar)
+      yVar <- yVar / sd(yVar)
+
       # Format x ticks
-      xlow   <- min(pretty(xVar))
-      xhigh  <- max(pretty(xVar))
-      xticks <- pretty(c(xlow, xhigh))
-  
+      xBreaks <- jaspGraphs::getPrettyAxisBreaks(xVar)
+      xLimits <- range(xBreaks)
+
       # Format y ticks
-      ylow   <- min(pretty(yVar))
-      yhigh  <- max(pretty(yVar))
-      yticks <- pretty(c(ylow, yhigh))
-  
+      yBreaks <- jaspGraphs::getPrettyAxisBreaks(yVar)
+      yLimits <- range(yBreaks)
+
       # format axes labels
-      xLabs <- jaspGraphs::axesLabeller(xticks)
-      yLabs <- jaspGraphs::axesLabeller(yticks)
-      
-      p <- jaspGraphs::drawAxis(xName = gettext("Theoretical Quantiles"), yName = gettext("Standardised Residuals"), xBreaks = xticks, yBreaks = xticks, yLabels = xLabs, xLabels = xLabs, force = TRUE)
-      p <- p + ggplot2::geom_line(data = data.frame(x = c(min(xticks), max(xticks)), y = c(min(xticks), max(xticks))), mapping = ggplot2::aes(x = x, y = y), col = "darkred", size = 1)
-      p <- jaspGraphs::drawPoints(p, dat = data.frame(xVar, yVar), size = 3)
-  
-      # JASP theme
-      descriptivesQQPlot$plotObject <- jaspGraphs::themeJasp(p)
+      xLabs <- jaspGraphs::axesLabeller(xBreaks)
+      yLabs <- jaspGraphs::axesLabeller(yBreaks)
+
+      dfPoint <- data.frame(x = xVar, y = yVar)
+      dfLine  <- data.frame(x = xLimits, y = xLimits)
+      mapping <- ggplot2::aes(x = x, y = y)
+
+      p <- ggplot2::ggplot(data = dfPoint, mapping) +
+        ggplot2::geom_line(data = dfLine,  mapping, col = "darkred", size = 1) +
+        jaspGraphs::geom_point() +
+        ggplot2::scale_x_continuous(name = gettext("Theoretical Quantiles"), breaks = xBreaks, labels = xLabs, limits = xLimits) +
+        ggplot2::scale_y_continuous(name = gettext("Sample Quantiles"),      breaks = yBreaks, labels = yLabs, limits = yLimits) +
+        jaspGraphs::geom_rangeframe() +
+        jaspGraphs::themeJaspRaw(axis.title.cex = jaspGraphs::getGraphOption("axis.title.cex"))
+
+      descriptivesQQPlot$plotObject <- p
+
     }
   }
   
