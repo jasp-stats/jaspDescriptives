@@ -1314,32 +1314,36 @@ Descriptives <- function(jaspResults, dataset, options) {
     if (!is.null(errorMessage)) {
       descriptivesQQPlot$setError(gettextf("Plotting not possible: %s", errorMessage))
     } else {
-      varCol<-dataset[[.v(qqvar)]]
-      varCol<-varCol[!is.na(varCol)]
-  
-      standResid <- as.data.frame(stats::qqnorm(varCol, plot.it=FALSE))
-  
+      varCol <- dataset[[.v(qqvar)]]
+      varCol <- varCol[!is.na(varCol)]
+
+      standResid <- as.data.frame(stats::qqnorm(varCol, plot.it = FALSE))
       standResid <- na.omit(standResid)
+
+      # adapted from qqline
+      x <- stats::qnorm(c(0.25, 0.75))
+      y <- stats::quantile(varCol, probs = c(0.25, 0.75))
+      slope <- diff(y)/diff(x)
+      int   <- y[1L] - slope * x[1L]
+
       xVar <- standResid$x
       yVar <- standResid$y
-      yVar <- yVar - mean(yVar)
-      yVar <- yVar / sd(yVar)
 
       # Format x ticks
       xBreaks <- jaspGraphs::getPrettyAxisBreaks(xVar)
       xLimits <- range(xBreaks)
 
-      # Format y ticks
-      yBreaks <- jaspGraphs::getPrettyAxisBreaks(yVar)
+      dfPoint <- data.frame(x = xVar, y = yVar)
+      dfLine  <- data.frame(x = xLimits, y = int + xLimits * slope)
+      mapping <- ggplot2::aes(x = x, y = y)
+
+      # Format y ticks -- ensure that the abline is shown entirely
+      yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(yVar, dfLine$y))
       yLimits <- range(yBreaks)
 
       # format axes labels
       xLabs <- jaspGraphs::axesLabeller(xBreaks)
       yLabs <- jaspGraphs::axesLabeller(yBreaks)
-
-      dfPoint <- data.frame(x = xVar, y = yVar)
-      dfLine  <- data.frame(x = xLimits, y = xLimits)
-      mapping <- ggplot2::aes(x = x, y = y)
 
       p <- ggplot2::ggplot(data = dfPoint, mapping) +
         ggplot2::geom_line(data = dfLine,  mapping, col = "darkred", size = 1) +
