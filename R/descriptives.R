@@ -1016,7 +1016,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
 .descriptivesIntervalPlot <- function(dataset, options, variable) {
   
-  thePlot <- createJaspPlot()
+  thePlot <- createJaspPlot(title = variable)
   
   errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 1")
   if (!is.null(errorMessage)) {
