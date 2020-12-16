@@ -220,7 +220,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   # Interval plots
   if (options$descriptivesIntervalPlot) {
     if(is.null(jaspResults[["IntervalPlots"]])) {
-      jaspResults[["IntervalPlots"]] <- createJaspContainer(gettext("Intervalplots"))
+      jaspResults[["IntervalPlots"]] <- createJaspContainer(gettext("Interval plots"))
       jaspResults[["IntervalPlots"]]$dependOn(c("descriptivesIntervalPlot", "splitby"))
       jaspResults[["IntervalPlots"]]$position <- 11
     }
