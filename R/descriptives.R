@@ -1035,24 +1035,25 @@ Descriptives <- function(jaspResults, dataset, options) {
   
   plotDat <- data.frame(group = group, y = y)
   
-  cdata <- plyr::ddply(plotDat, "group", "summarise",
-                       mean = mean(y),
-                       lower = mean - qnorm(0.975) * (sd(y) / sqrt(length(y))),
-                       upper = mean + qnorm(0.975) * (sd(y) / sqrt(length(y))))
-  
-  p <- ggplot2::ggplot(cdata, ggplot2::aes(x = group, y = mean, ymin = lower, ymax = upper)) +
-    ggplot2::stat_summary(fun.y = mean, geom = "point") +
-    ggplot2::geom_errorbar(width = .1)
-  
-  ### Theming & Cleaning
-  yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(cdata[["lower"]], cdata[["upper"]]))
-  p <- p +
+  cdata <- aggregate(y ~ group, data = plotDat, function(x) {
+    mu <- mean(y)
+    err <- qnorm(0.975) * (sd(y) / sqrt(length(y)))
+    c(mean  = mu,
+      lower = mu - err,
+      upper = mu + err
+    )
+  })
+  df <- cbind.data.frame(group = factor(cdata[["group"]]), cdata[["y"]])
+
+  yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(df[["lower"]], df[["upper"]]))
+
+  p <- ggplot2::ggplot(df, ggplot2::aes(x = group, y = mean, ymin = lower, ymax = upper)) +
+    ggplot2::geom_point(size = 3) +
+    ggplot2::geom_errorbar(width = .1) +
     ggplot2::xlab(xlab) +
     ggplot2::scale_y_continuous(name = variable, breaks = yBreaks, limits = range(yBreaks)) +
-    jaspGraphs::geom_rangeframe(sides = "l") +
-    ggplot2::labs(title = gettext("Interval Plots"),
-                  subtitle = gettext("95% CI for the Mean"),
-                  caption = gettext("Individual standard deviations are used to calculate the mean"))
+    jaspGraphs::geom_rangeframe() +
+    jaspGraphs::themeJaspRaw()
   
   thePlot$plotObject <- p
   
