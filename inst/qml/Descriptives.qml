@@ -162,6 +162,7 @@ Form
             }
 
             CheckBox {				name: "plotCorrelationMatrix";	label: qsTr("Correlation plots")				}
+			CheckBox {				name: "descriptivesIntervalPlot";label: qsTr("Interval plots")					}
             CheckBox {				name: "descriptivesQQPlot";		label: qsTr("Q-Q plots")						}
             CheckBox {				name: "descriptivesPiechart";	label: qsTr("Pie charts")						}
         }

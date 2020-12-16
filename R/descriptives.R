@@ -216,6 +216,24 @@ Descriptives <- function(jaspResults, dataset, options) {
     }
     .descriptivesScatterPlots(jaspResults[["scatterPlots"]], dataset.factors, variables, splitName, options)
   }
+  
+  # Interval plots
+  if (options$descriptivesIntervalPlot) {
+    if(is.null(jaspResults[["IntervalPlots"]])) {
+      jaspResults[["IntervalPlots"]] <- createJaspContainer(gettext("Interval plots"))
+      jaspResults[["IntervalPlots"]]$dependOn(c("descriptivesIntervalPlot", "splitby"))
+      jaspResults[["IntervalPlots"]]$position <- 11
+    }
+    
+    intervalPlots <- jaspResults[["IntervalPlots"]]
+    
+    for (var in variables) {
+      if(is.null(intervalPlots[[var]]) && .descriptivesIsNumericColumn(dataset.factors, var)) {
+        intervalPlots[[var]] <- .descriptivesIntervalPlot(dataset = dataset, options = options, variable = var)
+        intervalPlots[[var]]$dependOn(optionContainsValue=list(variables=var))
+      }
+    }
+  }
   return()
 }
 
@@ -1038,6 +1056,51 @@ Descriptives <- function(jaspResults, dataset, options) {
   return(thePlot)
 }
 
+.descriptivesIntervalPlot <- function(dataset, options, variable) {
+  
+  thePlot <- createJaspPlot(title = variable)
+  
+  errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 1")
+  if (!is.null(errorMessage)) {
+    thePlot$setError(gettextf("Plotting not possible: %s", errorMessage))
+  } else {
+    y <- na.omit(dataset[[.v(variable)]])
+  }
+  
+  if (is.null(dataset[[.v(options$splitby)]])){
+    group     <- factor(rep("",length(y)))
+    xlab      <- gettext("Total")
+  } else {
+    group     <- as.factor(dataset[[options$splitby]])[!is.na(dataset[[variable]])]
+    xlab      <- options$splitby
+  }
+  
+  plotDat <- data.frame(group = group, y = y)
+  
+  cdata <- aggregate(y ~ group, data = plotDat, function(x) {
+    mu <- mean(y)
+    err <- qnorm(0.975) * (sd(y) / sqrt(length(y)))
+    c(mean  = mu,
+      lower = mu - err,
+      upper = mu + err
+    )
+  })
+  df <- cbind.data.frame(group = factor(cdata[["group"]]), cdata[["y"]])
+
+  yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(df[["lower"]], df[["upper"]]))
+
+  p <- ggplot2::ggplot(df, ggplot2::aes(x = group, y = mean, ymin = lower, ymax = upper)) +
+    ggplot2::geom_point(size = 3) +
+    ggplot2::geom_errorbar(width = .1) +
+    ggplot2::xlab(xlab) +
+    ggplot2::scale_y_continuous(name = variable, breaks = yBreaks, limits = range(yBreaks)) +
+    jaspGraphs::geom_rangeframe() +
+    jaspGraphs::themeJaspRaw()
+  
+  thePlot$plotObject <- p
+  
+  return(thePlot)
+}
 
 .plotMarginal <- function(column, variableName,
                           rugs = FALSE, displayDensity = FALSE) {
