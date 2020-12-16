@@ -1022,17 +1022,15 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (!is.null(errorMessage)) {
     thePlot$setError(gettextf("Plotting not possible: %s", errorMessage))
   } else {
-    y               <- na.omit(dataset[[.v(variable)]])
+    y <- na.omit(dataset[[.v(variable)]])
   }
   
   if (is.null(dataset[[.v(options$splitby)]])){
     group     <- factor(rep("",length(y)))
-    xlab      <- "Total"
-    
+    xlab      <- gettext("Total")
   } else {
-    group     <- as.factor(dataset[[.v(options$splitby)]])[!is.na(dataset[[.v(variable)]])]
+    group     <- as.factor(dataset[[options$splitby]])[!is.na(dataset[[variable]])]
     xlab      <- options$splitby
-    
   }
   
   plotDat <- data.frame(group = group, y = y)
