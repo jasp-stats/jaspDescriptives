@@ -223,7 +223,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     if(is.null(jaspResults[["IntervalPlots"]])) {
       jaspResults[["IntervalPlots"]] <- createJaspContainer(gettext("Interval plots"))
       jaspResults[["IntervalPlots"]]$dependOn(c("descriptivesIntervalPlot", "splitby"))
-      jaspResults[["IntervalPlots"]]$position <- 11
+      jaspResults[["IntervalPlots"]]$position <- 12
     }
     
     intervalPlots <- jaspResults[["IntervalPlots"]]
@@ -232,6 +232,9 @@ Descriptives <- function(jaspResults, dataset, options) {
       if(is.null(intervalPlots[[var]]) && .descriptivesIsNumericColumn(dataset.factors, var)) {
         intervalPlots[[var]] <- .descriptivesIntervalPlot(dataset = dataset, options = options, variable = var)
         intervalPlots[[var]]$dependOn(optionContainsValue=list(variables=var))
+      }
+    }
+  }
 
   # Dot plots
   if (options[["descriptivesDotPlot"]]){
@@ -239,7 +242,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     if (is.null(jaspResults[["DotPlots"]])) {
       jaspResults[["DotPlots"]] <- createJaspContainer(gettext("Dot Plots"))
       jaspResults[["DotPlots"]]$dependOn(c("splitby", "descriptivesDotPlot"))
-      jaspResults[["DotPlots"]]$position <- 12
+      jaspResults[["DotPlots"]]$position <- 13
     }
     
     dotPlots <- jaspResults[["DotPlots"]]
