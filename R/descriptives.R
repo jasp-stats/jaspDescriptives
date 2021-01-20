@@ -1013,13 +1013,11 @@ Descriptives <- function(jaspResults, dataset, options) {
     g1 <- mean(abs(variable)^3)
     k <- 1 + log2(length(variable)) + log2(1 + (g1 / sigma.g1))
     binWidthType <- k
-  }
-  
-  if (binWidthType == "fd" & nclass.FD(variable) > 10000) # FD-method will produce extreme number of bins and crash ggplot, mention this in footnote
+  } else if (binWidthType == "fd" && nclass.FD(variable) > 10000) { # FD-method will produce extreme number of bins and crash ggplot, mention this in footnote
     binWidthType <- 10000
-  
-  if (binWidthType == "manual")
+  } else if (binWidthType == "manual") { 
     binWidthType <- numberOfBins
+  }
   
 
   h <- hist(variable, plot = FALSE, breaks = binWidthType)
