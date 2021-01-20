@@ -1079,7 +1079,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
   
   if (rugs)
-    p <- p + ggplot2::geom_rug(data = data.frame(variable),mapping  = ggplot2::aes(x = variable), sides="b")
+    p <- p + ggplot2::geom_rug(data = data.frame(variable), mapping = ggplot2::aes(x = variable), sides = "b")
     
 
   # JASP theme
