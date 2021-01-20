@@ -83,7 +83,8 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (options$plotVariables) {
     if(is.null(jaspResults[["distributionPlots"]])) {
       jaspResults[["distributionPlots"]] <- createJaspContainer(gettext("Distribution Plots"))
-      jaspResults[["distributionPlots"]]$dependOn(c("plotVariables", "splitby"))
+      jaspResults[["distributionPlots"]]$dependOn(c("plotVariables", "splitby", "binWidthType", "distPlotDensity",
+                                                    "distPlotRug", "numberOfBins"))
       jaspResults[["distributionPlots"]]$position <- 5
     }
 
@@ -863,7 +864,6 @@ Descriptives <- function(jaspResults, dataset, options) {
     freqPlot$plotObject <- .barplotJASP(column, variable)
   else if (length(column) > 0 && !is.factor(column))
     freqPlot$plotObject <- .plotMarginal(column, variableName = variable, displayDensity = displayDensity, rugs = rugs, binWidthType = binWidthType, numberOfBins = numberOfBins)
-    freqPlot$dependOn(options = c("binWidthType", "distPlotDensity", "distPlotRug", 'numberOfBins'))
   
   return(freqPlot)
 }
