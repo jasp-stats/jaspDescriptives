@@ -64,115 +64,114 @@ Form
 
 		Group
 		{
-            title: qsTr("Customizable plots")
-            DropDown
-            {
-                name: "colorPalette"
-                label: qsTr("Color palette")
-                indexDefaultValue: 0
-                values:
-                [
-                    { label: qsTr("Colorblind"),		value: "colorblind"		},
-                    { label: qsTr("Colorblind Alt."),	value: "colorblind3"	},
-                    { label: qsTr("Viridis"),			value: "viridis"		},
-                    { label: qsTr("ggplot2"),			value: "ggplot2"		},
-                    { label: qsTr("Gray"),				value: "gray"			}
-                ]
-            }
+			DropDown
+			{
+				name: "colorPalette"
+				label: qsTr("Color palette")
+				indexDefaultValue: 0
+				values:
+					[
+					{ label: qsTr("Colorblind"),		value: "colorblind"		},
+					{ label: qsTr("Colorblind Alt."),	value: "colorblind3"	},
+					{ label: qsTr("Viridis"),			value: "viridis"		},
+					{ label: qsTr("ggplot2"),			value: "ggplot2"		},
+					{ label: qsTr("Gray"),				value: "gray"			}
+				]
+			}
 
 			CheckBox
 			{
-                name: "splitPlots";
-                label: qsTr("Boxplots")
-                Group {
-                    columns: 2
-                    Group {
-                        CheckBox {	name: "splitPlotBoxplot";		label: qsTr("Boxplot element"); checked: true	}
-                        CheckBox {	name: "splitPlotViolin";		label: qsTr("Violin element")					}
-                        CheckBox {	name: "splitPlotJitter";		label: qsTr("Jitter element")					}
-                    }
-                    Group {
-                        CheckBox {  name: "splitPlotColour";		label: qsTr("Use color palette")                }
+				name: "splitPlots";
+				label: qsTr("Boxplots")
+				Group {
+					columns: 2
+					Group {
+						CheckBox {	name: "splitPlotBoxplot";		label: qsTr("Boxplot element"); checked: true	}
+						CheckBox {	name: "splitPlotViolin";		label: qsTr("Violin element")					}
+						CheckBox {	name: "splitPlotJitter";		label: qsTr("Jitter element")					}
+					}
+					Group {
+						CheckBox {  name: "splitPlotColour";		label: qsTr("Use color palette")				}
 						CheckBox {	name: "splitPlotOutlierLabel";	label: qsTr("Label outliers")					}
-                    }
-                }
-            }
+					}
+				}
+			}
 
 
-            Group
-            {
-                CheckBox
-                {
-                    name: "scatterPlot";	label: qsTr("Scatter Plots")
-                    RadioButtonGroup
-                    {
-                        name:	"graphTypeAbove";
-                        title:	qsTr("Graph above scatter plot")
-                        RadioButton { value: "density";		label: qsTr("Density");		checked: true	}
-                        RadioButton { value: "histogram";	label: qsTr("Histogram")					}
-                        RadioButton { value: "none";		label: qsTr("None")							}
-                    }
-                    RadioButtonGroup
-                    {
-                        name:	"graphTypeRight";
-                        title:	qsTr("Graph right of scatter plot")
-                        RadioButton { value: "density";		label: qsTr("Density");		checked: true	}
-                        RadioButton { value: "histogram";	label: qsTr("Histogram")					}
-                        RadioButton { value: "none";		label: qsTr("None")							}
-                    }
-                    CheckBox
-                    {
-                        name: "addSmooth"
-                        label: qsTr("Add regression line")
-                        checked: true
-                        RadioButtonGroup
-                        {
-                            name:	"regressionType";
-                            RadioButton { value: "smooth";	label: qsTr("Smooth");	checked: true	}
-                            RadioButton { value: "linear";	label: qsTr("Linear")					}
-                        }
+			Group
+			{
+				CheckBox
+				{
+					name: "scatterPlot";	label: qsTr("Scatter Plots")
+					RadioButtonGroup
+					{
+						name:	"graphTypeAbove";
+						title:	qsTr("Graph above scatter plot")
+						RadioButton { value: "density";		label: qsTr("Density");		checked: true	}
+						RadioButton { value: "histogram";	label: qsTr("Histogram")					}
+						RadioButton { value: "none";		label: qsTr("None")							}
+					}
+					RadioButtonGroup
+					{
+						name:	"graphTypeRight";
+						title:	qsTr("Graph right of scatter plot")
+						RadioButton { value: "density";		label: qsTr("Density");		checked: true	}
+						RadioButton { value: "histogram";	label: qsTr("Histogram")					}
+						RadioButton { value: "none";		label: qsTr("None")							}
+					}
+					CheckBox
+					{
+						name: "addSmooth"
+						label: qsTr("Add regression line")
+						checked: true
+						RadioButtonGroup
+						{
+							name:	"regressionType";
+							RadioButton { value: "smooth";	label: qsTr("Smooth");	checked: true	}
+							RadioButton { value: "linear";	label: qsTr("Linear")					}
+						}
 
-                        CheckBox
-                        {
-                            name: "addSmoothCI"
-                            label: qsTr("Show confidence interval")
-                            checked: true
-                            childrenOnSameRow: true
-                            CIField {	name: "addSmoothCIValue" }
-                        }
-                    }
-                    CheckBox
-                    {
-                        enabled: splitBy.count > 0
-                        name: "showLegend"
-                        label: qsTr("Show legend")
-                        checked: true
-                    }
-                }
-            }
+						CheckBox
+						{
+							name: "addSmoothCI"
+							label: qsTr("Show confidence interval")
+							checked: true
+							childrenOnSameRow: true
+							CIField {	name: "addSmoothCIValue" }
+						}
+					}
+					CheckBox
+					{
+						enabled: splitBy.count > 0
+						name: "showLegend"
+						label: qsTr("Show legend")
+						checked: true
+					}
+				}
+			}
 		}
 
-        Group
-        {
-            title: qsTr("Basic plots")
-            CheckBox
-            {
-                                    name: "plotVariables";			label: qsTr("Distribution plots")
-                CheckBox {			name: "distPlotDensity";		label: qsTr("Display density")					}
-					CheckBox {			name: "distPlotRug";		label: qsTr("Display rug marks")					}
+		Group
+		{
+			title: qsTr("Basic plots")
+			CheckBox
+			{
+				name: "plotVariables";			label: qsTr("Distribution plots")
+				CheckBox {			name: "distPlotDensity";		label: qsTr("Display density")					}
+				CheckBox {			name: "distPlotRug";		label: qsTr("Display rug marks")					}
 				DropDown {
-                name: "binWidthType"
-                label: qsTr("Bin Width Type")
-                indexDefaultValue: 0
-                values:
-                [	
-					{label: qsTr("Sturges"),				value: "sturges"},
-                    {label: qsTr("Scott"),					value: "scott"},
-                    {label: qsTr("Doane"),					value: "doane"},
-					{label: qsTr("Freedman-Diaconis"),		value: "fd"	}, 
-					{label: qsTr("Manual"),					value: "manual"	}
-                ]
-				id: binWidthType
+					name: "binWidthType"
+					label: qsTr("Bin Width Type")
+					indexDefaultValue: 0
+					values:
+						[
+						{label: qsTr("Sturges"),				value: "sturges"},
+						{label: qsTr("Scott"),					value: "scott"},
+						{label: qsTr("Doane"),					value: "doane"},
+						{label: qsTr("Freedman-Diaconis"),		value: "fd"	},
+						{label: qsTr("Manual"),					value: "manual"	}
+					]
+					id: binWidthType
 				}
 				DoubleField
 				{
@@ -183,13 +182,13 @@ Form
 					max:			10000;
 					enabled:		binWidthType.currentValue === "manual"
 				}
-            }
+			}
 
-            CheckBox {				name: "plotCorrelationMatrix";	label: qsTr("Correlation plots")				}
+			CheckBox {				name: "plotCorrelationMatrix";	label: qsTr("Correlation plots")				}
 			CheckBox {				name: "descriptivesIntervalPlot";label: qsTr("Interval plots")					}
-            CheckBox {				name: "descriptivesQQPlot";		label: qsTr("Q-Q plots")						}
-            CheckBox {				name: "descriptivesPiechart";	label: qsTr("Pie charts")						}
-        }
+			CheckBox {				name: "descriptivesQQPlot";		label: qsTr("Q-Q plots")						}
+			CheckBox {				name: "descriptivesPiechart";	label: qsTr("Pie charts")						}
+		}
 	}
 
 	Section
@@ -246,15 +245,15 @@ Form
 			title:		qsTr("Dispersion")
 			columns:	2
 
-            CheckBox { name: "standardErrorMean";	label: qsTr("S. E. mean")                   	}
-            CheckBox { name: "standardDeviation";	label: qsTr("Std.deviation");   checked: true	}
-			CheckBox { name: "mad";                 label: qsTr("MAD")                              }
-			CheckBox { name: "madrobust";			label: qsTr("MAD Robust")	                    }
-			CheckBox { name: "iqr";                 label: qsTr("IQR")                              }
-            CheckBox { name: "variance";			label: qsTr("Variance")             			}
-            CheckBox { name: "range";				label: qsTr("Range")                    		}
-            CheckBox { name: "minimum";				label: qsTr("Minimum");         checked: true	}
-            CheckBox { name: "maximum";				label: qsTr("Maximum");         checked: true	}
+			CheckBox { name: "standardErrorMean";	label: qsTr("S. E. mean")							}
+			CheckBox { name: "standardDeviation";	label: qsTr("Std.deviation");		checked: true	}
+			CheckBox { name: "mad";					label: qsTr("MAD")									}
+			CheckBox { name: "madrobust";			label: qsTr("MAD Robust")							}
+			CheckBox { name: "iqr";					label: qsTr("IQR")									}
+			CheckBox { name: "variance";			label: qsTr("Variance")								}
+			CheckBox { name: "range";				label: qsTr("Range")								}
+			CheckBox { name: "minimum";				label: qsTr("Minimum");				checked: true	}
+			CheckBox { name: "maximum";				label: qsTr("Maximum");				checked: true	}
 		}
 
 		Group
