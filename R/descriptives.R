@@ -1250,7 +1250,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   
   dotplot <- createJaspPlot(title = title)
   
-  x <- na.omit(dataset[[.v(variable)]])
+  x <- na.omit(dataset[[variable]])
   
   if (is.factor(x)){
     tb <- as.data.frame(table(x))
