@@ -1257,7 +1257,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     p <- ggplot2::ggplot(data = data.frame(x = x), ggplot2::aes(x = x)) + 
       ggplot2::geom_dotplot(binaxis = 'x', stackdir = 'up') + 
       ggplot2::xlab(variable) +
-      ggplot2::ylab("") +
+      ggplot2::ylab(NULL) +
       ggplot2::scale_x_discrete(limits = factor(tb[, 1]))
     
     p <- jaspGraphs::themeJasp(p, yAxis = FALSE) + ggplot2::theme(axis.ticks.y = ggplot2::element_blank(),
