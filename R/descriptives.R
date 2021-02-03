@@ -1251,28 +1251,26 @@ Descriptives <- function(jaspResults, dataset, options) {
   dotplot <- createJaspPlot(title = title)
   
   x <- na.omit(dataset[[variable]])
+  df <- data.frame(x = x)
   
   if (is.factor(x)){
     tb <- as.data.frame(table(x))
-    p <- ggplot2::ggplot(data = data.frame(x = x), ggplot2::aes(x = x)) + 
-      ggplot2::geom_dotplot(binaxis = 'x', stackdir = 'up') + 
-      ggplot2::xlab(variable) +
-      ggplot2::ylab(NULL) +
-      ggplot2::scale_x_discrete(limits = factor(tb[, 1]))
+    scaleX <- ggplot2::scale_x_discrete(limits = factor(tb[,1]))
     
-    p <- jaspGraphs::themeJasp(p, yAxis = FALSE) + ggplot2::theme(axis.ticks.y = ggplot2::element_blank(),
-                                                                  axis.title.y = ggplot2::element_blank(),
-                                                                  axis.text.y = ggplot2::element_blank())
   } else {
-    p <- ggplot2::ggplot(data = data.frame(x = x), ggplot2::aes(x = x)) + 
-      ggplot2::geom_dotplot(binaxis = 'x', stackdir='up') + 
-      ggplot2::xlab(variable) +
-      ggplot2::ylab("")
-    
-    p <- jaspGraphs::themeJasp(p, yAxis = FALSE) + ggplot2::theme(axis.ticks.y = ggplot2::element_blank(),
-                                                                  axis.title.y = ggplot2::element_blank(),
-                                                                  axis.text.y = ggplot2::element_blank())
+    scaleX <- NULL
   }
+  
+  p <- ggplot2::ggplot(data = data.frame(x = x), ggplot2::aes(x = x)) + 
+    ggplot2::geom_dotplot(binaxis = 'x', stackdir = 'up') + 
+    ggplot2::xlab(variable) +
+    ggplot2::ylab(NULL) + 
+    scaleX +
+    jaspGraphs::geom_rangeframe(sides = "b") +
+    jaspGraphs::themeJaspRaw() +
+    ggplot2::theme(axis.ticks.y = ggplot2::element_blank(),
+                   axis.title.y = ggplot2::element_blank(),
+                   axis.text.y = ggplot2::element_blank())
   
   dotplot$plotObject <- p
   
