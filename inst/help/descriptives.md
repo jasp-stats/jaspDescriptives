@@ -33,6 +33,7 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
 - Dispersion (only for continuous variables):
   - S.E. Mean: Standard error of the mean.
   - Std. deviation: Standard deviation of the data points.
+  - Coefficient of Variation: The coefficient of variation gives us the relative dispersion of the data, in contrast to the standard deviation, which gives the absolute dispersion. For this purpose, the standard deviation is divided by the mean value, so that the unit is truncated away.
   - MAD: Median absolute deviation of the data points.
   - MAD Robust: Median absolute deviation of the data points, adjusted by a factor for asymptotically normal consistency.
   - IQR: Interquartile range of the data points; 75th percentile - 25th percentile.
