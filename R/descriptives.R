@@ -271,9 +271,8 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (options$standardErrorMean)    stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of Mean"),      type="number")
   if (options$median)               stats$addColumnInfo(name="Median",                      title=gettext("Median"),                  type="number")
   if (options$mode)                 stats$addColumnInfo(name="Mode",                        title=gettext("Mode"),                    type="number")
-  if (options$standardDeviation)    stats$addColumnInfo(name="Std. Deviation",              title=gettext("Std. Deviation"),   
-  type="number")
-  if (options$cOfVariation)      stats$addColumnInfo(name="Coefficient of Variation",    title=gettext("Coefficient of Variation"),    type="number")
+  if (options$standardDeviation)    stats$addColumnInfo(name="Std. Deviation",              title=gettext("Std. Deviation"),          type="number")
+  if (options$cOfVariation)         stats$addColumnInfo(name="Coefficient of Variation",    title=gettext("Coefficient of Variation"),type="number")
   if (options$mad)                  stats$addColumnInfo(name="MAD",                         title=gettext("MAD"),                     type="number")
   if (options$madrobust)            stats$addColumnInfo(name="MAD Robust",                  title=gettext("MAD Robust"),              type="number")
   if (options$iqr)                  stats$addColumnInfo(name="IQR",                         title=gettext("IQR"),                     type="number")
