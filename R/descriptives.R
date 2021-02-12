@@ -395,7 +395,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   resultsCol[["Std. Error of Mean"]]      <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$standardErrorMean, na.omitted, function(param) { sd(param)/sqrt(length(param))} )
   resultsCol[["Median"]]                  <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$median,            na.omitted, median)
   resultsCol[["Std. Deviation"]]          <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$standardDeviation, na.omitted, sd)
-    resultsCol[["Coefficient of Variation"]]          <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$cOfVariation, na.omitted, function(param) { sd(param)/mean(param)} )
+  resultsCol[["Coefficient of Variation"]]<- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$cOfVariation,      na.omitted, function(param) { sd(param) / mean(param)})
   resultsCol[["MAD"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$mad,               na.omitted, function(param) { mad(param, constant = 1) } )
   resultsCol[["MAD Robust"]]              <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$madrobust,         na.omitted, mad)
   resultsCol[["IQR"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$iqr,               na.omitted, .descriptivesIqr)
