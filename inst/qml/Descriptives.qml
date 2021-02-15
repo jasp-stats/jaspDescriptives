@@ -247,6 +247,7 @@ Form
 
 			CheckBox { name: "standardErrorMean";	label: qsTr("S. E. mean")							}
 			CheckBox { name: "standardDeviation";	label: qsTr("Std.deviation");		checked: true	}
+			CheckBox { name: "cOfVariation";		label: qsTr("Coefficient of Variation");			}
 			CheckBox { name: "mad";					label: qsTr("MAD")									}
 			CheckBox { name: "madrobust";			label: qsTr("MAD Robust")							}
 			CheckBox { name: "iqr";					label: qsTr("IQR")									}
