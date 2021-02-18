@@ -1248,9 +1248,21 @@ Descriptives <- function(jaspResults, dataset, options) {
 
 .descriptivesDotPlots_SubFunc <- function(dataset, variable, title){
   
-  dotplot <- createJaspPlot(title = title)
-  
+  dotPlot <- createJaspPlot(title = title)
   x <- na.omit(dataset[[variable]])
+  x <- x[is.finite(x)]
+  
+  if (length(x) == 0) {
+    dotPlot$setError(gettext("No non-missing values!"))
+    return(dotPlot)
+  }
+  
+  if (length(unique(x)) == 1) {
+    dotsize <- .03
+  } else{
+    dotsize <- 1
+  }
+  
   df <- data.frame(x = x)
   
   if (is.factor(x)){
@@ -1262,7 +1274,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
   
   p <- ggplot2::ggplot(data = data.frame(x = x), ggplot2::aes(x = x)) + 
-    ggplot2::geom_dotplot(binaxis = 'x', stackdir = 'up') + 
+    ggplot2::geom_dotplot(binaxis = 'x', stackdir = 'up', fill = "grey", dotsize = dotsize) + 
     ggplot2::xlab(variable) +
     ggplot2::ylab(NULL) + 
     scaleX +
@@ -1272,9 +1284,9 @@ Descriptives <- function(jaspResults, dataset, options) {
                    axis.title.y = ggplot2::element_blank(),
                    axis.text.y = ggplot2::element_blank())
   
-  dotplot$plotObject <- p
+  dotPlot$plotObject <- p
   
-  return(dotplot)  
+  return(dotPlot)  
   
 }
 
