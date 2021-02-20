@@ -14,15 +14,17 @@ test_that("Main table results match R, SAS and SPSS", {
   options$maximum
   options$mode <- TRUE
   options$percentileValuesQuartiles <- TRUE
-
+  
+  # Main table
   results <- jaspTools::runAnalysis("Descriptives",
                                     data.frame("Data"=1:5),
                                     options)
-  table <- results[["results"]][["stats"]][["data"]]
+  resultTable <- results$results$stats$data
 
   jaspTools::expect_equal_tables(
-    table, list(5, 3, 3, 1, 0, 1, 1.58113883008419, 0.707106781186548, 5, "Data",
-                2.5, 2, 3, 4)
+    "test"=resultTable,
+    "ref"=list(5, 3, 3, 1, 0, 1, 1.58113883008419, 0.707106781186548, 5, "Data",
+               2.5, 2, 3, 4)
   )
 })
 
