@@ -1,8 +1,33 @@
 context("Descriptives")
 
+# https://jasp-stats.github.io/jasp-verification-project/descriptives.html
+test_that("Main table results match R, SAS and SPSS", {
+  options <- jaspTools::analysisOptions("Descriptives")
+  options$variables <- "Data"
+  options$mean <- TRUE
+  options$median <- TRUE
+  options$variance <- TRUE
+  options$mode <- FALSE
+  options$standardDeviation <- TRUE
+  options$standardErrorMean <- TRUE
+  options$minimum
+  options$maximum
+  options$mode <- TRUE
+  options$percentileValuesQuartiles <- TRUE
+
+  results <- jaspTools::runAnalysis("Descriptives",
+                                    data.frame("Data"=1:5),
+                                    options)
+  table <- results[["results"]][["stats"]][["data"]]
+
+  jaspTools::expect_equal_tables(
+    table, list(5, 3, 3, 1, 0, 1, 1.58113883008419, 0.707106781186548, 5, "Data",
+                2.5, 2, 3, 4)
+  )
+})
+
 # does not test
 # - error handling
-
 test_that("Main table results match", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "contNormal"
