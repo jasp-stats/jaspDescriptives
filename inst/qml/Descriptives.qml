@@ -161,7 +161,7 @@ Form
 				CheckBox {			name: "distPlotRug";		label: qsTr("Display rug marks")					}
 				DropDown {
 					name: "binWidthType"
-					label: qsTr("Bin Width Type")
+					label: qsTr("Bin width type")
 					indexDefaultValue: 0
 					values:
 						[
@@ -176,7 +176,7 @@ Form
 				DoubleField
 				{
 					name:			"numberOfBins"
-					label:			qsTr("Number of Bins")
+					label:			qsTr("Number of bins")
 					defaultValue:	30
 					min:			3;
 					max:			10000;
