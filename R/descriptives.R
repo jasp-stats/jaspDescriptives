@@ -1257,20 +1257,17 @@ Descriptives <- function(jaspResults, dataset, options) {
     return(dotPlot)
   }
   
-  if (length(unique(x)) == 1) {
-    dotsize <- .03
-  } else{
-    dotsize <- 1
-  }
-  
   df <- data.frame(x = x)
+  
+  dotsize <- 1
   
   if (is.factor(x)){
     tb <- as.data.frame(table(x))
     scaleX <- ggplot2::scale_x_discrete(limits = factor(tb[,1]))
-    
   } else {
     scaleX <- NULL
+    if (length(unique(x)) == 1) 
+      dotsize <- .03
   }
   
   p <- ggplot2::ggplot(data = data.frame(x = x), ggplot2::aes(x = x)) + 
