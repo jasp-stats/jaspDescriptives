@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: jaspDescriptives 0.11.0\n"
-"POT-Creation-Date: 2020-12-10 12:19\n"
+"Project-Id-Version: jaspDescriptives 0.15.0\n"
+"POT-Creation-Date: 2021-02-26 16:19\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -43,6 +43,9 @@ msgstr ""
 msgid "Scatter Plots"
 msgstr ""
 
+msgid "Interval plots"
+msgstr ""
+
 msgid "Descriptive Statistics"
 msgstr ""
 
@@ -68,6 +71,9 @@ msgid "Mode"
 msgstr ""
 
 msgid "Std. Deviation"
+msgstr ""
+
+msgid "Coefficient of Variation"
 msgstr ""
 
 msgid "MAD"
@@ -166,7 +172,7 @@ msgstr ""
 msgid "Theoretical Quantiles"
 msgstr ""
 
-msgid "Standardised Residuals"
+msgid "Sample Quantiles"
 msgstr ""
 
 msgid "A stem and leaf table could not be made because there are fewer than 2 non-missing observations"
