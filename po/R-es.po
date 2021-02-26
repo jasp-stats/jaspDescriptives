@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
-"POT-Creation-Date: 2020-12-10 12:19\n"
+"POT-Creation-Date: 2021-02-26 16:19\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -43,6 +43,9 @@ msgstr ""
 msgid "Scatter Plots"
 msgstr ""
 
+msgid "Interval plots"
+msgstr ""
+
 msgid "Descriptive Statistics"
 msgstr ""
 
@@ -70,6 +73,9 @@ msgid "Mode"
 msgstr ""
 
 msgid "Std. Deviation"
+msgstr ""
+
+msgid "Coefficient of Variation"
 msgstr ""
 
 msgid "MAD"
@@ -170,7 +176,7 @@ msgstr ""
 msgid "Theoretical Quantiles"
 msgstr ""
 
-msgid "Standardised Residuals"
+msgid "Sample Quantiles"
 msgstr ""
 
 msgid ""

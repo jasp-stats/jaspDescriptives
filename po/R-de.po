@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2020-12-10 12:19\n"
+"POT-Creation-Date: 2021-02-26 16:19\n"
 "PO-Revision-Date: 2021-01-17 18:32+0000\n"
 "Last-Translator: Thomas Langkamp <thomas.lassdiesonnerein@gmx.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
@@ -47,6 +47,9 @@ msgstr "Stamm-Blatt-Diagramm"
 msgid "Scatter Plots"
 msgstr "Streudiagramme"
 
+msgid "Interval plots"
+msgstr ""
+
 msgid "Descriptive Statistics"
 msgstr "Deskriptive Statistik"
 
@@ -77,6 +80,9 @@ msgstr "Modus"
 
 msgid "Std. Deviation"
 msgstr "Standardabweichung"
+
+msgid "Coefficient of Variation"
+msgstr ""
 
 msgid "MAD"
 msgstr "MAD"
@@ -178,8 +184,9 @@ msgstr "Anzahlen"
 msgid "Theoretical Quantiles"
 msgstr "Theoretische Quantile"
 
-msgid "Standardised Residuals"
-msgstr "Standardisierte Residuen"
+#, fuzzy
+msgid "Sample Quantiles"
+msgstr "Theoretische Quantile"
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
@@ -209,3 +216,6 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "Der Dezimalpunkt ist %s Stelle von links von dem |"
 msgstr[1] "Der Dezimalpunkt ist %s Stellen von links von dem |"
+
+#~ msgid "Standardised Residuals"
+#~ msgstr "Standardisierte Residuen"

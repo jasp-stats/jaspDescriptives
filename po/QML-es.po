@@ -70,11 +70,6 @@ msgstr "Parcelas"
 
 #, fuzzy
 msgctxt "Descriptives|"
-msgid "Customizable plots"
-msgstr "Parcelas personalizables"
-
-#, fuzzy
-msgctxt "Descriptives|"
 msgid "Color palette"
 msgstr "Paleta de color"
 
@@ -383,127 +378,42 @@ msgctxt "Descriptives|"
 msgid "Percentages"
 msgstr "Porcentajes"
 
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Variables"
-msgstr "Variables"
+msgctxt "Descriptives|"
+msgid "Display rug marks"
+msgstr ""
 
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Scale Statistics"
-msgstr "Estadísticas de escala"
+msgctxt "Descriptives|"
+msgid "Bin width type"
+msgstr ""
 
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "McDonald's ω"
-msgstr "McDonald's ω"
+msgctxt "Descriptives|"
+msgid "Sturges"
+msgstr ""
 
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Cronbach's α"
-msgstr "Α de Cronbach"
+msgctxt "Descriptives|"
+msgid "Scott"
+msgstr ""
 
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Unstandardized"
-msgstr "No estandarizado"
+msgctxt "Descriptives|"
+msgid "Doane"
+msgstr ""
 
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Standardized"
-msgstr "Estandarizado"
+msgctxt "Descriptives|"
+msgid "Freedman-Diaconis"
+msgstr ""
 
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Gutmann's λ6"
-msgstr "Λ6 de Gutmann"
+msgctxt "Descriptives|"
+msgid "Manual"
+msgstr ""
 
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Greatest lower bound"
-msgstr "Mayor límite inferior"
+msgctxt "Descriptives|"
+msgid "Number of bins"
+msgstr ""
 
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Average interitem correlation"
-msgstr "Correlación media entre elementos"
+msgctxt "Descriptives|"
+msgid "Interval plots"
+msgstr ""
 
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Mean"
-msgstr "Media"
-
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Standard deviation"
-msgstr "Desviación Estándar"
-
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Individual Item Statistics"
-msgstr "Estadísticas de artículos individuales"
-
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "McDonald's ω (if item dropped)"
-msgstr "McDonald's ω (si se cayó el artículo)"
-
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Cronbach's α (if item dropped)"
-msgstr "Α de Cronbach (si el elemento cayó)"
-
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Gutmann's λ6 (if item dropped)"
-msgstr "Λ6 de Gutmann (si el elemento se cayó)"
-
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Item-rest correlation"
-msgstr "Correlación ítem-resto"
-
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Reverse-Scaled Items"
-msgstr "Elementos de escala inversa"
-
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Normal-Scaled Items"
-msgstr "Elementos de escala normal"
-
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Advanced Options"
-msgstr "Opciones avanzadas"
-
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Missing Values"
-msgstr "Valores faltantes"
-
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Exclude cases listwise"
-msgstr "Excluir casos según la lista"
-
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Exclude cases pairwise"
-msgstr "Excluir casos por pares"
-
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Confidence Interval"
-msgstr "Intervalo de confianza"
-
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Cronbach's α analytical"
-msgstr "Α analítico de Cronbach"
-
-#, fuzzy
-msgctxt "ReliabilityAnalysis|"
-msgid "Confidence"
-msgstr "Confianza"
+msgctxt "Descriptives|"
+msgid "Coefficient of Variation"
+msgstr ""

@@ -57,10 +57,6 @@ msgid "Plots"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
-msgstr ""
-
-msgctxt "Descriptives|"
 msgid "Color palette"
 msgstr ""
 
@@ -308,102 +304,42 @@ msgctxt "Descriptives|"
 msgid "Percentages"
 msgstr ""
 
-msgctxt "ReliabilityAnalysis|"
-msgid "Variables"
+msgctxt "Descriptives|"
+msgid "Display rug marks"
 msgstr ""
 
-msgctxt "ReliabilityAnalysis|"
-msgid "Scale Statistics"
+msgctxt "Descriptives|"
+msgid "Bin width type"
 msgstr ""
 
-msgctxt "ReliabilityAnalysis|"
-msgid "McDonald's ω"
+msgctxt "Descriptives|"
+msgid "Sturges"
 msgstr ""
 
-msgctxt "ReliabilityAnalysis|"
-msgid "Cronbach's α"
+msgctxt "Descriptives|"
+msgid "Scott"
 msgstr ""
 
-msgctxt "ReliabilityAnalysis|"
-msgid "Unstandardized"
+msgctxt "Descriptives|"
+msgid "Doane"
 msgstr ""
 
-msgctxt "ReliabilityAnalysis|"
-msgid "Standardized"
+msgctxt "Descriptives|"
+msgid "Freedman-Diaconis"
 msgstr ""
 
-msgctxt "ReliabilityAnalysis|"
-msgid "Gutmann's λ6"
+msgctxt "Descriptives|"
+msgid "Manual"
 msgstr ""
 
-msgctxt "ReliabilityAnalysis|"
-msgid "Greatest lower bound"
+msgctxt "Descriptives|"
+msgid "Number of bins"
 msgstr ""
 
-msgctxt "ReliabilityAnalysis|"
-msgid "Average interitem correlation"
+msgctxt "Descriptives|"
+msgid "Interval plots"
 msgstr ""
 
-msgctxt "ReliabilityAnalysis|"
-msgid "Mean"
-msgstr ""
-
-msgctxt "ReliabilityAnalysis|"
-msgid "Standard deviation"
-msgstr ""
-
-msgctxt "ReliabilityAnalysis|"
-msgid "Individual Item Statistics"
-msgstr ""
-
-msgctxt "ReliabilityAnalysis|"
-msgid "McDonald's ω (if item dropped)"
-msgstr ""
-
-msgctxt "ReliabilityAnalysis|"
-msgid "Cronbach's α (if item dropped)"
-msgstr ""
-
-msgctxt "ReliabilityAnalysis|"
-msgid "Gutmann's λ6 (if item dropped)"
-msgstr ""
-
-msgctxt "ReliabilityAnalysis|"
-msgid "Item-rest correlation"
-msgstr ""
-
-msgctxt "ReliabilityAnalysis|"
-msgid "Reverse-Scaled Items"
-msgstr ""
-
-msgctxt "ReliabilityAnalysis|"
-msgid "Normal-Scaled Items"
-msgstr ""
-
-msgctxt "ReliabilityAnalysis|"
-msgid "Advanced Options"
-msgstr ""
-
-msgctxt "ReliabilityAnalysis|"
-msgid "Missing Values"
-msgstr ""
-
-msgctxt "ReliabilityAnalysis|"
-msgid "Exclude cases listwise"
-msgstr ""
-
-msgctxt "ReliabilityAnalysis|"
-msgid "Exclude cases pairwise"
-msgstr ""
-
-msgctxt "ReliabilityAnalysis|"
-msgid "Confidence Interval"
-msgstr ""
-
-msgctxt "ReliabilityAnalysis|"
-msgid "Cronbach's α analytical"
-msgstr ""
-
-msgctxt "ReliabilityAnalysis|"
-msgid "Confidence"
+msgctxt "Descriptives|"
+msgid "Coefficient of Variation"
 msgstr ""
