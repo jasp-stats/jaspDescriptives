@@ -3,81 +3,36 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: en_US\n"
+"X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
 
-msgctxt "Description|"
-msgid "Descriptives"
-msgstr ""
-
-msgctxt "Description|"
-msgid "This module offers the Descriptives analysis."
-msgstr ""
-
-msgctxt "Description|"
-msgid "Descriptive Statistics"
-msgstr ""
-
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Variables"
-msgstr ""
+msgstr "Variáveis"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Split"
-msgstr ""
+msgstr "Dividir"
 
-msgctxt "Descriptives|"
-msgid "Frequency tables"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Maximum distinct values"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Stem and leaf tables"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "scale"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid ""
-"The scale parameter controls how much the table is expanded. For example, "
-"scale = 2 will cause the table to be roughly twice as long as the default "
-"(scale = 1)."
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Create a Stem and leaf table."
-msgstr ""
-
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Plots"
+msgstr "Diagramas"
+
+msgctxt "Descriptives|"
+msgid "Distribution plots"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Color palette"
+msgid "Display density"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Colorblind"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Colorblind Alt."
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Viridis"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "ggplot2"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Gray"
+msgid "Correlation plots"
 msgstr ""
 
 msgctxt "Descriptives|"
@@ -97,120 +52,13 @@ msgid "Jitter element"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Use color palette"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Label outliers"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Scatter Plots"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Graph above scatter plot"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Density"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Histogram"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "None"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Graph right of scatter plot"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Add regression line"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Smooth"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Linear"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Show confidence interval"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Show legend"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Basic plots"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Distribution plots"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Display density"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Display rug marks"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Bin width type"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Sturges"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Scott"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Doane"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Freedman-Diaconis"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Manual"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Number of bins"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Correlation plots"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Interval plots"
-msgstr ""
-
-msgctxt "Descriptives|"
 msgid "Q-Q plots"
 msgstr ""
 
-msgctxt "Descriptives|"
-msgid "Pie charts"
-msgstr ""
-
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Statistics"
-msgstr ""
+msgstr "Estatísticas"
 
 msgctxt "Descriptives|"
 msgid "Percentile Values"
@@ -265,11 +113,79 @@ msgid "Std.deviation"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Coefficient of Variation"
+msgid "MAD"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "MAD"
+msgid "Scatter Plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Graph above scatter plot"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Density"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Histogram"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Graph right of scatter plot"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Add regression line"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Smooth"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Linear"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Show confidence interval"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Show legend"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Color palette"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Colorblind"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Colorblind Alt."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Viridis"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "ggplot2"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Gray"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Use color palette"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Basic plots"
 msgstr ""
 
 msgctxt "Descriptives|"
@@ -325,7 +241,15 @@ msgid "Chart Type"
 msgstr ""
 
 msgctxt "Descriptives|"
+msgid "None"
+msgstr ""
+
+msgctxt "Descriptives|"
 msgid "Bar charts"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Pie charts"
 msgstr ""
 
 msgctxt "Descriptives|"
@@ -342,4 +266,90 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Percentages"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Label outliers"
+msgstr "Rótulo outliers"
+
+#, fuzzy
+msgctxt "Description|"
+msgid "Descriptives"
+msgstr "Descritivas"
+
+msgctxt "Description|"
+msgid "This module offers the Descriptives analysis."
+msgstr ""
+
+msgctxt "Description|"
+msgid "Descriptive Statistics"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Frequency tables"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Maximum distinct values"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Stem and leaf tables"
+msgstr ""
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "scale"
+msgstr "escala"
+
+msgctxt "Descriptives|"
+msgid ""
+"The scale parameter controls how much the table is expanded. For example, "
+"scale = 2 will cause the table to be roughly twice as long as the default "
+"(scale = 1)."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Create a Stem and leaf table."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Display rug marks"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Bin width type"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Sturges"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Scott"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Doane"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Freedman-Diaconis"
+msgstr ""
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Manual"
+msgstr "Manual"
+
+msgctxt "Descriptives|"
+msgid "Number of bins"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Interval plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Coefficient of Variation"
 msgstr ""
