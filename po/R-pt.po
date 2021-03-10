@@ -3,35 +3,32 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-02-26 16:19\n"
-"PO-Revision-Date: 2020-12-02 21:29+0000\n"
-"Last-Translator: JASP Stats <b.boutin@uva.nl>\n"
+"PO-Revision-Date: 2021-03-11 14:02+0000\n"
+"Last-Translator: Alex França <alex.tonante@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
-"jaspDescriptives/pt/>\n"
+"jaspdescriptives-r/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.5.2-dev\n"
 "X-Language: en_US\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
 
 msgid "Frequency Tables"
-msgstr ""
+msgstr "Tabelas de Frequências"
 
-#, fuzzy
 msgid "Correlation plots"
-msgstr "Correção"
+msgstr "Correlação"
 
-#, fuzzy
 msgid "Correlation plot"
-msgstr "Correção"
+msgstr "Diagrama de correlação"
 
-#, fuzzy
 msgid "Distribution Plots"
-msgstr "Diagramas Descritivos"
+msgstr "Diagramas de distribuição"
 
-#, fuzzy
 msgid "Boxplots"
 msgstr "Diagrama de barra"
 
@@ -85,80 +82,81 @@ msgstr ""
 msgid "Median"
 msgstr ""
 
-#, fuzzy
 msgid "Mode"
-msgstr "Modelo"
+msgstr "Moda"
 
-#, fuzzy
 msgid "Std. Deviation"
-msgstr "Padronização"
+msgstr "Desvio Padrão"
 
 msgid "Coefficient of Variation"
-msgstr ""
+msgstr "Coeficiente de Variação"
 
+#, fuzzy
 msgid "MAD"
-msgstr ""
+msgstr "MAD"
 
 #, fuzzy
 msgid "MAD Robust"
-msgstr "Robusto"
-
-msgid "IQR"
-msgstr ""
+msgstr "MAD Robusto"
 
 #, fuzzy
+msgid "IQR"
+msgstr "Intervalo interquartil"
+
 msgid "Variance"
-msgstr "Variáveis"
+msgstr "Variância"
 
 msgid "Skewness"
-msgstr ""
+msgstr "Assimetria"
 
 msgid "Std. Error of Skewness"
-msgstr ""
+msgstr "Erro padrão da Assimetria"
 
 msgid "Kurtosis"
-msgstr ""
+msgstr "Curtose"
 
 msgid "Std. Error of Kurtosis"
-msgstr ""
+msgstr "Erro padrão da Curtose"
 
 msgid "Shapiro-Wilk"
-msgstr ""
+msgstr "Shapiro-Wilk"
 
 msgid "P-value of Shapiro-Wilk"
-msgstr ""
+msgstr "P-valor do Shapiro-Wilk"
 
 msgid "Range"
-msgstr ""
+msgstr "Amplitude total"
 
 msgid "Minimum"
-msgstr ""
+msgstr "Mínimo"
 
 msgid "Maximum"
-msgstr ""
+msgstr "Máximo"
 
 msgid "Sum"
-msgstr ""
+msgstr "Soma"
 
 msgid "%gth percentile"
 msgstr ""
 
 msgid "All values are identical"
-msgstr ""
+msgstr "Todos os valores são identicos"
 
 msgid ""
 "Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set "
 "is %s."
 msgstr ""
+"Ínfimo (mínimo) de um conjunto vazio é% s, o supremo (máximo) de um conjunto "
+"vazio é% s."
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
 msgstr ""
 
 msgid "More than one mode exists, only the first is reported"
-msgstr ""
+msgstr "Existe mais do que uma moda, apenas a primeira é reportada"
 
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 msgid "All variables have more than %1$s distinct values"
 msgstr ""
@@ -224,4 +222,3 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] ""
 msgstr[1] ""
-
