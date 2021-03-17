@@ -154,10 +154,15 @@ Form
 		Group
 		{
 			title: qsTr("Basic plots")
-			CheckBox
+			CheckBox {				name: "plotVariables";			label: qsTr("Distribution plots");	id:	plotVariables					}
+			CheckBox {				name: "plotCorrelationMatrix";	label: qsTr("Correlation plots");	id:	plotCorrelationMatrix			}
+
+			Group
 			{
-				name: "plotVariables";			label: qsTr("Distribution plots")
-				CheckBox {			name: "distPlotDensity";		label: qsTr("Display density")					}
+				enabled: plotVariables.checked || plotCorrelationMatrix.checked
+
+				indent:		true
+				CheckBox {			name: "distPlotDensity";	label: qsTr("Display density")						}
 				CheckBox {			name: "distPlotRug";		label: qsTr("Display rug marks")					}
 				DropDown {
 					name: "binWidthType"
@@ -184,7 +189,6 @@ Form
 				}
 			}
 
-			CheckBox {				name: "plotCorrelationMatrix";	label: qsTr("Correlation plots")				}
 			CheckBox {				name: "descriptivesIntervalPlot";label: qsTr("Interval plots")					}
 			CheckBox {				name: "descriptivesQQPlot";		label: qsTr("Q-Q plots")						}
 			CheckBox {				name: "descriptivesPiechart";	label: qsTr("Pie charts")						}
