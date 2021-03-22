@@ -2,7 +2,6 @@ context("Descriptives")
 
 # does not test
 # - error handling
-
 test_that("Main table results match", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "contNormal"
