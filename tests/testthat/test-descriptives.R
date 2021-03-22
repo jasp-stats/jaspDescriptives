@@ -139,13 +139,23 @@ test_that("Scatter plot matches", {
   jaspTools::expect_equal_plots(testPlot, "scatterplot", dir="Descriptives")
 })
 
+test_that("Dot plot matches", {
+  options <- jaspTools::analysisOptions("Descriptives")
+  options$variables <- "contNormal"
+  options$descriptivesDotPlot <- TRUE
+  results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
+
+  testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "dotPlot", dir="Descriptives")
+})
+
 test_that("Pie chart matches", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "facFive"
   options$descriptivesPiechart <- TRUE
   options$colorPalette <- "ggplot2"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
-
+  
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "pieChart", dir="Descriptives")
 })
