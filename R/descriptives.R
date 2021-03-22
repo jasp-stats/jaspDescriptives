@@ -667,7 +667,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   variables <- unlist(options$variables)
 
   l         <- length(variables)
-  depends   <- c("plotCorrelationMatrix", "variables", "splitby")
+  depends   <- c("plotCorrelationMatrix", "variables", "splitby", "binWidthType", "distPlotDensity", "distPlotRug", "numberOfBins")
 
   if (l == 0) #Nothing to plot
     return(NULL)
@@ -696,7 +696,15 @@ Descriptives <- function(jaspResults, dataset, options) {
     if (variable.statuses[[row]]$error != "") {
       plotMat[[row, row]] <- .displayError(errorMessage=variable.statuses[[row]]$error)
     } else {
-      plotMat[[row, row]] <- .plotMarginalCorDescriptives(dataset[[.v(variables[[row]])]]) + adjMargin
+      plotMat[[row, row]] <- .plotMarginal(
+        column         = dataset[[variables[[row]]]],
+        variableName   = NULL,
+        displayDensity = options[["distPlotDensity"]],
+        rugs           = options[["distPlotRug"]],
+        binWidthType   = options[["binWidthType"]],
+        numberOfBins   = options[["numberOfBins"]],
+        lwd            = .7
+      )
       axisBreaks[[row]] <- jaspGraphs::getAxisBreaks(plotMat[[row, row]])
     }
   }
@@ -710,8 +718,8 @@ Descriptives <- function(jaspResults, dataset, options) {
         plotMat[[row, col]] <- .displayError(errorMessage=variable.statuses[[col]]$error)
       } else {
         plotMat[[row, col]] <- .plotScatterDescriptives(
-          xVar    = dataset[[.v(variables[[col]])]],
-          yVar    = dataset[[.v(variables[[row]])]],
+          xVar    = dataset[[variables[[col]]]],
+          yVar    = dataset[[variables[[row]]]],
           xBreaks = axisBreaks[[col]]$x,
           yBreaks = axisBreaks[[row]]$x
         ) + adjMargin
@@ -1107,7 +1115,8 @@ Descriptives <- function(jaspResults, dataset, options) {
 
 .plotMarginal <- function(column, variableName,
                           rugs = FALSE, displayDensity = FALSE, binWidthType = c("doane", "fd", "scott", "sturges", "manual"),
-                          numberOfBins = NA) {
+                          numberOfBins = NA,
+                          lwd = 1) {
   binWidthType <- match.arg(binWidthType)
   column <- as.numeric(column)
   variable <- na.omit(column)
@@ -1169,7 +1178,7 @@ Descriptives <- function(jaspResults, dataset, options) {
       ggplot2::geom_line(
         data = data.frame(x = dens$x, y = dens$y),
         mapping = ggplot2::aes(x = x, y = y),
-        lwd = 1,
+        lwd = lwd,
         col = "black"
       )
   } else {
