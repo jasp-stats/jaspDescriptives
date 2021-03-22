@@ -1,38 +1,47 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: JASP 0.9.2\n"
+"Project-Id-Version: R 3.6.1\n"
+"Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-02-26 16:19\n"
-"PO-Revision-Date: 2021-03-06 09:51+0000\n"
-"Last-Translator: Paulina Elizabeth Robalino <paulina.e.robalino@gmail.com>\n"
-"Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
-"jaspdescriptives-r/es/>\n"
-"Language: es\n"
+"PO-Revision-Date: 2020-12-02 21:29+0000\n"
+"Last-Translator: JASP Stats <b.boutin@uva.nl>\n"
+"Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
+"jaspDescriptives/pt/>\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.5.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: en_US\n"
+"X-Source-Language: American English\n"
+"X-Qt-Contexts: true\n"
 
 msgid "Frequency Tables"
 msgstr ""
 
+#, fuzzy
 msgid "Correlation plots"
-msgstr ""
+msgstr "Correção"
 
+#, fuzzy
 msgid "Correlation plot"
-msgstr ""
+msgstr "Correção"
 
+#, fuzzy
 msgid "Distribution Plots"
-msgstr ""
+msgstr "Diagramas Descritivos"
 
+#, fuzzy
 msgid "Boxplots"
-msgstr ""
+msgstr "Diagrama de barra"
 
+#, fuzzy
 msgid "Q-Q Plots"
-msgstr ""
+msgstr "Diagramas"
 
+#, fuzzy
 msgid "Q-Q Plot"
-msgstr ""
+msgstr "Diagramas"
 
 msgid "Plotting is not possible: Variable only contains NA!"
 msgstr ""
@@ -43,14 +52,17 @@ msgstr ""
 msgid "Stem and Leaf"
 msgstr ""
 
+#, fuzzy
 msgid "Scatter Plots"
-msgstr ""
+msgstr "Diagramas Separados"
 
+#, fuzzy
 msgid "Interval plots"
-msgstr ""
+msgstr "Interceptos"
 
+#, fuzzy
 msgid "Descriptive Statistics"
-msgstr ""
+msgstr "Estatísticas descritivas"
 
 msgid ""
 "Excluded %1$i rows from the analysis that correspond to the missing values "
@@ -63,8 +75,9 @@ msgstr ""
 msgid "Missing"
 msgstr ""
 
+#, fuzzy
 msgid "Mean"
-msgstr "Media"
+msgstr "Médias"
 
 msgid "Std. Error of Mean"
 msgstr ""
@@ -72,11 +85,13 @@ msgstr ""
 msgid "Median"
 msgstr ""
 
+#, fuzzy
 msgid "Mode"
-msgstr ""
+msgstr "Modelo"
 
+#, fuzzy
 msgid "Std. Deviation"
-msgstr ""
+msgstr "Padronização"
 
 msgid "Coefficient of Variation"
 msgstr ""
@@ -84,14 +99,16 @@ msgstr ""
 msgid "MAD"
 msgstr ""
 
+#, fuzzy
 msgid "MAD Robust"
-msgstr ""
+msgstr "Robusto"
 
 msgid "IQR"
 msgstr ""
 
+#, fuzzy
 msgid "Variance"
-msgstr ""
+msgstr "Variáveis"
 
 msgid "Skewness"
 msgstr ""
@@ -179,8 +196,9 @@ msgstr ""
 msgid "Theoretical Quantiles"
 msgstr ""
 
+#, fuzzy
 msgid "Sample Quantiles"
-msgstr ""
+msgstr "Tamanho da amostra"
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
@@ -206,3 +224,4 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] ""
 msgstr[1] ""
+
