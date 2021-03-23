@@ -34,6 +34,13 @@ Form
 
 	CheckBox
 	{
+		name	: "transposeMainTable"
+		label	: qsTr("Transpose descriptives table")
+		checked	: false
+	}
+
+	CheckBox
+	{
 		name:			"frequencyTables"
 		label:			qsTr("Frequency tables")
 		IntegerField
