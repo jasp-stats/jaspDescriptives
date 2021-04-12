@@ -1189,30 +1189,28 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (displayDensity) {
     p <- p +
       ggplot2::geom_histogram(
-        data = data.frame(variable),
+        data    = data.frame(variable),
         mapping = ggplot2::aes(x = variable, y = ..density..),
-        binwidth = (h$breaks[2] - h$breaks[1]),
-        fill = "grey",
-        col = "black",
-        size = .7,
-        center = ((h$breaks[2] - h$breaks[1])/2)
+        breaks  = h[["breaks"]],
+        fill    = "grey",
+        col     = "black",
+        size    = .7
       ) +
       ggplot2::geom_line(
-        data = data.frame(x = dens$x, y = dens$y),
+        data    = data.frame(x = dens$x, y = dens$y),
         mapping = ggplot2::aes(x = x, y = y),
-        lwd = lwd,
-        col = "black"
+        lwd     = lwd,
+        col     = "black"
       )
   } else {
     p <- p +
       ggplot2::geom_histogram(
         data     = data.frame(variable),
         mapping  = ggplot2::aes(x = variable, y = ..count..),
-        binwidth = (h$breaks[2] - h$breaks[1]),
+        breaks   = h[["breaks"]],
         fill     = "grey",
         col      = "black",
-        size     = .7,
-        center    = ((h$breaks[2] - h$breaks[1])/2)
+        size     = .7
       )
   }
   
