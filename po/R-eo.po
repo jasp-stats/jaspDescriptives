@@ -2,16 +2,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2021-02-26 16:19\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-04-19 01:26+0000\n"
+"Last-Translator: phlostically <phlostically@mailinator.com>\n"
+"Language-Team: Esperanto <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-r/eo/>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.6-dev\n"
 
 msgid "Frequency Tables"
-msgstr ""
+msgstr "Tabelo de Oftecoj"
 
 msgid "Correlation plots"
 msgstr ""
@@ -26,10 +29,10 @@ msgid "Boxplots"
 msgstr ""
 
 msgid "Q-Q Plots"
-msgstr ""
+msgstr "Q-Q-Diagramoj"
 
 msgid "Q-Q Plot"
-msgstr ""
+msgstr "Q-Q-Diagramo"
 
 msgid "Plotting is not possible: Variable only contains NA!"
 msgstr ""
@@ -53,25 +56,25 @@ msgid "Excluded %1$i rows from the analysis that correspond to the missing value
 msgstr ""
 
 msgid "Valid"
-msgstr ""
+msgstr "Valida"
 
 msgid "Missing"
-msgstr ""
+msgstr "Mankanta"
 
 msgid "Mean"
-msgstr ""
+msgstr "Aritmetika meznombro"
 
 msgid "Std. Error of Mean"
-msgstr ""
+msgstr "Norma Eraro de Aritmetika Meznombro"
 
 msgid "Median"
-msgstr ""
+msgstr "Mediano"
 
 msgid "Mode"
-msgstr ""
+msgstr "Plejoftanto"
 
 msgid "Std. Deviation"
-msgstr ""
+msgstr "Norma Devio"
 
 msgid "Coefficient of Variation"
 msgstr ""
@@ -86,7 +89,7 @@ msgid "IQR"
 msgstr ""
 
 msgid "Variance"
-msgstr ""
+msgstr "Varianco"
 
 msgid "Skewness"
 msgstr ""
@@ -101,22 +104,22 @@ msgid "Std. Error of Kurtosis"
 msgstr ""
 
 msgid "Shapiro-Wilk"
-msgstr ""
+msgstr "Shapiro-Wilk"
 
 msgid "P-value of Shapiro-Wilk"
-msgstr ""
+msgstr "P-valoro de Shapiro-Wilk"
 
 msgid "Range"
 msgstr ""
 
 msgid "Minimum"
-msgstr ""
+msgstr "Minimumo"
 
 msgid "Maximum"
-msgstr ""
+msgstr "Maksimumo"
 
 msgid "Sum"
-msgstr ""
+msgstr "Sumo"
 
 msgid "%gth percentile"
 msgstr ""
@@ -134,31 +137,31 @@ msgid "More than one mode exists, only the first is reported"
 msgstr ""
 
 msgid "Total"
-msgstr ""
+msgstr "Totalo"
 
 msgid "All variables have more than %1$s distinct values"
 msgstr ""
 
 msgid "Frequencies"
-msgstr ""
+msgstr "Oftecoj"
 
 msgid "Frequencies for %s"
-msgstr ""
+msgstr "Oftecoj de %s"
 
 msgid "Frequency"
-msgstr ""
+msgstr "Ofteco"
 
 msgid "Percent"
-msgstr ""
+msgstr "Procento"
 
 msgid "Valid Percent"
-msgstr ""
+msgstr "Valida Procento"
 
 msgid "Cumulative Percent"
 msgstr ""
 
 msgid "Density"
-msgstr ""
+msgstr "Denso"
 
 msgid "Plotting not possible: %s"
 msgstr ""
