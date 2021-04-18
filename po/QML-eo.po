@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-04-19 01:26+0000\n"
+"Last-Translator: phlostically <phlostically@mailinator.com>\n"
+"Language-Team: Esperanto <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/eo/>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.6-dev\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
@@ -20,7 +26,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Variables"
-msgstr ""
+msgstr "Variabloj"
 
 msgctxt "Descriptives|"
 msgid "Split"
@@ -28,7 +34,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Frequency tables"
-msgstr ""
+msgstr "Tabeloj de ofteco"
 
 msgctxt "Descriptives|"
 msgid "Maximum distinct values"
@@ -55,11 +61,11 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Plots"
-msgstr ""
+msgstr "Diagramoj"
 
 msgctxt "Descriptives|"
 msgid "Color palette"
-msgstr ""
+msgstr "Koloraro"
 
 msgctxt "Descriptives|"
 msgid "Colorblind"
@@ -75,11 +81,11 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "ggplot2"
-msgstr ""
+msgstr "ggplot2"
 
 msgctxt "Descriptives|"
 msgid "Gray"
-msgstr ""
+msgstr "Grizo"
 
 msgctxt "Descriptives|"
 msgid "Boxplots"
@@ -99,7 +105,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Use color palette"
-msgstr ""
+msgstr "Uzi koloraron"
 
 msgctxt "Descriptives|"
 msgid "Label outliers"
@@ -115,7 +121,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Density"
-msgstr ""
+msgstr "Denso"
 
 msgctxt "Descriptives|"
 msgid "Histogram"
@@ -123,7 +129,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "None"
-msgstr ""
+msgstr "Nenio"
 
 msgctxt "Descriptives|"
 msgid "Graph right of scatter plot"
@@ -135,11 +141,11 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Smooth"
-msgstr ""
+msgstr "Glata"
 
 msgctxt "Descriptives|"
 msgid "Linear"
-msgstr ""
+msgstr "Lineara"
 
 msgctxt "Descriptives|"
 msgid "Show confidence interval"
@@ -151,7 +157,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Basic plots"
-msgstr ""
+msgstr "Bazaj diagramoj"
 
 msgctxt "Descriptives|"
 msgid "Distribution plots"
@@ -203,19 +209,19 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Mean"
-msgstr ""
+msgstr "Aritmetika meznombro"
 
 msgctxt "Descriptives|"
 msgid "Median"
-msgstr ""
+msgstr "Mediano"
 
 msgctxt "Descriptives|"
 msgid "Mode"
-msgstr ""
+msgstr "Plejoftanto"
 
 msgctxt "Descriptives|"
 msgid "Sum"
-msgstr ""
+msgstr "Sumo"
 
 msgctxt "Descriptives|"
 msgid "Dispersion"
@@ -227,7 +233,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Std.deviation"
-msgstr ""
+msgstr "Norma devio"
 
 msgctxt "Descriptives|"
 msgid "MAD"
@@ -243,7 +249,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Variance"
-msgstr ""
+msgstr "Varianco"
 
 msgctxt "Descriptives|"
 msgid "Range"
@@ -251,11 +257,11 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Minimum"
-msgstr ""
+msgstr "Minimumo"
 
 msgctxt "Descriptives|"
 msgid "Maximum"
-msgstr ""
+msgstr "Maksimumo"
 
 msgctxt "Descriptives|"
 msgid "Distribution"
@@ -299,11 +305,11 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Frequencies"
-msgstr ""
+msgstr "Oftecoj"
 
 msgctxt "Descriptives|"
 msgid "Percentages"
-msgstr ""
+msgstr "Procentoj"
 
 msgctxt "Descriptives|"
 msgid "Display rug marks"
@@ -315,23 +321,23 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Sturges"
-msgstr ""
+msgstr "Sturges"
 
 msgctxt "Descriptives|"
 msgid "Scott"
-msgstr ""
+msgstr "Scott"
 
 msgctxt "Descriptives|"
 msgid "Doane"
-msgstr ""
+msgstr "Doane"
 
 msgctxt "Descriptives|"
 msgid "Freedman-Diaconis"
-msgstr ""
+msgstr "Freedman-Diaconis"
 
 msgctxt "Descriptives|"
 msgid "Manual"
-msgstr ""
+msgstr "Propra"
 
 msgctxt "Descriptives|"
 msgid "Number of bins"
