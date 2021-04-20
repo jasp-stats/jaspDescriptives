@@ -1,33 +1,40 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-04-21 00:28+0000\n"
+"Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/ja/>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.7-dev\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
 msgid "Descriptives"
-msgstr ""
+msgstr "記述統計"
 
 msgctxt "Description|"
 msgid "This module offers the Descriptives analysis."
-msgstr ""
+msgstr "このモジュールは、記述統計分析を提供します。"
 
 msgctxt "Description|"
 msgid "Descriptive Statistics"
-msgstr ""
+msgstr "記述統計"
 
 msgctxt "Descriptives|"
 msgid "Variables"
-msgstr ""
+msgstr "変数"
 
 msgctxt "Descriptives|"
 msgid "Split"
-msgstr ""
+msgstr "分割"
 
 msgctxt "Descriptives|"
 msgid "Frequency tables"
-msgstr ""
+msgstr "度数分布表"
 
 msgctxt "Descriptives|"
 msgid "Maximum distinct values"
@@ -35,11 +42,11 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Stem and leaf tables"
-msgstr ""
+msgstr "幹葉図"
 
 msgctxt "Descriptives|"
 msgid "scale"
-msgstr ""
+msgstr "尺度"
 
 msgctxt "Descriptives|"
 msgid ""
@@ -50,55 +57,55 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Create a Stem and leaf table."
-msgstr ""
+msgstr "幹葉図を作成する。"
 
 msgctxt "Descriptives|"
 msgid "Plots"
-msgstr ""
+msgstr "プロット"
 
 msgctxt "Descriptives|"
 msgid "Color palette"
-msgstr ""
+msgstr "カラーパレット"
 
 msgctxt "Descriptives|"
 msgid "Colorblind"
-msgstr ""
+msgstr "色覚異常"
 
 msgctxt "Descriptives|"
 msgid "Colorblind Alt."
-msgstr ""
+msgstr "カラーブラインドのための代案"
 
 msgctxt "Descriptives|"
 msgid "Viridis"
-msgstr ""
+msgstr "ビリジアン"
 
 msgctxt "Descriptives|"
 msgid "ggplot2"
-msgstr ""
+msgstr "ggplot2"
 
 msgctxt "Descriptives|"
 msgid "Gray"
-msgstr ""
+msgstr "灰色"
 
 msgctxt "Descriptives|"
 msgid "Boxplots"
-msgstr ""
+msgstr "箱ひげ図"
 
 msgctxt "Descriptives|"
 msgid "Boxplot element"
-msgstr ""
+msgstr "箱ひげ図 要素"
 
 msgctxt "Descriptives|"
 msgid "Violin element"
-msgstr ""
+msgstr "バイオリン 要素"
 
 msgctxt "Descriptives|"
 msgid "Jitter element"
-msgstr ""
+msgstr "jitter 要素"
 
 msgctxt "Descriptives|"
 msgid "Use color palette"
-msgstr ""
+msgstr "カラーパレットを使用"
 
 msgctxt "Descriptives|"
 msgid "Label outliers"
@@ -106,171 +113,171 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Scatter Plots"
-msgstr ""
+msgstr "散布図"
 
 msgctxt "Descriptives|"
 msgid "Graph above scatter plot"
-msgstr ""
+msgstr "散布図の上のグラフ"
 
 msgctxt "Descriptives|"
 msgid "Density"
-msgstr ""
+msgstr "密度"
 
 msgctxt "Descriptives|"
 msgid "Histogram"
-msgstr ""
+msgstr "ヒストグラム"
 
 msgctxt "Descriptives|"
 msgid "None"
-msgstr ""
+msgstr "なし"
 
 msgctxt "Descriptives|"
 msgid "Graph right of scatter plot"
-msgstr ""
+msgstr "散布図の右のグラフ"
 
 msgctxt "Descriptives|"
 msgid "Add regression line"
-msgstr ""
+msgstr "回帰直線の追加"
 
 msgctxt "Descriptives|"
 msgid "Smooth"
-msgstr ""
+msgstr "平滑化"
 
 msgctxt "Descriptives|"
 msgid "Linear"
-msgstr ""
+msgstr "線形"
 
 msgctxt "Descriptives|"
 msgid "Show confidence interval"
-msgstr ""
+msgstr "信頼区間を表示"
 
 msgctxt "Descriptives|"
 msgid "Show legend"
-msgstr ""
+msgstr "凡例を表示する"
 
 msgctxt "Descriptives|"
 msgid "Basic plots"
-msgstr ""
+msgstr "基本的な図"
 
 msgctxt "Descriptives|"
 msgid "Distribution plots"
-msgstr ""
+msgstr "分布図"
 
 msgctxt "Descriptives|"
 msgid "Display density"
-msgstr ""
+msgstr "密度を表示する"
 
 msgctxt "Descriptives|"
 msgid "Correlation plots"
-msgstr ""
+msgstr "相関のプロット"
 
 msgctxt "Descriptives|"
 msgid "Q-Q plots"
-msgstr ""
+msgstr "Q-Qプロット"
 
 msgctxt "Descriptives|"
 msgid "Pie charts"
-msgstr ""
+msgstr "円グラフ"
 
 msgctxt "Descriptives|"
 msgid "Statistics"
-msgstr ""
+msgstr "統計量"
 
 msgctxt "Descriptives|"
 msgid "Percentile Values"
-msgstr ""
+msgstr "パーセンタイル値"
 
 msgctxt "Descriptives|"
 msgid "Quartiles"
-msgstr ""
+msgstr "四分位数"
 
 msgctxt "Descriptives|"
 msgid "Cut points for: "
-msgstr ""
+msgstr "カットポイント: "
 
 msgctxt "Descriptives|"
 msgid " equal groups"
-msgstr ""
+msgstr " 等分のグループ"
 
 msgctxt "Descriptives|"
 msgid "Percentiles:"
-msgstr ""
+msgstr "パーセンタイル値:"
 
 msgctxt "Descriptives|"
 msgid "Central Tendency"
-msgstr ""
+msgstr "代表値"
 
 msgctxt "Descriptives|"
 msgid "Mean"
-msgstr ""
+msgstr "平均値"
 
 msgctxt "Descriptives|"
 msgid "Median"
-msgstr ""
+msgstr "中央値"
 
 msgctxt "Descriptives|"
 msgid "Mode"
-msgstr ""
+msgstr "最頻値"
 
 msgctxt "Descriptives|"
 msgid "Sum"
-msgstr ""
+msgstr "総和"
 
 msgctxt "Descriptives|"
 msgid "Dispersion"
-msgstr ""
+msgstr "ばらつき"
 
 msgctxt "Descriptives|"
 msgid "S. E. mean"
-msgstr ""
+msgstr "標準誤差"
 
 msgctxt "Descriptives|"
 msgid "Std.deviation"
-msgstr ""
+msgstr "標準偏差"
 
 msgctxt "Descriptives|"
 msgid "MAD"
-msgstr ""
+msgstr "中央絶対偏差"
 
 msgctxt "Descriptives|"
 msgid "MAD Robust"
-msgstr ""
+msgstr "ロバスト中央値絶対偏差"
 
 msgctxt "Descriptives|"
 msgid "IQR"
-msgstr ""
+msgstr "四分位範囲"
 
 msgctxt "Descriptives|"
 msgid "Variance"
-msgstr ""
+msgstr "分散"
 
 msgctxt "Descriptives|"
 msgid "Range"
-msgstr ""
+msgstr "範囲"
 
 msgctxt "Descriptives|"
 msgid "Minimum"
-msgstr ""
+msgstr "最小値"
 
 msgctxt "Descriptives|"
 msgid "Maximum"
-msgstr ""
+msgstr "最大値"
 
 msgctxt "Descriptives|"
 msgid "Distribution"
-msgstr ""
+msgstr "分布"
 
 msgctxt "Descriptives|"
 msgid "Skewness"
-msgstr ""
+msgstr "歪度"
 
 msgctxt "Descriptives|"
 msgid "Kurtosis"
-msgstr ""
+msgstr "尖度"
 
 msgctxt "Descriptives|"
 msgid "Shapiro-Wilk test"
-msgstr ""
+msgstr "シャピロ-ウィルク検定"
 
 msgctxt "Descriptives|"
 msgid "Values are group midpoints"
@@ -278,7 +285,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Charts"
-msgstr ""
+msgstr "チャート"
 
 msgctxt "Descriptives|"
 msgid "Chart Type"
@@ -286,11 +293,11 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Bar charts"
-msgstr ""
+msgstr "棒グラフ"
 
 msgctxt "Descriptives|"
 msgid "Histograms"
-msgstr ""
+msgstr "ヒストグラム"
 
 msgctxt "Descriptives|"
 msgid "Chart Values"
@@ -298,11 +305,11 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Frequencies"
-msgstr ""
+msgstr "頻度"
 
 msgctxt "Descriptives|"
 msgid "Percentages"
-msgstr ""
+msgstr "パーセンテージ"
 
 msgctxt "Descriptives|"
 msgid "Display rug marks"
@@ -314,32 +321,32 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Sturges"
-msgstr ""
+msgstr "スタージェス"
 
 msgctxt "Descriptives|"
 msgid "Scott"
-msgstr ""
+msgstr "スコット"
 
 msgctxt "Descriptives|"
 msgid "Doane"
-msgstr ""
+msgstr "ドーン"
 
 msgctxt "Descriptives|"
 msgid "Freedman-Diaconis"
-msgstr ""
+msgstr "フリードマン - ダイアコニス"
 
 msgctxt "Descriptives|"
 msgid "Manual"
-msgstr ""
+msgstr "手動"
 
 msgctxt "Descriptives|"
 msgid "Number of bins"
-msgstr ""
+msgstr "ビンの数"
 
 msgctxt "Descriptives|"
 msgid "Interval plots"
-msgstr ""
+msgstr "区間プロット"
 
 msgctxt "Descriptives|"
 msgid "Coefficient of Variation"
-msgstr ""
+msgstr "変動係数"
