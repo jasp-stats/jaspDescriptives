@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-02-26 16:19\n"
-"PO-Revision-Date: 2021-04-26 20:31+0000\n"
+"PO-Revision-Date: 2021-05-03 20:31+0000\n"
 "Last-Translator: Alex França <alex.tonante@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/pt/>\n"
@@ -87,9 +87,11 @@ msgstr "Erro padrão de média"
 msgid "Median"
 msgstr "Mediana"
 
+#, fuzzy
 msgid "Mode"
 msgstr "Moda"
 
+#, fuzzy
 msgid "Std. Deviation"
 msgstr "Desvio Padrão"
 
@@ -108,6 +110,7 @@ msgstr "MAD Robusto"
 msgid "IQR"
 msgstr "Intervalo interquartil"
 
+#, fuzzy
 msgid "Variance"
 msgstr "Variância"
 
@@ -129,12 +132,15 @@ msgstr "Shapiro-Wilk"
 msgid "P-value of Shapiro-Wilk"
 msgstr "P-valor do Shapiro-Wilk"
 
+#, fuzzy
 msgid "Range"
 msgstr "Amplitude total"
 
+#, fuzzy
 msgid "Minimum"
 msgstr "Mínimo"
 
+#, fuzzy
 msgid "Maximum"
 msgstr "Máximo"
 
@@ -176,7 +182,7 @@ msgstr "Frequências para %s"
 
 #, fuzzy
 msgid "Frequency"
-msgstr "Frequência"
+msgstr "Fequência"
 
 msgid "Percent"
 msgstr "Porcentagem"
