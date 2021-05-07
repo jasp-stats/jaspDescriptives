@@ -3,48 +3,47 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Language: en_US\n"
-"X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
 msgid "Descriptives"
-msgstr "Descriptivos"
+msgstr ""
 
-#, fuzzy
+msgctxt "Description|"
+msgid "Explore the data with tables and plots"
+msgstr ""
+
 msgctxt "Description|"
 msgid "Descriptive Statistics"
-msgstr "Estadísticas descriptivas"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Variables"
-msgstr "Variables"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Split"
-msgstr "División"
+msgstr ""
 
-#, fuzzy
+msgctxt "Descriptives|"
+msgid "Transpose descriptives table"
+msgstr ""
+
 msgctxt "Descriptives|"
 msgid "Frequency tables"
-msgstr "Frecuencias"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Maximum distinct values"
-msgstr "Tiempo máximo de adaptación"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Stem and leaf tables"
 msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "scale"
-msgstr "escala"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid ""
@@ -57,320 +56,121 @@ msgctxt "Descriptives|"
 msgid "Create a Stem and leaf table."
 msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Plots"
-msgstr "Parcelas"
+msgstr ""
 
-#, fuzzy
+msgctxt "Descriptives|"
+msgid "Customizable plots"
+msgstr ""
+
 msgctxt "Descriptives|"
 msgid "Color palette"
-msgstr "Paleta de color"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Colorblind"
-msgstr "Daltónico"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Colorblind Alt."
-msgstr "Daltonismo Alt."
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Viridis"
-msgstr "Viridis"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "ggplot2"
-msgstr "ggplot2"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Gray"
-msgstr "gris"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Boxplots"
-msgstr "Diagramas de caja"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Boxplot element"
-msgstr "Elemento de diagrama de caja"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Violin element"
-msgstr "Elemento de violín"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Jitter element"
-msgstr "Elemento jitter"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Use color palette"
-msgstr "Usar paleta de colores"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Label outliers"
-msgstr "Etiquetar valores atípicos"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Scatter Plots"
-msgstr "Gráfico de dispersión"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Graph above scatter plot"
-msgstr "Gráfico sobre el diagrama de dispersión"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Density"
-msgstr "Densidad"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Histogram"
-msgstr "Histograma"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "None"
-msgstr "Ninguna"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Graph right of scatter plot"
-msgstr "Gráfico a la derecha del diagrama de dispersión"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Add regression line"
-msgstr "Agregar línea de regresión"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Smooth"
-msgstr "Suave"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Linear"
-msgstr "Lineal"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Show confidence interval"
-msgstr "Mostrar intervalo de confianza"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Show legend"
-msgstr "Mostrar leyenda"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Basic plots"
-msgstr "Parcelas básicas"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Distribution plots"
-msgstr "Parcelas de distribución"
+msgstr ""
 
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Display density"
-msgstr "Densidad de pantalla"
-
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Correlation plots"
-msgstr "Gráficos de correlación"
+msgstr ""
 
-#, fuzzy
 msgctxt "Descriptives|"
-msgid "Q-Q plots"
-msgstr "Gráficos Q-Q"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Pie charts"
-msgstr "Gráficos circulares"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Statistics"
-msgstr "Estadísticas"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Percentile Values"
-msgstr "Valores percentiles"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Quartiles"
-msgstr "Cuartiles"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Cut points for: "
-msgstr "Puntos de corte para: "
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid " equal groups"
-msgstr " grupos iguales"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Percentiles:"
-msgstr "Percentiles:"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Central Tendency"
-msgstr "Tendencia central"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Mean"
-msgstr "Media"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Median"
-msgstr "Mediana"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Mode"
-msgstr "Modo"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Sum"
-msgstr "Suma"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Dispersion"
-msgstr "Dispersión"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "S. E. mean"
-msgstr "S. E. media"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Std.deviation"
-msgstr "Desviación estándar"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "MAD"
-msgstr "ENOJADO"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "MAD Robust"
-msgstr "MAD Robusto"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "IQR"
-msgstr "IQR"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Variance"
-msgstr "Diferencia"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Range"
-msgstr "Rango"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Minimum"
-msgstr "Mínimo"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Maximum"
-msgstr "Máximo"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Distribution"
-msgstr "Distribución"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Skewness"
-msgstr "Oblicuidad"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Kurtosis"
-msgstr "Curtosis"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Shapiro-Wilk test"
-msgstr "Prueba de Shapiro-Wilk"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Values are group midpoints"
-msgstr "Los valores son puntos medios de grupo"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Charts"
-msgstr "Gráficos"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Chart Type"
-msgstr "Tipo de gráfico"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Bar charts"
-msgstr "Gráfica de barras"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Histograms"
-msgstr "Histogramas"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Chart Values"
-msgstr "Valores de gráfico"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Frequencies"
-msgstr "Frecuencias"
-
-#, fuzzy
-msgctxt "Descriptives|"
-msgid "Percentages"
-msgstr "Porcentajes"
+msgid "Display density"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Display rug marks"
@@ -409,21 +209,149 @@ msgid "Interval plots"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Coefficient of Variation"
-msgstr ""
-
-msgctxt "Description|"
-msgid "Explore the data with tables and plots"
+msgid "Q-Q plots"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Transpose descriptives table"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Customizable plots"
+msgid "Pie charts"
 msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Dot plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Statistics"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Percentile Values"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Quartiles"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Cut points for: "
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid " equal groups"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Percentiles:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Central Tendency"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Mean"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Median"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Mode"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Sum"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Dispersion"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "S. E. mean"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Std.deviation"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Coefficient of Variation"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "MAD"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "MAD Robust"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "IQR"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Variance"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Range"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Minimum"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Maximum"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Distribution"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Skewness"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Kurtosis"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Shapiro-Wilk test"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Values are group midpoints"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Charts"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Chart Type"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Bar charts"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Histograms"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Chart Values"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Frequencies"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Percentages"
 msgstr ""

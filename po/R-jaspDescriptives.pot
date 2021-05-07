@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2021-02-26 16:19\n"
+"POT-Creation-Date: 2021-05-07 13:24\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,6 +44,9 @@ msgid "Scatter Plots"
 msgstr ""
 
 msgid "Interval plots"
+msgstr ""
+
+msgid "Dot Plots"
 msgstr ""
 
 msgid "Descriptive Statistics"
@@ -167,6 +170,9 @@ msgid "Plotting is not possible: No plot type selected!"
 msgstr ""
 
 msgid "Counts"
+msgstr ""
+
+msgid "No non-missing values!"
 msgstr ""
 
 msgid "Theoretical Quantiles"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2021-02-26 16:19\n"
+"POT-Creation-Date: 2021-05-07 13:24\n"
 "PO-Revision-Date: 2021-05-03 20:31+0000\n"
 "Last-Translator: Alex França <alex.tonante@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
@@ -58,6 +58,10 @@ msgstr "Gráficos de dispersão"
 #, fuzzy
 msgid "Interval plots"
 msgstr "Gráficos de intervalos"
+
+#, fuzzy
+msgid "Dot Plots"
+msgstr "Diagramas"
 
 #, fuzzy
 msgid "Descriptive Statistics"
@@ -208,6 +212,9 @@ msgstr ""
 "Não é possível efetuar a plotagem: Não foi selecionado um tipo de gráfico!"
 
 msgid "Counts"
+msgstr ""
+
+msgid "No non-missing values!"
 msgstr ""
 
 #, fuzzy

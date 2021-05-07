@@ -13,10 +13,6 @@ msgid "Descriptives"
 msgstr "Beschrijvende statistiek"
 
 msgctxt "Description|"
-msgid "This module offers the Descriptives analysis."
-msgstr "Deze module biedt de Beschrijvende analyses."
-
-msgctxt "Description|"
 msgid "Descriptive Statistics"
 msgstr "Beschrijvende Statistiek"
 
@@ -345,4 +341,20 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Coefficient of Variation"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Explore the data with tables and plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Transpose descriptives table"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Customizable plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Dot plots"
 msgstr ""

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.11.0\n"
-"POT-Creation-Date: 2021-02-26 16:19\n"
+"POT-Creation-Date: 2021-05-07 13:24\n"
 "PO-Revision-Date: 2021-01-26 11:51+0000\n"
 "Last-Translator: Koji Kosugi <kosugitti@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -48,6 +48,10 @@ msgstr "散布図"
 
 msgid "Interval plots"
 msgstr ""
+
+#, fuzzy
+msgid "Dot Plots"
+msgstr "Q-Qプロット"
 
 msgid "Descriptive Statistics"
 msgstr "記述統計"
@@ -178,6 +182,9 @@ msgstr "プロットできません：プロットタイプが選択されてい
 
 msgid "Counts"
 msgstr "カウント"
+
+msgid "No non-missing values!"
+msgstr ""
 
 msgid "Theoretical Quantiles"
 msgstr "理論上の分位数"

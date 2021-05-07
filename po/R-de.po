@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2021-02-26 16:19\n"
+"POT-Creation-Date: 2021-05-07 13:24\n"
 "PO-Revision-Date: 2021-03-18 04:18+0000\n"
 "Last-Translator: Johannes Keyser <johanneskeyser@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
@@ -49,6 +49,10 @@ msgstr "Streudiagramme"
 
 msgid "Interval plots"
 msgstr "Intervalldiagramme"
+
+#, fuzzy
+msgid "Dot Plots"
+msgstr "Q-Q-Diagramme"
 
 msgid "Descriptive Statistics"
 msgstr "Deskriptive Statistik"
@@ -180,6 +184,9 @@ msgstr "Abbilden ist nicht möglich: Kein Abbildungstyp ausgewählt!"
 
 msgid "Counts"
 msgstr "Anzahlen"
+
+msgid "No non-missing values!"
+msgstr ""
 
 msgid "Theoretical Quantiles"
 msgstr "Theoretische Quantile"

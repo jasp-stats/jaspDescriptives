@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
-"POT-Creation-Date: 2021-02-26 16:19\n"
+"POT-Creation-Date: 2021-05-07 13:24\n"
 "PO-Revision-Date: 2021-04-23 18:31+0000\n"
 "Last-Translator: Pablo Augusto Vailati <pvailati@uade.edu.ar>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
@@ -48,6 +48,10 @@ msgstr "Gráfico de dispersión"
 
 msgid "Interval plots"
 msgstr "Gráficos de intervalo"
+
+#, fuzzy
+msgid "Dot Plots"
+msgstr "Gráficos Q-Q"
 
 msgid "Descriptive Statistics"
 msgstr "Estadísticos descriptivos"
@@ -140,8 +144,8 @@ msgstr ""
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
 msgstr ""
-"No todos los valores están disponibles para las variables <i>Texto "
-"Nominal</i>"
+"No todos los valores están disponibles para las variables <i>Texto Nominal</"
+"i>"
 
 msgid "More than one mode exists, only the first is reported"
 msgstr "Existe más de un modo, solo el primero es reportado"
@@ -181,6 +185,9 @@ msgstr "Graficar no es posible: No se ha seleccionado ningún tipo de grafico!"
 
 msgid "Counts"
 msgstr "Recuentos"
+
+msgid "No non-missing values!"
+msgstr ""
 
 msgid "Theoretical Quantiles"
 msgstr "Cuantiles Teóricos"
