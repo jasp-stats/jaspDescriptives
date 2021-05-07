@@ -1,0 +1,200 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: jaspDescriptives 0.15.0\n"
+"POT-Creation-Date: 2021-02-26 16:19\n"
+"PO-Revision-Date: 2021-04-19 01:26+0000\n"
+"Last-Translator: phlostically <phlostically@mailinator.com>\n"
+"Language-Team: Esperanto <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-r/eo/>\n"
+"Language: eo\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.6-dev\n"
+
+msgid "Frequency Tables"
+msgstr "Tabelo de Oftecoj"
+
+msgid "Correlation plots"
+msgstr ""
+
+msgid "Correlation plot"
+msgstr ""
+
+msgid "Distribution Plots"
+msgstr ""
+
+msgid "Boxplots"
+msgstr ""
+
+msgid "Q-Q Plots"
+msgstr "Q-Q-Diagramoj"
+
+msgid "Q-Q Plot"
+msgstr "Q-Q-Diagramo"
+
+msgid "Plotting is not possible: Variable only contains NA!"
+msgstr ""
+
+msgid "Pie charts"
+msgstr ""
+
+msgid "Stem and Leaf"
+msgstr ""
+
+msgid "Scatter Plots"
+msgstr ""
+
+msgid "Interval plots"
+msgstr ""
+
+msgid "Descriptive Statistics"
+msgstr ""
+
+msgid "Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s"
+msgstr ""
+
+msgid "Valid"
+msgstr "Valida"
+
+msgid "Missing"
+msgstr "Mankanta"
+
+msgid "Mean"
+msgstr "Aritmetika meznombro"
+
+msgid "Std. Error of Mean"
+msgstr "Norma Eraro de Aritmetika Meznombro"
+
+msgid "Median"
+msgstr "Mediano"
+
+msgid "Mode"
+msgstr "Plejoftanto"
+
+msgid "Std. Deviation"
+msgstr "Norma Devio"
+
+msgid "Coefficient of Variation"
+msgstr ""
+
+msgid "MAD"
+msgstr ""
+
+msgid "MAD Robust"
+msgstr ""
+
+msgid "IQR"
+msgstr ""
+
+msgid "Variance"
+msgstr "Varianco"
+
+msgid "Skewness"
+msgstr ""
+
+msgid "Std. Error of Skewness"
+msgstr ""
+
+msgid "Kurtosis"
+msgstr ""
+
+msgid "Std. Error of Kurtosis"
+msgstr ""
+
+msgid "Shapiro-Wilk"
+msgstr "Shapiro-Wilk"
+
+msgid "P-value of Shapiro-Wilk"
+msgstr "P-valoro de Shapiro-Wilk"
+
+msgid "Range"
+msgstr ""
+
+msgid "Minimum"
+msgstr "Minimumo"
+
+msgid "Maximum"
+msgstr "Maksimumo"
+
+msgid "Sum"
+msgstr "Sumo"
+
+msgid "%gth percentile"
+msgstr ""
+
+msgid "All values are identical"
+msgstr ""
+
+msgid "Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set is %s."
+msgstr ""
+
+msgid "Not all values are available for <i>Nominal Text</i> variables"
+msgstr ""
+
+msgid "More than one mode exists, only the first is reported"
+msgstr ""
+
+msgid "Total"
+msgstr "Totalo"
+
+msgid "All variables have more than %1$s distinct values"
+msgstr ""
+
+msgid "Frequencies"
+msgstr "Oftecoj"
+
+msgid "Frequencies for %s"
+msgstr "Oftecoj de %s"
+
+msgid "Frequency"
+msgstr "Ofteco"
+
+msgid "Percent"
+msgstr "Procento"
+
+msgid "Valid Percent"
+msgstr "Valida Procento"
+
+msgid "Cumulative Percent"
+msgstr ""
+
+msgid "Density"
+msgstr "Denso"
+
+msgid "Plotting not possible: %s"
+msgstr ""
+
+msgid "Plotting is not possible: No plot type selected!"
+msgstr ""
+
+msgid "Counts"
+msgstr ""
+
+msgid "Theoretical Quantiles"
+msgstr ""
+
+msgid "Sample Quantiles"
+msgstr ""
+
+msgid "A stem and leaf table could not be made because there are fewer than 2 non-missing observations"
+msgstr ""
+
+msgid "The decimal point is at the |"
+msgstr ""
+
+msgid "%2$s has more than %1$s distinct values and is omitted."
+msgid_plural "The following variables have more than %1$s distinct values and are omitted: %2$s."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "The decimal point is %s digit to the right of the |"
+msgid_plural "The decimal point is %s digits to the right of the |"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "The decimal point is %s digit to the left of the |"
+msgid_plural "The decimal point is %s digits to the left of the |"
+msgstr[0] ""
+msgstr[1] ""
