@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-05-10 18:32+0000\n"
-"Last-Translator: Johannes Keyser <johanneskeyser@posteo.de>\n"
+"PO-Revision-Date: 2021-05-13 16:31+0000\n"
+"Last-Translator: Thomas Langkamp <thomas.lassdiesonnerein@gmx.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/de/>\n"
 "Language: de\n"
@@ -16,7 +16,7 @@ msgstr ""
 
 msgctxt "Description|"
 msgid "Descriptives"
-msgstr "Deskriptiv"
+msgstr "Deskriptiv (Beschreibend)"
 
 msgctxt "Description|"
 msgid "Descriptive Statistics"
@@ -28,7 +28,7 @@ msgstr "Variablen"
 
 msgctxt "Descriptives|"
 msgid "Split"
-msgstr "Splits"
+msgstr "Gruppen"
 
 msgctxt "Descriptives|"
 msgid "Frequency tables"
@@ -162,11 +162,11 @@ msgstr "Einfache Abbildungen"
 
 msgctxt "Descriptives|"
 msgid "Distribution plots"
-msgstr "Histogramme"
+msgstr "Histogramme (Balkendiagramme)"
 
 msgctxt "Descriptives|"
 msgid "Display density"
-msgstr "Dichte anzeigen"
+msgstr "Dichte (Liniendiagramme)"
 
 msgctxt "Descriptives|"
 msgid "Correlation plots"
@@ -186,11 +186,11 @@ msgstr "Statistiken"
 
 msgctxt "Descriptives|"
 msgid "Percentile Values"
-msgstr "Perzentilwerte"
+msgstr "Lagemaße"
 
 msgctxt "Descriptives|"
 msgid "Quartiles"
-msgstr "Quartile"
+msgstr "Quartile (Viertelschnittpunkte)"
 
 msgctxt "Descriptives|"
 msgid "Cut points for: "
@@ -202,11 +202,11 @@ msgstr " gleiche Gruppen"
 
 msgctxt "Descriptives|"
 msgid "Percentiles:"
-msgstr "Perzentile:"
+msgstr "Perzentile (Hundertstelschnittpunkte):"
 
 msgctxt "Descriptives|"
 msgid "Central Tendency"
-msgstr "Zentrale Tendenz"
+msgstr "Zentralmaße"
 
 msgctxt "Descriptives|"
 msgid "Mean"
@@ -214,11 +214,11 @@ msgstr "Mittelwert"
 
 msgctxt "Descriptives|"
 msgid "Median"
-msgstr "Median"
+msgstr "Median (Zentrum)"
 
 msgctxt "Descriptives|"
 msgid "Mode"
-msgstr "Modus"
+msgstr "Modus (häufigster Wert)"
 
 msgctxt "Descriptives|"
 msgid "Sum"
@@ -226,7 +226,7 @@ msgstr "Summe"
 
 msgctxt "Descriptives|"
 msgid "Dispersion"
-msgstr "Streuung"
+msgstr "Streumaße (Dispersionsmaße)"
 
 msgctxt "Descriptives|"
 msgid "S. E. mean"
@@ -234,11 +234,11 @@ msgstr "Std.-Fehler Mittelwert"
 
 msgctxt "Descriptives|"
 msgid "Std.deviation"
-msgstr "Std.-Abweichung"
+msgstr "Standardabweichung"
 
 msgctxt "Descriptives|"
 msgid "MAD"
-msgstr "MAD"
+msgstr "MAD (mittlere Medianabweichung)"
 
 msgctxt "Descriptives|"
 msgid "MAD Robust"
@@ -246,7 +246,7 @@ msgstr "MAD robust"
 
 msgctxt "Descriptives|"
 msgid "IQR"
-msgstr "IQR"
+msgstr "IQR (Quartilabstand)"
 
 msgctxt "Descriptives|"
 msgid "Variance"
@@ -254,7 +254,7 @@ msgstr "Varianz"
 
 msgctxt "Descriptives|"
 msgid "Range"
-msgstr "Wertebereich"
+msgstr "Range (Wertebereich)"
 
 msgctxt "Descriptives|"
 msgid "Minimum"
@@ -266,7 +266,7 @@ msgstr "Maximum"
 
 msgctxt "Descriptives|"
 msgid "Distribution"
-msgstr "Verteilung"
+msgstr "Verteilungsform"
 
 msgctxt "Descriptives|"
 msgid "Skewness"
@@ -274,11 +274,11 @@ msgstr "Schiefe"
 
 msgctxt "Descriptives|"
 msgid "Kurtosis"
-msgstr "Wölbung / Kurtosis"
+msgstr "Kurtosis (Wölbung)"
 
 msgctxt "Descriptives|"
 msgid "Shapiro-Wilk test"
-msgstr "Shapiro-Wilk-Test"
+msgstr "Test auf Normalverteilung"
 
 msgctxt "Descriptives|"
 msgid "Values are group midpoints"
