@@ -210,7 +210,16 @@ Form
 
 		Group
 		{
-			title:	qsTr("Percentile Values")
+			title: qsTr("Central Tendency")
+
+			CheckBox { name: "mode";			label: qsTr("Mode");					}
+			CheckBox { name: "median";			label: qsTr("Median")					}
+			CheckBox { name: "mean";			label: qsTr("Mean");	checked: true	}
+		}
+
+		Group
+		{
+			title:	qsTr("Positions")
 
 			CheckBox { name: "percentileValuesQuartiles";	label: qsTr("Quartiles") }
 			CheckBox
@@ -243,15 +252,6 @@ Form
 			}
 		}
 
-		Group
-		{
-			title: qsTr("Central Tendency")
-
-			CheckBox { name: "mean";			label: qsTr("Mean");	checked: true	}
-			CheckBox { name: "median";			label: qsTr("Median")					}
-			CheckBox { name: "mode";			label: qsTr("Mode");					}
-			CheckBox { name: "sum";				label: qsTr("Sum");						}
-		}
 
 		Group
 		{
@@ -277,6 +277,7 @@ Form
 			CheckBox { name: "skewness";			label: qsTr("Skewness")						}
 			CheckBox { name: "kurtosis";			label: qsTr("Kurtosis")						}
 			CheckBox { name: "shapiro";				label: qsTr("Shapiro-Wilk test")			}
+			CheckBox { name: "sum";					label: qsTr("Sum");							}
 		}
 
 		CheckBox { name: "statisticsValuesAreGroupMidpoints"; label: qsTr("Values are group midpoints"); debug: true }
