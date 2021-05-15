@@ -243,8 +243,8 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   wantsSplit              <- options$splitby != ""
   variables               <- unlist(options$variables)
-  equalGroupsNo           <- options$percentileValuesEqualGroupsNo
-  percentilesPercentiles  <- unique(options$percentileValuesPercentilesPercentiles)
+  equalGroupsNo           <- options$positionsEqualGroupsNo
+  percentilesPercentiles  <- unique(options$positionsPercentilesPercentiles)
   stats                   <- createJaspTable(gettext("Descriptive Statistics"))
   stats$transpose         <- TRUE
   stats$position          <- 1
@@ -253,8 +253,8 @@ Descriptives <- function(jaspResults, dataset, options) {
     stats$addFootnote(message=gettextf("Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s", numberMissingSplitBy, options$splitby))
   
 
-  stats$dependOn(c("splitby", "variables", "percentileValuesEqualGroupsNo", "percentileValuesPercentilesPercentiles", "mean", "standardErrorMean",
-    "median", "mode", "standardDeviation", "cOfVariation", "variance", "skewness", "kurtosis", "shapiro", "range", "iqr", "mad","madrobust", "minimum", "maximum", "sum", "percentileValuesQuartiles", "percentileValuesEqualGroups", "percentileValuesPercentiles"))
+  stats$dependOn(c("splitby", "variables", "positionsEqualGroupsNo", "positionsPercentilesPercentiles", "mode", "median", "mean", "standardErrorMean",
+    "standardDeviation", "cOfVariation", "variance", "skewness", "kurtosis", "shapiro", "range", "iqr", "mad", "madrobust", "minimum", "maximum", "sum", "positionsQuartiles", "positionsEqualGroups", "positionsPercentiles"))
 
   if (wantsSplit) {
     stats$transposeWithOvertitle <- TRUE
@@ -267,10 +267,10 @@ Descriptives <- function(jaspResults, dataset, options) {
   stats$addColumnInfo(name="Valid",   title=gettext("Valid"), type="integer")
   stats$addColumnInfo(name="Missing", title=gettext("Missing"), type="integer")
 
+  if (options$mode)                 stats$addColumnInfo(name="Mode",                        title=gettext("Mode"),                    type="number")
+  if (options$median)               stats$addColumnInfo(name="Median",                      title=gettext("Median"),                  type="number")
   if (options$mean)                 stats$addColumnInfo(name="Mean",                        title=gettext("Mean"), 				            type="number")
   if (options$standardErrorMean)    stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of Mean"),      type="number")
-  if (options$median)               stats$addColumnInfo(name="Median",                      title=gettext("Median"),                  type="number")
-  if (options$mode)                 stats$addColumnInfo(name="Mode",                        title=gettext("Mode"),                    type="number")
   if (options$standardDeviation)    stats$addColumnInfo(name="Std. Deviation",              title=gettext("Std. Deviation"),          type="number")
   if (options$cOfVariation)         stats$addColumnInfo(name="Coefficient of Variation",    title=gettext("Coefficient of Variation"),type="number")
   if (options$mad)                  stats$addColumnInfo(name="MAD",                         title=gettext("MAD"),                     type="number")
@@ -286,15 +286,14 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (options$range)                stats$addColumnInfo(name="Range",                       title=gettext("Range"),                   type="number")
   if (options$minimum)              stats$addColumnInfo(name="Minimum",                     title=gettext("Minimum"),                 type="number")
   if (options$maximum)              stats$addColumnInfo(name="Maximum",                     title=gettext("Maximum"),                 type="number")
-  if (options$sum)                  stats$addColumnInfo(name="Sum",                         title=gettext("Sum"),                     type="number")
 
-  if (options$percentileValuesQuartiles) {
+  if (options$positionsQuartiles) {
                                     stats$addColumnInfo(name="q1", title="25th percentile", type="number")
                                     stats$addColumnInfo(name="q2", title="50th percentile", type="number")
                                     stats$addColumnInfo(name="q3", title="75th percentile", type="number")
   }
 
-  if (options$percentileValuesEqualGroups)  {# I've read that there are several ways how to estimate percentiles so it should be checked if it match the SPSS way
+  if (options$positionsEqualGroups)  {# I've read that there are several ways how to estimate percentiles so it should be checked if it match the SPSS way
     tempPercentNames <- 1/equalGroupsNo * 1:(equalGroupsNo-1) * 100
     
     for (i in seq_along(tempPercentNames)) 
@@ -302,12 +301,14 @@ Descriptives <- function(jaspResults, dataset, options) {
     
   }
 
-  if (options$percentileValuesPercentiles) {
+  if (options$positionsPercentiles) {
     
     for (i in percentilesPercentiles) 
       stats$addColumnInfo(name=paste("pc", i, sep=""), title=gettextf("%gth percentile", i), type="number")
     
   }
+
+  if (options$sum)                  stats$addColumnInfo(name="Sum",                         title=gettext("Sum"),                     type="number")
   
   jaspResults[["stats"]] <- stats
   
@@ -375,8 +376,8 @@ Descriptives <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesDescriptivesTable_subFunction <- function(column, resultsCol, options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote) {
-  equalGroupsNo           <- options$percentileValuesEqualGroupsNo
-  percentilesPercentiles  <- unique(options$percentileValuesPercentilesPercentiles)
+  equalGroupsNo           <- options$positionsEqualGroupsNo
+  percentilesPercentiles  <- unique(options$positionsPercentilesPercentiles)
 
   rows        <- length(column)
   na.omitted  <- na.omit(column)
@@ -384,15 +385,15 @@ Descriptives <- function(jaspResults, dataset, options) {
   resultsCol[["Valid"]]   <- length(na.omitted)
   resultsCol[["Missing"]] <- rows - length(na.omitted)
 
-  if (base::is.factor(na.omitted) && (options$mean || options$mode || options$median || options$minimum || options$standardErrorMean || options$iqr || options$mad || options$madrobust || options$kurtosis || options$shapiro || options$skewness || options$percentileValuesQuartiles || options$variance || options$standardDeviation ||  options$cOfVariation || options$percentileValuesPercentiles || options$sum || options$maximum)) {
+  if (base::is.factor(na.omitted) && (options$mode || options$median || options$mean || options$minimum || options$standardErrorMean || options$iqr || options$mad || options$madrobust || options$kurtosis || options$shapiro || options$skewness || options$positionsQuartiles || options$variance || options$standardDeviation ||  options$cOfVariation || options$positionsPercentiles || options$sum || options$maximum)) {
     shouldAddNominalTextFootnote <- TRUE
   }
   
   shouldAddIdenticalFootnote <- all(na.omitted[1] == na.omitted) && (options$skewness || options$kurtosis || options$shapiro)  
   
+  resultsCol[["Median"]]                  <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$median,            na.omitted, median)
   resultsCol[["Mean"]]                    <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$mean,              na.omitted, mean)
   resultsCol[["Std. Error of Mean"]]      <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$standardErrorMean, na.omitted, function(param) { sd(param)/sqrt(length(param))} )
-  resultsCol[["Median"]]                  <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$median,            na.omitted, median)
   resultsCol[["Std. Deviation"]]          <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$standardDeviation, na.omitted, sd)
   resultsCol[["Coefficient of Variation"]]<- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$cOfVariation,      na.omitted, function(param) { sd(param) / mean(param)})
   resultsCol[["MAD"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$mad,               na.omitted, function(param) { mad(param, constant = 1) } )
@@ -428,7 +429,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     resultsCol[["Mode"]] <- NULL
   }
     
-  if (options$percentileValuesQuartiles) {
+  if (options$positionsQuartiles) {
     if (base::is.factor(na.omitted) == FALSE) {
       resultsCol[["q1"]] <- .clean(quantile(na.omitted, c(.25), names=F))
       resultsCol[["q2"]] <- .clean(quantile(na.omitted, c(.5), names=F))
@@ -446,12 +447,12 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   equalGroupNames <- NULL
   
-  if (options$percentileValuesEqualGroups) 
+  if (options$positionsEqualGroups)
     equalGroupNames <- paste("eg", seq(equalGroupsNo - 1), sep="")
     
   percentileNames <- NULL
   
-  if (options$percentileValuesPercentiles) 
+  if (options$positionsPercentiles)
     percentileNames <- paste("pc", percentilesPercentiles, sep="")
     
   for (row in names(resultsCol)) {
@@ -465,28 +466,28 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   if (base::is.factor(na.omitted) == FALSE) {
-    if (options$percentileValuesEqualGroups) {
+    if (options$positionsEqualGroups) {
       
       for (i in seq(equalGroupsNo - 1)) 
         resultsCol[[paste("eg", i, sep="")]] <- .clean(quantile(na.omitted, c(i / equalGroupsNo), names=F))
       
     }
     
-    if (options$percentileValuesPercentiles) {
+    if (options$positionsPercentiles) {
       
       for (i in percentilesPercentiles) 
         resultsCol[[paste("pc", i, sep="")]] <- .clean(quantile(na.omitted, c(i / 100), names=F))
 
     }
   } else {
-    if (options$percentileValuesEqualGroups) {
+    if (options$positionsEqualGroups) {
       
       for (i in seq(equalGroupsNo - 1)) 
         resultsCol[[paste("eg", i, sep="")]] <- ""
 
     }
 
-    if (options$percentileValuesPercentiles) {
+    if (options$positionsPercentiles) {
       
       for (i in percentilesPercentiles) 
         resultsCol[[paste("pc", i, sep="")]] <- ""

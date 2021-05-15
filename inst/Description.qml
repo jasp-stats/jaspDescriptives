@@ -6,7 +6,7 @@ Description
 	name		: "jaspDescriptives"
 	title		: qsTr("Descriptives")
 	description	: qsTr("This module offers the Descriptives analysis.")
-	version		: "0.13"
+	version		: "0.15"
 	author		: "JASP Team"
 	maintainer	: "JASP Team <jasp-stats.org>"
 	website		: "jasp-stats.org"
