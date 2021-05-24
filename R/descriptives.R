@@ -948,13 +948,14 @@ Descriptives <- function(jaspResults, dataset, options) {
   freqPlot <- createJaspPlot(title = title, width = width, height = height)
   
   errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 3")
-  column <- dataset[[.v(variable)]]
+  column <- dataset[[variable]]
   column <- column[!is.na(column)]
+  isDiscrete <- is.factor(column) || is.character(column)
   if (!is.null(errorMessage))
     freqPlot$setError(gettextf("Plotting not possible: %s", errorMessage))
-  else if (length(column) > 0 && is.factor(column))
+  else if (length(column) > 0 && isDiscrete)
     freqPlot$plotObject <- .barplotJASP(column, variable)
-  else if (length(column) > 0 && !is.factor(column))
+  else if (length(column) > 0 && !isDiscrete)
     freqPlot$plotObject <- .plotMarginal(column, variableName = variable, displayDensity = displayDensity, rugs = rugs, binWidthType = binWidthType, numberOfBins = numberOfBins)
   
   return(freqPlot)
@@ -1295,20 +1296,17 @@ Descriptives <- function(jaspResults, dataset, options) {
   
 }
 
-.barplotJASP <- function(column, variable, dontPlotData= FALSE) {
-  p <- jaspGraphs::drawAxis(xName = variable, xBreaks = 1:5, yBreaks = 1:5)
-
-  if (dontPlotData) return(jaspGraphs::themeJasp(p))
+.barplotJASP <- function(column, variable) {
 
   tb <- as.data.frame(table(column))
   p  <- ggplot2::ggplot(data = data.frame(x = tb[, 1], y = tb[, 2]), ggplot2::aes(x = x, y = y)) +
     ggplot2::geom_bar(stat = "identity", fill = "grey", col = "black", size = .3) +
     ggplot2::xlab(variable) +
-    ggplot2::ylab(gettext("Counts"))
+    ggplot2::ylab(gettext("Counts")) +
+    jaspGraphs::geom_rangeframe() +
+    jaspGraphs::themeJaspRaw() +
+    ggplot2::theme(plot.margin = ggplot2::margin(5))
 
-  # JASP theme
-  p <- jaspGraphs::themeJasp(p)
-  
   return(p)
 }
 
