@@ -154,7 +154,7 @@ test_that("Pie chart matches", {
   options$descriptivesPiechart <- TRUE
   options$colorPalette <- "ggplot2"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
-  
+
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "pieChart", dir="Descriptives")
 })
@@ -252,4 +252,17 @@ test_that("Stem and leaf tables match", {
     label = "stem and life with split - 1"
   )
 
+})
+
+options <- analysisOptions("Descriptives")
+options$plotCorrelationMatrix <- FALSE
+options$plotVariables <- TRUE
+options$variables <- "facGender"
+set.seed(1)
+results <- runAnalysis("Descriptives", "debug.csv", options)
+
+test_that("facGender plot matches", {
+	plotName <- results[["results"]][["distributionPlots"]][["collection"]][["distributionPlots_facGender"]][["data"]]
+	testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+	jaspTools::expect_equal_plots(testPlot, "facgender", dir="Descriptives")
 })
