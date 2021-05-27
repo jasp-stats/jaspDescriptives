@@ -223,7 +223,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     if(is.null(jaspResults[["IntervalPlots"]])) {
       jaspResults[["IntervalPlots"]] <- createJaspContainer(gettext("Interval plots"))
       jaspResults[["IntervalPlots"]]$dependOn(c("descriptivesIntervalPlot", "splitby"))
-      jaspResults[["IntervalPlots"]]$position <- 11
+      jaspResults[["IntervalPlots"]]$position <- 12
     }
     
     intervalPlots <- jaspResults[["IntervalPlots"]]
@@ -232,6 +232,27 @@ Descriptives <- function(jaspResults, dataset, options) {
       if(is.null(intervalPlots[[var]]) && .descriptivesIsNumericColumn(dataset.factors, var)) {
         intervalPlots[[var]] <- .descriptivesIntervalPlot(dataset = dataset, options = options, variable = var)
         intervalPlots[[var]]$dependOn(optionContainsValue=list(variables=var))
+      }
+    }
+  }
+
+  # Dot plots
+  if (options[["descriptivesDotPlot"]]){
+    
+    if (is.null(jaspResults[["DotPlots"]])) {
+      jaspResults[["DotPlots"]] <- createJaspContainer(gettext("Dot Plots"))
+      jaspResults[["DotPlots"]]$dependOn(c("splitby", "descriptivesDotPlot"))
+      jaspResults[["DotPlots"]]$position <- 13
+    }
+    
+    dotPlots <- jaspResults[["DotPlots"]]
+    
+    for (var in variables) {
+      if (is.null(dotPlots[[var]])) {
+        dotPlots[[var]] <- .descriptivesDotPlots(dataset = if(makeSplit) splitDat.factors else dataset.factors,
+                                                 options = options,
+                                                 variable = var)
+        
       }
     }
   }
@@ -246,13 +267,12 @@ Descriptives <- function(jaspResults, dataset, options) {
   equalGroupsNo           <- options$positionsEqualGroupsNo
   percentilesPercentiles  <- unique(options$positionsPercentilesPercentiles)
   stats                   <- createJaspTable(gettext("Descriptive Statistics"))
-  stats$transpose         <- TRUE
+  stats$transpose         <- !options[["transposeMainTable"]] # the table is transposed by default
   stats$position          <- 1
   
   if (numberMissingSplitBy) 
     stats$addFootnote(message=gettextf("Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s", numberMissingSplitBy, options$splitby))
   
-
   stats$dependOn(c("splitby", "variables", "positionsEqualGroupsNo", "positionsPercentilesPercentiles", "mode", "median", "mean", "standardErrorMean",
     "standardDeviation", "cOfVariation", "variance", "skewness", "kurtosis", "shapiro", "range", "iqr", "mad", "madrobust", "minimum", "maximum", "sum", "positionsQuartiles", "positionsEqualGroups", "positionsPercentiles"))
 
@@ -386,6 +406,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   resultsCol[["Missing"]] <- rows - length(na.omitted)
 
   if (base::is.factor(na.omitted) && (options$mode || options$median || options$mean || options$minimum || options$standardErrorMean || options$iqr || options$mad || options$madrobust || options$kurtosis || options$shapiro || options$skewness || options$positionsQuartiles || options$variance || options$standardDeviation ||  options$cOfVariation || options$positionsPercentiles || options$sum || options$maximum)) {
+
     shouldAddNominalTextFootnote <- TRUE
   }
   
@@ -668,7 +689,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   variables <- unlist(options$variables)
 
   l         <- length(variables)
-  depends   <- c("plotCorrelationMatrix", "variables", "splitby")
+  depends   <- c("plotCorrelationMatrix", "variables", "splitby", "binWidthType", "distPlotDensity", "distPlotRug", "numberOfBins")
 
   if (l == 0) #Nothing to plot
     return(NULL)
@@ -697,7 +718,15 @@ Descriptives <- function(jaspResults, dataset, options) {
     if (variable.statuses[[row]]$error != "") {
       plotMat[[row, row]] <- .displayError(errorMessage=variable.statuses[[row]]$error)
     } else {
-      plotMat[[row, row]] <- .plotMarginalCorDescriptives(dataset[[.v(variables[[row]])]]) + adjMargin
+      plotMat[[row, row]] <- .plotMarginal(
+        column         = dataset[[variables[[row]]]],
+        variableName   = NULL,
+        displayDensity = options[["distPlotDensity"]],
+        rugs           = options[["distPlotRug"]],
+        binWidthType   = options[["binWidthType"]],
+        numberOfBins   = options[["numberOfBins"]],
+        lwd            = .7
+      )
       axisBreaks[[row]] <- jaspGraphs::getAxisBreaks(plotMat[[row, row]])
     }
   }
@@ -711,8 +740,8 @@ Descriptives <- function(jaspResults, dataset, options) {
         plotMat[[row, col]] <- .displayError(errorMessage=variable.statuses[[col]]$error)
       } else {
         plotMat[[row, col]] <- .plotScatterDescriptives(
-          xVar    = dataset[[.v(variables[[col]])]],
-          yVar    = dataset[[.v(variables[[row]])]],
+          xVar    = dataset[[variables[[col]]]],
+          yVar    = dataset[[variables[[row]]]],
           xBreaks = axisBreaks[[col]]$x,
           yBreaks = axisBreaks[[row]]$x
         ) + adjMargin
@@ -919,13 +948,14 @@ Descriptives <- function(jaspResults, dataset, options) {
   freqPlot <- createJaspPlot(title = title, width = width, height = height)
   
   errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 3")
-  column <- dataset[[.v(variable)]]
+  column <- dataset[[variable]]
   column <- column[!is.na(column)]
+  isDiscrete <- is.factor(column) || is.character(column)
   if (!is.null(errorMessage))
     freqPlot$setError(gettextf("Plotting not possible: %s", errorMessage))
-  else if (length(column) > 0 && is.factor(column))
+  else if (length(column) > 0 && isDiscrete)
     freqPlot$plotObject <- .barplotJASP(column, variable)
-  else if (length(column) > 0 && !is.factor(column))
+  else if (length(column) > 0 && !isDiscrete)
     freqPlot$plotObject <- .plotMarginal(column, variableName = variable, displayDensity = displayDensity, rugs = rugs, binWidthType = binWidthType, numberOfBins = numberOfBins)
   
   return(freqPlot)
@@ -1108,7 +1138,8 @@ Descriptives <- function(jaspResults, dataset, options) {
 
 .plotMarginal <- function(column, variableName,
                           rugs = FALSE, displayDensity = FALSE, binWidthType = c("doane", "fd", "scott", "sturges", "manual"),
-                          numberOfBins = NA) {
+                          numberOfBins = NA,
+                          lwd = 1) {
   binWidthType <- match.arg(binWidthType)
   column <- as.numeric(column)
   variable <- na.omit(column)
@@ -1159,30 +1190,28 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (displayDensity) {
     p <- p +
       ggplot2::geom_histogram(
-        data = data.frame(variable),
+        data    = data.frame(variable),
         mapping = ggplot2::aes(x = variable, y = ..density..),
-        binwidth = (h$breaks[2] - h$breaks[1]),
-        fill = "grey",
-        col = "black",
-        size = .7,
-        center = ((h$breaks[2] - h$breaks[1])/2)
+        breaks  = h[["breaks"]],
+        fill    = "grey",
+        col     = "black",
+        size    = .7
       ) +
       ggplot2::geom_line(
-        data = data.frame(x = dens$x, y = dens$y),
+        data    = data.frame(x = dens$x, y = dens$y),
         mapping = ggplot2::aes(x = x, y = y),
-        lwd = 1,
-        col = "black"
+        lwd     = lwd,
+        col     = "black"
       )
   } else {
     p <- p +
       ggplot2::geom_histogram(
         data     = data.frame(variable),
         mapping  = ggplot2::aes(x = variable, y = ..count..),
-        binwidth = (h$breaks[2] - h$breaks[1]),
+        breaks   = h[["breaks"]],
         fill     = "grey",
         col      = "black",
-        size     = .7,
-        center    = ((h$breaks[2] - h$breaks[1])/2)
+        size     = .7
       )
   }
   
@@ -1202,20 +1231,82 @@ Descriptives <- function(jaspResults, dataset, options) {
   return(p)
 }
 
-.barplotJASP <- function(column, variable, dontPlotData= FALSE) {
-  p <- jaspGraphs::drawAxis(xName = variable, xBreaks = 1:5, yBreaks = 1:5)
+.descriptivesDotPlots <- function(dataset, options, variable){
+  
+  
+  if (options$splitby != "" ) {
+    # return a collection
+    levelsSplitFactor <- names(dataset)
+    
+    plotContainer <- createJaspContainer(title = variable)
+    plotContainer$dependOn(optionContainsValue = list(variables = variable))
+    
+    for (level in levelsSplitFactor)
+      plotContainer[[level]] <- .descriptivesDotPlots_SubFunc(dataset = dataset[[level]], variable = variable, title = level)
+    
+    return(plotContainer)
+    
+  }else{
+    
+    dotplot <- .descriptivesDotPlots_SubFunc(dataset = dataset, variable = variable, title = variable)
+    dotplot$dependOn(optionContainsValue = list(variables = variable))
+    
+    return(dotplot)
+  }
+}
 
-  if (dontPlotData) return(jaspGraphs::themeJasp(p))
+.descriptivesDotPlots_SubFunc <- function(dataset, variable, title){
+  
+  dotPlot <- createJaspPlot(title = title)
+  x <- na.omit(dataset[[variable]])
+  x <- x[is.finite(x)]
+  
+  if (length(x) == 0) {
+    dotPlot$setError(gettext("No non-missing values!"))
+    return(dotPlot)
+  }
+  
+  df <- data.frame(x = x)
+  
+  dotsize <- 1
+  
+  if (is.factor(x)){
+    tb <- as.data.frame(table(x))
+    scaleX <- ggplot2::scale_x_discrete(limits = factor(tb[,1]))
+  } else {
+    scaleX <- NULL
+    if (length(unique(x)) == 1) 
+      dotsize <- .03
+  }
+  
+  p <- ggplot2::ggplot(data = data.frame(x = x), ggplot2::aes(x = x)) + 
+    ggplot2::geom_dotplot(binaxis = 'x', stackdir = 'up', fill = "grey", dotsize = dotsize) + 
+    ggplot2::xlab(variable) +
+    ggplot2::ylab(NULL) + 
+    scaleX +
+    jaspGraphs::geom_rangeframe(sides = "b") +
+    jaspGraphs::themeJaspRaw() +
+    ggplot2::theme(axis.ticks.y = ggplot2::element_blank(),
+                   axis.title.y = ggplot2::element_blank(),
+                   axis.text.y = ggplot2::element_blank())
+  
+  dotPlot$plotObject <- p
+  
+  return(dotPlot)  
+  
+}
+
+.barplotJASP <- function(column, variable) {
 
   tb <- as.data.frame(table(column))
   p  <- ggplot2::ggplot(data = data.frame(x = tb[, 1], y = tb[, 2]), ggplot2::aes(x = x, y = y)) +
     ggplot2::geom_bar(stat = "identity", fill = "grey", col = "black", size = .3) +
     ggplot2::xlab(variable) +
-    ggplot2::ylab(gettext("Counts"))
+    ggplot2::ylab(gettext("Counts")) +
+    jaspGraphs::geom_rangeframe() +
+    jaspGraphs::themeJaspRaw() +
+    ggplot2::theme(plot.margin = ggplot2::margin(5))
 
-  # JASP theme
-  p <- jaspGraphs::themeJasp(p)
-  
   return(p)
 }
 

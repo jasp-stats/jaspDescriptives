@@ -1,0 +1,431 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: en_US\n"
+"X-Source-Language: American English\n"
+"X-Qt-Contexts: true\n"
+
+msgctxt "Descriptives|"
+msgid "Variables"
+msgstr "Variáveis"
+
+msgctxt "Descriptives|"
+msgid "Split"
+msgstr "Dividir"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Plots"
+msgstr "Gráficos"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Distribution plots"
+msgstr "Gráficos de distribuição"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Display density"
+msgstr "Mostrar densidade"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Correlation plots"
+msgstr "Gráficos de correlação"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Boxplots"
+msgstr "Diagrama de caixa"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Boxplot element"
+msgstr "Elemento do diagrama de caixa"
+
+msgctxt "Descriptives|"
+msgid "Violin element"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Jitter element"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Q-Q plots"
+msgstr ""
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Statistics"
+msgstr "Estatísticas"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Percentile Values"
+msgstr "Valores do percentil"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Quartiles"
+msgstr "Quartis"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Cut points for: "
+msgstr "Pontos de corte para: "
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid " equal groups"
+msgstr " grupos iguais"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Percentiles:"
+msgstr "Percentis:"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Central Tendency"
+msgstr "Tendência central"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Mean"
+msgstr "Média"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Median"
+msgstr "Mediana"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Mode"
+msgstr "Moda"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Sum"
+msgstr "Soma"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Dispersion"
+msgstr "Dispersão"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "S. E. mean"
+msgstr "Média de erro padrão"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Std.deviation"
+msgstr "Desvio-padrão"
+
+msgctxt "Descriptives|"
+msgid "MAD"
+msgstr "MAD"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Scatter Plots"
+msgstr "Gráficos de dispersão"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Graph above scatter plot"
+msgstr "Acima do gráfico de dispersão"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Density"
+msgstr "Densidade"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Histogram"
+msgstr "Histograma"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Graph right of scatter plot"
+msgstr "À direita do gráfico de dispersão"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Add regression line"
+msgstr "Adicionar linha de regressão"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Smooth"
+msgstr "Suavizar"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Linear"
+msgstr "Linear"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Show confidence interval"
+msgstr "Mostrar intervalo de confiança"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Show legend"
+msgstr "Mostrar legenda"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Color palette"
+msgstr "Paleta de cores"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Colorblind"
+msgstr "Daltônico"
+
+msgctxt "Descriptives|"
+msgid "Colorblind Alt."
+msgstr ""
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Viridis"
+msgstr "Verde"
+
+msgctxt "Descriptives|"
+msgid "ggplot2"
+msgstr ""
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Gray"
+msgstr "Cinza"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Use color palette"
+msgstr "Usar paleta de cores"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Basic plots"
+msgstr "Gráficos básicos"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "MAD Robust"
+msgstr "MAD Robusto"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "IQR"
+msgstr "IQR"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Variance"
+msgstr "Variância"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Range"
+msgstr "Alcance"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Minimum"
+msgstr "Mínimo"
+
+msgctxt "Descriptives|"
+msgid "Maximum"
+msgstr "Máximo"
+
+msgctxt "Descriptives|"
+msgid "Distribution"
+msgstr "Distribuição"
+
+msgctxt "Descriptives|"
+msgid "Skewness"
+msgstr "Assimetria"
+
+msgctxt "Descriptives|"
+msgid "Kurtosis"
+msgstr "Achatamento"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Shapiro-Wilk test"
+msgstr "Teste de Shapiro-Wilk"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Values are group midpoints"
+msgstr "Os valores são pontos médios do grupo"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Charts"
+msgstr "Gráficos"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Chart Type"
+msgstr "Tipo de gráfico"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "None"
+msgstr "Nenhum"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Bar charts"
+msgstr "Gráfico de barras"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Pie charts"
+msgstr "Gráfico de pizza"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Histograms"
+msgstr "Histogramas"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Chart Values"
+msgstr "Valores do gráfico"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Frequencies"
+msgstr "Frequências"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Percentages"
+msgstr "Porcentagens"
+
+msgctxt "Descriptives|"
+msgid "Label outliers"
+msgstr "Rótulo outliers"
+
+#, fuzzy
+msgctxt "Description|"
+msgid "Descriptives"
+msgstr "Descritivas"
+
+#, fuzzy
+msgctxt "Description|"
+msgid "Descriptive Statistics"
+msgstr "Estatísticas Descritivas"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Frequency tables"
+msgstr "Tabelas de Frequência"
+
+msgctxt "Descriptives|"
+msgid "Maximum distinct values"
+msgstr "Valores distintos máximos"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Stem and leaf tables"
+msgstr "Diagramas de caule e folhas"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "scale"
+msgstr "escala"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid ""
+"The scale parameter controls how much the table is expanded. For example, "
+"scale = 2 will cause the table to be roughly twice as long as the default "
+"(scale = 1)."
+msgstr ""
+"O parâmetro da escala controla o quanto a tabela é expandida. Por exemplo, "
+"escala = 2 fará com que a tabela seja aproximadamente o dobro do tamanho "
+"padrão (escala = 1)."
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Create a Stem and leaf table."
+msgstr "Criar um Diagrama de caule e folhas."
+
+msgctxt "Descriptives|"
+msgid "Display rug marks"
+msgstr ""
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Bin width type"
+msgstr "Tipo de largura da caixa"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Sturges"
+msgstr "Regra de Sturges"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Scott"
+msgstr "Scott"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Doane"
+msgstr "Doane"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Freedman-Diaconis"
+msgstr "Freedman-Diaconis"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Manual"
+msgstr "Manual"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Number of bins"
+msgstr "Número de caixas"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Interval plots"
+msgstr "Gráficos de intervalo"
+
+#, fuzzy
+msgctxt "Descriptives|"
+msgid "Coefficient of Variation"
+msgstr "Coeficiente de variação"
+
+msgctxt "Description|"
+msgid "Explore the data with tables and plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Transpose descriptives table"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Customizable plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Dot plots"
+msgstr ""

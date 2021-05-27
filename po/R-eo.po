@@ -1,200 +1,193 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: R 3.6.1\n"
-"Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
+"Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2021-05-07 13:24\n"
-"PO-Revision-Date: 2020-12-02 21:29+0000\n"
-"Last-Translator: JASP Stats <F.A.M.Meerhoff@uva.nl>\n"
-"Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/jasp-engine/"
-"nl/>\n"
-"Language: nl\n"
+"PO-Revision-Date: 2021-04-19 01:26+0000\n"
+"Last-Translator: phlostically <phlostically@mailinator.com>\n"
+"Language-Team: Esperanto <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-r/eo/>\n"
+"Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
-"X-Generator: Weblate 4.4-dev\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.6-dev\n"
 
 msgid "Frequency Tables"
-msgstr "Frequentietabellen"
+msgstr "Tabelo de Oftecoj"
 
 msgid "Correlation plots"
-msgstr "Spreidingsdiagrammen"
+msgstr ""
 
 msgid "Correlation plot"
-msgstr "Correlatiediagram"
+msgstr ""
 
 msgid "Distribution Plots"
-msgstr "Histogrammen"
+msgstr ""
 
 msgid "Boxplots"
-msgstr "Boxplots"
+msgstr ""
 
 msgid "Q-Q Plots"
-msgstr "Q-Q plots"
+msgstr "Q-Q-Diagramoj"
 
 msgid "Q-Q Plot"
-msgstr "Q-Q plot"
+msgstr "Q-Q-Diagramo"
 
 msgid "Plotting is not possible: Variable only contains NA!"
-msgstr "Maken grafieken niet mogelijk: Variabele bevat slechts NA!"
+msgstr ""
 
 msgid "Pie charts"
-msgstr "Cirkelgrafieken"
+msgstr ""
 
 msgid "Stem and Leaf"
 msgstr ""
 
 msgid "Scatter Plots"
-msgstr "Spreidingsdiagrammen"
+msgstr ""
 
 msgid "Interval plots"
 msgstr ""
 
 #, fuzzy
 msgid "Dot Plots"
-msgstr "Q-Q plots"
+msgstr "Q-Q-Diagramoj"
 
 msgid "Descriptive Statistics"
-msgstr "Beschrijvende Statistiek"
+msgstr ""
 
 msgid ""
 "Excluded %1$i rows from the analysis that correspond to the missing values "
 "of the split-by variable %2$s"
 msgstr ""
-"%1$i rijen van de analyse uitgesloten die corresponderen met de ontbrekende "
-"waarden van de splits variabele %2$s"
 
 msgid "Valid"
-msgstr "Geldig"
+msgstr "Valida"
 
 msgid "Missing"
-msgstr "Ontbrekend"
+msgstr "Mankanta"
 
 msgid "Mean"
-msgstr "Gemiddelde"
+msgstr "Aritmetika meznombro"
 
 msgid "Std. Error of Mean"
-msgstr "Std. fout van het gemiddelde"
+msgstr "Norma Eraro de Aritmetika Meznombro"
 
 msgid "Median"
-msgstr "Mediaan"
+msgstr "Mediano"
 
 msgid "Mode"
-msgstr "Modus"
+msgstr "Plejoftanto"
 
 msgid "Std. Deviation"
-msgstr "Standaardafwijking"
+msgstr "Norma Devio"
 
 msgid "Coefficient of Variation"
 msgstr ""
 
 msgid "MAD"
-msgstr "MAD"
+msgstr ""
 
 msgid "MAD Robust"
-msgstr "MAD Robuust"
+msgstr ""
 
 msgid "IQR"
-msgstr "IQR"
+msgstr ""
 
 msgid "Variance"
-msgstr "Variantie"
+msgstr "Varianco"
 
 msgid "Skewness"
-msgstr "Scheefheid"
+msgstr ""
 
 msgid "Std. Error of Skewness"
-msgstr "Std. fout van scheefheid"
+msgstr ""
 
 msgid "Kurtosis"
-msgstr "Gepiektheid"
+msgstr ""
 
 msgid "Std. Error of Kurtosis"
-msgstr "Std. fout van gepiektheid"
+msgstr ""
 
 msgid "Shapiro-Wilk"
 msgstr "Shapiro-Wilk"
 
 msgid "P-value of Shapiro-Wilk"
-msgstr "P-waarde van Shapiro-Wilk"
+msgstr "P-valoro de Shapiro-Wilk"
 
 msgid "Range"
-msgstr "Bereik"
+msgstr ""
 
 msgid "Minimum"
-msgstr "Minimum"
+msgstr "Minimumo"
 
 msgid "Maximum"
-msgstr "Maximum"
+msgstr "Maksimumo"
 
 msgid "Sum"
-msgstr "Som"
+msgstr "Sumo"
 
 msgid "%gth percentile"
-msgstr "%ge percentiel"
+msgstr ""
 
 msgid "All values are identical"
-msgstr "Alle waarden zijn gelijk"
+msgstr ""
 
 msgid ""
 "Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set "
 "is %s."
 msgstr ""
-"Infimum (minimum) van een lege verzameling is %s, supremum (maximum) van een "
-"lege verzameling is %s."
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
 msgstr ""
-"Niet alle waarden zijn beschikbaar voor <i>Nominale Tekst</i> variabelen"
 
 msgid "More than one mode exists, only the first is reported"
-msgstr "Er is meer dan één modus, alleen de eerste wordt gerapporteerd"
+msgstr ""
 
 msgid "Total"
-msgstr "Totaal"
+msgstr "Totalo"
 
 msgid "All variables have more than %1$s distinct values"
 msgstr ""
 
 msgid "Frequencies"
-msgstr "Frequenties"
+msgstr "Oftecoj"
 
 msgid "Frequencies for %s"
-msgstr "Frequenties voor %s"
+msgstr "Oftecoj de %s"
 
 msgid "Frequency"
-msgstr "Frequentie"
+msgstr "Ofteco"
 
 msgid "Percent"
-msgstr "Percentage"
+msgstr "Procento"
 
 msgid "Valid Percent"
-msgstr "Geldig Percentage"
+msgstr "Valida Procento"
 
 msgid "Cumulative Percent"
-msgstr "Cumulatief Percentage"
+msgstr ""
 
 msgid "Density"
-msgstr "Dichtheid"
+msgstr "Denso"
 
 msgid "Plotting not possible: %s"
-msgstr "Grafiek maken niet mogelijk: %s"
+msgstr ""
 
 msgid "Plotting is not possible: No plot type selected!"
-msgstr "Plotten is niet mogelijk: Geen plottype geselecteerd!"
+msgstr ""
 
 msgid "Counts"
-msgstr "Aantallen"
+msgstr ""
 
 msgid "No non-missing values!"
 msgstr ""
 
 msgid "Theoretical Quantiles"
-msgstr "Theoretische Kwantielen"
+msgstr ""
 
-#, fuzzy
 msgid "Sample Quantiles"
-msgstr "Theoretische Kwantielen"
+msgstr ""
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
@@ -220,6 +213,3 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] ""
 msgstr[1] ""
-
-#~ msgid "Standardised Residuals"
-#~ msgstr "Gestandaardiseerde Residuen"

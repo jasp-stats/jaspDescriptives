@@ -34,6 +34,13 @@ Form
 
 	CheckBox
 	{
+		name	: "transposeMainTable"
+		label	: qsTr("Transpose descriptives table")
+		checked	: false
+	}
+
+	CheckBox
+	{
 		name:			"frequencyTables"
 		label:			qsTr("Frequency tables")
 		IntegerField
@@ -64,13 +71,14 @@ Form
 
 		Group
 		{
+			title: qsTr("Customizable plots")
 			DropDown
 			{
 				name: "colorPalette"
 				label: qsTr("Color palette")
 				indexDefaultValue: 0
 				values:
-					[
+				[
 					{ label: qsTr("Colorblind"),		value: "colorblind"		},
 					{ label: qsTr("Colorblind Alt."),	value: "colorblind3"	},
 					{ label: qsTr("Viridis"),			value: "viridis"		},
@@ -154,14 +162,19 @@ Form
 		Group
 		{
 			title: qsTr("Basic plots")
-			CheckBox
+			CheckBox {				name: "plotVariables";			label: qsTr("Distribution plots");	id:	plotVariables					}
+			CheckBox {				name: "plotCorrelationMatrix";	label: qsTr("Correlation plots");	id:	plotCorrelationMatrix			}
+
+			Group
 			{
-				name: "plotVariables";			label: qsTr("Distribution plots")
-				CheckBox {			name: "distPlotDensity";		label: qsTr("Display density")					}
+				enabled: plotVariables.checked || plotCorrelationMatrix.checked
+
+				indent:		true
+				CheckBox {			name: "distPlotDensity";	label: qsTr("Display density")						}
 				CheckBox {			name: "distPlotRug";		label: qsTr("Display rug marks")					}
 				DropDown {
 					name: "binWidthType"
-					label: qsTr("Bin Width Type")
+					label: qsTr("Bin width type")
 					indexDefaultValue: 0
 					values:
 						[
@@ -176,7 +189,7 @@ Form
 				DoubleField
 				{
 					name:			"numberOfBins"
-					label:			qsTr("Number of Bins")
+					label:			qsTr("Number of bins")
 					defaultValue:	30
 					min:			3;
 					max:			10000;
@@ -184,10 +197,10 @@ Form
 				}
 			}
 
-			CheckBox {				name: "plotCorrelationMatrix";	label: qsTr("Correlation plots")				}
 			CheckBox {				name: "descriptivesIntervalPlot";label: qsTr("Interval plots")					}
 			CheckBox {				name: "descriptivesQQPlot";		label: qsTr("Q-Q plots")						}
 			CheckBox {				name: "descriptivesPiechart";	label: qsTr("Pie charts")						}
+			CheckBox {				name: "descriptivesDotPlot";	label: qsTr("Dot plots")						}
 		}
 	}
 

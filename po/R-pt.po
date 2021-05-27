@@ -1,224 +1,256 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: JASP 0.9.2\n"
+"Project-Id-Version: R 3.6.1\n"
+"Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2021-05-07 13:24\n"
-"PO-Revision-Date: 2021-05-18 17:33+0000\n"
-"Last-Translator: Paulina Elizabeth Robalino <paulina.e.robalino@gmail.com>\n"
-"Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
-"jaspdescriptives-r/es/>\n"
-"Language: es\n"
+"PO-Revision-Date: 2021-05-15 20:50+0000\n"
+"Last-Translator: Alex França <alex.tonante@gmail.com>\n"
+"Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-r/pt/>\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.7-dev\n"
+"X-Language: en_US\n"
+"X-Source-Language: American English\n"
+"X-Qt-Contexts: true\n"
 
 msgid "Frequency Tables"
-msgstr "Tabla de Frecuencia"
+msgstr "Tabelas de Frequências"
 
 msgid "Correlation plots"
-msgstr "Gráficos de correlación"
+msgstr "Correlação"
 
 msgid "Correlation plot"
-msgstr "Gráfico de correlación"
+msgstr "Diagrama de correlação"
 
 msgid "Distribution Plots"
-msgstr "Gráfico de distribución"
+msgstr "Diagramas de distribuição"
 
 msgid "Boxplots"
-msgstr "Diagrama de caja"
+msgstr "Diagrama de barra"
 
+#, fuzzy
 msgid "Q-Q Plots"
-msgstr "Gráficos Q-Q"
+msgstr "Diagramas"
 
 msgid "Q-Q Plot"
-msgstr "Gráfico Q-Q"
+msgstr "Diagrama Q-Q"
 
 msgid "Plotting is not possible: Variable only contains NA!"
-msgstr "Graficar no es posible: la variable solo contiene NA!"
+msgstr ""
 
+#, fuzzy
 msgid "Pie charts"
-msgstr "Gráficos de torta"
+msgstr "Gráficos de pizza"
 
+#, fuzzy
 msgid "Stem and Leaf"
-msgstr "Diagrama de tallo y hoja"
+msgstr "Diagramas de caule e folhas"
 
+#, fuzzy
 msgid "Scatter Plots"
-msgstr "Gráfico de dispersión"
+msgstr "Gráficos de dispersão"
 
+#, fuzzy
 msgid "Interval plots"
-msgstr "Gráficos de intervalo"
+msgstr "Gráficos de intervalos"
 
+#, fuzzy
 msgid "Dot Plots"
-msgstr "Diagrama de puntos"
+msgstr "Diagramas"
 
+#, fuzzy
 msgid "Descriptive Statistics"
-msgstr "Estadísticos descriptivos"
+msgstr "Estatísticas descritivas"
 
 msgid ""
 "Excluded %1$i rows from the analysis that correspond to the missing values "
 "of the split-by variable %2$s"
 msgstr ""
-"Se excluyeron del análisis %1$i filas que corresponden a los valores "
-"perdidos de la variable dividida %2$s"
 
+#, fuzzy
 msgid "Valid"
-msgstr "Valido"
+msgstr "Válidos"
 
+#, fuzzy
 msgid "Missing"
-msgstr "Perdido"
+msgstr "Ausentes"
 
 msgid "Mean"
-msgstr "Media"
+msgstr "Média"
 
+#, fuzzy
 msgid "Std. Error of Mean"
-msgstr "Error estándar de la media"
+msgstr "Erro padrão de média"
 
 msgid "Median"
 msgstr "Mediana"
 
+#, fuzzy
 msgid "Mode"
 msgstr "Moda"
 
+#, fuzzy
 msgid "Std. Deviation"
-msgstr "Desviación estándar"
+msgstr "Desvio Padrão"
 
 msgid "Coefficient of Variation"
-msgstr "Coeficiente de variación"
+msgstr "Coeficiente de Variação"
 
+#, fuzzy
 msgid "MAD"
 msgstr "MAD"
 
+#, fuzzy
 msgid "MAD Robust"
 msgstr "MAD Robusto"
 
+#, fuzzy
 msgid "IQR"
-msgstr "IQR"
+msgstr "Intervalo interquartil"
 
+#, fuzzy
 msgid "Variance"
-msgstr "Varianza"
+msgstr "Variância"
 
 msgid "Skewness"
-msgstr "Asimetría"
+msgstr "Assimetria"
 
 msgid "Std. Error of Skewness"
-msgstr "Error estándar de Asimetría"
+msgstr "Erro padrão da Assimetria"
 
 msgid "Kurtosis"
-msgstr "Curtosis"
+msgstr "Curtose"
 
 msgid "Std. Error of Kurtosis"
-msgstr "Error estándar de curtosis"
+msgstr "Erro padrão da Curtose"
 
 msgid "Shapiro-Wilk"
 msgstr "Shapiro-Wilk"
 
 msgid "P-value of Shapiro-Wilk"
-msgstr "Valor de p de Shapiro-Wilk"
+msgstr "P-valor do Shapiro-Wilk"
 
+#, fuzzy
 msgid "Range"
-msgstr "Rango"
+msgstr "Amplitude total"
 
+#, fuzzy
 msgid "Minimum"
 msgstr "Mínimo"
 
+#, fuzzy
 msgid "Maximum"
 msgstr "Máximo"
 
 msgid "Sum"
-msgstr "Suma"
+msgstr "Soma"
 
 msgid "%gth percentile"
-msgstr "%ght percentil"
+msgstr ""
 
 msgid "All values are identical"
-msgstr "Todos los valores son idénticos"
+msgstr "Todos os valores são identicos"
 
 msgid ""
 "Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set "
 "is %s."
 msgstr ""
-"El mínimo (mínimo) de un conjunto vacío es %s, el superior (máximo) a un "
-"conjunto vacío es %s."
+"Ínfimo (mínimo) de um conjunto vazio é% s, o supremo (máximo) de um conjunto "
+"vazio é% s."
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
 msgstr ""
-"No todos los valores están disponibles para las variables <i>Texto Nominal</"
-"i> variables"
 
 msgid "More than one mode exists, only the first is reported"
-msgstr "Existe más de un modo, solo el primero es reportado"
+msgstr "Existe mais do que uma moda, apenas a primeira é reportada"
 
 msgid "Total"
 msgstr "Total"
 
 msgid "All variables have more than %1$s distinct values"
-msgstr "Todas las variables tienen mas de %1$s valores distintos"
+msgstr ""
 
+#, fuzzy
 msgid "Frequencies"
-msgstr "Frecuencias"
+msgstr "Frequências"
 
+#, fuzzy
 msgid "Frequencies for %s"
-msgstr "Frecuencias para %s"
+msgstr "Frequências para %s"
 
+#, fuzzy
 msgid "Frequency"
-msgstr "Frecuencia"
+msgstr "Fequência"
 
 msgid "Percent"
-msgstr "Porcentaje"
+msgstr "Percentagem"
 
+#, fuzzy
 msgid "Valid Percent"
-msgstr "Porcentaje Valido"
+msgstr "Porcentagem válida"
 
+#, fuzzy
 msgid "Cumulative Percent"
-msgstr "Porcentaje Acumulado"
+msgstr "Porcentagem cumulativa"
 
 msgid "Density"
-msgstr "Densidad"
+msgstr "Densidade"
 
 msgid "Plotting not possible: %s"
-msgstr "Graficar no es posible: %s"
+msgstr "Não é possível efetuar a plotagem: %s"
 
+#, fuzzy
 msgid "Plotting is not possible: No plot type selected!"
-msgstr "Graficar no es posible: No se ha seleccionado ningún tipo de grafico!"
+msgstr ""
+"Não é possível efetuar a plotagem: Não foi selecionado um tipo de gráfico!"
 
 msgid "Counts"
-msgstr "Recuentos"
+msgstr ""
 
 msgid "No non-missing values!"
-msgstr "¡Sin valores perdidos!"
+msgstr ""
 
 msgid "Theoretical Quantiles"
-msgstr "Cuantiles Teóricos"
+msgstr "Quantis teóricos"
 
+#, fuzzy
 msgid "Sample Quantiles"
-msgstr "Cuantiles de la Muestra"
+msgstr "Tamanho da amostra"
 
+#, fuzzy
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
 "missing observations"
 msgstr ""
-"No se pudo hacer un diagrama de tallo y hoja porque hay menos de 2 "
-"observaciones que faltan"
+"O diagrama de caule e folhas não pôde ser feito porque há menos de 2 "
+"observações não ausentes"
 
+#, fuzzy
 msgid "The decimal point is at the |"
-msgstr "El punto decimal esta en: |"
+msgstr "O ponto decimal está em |"
 
+#, fuzzy
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
 "The following variables have more than %1$s distinct values and are omitted: "
 "%2$s."
-msgstr[0] "%2$s tiene más de %1$s valores distintos y se omite."
+msgstr[0] "%2$s tem mais de %1$s valores distintos e está omitido."
 msgstr[1] ""
-"Las variables siguientes tienen mas de %1$s valores distintos y se omiten: "
+"As variáveis a seguir têm mais de %1$s valores distintos e estão omitidas: "
 "%2$s."
 
+#, fuzzy
 msgid "The decimal point is %s digit to the right of the |"
 msgid_plural "The decimal point is %s digits to the right of the |"
-msgstr[0] "El punto decimal es %s dígito a la derecha de |"
-msgstr[1] "El punto decimal es %s dígitos a la derecha de |"
+msgstr[0] "O ponto decimal está %s dígito à direita de |"
+msgstr[1] "O ponto decimal está %s dígitos à direita de |"
 
+#, fuzzy
 msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
-msgstr[0] "El punto decimal es %s dígito a la izquierda de |"
-msgstr[1] "El punto decimal es %s dígitos a la izquierda de |"
+msgstr[0] "O ponto decimal está %s dígito à esquerda de |"
+msgstr[1] "O ponto decimal está %s dígitos à esquerda de |"
