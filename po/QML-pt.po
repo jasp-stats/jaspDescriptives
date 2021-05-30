@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-05-27 12:33+0000\n"
-"Last-Translator: Laura Durans <lauraadurans@gmail.com>\n"
+"PO-Revision-Date: 2021-05-31 18:32+0000\n"
+"Last-Translator: Alex França <alex.tonante@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/pt/>\n"
 "Language: pt\n"
@@ -48,15 +48,15 @@ msgstr "Elemento do diagrama de caixa"
 
 msgctxt "Descriptives|"
 msgid "Violin element"
-msgstr ""
+msgstr "Gráfico violino"
 
 msgctxt "Descriptives|"
 msgid "Jitter element"
-msgstr ""
+msgstr "Gráfico Jitter"
 
 msgctxt "Descriptives|"
 msgid "Q-Q plots"
-msgstr ""
+msgstr "Gráficos Q-Q"
 
 msgctxt "Descriptives|"
 msgid "Statistics"
@@ -176,7 +176,7 @@ msgstr "Verde"
 
 msgctxt "Descriptives|"
 msgid "ggplot2"
-msgstr ""
+msgstr "ggplot2"
 
 msgctxt "Descriptives|"
 msgid "Gray"
@@ -242,7 +242,6 @@ msgctxt "Descriptives|"
 msgid "Chart Type"
 msgstr "Tipo de gráfico"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "None"
 msgstr "Nenhum"
@@ -315,7 +314,7 @@ msgstr "Criar um diagrama de caule e folhas."
 
 msgctxt "Descriptives|"
 msgid "Display rug marks"
-msgstr ""
+msgstr "Mostrar marcas no eixo"
 
 msgctxt "Descriptives|"
 msgid "Bin width type"
