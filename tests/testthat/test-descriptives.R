@@ -86,7 +86,7 @@ test_that("Distribution plot matches", {
   options$plotVariables <- TRUE
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "distribution", dir="Descriptives")
+  jaspTools::expect_equal_plots(testPlot, "distribution")
 })
 
 test_that("Correlation plot matches", {
@@ -96,7 +96,7 @@ test_that("Correlation plot matches", {
   options$distPlotDensity <- TRUE
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "correlation", dir="Descriptives")
+  jaspTools::expect_equal_plots(testPlot, "correlation")
 })
 
 test_that("Boxplot matches", {
@@ -113,7 +113,7 @@ test_that("Boxplot matches", {
   options$colorPalette <- "ggplot2"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "boxplot", dir="Descriptives")
+  jaspTools::expect_equal_plots(testPlot, "boxplot")
 })
 
 test_that("Q-QPlot plot matches", {
@@ -122,7 +122,7 @@ test_that("Q-QPlot plot matches", {
   options$descriptivesQQPlot <- TRUE
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "qqplot", dir="Descriptives")
+  jaspTools::expect_equal_plots(testPlot, "qqplot")
 })
 
 test_that("Scatter plot matches", {
@@ -135,7 +135,7 @@ test_that("Scatter plot matches", {
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
 
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "scatterplot", dir="Descriptives")
+  jaspTools::expect_equal_plots(testPlot, "scatterplot")
 })
 
 test_that("Dot plot matches", {
@@ -145,7 +145,7 @@ test_that("Dot plot matches", {
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
 
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "dotPlot", dir="Descriptives")
+  jaspTools::expect_equal_plots(testPlot, "dotPlot")
 })
 
 test_that("Pie chart matches", {
@@ -156,7 +156,7 @@ test_that("Pie chart matches", {
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
 
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "pieChart", dir="Descriptives")
+  jaspTools::expect_equal_plots(testPlot, "pieChart")
 })
 
 test_that("Analysis handles identical variables", {
@@ -264,5 +264,5 @@ results <- runAnalysis("Descriptives", "debug.csv", options)
 test_that("facGender plot matches", {
 	plotName <- results[["results"]][["distributionPlots"]][["collection"]][["distributionPlots_facGender"]][["data"]]
 	testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-	jaspTools::expect_equal_plots(testPlot, "facgender", dir="Descriptives")
+	jaspTools::expect_equal_plots(testPlot, "facgender")
 })
