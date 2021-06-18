@@ -219,7 +219,7 @@ Form
 
 		Group
 		{
-			title:	qsTr("Positions")
+			title:	qsTr("Quantiles")
 
 			CheckBox { name: "percentileValuesQuartiles";	label: qsTr("Quartiles") }
 			CheckBox
