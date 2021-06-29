@@ -1,24 +1,14 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-04-19 01:26+0000\n"
-"Last-Translator: phlostically <phlostically@mailinator.com>\n"
-"Language-Team: Esperanto <https://hosted.weblate.org/projects/jasp/"
-"jaspdescriptives-qml/eo/>\n"
-"Language: eo\n"
-"X-Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.6-dev\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Language: eo\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
 msgid "Descriptives"
-msgstr ""
-
-msgctxt "Description|"
-msgid "This module offers the Descriptives analysis."
 msgstr ""
 
 msgctxt "Description|"
@@ -350,4 +340,20 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Coefficient of Variation"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Explore the data with tables and plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Transpose descriptives table"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Customizable plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Dot plots"
 msgstr ""
