@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-07-06 19:34+0000\n"
+"PO-Revision-Date: 2021-07-09 11:33+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/gl/>\n"
@@ -56,11 +56,11 @@ msgstr "Presentar a densidade"
 
 msgctxt "Descriptives|"
 msgid "Chart Values"
-msgstr "Valores de gráfico"
+msgstr "Valores de Gráfico"
 
 msgctxt "Descriptives|"
 msgid "Central Tendency"
-msgstr "Tendencia central"
+msgstr "Tendencia Central"
 
 msgctxt "Descriptives|"
 msgid "Skewness"
@@ -72,7 +72,7 @@ msgstr "Puntos de corte para: "
 
 msgctxt "Descriptives|"
 msgid "Show confidence interval"
-msgstr "Amosar os intervalos de confianza"
+msgstr "Amosar o intervalo de confianza"
 
 msgctxt "Descriptives|"
 msgid "Shapiro-Wilk test"
@@ -108,7 +108,7 @@ msgstr "Suavizado"
 
 msgctxt "Descriptives|"
 msgid "Std.deviation"
-msgstr "Desviación típica"
+msgstr "Desviación padrón"
 
 msgctxt "Descriptives|"
 msgid "Bar charts"
@@ -132,11 +132,11 @@ msgstr "Amosar a lenda"
 
 msgctxt "Descriptives|"
 msgid "S. E. mean"
-msgstr "Erro típico da media"
+msgstr "Erro padrón da media"
 
 msgctxt "Descriptives|"
 msgid "Quartiles"
-msgstr "Cuartís"
+msgstr "Cuartiles"
 
 msgctxt "Descriptives|"
 msgid "Graph above scatter plot"
@@ -144,11 +144,11 @@ msgstr "Representar sobre a gráfica de dispersión"
 
 msgctxt "Descriptives|"
 msgid "Chart Type"
-msgstr "Tipo de gráfico"
+msgstr "Tipo de Gráfico"
 
 msgctxt "Descriptives|"
 msgid "Percentile Values"
-msgstr "Valores percentiles"
+msgstr "Valores Percentiles"
 
 msgctxt "Descriptives|"
 msgid "Label outliers"
@@ -192,7 +192,7 @@ msgstr "Engadir liña de regresión"
 
 msgctxt "Descriptives|"
 msgid "Scatter Plots"
-msgstr "Gráficas de dispersión"
+msgstr "Gráficas de Dispersión"
 
 msgctxt "Descriptives|"
 msgid "Graph right of scatter plot"
@@ -204,7 +204,7 @@ msgstr "Gráficas personalizables"
 
 msgctxt "Description|"
 msgid "Descriptive Statistics"
-msgstr "Estatísticos descritivos"
+msgstr "Estatísticos Descritivos"
 
 msgctxt "Description|"
 msgid "Descriptives"
@@ -236,7 +236,7 @@ msgstr "Valores distintos máximos"
 
 msgctxt "Descriptives|"
 msgid "Stem and leaf tables"
-msgstr "Diagrama de talos e follas"
+msgstr "Táboas de talo e folla"
 
 msgctxt "Descriptives|"
 msgid "scale"
@@ -254,7 +254,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Create a Stem and leaf table."
-msgstr "Xerar un diagrama de talos e follas."
+msgstr "Xerar unha táboa de Talo e folla."
 
 msgctxt "Descriptives|"
 msgid "Plots"
@@ -264,15 +264,13 @@ msgctxt "Descriptives|"
 msgid "Colorblind"
 msgstr "Daltónico"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Colorblind Alt."
-msgstr "Alternativa a daltonismo"
+msgstr "Daltonismo Alt."
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Viridis"
-msgstr "Viridis"
+msgstr "Verde"
 
 msgctxt "Descriptives|"
 msgid "Gray"
