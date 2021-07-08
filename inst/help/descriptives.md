@@ -21,15 +21,14 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
     - Has selectable boxplot, violin, and jitter elements for displaying the distribution of the data.
 
 ### Statistics
+- Central Tendency (only for continuous variables):
+  - Mode: Mode of the data points; if more than one mode exists, only the first is reported.
+  - Median: Median of the data points.
+  - Mean: Arithmetic mean of the data points
 - Percentile Values:
   - Quartiles: Displays the 25th, 50th, and 75th percentiles of the data points.
   - Cut points for x equal groups: Displays the cut points that divide the data into x equal groups; default is 4 equal groups.
   - Percentiles: Displays the xth percentile; percentile values must be separated by comma.
-- Central Tendency (only for continuous variables):
-  - Mean: Arithmetic mean of the data points
-  - Median: Median of the data points.
-  - Mode: Mode of the data points; if more than one mode exists, only the first is reported.
-  - Sum: Sum of the data points.
 - Dispersion (only for continuous variables):
   - S.E. Mean: Standard error of the mean.
   - Std. deviation: Standard deviation of the data points.
@@ -45,16 +44,17 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
   - Skewness: Skewness of the distribution of the data points.
   - Kurtosis: Kurtosis of the distribution of the data points.
   - Shapiro-Wilk test
+  - Sum: Sum of the data points.
 
 ### Output
 -------
 #### Descriptive Statistics
 - Valid: Number of valid cases.
 - Missing: Number of missing values.
+- Mode: Mode of the data points.
+- Median: Median of the data points.
 - Mean: Arithmetic mean of the data points.
 - Std. Error of Mean: Standard error of the mean.
-- Median: Median of the data points.
-- Mode: Mode of the data points.
 - Std. Deviation: Standard deviation of the data points.
 - MAD: Median absolute deviation
 - IQR: Interquartile range
@@ -68,10 +68,10 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
 - Range: Range of the data points.
 - Minimum: Minimum value of the data points.
 - Maximum: Maximum value of the data points.
-- Sum: Sum of the data points.
 - Quartiles: 25th, 50th, and 75th percentiles of the data points.
 - Cut points for x equal groups: Cut points that divide the data into x equal groups.
 - Percentiles: Displays the xth percentiles.
+- Sum: Sum of the data points.
 
 #### Distribution Plots
 - For continuous variables, displays a histogram and the fit of a nonparametric density estimator.
