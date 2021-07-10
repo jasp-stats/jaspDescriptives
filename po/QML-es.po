@@ -179,10 +179,6 @@ msgid "Statistics"
 msgstr "Estadísticas"
 
 msgctxt "Descriptives|"
-msgid "Percentile Values"
-msgstr "Valores percentiles"
-
-msgctxt "Descriptives|"
 msgid "Quartiles"
 msgstr "Cuartiles"
 
@@ -361,3 +357,7 @@ msgstr "Gráficos personalizables"
 msgctxt "Descriptives|"
 msgid "Dot plots"
 msgstr "Diagrama de puntos"
+
+msgctxt "Descriptives|"
+msgid "Quantiles"
+msgstr ""

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.11.0\n"
-"POT-Creation-Date: 2021-05-07 13:24\n"
+"POT-Creation-Date: 2021-07-10 03:30\n"
 "PO-Revision-Date: 2021-01-26 11:51+0000\n"
 "Last-Translator: Koji Kosugi <kosugitti@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -67,17 +67,17 @@ msgstr "有効"
 msgid "Missing"
 msgstr "欠損値"
 
+msgid "Mode"
+msgstr "最頻値"
+
+msgid "Median"
+msgstr "中央値"
+
 msgid "Mean"
 msgstr "平均値"
 
 msgid "Std. Error of Mean"
 msgstr "平均の標準誤差"
-
-msgid "Median"
-msgstr "中央値"
-
-msgid "Mode"
-msgstr "最頻値"
 
 msgid "Std. Deviation"
 msgstr "標準偏差"
@@ -124,11 +124,11 @@ msgstr "最小値"
 msgid "Maximum"
 msgstr "最大値"
 
-msgid "Sum"
-msgstr "総和"
-
 msgid "%gth percentile"
 msgstr "第%gパーセンタイル"
+
+msgid "Sum"
+msgstr "総和"
 
 msgid "All values are identical"
 msgstr "すべての値が同一です"

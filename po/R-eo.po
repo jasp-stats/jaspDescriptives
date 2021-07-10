@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2021-05-07 13:24\n"
+"POT-Creation-Date: 2021-07-10 03:30\n"
 "PO-Revision-Date: 2021-04-19 01:26+0000\n"
 "Last-Translator: phlostically <phlostically@mailinator.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/jasp/"
@@ -67,17 +67,17 @@ msgstr "Valida"
 msgid "Missing"
 msgstr "Mankanta"
 
+msgid "Mode"
+msgstr "Plejoftanto"
+
+msgid "Median"
+msgstr "Mediano"
+
 msgid "Mean"
 msgstr "Aritmetika meznombro"
 
 msgid "Std. Error of Mean"
 msgstr "Norma Eraro de Aritmetika Meznombro"
-
-msgid "Median"
-msgstr "Mediano"
-
-msgid "Mode"
-msgstr "Plejoftanto"
 
 msgid "Std. Deviation"
 msgstr "Norma Devio"
@@ -124,11 +124,11 @@ msgstr "Minimumo"
 msgid "Maximum"
 msgstr "Maksimumo"
 
-msgid "Sum"
-msgstr "Sumo"
-
 msgid "%gth percentile"
 msgstr ""
+
+msgid "Sum"
+msgstr "Sumo"
 
 msgid "All values are identical"
 msgstr ""

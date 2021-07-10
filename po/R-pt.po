@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2021-05-07 13:24\n"
+"POT-Creation-Date: 2021-07-10 03:30\n"
 "PO-Revision-Date: 2021-06-30 13:07+0000\n"
 "Last-Translator: JASP Stats <b.boutin@uva.nl>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
@@ -72,17 +72,17 @@ msgstr "Válidos"
 msgid "Missing"
 msgstr "Ausentes"
 
+msgid "Mode"
+msgstr "Moda"
+
+msgid "Median"
+msgstr "Mediana"
+
 msgid "Mean"
 msgstr "Média"
 
 msgid "Std. Error of Mean"
 msgstr "Erro padrão de média"
-
-msgid "Median"
-msgstr "Mediana"
-
-msgid "Mode"
-msgstr "Moda"
 
 msgid "Std. Deviation"
 msgstr "Desvio Padrão"
@@ -129,11 +129,11 @@ msgstr "Mínimo"
 msgid "Maximum"
 msgstr "Máximo"
 
-msgid "Sum"
-msgstr "Soma"
-
 msgid "%gth percentile"
 msgstr "%go. percentil"
+
+msgid "Sum"
+msgstr "Soma"
 
 msgid "All values are identical"
 msgstr "Todos os valores são identicos"

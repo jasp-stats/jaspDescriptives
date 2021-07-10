@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2021-05-07 13:24\n"
+"POT-Creation-Date: 2021-07-10 03:30\n"
 "PO-Revision-Date: 2021-07-08 20:33+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
@@ -76,17 +76,17 @@ msgstr "Válido"
 msgid "Missing"
 msgstr "Ausente"
 
+msgid "Mode"
+msgstr "Modo"
+
+msgid "Median"
+msgstr "Mediana"
+
 msgid "Mean"
 msgstr "Media"
 
 msgid "Std. Error of Mean"
 msgstr "Erro Padrón da Media"
-
-msgid "Median"
-msgstr "Mediana"
-
-msgid "Mode"
-msgstr "Modo"
 
 msgid "Std. Deviation"
 msgstr "Desviación Padrón"
@@ -133,11 +133,11 @@ msgstr "Mínimo"
 msgid "Maximum"
 msgstr "Máximo"
 
-msgid "Sum"
-msgstr "Suma"
-
 msgid "%gth percentile"
 msgstr "Percentil %g-ésimo"
+
+msgid "Sum"
+msgstr "Suma"
 
 msgid "All values are identical"
 msgstr "Todos os valores son idénticos"
