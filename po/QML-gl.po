@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-07-19 17:58+0000\n"
+"PO-Revision-Date: 2021-07-22 11:33+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/gl/>\n"
@@ -40,7 +40,7 @@ msgstr "Suma"
 
 msgctxt "Descriptives|"
 msgid "Mode"
-msgstr "Modo"
+msgstr "Moda"
 
 msgctxt "Descriptives|"
 msgid " equal groups"
