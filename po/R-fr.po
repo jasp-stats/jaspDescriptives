@@ -1,0 +1,203 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: jaspDescriptives 0.15.0\n"
+"POT-Creation-Date: 2021-07-10 03:30\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Frequency Tables"
+msgstr ""
+
+msgid "Correlation plots"
+msgstr ""
+
+msgid "Correlation plot"
+msgstr ""
+
+msgid "Distribution Plots"
+msgstr ""
+
+msgid "Boxplots"
+msgstr ""
+
+msgid "Q-Q Plots"
+msgstr ""
+
+msgid "Q-Q Plot"
+msgstr ""
+
+msgid "Plotting is not possible: Variable only contains NA!"
+msgstr ""
+
+msgid "Pie charts"
+msgstr ""
+
+msgid "Stem and Leaf"
+msgstr ""
+
+msgid "Scatter Plots"
+msgstr ""
+
+msgid "Interval plots"
+msgstr ""
+
+msgid "Dot Plots"
+msgstr ""
+
+msgid "Descriptive Statistics"
+msgstr ""
+
+msgid "Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s"
+msgstr ""
+
+msgid "Valid"
+msgstr ""
+
+msgid "Missing"
+msgstr ""
+
+msgid "Mode"
+msgstr ""
+
+msgid "Median"
+msgstr ""
+
+msgid "Mean"
+msgstr ""
+
+msgid "Std. Error of Mean"
+msgstr ""
+
+msgid "Std. Deviation"
+msgstr ""
+
+msgid "Coefficient of Variation"
+msgstr ""
+
+msgid "MAD"
+msgstr ""
+
+msgid "MAD Robust"
+msgstr ""
+
+msgid "IQR"
+msgstr ""
+
+msgid "Variance"
+msgstr ""
+
+msgid "Skewness"
+msgstr ""
+
+msgid "Std. Error of Skewness"
+msgstr ""
+
+msgid "Kurtosis"
+msgstr ""
+
+msgid "Std. Error of Kurtosis"
+msgstr ""
+
+msgid "Shapiro-Wilk"
+msgstr ""
+
+msgid "P-value of Shapiro-Wilk"
+msgstr ""
+
+msgid "Range"
+msgstr ""
+
+msgid "Minimum"
+msgstr ""
+
+msgid "Maximum"
+msgstr ""
+
+msgid "%gth percentile"
+msgstr ""
+
+msgid "Sum"
+msgstr ""
+
+msgid "All values are identical"
+msgstr ""
+
+msgid "Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set is %s."
+msgstr ""
+
+msgid "Not all values are available for <i>Nominal Text</i> variables"
+msgstr ""
+
+msgid "More than one mode exists, only the first is reported"
+msgstr ""
+
+msgid "Total"
+msgstr ""
+
+msgid "All variables have more than %1$s distinct values"
+msgstr ""
+
+msgid "Frequencies"
+msgstr ""
+
+msgid "Frequencies for %s"
+msgstr ""
+
+msgid "Frequency"
+msgstr ""
+
+msgid "Percent"
+msgstr ""
+
+msgid "Valid Percent"
+msgstr ""
+
+msgid "Cumulative Percent"
+msgstr ""
+
+msgid "Density"
+msgstr ""
+
+msgid "Plotting not possible: %s"
+msgstr ""
+
+msgid "Plotting is not possible: No plot type selected!"
+msgstr ""
+
+msgid "Counts"
+msgstr ""
+
+msgid "No non-missing values!"
+msgstr ""
+
+msgid "Theoretical Quantiles"
+msgstr ""
+
+msgid "Sample Quantiles"
+msgstr ""
+
+msgid "A stem and leaf table could not be made because there are fewer than 2 non-missing observations"
+msgstr ""
+
+msgid "The decimal point is at the |"
+msgstr ""
+
+msgid "%2$s has more than %1$s distinct values and is omitted."
+msgid_plural "The following variables have more than %1$s distinct values and are omitted: %2$s."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "The decimal point is %s digit to the right of the |"
+msgid_plural "The decimal point is %s digits to the right of the |"
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "The decimal point is %s digit to the left of the |"
+msgid_plural "The decimal point is %s digits to the left of the |"
+msgstr[0] ""
+msgstr[1] ""
