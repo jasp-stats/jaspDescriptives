@@ -1,0 +1,217 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: jaspDescriptives 0.15.0\n"
+"POT-Creation-Date: 2021-07-10 03:30\n"
+"PO-Revision-Date: 2021-07-21 13:14+0000\n"
+"Last-Translator: Martin Constant <martinc.1994@gmail.com>\n"
+"Language-Team: French <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-r/fr/>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 4.7.2-dev\n"
+
+msgid "Frequency Tables"
+msgstr "Tableaux de Fréquence"
+
+msgid "Correlation plots"
+msgstr "Graphiques de corrélation"
+
+msgid "Correlation plot"
+msgstr "Graphique de corrélation"
+
+msgid "Distribution Plots"
+msgstr "Graphiques de distribution"
+
+msgid "Boxplots"
+msgstr "Boîtes à moustaches"
+
+msgid "Q-Q Plots"
+msgstr "Diagrammes Q-Q"
+
+msgid "Q-Q Plot"
+msgstr "Diagramme Q-Q"
+
+msgid "Plotting is not possible: Variable only contains NA!"
+msgstr "Le traçage n'est pas possible : La variable ne contient que NA !"
+
+msgid "Pie charts"
+msgstr "Camemberts"
+
+msgid "Stem and Leaf"
+msgstr "Diagramme branche-et-feuille"
+
+msgid "Scatter Plots"
+msgstr "Nuages de points"
+
+msgid "Interval plots"
+msgstr "Graphiques d'intervalles"
+
+msgid "Dot Plots"
+msgstr "Diagramme à points"
+
+msgid "Descriptive Statistics"
+msgstr "Statistiques descriptives"
+
+msgid "Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s"
+msgstr ""
+"%1$i lignes exclues de l'analyse qui correspondent aux valeurs manquantes de "
+"la variable fractionnée %2$s"
+
+msgid "Valid"
+msgstr "Valide"
+
+msgid "Missing"
+msgstr "Manquant"
+
+msgid "Mode"
+msgstr "Mode"
+
+msgid "Median"
+msgstr "Médiane"
+
+msgid "Mean"
+msgstr "Moyenne"
+
+msgid "Std. Error of Mean"
+msgstr "Erreur Type de la Moyenne"
+
+msgid "Std. Deviation"
+msgstr "Écart type"
+
+msgid "Coefficient of Variation"
+msgstr "Coefficient de Variation"
+
+msgid "MAD"
+msgstr "Écart Médian Absolu"
+
+msgid "MAD Robust"
+msgstr "Écart Médian Absolu Robuste"
+
+msgid "IQR"
+msgstr "Écart interquartile"
+
+msgid "Variance"
+msgstr "Variance"
+
+msgid "Skewness"
+msgstr "Asymétrie"
+
+msgid "Std. Error of Skewness"
+msgstr "Erreur type de l'asymétrie"
+
+msgid "Kurtosis"
+msgstr "Kurtosis"
+
+msgid "Std. Error of Kurtosis"
+msgstr "Erreur type de Kurtosis"
+
+msgid "Shapiro-Wilk"
+msgstr "Shapiro-Wilk"
+
+msgid "P-value of Shapiro-Wilk"
+msgstr "Valeur p de Shapiro-Wilk"
+
+msgid "Range"
+msgstr "Étendue"
+
+msgid "Minimum"
+msgstr "Minimum"
+
+msgid "Maximum"
+msgstr "Maximum"
+
+msgid "%gth percentile"
+msgstr "%gième centile"
+
+msgid "Sum"
+msgstr "Somme"
+
+msgid "All values are identical"
+msgstr "Toutes les valeurs sont identiques"
+
+msgid "Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set is %s."
+msgstr ""
+"L'infimum (minimum) d'un ensemble vide est %s, le supremum (maximum) d'un "
+"ensemble vide est %s."
+
+msgid "Not all values are available for <i>Nominal Text</i> variables"
+msgstr ""
+"Toutes les valeurs ne sont pas disponibles pour les variables <i>Texte "
+"nominal</i>"
+
+msgid "More than one mode exists, only the first is reported"
+msgstr "Il existe plus d’un mode, seul le premier est rapporté"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "All variables have more than %1$s distinct values"
+msgstr "Toutes les variables ont plus de %1$s valeurs distinctes"
+
+msgid "Frequencies"
+msgstr "Fréquences"
+
+msgid "Frequencies for %s"
+msgstr "Fréquences pour %s"
+
+msgid "Frequency"
+msgstr "Fréquence"
+
+msgid "Percent"
+msgstr "Pourcentage"
+
+msgid "Valid Percent"
+msgstr "Pourcentage valide"
+
+msgid "Cumulative Percent"
+msgstr "Pourcentage Cumulé"
+
+msgid "Density"
+msgstr "Densité"
+
+msgid "Plotting not possible: %s"
+msgstr "Traçage impossible : %s"
+
+msgid "Plotting is not possible: No plot type selected!"
+msgstr ""
+"Le traçage n'est pas possible : Aucun type de tracé n'a été sélectionné !"
+
+msgid "Counts"
+msgstr "Nombre"
+
+msgid "No non-missing values!"
+msgstr "Aucune valeur non-manquante !"
+
+msgid "Theoretical Quantiles"
+msgstr "Quantiles Théoriques"
+
+msgid "Sample Quantiles"
+msgstr "Quantiles de l'échantillon"
+
+msgid "A stem and leaf table could not be made because there are fewer than 2 non-missing observations"
+msgstr ""
+"Un diagramme branche-et-feuille n'a pas pu être réalisé car il y a moins de "
+"deux observations non-manquantes"
+
+msgid "The decimal point is at the |"
+msgstr "La virgule décimale est au |"
+
+msgid "%2$s has more than %1$s distinct values and is omitted."
+msgid_plural "The following variables have more than %1$s distinct values and are omitted: %2$s."
+msgstr[0] "%2$s a plus de %1$s valeurs distinctes et est omis."
+msgstr[1] ""
+"Les variables suivantes ont plus de %1$s valeurs distinctes et sont omises : "
+"%2$s."
+
+msgid "The decimal point is %s digit to the right of the |"
+msgid_plural "The decimal point is %s digits to the right of the |"
+msgstr[0] "La virgule décimale se trouve à %s chiffre à droite du |"
+msgstr[1] "La virgule décimale se trouve à %s chiffres à droite du |"
+
+msgid "The decimal point is %s digit to the left of the |"
+msgid_plural "The decimal point is %s digits to the left of the |"
+msgstr[0] "La virgule décimale se trouve à %s chiffre à gauche du |"
+msgstr[1] "La virgule décimale se trouve à %s chiffres à gauche du |"
