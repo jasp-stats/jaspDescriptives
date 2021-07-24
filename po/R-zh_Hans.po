@@ -2,199 +2,202 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2021-07-10 03:30\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-07-24 19:13+0000\n"
+"Last-Translator: shun wang <shuonwang@gmail.com>\n"
+"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
+"jasp/jaspdescriptives-r/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.7.2-dev\n"
 
 msgid "Frequency Tables"
-msgstr ""
+msgstr "频率表"
 
 msgid "Correlation plots"
-msgstr ""
+msgstr "相关图"
 
 msgid "Correlation plot"
-msgstr ""
+msgstr "相关图"
 
 msgid "Distribution Plots"
-msgstr ""
+msgstr "分布图"
 
 msgid "Boxplots"
-msgstr ""
+msgstr "箱线图"
 
 msgid "Q-Q Plots"
-msgstr ""
+msgstr "Q-Q 图"
 
 msgid "Q-Q Plot"
-msgstr ""
+msgstr "Q-Q 图"
 
 msgid "Plotting is not possible: Variable only contains NA!"
-msgstr ""
+msgstr "无法绘图：变量仅包含 NA！"
 
 msgid "Pie charts"
-msgstr ""
+msgstr "饼图"
 
 msgid "Stem and Leaf"
-msgstr ""
+msgstr "茎叶表"
 
 msgid "Scatter Plots"
-msgstr ""
+msgstr "散点图"
 
 msgid "Interval plots"
-msgstr ""
+msgstr "区间图"
 
 msgid "Dot Plots"
-msgstr ""
+msgstr "点图"
 
 msgid "Descriptive Statistics"
-msgstr ""
+msgstr "描述性统计"
 
 msgid "Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s"
-msgstr ""
+msgstr "从分析中排除了与拆分变量 %2$s 相对应的缺失值 %1$i 行"
 
 msgid "Valid"
-msgstr ""
+msgstr "有效"
 
 msgid "Missing"
-msgstr ""
+msgstr "缺失"
 
 msgid "Mode"
-msgstr ""
+msgstr "众数"
 
 msgid "Median"
-msgstr ""
+msgstr "中位数"
 
 msgid "Mean"
-msgstr ""
+msgstr "平均值"
 
 msgid "Std. Error of Mean"
-msgstr ""
+msgstr "均值的标准误差"
 
 msgid "Std. Deviation"
-msgstr ""
+msgstr "标准差"
 
 msgid "Coefficient of Variation"
-msgstr ""
+msgstr "变异系数"
 
 msgid "MAD"
-msgstr ""
+msgstr "MAD"
 
 msgid "MAD Robust"
-msgstr ""
+msgstr "MAD 稳健性"
 
 msgid "IQR"
-msgstr ""
+msgstr "IQR"
 
 msgid "Variance"
-msgstr ""
+msgstr "方差"
 
 msgid "Skewness"
-msgstr ""
+msgstr "偏度"
 
 msgid "Std. Error of Skewness"
-msgstr ""
+msgstr "偏度的标准误差"
 
 msgid "Kurtosis"
-msgstr ""
+msgstr "峰度"
 
 msgid "Std. Error of Kurtosis"
-msgstr ""
+msgstr "峰度的标准误差"
 
 msgid "Shapiro-Wilk"
-msgstr ""
+msgstr "Shapiro-Wilk 检验"
 
 msgid "P-value of Shapiro-Wilk"
-msgstr ""
+msgstr "Shapiro-Wilk 的p值"
 
 msgid "Range"
-msgstr ""
+msgstr "极差"
 
 msgid "Minimum"
-msgstr ""
+msgstr "最小值"
 
 msgid "Maximum"
-msgstr ""
+msgstr "最大值"
 
 msgid "%gth percentile"
-msgstr ""
+msgstr "第 %g 百分位"
 
 msgid "Sum"
-msgstr ""
+msgstr "总和"
 
 msgid "All values are identical"
-msgstr ""
+msgstr "所有值都是相同的"
 
 msgid "Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set is %s."
-msgstr ""
+msgstr "空集的下确界（最小值）是 %s，空集的上确界（最大值）是 %s。"
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
-msgstr ""
+msgstr "并非所有值都可用于 <i> 名义文本 </i> 变量"
 
 msgid "More than one mode exists, only the first is reported"
-msgstr ""
+msgstr "存在多个众数，仅报告第一个众数"
 
 msgid "Total"
-msgstr ""
+msgstr "总计"
 
 msgid "All variables have more than %1$s distinct values"
-msgstr ""
+msgstr "所有变量都有超过 %1$s 个不同的值"
 
 msgid "Frequencies"
-msgstr ""
+msgstr "频率"
 
 msgid "Frequencies for %s"
-msgstr ""
+msgstr "%s 的频率"
 
 msgid "Frequency"
-msgstr ""
+msgstr "频率"
 
 msgid "Percent"
-msgstr ""
+msgstr "百分比"
 
 msgid "Valid Percent"
-msgstr ""
+msgstr "有效百分比"
 
 msgid "Cumulative Percent"
-msgstr ""
+msgstr "累计百分比"
 
 msgid "Density"
-msgstr ""
+msgstr "密度"
 
 msgid "Plotting not possible: %s"
-msgstr ""
+msgstr "无法完成绘图：%s"
 
 msgid "Plotting is not possible: No plot type selected!"
-msgstr ""
+msgstr "无法完成绘图：未选择绘图类型！"
 
 msgid "Counts"
-msgstr ""
+msgstr "计数"
 
 msgid "No non-missing values!"
-msgstr ""
+msgstr "没有非缺失值！"
 
 msgid "Theoretical Quantiles"
-msgstr ""
+msgstr "理论分位数( Theoretical Quantile)"
 
 msgid "Sample Quantiles"
-msgstr ""
+msgstr "样本分位数"
 
 msgid "A stem and leaf table could not be made because there are fewer than 2 non-missing observations"
-msgstr ""
+msgstr "无法制作茎叶表，因为非缺失观测值少于 2 个"
 
 msgid "The decimal point is at the |"
-msgstr ""
+msgstr "小数点在 |"
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural "The following variables have more than %1$s distinct values and are omitted: %2$s."
-msgstr[0] ""
+msgstr[0] "%2$s 有超过 %1$s 个不同的值并被省略。"
 
 msgid "The decimal point is %s digit to the right of the |"
 msgid_plural "The decimal point is %s digits to the right of the |"
-msgstr[0] ""
+msgstr[0] "小数点是 | 右边的 %s 位"
 
 msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
-msgstr[0] ""
+msgstr[0] "小数点是 | 左边的 %s 位"
