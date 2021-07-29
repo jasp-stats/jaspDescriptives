@@ -1,56 +1,42 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-07-24 19:13+0000\n"
-"Last-Translator: shun wang <shuonwang@gmail.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
-"jasp/jaspdescriptives-qml/zh_Hans/>\n"
-"Language: zh_Hans\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.7.2-dev\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
 msgid "Descriptives"
-msgstr "描述统计"
-
-msgctxt "Description|"
-msgid "Explore the data with tables and plots"
-msgstr "使用表格和绘图探索数据"
+msgstr ""
 
 msgctxt "Description|"
 msgid "Descriptive Statistics"
-msgstr "描述性统计"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Variables"
-msgstr "变量"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Split"
-msgstr "拆分"
-
-msgctxt "Descriptives|"
-msgid "Transpose descriptives table"
-msgstr "转置描述表"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Frequency tables"
-msgstr "频率表"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Maximum distinct values"
-msgstr "最大唯一值"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Stem and leaf tables"
-msgstr "茎叶表"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "scale"
-msgstr "scale"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid ""
@@ -58,309 +44,315 @@ msgid ""
 "scale = 2 will cause the table to be roughly twice as long as the default "
 "(scale = 1)."
 msgstr ""
-"scale 参数控制表格的扩展程度。例如，scale = 2 将导致表的长度大约是默认值 "
-"(scale = 1) 的两倍。"
 
 msgctxt "Descriptives|"
 msgid "Create a Stem and leaf table."
-msgstr "创建一个茎叶表。"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Plots"
-msgstr "绘图"
-
-msgctxt "Descriptives|"
-msgid "Customizable plots"
-msgstr "可定制的绘图"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Color palette"
-msgstr "调色板"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Colorblind"
-msgstr "色盲"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Colorblind Alt."
-msgstr "色盲 Alt."
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Viridis"
-msgstr "Viridis"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "ggplot2"
-msgstr "ggplot2"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Gray"
-msgstr "灰色"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Boxplots"
-msgstr "箱线图"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Boxplot element"
-msgstr "箱线图元素"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Violin element"
-msgstr "提琴图元素"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Jitter element"
-msgstr "抖动点图元素"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Use color palette"
-msgstr "使用调色板"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Label outliers"
-msgstr "标记异常值"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Scatter Plots"
-msgstr "散点图"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Graph above scatter plot"
-msgstr "散点图上方的绘图"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Density"
-msgstr "密度"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Histogram"
-msgstr "直方图"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "None"
-msgstr "无"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Graph right of scatter plot"
-msgstr "散点图右侧的绘图"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Add regression line"
-msgstr "添加回归线"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Smooth"
-msgstr "平滑"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Linear"
-msgstr "线性"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Show confidence interval"
-msgstr "显示置信区间"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Show legend"
-msgstr "显示图例"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Basic plots"
-msgstr "基本图"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Distribution plots"
-msgstr "分布图"
-
-msgctxt "Descriptives|"
-msgid "Correlation plots"
-msgstr "相关图"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Display density"
-msgstr "显示密度"
+msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Display rug marks"
-msgstr "显示rug标记"
-
-msgctxt "Descriptives|"
-msgid "Bin width type"
-msgstr "组距（箱宽）"
-
-msgctxt "Descriptives|"
-msgid "Sturges"
-msgstr "Sturges公式"
-
-msgctxt "Descriptives|"
-msgid "Scott"
-msgstr "Scott公式"
-
-msgctxt "Descriptives|"
-msgid "Doane"
-msgstr "Doane公式"
-
-msgctxt "Descriptives|"
-msgid "Freedman-Diaconis"
-msgstr "Freedman-Diaconis公式"
-
-msgctxt "Descriptives|"
-msgid "Manual"
-msgstr "手动"
-
-msgctxt "Descriptives|"
-msgid "Number of bins"
-msgstr "箱数（组数）"
-
-msgctxt "Descriptives|"
-msgid "Interval plots"
-msgstr "间距"
+msgid "Correlation plots"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Q-Q plots"
-msgstr "Q-Q图"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Pie charts"
-msgstr "饼图"
-
-msgctxt "Descriptives|"
-msgid "Dot plots"
-msgstr "点图"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Statistics"
-msgstr "统计量"
-
-msgctxt "Descriptives|"
-msgid "Percentile Values"
-msgstr "百分位值"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Quartiles"
-msgstr "四分位数"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Cut points for: "
-msgstr "切分为： "
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid " equal groups"
-msgstr " 等份组"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Percentiles:"
-msgstr "百分位数："
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Central Tendency"
-msgstr "集中趋势"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Mean"
-msgstr "平均值"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Median"
-msgstr "中位数"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Mode"
-msgstr "众数"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Sum"
-msgstr "总和"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Dispersion"
-msgstr "离散趋势"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "S. E. mean"
-msgstr "均值标准误差"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Std.deviation"
-msgstr "标准差"
-
-msgctxt "Descriptives|"
-msgid "Coefficient of Variation"
-msgstr "变异系数"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "MAD"
-msgstr "MAD"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "MAD Robust"
-msgstr "MAD Robust"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "IQR"
-msgstr "四分位距(IQR)"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Variance"
-msgstr "方差"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Range"
-msgstr "极差(Range)"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Minimum"
-msgstr "最小值"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Maximum"
-msgstr "最大值"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Distribution"
-msgstr "分布"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Skewness"
-msgstr "偏度"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Kurtosis"
-msgstr "峰度"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Shapiro-Wilk test"
-msgstr "Shapiro-Wilk 检验"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Values are group midpoints"
-msgstr "组中值"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Charts"
-msgstr "图表"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Chart Type"
-msgstr "图表类型"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Bar charts"
-msgstr "柱状图"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Histograms"
-msgstr "直方图"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Chart Values"
-msgstr "图表值"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Frequencies"
-msgstr "频率"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Percentages"
-msgstr "百分比"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Display rug marks"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Bin width type"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Sturges"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Scott"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Doane"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Freedman-Diaconis"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Manual"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Number of bins"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Interval plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Coefficient of Variation"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Explore the data with tables and plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Transpose descriptives table"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Customizable plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Dot plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Quantiles"
+msgstr ""
