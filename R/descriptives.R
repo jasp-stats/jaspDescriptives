@@ -1274,8 +1274,9 @@ Descriptives <- function(jaspResults, dataset, options) {
     tb <- as.data.frame(table(x))
     scaleX <- ggplot2::scale_x_discrete(limits = factor(tb[,1]))
   } else {
-    scaleX <- NULL
-    if (length(unique(x)) == 1) 
+    xBreaks <- jaspGraphs::getPrettyAxisBreaks(x)
+    scaleX <- ggplot2::scale_x_continuous(breaks = xBreaks, limits = range(xBreaks))
+    if (length(unique(x)) == 1)
       dotsize <- .03
   }
   
