@@ -1276,6 +1276,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   } else {
     xBreaks <- jaspGraphs::getPrettyAxisBreaks(x)
     scaleX <- ggplot2::scale_x_continuous(breaks = xBreaks, limits = range(xBreaks))
+
     if (length(unique(x)) == 1)
       dotsize <- .03
   }
