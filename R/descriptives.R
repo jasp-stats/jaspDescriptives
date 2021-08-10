@@ -1255,47 +1255,48 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 }
 
-.descriptivesDotPlots_SubFunc <- function(dataset, variable, title){
-  
+.descriptivesDotPlots_SubFunc <- function(dataset, variable, title) {
+
   dotPlot <- createJaspPlot(title = title)
   x <- na.omit(dataset[[variable]])
   x <- x[is.finite(x)]
-  
+
   if (length(x) == 0) {
     dotPlot$setError(gettext("No non-missing values!"))
     return(dotPlot)
   }
-  
-  df <- data.frame(x = x)
-  
+
   dotsize <- 1
-  
-  if (is.factor(x)){
+
+  if (is.factor(x)) {
+
     tb <- as.data.frame(table(x))
-    scaleX <- ggplot2::scale_x_discrete(limits = factor(tb[,1]))
+    scaleX <- ggplot2::scale_x_discrete(limits = factor(tb[, 1L]))
+
   } else {
+
     xBreaks <- jaspGraphs::getPrettyAxisBreaks(x)
     scaleX <- ggplot2::scale_x_continuous(breaks = xBreaks, limits = range(xBreaks))
 
     if (length(unique(x)) == 1)
       dotsize <- .03
   }
-  
-  p <- ggplot2::ggplot(data = data.frame(x = x), ggplot2::aes(x = x)) + 
-    ggplot2::geom_dotplot(binaxis = 'x', stackdir = 'up', fill = "grey", dotsize = dotsize) + 
+
+  p <- ggplot2::ggplot(data = data.frame(x = x), ggplot2::aes(x = x)) +
+    ggplot2::geom_dotplot(binaxis = "x", stackdir = "up", fill = "grey", dotsize = dotsize) +
     ggplot2::xlab(variable) +
-    ggplot2::ylab(NULL) + 
+    ggplot2::ylab(NULL) +
     scaleX +
     jaspGraphs::geom_rangeframe(sides = "b") +
     jaspGraphs::themeJaspRaw() +
     ggplot2::theme(axis.ticks.y = ggplot2::element_blank(),
                    axis.title.y = ggplot2::element_blank(),
                    axis.text.y = ggplot2::element_blank())
-  
+
   dotPlot$plotObject <- p
-  
-  return(dotPlot)  
-  
+
+  return(dotPlot)
+
 }
 
 .barplotJASP <- function(column, variable) {
