@@ -716,7 +716,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   # first do the diagonal and store breaks
   for (row in seq_along(variables)) {
     if (variable.statuses[[row]]$error != "") {
-      plotMat[[row, row]] <- .displayError(errorMessage=variable.statuses[[row]]$error)
+      plotMat[[row, row]] <- .displayErrorDescriptives(errorMessage=variable.statuses[[row]]$error)
     } else {
       plotMat[[row, row]] <- .plotMarginal(
         column         = dataset[[variables[[row]]]],
@@ -735,9 +735,9 @@ Descriptives <- function(jaspResults, dataset, options) {
   for (row in seq_len(l-1)) {
     for (col in seq(row+1, l)) {
       if (variable.statuses[[row]]$error != "") {
-        plotMat[[row, col]] <- .displayError(errorMessage=variable.statuses[[row]]$error)
+        plotMat[[row, col]] <- .displayErrorDescriptives(errorMessage=variable.statuses[[row]]$error)
       } else if (variable.statuses[[col]]$error != "") {
-        plotMat[[row, col]] <- .displayError(errorMessage=variable.statuses[[col]]$error)
+        plotMat[[row, col]] <- .displayErrorDescriptives(errorMessage=variable.statuses[[col]]$error)
       } else {
         plotMat[[row, col]] <- .plotScatterDescriptives(
           xVar    = dataset[[variables[[col]]]],
