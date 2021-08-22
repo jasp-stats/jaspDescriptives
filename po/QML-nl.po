@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-08-22 13:35+0000\n"
+"PO-Revision-Date: 2021-08-23 17:32+0000\n"
 "Last-Translator: D.J. Dekker <dj_dekker@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/nl/>\n"
@@ -40,7 +40,7 @@ msgstr "Hoogste aantal verschillende waarden"
 
 msgctxt "Descriptives|"
 msgid "Stem and leaf tables"
-msgstr ""
+msgstr "Steelbladdiagram"
 
 msgctxt "Descriptives|"
 msgid "scale"
@@ -52,10 +52,12 @@ msgid ""
 "scale = 2 will cause the table to be roughly twice as long as the default "
 "(scale = 1)."
 msgstr ""
+"De schaalparameter bepaalt hoe sterk de tabel uitbreidt. Bijvoorbeeld bij "
+"scale = 2 wordt de schaal ongeveer dubbel zo lang als standaard (scale = 1)."
 
 msgctxt "Descriptives|"
 msgid "Create a Stem and leaf table."
-msgstr ""
+msgstr "Maak een steelbladdiagram."
 
 msgctxt "Descriptives|"
 msgid "Plots"
@@ -305,62 +307,66 @@ msgctxt "Descriptives|"
 msgid "Percentages"
 msgstr "Percentages"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Display rug marks"
-msgstr ""
+msgstr "Toon franjemarkeringen"
 
 msgctxt "Descriptives|"
 msgid "Bin width type"
-msgstr ""
+msgstr "Type klassenbreedte"
 
 msgctxt "Descriptives|"
 msgid "Sturges"
-msgstr ""
+msgstr "Sturges"
 
 msgctxt "Descriptives|"
 msgid "Scott"
-msgstr ""
+msgstr "Scott"
 
 msgctxt "Descriptives|"
 msgid "Doane"
-msgstr ""
+msgstr "Doane"
 
 msgctxt "Descriptives|"
 msgid "Freedman-Diaconis"
-msgstr ""
+msgstr "Freedman-Diaconis"
 
 msgctxt "Descriptives|"
 msgid "Manual"
-msgstr ""
+msgstr "Handmatig"
 
 msgctxt "Descriptives|"
 msgid "Number of bins"
-msgstr ""
+msgstr "Aantal klassen"
 
 msgctxt "Descriptives|"
 msgid "Interval plots"
-msgstr ""
+msgstr "Intervalplots"
 
 msgctxt "Descriptives|"
 msgid "Coefficient of Variation"
-msgstr ""
+msgstr "Variatiecoëfficiënt"
 
 msgctxt "Description|"
 msgid "Explore the data with tables and plots"
-msgstr ""
+msgstr "Verken de gegevens met tabellen en grafieken"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Transpose descriptives table"
-msgstr ""
+msgstr "Tabel met beschrijvingen transponeren"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Customizable plots"
-msgstr ""
+msgstr "Aanpasbare grafieken"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Dot plots"
-msgstr ""
+msgstr "Dotplots"
 
 msgctxt "Descriptives|"
 msgid "Quantiles"
-msgstr ""
+msgstr "Kwantielen"
