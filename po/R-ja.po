@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.11.0\n"
 "POT-Creation-Date: 2021-07-10 03:30\n"
-"PO-Revision-Date: 2021-01-26 11:51+0000\n"
-"Last-Translator: Koji Kosugi <kosugitti@gmail.com>\n"
+"PO-Revision-Date: 2021-08-24 23:33+0000\n"
+"Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/ja/>\n"
 "Language: ja\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.5-dev\n"
+"X-Generator: Weblate 4.8.1-dev\n"
 
 msgid "Frequency Tables"
 msgstr "度数分布表"
@@ -47,11 +47,10 @@ msgid "Scatter Plots"
 msgstr "散布図"
 
 msgid "Interval plots"
-msgstr ""
+msgstr "区間プロット"
 
-#, fuzzy
 msgid "Dot Plots"
-msgstr "Q-Qプロット"
+msgstr "ドットプロット"
 
 msgid "Descriptive Statistics"
 msgstr "記述統計"
@@ -83,7 +82,7 @@ msgid "Std. Deviation"
 msgstr "標準偏差"
 
 msgid "Coefficient of Variation"
-msgstr ""
+msgstr "変動係数"
 
 msgid "MAD"
 msgstr "中央絶対偏差"
@@ -156,7 +155,6 @@ msgstr "頻度"
 msgid "Frequencies for %s"
 msgstr "%s の頻度"
 
-#, fuzzy
 msgid "Frequency"
 msgstr "頻度"
 
@@ -166,14 +164,12 @@ msgstr "パーセント"
 msgid "Valid Percent"
 msgstr "有効パーセント"
 
-#, fuzzy
 msgid "Cumulative Percent"
 msgstr "累積パーセント"
 
 msgid "Density"
 msgstr "密度"
 
-#, fuzzy
 msgid "Plotting not possible: %s"
 msgstr "プロットできません：％s"
 
@@ -189,9 +185,8 @@ msgstr ""
 msgid "Theoretical Quantiles"
 msgstr "理論上の分位数"
 
-#, fuzzy
 msgid "Sample Quantiles"
-msgstr "理論上の分位数"
+msgstr "サンプル分位数"
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
