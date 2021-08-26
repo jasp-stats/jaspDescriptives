@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-08-23 17:32+0000\n"
+"PO-Revision-Date: 2021-08-27 20:21+0000\n"
 "Last-Translator: D.J. Dekker <dj_dekker@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/nl/>\n"
@@ -93,7 +93,7 @@ msgstr "Boxplots"
 
 msgctxt "Descriptives|"
 msgid "Boxplot element"
-msgstr "Boxplot element"
+msgstr "Boxplot-element"
 
 msgctxt "Descriptives|"
 msgid "Violin element"
@@ -307,7 +307,6 @@ msgctxt "Descriptives|"
 msgid "Percentages"
 msgstr "Percentages"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Display rug marks"
 msgstr "Toon franjemarkeringen"
@@ -352,17 +351,14 @@ msgctxt "Description|"
 msgid "Explore the data with tables and plots"
 msgstr "Verken de gegevens met tabellen en grafieken"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Transpose descriptives table"
 msgstr "Tabel met beschrijvingen transponeren"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Customizable plots"
 msgstr "Aanpasbare grafieken"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Dot plots"
 msgstr "Dotplots"
