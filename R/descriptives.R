@@ -964,21 +964,6 @@ Descriptives <- function(jaspResults, dataset, options) {
 .descriptivesSplitPlot <- function(dataset, options,  variable) {
   depends <- c("splitPlotColour", "splitPlotViolin", "splitPlotBoxplot", "splitPlotJitter", "splitPlotOutlierLabel")
 
-  # Initialisation plot
-  # .initSplitPlot <- function()
-  # {
-  #   plot(1, type='n', xlim=0:1, ylim=0:1, bty='n', axes=FALSE, xlab="", ylab="")
-  #   axis(2, at=0:1, labels=FALSE, cex.axis= 1.4, ylab="")
-  #   mtext(text = variable, side = 1, cex=1.5, line = 3)
-  # }
-
-  # Define custom y axis function
-  base_breaks_y <- function(x) {
-    b <- pretty(x)
-    d <- data.frame(x=-Inf, xend=-Inf, y=min(b), yend=max(b))
-    list(ggplot2::geom_segment(data=d, ggplot2::aes(x=x, y=y, xend=xend, yend=yend), size = 0.75, inherit.aes=FALSE), ggplot2::scale_y_continuous(breaks=b))
-  }
-
   thePlot <- createJaspPlot(title=variable, width=options$plotWidth, height=options$plotHeight, dependencies=depends)
 
   errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 1")
@@ -988,8 +973,8 @@ Descriptives <- function(jaspResults, dataset, options) {
     thePlot$setError(gettext("Plotting is not possible: No plot type selected!"))
   } else {
     # we need to know which index in y is related to which index in the actual data, so we should not forget the NAs somehow, lets make a list of indices.
-    yWithNA         <- dataset[[.v(variable)]]
-    y               <- na.omit(dataset[[.v(variable)]])
+    yWithNA         <- dataset[[variable]]
+    y               <- na.omit(dataset[[variable]])
     yIndexToActual  <- y
     yWithNAIndex    <- 1
     yNoNAIndex      <- 1
@@ -1005,13 +990,13 @@ Descriptives <- function(jaspResults, dataset, options) {
       yWithNAIndex <- yWithNAIndex + 1
     }
 
-    if (is.null(dataset[[.v(options$splitby)]])){
+    if (is.null(dataset[[options$splitby]])){
       group     <- factor(rep("",length(y)))
       xlab      <- "Total"
       boxWidth  <- 0.2
       vioWidth  <- 0.3
     } else {
-      group     <- as.factor(dataset[[.v(options$splitby)]])[!is.na(dataset[[.v(variable)]])]
+      group     <- as.factor(dataset[[options$splitby]])[!is.na(dataset[[variable]])]
       xlab      <- options$splitby
       boxWidth  <- 0.4
       vioWidth  <- 0.6
@@ -1077,11 +1062,15 @@ Descriptives <- function(jaspResults, dataset, options) {
       p <- p + ggrepel::geom_text_repel(ggplot2::aes(label=label), hjust=-0.3)
 
     ### Theming & Cleaning
-    yBreaks <- jaspGraphs::getPrettyAxisBreaks(y)
+    yBreaks <- if (options[["splitPlotViolin"]])
+      jaspGraphs::getPrettyAxisBreaks(range(unlist(tapply(y, group, function(x) range(x, density(x)$x)), use.names = FALSE)))
+    else
+      jaspGraphs::getPrettyAxisBreaks(p[["data"]][["y"]])
+    yLimits <- range(yBreaks)
+
     p <- p +
       ggplot2::xlab(xlab) +
-      ggplot2::ylab(variable) +
-      ggplot2::scale_y_continuous(breaks = yBreaks) + #, limits = yLimits) +
+      ggplot2::scale_y_continuous(name = variable, breaks = yBreaks, limits = yLimits) +
       jaspGraphs::geom_rangeframe(sides = "l") +
       jaspGraphs::themeJaspRaw()
 
