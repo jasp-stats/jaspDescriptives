@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-08-25 23:33+0000\n"
+"Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/ja/>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.8.1-dev\n"
 "X-Language: ja\n"
 "X-Qt-Contexts: true\n"
 
@@ -29,7 +35,7 @@ msgstr "度数分布表"
 
 msgctxt "Descriptives|"
 msgid "Maximum distinct values"
-msgstr ""
+msgstr "最大個別値"
 
 msgctxt "Descriptives|"
 msgid "Stem and leaf tables"
@@ -45,6 +51,7 @@ msgid ""
 "scale = 2 will cause the table to be roughly twice as long as the default "
 "(scale = 1)."
 msgstr ""
+"尺度パラメータはどれくらい表を拡大するかを制御します。例えば、scale=2は、デフォルト(scale=1)よりも約2倍拡大された表が表示されます。"
 
 msgctxt "Descriptives|"
 msgid "Create a Stem and leaf table."
@@ -92,7 +99,7 @@ msgstr "バイオリン 要素"
 
 msgctxt "Descriptives|"
 msgid "Jitter element"
-msgstr "jitter 要素"
+msgstr "Jitter 要素"
 
 msgctxt "Descriptives|"
 msgid "Use color palette"
@@ -100,7 +107,7 @@ msgstr "カラーパレットを使用"
 
 msgctxt "Descriptives|"
 msgid "Label outliers"
-msgstr ""
+msgstr "外れ値をラベル"
 
 msgctxt "Descriptives|"
 msgid "Scatter Plots"
@@ -268,7 +275,7 @@ msgstr "シャピロ-ウィルク検定"
 
 msgctxt "Descriptives|"
 msgid "Values are group midpoints"
-msgstr ""
+msgstr "値はグループの中点です"
 
 msgctxt "Descriptives|"
 msgid "Charts"
@@ -276,7 +283,7 @@ msgstr "チャート"
 
 msgctxt "Descriptives|"
 msgid "Chart Type"
-msgstr ""
+msgstr "チャートタイプ"
 
 msgctxt "Descriptives|"
 msgid "Bar charts"
@@ -288,7 +295,7 @@ msgstr "ヒストグラム"
 
 msgctxt "Descriptives|"
 msgid "Chart Values"
-msgstr ""
+msgstr "チャート値"
 
 msgctxt "Descriptives|"
 msgid "Frequencies"
@@ -300,11 +307,11 @@ msgstr "パーセンテージ"
 
 msgctxt "Descriptives|"
 msgid "Display rug marks"
-msgstr ""
+msgstr "ラグマークを表示する"
 
 msgctxt "Descriptives|"
 msgid "Bin width type"
-msgstr ""
+msgstr "ビン幅タイプ"
 
 msgctxt "Descriptives|"
 msgid "Sturges"
@@ -340,20 +347,20 @@ msgstr "変動係数"
 
 msgctxt "Description|"
 msgid "Explore the data with tables and plots"
-msgstr ""
+msgstr "表とプロットを使用してデータを探索する"
 
 msgctxt "Descriptives|"
 msgid "Transpose descriptives table"
-msgstr ""
+msgstr "記述表を転置する"
 
 msgctxt "Descriptives|"
 msgid "Customizable plots"
-msgstr ""
+msgstr "カスタマイズ可能なプロット"
 
 msgctxt "Descriptives|"
 msgid "Dot plots"
-msgstr ""
+msgstr "ドットプロット"
 
 msgctxt "Descriptives|"
 msgid "Quantiles"
-msgstr ""
+msgstr "分位数"
