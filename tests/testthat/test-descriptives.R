@@ -266,3 +266,17 @@ test_that("facGender plot matches", {
 	testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
 	jaspTools::expect_equal_plots(testPlot, "facgender")
 })
+
+
+options <- analysisOptions("Descriptives")
+options$variables <- "contExpon"
+options$splitby   <- "facFive"
+options$descriptivesIntervalPlot <- TRUE
+set.seed(1)
+results <- runAnalysis("Descriptives", "test.csv", options)
+
+test_that("interval plot across groups matches", {
+  plotName <- results[["results"]][["IntervalPlots"]][["collection"]][["IntervalPlots_contExpon"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "interval_plot_across_facFive_contExpon")
+})

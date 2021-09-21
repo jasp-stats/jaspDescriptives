@@ -1090,7 +1090,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     y <- na.omit(dataset[[.v(variable)]])
   }
 
-  if (is.null(dataset[[.v(options$splitby)]])){
+  if (is.null(dataset[[options$splitby]])) {
     group     <- factor(rep("",length(y)))
     xlab      <- gettext("Total")
   } else {
@@ -1101,8 +1101,8 @@ Descriptives <- function(jaspResults, dataset, options) {
   plotDat <- data.frame(group = group, y = y)
 
   cdata <- aggregate(y ~ group, data = plotDat, function(x) {
-    mu <- mean(y)
-    err <- qnorm(0.975) * (sd(y) / sqrt(length(y)))
+    mu <- mean(x)
+    err <- qnorm(0.975) * (sd(x) / sqrt(length(x)))
     c(mean  = mu,
       lower = mu - err,
       upper = mu + err
