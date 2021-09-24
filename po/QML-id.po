@@ -1,30 +1,37 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-09-25 01:31+0000\n"
+"Last-Translator: Sunu Bagaskara <sunu.bagaskara@gmail.com>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.9-dev\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
 msgid "Descriptives"
-msgstr ""
+msgstr "Deskriptif"
 
 msgctxt "Description|"
 msgid "Descriptive Statistics"
-msgstr ""
+msgstr "Statistik Deskriptif"
 
 msgctxt "Descriptives|"
 msgid "Variables"
-msgstr ""
+msgstr "Variabel"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Split"
-msgstr ""
+msgstr "Pisah"
 
 msgctxt "Descriptives|"
 msgid "Frequency tables"
-msgstr ""
+msgstr "Tabel frekuensi"
 
 msgctxt "Descriptives|"
 msgid "Maximum distinct values"
@@ -32,194 +39,200 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Stem and leaf tables"
-msgstr ""
+msgstr "Bagan batang dan daun"
 
 msgctxt "Descriptives|"
 msgid "scale"
-msgstr ""
+msgstr "skala"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "The scale parameter controls how much the table is expanded. For example, "
 "scale = 2 will cause the table to be roughly twice as long as the default "
 "(scale = 1)."
 msgstr ""
+"Parameter skala menentukan sebesar apa tabel diperbesar. Contohnya, skala = "
+"2 akan membuat tabel kira-kira dua kali lebih panjang dari tabel bawaan ("
+"skala = 1)."
 
 msgctxt "Descriptives|"
 msgid "Create a Stem and leaf table."
-msgstr ""
+msgstr "Buat tabel Batang dan daun."
 
 msgctxt "Descriptives|"
 msgid "Plots"
-msgstr ""
+msgstr "Plot"
 
 msgctxt "Descriptives|"
 msgid "Color palette"
-msgstr ""
+msgstr "Palet warna"
 
 msgctxt "Descriptives|"
 msgid "Colorblind"
-msgstr ""
+msgstr "Buta warna"
 
 msgctxt "Descriptives|"
 msgid "Colorblind Alt."
-msgstr ""
+msgstr "Alt. Butawarna"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Viridis"
-msgstr ""
+msgstr "Viridis"
 
 msgctxt "Descriptives|"
 msgid "ggplot2"
-msgstr ""
+msgstr "ggplot2"
 
 msgctxt "Descriptives|"
 msgid "Gray"
-msgstr ""
+msgstr "Abu-abu"
 
 msgctxt "Descriptives|"
 msgid "Boxplots"
-msgstr ""
+msgstr "Plot kotak"
 
 msgctxt "Descriptives|"
 msgid "Boxplot element"
-msgstr ""
+msgstr "Elemen plot kotak"
 
 msgctxt "Descriptives|"
 msgid "Violin element"
-msgstr ""
+msgstr "Eelemen biola"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Jitter element"
-msgstr ""
+msgstr "Elemen jitter"
 
 msgctxt "Descriptives|"
 msgid "Use color palette"
-msgstr ""
+msgstr "Gunakan palet warna"
 
 msgctxt "Descriptives|"
 msgid "Label outliers"
-msgstr ""
+msgstr "Label pencilan"
 
 msgctxt "Descriptives|"
 msgid "Scatter Plots"
-msgstr ""
+msgstr "Plot Pencar"
 
 msgctxt "Descriptives|"
 msgid "Graph above scatter plot"
-msgstr ""
+msgstr "Grafik di atas plot pencar"
 
 msgctxt "Descriptives|"
 msgid "Density"
-msgstr ""
+msgstr "Kepekatan"
 
 msgctxt "Descriptives|"
 msgid "Histogram"
-msgstr ""
+msgstr "Histogram"
 
 msgctxt "Descriptives|"
 msgid "None"
-msgstr ""
+msgstr "Tidak ada"
 
 msgctxt "Descriptives|"
 msgid "Graph right of scatter plot"
-msgstr ""
+msgstr "Grafik di kanan plot pencar"
 
 msgctxt "Descriptives|"
 msgid "Add regression line"
-msgstr ""
+msgstr "Tambahkan garis regresi"
 
 msgctxt "Descriptives|"
 msgid "Smooth"
-msgstr ""
+msgstr "Halus"
 
 msgctxt "Descriptives|"
 msgid "Linear"
-msgstr ""
+msgstr "Linier"
 
 msgctxt "Descriptives|"
 msgid "Show confidence interval"
-msgstr ""
+msgstr "Tampilkan interval kepercayaan"
 
 msgctxt "Descriptives|"
 msgid "Show legend"
-msgstr ""
+msgstr "Tampilkan legenda"
 
 msgctxt "Descriptives|"
 msgid "Basic plots"
-msgstr ""
+msgstr "Plot dasar"
 
 msgctxt "Descriptives|"
 msgid "Distribution plots"
-msgstr ""
+msgstr "Plot distribusi"
 
 msgctxt "Descriptives|"
 msgid "Display density"
-msgstr ""
+msgstr "Tampilkan kepekatan"
 
 msgctxt "Descriptives|"
 msgid "Correlation plots"
-msgstr ""
+msgstr "Plot korelasi"
 
 msgctxt "Descriptives|"
 msgid "Q-Q plots"
-msgstr ""
+msgstr "Plot Q-Q"
 
 msgctxt "Descriptives|"
 msgid "Pie charts"
-msgstr ""
+msgstr "Diagram lingkaran"
 
 msgctxt "Descriptives|"
 msgid "Statistics"
-msgstr ""
+msgstr "Statistik"
 
 msgctxt "Descriptives|"
 msgid "Quartiles"
-msgstr ""
+msgstr "Kuartil"
 
 msgctxt "Descriptives|"
 msgid "Cut points for: "
-msgstr ""
+msgstr "Titik potong untuk: "
 
 msgctxt "Descriptives|"
 msgid " equal groups"
-msgstr ""
+msgstr " kelompok setara"
 
 msgctxt "Descriptives|"
 msgid "Percentiles:"
-msgstr ""
+msgstr "Persentil:"
 
 msgctxt "Descriptives|"
 msgid "Central Tendency"
-msgstr ""
+msgstr "Kecenderungan Terpusat"
 
 msgctxt "Descriptives|"
 msgid "Mean"
-msgstr ""
+msgstr "Rerata"
 
 msgctxt "Descriptives|"
 msgid "Median"
-msgstr ""
+msgstr "Median"
 
 msgctxt "Descriptives|"
 msgid "Mode"
-msgstr ""
+msgstr "Modus"
 
 msgctxt "Descriptives|"
 msgid "Sum"
-msgstr ""
+msgstr "Jumlah"
 
 msgctxt "Descriptives|"
 msgid "Dispersion"
-msgstr ""
+msgstr "Sebaran"
 
 msgctxt "Descriptives|"
 msgid "S. E. mean"
-msgstr ""
+msgstr "Rerata S. E."
 
 msgctxt "Descriptives|"
 msgid "Std.deviation"
-msgstr ""
+msgstr "Simp. baku"
 
 msgctxt "Descriptives|"
 msgid "MAD"
@@ -231,71 +244,73 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "IQR"
-msgstr ""
+msgstr "Jangkauan Interkuartil"
 
 msgctxt "Descriptives|"
 msgid "Variance"
-msgstr ""
+msgstr "Varians"
 
 msgctxt "Descriptives|"
 msgid "Range"
-msgstr ""
+msgstr "Jangkauan"
 
 msgctxt "Descriptives|"
 msgid "Minimum"
-msgstr ""
+msgstr "Minimum"
 
 msgctxt "Descriptives|"
 msgid "Maximum"
-msgstr ""
+msgstr "Maksimum"
 
 msgctxt "Descriptives|"
 msgid "Distribution"
-msgstr ""
+msgstr "Sebaran"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Skewness"
-msgstr ""
+msgstr "Kemencengan"
 
 msgctxt "Descriptives|"
 msgid "Kurtosis"
-msgstr ""
+msgstr "Kurtosis"
 
 msgctxt "Descriptives|"
 msgid "Shapiro-Wilk test"
-msgstr ""
+msgstr "Uji Shapiro-Wilk"
 
 msgctxt "Descriptives|"
 msgid "Values are group midpoints"
-msgstr ""
+msgstr "Angka adalah nilai tengah kelompok"
 
 msgctxt "Descriptives|"
 msgid "Charts"
-msgstr ""
+msgstr "Bagan"
 
 msgctxt "Descriptives|"
 msgid "Chart Type"
-msgstr ""
+msgstr "Tipe Bagan"
 
 msgctxt "Descriptives|"
 msgid "Bar charts"
-msgstr ""
+msgstr "Diagram batang"
 
 msgctxt "Descriptives|"
 msgid "Histograms"
-msgstr ""
+msgstr "Histogram"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Chart Values"
-msgstr ""
+msgstr "Nilai bagan"
 
 msgctxt "Descriptives|"
 msgid "Frequencies"
-msgstr ""
+msgstr "Frekuensi"
 
 msgctxt "Descriptives|"
 msgid "Percentages"
-msgstr ""
+msgstr "Persentase"
 
 msgctxt "Descriptives|"
 msgid "Display rug marks"
@@ -303,56 +318,57 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Bin width type"
-msgstr ""
+msgstr "Tipe lebar bin"
 
 msgctxt "Descriptives|"
 msgid "Sturges"
-msgstr ""
+msgstr "Sturges"
 
 msgctxt "Descriptives|"
 msgid "Scott"
-msgstr ""
+msgstr "Scott"
 
 msgctxt "Descriptives|"
 msgid "Doane"
-msgstr ""
+msgstr "Doane"
 
 msgctxt "Descriptives|"
 msgid "Freedman-Diaconis"
-msgstr ""
+msgstr "Freedman-Diaconis"
 
 msgctxt "Descriptives|"
 msgid "Manual"
-msgstr ""
+msgstr "Manual"
 
 msgctxt "Descriptives|"
 msgid "Number of bins"
-msgstr ""
+msgstr "Jumlah bin"
 
 msgctxt "Descriptives|"
 msgid "Interval plots"
-msgstr ""
+msgstr "Plot interval"
 
 msgctxt "Descriptives|"
 msgid "Coefficient of Variation"
-msgstr ""
+msgstr "Koefisien Variasi"
 
 msgctxt "Description|"
 msgid "Explore the data with tables and plots"
-msgstr ""
+msgstr "Eksplorasi data dengan tabel dan plot"
 
 msgctxt "Descriptives|"
 msgid "Transpose descriptives table"
-msgstr ""
+msgstr "Transpos tabel deskriptif"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Customizable plots"
-msgstr ""
+msgstr "Plot yang dapat disesuaikan"
 
 msgctxt "Descriptives|"
 msgid "Dot plots"
-msgstr ""
+msgstr "Plot titik"
 
 msgctxt "Descriptives|"
 msgid "Quantiles"
-msgstr ""
+msgstr "Kuantil"
