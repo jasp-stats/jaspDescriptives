@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2021-10-15 19:45+0000\n"
+"Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/es/>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.9-dev\n"
 "X-Language: es\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -22,23 +28,23 @@ msgstr "Variables"
 
 msgctxt "Descriptives|"
 msgid "Split"
-msgstr "División"
+msgstr "Separar"
 
 msgctxt "Descriptives|"
 msgid "Frequency tables"
-msgstr "Tablas de Frecuencia"
+msgstr "Tablas de frecuencias"
 
 msgctxt "Descriptives|"
 msgid "Maximum distinct values"
-msgstr "Máximo de valores distintos"
+msgstr "Máximo número de valores distintos"
 
 msgctxt "Descriptives|"
 msgid "Stem and leaf tables"
-msgstr "Diagrama de tallos y hojas"
+msgstr "Diagrama de tallo y hojas"
 
 msgctxt "Descriptives|"
 msgid "scale"
-msgstr "escala"
+msgstr "Escala"
 
 msgctxt "Descriptives|"
 msgid ""
@@ -52,7 +58,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Create a Stem and leaf table."
-msgstr "Crea un diagrama de tallos y hojas."
+msgstr "Crea un diagrama de Tallo y hojas."
 
 msgctxt "Descriptives|"
 msgid "Plots"
@@ -60,23 +66,23 @@ msgstr "Gráficos"
 
 msgctxt "Descriptives|"
 msgid "Color palette"
-msgstr "Paleta de color"
+msgstr "Paleta de colores"
 
 msgctxt "Descriptives|"
 msgid "Colorblind"
-msgstr "Daltónico"
+msgstr "Daltónica"
 
 msgctxt "Descriptives|"
 msgid "Colorblind Alt."
-msgstr "Daltonismo Alt."
+msgstr "Daltónica Alternativa"
 
 msgctxt "Descriptives|"
 msgid "Viridis"
-msgstr "Verde"
+msgstr "Violeta"
 
 msgctxt "Descriptives|"
 msgid "ggplot2"
-msgstr "Ggplot2"
+msgstr "GGplot2"
 
 msgctxt "Descriptives|"
 msgid "Gray"
@@ -92,11 +98,11 @@ msgstr "Elemento de diagrama de caja"
 
 msgctxt "Descriptives|"
 msgid "Violin element"
-msgstr "Elemento de violín"
+msgstr "Violín"
 
 msgctxt "Descriptives|"
 msgid "Jitter element"
-msgstr "Elemento Jitter"
+msgstr "Dispersión"
 
 msgctxt "Descriptives|"
 msgid "Use color palette"
@@ -108,11 +114,11 @@ msgstr "Etiquetar valores atípicos"
 
 msgctxt "Descriptives|"
 msgid "Scatter Plots"
-msgstr "Gráfico de dispersión"
+msgstr "Gráficos de Dispersión"
 
 msgctxt "Descriptives|"
 msgid "Graph above scatter plot"
-msgstr "Graficar encima el diagrama de dispersión"
+msgstr "Representar en el gráfico de dispersión"
 
 msgctxt "Descriptives|"
 msgid "Density"
@@ -128,7 +134,7 @@ msgstr "Ninguna"
 
 msgctxt "Descriptives|"
 msgid "Graph right of scatter plot"
-msgstr "Graficar a la derecha del diagrama de dispersión"
+msgstr "Representar a la derecha del gráfico de dispersión"
 
 msgctxt "Descriptives|"
 msgid "Add regression line"
@@ -136,7 +142,7 @@ msgstr "Agregar línea de regresión"
 
 msgctxt "Descriptives|"
 msgid "Smooth"
-msgstr "Suavizar"
+msgstr "Suavizado"
 
 msgctxt "Descriptives|"
 msgid "Linear"
@@ -144,11 +150,11 @@ msgstr "Lineal"
 
 msgctxt "Descriptives|"
 msgid "Show confidence interval"
-msgstr "Mostrar intervalo de confianza"
+msgstr "Mostrar el intervalo de confianza"
 
 msgctxt "Descriptives|"
 msgid "Show legend"
-msgstr "Mostrar leyenda"
+msgstr "Mostrar la leyenda"
 
 msgctxt "Descriptives|"
 msgid "Basic plots"
@@ -156,11 +162,11 @@ msgstr "Gráficos básicos"
 
 msgctxt "Descriptives|"
 msgid "Distribution plots"
-msgstr "Gráficos de distribución"
+msgstr "Gráficos de distribuciones"
 
 msgctxt "Descriptives|"
 msgid "Display density"
-msgstr "Mostrar Densidad"
+msgstr "Mostrar la densidad"
 
 msgctxt "Descriptives|"
 msgid "Correlation plots"
@@ -176,7 +182,7 @@ msgstr "Gráficos circulares"
 
 msgctxt "Descriptives|"
 msgid "Statistics"
-msgstr "Estadísticas"
+msgstr "Estadísticos"
 
 msgctxt "Descriptives|"
 msgid "Quartiles"
@@ -196,7 +202,7 @@ msgstr "Percentiles:"
 
 msgctxt "Descriptives|"
 msgid "Central Tendency"
-msgstr "Tendencia central"
+msgstr "Tendencia Central"
 
 msgctxt "Descriptives|"
 msgid "Mean"
@@ -220,23 +226,23 @@ msgstr "Dispersión"
 
 msgctxt "Descriptives|"
 msgid "S. E. mean"
-msgstr "Error estándar promedio"
+msgstr "Error típico de la media"
 
 msgctxt "Descriptives|"
 msgid "Std.deviation"
-msgstr "Desviación estándar"
+msgstr "Desviación típica"
 
 msgctxt "Descriptives|"
 msgid "MAD"
-msgstr "MAD"
+msgstr "DAM (MAD)"
 
 msgctxt "Descriptives|"
 msgid "MAD Robust"
-msgstr "MAD Robusto"
+msgstr "DAM (MAD) Robusta"
 
 msgctxt "Descriptives|"
 msgid "IQR"
-msgstr "IQR"
+msgstr "RIC(IQR)"
 
 msgctxt "Descriptives|"
 msgid "Variance"
@@ -268,23 +274,23 @@ msgstr "Curtosis"
 
 msgctxt "Descriptives|"
 msgid "Shapiro-Wilk test"
-msgstr "Prueba de Shapiro-Wilk"
+msgstr "Contraste de Shapiro-Wilk"
 
 msgctxt "Descriptives|"
 msgid "Values are group midpoints"
-msgstr "Los valores son puntos medios de grupo"
+msgstr "Los valores son los puntos medios de los grupos"
 
 msgctxt "Descriptives|"
 msgid "Charts"
-msgstr "Gráficos"
+msgstr "Diagramas"
 
 msgctxt "Descriptives|"
 msgid "Chart Type"
-msgstr "Tipo de gráfico"
+msgstr "Tipo de Diagrama"
 
 msgctxt "Descriptives|"
 msgid "Bar charts"
-msgstr "Gráfico de barras"
+msgstr "Gráficos de barras"
 
 msgctxt "Descriptives|"
 msgid "Histograms"
@@ -292,7 +298,7 @@ msgstr "Histogramas"
 
 msgctxt "Descriptives|"
 msgid "Chart Values"
-msgstr "Valores del gráfico"
+msgstr "Valores de Gráfico"
 
 msgctxt "Descriptives|"
 msgid "Frequencies"
@@ -304,11 +310,11 @@ msgstr "Porcentajes"
 
 msgctxt "Descriptives|"
 msgid "Display rug marks"
-msgstr "Mostrar marcas en el eje"
+msgstr "Mostrar las marcas en el eje"
 
 msgctxt "Descriptives|"
 msgid "Bin width type"
-msgstr "Tipo de ancho de caja"
+msgstr "Tipo de ancho de barra"
 
 msgctxt "Descriptives|"
 msgid "Sturges"
@@ -332,11 +338,11 @@ msgstr "Manual"
 
 msgctxt "Descriptives|"
 msgid "Number of bins"
-msgstr "Numero de cajas"
+msgstr "Numero de barras"
 
 msgctxt "Descriptives|"
 msgid "Interval plots"
-msgstr "Gráficos de Intervalo"
+msgstr "Gráficos de intervalo"
 
 msgctxt "Descriptives|"
 msgid "Coefficient of Variation"
@@ -344,11 +350,11 @@ msgstr "Coeficiente de Variación"
 
 msgctxt "Description|"
 msgid "Explore the data with tables and plots"
-msgstr "Explore los datos con tablas y gráficos"
+msgstr "Explorar los datos con tablas y gráficos"
 
 msgctxt "Descriptives|"
 msgid "Transpose descriptives table"
-msgstr "Transponer tabla descriptiva"
+msgstr "Transponer la tabla de descriptivos"
 
 msgctxt "Descriptives|"
 msgid "Customizable plots"
@@ -356,7 +362,7 @@ msgstr "Gráficos personalizables"
 
 msgctxt "Descriptives|"
 msgid "Dot plots"
-msgstr "Diagrama de puntos"
+msgstr "Gráficos de puntos"
 
 msgctxt "Descriptives|"
 msgid "Quantiles"
