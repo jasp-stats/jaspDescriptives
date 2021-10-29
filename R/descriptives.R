@@ -408,7 +408,8 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   shouldAddIdenticalFootnote <- all(na.omitted[1] == na.omitted) && (options$skewness || options$kurtosis || options$shapiro)
 
-  resultsCol[["Valid"]]                   <- if (options$valid)   length(na.omitted)
+  valid <- length(na.omitted)
+  resultsCol[["Valid"]]                   <- if (options$valid)   valid
   resultsCol[["Missing"]]                 <- if (options$missing) rows - length(na.omitted)
 
   resultsCol[["Median"]]                  <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$median,            na.omitted, median)
@@ -432,7 +433,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   resultsCol[["Sum"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$sum,               na.omitted, sum)
 
   # should explain supremum and infimum of an empty set?
-  if((options$minimum || options$maximum) && resultsCol[['Valid']] == 0) shouldAddExplainEmptySet <- TRUE else shouldAddExplainEmptySet <- FALSE
+  if((options$minimum || options$maximum) && valid == 0) shouldAddExplainEmptySet <- TRUE else shouldAddExplainEmptySet <- FALSE
 
   if (options$mode) {
     if (base::is.factor(na.omitted) == FALSE) {
