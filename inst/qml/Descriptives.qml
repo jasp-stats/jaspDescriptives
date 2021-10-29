@@ -210,6 +210,13 @@ Form
 
 		Group
 		{
+			title: qsTr("Sample Size")
+			CheckBox { name: "valid";			label: qsTr("Valid");	checked: true	}
+			CheckBox { name: "missing";			label: qsTr("Missing");	checked: true	}
+		}
+
+		Group
+		{
 			title: qsTr("Central Tendency")
 
 			CheckBox { name: "mode";			label: qsTr("Mode");					}
