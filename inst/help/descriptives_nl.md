@@ -9,7 +9,11 @@ Met beschrijvende statistieken kunt u basis beschrijvende statistieken verkrijge
 #### Invoerveld 
 - Variabelen: Alle variabelen waarin u geïnteresseerd bent. 
 - Splits: Variabelen kunnen worden gesplitst aan de hand van een categorische variabele zoals een experimentele conditie. 
+- Tabel met beschrijvingen transponeren: transponeert de eerste tabel.
 - Frequentietabellen: Geeft frequentietabellen weer voor elke variabele.
+  - Hoogste aantal verschillende waarden: Frequentietabellen worden getoond voor alle variabelen die minder unieke observaties hebben dan het gespecificeerde aantal.
+- Steelbladdiagram: Een tabel die alle numerieke observaties van klein naar groot toont. The observaties zijn gesplitst in een "stam", de eerste getal(len), en een "blad", het daaropvolgende getal.
+  - schaal: Controleert de grootte van de tabel. Het verhogen van de schaal leidt tot een grovere weergave van de variabele, terwijl het verlagen van de schaal leidt tot een afgevlakte weergave.
 
 ### Grafieken 
 - Verdelingsgrafieken: Voor een continue variabele wordt een histogram weergegeven. Voor nominale en ordinale variabelen wordt een frequentieverdeling weergegeven.
@@ -87,6 +91,11 @@ Met beschrijvende statistieken kunt u basis beschrijvende statistieken verkrijge
   - Percentage: Percentage van voorkomen van elke waarde.
   - Geldig percentage: Percentage van het voorkomen van elke geldige waarde.
   - Cumulatieve percentage: Het cumulatieve percentage. 
+
+#### Steelbladdiagram
+- Toont de spreiding van een variabele.
+  - Stam: de eerste getallen.
+  - Blad: het eerste getal na de stam.
 
 ### Referenties
 -------
