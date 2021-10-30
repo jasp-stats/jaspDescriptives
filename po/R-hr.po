@@ -2,172 +2,180 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2021-07-10 03:30\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-10-30 19:47+0000\n"
+"Last-Translator: Igor Dobrača <igor.dobraca@gmail.com>\n"
+"Language-Team: Croatian <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-r/hr/>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.9-dev\n"
 
 msgid "Frequency Tables"
-msgstr ""
+msgstr "Tablica frekvencija"
 
 msgid "Correlation plots"
-msgstr ""
+msgstr "Grafikoni korelacije"
 
 msgid "Correlation plot"
-msgstr ""
+msgstr "Grafikon korelacije"
 
 msgid "Distribution Plots"
-msgstr ""
+msgstr "Grafikon distribucije"
 
 msgid "Boxplots"
-msgstr ""
+msgstr "Pravokutni dijagrami"
 
 msgid "Q-Q Plots"
-msgstr ""
+msgstr "Q-Q grafikoni"
 
 msgid "Q-Q Plot"
-msgstr ""
+msgstr "Q-Q grafikon"
 
 msgid "Plotting is not possible: Variable only contains NA!"
-msgstr ""
+msgstr "Crtanje nije moguće: varijabla sadrži samo NA!"
 
 msgid "Pie charts"
-msgstr ""
+msgstr "Tortni grafikon"
 
 msgid "Stem and Leaf"
-msgstr ""
+msgstr "S-L dijagram"
 
 msgid "Scatter Plots"
-msgstr ""
+msgstr "Dijagram rasipanja"
 
 msgid "Interval plots"
-msgstr ""
+msgstr "Dijagram intervala"
 
 msgid "Dot Plots"
-msgstr ""
+msgstr "Dijagram točaka"
 
 msgid "Descriptive Statistics"
-msgstr ""
+msgstr "Deskriptivna statistika"
 
 msgid "Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s"
 msgstr ""
+"Iz analize je isključeno %1$i redaka koji odgovaraju vrijednostima koje "
+"nedostaju u split-by varijabli %2$s"
 
 msgid "Valid"
-msgstr ""
+msgstr "Valjani"
 
 msgid "Missing"
-msgstr ""
+msgstr "Nedostajući"
 
 msgid "Mode"
-msgstr ""
+msgstr "Mod"
 
 msgid "Median"
-msgstr ""
+msgstr "Medijan"
 
 msgid "Mean"
-msgstr ""
+msgstr "Aritmetička sredina"
 
 msgid "Std. Error of Mean"
-msgstr ""
+msgstr "Std. pogreška ar. sredine"
 
 msgid "Std. Deviation"
-msgstr ""
+msgstr "Standardna devijacija"
 
 msgid "Coefficient of Variation"
-msgstr ""
+msgstr "Koeficijent varijacije"
 
 msgid "MAD"
-msgstr ""
+msgstr "MAD"
 
 msgid "MAD Robust"
-msgstr ""
+msgstr "Robustni MAD"
 
 msgid "IQR"
-msgstr ""
+msgstr "IQR"
 
 msgid "Variance"
-msgstr ""
+msgstr "Varijanca"
 
 msgid "Skewness"
-msgstr ""
+msgstr "Asimetrija"
 
 msgid "Std. Error of Skewness"
-msgstr ""
+msgstr "Std. pogreška Skewness"
 
 msgid "Kurtosis"
-msgstr ""
+msgstr "Kurtosis"
 
 msgid "Std. Error of Kurtosis"
-msgstr ""
+msgstr "Std. pogreška Kurtosis"
 
 msgid "Shapiro-Wilk"
-msgstr ""
+msgstr "Shapiro-Wilk"
 
 msgid "P-value of Shapiro-Wilk"
-msgstr ""
+msgstr "Shapiro-Wilk p-vrijednost"
 
 msgid "Range"
-msgstr ""
+msgstr "Raspon"
 
 msgid "Minimum"
-msgstr ""
+msgstr "Minimum"
 
 msgid "Maximum"
-msgstr ""
+msgstr "Maksimum"
 
 msgid "%gth percentile"
-msgstr ""
+msgstr "%g. percentil"
 
 msgid "Sum"
-msgstr ""
+msgstr "Suma"
 
 msgid "All values are identical"
-msgstr ""
+msgstr "Sve vrijednosti su identične"
 
 msgid "Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set is %s."
 msgstr ""
+"Infimum (minimum) praznog skupa je %s, supremum (maksimum) praznog skupa je "
+"%s."
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
-msgstr ""
+msgstr "Nisu sve vrijednosti dostupne za <i>nominalne</i> varijable"
 
 msgid "More than one mode exists, only the first is reported"
-msgstr ""
+msgstr "Postoji više od jedne mod vrijednosti, a prikazana je samo prva"
 
 msgid "Total"
-msgstr ""
+msgstr "Ukupno"
 
 msgid "All variables have more than %1$s distinct values"
-msgstr ""
+msgstr "Sve varijable imaju više od %1$s različitih vrijednosti"
 
 msgid "Frequencies"
-msgstr ""
+msgstr "Frekvencije"
 
 msgid "Frequencies for %s"
-msgstr ""
+msgstr "Frekvencije za %s"
 
 msgid "Frequency"
-msgstr ""
+msgstr "Frekvencija"
 
 msgid "Percent"
-msgstr ""
+msgstr "Postotak"
 
 msgid "Valid Percent"
-msgstr ""
+msgstr "Zbirni postotak"
 
 msgid "Cumulative Percent"
-msgstr ""
+msgstr "Zbirni postotak"
 
 msgid "Density"
-msgstr ""
+msgstr "Gustoća"
 
 msgid "Plotting not possible: %s"
-msgstr ""
+msgstr "Crtanje nije moguće: %s"
 
 msgid "Plotting is not possible: No plot type selected!"
-msgstr ""
+msgstr "Crtanje nije moguće: vrsta grafikona nije odabrana!"
 
 msgid "Counts"
 msgstr ""
@@ -176,31 +184,37 @@ msgid "No non-missing values!"
 msgstr ""
 
 msgid "Theoretical Quantiles"
-msgstr ""
+msgstr "Teoretski kvantili"
 
 msgid "Sample Quantiles"
-msgstr ""
+msgstr "Kvantili uzorka"
 
 msgid "A stem and leaf table could not be made because there are fewer than 2 non-missing observations"
 msgstr ""
+"S-L tablica ne može biti prikazana jer postoji manje od 2 opažanja koja ne "
+"nedostaju"
 
 msgid "The decimal point is at the |"
-msgstr ""
+msgstr "Decimalna točka je na |"
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural "The following variables have more than %1$s distinct values and are omitted: %2$s."
-msgstr[0] ""
+msgstr[0] "%2$s ima više od %1$s različitih vrijednosti i izostavljen je."
 msgstr[1] ""
+"Sljedeće varijable imaju više od %1$s različitih vrijednosti i izostavljene "
+"su: %2$s."
 msgstr[2] ""
+"Sljedeće varijable imaju više od %1$s različitih vrijednosti i izostavljene "
+"su: %2$s."
 
 msgid "The decimal point is %s digit to the right of the |"
 msgid_plural "The decimal point is %s digits to the right of the |"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Decimalna točka je %s znamenka desno od |"
+msgstr[1] "Decimalna točka je %s znamenki desno od |"
+msgstr[2] "Decimalna točka je %s znamenki desno od |"
 
 msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Decimalna točka je %s znamenka lijevo od |"
+msgstr[1] "Decimalna točka je %s znamenki lijevo od |"
+msgstr[2] "Decimalna točka je %s znamenki lijevo od |"
