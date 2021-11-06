@@ -1,0 +1,364 @@
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-10-30 19:47+0000\n"
+"Last-Translator: Changya Hu <changyahu@gmail.com>\n"
+"Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
+"jasp/jaspdescriptives-qml/zh_Hant/>\n"
+"Language: zh_Hant\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.9-dev\n"
+"X-Qt-Contexts: true\n"
+
+msgctxt "Description|"
+msgid "Descriptives"
+msgstr "描述統計"
+
+msgctxt "Description|"
+msgid "Descriptive Statistics"
+msgstr "描述統計數"
+
+msgctxt "Descriptives|"
+msgid "Variables"
+msgstr "變項"
+
+msgctxt "Descriptives|"
+msgid "Split"
+msgstr "分群"
+
+msgctxt "Descriptives|"
+msgid "Frequency tables"
+msgstr "次數分配表"
+
+msgctxt "Descriptives|"
+msgid "Maximum distinct values"
+msgstr "個別不重複數值之最大值"
+
+msgctxt "Descriptives|"
+msgid "Stem and leaf tables"
+msgstr "莖葉圖"
+
+msgctxt "Descriptives|"
+msgid "scale"
+msgstr "圖表長度"
+
+msgctxt "Descriptives|"
+msgid ""
+"The scale parameter controls how much the table is expanded. For example, "
+"scale = 2 will cause the table to be roughly twice as long as the default "
+"(scale = 1)."
+msgstr "此參數設定圖表大小倍數。如scale=2時，表格大小約是scale=1的兩倍。"
+
+msgctxt "Descriptives|"
+msgid "Create a Stem and leaf table."
+msgstr "製作莖葉圖"
+
+msgctxt "Descriptives|"
+msgid "Plots"
+msgstr "統計圖"
+
+msgctxt "Descriptives|"
+msgid "Color palette"
+msgstr "調色盤"
+
+msgctxt "Descriptives|"
+msgid "Colorblind"
+msgstr "色盲友善配色選擇一"
+
+msgctxt "Descriptives|"
+msgid "Colorblind Alt."
+msgstr "色盲友善配色選擇二"
+
+msgctxt "Descriptives|"
+msgid "Viridis"
+msgstr "色盲友善配色選擇三"
+
+msgctxt "Descriptives|"
+msgid "ggplot2"
+msgstr "ggplot2配色"
+
+msgctxt "Descriptives|"
+msgid "Gray"
+msgstr "灰階"
+
+msgctxt "Descriptives|"
+msgid "Boxplots"
+msgstr "箱形圖"
+
+msgctxt "Descriptives|"
+msgid "Boxplot element"
+msgstr "箱形圖設定"
+
+msgctxt "Descriptives|"
+msgid "Violin element"
+msgstr "小提琴圖"
+
+msgctxt "Descriptives|"
+msgid "Jitter element"
+msgstr "資料點"
+
+msgctxt "Descriptives|"
+msgid "Use color palette"
+msgstr "使用調色盤"
+
+msgctxt "Descriptives|"
+msgid "Label outliers"
+msgstr "標示離群值"
+
+msgctxt "Descriptives|"
+msgid "Scatter Plots"
+msgstr "散佈圖"
+
+msgctxt "Descriptives|"
+msgid "Graph above scatter plot"
+msgstr "散佈圖上方顯示統計圖"
+
+msgctxt "Descriptives|"
+msgid "Density"
+msgstr "密度"
+
+msgctxt "Descriptives|"
+msgid "Histogram"
+msgstr "直方圖"
+
+msgctxt "Descriptives|"
+msgid "None"
+msgstr "不顯示統計圖"
+
+msgctxt "Descriptives|"
+msgid "Graph right of scatter plot"
+msgstr "散佈圖右方顯示統計圖"
+
+msgctxt "Descriptives|"
+msgid "Add regression line"
+msgstr "顯示(簡單)迴歸線"
+
+msgctxt "Descriptives|"
+msgid "Smooth"
+msgstr "平滑線"
+
+msgctxt "Descriptives|"
+msgid "Linear"
+msgstr "直線"
+
+msgctxt "Descriptives|"
+msgid "Show confidence interval"
+msgstr "顯示信賴區間"
+
+msgctxt "Descriptives|"
+msgid "Show legend"
+msgstr "顯示註釋"
+
+msgctxt "Descriptives|"
+msgid "Basic plots"
+msgstr "基本統計圖"
+
+msgctxt "Descriptives|"
+msgid "Distribution plots"
+msgstr "分配圖"
+
+msgctxt "Descriptives|"
+msgid "Display density"
+msgstr "顯示密度"
+
+msgctxt "Descriptives|"
+msgid "Correlation plots"
+msgstr "相關圖"
+
+msgctxt "Descriptives|"
+msgid "Q-Q plots"
+msgstr "分位圖"
+
+msgctxt "Descriptives|"
+msgid "Pie charts"
+msgstr "圓餅圖"
+
+msgctxt "Descriptives|"
+msgid "Statistics"
+msgstr "統計數"
+
+msgctxt "Descriptives|"
+msgid "Quartiles"
+msgstr "四分位數"
+
+msgctxt "Descriptives|"
+msgid "Cut points for: "
+msgstr "將資料切成 "
+
+msgctxt "Descriptives|"
+msgid " equal groups"
+msgstr " 個等分群體"
+
+msgctxt "Descriptives|"
+msgid "Percentiles:"
+msgstr "百分位數"
+
+msgctxt "Descriptives|"
+msgid "Central Tendency"
+msgstr "集中趨勢"
+
+msgctxt "Descriptives|"
+msgid "Mean"
+msgstr "平均數"
+
+msgctxt "Descriptives|"
+msgid "Median"
+msgstr "中位數"
+
+msgctxt "Descriptives|"
+msgid "Mode"
+msgstr "眾數"
+
+msgctxt "Descriptives|"
+msgid "Sum"
+msgstr "總和"
+
+msgctxt "Descriptives|"
+msgid "Dispersion"
+msgstr "離散"
+
+msgctxt "Descriptives|"
+msgid "S. E. mean"
+msgstr "平均數之標準誤"
+
+msgctxt "Descriptives|"
+msgid "Std.deviation"
+msgstr "標準差"
+
+msgctxt "Descriptives|"
+msgid "MAD"
+msgstr "中位數絕對離差"
+
+msgctxt "Descriptives|"
+msgid "MAD Robust"
+msgstr "中位數絕對離差(穩健)"
+
+msgctxt "Descriptives|"
+msgid "IQR"
+msgstr "四分位距"
+
+msgctxt "Descriptives|"
+msgid "Variance"
+msgstr "變異數"
+
+msgctxt "Descriptives|"
+msgid "Range"
+msgstr "全距"
+
+msgctxt "Descriptives|"
+msgid "Minimum"
+msgstr "最小值"
+
+msgctxt "Descriptives|"
+msgid "Maximum"
+msgstr "最大值"
+
+msgctxt "Descriptives|"
+msgid "Distribution"
+msgstr "分配"
+
+msgctxt "Descriptives|"
+msgid "Skewness"
+msgstr "偏度"
+
+msgctxt "Descriptives|"
+msgid "Kurtosis"
+msgstr "峰度"
+
+msgctxt "Descriptives|"
+msgid "Shapiro-Wilk test"
+msgstr "Shapiro-Wilk 常態檢定"
+
+msgctxt "Descriptives|"
+msgid "Values are group midpoints"
+msgstr "顯示數值為組中點"
+
+msgctxt "Descriptives|"
+msgid "Charts"
+msgstr "統計圖"
+
+msgctxt "Descriptives|"
+msgid "Chart Type"
+msgstr "統計圖類型"
+
+msgctxt "Descriptives|"
+msgid "Bar charts"
+msgstr "長條圖"
+
+msgctxt "Descriptives|"
+msgid "Histograms"
+msgstr "直方圖"
+
+msgctxt "Descriptives|"
+msgid "Chart Values"
+msgstr "圖形數值"
+
+msgctxt "Descriptives|"
+msgid "Frequencies"
+msgstr "次數"
+
+msgctxt "Descriptives|"
+msgid "Percentages"
+msgstr "百分比"
+
+msgctxt "Descriptives|"
+msgid "Display rug marks"
+msgstr "顯示座標軸鬚"
+
+msgctxt "Descriptives|"
+msgid "Bin width type"
+msgstr "組距類型"
+
+msgctxt "Descriptives|"
+msgid "Sturges"
+msgstr "Sturges 法"
+
+msgctxt "Descriptives|"
+msgid "Scott"
+msgstr "Scott 法"
+
+msgctxt "Descriptives|"
+msgid "Doane"
+msgstr "Doane 法"
+
+msgctxt "Descriptives|"
+msgid "Freedman-Diaconis"
+msgstr "Freedman-Diaconis 法"
+
+msgctxt "Descriptives|"
+msgid "Manual"
+msgstr "自訂"
+
+msgctxt "Descriptives|"
+msgid "Number of bins"
+msgstr "組距數"
+
+msgctxt "Descriptives|"
+msgid "Interval plots"
+msgstr "區間圖"
+
+msgctxt "Descriptives|"
+msgid "Coefficient of Variation"
+msgstr "變異係數"
+
+msgctxt "Description|"
+msgid "Explore the data with tables and plots"
+msgstr "以統計圖表探索資料"
+
+msgctxt "Descriptives|"
+msgid "Transpose descriptives table"
+msgstr "將描述統計表行列轉置"
+
+msgctxt "Descriptives|"
+msgid "Customizable plots"
+msgstr "修改統計圖設定"
+
+msgctxt "Descriptives|"
+msgid "Dot plots"
+msgstr "點圖"
+
+msgctxt "Descriptives|"
+msgid "Quantiles"
+msgstr "分位数"
