@@ -1,0 +1,203 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: jaspDescriptives 0.15.0\n"
+"POT-Creation-Date: 2021-07-10 03:30\n"
+"PO-Revision-Date: 2021-10-31 14:36+0000\n"
+"Last-Translator: Changya Hu <changyahu@gmail.com>\n"
+"Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
+"jasp/jaspdescriptives-r/zh_Hant/>\n"
+"Language: zh_Hant\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 4.9-dev\n"
+
+msgid "Frequency Tables"
+msgstr "次數表"
+
+msgid "Correlation plots"
+msgstr "相關圖"
+
+msgid "Correlation plot"
+msgstr "相關圖"
+
+msgid "Distribution Plots"
+msgstr "機率分布圖"
+
+msgid "Boxplots"
+msgstr "箱形圖"
+
+msgid "Q-Q Plots"
+msgstr "分位圖"
+
+msgid "Q-Q Plot"
+msgstr "分位圖"
+
+msgid "Plotting is not possible: Variable only contains NA!"
+msgstr "無法繪圖: 變項僅含遺漏值!"
+
+msgid "Pie charts"
+msgstr "圓餅圖"
+
+msgid "Stem and Leaf"
+msgstr "莖葉圖"
+
+msgid "Scatter Plots"
+msgstr "散佈圖"
+
+msgid "Interval plots"
+msgstr "區間圖"
+
+msgid "Dot Plots"
+msgstr "點圖"
+
+msgid "Descriptive Statistics"
+msgstr "描述統計數"
+
+msgid "Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s"
+msgstr "因為以%2$s分群變項中有遺漏值，共有%1$i 資料未納入分析"
+
+msgid "Valid"
+msgstr "有效"
+
+msgid "Missing"
+msgstr "遺漏"
+
+msgid "Mode"
+msgstr "眾數"
+
+msgid "Median"
+msgstr "中位數"
+
+msgid "Mean"
+msgstr "平均數"
+
+msgid "Std. Error of Mean"
+msgstr "平均數之標準誤"
+
+msgid "Std. Deviation"
+msgstr "標準差"
+
+msgid "Coefficient of Variation"
+msgstr "變異係數"
+
+msgid "MAD"
+msgstr "中位數絕對離差"
+
+msgid "MAD Robust"
+msgstr "中位數絕對離差(穩健)"
+
+msgid "IQR"
+msgstr "四分位距"
+
+msgid "Variance"
+msgstr "變異數"
+
+msgid "Skewness"
+msgstr "偏度"
+
+msgid "Std. Error of Skewness"
+msgstr "偏度標準誤"
+
+msgid "Kurtosis"
+msgstr "峰度"
+
+msgid "Std. Error of Kurtosis"
+msgstr "峰度標準誤"
+
+msgid "Shapiro-Wilk"
+msgstr "Shapiro-Wilk 檢定"
+
+msgid "P-value of Shapiro-Wilk"
+msgstr "Shapiro-Wilk 檢定之p值"
+
+msgid "Range"
+msgstr "全距"
+
+msgid "Minimum"
+msgstr "最小值"
+
+msgid "Maximum"
+msgstr "最大值"
+
+msgid "%gth percentile"
+msgstr "第%百分位數"
+
+msgid "Sum"
+msgstr "總和"
+
+msgid "All values are identical"
+msgstr "所有數值皆相同"
+
+msgid "Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set is %s."
+msgstr "空集合的最大下界為 %s, 最小上界為 %s."
+
+msgid "Not all values are available for <i>Nominal Text</i> variables"
+msgstr "<i>Nominal Text</i> 變項有些數值次數為零"
+
+msgid "More than one mode exists, only the first is reported"
+msgstr "有多個眾數值，僅報告第一個眾數值"
+
+msgid "Total"
+msgstr "總和"
+
+msgid "All variables have more than %1$s distinct values"
+msgstr "所有變項中皆有高於 %1$s 個的不同數值"
+
+msgid "Frequencies"
+msgstr "次數"
+
+msgid "Frequencies for %s"
+msgstr "% 的次數"
+
+msgid "Frequency"
+msgstr "次數"
+
+msgid "Percent"
+msgstr "百分比"
+
+msgid "Valid Percent"
+msgstr "有效百分比"
+
+msgid "Cumulative Percent"
+msgstr "累積百分比"
+
+msgid "Density"
+msgstr "密度"
+
+msgid "Plotting not possible: %s"
+msgstr "無法繪圖: %s"
+
+msgid "Plotting is not possible: No plot type selected!"
+msgstr "無法繪圖：未選取統計圖類型!"
+
+msgid "Counts"
+msgstr "次數"
+
+msgid "No non-missing values!"
+msgstr "皆為遺漏值!"
+
+msgid "Theoretical Quantiles"
+msgstr "理論分位数"
+
+msgid "Sample Quantiles"
+msgstr "樣本分位数"
+
+msgid "A stem and leaf table could not be made because there are fewer than 2 non-missing observations"
+msgstr "無法繪製莖葉圖:因該變項少於兩個數值"
+
+msgid "The decimal point is at the |"
+msgstr "小數點位數"
+
+msgid "%2$s has more than %1$s distinct values and is omitted."
+msgid_plural "The following variables have more than %1$s distinct values and are omitted: %2$s."
+msgstr[0] "下列變項包含 %1$s 個以上的不同數值, 故略過: %2$s"
+
+msgid "The decimal point is %s digit to the right of the |"
+msgid_plural "The decimal point is %s digits to the right of the |"
+msgstr[0] "小數點位數為 | 右邊 %s 位數"
+
+msgid "The decimal point is %s digit to the left of the |"
+msgid_plural "The decimal point is %s digits to the left of the |"
+msgstr[0] "小數點位數為 | 左邊 %s 位數"
