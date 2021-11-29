@@ -281,7 +281,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   stats$dependOn(c("splitby", "variables", "percentileValuesEqualGroupsNo", "percentileValuesPercentilesPercentiles", "mode", "median", "mean", "standardErrorMean",
     "standardDeviation", "cOfVariation", "variance", "skewness", "kurtosis", "shapiro", "range", "iqr", "mad", "madrobust", "minimum", "maximum",
-    "sum", "percentileValuesQuartiles", "percentileValuesEqualGroups", "percentileValuesPercentiles", "transposeMainTable"))
+    "sum", "percentileValuesQuartiles", "percentileValuesEqualGroups", "percentileValuesPercentiles", "transposeMainTable", "valid", "missing"))
 
   if (wantsSplit) {
     stats$transposeWithOvertitle <- TRUE
@@ -291,9 +291,8 @@ Descriptives <- function(jaspResults, dataset, options) {
     stats$addColumnInfo(name="Variable",  title="", type="string")
   }
 
-  stats$addColumnInfo(name="Valid",   title=gettext("Valid"), type="integer")
-  stats$addColumnInfo(name="Missing", title=gettext("Missing"), type="integer")
-
+  if (options$valid)                stats$addColumnInfo(name="Valid",                       title=gettext("Valid"),                   type="integer")
+  if (options$missing)              stats$addColumnInfo(name="Missing",                     title=gettext("Missing"),                 type="integer")
   if (options$mode)                 stats$addColumnInfo(name="Mode",                        title=gettext("Mode"),                    type="number")
   if (options$median)               stats$addColumnInfo(name="Median",                      title=gettext("Median"),                  type="number")
   if (options$mean)                 stats$addColumnInfo(name="Mean",                        title=gettext("Mean"), 				            type="number")
@@ -409,14 +408,15 @@ Descriptives <- function(jaspResults, dataset, options) {
   rows        <- length(column)
   na.omitted  <- na.omit(column)
 
-  resultsCol[["Valid"]]   <- length(na.omitted)
-  resultsCol[["Missing"]] <- rows - length(na.omitted)
-
   if (base::is.factor(na.omitted) && (options$mode || options$median || options$mean || options$minimum || options$standardErrorMean || options$iqr || options$mad || options$madrobust || options$kurtosis || options$shapiro || options$skewness || options$percentileValuesQuartiles || options$variance || options$standardDeviation ||  options$cOfVariation || options$percentileValuesPercentiles || options$sum || options$maximum)) {
     shouldAddNominalTextFootnote <- TRUE
   }
 
   shouldAddIdenticalFootnote <- all(na.omitted[1] == na.omitted) && (options$skewness || options$kurtosis || options$shapiro)
+
+  valid <- length(na.omitted)
+  resultsCol[["Valid"]]                   <- if (options$valid)   valid
+  resultsCol[["Missing"]]                 <- if (options$missing) rows - length(na.omitted)
 
   resultsCol[["Median"]]                  <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$median,            na.omitted, median)
   resultsCol[["Mean"]]                    <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$mean,              na.omitted, mean)
@@ -439,7 +439,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   resultsCol[["Sum"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$sum,               na.omitted, sum)
 
   # should explain supremum and infimum of an empty set?
-  if((options$minimum || options$maximum) && resultsCol[['Valid']] == 0) shouldAddExplainEmptySet <- TRUE else shouldAddExplainEmptySet <- FALSE
+  if((options$minimum || options$maximum) && valid == 0) shouldAddExplainEmptySet <- TRUE else shouldAddExplainEmptySet <- FALSE
 
   if (options$mode) {
     if (base::is.factor(na.omitted) == FALSE) {
