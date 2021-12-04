@@ -360,3 +360,15 @@ msgstr "Dotplots"
 msgctxt "Descriptives|"
 msgid "Quantiles"
 msgstr "Kwantielen"
+
+msgctxt "Descriptives|"
+msgid "Sample Size"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Valid"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Missing"
+msgstr ""

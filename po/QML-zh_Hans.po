@@ -359,3 +359,15 @@ msgstr "百分比"
 msgctxt "Descriptives|"
 msgid "Quantiles"
 msgstr "分位数"
+
+msgctxt "Descriptives|"
+msgid "Sample Size"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Valid"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Missing"
+msgstr ""

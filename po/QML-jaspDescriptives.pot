@@ -355,3 +355,15 @@ msgstr ""
 msgctxt "Descriptives|"
 msgid "Quantiles"
 msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Sample Size"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Valid"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Missing"
+msgstr ""

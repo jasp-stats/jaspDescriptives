@@ -361,3 +361,15 @@ msgstr "Punktdiagramme"
 msgctxt "Descriptives|"
 msgid "Quantiles"
 msgstr "Quantile"
+
+msgctxt "Descriptives|"
+msgid "Sample Size"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Valid"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Missing"
+msgstr ""
