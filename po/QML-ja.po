@@ -362,12 +362,28 @@ msgstr "分位数"
 
 msgctxt "Descriptives|"
 msgid "Sample Size"
-msgstr ""
+msgstr "サンプルサイズ"
 
 msgctxt "Descriptives|"
 msgid "Valid"
-msgstr ""
+msgstr "妥当"
 
 msgctxt "Descriptives|"
 msgid "Missing"
-msgstr ""
+msgstr "欠損値"
+
+msgctxt "Descriptives|"
+msgid "S. E. mean"
+msgstr "標準誤差"
+
+msgctxt "Descriptives|"
+msgid "Std.deviation"
+msgstr "標準偏差"
+
+msgctxt "Descriptives|"
+msgid "MAD Robust"
+msgstr "ロバスト中央値絶対偏差"
+
+msgctxt "Descriptives|"
+msgid "Coefficient of Variation"
+msgstr "変動係数"
