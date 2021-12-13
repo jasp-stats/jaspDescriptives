@@ -9,7 +9,11 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
 #### Assignment Box 
 - Variables: All variables of interest.
 - Split: Can be split by a categorical variable such as experimental condition.
-- Displays a frequency table for each variable.
+- Tranpose descriptive table: Tranposes the main table
+- Frequency tables: Displays a frequency table for each variable.
+  - Maximum distinct values: Frequency tables are shown for each variables that has fewer distinct observations than the specified number.
+- Stem and Leaf tables: A table that shows all numeric observation from small to large. The observations are split into a "stem", the first digit(s), and a "leaf", the subsequent digit.
+  - scale: Controls the table length. Increasing the scale leads to a coarser table whereas decreasing the scale leads to a smoother table.
 
 ### Plots
 - Distribution Plots: For continuous variables, displays a histogram. For nominal and ordinal variables, displays a frequency distribution.
@@ -90,6 +94,11 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
   - Percent: Percentage of occurrence of each value.
   - Valid Percent: Valid percentage of occurrence of each value.
   - Cumulative Percent: Cumulative percentage.
+
+#### Stem and Leaf tables
+- Displays the spread of a variable.
+  - Stem: the first digit(s).
+  - Leaf: the first digit after the stem.
 
 ### References
 -------
