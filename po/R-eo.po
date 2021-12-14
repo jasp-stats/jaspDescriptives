@@ -82,13 +82,13 @@ msgstr "Norma Eraro de Aritmetika Meznombro"
 msgid "Std. Deviation"
 msgstr "Norma Devio"
 
-msgid "Coefficient of Variation"
+msgid "Coefficient of variation"
 msgstr ""
 
 msgid "MAD"
 msgstr ""
 
-msgid "MAD Robust"
+msgid "MAD robust"
 msgstr ""
 
 msgid "IQR"

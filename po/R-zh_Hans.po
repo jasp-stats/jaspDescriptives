@@ -79,13 +79,13 @@ msgstr "均值的标准误差"
 msgid "Std. Deviation"
 msgstr "标准差"
 
-msgid "Coefficient of Variation"
+msgid "Coefficient of variation"
 msgstr "变异系数"
 
 msgid "MAD"
 msgstr "MAD"
 
-msgid "MAD Robust"
+msgid "MAD robust"
 msgstr "MAD 稳健性"
 
 msgid "IQR"

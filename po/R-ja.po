@@ -81,13 +81,13 @@ msgstr "平均の標準誤差"
 msgid "Std. Deviation"
 msgstr "標準偏差"
 
-msgid "Coefficient of Variation"
+msgid "Coefficient of variation"
 msgstr "変動係数"
 
 msgid "MAD"
 msgstr "中央絶対偏差"
 
-msgid "MAD Robust"
+msgid "MAD robust"
 msgstr "ロバスト中央値絶対偏差"
 
 msgid "IQR"

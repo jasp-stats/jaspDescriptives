@@ -267,15 +267,15 @@ msgid "Dispersion"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "S. E. mean"
+msgid "S.E. mean"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Std.deviation"
+msgid "Std. deviation"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Coefficient of Variation"
+msgid "Coefficient of variation"
 msgstr ""
 
 msgctxt "Descriptives|"
@@ -283,7 +283,7 @@ msgid "MAD"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "MAD Robust"
+msgid "MAD robust"
 msgstr ""
 
 msgctxt "Descriptives|"

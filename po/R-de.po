@@ -84,14 +84,14 @@ msgstr "Std.-Fehler Mittelwert"
 msgid "Std. Deviation"
 msgstr "Standardabweichung"
 
-msgid "Coefficient of Variation"
+msgid "Coefficient of variation"
 msgstr "Variationskoeffizient"
 
 msgid "MAD"
 msgstr "MAD"
 
-msgid "MAD Robust"
-msgstr "MAD Robust"
+msgid "MAD robust"
+msgstr "MAD robust"
 
 msgid "IQR"
 msgstr "IQR"

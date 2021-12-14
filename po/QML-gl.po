@@ -93,7 +93,7 @@ msgid "Boxplot element"
 msgstr "Elemento de diagrama de caixa"
 
 msgctxt "Descriptives|"
-msgid "MAD Robust"
+msgid "MAD robust"
 msgstr "DAM (MAD) Robusta"
 
 msgctxt "Descriptives|"
@@ -101,7 +101,7 @@ msgid "Smooth"
 msgstr "Suavizado"
 
 msgctxt "Descriptives|"
-msgid "Std.deviation"
+msgid "Std. deviation"
 msgstr "Desvío padrón"
 
 msgctxt "Descriptives|"
@@ -125,7 +125,7 @@ msgid "Show legend"
 msgstr "Amosar a lenda"
 
 msgctxt "Descriptives|"
-msgid "S. E. mean"
+msgid "S.E. mean"
 msgstr "Erro padrón da media"
 
 msgctxt "Descriptives|"
@@ -331,8 +331,8 @@ msgid "Median"
 msgstr "Mediana"
 
 msgctxt "Descriptives|"
-msgid "Coefficient of Variation"
-msgstr "Coeficiente de Variación"
+msgid "Coefficient of variation"
+msgstr "Coeficiente de variación"
 
 msgctxt "Descriptives|"
 msgid "Variance"

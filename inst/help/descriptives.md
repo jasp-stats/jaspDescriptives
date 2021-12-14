@@ -34,11 +34,11 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
   - Cut points for x equal groups: Displays the cut points that divide the data into x equal groups; default is 4 equal groups.
   - Percentiles: Displays the xth percentile; percentile values must be separated by comma.
 - Dispersion (only for continuous variables):
-  - S.E. Mean: Standard error of the mean.
+  - S.E. mean: Standard error of the mean.
   - Std. deviation: Standard deviation of the data points.
-  - Coefficient of Variation: The coefficient of variation gives us the relative dispersion of the data, in contrast to the standard deviation, which gives the absolute dispersion. For this purpose, the standard deviation is divided by the mean value, so that the unit is truncated away.
+  - Coefficient of variation: The Coefficient of variation gives us the relative dispersion of the data, in contrast to the standard deviation, which gives the absolute dispersion. For this purpose, the standard deviation is divided by the mean value, so that the unit is truncated away.
   - MAD: Median absolute deviation of the data points.
-  - MAD Robust: Median absolute deviation of the data points, adjusted by a factor for asymptotically normal consistency.
+  - MAD robust: Median absolute deviation of the data points, adjusted by a factor for asymptotically normal consistency.
   - IQR: Interquartile range of the data points; 75th percentile - 25th percentile.
   - Variance: Variance of the data points.
   - Range: Range of the data points; maximum - minimum.

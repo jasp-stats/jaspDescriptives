@@ -82,13 +82,13 @@ msgstr "Std. pogreška ar. sredine"
 msgid "Std. Deviation"
 msgstr "Standardna devijacija"
 
-msgid "Coefficient of Variation"
+msgid "Coefficient of variation"
 msgstr "Koeficijent varijacije"
 
 msgid "MAD"
 msgstr "MAD"
 
-msgid "MAD Robust"
+msgid "MAD robust"
 msgstr "Robustni MAD"
 
 msgid "IQR"

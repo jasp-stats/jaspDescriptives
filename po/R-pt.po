@@ -87,14 +87,14 @@ msgstr "Erro padrão de média"
 msgid "Std. Deviation"
 msgstr "Desvio Padrão"
 
-msgid "Coefficient of Variation"
-msgstr "Coeficiente de Variação"
+msgid "Coefficient of variation"
+msgstr "Coeficiente de variação"
 
 msgid "MAD"
 msgstr "MAD"
 
-msgid "MAD Robust"
-msgstr "MAD Robusta"
+msgid "MAD robust"
+msgstr "MAD robusta"
 
 msgid "IQR"
 msgstr "Intervalo interquartil"

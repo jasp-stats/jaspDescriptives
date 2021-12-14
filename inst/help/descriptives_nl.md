@@ -55,16 +55,16 @@ Met beschrijvende statistieken kunt u basis beschrijvende statistieken verkrijge
 - Geldig: Het aantal geldige waarnemingen. 
 - Ontbrekend: Het aantal ontbrekende waarden. 
 - Gemiddelde: Rekenkundig gemiddelde van de datapunten.
-- Std. Fout van het Gemiddelde: De standaardfout van het gemiddelde. 
+- Std. fout van het gemiddelde: De standaardfout van het gemiddelde. 
 - Mediaan: Mediaan van de datapunten.
 - Modus: Modus van de datapunten; als er meerdere modi zijn, wordt slechts de eerste gerapporteerd. 
 - Standaardafwijking: De standaarddeviatie van de datapunten. 
 - MAD: Mediaan absolute afwijking van de datapunten. 
-- MAD Robuust: Mediaan absolute afwijking van de datapunten, bijgesteld door een factor voor asymptotische normale consistentie. 
+- MAD robuust: Mediaan absolute afwijking van de datapunten, bijgesteld door een factor voor asymptotische normale consistentie. 
 - IQR: Interkwartielafstand van de datapunten; 75e percentiel - 25e percentiel. 
 - Variantie: Variantie van de datapunten.
 - Scheefheid: De scheefheid van de verdeling van de datapunten.
-- Std. Fout van Scheefheid: De standaardfout van de scheefheid. 
+- Std. fout van scheefheid: De standaardfout van de scheefheid. 
 - Gepiektheid: De gepiektheid (kurtosis) van de verdeling van de datapunten. 
 - Std. Fout van Gepiektheid: De standaardfout van de kurtose. 
 - Shapiro-Wilk: waarde van de Shapiro-Wilk statistiek.

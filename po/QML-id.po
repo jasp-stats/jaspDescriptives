@@ -222,11 +222,11 @@ msgid "Dispersion"
 msgstr "Sebaran"
 
 msgctxt "Descriptives|"
-msgid "S. E. mean"
+msgid "S.E. mean"
 msgstr "Rerata S. E."
 
 msgctxt "Descriptives|"
-msgid "Std.deviation"
+msgid "Std. deviation"
 msgstr "Simp. baku"
 
 msgctxt "Descriptives|"
@@ -234,7 +234,7 @@ msgid "MAD"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "MAD Robust"
+msgid "MAD robust"
 msgstr ""
 
 msgctxt "Descriptives|"
@@ -344,7 +344,7 @@ msgid "Interval plots"
 msgstr "Plot interval"
 
 msgctxt "Descriptives|"
-msgid "Coefficient of Variation"
+msgid "Coefficient of variation"
 msgstr "Koefisien Variasi"
 
 msgctxt "Description|"

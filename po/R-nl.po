@@ -84,13 +84,13 @@ msgstr "Std. fout van het gemiddelde"
 msgid "Std. Deviation"
 msgstr "Standaardafwijking"
 
-msgid "Coefficient of Variation"
+msgid "Coefficient of variation"
 msgstr "Variatiecoëfficiënt"
 
 msgid "MAD"
 msgstr "MAD"
 
-msgid "MAD Robust"
+msgid "MAD robust"
 msgstr "MAD Robuust"
 
 msgid "IQR"
