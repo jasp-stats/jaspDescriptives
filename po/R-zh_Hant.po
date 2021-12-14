@@ -79,13 +79,13 @@ msgstr "平均數之標準誤"
 msgid "Std. Deviation"
 msgstr "標準差"
 
-msgid "Coefficient of Variation"
+msgid "Coefficient of variation"
 msgstr "變異係數"
 
 msgid "MAD"
 msgstr "中位數絕對離差"
 
-msgid "MAD Robust"
+msgid "MAD robust"
 msgstr "中位數絕對離差(穩健)"
 
 msgid "IQR"

@@ -219,11 +219,11 @@ msgid "Dispersion"
 msgstr "Streuung"
 
 msgctxt "Descriptives|"
-msgid "S. E. mean"
+msgid "S.E. mean"
 msgstr "Std.-Fehler Mittelwert"
 
 msgctxt "Descriptives|"
-msgid "Std.deviation"
+msgid "Std. deviation"
 msgstr "Std.-Abweichung"
 
 msgctxt "Descriptives|"
@@ -231,7 +231,7 @@ msgid "MAD"
 msgstr "MAD"
 
 msgctxt "Descriptives|"
-msgid "MAD Robust"
+msgid "MAD robust"
 msgstr "MAD robust"
 
 msgctxt "Descriptives|"
@@ -339,7 +339,7 @@ msgid "Interval plots"
 msgstr "Intervalldiagramme"
 
 msgctxt "Descriptives|"
-msgid "Coefficient of Variation"
+msgid "Coefficient of variation"
 msgstr "Variationskoeffizient"
 
 msgctxt "Description|"

@@ -265,11 +265,11 @@ Form
 			title:		qsTr("Dispersion")
 			columns:	2
 
-			CheckBox { name: "standardErrorMean";	label: qsTr("S. E. mean")							}
-			CheckBox { name: "standardDeviation";	label: qsTr("Std.deviation");		checked: true	}
-			CheckBox { name: "cOfVariation";		label: qsTr("Coefficient of Variation");			}
+			CheckBox { name: "standardErrorMean";	label: qsTr("S.E. mean")							}
+			CheckBox { name: "standardDeviation";	label: qsTr("Std. deviation");		checked: true	}
+			CheckBox { name: "cOfVariation";		label: qsTr("Coefficient of variation");			}
 			CheckBox { name: "mad";					label: qsTr("MAD")									}
-			CheckBox { name: "madrobust";			label: qsTr("MAD Robust")							}
+			CheckBox { name: "madrobust";			label: qsTr("MAD robust")							}
 			CheckBox { name: "iqr";					label: qsTr("IQR")									}
 			CheckBox { name: "variance";			label: qsTr("Variance")								}
 			CheckBox { name: "range";				label: qsTr("Range")								}

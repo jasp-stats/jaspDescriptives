@@ -269,15 +269,15 @@ msgid "Dispersion"
 msgstr "离散趋势"
 
 msgctxt "Descriptives|"
-msgid "S. E. mean"
+msgid "S.E. mean"
 msgstr "均值标准误差"
 
 msgctxt "Descriptives|"
-msgid "Std.deviation"
+msgid "Std. deviation"
 msgstr "标准差"
 
 msgctxt "Descriptives|"
-msgid "Coefficient of Variation"
+msgid "Coefficient of variation"
 msgstr "变异系数"
 
 msgctxt "Descriptives|"
@@ -285,8 +285,8 @@ msgid "MAD"
 msgstr "MAD"
 
 msgctxt "Descriptives|"
-msgid "MAD Robust"
-msgstr "MAD Robust"
+msgid "MAD robust"
+msgstr "MAD robust"
 
 msgctxt "Descriptives|"
 msgid "IQR"

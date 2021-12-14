@@ -220,11 +220,11 @@ msgid "Dispersion"
 msgstr "離散"
 
 msgctxt "Descriptives|"
-msgid "S. E. mean"
+msgid "S.E. mean"
 msgstr "平均數之標準誤"
 
 msgctxt "Descriptives|"
-msgid "Std.deviation"
+msgid "Std. deviation"
 msgstr "標準差"
 
 msgctxt "Descriptives|"
@@ -232,7 +232,7 @@ msgid "MAD"
 msgstr "中位數絕對離差"
 
 msgctxt "Descriptives|"
-msgid "MAD Robust"
+msgid "MAD robust"
 msgstr "中位數絕對離差(穩健)"
 
 msgctxt "Descriptives|"
@@ -340,7 +340,7 @@ msgid "Interval plots"
 msgstr "區間圖"
 
 msgctxt "Descriptives|"
-msgid "Coefficient of Variation"
+msgid "Coefficient of variation"
 msgstr "變異係數"
 
 msgctxt "Description|"

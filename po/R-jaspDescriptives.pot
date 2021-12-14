@@ -76,13 +76,13 @@ msgstr ""
 msgid "Std. Deviation"
 msgstr ""
 
-msgid "Coefficient of Variation"
+msgid "Coefficient of variation"
 msgstr ""
 
 msgid "MAD"
 msgstr ""
 
-msgid "MAD Robust"
+msgid "MAD robust"
 msgstr ""
 
 msgid "IQR"

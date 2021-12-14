@@ -83,13 +83,13 @@ msgstr "Error Típico de la Media"
 msgid "Std. Deviation"
 msgstr "Desviación Típica"
 
-msgid "Coefficient of Variation"
-msgstr "Coeficiente de Variación"
+msgid "Coefficient of variation"
+msgstr "Coeficiente de variación"
 
 msgid "MAD"
 msgstr "DAM (MAD)"
 
-msgid "MAD Robust"
+msgid "MAD robust"
 msgstr "DAM (MAD) Robusta"
 
 msgid "IQR"

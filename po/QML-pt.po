@@ -97,11 +97,11 @@ msgid "Dispersion"
 msgstr "Dispersão"
 
 msgctxt "Descriptives|"
-msgid "S. E. mean"
+msgid "S.E. mean"
 msgstr "Média de erro padrão"
 
 msgctxt "Descriptives|"
-msgid "Std.deviation"
+msgid "Std. deviation"
 msgstr "Desvio-padrão"
 
 msgctxt "Descriptives|"
@@ -181,8 +181,8 @@ msgid "Basic plots"
 msgstr "Gráficos básicos"
 
 msgctxt "Descriptives|"
-msgid "MAD Robust"
-msgstr "MAD Robusto"
+msgid "MAD robust"
+msgstr "MAD robusto"
 
 msgctxt "Descriptives|"
 msgid "IQR"
@@ -339,7 +339,7 @@ msgid "Interval plots"
 msgstr "Gráficos de intervalo"
 
 msgctxt "Descriptives|"
-msgid "Coefficient of Variation"
+msgid "Coefficient of variation"
 msgstr "Coeficiente de variação"
 
 msgctxt "Description|"

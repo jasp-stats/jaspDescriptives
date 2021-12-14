@@ -81,13 +81,13 @@ msgstr "Erreur Type de la Moyenne"
 msgid "Std. Deviation"
 msgstr "Écart type"
 
-msgid "Coefficient of Variation"
-msgstr "Coefficient de Variation"
+msgid "Coefficient of variation"
+msgstr "Coefficient de variation"
 
 msgid "MAD"
 msgstr "Écart Médian Absolu"
 
-msgid "MAD Robust"
+msgid "MAD robust"
 msgstr "Écart Médian Absolu Robuste"
 
 msgid "IQR"
