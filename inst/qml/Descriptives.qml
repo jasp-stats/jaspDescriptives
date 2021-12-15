@@ -167,6 +167,7 @@ Form
 					label: qsTr("Horizontal axis:")
 					showVariableTypeIcon: true
 					addEmptyValue: true
+					source: [{ name: "allVariablesList", discard: ["variables", "splitby", "heatmapVertical"], use: "type=ordinal|nominal"}]
 				}
 				DropDown
 				{
@@ -174,6 +175,7 @@ Form
 					label: qsTr("Vertical axis:")
 					showVariableTypeIcon: true
 					addEmptyValue: true
+					source: [{ name: "allVariablesList", discard: ["variables", "splitby", "heatmapHorizontal"], use: "type=ordinal|nominal"}]
 				}
 				CheckBox
 				{
