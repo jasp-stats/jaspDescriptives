@@ -578,12 +578,6 @@ Descriptives <- function(jaspResults, dataset, options) {
 
     freqTab <- .descriptivesFrequencyTableMeta(variable, wantsSplit, splitName)
 
-    freqTab$addColumnInfo(name="Level",               title=variable,                       type="string")
-    freqTab$addColumnInfo(name="Frequency",           title=gettext("Frequency"),           type="integer")
-    freqTab$addColumnInfo(name="Percent",             title=gettext("Percent"),             type="number", format="dp:1")
-    freqTab$addColumnInfo(name="Valid Percent",       title=gettext("Valid Percent"),       type="number", format="dp:1")
-    freqTab$addColumnInfo(name="Cumulative Percent",  title=gettext("Cumulative Percent"),  type="number", format="dp:1")
-
     freqTabs[[variable]] <- freqTab
 
     rows <- list()
