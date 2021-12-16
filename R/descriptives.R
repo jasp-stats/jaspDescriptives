@@ -1790,7 +1790,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   for (i in seq_along(variables)) {
     variableName  <- variables[[i]]
-    variable <- dataset[, variableName]
+    variable <- dataset[[variableName]]
 
     if(options[["splitby"]] == "") {
       .descriptivesCreateSingleHeatmap(container, axes, axesNames, variable, variableName, i, options)
