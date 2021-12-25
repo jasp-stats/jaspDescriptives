@@ -2,82 +2,86 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2021-07-10 03:30\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2021-12-26 15:54+0000\n"
+"Last-Translator: Andrzej Wiśniewski <andrzej551@wp.pl>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-r/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.10.1\n"
 
 msgid "Frequency Tables"
-msgstr ""
+msgstr "tablica częstości"
 
 msgid "Correlation plots"
-msgstr ""
+msgstr "wykres korelacyjny"
 
 msgid "Correlation plot"
 msgstr ""
 
 msgid "Distribution Plots"
-msgstr ""
+msgstr "wykres rozkładu"
 
 msgid "Boxplots"
-msgstr ""
+msgstr "wykres pudełkowy"
 
 msgid "Q-Q Plots"
-msgstr ""
+msgstr "wykres Q-Q"
 
 msgid "Q-Q Plot"
 msgstr ""
 
 msgid "Plotting is not possible: Variable only contains NA!"
-msgstr ""
+msgstr "Wykres nie jest dostępny: zmienna zawiera wyłącznie braki danych"
 
 msgid "Pie charts"
 msgstr ""
 
 msgid "Stem and Leaf"
-msgstr ""
+msgstr "łodygi i liście"
 
 msgid "Scatter Plots"
-msgstr ""
+msgstr "wykres rozrzutu"
 
 msgid "Interval plots"
 msgstr ""
 
 msgid "Dot Plots"
-msgstr ""
+msgstr "wykres punktowy"
 
 msgid "Descriptive Statistics"
-msgstr ""
+msgstr "statystyki opisowe"
 
 msgid "Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s"
 msgstr ""
 
 msgid "Valid"
-msgstr ""
+msgstr "prawidłowe"
 
 msgid "Missing"
-msgstr ""
+msgstr "braki"
 
 msgid "Mode"
-msgstr ""
+msgstr "tryb"
 
 msgid "Median"
-msgstr ""
+msgstr "mediana"
 
 msgid "Mean"
-msgstr ""
+msgstr "średnia"
 
 msgid "Std. Error of Mean"
-msgstr ""
+msgstr "błąd standardowy średniej"
 
 msgid "Std. Deviation"
-msgstr ""
+msgstr "odchylenie standardowe"
 
 msgid "Coefficient of variation"
-msgstr ""
+msgstr "współczynnik wariancji"
 
 msgid "MAD"
 msgstr ""
@@ -95,19 +99,19 @@ msgid "Skewness"
 msgstr ""
 
 msgid "Std. Error of Skewness"
-msgstr ""
+msgstr "błąd standardowy skośności"
 
 msgid "Kurtosis"
-msgstr ""
+msgstr "kurtoza"
 
 msgid "Std. Error of Kurtosis"
-msgstr ""
+msgstr "błąd standardowy kurtozy"
 
 msgid "Shapiro-Wilk"
 msgstr ""
 
 msgid "P-value of Shapiro-Wilk"
-msgstr ""
+msgstr "wartość p testu Shapiro-Wilka zgodności z rozkładem normalnym"
 
 msgid "Range"
 msgstr ""
@@ -122,10 +126,10 @@ msgid "%gth percentile"
 msgstr ""
 
 msgid "Sum"
-msgstr ""
+msgstr "suma"
 
 msgid "All values are identical"
-msgstr ""
+msgstr "wszystkie wartości są identyczne"
 
 msgid "Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set is %s."
 msgstr ""
@@ -161,7 +165,7 @@ msgid "Cumulative Percent"
 msgstr ""
 
 msgid "Density"
-msgstr ""
+msgstr "gęstość"
 
 msgid "Plotting not possible: %s"
 msgstr ""
