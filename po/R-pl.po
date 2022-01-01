@@ -1,0 +1,210 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: jaspDescriptives 0.15.0\n"
+"POT-Creation-Date: 2021-07-10 03:30\n"
+"PO-Revision-Date: 2021-12-26 15:54+0000\n"
+"Last-Translator: Andrzej Wiśniewski <andrzej551@wp.pl>\n"
+"Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-r/pl/>\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.10.1\n"
+
+msgid "Frequency Tables"
+msgstr "tablica częstości"
+
+msgid "Correlation plots"
+msgstr "wykres korelacyjny"
+
+msgid "Correlation plot"
+msgstr ""
+
+msgid "Distribution Plots"
+msgstr "wykres rozkładu"
+
+msgid "Boxplots"
+msgstr "wykres pudełkowy"
+
+msgid "Q-Q Plots"
+msgstr "wykres Q-Q"
+
+msgid "Q-Q Plot"
+msgstr ""
+
+msgid "Plotting is not possible: Variable only contains NA!"
+msgstr "Wykres nie jest dostępny: zmienna zawiera wyłącznie braki danych"
+
+msgid "Pie charts"
+msgstr ""
+
+msgid "Stem and Leaf"
+msgstr "łodygi i liście"
+
+msgid "Scatter Plots"
+msgstr "wykres rozrzutu"
+
+msgid "Interval plots"
+msgstr ""
+
+msgid "Dot Plots"
+msgstr "wykres punktowy"
+
+msgid "Descriptive Statistics"
+msgstr "statystyki opisowe"
+
+msgid "Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s"
+msgstr ""
+
+msgid "Valid"
+msgstr "prawidłowe"
+
+msgid "Missing"
+msgstr "braki"
+
+msgid "Mode"
+msgstr "tryb"
+
+msgid "Median"
+msgstr "mediana"
+
+msgid "Mean"
+msgstr "średnia"
+
+msgid "Std. Error of Mean"
+msgstr "błąd standardowy średniej"
+
+msgid "Std. Deviation"
+msgstr "odchylenie standardowe"
+
+msgid "Coefficient of variation"
+msgstr "współczynnik wariancji"
+
+msgid "MAD"
+msgstr ""
+
+msgid "MAD robust"
+msgstr ""
+
+msgid "IQR"
+msgstr ""
+
+msgid "Variance"
+msgstr ""
+
+msgid "Skewness"
+msgstr ""
+
+msgid "Std. Error of Skewness"
+msgstr "błąd standardowy skośności"
+
+msgid "Kurtosis"
+msgstr "kurtoza"
+
+msgid "Std. Error of Kurtosis"
+msgstr "błąd standardowy kurtozy"
+
+msgid "Shapiro-Wilk"
+msgstr ""
+
+msgid "P-value of Shapiro-Wilk"
+msgstr "wartość p testu Shapiro-Wilka zgodności z rozkładem normalnym"
+
+msgid "Range"
+msgstr ""
+
+msgid "Minimum"
+msgstr ""
+
+msgid "Maximum"
+msgstr ""
+
+msgid "%gth percentile"
+msgstr ""
+
+msgid "Sum"
+msgstr "suma"
+
+msgid "All values are identical"
+msgstr "wszystkie wartości są identyczne"
+
+msgid "Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set is %s."
+msgstr ""
+
+msgid "Not all values are available for <i>Nominal Text</i> variables"
+msgstr ""
+
+msgid "More than one mode exists, only the first is reported"
+msgstr ""
+
+msgid "Total"
+msgstr ""
+
+msgid "All variables have more than %1$s distinct values"
+msgstr ""
+
+msgid "Frequencies"
+msgstr ""
+
+msgid "Frequencies for %s"
+msgstr ""
+
+msgid "Frequency"
+msgstr ""
+
+msgid "Percent"
+msgstr ""
+
+msgid "Valid Percent"
+msgstr ""
+
+msgid "Cumulative Percent"
+msgstr ""
+
+msgid "Density"
+msgstr "gęstość"
+
+msgid "Plotting not possible: %s"
+msgstr ""
+
+msgid "Plotting is not possible: No plot type selected!"
+msgstr ""
+
+msgid "Counts"
+msgstr ""
+
+msgid "No non-missing values!"
+msgstr ""
+
+msgid "Theoretical Quantiles"
+msgstr ""
+
+msgid "Sample Quantiles"
+msgstr ""
+
+msgid "A stem and leaf table could not be made because there are fewer than 2 non-missing observations"
+msgstr ""
+
+msgid "The decimal point is at the |"
+msgstr ""
+
+msgid "%2$s has more than %1$s distinct values and is omitted."
+msgid_plural "The following variables have more than %1$s distinct values and are omitted: %2$s."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "The decimal point is %s digit to the right of the |"
+msgid_plural "The decimal point is %s digits to the right of the |"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+msgid "The decimal point is %s digit to the left of the |"
+msgid_plural "The decimal point is %s digits to the left of the |"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
