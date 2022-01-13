@@ -262,6 +262,20 @@ Descriptives <- function(jaspResults, dataset, options) {
       }
     }
   }
+
+  # Heatmap
+  if (options[["heatmapHorizontal"]] != "" && options[["heatmapVertical"]] != "") {
+    if(is.null(jaspResults[["heatmaps"]])) {
+      jaspResults[["heatmaps"]] <- createJaspContainer(gettext("Heatmaps"))
+      jaspResults[["heatmaps"]]$dependOn(c("heatmapHorizontal", "heatmapVertical",
+                                           "heatmapPlotValue", "heatmapRectangleRatio", "heatmapLegend",
+                                           "heatmapStatisticContinuous", "heatmapStatisticDiscrete",
+                                           "colorPalette", "splitby", "variables"))
+      jaspResults[["heatmaps"]]$position <- 14
+    }
+
+    .descriptivesHeatmaps(jaspResults[["heatmaps"]], dataset.factors, variables, options)
+  }
   return()
 }
 
@@ -1213,7 +1227,6 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (rugs)
     p <- p + ggplot2::geom_rug(data = data.frame(variable), mapping = ggplot2::aes(x = variable), sides = "b")
 
-
   # JASP theme
   p <- jaspGraphs::themeJasp(p,
                              axisTickWidth = .7,
@@ -1527,7 +1540,6 @@ Descriptives <- function(jaspResults, dataset, options) {
         jaspGraphs::themeJaspRaw(axis.title.cex = jaspGraphs::getGraphOption("axis.title.cex"))
 
       descriptivesQQPlot$plotObject <- p
-
     }
   }
 
@@ -1765,4 +1777,97 @@ Descriptives <- function(jaspResults, dataset, options) {
   tb$addFootnote(footnote)
 
   return(tb)
+}
+
+
+.descriptivesHeatmaps <- function(container, dataset, variables, options) {
+  axesNames <- c(options[["heatmapHorizontal"]], options[["heatmapVertical"]])
+
+  # we are not ready to plot
+  if(length(variables) == 0) return()
+
+  axes <- .readDataSetToEnd(columns.as.factor = axesNames)
+
+  for (i in seq_along(variables)) {
+    variableName  <- variables[[i]]
+    variable <- dataset[[variableName]]
+
+    if(options[["splitby"]] == "") {
+      .descriptivesCreateSingleHeatmap(container, axes, axesNames, variable, variableName, i, options)
+    } else {
+      container[[variableName]] <- createJaspContainer(variableName)
+      splitBy <- dataset[, options[["splitby"]]]
+      groups <- levels(splitBy)
+
+      for(g in seq_along(groups)) {
+        activeCases <- groups[g] == splitBy
+        .descriptivesCreateSingleHeatmap(container[[variableName]], axes[activeCases,], axesNames, variable[activeCases], groups[g], g, options)
+      }
+    }
+  }
+}
+
+.descriptivesCreateSingleHeatmap <- function(container, axes, axesNames, variable, plotName, position, options) {
+
+  if(is.factor(variable)) {
+    data <- .descriptivesHeatmapAggregateData(variable, axes, options[["heatmapStatisticDiscrete"]])
+  } else {
+    data <- .descriptivesHeatmapAggregateData(variable, axes, options[["heatmapStatisticContinuous"]])
+  }
+
+  nLevels <- c(nlevels(data[["horizontal"]]), nlevels(data[["vertical"]]))
+  plotSize <- c(200 + nLevels * 20) * c(options[["heatmapRectangleRatio"]], 1)
+  if(any(plotSize > 700))
+    plotSize <- ( plotSize/max(plotSize) ) * 700
+  if(options[["heatmapLegend"]])
+    plotSize <- plotSize + c(50, 50)
+
+  if(any(table(data[["horizontal"]], data[["vertical"]]) > 1)) {
+    jaspPlot <- createJaspPlot(title=plotName, error = gettext("There must be a unique value per combination of levels of horizontal and vertical axis!"), position = position)
+  } else {
+    jaspPlot <- createJaspPlot(title=plotName, width = plotSize[1], height = plotSize[2], position = position)
+
+    plot <- ggplot2::ggplot(data = data, mapping = ggplot2::aes(x = horizontal, y = vertical, fill = value)) +
+      ggplot2::geom_tile(color = "black", size = 1) +
+      ggplot2::xlab(axesNames[1]) +
+      ggplot2::ylab(axesNames[2]) +
+      ggplot2::coord_fixed(ratio = 1/options[["heatmapRectangleRatio"]])
+
+    if(options[["heatmapPlotValue"]])
+      plot <- plot + ggplot2::geom_text(ggplot2::aes(x = horizontal, y = vertical, label = label),
+                                        size = 8 * options[["heatmapPlotValueSize"]])
+
+    palette <- options[["colorPalette"]]
+    if(is.factor(data[["value"]]))
+      plot <- plot + jaspGraphs::scale_JASPfill_discrete(palette)
+    else
+      plot <- plot + jaspGraphs::scale_JASPfill_continuous(palette)
+
+    plot <- jaspGraphs::themeJasp(plot, legend.position = if(options[["heatmapLegend"]]) "right" else "none")
+
+    jaspPlot$plotObject <- plot
+  }
+
+  container[[plotName]] <- jaspPlot
+}
+
+.descriptivesHeatmapAggregateData <- function(variable, groups, fun = c("identity", "mean", "median", "mode", "length")) {
+  fun  <- match.arg(fun)
+  mode <- function(x) {
+    levels <- levels(x)
+    out <- names(which.max(table(x)))
+    factor(out, levels = levels)
+  }
+  data <- switch(fun,
+                 identity = cbind(groups, variable = variable),
+                 mean     = stats::aggregate(x = variable, by = groups, mean  ),
+                 median   = stats::aggregate(x = variable, by = groups, median),
+                 mode     = stats::aggregate(x = variable, by = groups, mode  ),
+                 length   = stats::aggregate(x = variable, by = groups, length)
+                 )
+
+  colnames(data) <- c("horizontal", "vertical", "value")
+  data$label <- if(is.numeric(data$value)) round(data$value, digits = 2) else data$value
+
+  return(data)
 }
