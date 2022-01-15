@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2021-07-10 03:30\n"
+"POT-Creation-Date: 2022-01-15 03:18\n"
 "PO-Revision-Date: 2021-05-10 18:32+0000\n"
 "Last-Translator: Johannes Keyser <johanneskeyser@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
@@ -52,6 +52,9 @@ msgstr "Intervalldiagramme"
 
 msgid "Dot Plots"
 msgstr "Punktdiagramme"
+
+msgid "Heatmaps"
+msgstr ""
 
 msgid "Descriptive Statistics"
 msgstr "Deskriptive Statistik"
@@ -202,6 +205,11 @@ msgstr ""
 
 msgid "The decimal point is at the |"
 msgstr "Der Dezimalpunkt befindet sich an der |"
+
+msgid ""
+"There must be a unique value per combination of levels of horizontal and "
+"vertical axis!"
+msgstr ""
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""

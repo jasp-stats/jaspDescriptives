@@ -373,3 +373,51 @@ msgstr ""
 msgctxt "Descriptives|"
 msgid "Missing"
 msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Tile Heatmap"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Horizontal axis:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Vertical axis:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Display legend"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Display value"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Relative text size"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Width to height ratio of tiles"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Statistic to plot"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "For scale variables"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Value itself"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Number of observations"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "For nominal and ordinal variables"
+msgstr ""

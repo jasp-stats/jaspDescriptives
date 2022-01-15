@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.11.0\n"
-"POT-Creation-Date: 2021-07-10 03:30\n"
+"POT-Creation-Date: 2022-01-15 03:18\n"
 "PO-Revision-Date: 2021-11-08 13:05+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -51,6 +51,9 @@ msgstr "区間プロット"
 
 msgid "Dot Plots"
 msgstr "ドットプロット"
+
+msgid "Heatmaps"
+msgstr ""
 
 msgid "Descriptive Statistics"
 msgstr "記述統計"
@@ -196,11 +199,17 @@ msgstr "欠落していない観測値が2つ未満であるため、幹葉表�
 msgid "The decimal point is at the |"
 msgstr "小数点は|にあります"
 
+msgid ""
+"There must be a unique value per combination of levels of horizontal and "
+"vertical axis!"
+msgstr ""
+
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
 "The following variables have more than %1$s distinct values and are omitted: "
 "%2$s."
-msgstr[0] "以下の変数には%1$s 点の個別値が含まれるので、省略されています : %2$s"
+msgstr[0] ""
+"以下の変数には%1$s 点の個別値が含まれるので、省略されています : %2$s"
 
 msgid "The decimal point is %s digit to the right of the |"
 msgid_plural "The decimal point is %s digits to the right of the |"
