@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-01-19 15:47+0000\n"
+"PO-Revision-Date: 2022-01-21 02:53+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "jasp/jaspdescriptives-qml/zh_Hans/>\n"
@@ -276,7 +276,7 @@ msgstr "离散趋势"
 
 msgctxt "Descriptives|"
 msgid "S.E. mean"
-msgstr "均值标准误差"
+msgstr "均值的标准误差"
 
 msgctxt "Descriptives|"
 msgid "Std. deviation"
