@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-02-08 08:01+0000\n"
-"Last-Translator: JASP Stats <b.boutin@uva.nl>\n"
+"PO-Revision-Date: 2022-02-16 10:58+0000\n"
+"Last-Translator: Jordy STEFAN <jordy.stefan@askoria.eu>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/fr/>\n"
 "Language: fr\n"
@@ -38,13 +38,12 @@ msgstr "Valeurs distinctes maximales"
 
 msgctxt "Descriptives|"
 msgid "Stem and leaf tables"
-msgstr ""
+msgstr "Diagrammes en tiges et feuilles"
 
 msgctxt "Descriptives|"
 msgid "scale"
 msgstr "échelle"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "The scale parameter controls how much the table is expanded. For example, "
@@ -57,7 +56,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Create a Stem and leaf table."
-msgstr ""
+msgstr "Créez un tableau en forme de tiges et de feuilles."
 
 msgctxt "Descriptives|"
 msgid "Plots"
@@ -77,39 +76,36 @@ msgstr "Daltonien alt."
 
 msgctxt "Descriptives|"
 msgid "Viridis"
-msgstr ""
+msgstr "Viridis"
 
 msgctxt "Descriptives|"
 msgid "ggplot2"
-msgstr ""
+msgstr "ggplot2"
 
 msgctxt "Descriptives|"
 msgid "Gray"
-msgstr ""
+msgstr "Gris"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Boxplots"
 msgstr "Boîtes à moustaches"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Boxplot element"
 msgstr "Élément de boîte à moustaches"
 
 msgctxt "Descriptives|"
 msgid "Violin element"
-msgstr ""
+msgstr "Élément de violon"
 
 msgctxt "Descriptives|"
 msgid "Jitter element"
-msgstr ""
+msgstr "Élément Jitter"
 
 msgctxt "Descriptives|"
 msgid "Use color palette"
 msgstr "Utiliser une palette de couleurs"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Label outliers"
 msgstr "Étiquettes aberrantes"
@@ -120,7 +116,7 @@ msgstr "Nuages de points"
 
 msgctxt "Descriptives|"
 msgid "Graph above scatter plot"
-msgstr ""
+msgstr "Graphique au-dessus du nuage de points"
 
 msgctxt "Descriptives|"
 msgid "Density"
@@ -136,7 +132,7 @@ msgstr "Aucun"
 
 msgctxt "Descriptives|"
 msgid "Graph right of scatter plot"
-msgstr ""
+msgstr "Graphique à droite du nuage de points"
 
 msgctxt "Descriptives|"
 msgid "Add regression line"
@@ -144,7 +140,7 @@ msgstr "Ajouter une ligne de régression"
 
 msgctxt "Descriptives|"
 msgid "Smooth"
-msgstr ""
+msgstr "Lisse"
 
 msgctxt "Descriptives|"
 msgid "Linear"
@@ -168,7 +164,7 @@ msgstr "Graphique de la distribution"
 
 msgctxt "Descriptives|"
 msgid "Display density"
-msgstr ""
+msgstr "Densité d'affichage"
 
 msgctxt "Descriptives|"
 msgid "Correlation plots"
@@ -190,10 +186,9 @@ msgctxt "Descriptives|"
 msgid "Quartiles"
 msgstr "Quartiles"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Cut points for: "
-msgstr "Points de coupe pour: "
+msgstr "Points de coupe pour : "
 
 msgctxt "Descriptives|"
 msgid " equal groups"
@@ -235,18 +230,17 @@ msgctxt "Descriptives|"
 msgid "Std. deviation"
 msgstr "Ecart-type"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "MAD"
 msgstr "Écart Médian Absolu"
 
 msgctxt "Descriptives|"
 msgid "MAD robust"
-msgstr ""
+msgstr "Écart Médian Absolu Robuste"
 
 msgctxt "Descriptives|"
 msgid "IQR"
-msgstr ""
+msgstr "Écart interquartile"
 
 msgctxt "Descriptives|"
 msgid "Variance"
@@ -254,7 +248,7 @@ msgstr "Variance"
 
 msgctxt "Descriptives|"
 msgid "Range"
-msgstr ""
+msgstr "Etendue"
 
 msgctxt "Descriptives|"
 msgid "Minimum"
@@ -280,17 +274,14 @@ msgctxt "Descriptives|"
 msgid "Shapiro-Wilk test"
 msgstr "Test de Shapiro-Wilk"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Values are group midpoints"
 msgstr "Les valeurs sont des points médians de groupe"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Charts"
 msgstr "Graphiques"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Chart Type"
 msgstr "Type de graphique"
@@ -305,7 +296,7 @@ msgstr "Histogrammes"
 
 msgctxt "Descriptives|"
 msgid "Chart Values"
-msgstr ""
+msgstr "Valeurs des graphiques"
 
 msgctxt "Descriptives|"
 msgid "Frequencies"
@@ -317,27 +308,27 @@ msgstr "Pourcentages"
 
 msgctxt "Descriptives|"
 msgid "Display rug marks"
-msgstr ""
+msgstr "Afficher les marques de tapis"
 
 msgctxt "Descriptives|"
 msgid "Bin width type"
-msgstr ""
+msgstr "Type de largeur"
 
 msgctxt "Descriptives|"
 msgid "Sturges"
-msgstr ""
+msgstr "Sturges"
 
 msgctxt "Descriptives|"
 msgid "Scott"
-msgstr ""
+msgstr "Scott"
 
 msgctxt "Descriptives|"
 msgid "Doane"
-msgstr ""
+msgstr "Doane"
 
 msgctxt "Descriptives|"
 msgid "Freedman-Diaconis"
-msgstr ""
+msgstr "Freedman-Diaconis"
 
 msgctxt "Descriptives|"
 msgid "Manual"
@@ -345,11 +336,11 @@ msgstr "Manuel"
 
 msgctxt "Descriptives|"
 msgid "Number of bins"
-msgstr ""
+msgstr "Nombre de bacs"
 
 msgctxt "Descriptives|"
 msgid "Interval plots"
-msgstr ""
+msgstr "Graphiques d'intervalles"
 
 msgctxt "Descriptives|"
 msgid "Coefficient of variation"
@@ -357,20 +348,20 @@ msgstr "Coefficient de variation"
 
 msgctxt "Description|"
 msgid "Explore the data with tables and plots"
-msgstr ""
+msgstr "Explorez les données à l'aide de tableaux et de graphiques"
 
 msgctxt "Descriptives|"
 msgid "Transpose descriptives table"
-msgstr ""
+msgstr "Transposer le tableau descriptif"
 
 msgctxt "Descriptives|"
 msgid "Customizable plots"
-msgstr ""
+msgstr "Tracés personnalisables"
 
 msgctxt "Descriptives|"
 msgid "Dot plots"
-msgstr ""
+msgstr "Graphiques en points"
 
 msgctxt "Descriptives|"
 msgid "Quantiles"
-msgstr ""
+msgstr "Quantiles"
