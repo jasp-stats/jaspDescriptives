@@ -40,247 +40,20 @@ Form
 		checked	: false
 	}
 
-	CheckBox
-	{
-		name:			"frequencyTables"
-		label:			qsTr("Frequency tables")
-		IntegerField
-		{
-			name:			"frequencyTablesMaximumAmount"
-			label:			qsTr("Maximum distinct values")
-			min:			1
-			defaultValue:	10
-			fieldWidth:		50
-			max:			2e2
-		}
-	}
-	CheckBox
-	{
-		name	: "stemAndLeaf";
-		label	: qsTr("Stem and leaf tables")
-		DoubleField
-		{
-			name: "stemAndLeafScale";	label: qsTr("scale");	negativeValues: false;	inclusive: JASP.MaxOnly;	max: 200;	defaultValue: 1.0;
-			info: qsTr("The scale parameter controls how much the table is expanded. For example, scale = 2 will cause the table to be roughly twice as long as the default (scale = 1).")
-		}
-		info	: qsTr("Create a Stem and leaf table.")
-	}
-
-	Section
-	{
-		title: qsTr("Plots")
-		columns: 1
-		Group
-		{
-			title: "<b>" + qsTr("Basic plots") + "</b>"
-			columns: 2
-			CheckBox {				name: "plotVariables";			label: qsTr("Distribution plots");	id:	plotVariables					}
-			CheckBox {				name: "plotCorrelationMatrix";	label: qsTr("Correlation plots");	id:	plotCorrelationMatrix			}
-
-			Group
-			{
-				Layout.columnSpan: 2
-				enabled: plotVariables.checked || plotCorrelationMatrix.checked
-
-				indent:		true
-				CheckBox {			name: "distPlotDensity";	label: qsTr("Display density")						}
-				CheckBox {			name: "distPlotRug";		label: qsTr("Display rug marks")					}
-				DropDown {
-					name: "binWidthType"
-					label: qsTr("Bin width type")
-					indexDefaultValue: 0
-					values:
-						[
-						{label: qsTr("Sturges"),				value: "sturges"},
-						{label: qsTr("Scott"),					value: "scott"},
-						{label: qsTr("Doane"),					value: "doane"},
-						{label: qsTr("Freedman-Diaconis"),		value: "fd"	},
-						{label: qsTr("Manual"),					value: "manual"	}
-					]
-					id: binWidthType
-				}
-				DoubleField
-				{
-					name:			"numberOfBins"
-					label:			qsTr("Number of bins")
-					defaultValue:	30
-					min:			3;
-					max:			10000;
-					enabled:		binWidthType.currentValue === "manual"
-				}
-			}
-
-			CheckBox {				name: "descriptivesIntervalPlot";label: qsTr("Interval plots")					}
-			CheckBox {				name: "descriptivesQQPlot";		label: qsTr("Q-Q plots")						}
-			CheckBox {				name: "descriptivesPiechart";	label: qsTr("Pie charts")						}
-			CheckBox {				name: "descriptivesDotPlot";	label: qsTr("Dot plots")						}
-		}
-
-
-		Group
-		{
-			title: "<b>" + qsTr("Customizable plots") + "<b>"
-			columns: 1
-			DropDown
-			{
-				name: "colorPalette"
-				label: qsTr("Color palette")
-				indexDefaultValue: 0
-				values:
-				[
-					{ label: qsTr("Colorblind"),		value: "colorblind"		},
-					{ label: qsTr("Colorblind Alt."),	value: "colorblind3"	},
-					{ label: qsTr("Viridis"),			value: "viridis"		},
-					{ label: qsTr("ggplot2"),			value: "ggplot2"		},
-					{ label: qsTr("Gray"),				value: "gray"			}
-				]
-			}
-
-			CheckBox
-			{
-				name: "splitPlots";
-				label: qsTr("Boxplots")
-				Group {
-					columns: 2
-					Group {
-						CheckBox {	name: "splitPlotBoxplot";		label: qsTr("Boxplot element"); checked: true	}
-						CheckBox {	name: "splitPlotViolin";		label: qsTr("Violin element")					}
-						CheckBox {	name: "splitPlotJitter";		label: qsTr("Jitter element")					}
-					}
-					Group {
-						CheckBox {  name: "splitPlotColour";		label: qsTr("Use color palette")				}
-						CheckBox {	name: "splitPlotOutlierLabel";	label: qsTr("Label outliers")					}
-					}
-				}
-			}
-
-
-			CheckBox
-			{
-				name: "scatterPlot";	label: qsTr("Scatter Plots")
-				columns: 2
-				RadioButtonGroup
-				{
-					name:	"graphTypeAbove";
-					title:	qsTr("Graph above scatter plot")
-					RadioButton { value: "density";		label: qsTr("Density");		checked: true	}
-					RadioButton { value: "histogram";	label: qsTr("Histogram")					}
-					RadioButton { value: "none";		label: qsTr("None")							}
-				}
-				RadioButtonGroup
-				{
-					name:	"graphTypeRight";
-					title:	qsTr("Graph right of scatter plot")
-					RadioButton { value: "density";		label: qsTr("Density");		checked: true	}
-					RadioButton { value: "histogram";	label: qsTr("Histogram")					}
-					RadioButton { value: "none";		label: qsTr("None")							}
-				}
-				CheckBox
-				{
-					name: "addSmooth"
-					label: qsTr("Add regression line")
-					checked: true
-					RadioButtonGroup
-					{
-						name:	"regressionType";
-						RadioButton { value: "smooth";	label: qsTr("Smooth");	checked: true	}
-						RadioButton { value: "linear";	label: qsTr("Linear")					}
-					}
-
-					CheckBox
-					{
-						name: "addSmoothCI"
-						label: qsTr("Show confidence interval")
-						checked: true
-						childrenOnSameRow: true
-						CIField {	name: "addSmoothCIValue" }
-					}
-				}
-				CheckBox
-				{
-					enabled: splitBy.count > 0
-					name: "showLegend"
-					label: qsTr("Show legend")
-					checked: true
-				}
-			}
-		}
-
-		Group
-		{
-			title: "<b>" + qsTr("Tile Heatmap") + "<b>"
-
-			VariablesForm
-			{
-				preferredHeight: 100 * preferencesModel.uiScale
-				AvailableVariablesList
-				{
-					name: "heatMapVariables"
-					source: [{ name: "allVariablesList", discard: ["variables", "splitby"], use: "type=ordinal|nominal|nominalText"}]
-				}
-				AssignedVariablesList
-				{
-					name: "heatmapHorizontal"
-					label: qsTr("Horizontal axis:")
-					singleVariable: true
-				}
-				AssignedVariablesList
-				{
-					name: "heatmapVertical"
-					label: qsTr("Vertical axis:")
-					singleVariable: true
-				}
-			}
-
-			CheckBox { name: "heatmapLegend"; label: qsTr("Display legend")	}
-			CheckBox
-			{
-				name: "heatmapPlotValue"; label: qsTr("Display value"); childrenOnSameRow: false;
-				DoubleField { name: "heatmapPlotValueSize"; label: qsTr("Relative text size"); negativeValues: false; defaultValue: 1 }
-			}
-			DoubleField { name: "heatmapRectangleRatio"; label: qsTr("Width to height ratio of tiles"); negativeValues: false; defaultValue: 1}
-
-			Group
-			{
-				columns: 2
-				title: qsTr("Statistic to plot")
-				RadioButtonGroup
-				{
-					name: "heatmapStatisticContinuous"
-					title: qsTr("For scale variables")
-					RadioButton { value: "mean";		label: qsTr("Mean");	checked: true }
-					RadioButton { value: "median";		label: qsTr("Median") }
-					RadioButton { value: "identity";	label: qsTr("Value itself") }
-					RadioButton { value: "length";		label: qsTr("Number of observations") }
-				}
-
-				RadioButtonGroup
-				{
-					name: "heatmapStatisticDiscrete"
-					title: qsTr("For nominal and ordinal variables")
-					RadioButton { value: "mode";		label: qsTr("Mode");	checked: true }
-					RadioButton { value: "identity";	label: qsTr("Value itself") }
-					RadioButton { value: "length";		label: qsTr("Number of observations") }
-				}
-			}
-		}
-
-	}
-
 	Section
 	{
 		title: qsTr("Statistics")
 
 		Group
 		{
-			title: qsTr("Sample Size")
+			title: qsTr("Sample size")
 			CheckBox { name: "valid";			label: qsTr("Valid");	checked: true	}
 			CheckBox { name: "missing";			label: qsTr("Missing");	checked: true	}
 		}
 
 		Group
 		{
-			title: qsTr("Central Tendency")
+			title: qsTr("Central tendency")
 
 			CheckBox { name: "mode";			label: qsTr("Mode");					}
 			CheckBox { name: "median";			label: qsTr("Median")					}
@@ -351,6 +124,244 @@ Form
 		}
 
 		CheckBox { name: "statisticsValuesAreGroupMidpoints"; label: qsTr("Values are group midpoints"); debug: true }
+	}
+
+	Section
+	{
+		title: qsTr("Basic plots")
+		columns: 2
+
+		Group
+		{
+			Group
+			{
+				columns: 2
+				CheckBox {				name: "plotVariables";			label: qsTr("Distribution plots");	id:	plotVariables					}
+				CheckBox {				name: "plotCorrelationMatrix";	label: qsTr("Correlation plots");	id:	plotCorrelationMatrix			}
+			}
+
+			Group
+			{
+				enabled: plotVariables.checked || plotCorrelationMatrix.checked
+
+				indent:		true
+				CheckBox {			name: "distPlotDensity";	label: qsTr("Display density")						}
+				CheckBox {			name: "distPlotRug";		label: qsTr("Display rug marks")					}
+				DropDown {
+					name: "binWidthType"
+					label: qsTr("Bin width type")
+					indexDefaultValue: 0
+					values:
+						[
+						{label: qsTr("Sturges"),				value: "sturges"},
+						{label: qsTr("Scott"),					value: "scott"},
+						{label: qsTr("Doane"),					value: "doane"},
+						{label: qsTr("Freedman-Diaconis"),		value: "fd"	},
+						{label: qsTr("Manual"),					value: "manual"	}
+					]
+					id: binWidthType
+				}
+				DoubleField
+				{
+					name:			"numberOfBins"
+					label:			qsTr("Number of bins")
+					defaultValue:	30
+					min:			3;
+					max:			10000;
+					enabled:		binWidthType.currentValue === "manual"
+				}
+			}
+		}
+
+		Group
+		{
+			CheckBox {				name: "descriptivesIntervalPlot";label: qsTr("Interval plots")					}
+			CheckBox {				name: "descriptivesQQPlot";		label: qsTr("Q-Q plots")						}
+			CheckBox {				name: "descriptivesPiechart";	label: qsTr("Pie charts")						}
+			CheckBox {				name: "descriptivesDotPlot";	label: qsTr("Dot plots")						}
+		}
+	}
+
+
+	Section
+	{
+		title: qsTr("Customizable plots")
+		columns: 1
+
+		DropDown
+		{
+			name: "colorPalette"
+			label: qsTr("Color palette")
+			indexDefaultValue: 0
+			values:
+			[
+				{ label: qsTr("Colorblind"),		value: "colorblind"		},
+				{ label: qsTr("Colorblind Alt."),	value: "colorblind3"	},
+				{ label: qsTr("Viridis"),			value: "viridis"		},
+				{ label: qsTr("ggplot2"),			value: "ggplot2"		},
+				{ label: qsTr("Gray"),				value: "gray"			}
+			]
+		}
+
+		CheckBox
+		{
+			name: "splitPlots";
+			label: qsTr("Boxplots")
+			Group {
+				columns: 2
+				Group {
+					CheckBox {	name: "splitPlotBoxplot";		label: qsTr("Boxplot element"); checked: true	}
+					CheckBox {	name: "splitPlotViolin";		label: qsTr("Violin element")					}
+					CheckBox {	name: "splitPlotJitter";		label: qsTr("Jitter element")					}
+				}
+				Group {
+					CheckBox {  name: "splitPlotColour";		label: qsTr("Use color palette")				}
+					CheckBox {	name: "splitPlotOutlierLabel";	label: qsTr("Label outliers")					}
+				}
+			}
+		}
+
+
+		CheckBox
+		{
+			name: "scatterPlot";	label: qsTr("Scatter plots")
+			columns: 2
+			RadioButtonGroup
+			{
+				name:	"graphTypeAbove";
+				title:	qsTr("Graph above scatter plot")
+				RadioButton { value: "density";		label: qsTr("Density");		checked: true	}
+				RadioButton { value: "histogram";	label: qsTr("Histogram")					}
+				RadioButton { value: "none";		label: qsTr("None")							}
+			}
+			RadioButtonGroup
+			{
+				name:	"graphTypeRight";
+				title:	qsTr("Graph right of scatter plot")
+				RadioButton { value: "density";		label: qsTr("Density");		checked: true	}
+				RadioButton { value: "histogram";	label: qsTr("Histogram")					}
+				RadioButton { value: "none";		label: qsTr("None")							}
+			}
+			CheckBox
+			{
+				name: "addSmooth"
+				label: qsTr("Add regression line")
+				checked: true
+				RadioButtonGroup
+				{
+					name:	"regressionType";
+					RadioButton { value: "smooth";	label: qsTr("Smooth");	checked: true	}
+					RadioButton { value: "linear";	label: qsTr("Linear")					}
+				}
+
+				CheckBox
+				{
+					name: "addSmoothCI"
+					label: qsTr("Show confidence interval")
+					checked: true
+					childrenOnSameRow: true
+					CIField {	name: "addSmoothCIValue" }
+				}
+			}
+			CheckBox
+			{
+				enabled: splitBy.count > 0
+				name: "showLegend"
+				label: qsTr("Show legend")
+				checked: true
+			}
+		}
+
+		VariablesForm
+		{
+			preferredHeight: 100 * preferencesModel.uiScale
+			AvailableVariablesList
+			{
+				name: "heatMapVariables"
+				label: qsTr("Tile heatmaps for selected variables")
+				source: [{ name: "allVariablesList", discard: ["variables", "splitby"], use: "type=ordinal|nominal|nominalText"}]
+			}
+			AssignedVariablesList
+			{
+				name: "heatmapHorizontal"
+				label: qsTr("Horizontal axis:")
+				singleVariable: true
+			}
+			AssignedVariablesList
+			{
+				name: "heatmapVertical"
+				label: qsTr("Vertical axis:")
+				singleVariable: true
+			}
+		}
+
+		Group
+		{
+			indent: true
+			CheckBox { name: "heatmapLegend"; label: qsTr("Display legend")	}
+			CheckBox
+			{
+				name: "heatmapPlotValue"; label: qsTr("Display value"); childrenOnSameRow: false;
+				DoubleField { name: "heatmapPlotValueSize"; label: qsTr("Relative text size"); negativeValues: false; defaultValue: 1 }
+			}
+			DoubleField { name: "heatmapRectangleRatio"; label: qsTr("Width to height ratio of tiles"); negativeValues: false; defaultValue: 1}
+
+			Group
+			{
+				columns: 2
+				title: qsTr("Statistic to plot")
+				RadioButtonGroup
+				{
+					name: "heatmapStatisticContinuous"
+					title: qsTr("For scale variables")
+					RadioButton { value: "mean";		label: qsTr("Mean");	checked: true }
+					RadioButton { value: "median";		label: qsTr("Median") }
+					RadioButton { value: "identity";	label: qsTr("Value itself") }
+					RadioButton { value: "length";		label: qsTr("Number of observations") }
+				}
+
+				RadioButtonGroup
+				{
+					name: "heatmapStatisticDiscrete"
+					title: qsTr("For nominal and ordinal variables")
+					RadioButton { value: "mode";		label: qsTr("Mode");	checked: true }
+					RadioButton { value: "identity";	label: qsTr("Value itself") }
+					RadioButton { value: "length";		label: qsTr("Number of observations") }
+				}
+			}
+		}
+	}
+
+	Section
+	{
+		title: qsTr("Tables")
+
+		CheckBox
+		{
+			name:			"frequencyTables"
+			label:			qsTr("Frequency tables")
+			IntegerField
+			{
+				name:			"frequencyTablesMaximumAmount"
+				label:			qsTr("Maximum distinct values")
+				min:			1
+				defaultValue:	10
+				fieldWidth:		50
+				max:			2e2
+			}
+		}
+		CheckBox
+		{
+			name	: "stemAndLeaf";
+			label	: qsTr("Stem and leaf tables")
+			DoubleField
+			{
+				name: "stemAndLeafScale";	label: qsTr("scale");	negativeValues: false;	inclusive: JASP.MaxOnly;	max: 200;	defaultValue: 1.0;
+				info: qsTr("The scale parameter controls how much the table is expanded. For example, scale = 2 will cause the table to be roughly twice as long as the default (scale = 1).")
+			}
+			info	: qsTr("Create a Stem and leaf table.")
+		}
+
 	}
 
 	Section
