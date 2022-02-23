@@ -264,8 +264,3 @@ palette <- c("#D8B365", "#DFC283", "#E7D1A2", "#EFE0C1", "#F7EFE0",
 # 12 Levels
 palette <- c("#D8B365", "#DEBF7E", "#E5CC98", "#EBD9B2", "#F2E5CB", "#F8F2E5",
              "#E3F2F1", "#C8E6E3", "#ACD9D5", "#91CDC7", "#75C0B9", "#5AB4AC")
-
-
-
-
-
