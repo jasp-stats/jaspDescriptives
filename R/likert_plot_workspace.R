@@ -1,3 +1,54 @@
+# Example dataset (string levels)
+library(likert)
+data(pisaitems)
+items28 <- pisaitems[, substr(names(pisaitems), 1, 5) == "ST24Q"]
+
+# Example dataset (numeric levels)
+set.seed(1)
+x <- sample(1:11, 1000, replace = TRUE)
+y <- sample(1:11, 1000, replace = TRUE)
+z <- sample(1:11, 1000, replace = TRUE)
+a <- sample(1:11, 1000, replace = TRUE)
+b <- sample(1:11, 1000, replace = TRUE)
+g <- sample(c("male", "female"), 1000, replace = TRUE)
+i <- 1:1000
+df <- data.frame(ID = i, Gender = g, eng = x, psycho = y, math = z, bio = b, life = a)
+# df <- data.frame(ID = i, Gender = g, eng = x) TEST for one variable
+
+# For jasp I will need at least two functions:
+###  implemented if statement in the "Descriptives" function that creates layout (container)
+### .descriptivesLikertPlots --> the actual plotting function ()
+
+# What happens in JASP / What arrives at my function
+### PHASE 1 ###
+# Dataset is split
+## SPLIT TRUE
+splitName        <- "Gender"
+df_split         <- df[,-1]
+df_split$Gender  <- as.factor(df_split$Gender)
+#split
+variables        <- names(df_split[, -1])
+# variables        <- names(df_split[2])  TEST for one variable
+splitFactor      <- df_split[[.v(splitName)]] # requires jaspBase
+splitLevels      <- levels(splitFactor)
+df_split[2:length(df_split)]  <- lapply(df_split[2:length(df_split)], factor)
+splitDat.factors <- split(df_split[.v(variables)], splitFactor) # delivered to function when split
+
+# Daatset is not split
+## SPLIT FALSE
+dataset.factors <- df[,-c(1,2)]  # delivered to function when no split occurs
+dataset.factors[1:length(dataset.factors)] <- lapply(dataset.factors[1:length(dataset.factors)], factor)
+# dataset.factors <- data.frame(eng = df[,-c(1,2)])   TEST for one variable
+
+### PHASE 2 ###
+# The "Descriptive" function iterates through each GROUP an passes to .descriptivesLikertPlots
+
+## PHASE 3 ###
+# .descriptivesLikertPlots
+# passes the dataset (dataset.factors/splitDat.factors$XXX) and variable to the plotting function
+
+
+# My Function
 likert_Plot <- function (items) {   # items = dataset (will be changed)
   # Likert Part: Preparing & summarize data in the likert format (% of levels per variable)
   nlevels <- nlevels(items[, 1])
@@ -158,3 +209,55 @@ likert_Plot <- function (items) {   # items = dataset (will be changed)
 
   return(p)
 }
+
+# Have to change variables names to camelCase after finished pre-final version
+
+
+likert_Plot(dataset.factors)
+likert_Plot(items28)
+
+
+
+# Likert Version
+library(likert)
+f <- likert(splitDat.factors$female)
+summary(f)
+plot(f)
+
+# Debugging my function
+debug(likert_Plot)
+likert_Plot(dataset.factors)
+undebug(likert_Plot)
+
+
+
+
+# Palettes to choose from
+
+# 2 Levels
+palette <- c("#D8B365", "#5AB4AC")
+
+# 4 Levels
+palette <- c("#D8B365", "#EBD9B2",
+          "#ACD9D5", "#5AB4AC")
+
+# 6 Levels
+palette <- c("#D8B365", "#E5CC98", "#F2E5CB",
+          "#C8E6E3", "#91CDC7", "#5AB4AC")
+
+# 8 Levels
+palette <- c("#D8B365", "#E1C58B", "#EBD9B2", "#F5ECD8",
+             "#D5ECEA", "#ACD9D5", "#83C6C0", "#5AB4AC")
+
+# 10 Levels
+palette <- c("#D8B365", "#DFC283", "#E7D1A2", "#EFE0C1", "#F7EFE0",
+             "#DEF0EE", "#BDE1DD", "#9CD2CD", "#7BC3BC", "#5AB4AC")
+
+# 12 Levels
+palette <- c("#D8B365", "#DEBF7E", "#E5CC98", "#EBD9B2", "#F2E5CB", "#F8F2E5",
+             "#E3F2F1", "#C8E6E3", "#ACD9D5", "#91CDC7", "#75C0B9", "#5AB4AC")
+
+
+
+
+
