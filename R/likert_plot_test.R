@@ -1,13 +1,14 @@
 # First Example Dataset
 set.seed(1)
-x <- sample(1:7, 1000, replace = TRUE)
-y <- sample(1:7, 1000, replace = TRUE)
-z <- sample(1:7, 1000, replace = TRUE)
-a <- sample(1:7, 1000, replace = TRUE)
-b <- sample(1:7, 1000, replace = TRUE)
-g <- sample(c("male", "female"), 1000, replace = TRUE)
-i <- 1:1000
-dataset.factors <- data.frame(ID = i, Gender = g, eng = x, psycho = y, math = z, bio = b, life = a)
+n <- 1000
+m <- 7
+dataset.factors <- data.frame(ID = 1:n,
+                 Gender = sample(c("male", "female"), 1000, replace = TRUE),
+                 eng = sample(1:m, n, replace = TRUE),
+                 psycho = sample(1:m, n, replace = TRUE),
+                 math = sample(1:m, n, replace = TRUE),
+                 bio = sample(1:m, n, replace = TRUE),
+                 life = sample(1:m, n, replace = TRUE))
 
 # Multiple Variables in Plot
 dataset.factors <- dataset.factors[,-c(1,2)]
