@@ -16,8 +16,7 @@ likert_Plot <- function (items) {   # items = dataset (will be changed)
   }
   if (!all(sapply(items, function(x) nlevels(x)) == nlevels)) {
     stop("All items (columns) must have the same number of levels")
-
-
+  }
   results <- data.frame()
   results <- data.frame(Response = 1:nlevels)
   for(i in 1:ncol(items)) {

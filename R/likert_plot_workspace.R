@@ -5,11 +5,11 @@ items28 <- pisaitems[, substr(names(pisaitems), 1, 5) == "ST24Q"]
 
 # Example dataset (numeric levels)
 set.seed(1)
-x <- sample(1:11, 1000, replace = TRUE)
-y <- sample(1:11, 1000, replace = TRUE)
-z <- sample(1:11, 1000, replace = TRUE)
-a <- sample(1:11, 1000, replace = TRUE)
-b <- sample(1:11, 1000, replace = TRUE)
+x <- sample(1:7, 1000, replace = TRUE)
+y <- sample(1:7, 1000, replace = TRUE)
+z <- sample(1:7, 1000, replace = TRUE)
+a <- sample(1:7, 1000, replace = TRUE)
+b <- sample(1:7, 1000, replace = TRUE)
 g <- sample(c("male", "female"), 1000, replace = TRUE)
 i <- 1:1000
 df <- data.frame(ID = i, Gender = g, eng = x, psycho = y, math = z, bio = b, life = a)
@@ -49,7 +49,7 @@ dataset.factors[1:length(dataset.factors)] <- lapply(dataset.factors[1:length(da
 
 
 # My Function
-likert_Plot <- function (items) {   # items = dataset (will be changed)
+likert_Plot <- function (items) {
   # Likert Part: Preparing & summarize data in the likert format (% of levels per variable)
   nlevels <- nlevels(items[, 1])
   center <- (nlevels - 1)/2 + 1
@@ -67,8 +67,7 @@ likert_Plot <- function (items) {   # items = dataset (will be changed)
   }
   if (!all(sapply(items, function(x) nlevels(x)) == nlevels)) {
     stop("All items (columns) must have the same number of levels")
-
-
+  }
   results <- data.frame()
   results <- data.frame(Response = 1:nlevels)
   for(i in 1:ncol(items)) {
