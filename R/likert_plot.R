@@ -1,53 +1,53 @@
-likert_Plot <- function (items) {   # items = dataset (will be changed)
+likert_Plot <- function (dataset) {
   # Likert Part: Preparing & summarize data in the likert format (% of levels per variable)
-  nlevels <- nlevels(items[, 1])
-  center <- (nlevels - 1)/2 + 1
-  lowrange <- 1:floor(center - 0.5)
-  highrange <- ceiling(center + 0.5):nlevels
+  nLevels <- nlevels(dataset[, 1])
+  center <- (nLevels - 1)/2 + 1
+  lowRange <- 1:floor(center - 0.5)
+  highRange <- ceiling(center + 0.5):nLevels
 
-  if (center < 1.5 || center > (nlevels - 0.5)) {
+  if (center < 1.5 || center > (nLevels - 0.5)) {
     stop(paste0("Items must have 2 or more levels!"))
   }
-  if (!all(sapply(items, function(x) is.factor(x)))) {
+  if (!all(sapply(dataset, function(x) is.factor(x)))) {
     warning("items parameter contains non-factors. Will convert to factors")
-    for (i in 1:ncol(items)) {
-      items[, i] <- factor(items[, i], levels = 1:nlevels)
+    for (i in 1:ncol(dataset)) {
+      dataset[, i] <- factor(dataset[, i], levels = 1:nLevels)
     }
   }
-  if (!all(sapply(items, function(x) nlevels(x)) == nlevels)) {
+  if (!all(sapply(dataset, function(x) nlevels(x)) == nLevels)) {
     stop("All items (columns) must have the same number of levels")
   }
   results <- data.frame()
-  results <- data.frame(Response = 1:nlevels)
-  for(i in 1:ncol(items)) {
-    t <- table(items[,i])
+  results <- data.frame(Response = 1:nLevels)
+  for(i in 1:ncol(dataset)) {
+    t <- table(dataset[,i])
     t <- (t/sum(t) * 100)
     results <- cbind(results, as.data.frame(t)[,2])
-    names(results)[ncol(results)] <- names(items)[i]
+    names(results)[ncol(results)] <- names(dataset)[i]
   }
   results <- as.data.frame(t(results))
-  names(results) <- levels(items[,1])
+  names(results) <- levels(dataset[,1])
   results <- results[2:nrow(results),]
 
-  results2 <- data.frame(Item = row.names(results),    # Summary in high, low, neutral %
-                         low = rep(NA, nrow(results)),
-                         neutral = rep(NA, nrow(results)),
-                         high = rep(NA, nrow(results)))
-  if(length(lowrange) == 1) {
-    results2$low <- results[,lowrange]
+  resultsTwo <- data.frame(Item = row.names(results),
+                           low = rep(NA, nrow(results)),
+                           neutral = rep(NA, nrow(results)),
+                           high = rep(NA, nrow(results)))
+  if(length(lowRange) == 1) {
+    resultsTwo$low <- results[,lowRange]
   } else {
-    results2$low <- apply(results[,lowrange], 1, sum)
+    resultsTwo$low <- apply(results[,lowRange], 1, sum)
   }
-  if(length(highrange) == 1) {
-    results2$high <- results[,highrange]
+  if(length(highRange) == 1) {
+    resultsTwo$high <- results[,highRange]
   } else {
-    results2$high <- apply(results[,highrange], 1, sum)
+    resultsTwo$high <- apply(results[,highRange], 1, sum)
   }
-  if(lowrange[length(lowrange)] + 1 != highrange[1]) {
-    results2$neutral <- results[,(highrange[1] - 1)]
+  if(lowRange[length(lowRange)] + 1 != highRange[1]) {
+    resultsTwo$neutral <- results[,(highRange[1] - 1)]
   }
-  row.names(results2) <- 1:nrow(results2)
-  results2 <- results2[order(results2$high, decreasing = TRUE),]
+  row.names(resultsTwo) <- 1:nrow(resultsTwo)
+  resultsTwo <- resultsTwo[order(resultsTwo$high, decreasing = TRUE),]
 
   results <- cbind(row.names(results), results)
   names(results)[1] <- "Item"
@@ -60,94 +60,94 @@ likert_Plot <- function (items) {   # items = dataset (will be changed)
       results[narows,i] <- 0
       }
   }
-  # Checking for missing values in "results2"
-  narows <- which(is.na(results2$low))
+  # Checking for missing values in "resultsTwo"
+  narows <- which(is.na(resultsTwo$low))
   if(length(narows) > 0) {
-    results2[narows,]$low <- 0
+    resultsTwo[narows,]$low <- 0
   }
-  narows <- which(is.na(results2$neutral))
+  narows <- which(is.na(resultsTwo$neutral))
   if(length(narows) > 0) {
-    results2[narows,]$neutral <- 0
+    resultsTwo[narows,]$neutral <- 0
   }
-  narows <- which(is.na(results2$high))
+  narows <- which(is.na(resultsTwo$high))
   if(length(narows) > 0) {
-    results2[narows,]$high <- 0
+    resultsTwo[narows,]$high <- 0
   }
-  l <- list(results = results, items = items, levels = levels(items[, 1]), sum = results2)
+  l <- list(results = results, items = dataset, levels = levels(dataset[, 1]), sum = resultsTwo)
 
   # Likert Plot Part:
-  text.size <- 4
-  text.color <- "black"
-  ymin <- -100
-  ymax <- 100
-  ybuffer <- 5
+  textSize <- 4
+  textColor <- "black"
+  yMin <- -100
+  yMax <- 100
+  yBuffer <- 5
   palette <- c("#D8B365", "#E1C58B", "#EBD9B2", "#F5ECD8",
                "#D5ECEA", "#ACD9D5", "#83C6C0", "#5AB4AC")
-  cols <- scales::gradient_n_pal(palette, values = NULL)(seq(0, 1, length.out = nlevels))
+  cols <- scales::gradient_n_pal(palette, values = NULL)(seq(0, 1, length.out = nLevels))
   if (center%%1 == 0){
     cols[center] <- "grey90"
   }
-  results3 <- stats::reshape(data = l$results, idvar = "Item",
-                             v.name = c("value"),
-                             varying = c(names(l$results[,2:length(l$results)])),
-                             times = c(names(l$results[,2:length(l$results)])),
-                             timevar = "variable",
-                             new.row.names = 1:(length(l$results[2:length(l$results)])*length(l$results$Item)),
-                             direction = "long")
+  resultsLong <- stats::reshape(data = l$results, idvar = "Item",
+                                v.name = c("value"),
+                                varying = c(names(l$results[,2:length(l$results)])),
+                                times = c(names(l$results[,2:length(l$results)])),
+                                timevar = "variable",
+                                new.row.names = 1:(length(l$results[2:length(l$results)])*length(l$results$Item)),
+                                direction = "long")
 
   order <- l$sum[order(l$sum$high), "Item"] #important for low - high order of items in plot
-  results3$Item <- factor(results3$Item, levels = order)
-  order_2 <- l$levels  # important for the correct legend sequence
-  results3$variable <- factor(results3$variable, levels = order_2)
+  resultsLong$Item <- factor(resultsLong$Item, levels = order)
+  orderTwo <- l$levels  # important for the correct legend sequence
+  resultsLong$variable <- factor(resultsLong$variable, levels = orderTwo)
 
-  rows <- which(results3$variable %in% names(l$results)[2:(length(lowrange) + 1)])
-  results3[rows, "value"] <- -1 * results3[rows, "value"]
+  rows <- which(resultsLong$variable %in% names(l$results)[2:(length(lowRange) + 1)])
+  resultsLong[rows, "value"] <- -1 * resultsLong[rows, "value"]
   if (center%%1 == 0) {
-    rows.mid <- which(results3$variable %in% names(l$results)[center + 1])
-    tmp <- results3[rows.mid,]
+    rowsMid <- which(resultsLong$variable %in% names(l$results)[center + 1])
+    tmp <- resultsLong[rowsMid,]
     tmp$value <- tmp$value/2 * -1
-    results3[rows.mid, "value"] <- results3[rows.mid, "value"]/2
-    results3 <- rbind(results3, tmp)
+    resultsLong[rowsMid, "value"] <- resultsLong[rowsMid, "value"]/2
+    resultsLong <- rbind(resultsLong, tmp)
   }
-  results.low <- results3[results3$value < 0,]
-  results.high <- results3[results3$value > 0,]
+  resultsLow <- resultsLong[resultsLong$value < 0,]
+  resultsHigh <- resultsLong[resultsLong$value > 0,]
   p <- NULL
-  p <- ggplot2::ggplot(results3, ggplot2::aes(y = value, x = Item, group = Item)) +
+  p <- ggplot2::ggplot(resultsLong, ggplot2::aes(y = value, x = Item, group = Item)) +
     ggplot2::geom_hline(yintercept = 0) +
-    ggplot2::geom_bar(data = results.low[nrow(results.low):1,], ggplot2::aes(fill = variable), stat = "identity") +
-    ggplot2::geom_bar(data = results.high, ggplot2::aes(fill = variable), stat = "identity")
+    ggplot2::geom_bar(data = resultsLow[nrow(resultsLow):1,], ggplot2::aes(fill = variable), stat = "identity") +
+    ggplot2::geom_bar(data = resultsHigh, ggplot2::aes(fill = variable), stat = "identity")
 
-  names(cols) <- levels(results3$variable)
+  names(cols) <- levels(resultsLong$variable)
   p <- p + ggplot2::scale_fill_manual("Response", breaks = names(cols), values = cols, drop = FALSE)
 
   p <- p + ggplot2::geom_text(data = l$sum,    # plot.percent.low
-                              y = ymin,
+                              y = yMin,
                               ggplot2::aes(x = Item, label = paste0(round(low), "%")),
-                              size = text.size,
+                              size = textSize,
                               hjust = 1,
-                              color = text.color)
+                              color = textColor)
 
   p <- p + ggplot2::geom_text(data = l$sum,    # plot.percent.high
                               y = 100,
                               ggplot2::aes(x = Item, label = paste0(round(high), "%")),
-                              size = text.size,
+                              size = textSize,
                               hjust = -0.2,
-                              color = text.color)
+                              color = textColor)
 
-  if (nlevels%%2 == 1) {                       # plot.percent.neutral
+  if (nLevels%%2 == 1) {                       # plot.percent.neutral
     p <- p + ggplot2::geom_text(data = l$sum,
                                 y = 0,
                                 ggplot2::aes(x = Item, label = paste0(round(neutral), "%")),
-                                size = text.size,
+                                size = textSize,
                                 hjust = 0.5,
-                                color = text.color)
+                                color = textColor)
   }
   p <- p + ggplot2::coord_flip() +
     ggplot2::ylab("Percentage") +
     ggplot2::xlab("") +
     ggplot2::theme(axis.ticks = ggplot2::element_blank())
 
-  p <- p + ggplot2::scale_y_continuous(labels = function(x) return(abs(x)), limits = c(ymin - ybuffer, ymax + ybuffer))
+  p <- p + ggplot2::scale_y_continuous(labels = function(x) return(abs(x)), limits = c(yMin - yBuffer, yMax + yBuffer))
 
   p <- p + ggplot2::theme(legend.position = "bottom")
 
