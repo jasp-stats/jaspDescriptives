@@ -114,6 +114,7 @@ Form
 			CheckBox {				name: "descriptivesQQPlot";		label: qsTr("Q-Q plots")						}
 			CheckBox {				name: "descriptivesPiechart";	label: qsTr("Pie charts")						}
 			CheckBox {				name: "descriptivesDotPlot";	label: qsTr("Dot plots")						}
+			CheckBox {				name: "descriptivesLikertPlot";	label: qsTr("Likert plots")						}
 		}
 
 

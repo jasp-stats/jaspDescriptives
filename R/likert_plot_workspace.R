@@ -16,6 +16,11 @@ df <- data.frame(ID = 1:n,
                  life = sample(1:m, n, replace = TRUE))
 # df <- data.frame(ID = i, Gender = g, eng = x) TEST for one variable
 
+
+#setwd('/Users/lucat/OneDrive/Dokumente/Uni Amsterdam/Internship/Example Data/')
+#write.csv(df,"LikertData.csv", row.names = FALSE)
+
+
 # For jasp I will need at least two functions:
 ###  implemented if statement in the "Descriptives" function that creates layout (container)
 ### .descriptivesLikertPlots --> the actual plotting function ()
@@ -35,7 +40,7 @@ splitLevels      <- levels(splitFactor)
 df_split[2:length(df_split)]  <- lapply(df_split[2:length(df_split)], factor)
 splitDat.factors <- split(df_split[.v(variables)], splitFactor) # delivered to function when split
 
-# Daatset is not split
+# Dataset is not split
 ## SPLIT FALSE
 dataset.factors <- df[,-c(1,2)]  # delivered to function when no split occurs
 dataset.factors[1:length(dataset.factors)] <- lapply(dataset.factors[1:length(dataset.factors)], factor)
@@ -50,7 +55,7 @@ dataset.factors[1:length(dataset.factors)] <- lapply(dataset.factors[1:length(da
 
 
 # My Function
-likert_Plot <- function (dataset) {
+likert_Plot <- function (dataset, name) {
   # Likert Part: Preparing & summarize data in the likert format (% of levels per variable)
   nLevels <- nlevels(dataset[, 1])
   center <- (nLevels - 1)/2 + 1
@@ -81,7 +86,7 @@ likert_Plot <- function (dataset) {
   names(results) <- levels(dataset[,1])
   results <- results[2:nrow(results),]
 
-  resultsTwo <- data.frame(Item = row.names(results),
+  resultsTwo <- data.frame(Item = row.names(results),    # Summarizing likert data: high, low, neutral %
                            low = rep(NA, nrow(results)),
                            neutral = rep(NA, nrow(results)),
                            high = rep(NA, nrow(results)))
@@ -105,14 +110,14 @@ likert_Plot <- function (dataset) {
   names(results)[1] <- "Item"
   row.names(results) <- 1:nrow(results)
 
-  # Checking for missing values in "results"
+  # Correcting for missing values in "results"
   for(i in 2:ncol(results)) {
     narows <- which(is.na(results[,i]))
     if (length(narows) > 0) {
       results[narows,i] <- 0
       }
   }
-  # Checking for missing values in "resultsTwo"
+  # Correcting for missing values in "resultsTwo"
   narows <- which(is.na(resultsTwo$low))
   if(length(narows) > 0) {
     resultsTwo[narows,]$low <- 0
@@ -149,7 +154,7 @@ likert_Plot <- function (dataset) {
 
   order <- l$sum[order(l$sum$high), "Item"] #important for low - high order of items in plot
   resultsLong$Item <- factor(resultsLong$Item, levels = order)
-  orderTwo <- l$levels  # important for the correct legend sequence
+  orderTwo <- l$levels                      # important for the correct legend sequence
   resultsLong$variable <- factor(resultsLong$variable, levels = orderTwo)
 
   rows <- which(resultsLong$variable %in% names(l$results)[2:(length(lowRange) + 1)])
@@ -207,13 +212,12 @@ likert_Plot <- function (dataset) {
 
   p <- p + ggplot2::theme(text = ggplot2::element_text(size = jaspGraphs::getGraphOption("fontsize")))
 
-  return(p)
+  return(createJaspPlot(plot=p, aspectRatio=1, title=name))
 }
 
-# Have to change variables names to camelCase after finished pre-final version
 
 # Testing my function
-likert_Plot(dataset.factors)
+likert_Plot(dataset.factors, "male")
 likert_Plot(items28)
 
 # Comparing to Likert Version
