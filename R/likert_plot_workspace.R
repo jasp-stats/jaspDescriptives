@@ -5,14 +5,15 @@ items28 <- pisaitems[, substr(names(pisaitems), 1, 5) == "ST24Q"]
 
 # Example dataset (numeric levels)
 set.seed(1)
-x <- sample(1:7, 1000, replace = TRUE)
-y <- sample(1:7, 1000, replace = TRUE)
-z <- sample(1:7, 1000, replace = TRUE)
-a <- sample(1:7, 1000, replace = TRUE)
-b <- sample(1:7, 1000, replace = TRUE)
-g <- sample(c("male", "female"), 1000, replace = TRUE)
-i <- 1:1000
-df <- data.frame(ID = i, Gender = g, eng = x, psycho = y, math = z, bio = b, life = a)
+n <- 1000
+m <- 7
+df <- data.frame(ID = 1:n,
+                 Gender = sample(c("male", "female"), 1000, replace = TRUE),
+                 eng = sample(1:m, n, replace = TRUE),
+                 psycho = sample(1:m, n, replace = TRUE),
+                 math = sample(1:m, n, replace = TRUE),
+                 bio = sample(1:m, n, replace = TRUE),
+                 life = sample(1:m, n, replace = TRUE))
 # df <- data.frame(ID = i, Gender = g, eng = x) TEST for one variable
 
 # For jasp I will need at least two functions:
@@ -211,16 +212,13 @@ likert_Plot <- function (items) {
 
 # Have to change variables names to camelCase after finished pre-final version
 
-
+# Testing my function
 likert_Plot(dataset.factors)
 likert_Plot(items28)
 
-
-
-# Likert Version
+# Comparing to Likert Version
 library(likert)
 f <- likert(splitDat.factors$female)
-summary(f)
 plot(f)
 
 # Debugging my function
@@ -229,10 +227,21 @@ likert_Plot(dataset.factors)
 undebug(likert_Plot)
 
 
+# Simulating Missing Values
+library(mice)
+miss <- ampute(dataset.factors, prop = 0.7, patterns = NULL, freq = NULL, mech = "MAR",
+               weights = NULL, cont = TRUE, type = NULL, odds = NULL,
+               bycases = TRUE, run = TRUE)
+miss <- miss$amp
+miss[1:length(miss)] <- lapply(miss[1:length(miss)], factor)
+likert_Plot(miss)
+# Amount missing/not missing
+sum(is.na(miss))
+sum(!is.na(miss))
 
 
-# Palettes to choose from
 
+# Palettes to choose from (probably substituted with a JASP palette)
 # 2 Levels
 palette <- c("#D8B365", "#5AB4AC")
 
