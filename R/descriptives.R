@@ -277,6 +277,26 @@ Descriptives <- function(jaspResults, dataset, options) {
     .descriptivesHeatmaps(jaspResults[["heatmaps"]], dataset.factors, variables, options)
   }
 
+  # Likert plot
+
+  #if (options[["XXX"]]){
+  #  if (is.null(jaspResults[["likertPlot"]])) {
+  #    jaspResults[["likertPlot"]] <- createJaspContainer(gettext("Likert Plots"))
+  #    jaspResults[["likertPlot"]]$dependOn(c("splitby", "descriptivesLikertPlot", "variables"))
+  #    jaspResults[["likertPlot"]]$position <- 15
+  #  }
+  #
+  #  likPlots <- jaspResults[["likertPlot"]]
+  #
+  #  if (makeSplit) {
+  #    for (i in 1:length(splitLevels))
+  #      likPlot[[splitLevels[i]]] <- .descriptivesLikertPlots(splitDat.factors[[i]], options, splitLevels[i])
+  #
+  #  } else {
+  #    jaspResults[["likertPlot"]] <- .descriptivesLikertPlots(dataset.factors, options, gettext("Likert plot")) # Create one plot
+  #  }
+  #}
+
   # Likert Plot
   if (options[["descriptivesLikertPlot"]]) {
     if(is.null(jaspResults[["likertPlot"]])) {
@@ -1903,6 +1923,8 @@ Descriptives <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesLikertPlots <- function(dataset, options, name) {
+
+  dataset[1:length(dataset)] <- lapply(dataset[1:length(dataset)], factor)
 
   variables <- unlist(options$variables)
   leng <- length(variables)
