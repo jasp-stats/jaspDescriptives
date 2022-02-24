@@ -278,42 +278,42 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Likert plot
-  #if (options[["descriptivesLikertPlot"]]){
-  #  if (is.null(jaspResults[["likertPlot"]])) {
-  #    jaspResults[["likertPlot"]] <- createJaspContainer(gettext("Likert Plots"))
-  #    jaspResults[["likertPlot"]]$dependOn(c("splitby", "descriptivesLikertPlot", "variables"))
-  #    jaspResults[["likertPlot"]]$position <- 15
-  #  }
-  #
-  #  likPlots <- jaspResults[["likertPlot"]]
-  #
-  #  if (makeSplit) {
-  #    for (i in 1:length(splitLevels))
-  #      likPlot[[splitLevels[i]]] <- .descriptivesLikertPlots(splitDat.factors[[i]], options, splitLevels[i])
-  #
-  #  } else {
-  #    jaspResults[["likertPlot"]] <- .descriptivesLikertPlots(dataset.factors, options, gettext("Likert plot")) # Create one plot
-  #  }
-  #}
-
-  # Likert Plot
-  if (options[["descriptivesLikertPlot"]]) {
-    if(is.null(jaspResults[["likertPlot"]])) {
-      if (makeSplit) {
-        jaspResults[["likertPlot"]] <- createJaspContainer(gettext("Likert Plots"))
-        likPlot <- jaspResults[["likertPlot"]]
-        likPlot$dependOn(c("descriptivesLikertPlot", "splitby", "variables"))
-
-        for (i in 1:length(splitLevels))
-          likPlot[[splitLevels[i]]] <- .descriptivesLikertPlots(splitDat.factors[[i]], options, splitLevels[i])
-
-      } else {
-        jaspResults[["likertPlot"]] <- .descriptivesLikertPlots(dataset.factors, options, gettext("Likert Plot")) # Create one plot
-      }
-
+  if (options[["descriptivesLikertPlot"]] && length(variables) > 0){
+    if (is.null(jaspResults[["likertPlot"]])) {
+      jaspResults[["likertPlot"]] <- createJaspContainer(gettext("Likert Plots"))
+      jaspResults[["likertPlot"]]$dependOn(c("splitby", "descriptivesLikertPlot", "variables"))
       jaspResults[["likertPlot"]]$position <- 15
     }
+
+    likPlots <- jaspResults[["likertPlot"]]
+
+    if (makeSplit) {
+      for (i in 1:length(splitLevels))
+        likPlots[[splitLevels[i]]] <- .descriptivesLikertPlots(splitDat.factors[[i]], options, splitLevels[i])
+
+    } else {
+      jaspResults[["likertPlot"]] <- .descriptivesLikertPlots(dataset.factors, options, gettext("Likert Plot")) # Create one plot
+    }
   }
+
+  # Likert Plot
+  #if (options[["descriptivesLikertPlot"]]) {
+  #  if(is.null(jaspResults[["likertPlot"]])) {
+  #    if (makeSplit) {
+  #      jaspResults[["likertPlot"]] <- createJaspContainer(gettext("Likert Plots"))
+  #      likPlot <- jaspResults[["likertPlot"]]
+  #      likPlot$dependOn(c("descriptivesLikertPlot", "splitby", "variables"))
+
+  #      for (i in 1:length(splitLevels))
+  #        likPlot[[splitLevels[i]]] <- .descriptivesLikertPlots(splitDat.factors[[i]], options, splitLevels[i])
+
+  #    } else {
+  #      jaspResults[["likertPlot"]] <- .descriptivesLikertPlots(dataset.factors, options, gettext("Likert Plot")) # Create one plot
+  #    }
+
+  #   jaspResults[["likertPlot"]]$position <- 15
+  #  }
+  #}
 
   return()
 }
@@ -1917,6 +1917,8 @@ Descriptives <- function(jaspResults, dataset, options) {
   leng <- length(variables)
   depends <- c("descriptivesLikertPlot", "splitby", "variables")
 
+  likPlot <- createJaspPlot(title = name, dependencies = depends, width = 900, height = 210*(leng*0.8))
+
   # Likert Part: Preparing & summarize data in the likert format (% of levels per variable)
   nLevels <- nlevels(dataset[, 1])
   center <- (nLevels - 1)/2 + 1
@@ -1925,12 +1927,6 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   if (center < 1.5 || center > (nLevels - 0.5)) {
     stop(paste0("Items must have 2 or more levels!"))
-  }
-  if (!all(sapply(dataset, function(x) is.factor(x)))) {
-    warning("items parameter contains non-factors. Will convert to factors")
-    for (i in 1:ncol(dataset)) {
-      dataset[, i] <- factor(dataset[, i], levels = 1:nLevels)
-    }
   }
   if (!all(sapply(dataset, function(x) nlevels(x)) == nLevels)) {
     stop("All items (columns) must have the same number of levels")
@@ -1994,7 +1990,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   l <- list(results = results, items = dataset, levels = levels(dataset[, 1]), sum = resultsTwo)
 
   # Likert Plot Part:
-  textSize <- 4
+  textSize <- 5
   textColor <- "black"
   yMin <- -100
   yMax <- 100
@@ -2036,20 +2032,20 @@ Descriptives <- function(jaspResults, dataset, options) {
     ggplot2::geom_bar(data = resultsHigh, ggplot2::aes(fill = variable), stat = "identity")
 
   names(cols) <- levels(resultsLong$variable)
-  p <- p + ggplot2::scale_fill_manual("Response", breaks = names(cols), values = cols, drop = FALSE)
+  p <- p + ggplot2::scale_fill_manual("Response", breaks = names(cols), values = scales::alpha(cols, 1), drop = FALSE)
 
   p <- p + ggplot2::geom_text(data = l$sum,    # plot.percent.low
                               y = yMin,
                               ggplot2::aes(x = Item, label = paste0(round(low), "%")),
                               size = textSize,
-                              hjust = 1,
+                              hjust = 0.7,
                               color = textColor)
 
   p <- p + ggplot2::geom_text(data = l$sum,    # plot.percent.high
                               y = 100,
                               ggplot2::aes(x = Item, label = paste0(round(high), "%")),
                               size = textSize,
-                              hjust = -0.2,
+                              hjust = 0.3,
                               color = textColor)
 
   if (nLevels%%2 == 1) {                       # plot.percent.neutral
@@ -2073,7 +2069,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   p <- p + ggplot2::theme(text = ggplot2::element_text(size = jaspGraphs::getGraphOption("fontsize")))
 
-  return(createJaspPlot(plot=p, aspectRatio=1, title=name, dependencies=depends, width=600, height=400))
+  likPlot$plotObject <- p
+
+  return(likPlot)
 }
-
-
