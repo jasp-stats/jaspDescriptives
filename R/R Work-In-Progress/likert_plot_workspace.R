@@ -55,9 +55,7 @@ dataset.factors[1:length(dataset.factors)] <- lapply(dataset.factors[1:length(da
 
 
 # My Function
-likert_Plot <- function (dataset, name) {
-
-
+likert_Plot <- function (dataset) {
 
   # Likert Part: Preparing & summarize data in the likert format (% of levels per variable)
   nLevels <- nlevels(dataset[, 1])
@@ -136,7 +134,7 @@ likert_Plot <- function (dataset, name) {
   l <- list(results = results, items = dataset, levels = levels(dataset[, 1]), sum = resultsTwo)
 
   # Likert Plot Part:
-  textSize <- 4
+  textSize <- 5
   textColor <- "black"
   yMin <- -100
   yMax <- 100
@@ -178,20 +176,20 @@ likert_Plot <- function (dataset, name) {
     ggplot2::geom_bar(data = resultsHigh, ggplot2::aes(fill = variable), stat = "identity")
 
   names(cols) <- levels(resultsLong$variable)
-  p <- p + ggplot2::scale_fill_manual("Response", breaks = names(cols), values = cols, drop = FALSE)
+  p <- p + ggplot2::scale_fill_manual("Response", breaks = names(cols), values = scales::alpha(cols, 1), drop = FALSE)
 
   p <- p + ggplot2::geom_text(data = l$sum,    # plot.percent.low
                               y = yMin,
                               ggplot2::aes(x = Item, label = paste0(round(low), "%")),
                               size = textSize,
-                              hjust = 1,
+                              hjust = 0.7,
                               color = textColor)
 
   p <- p + ggplot2::geom_text(data = l$sum,    # plot.percent.high
                               y = 100,
                               ggplot2::aes(x = Item, label = paste0(round(high), "%")),
                               size = textSize,
-                              hjust = -0.2,
+                              hjust = 0.3,
                               color = textColor)
 
   if (nLevels%%2 == 1) {                       # plot.percent.neutral
@@ -220,13 +218,18 @@ likert_Plot <- function (dataset, name) {
 }
 
 
+pdf("plot.pdf")
+likert_Plot(dataset.factors)
+dev.off()
+
+
 # Testing my function
-likert_Plot(dataset.factors, "male")
+likert_Plot(dataset.factors)
 likert_Plot(items28)
 
 # Comparing to Likert Version
 library(likert)
-f <- likert(splitDat.factors$female)
+f <- likert(dataset.factors)
 plot(f)
 
 # Debugging my function
