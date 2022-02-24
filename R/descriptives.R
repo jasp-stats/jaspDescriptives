@@ -278,8 +278,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Likert plot
-
-  #if (options[["XXX"]]){
+  #if (options[["descriptivesLikertPlot"]]){
   #  if (is.null(jaspResults[["likertPlot"]])) {
   #    jaspResults[["likertPlot"]] <- createJaspContainer(gettext("Likert Plots"))
   #    jaspResults[["likertPlot"]]$dependOn(c("splitby", "descriptivesLikertPlot", "variables"))
@@ -1924,8 +1923,6 @@ Descriptives <- function(jaspResults, dataset, options) {
 
 .descriptivesLikertPlots <- function(dataset, options, name) {
 
-  dataset[1:length(dataset)] <- lapply(dataset[1:length(dataset)], factor)
-
   variables <- unlist(options$variables)
   leng <- length(variables)
   depends <- c("descriptivesLikertPlot", "splitby", "variables")
@@ -2086,7 +2083,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   p <- p + ggplot2::theme(text = ggplot2::element_text(size = jaspGraphs::getGraphOption("fontsize")))
 
-  return(jaspResults::createJaspPlot(plot=p, aspectRatio=1, title=name, dependencies=depends))
+  return(createJaspPlot(plot=p, aspectRatio=1, title=name, dependencies=depends, width=600, height=400))
 }
 
 

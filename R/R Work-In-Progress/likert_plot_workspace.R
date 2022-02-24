@@ -56,6 +56,9 @@ dataset.factors[1:length(dataset.factors)] <- lapply(dataset.factors[1:length(da
 
 # My Function
 likert_Plot <- function (dataset, name) {
+
+
+
   # Likert Part: Preparing & summarize data in the likert format (% of levels per variable)
   nLevels <- nlevels(dataset[, 1])
   center <- (nLevels - 1)/2 + 1
@@ -212,7 +215,8 @@ likert_Plot <- function (dataset, name) {
 
   p <- p + ggplot2::theme(text = ggplot2::element_text(size = jaspGraphs::getGraphOption("fontsize")))
 
-  return(createJaspPlot(plot=p, aspectRatio=1, title=name))
+  return(p)
+  #return(createJaspPlot(plot=p, aspectRatio=1, title=name))
 }
 
 
