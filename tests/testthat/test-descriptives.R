@@ -280,3 +280,16 @@ test_that("interval plot across groups matches", {
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "interval_plot_across_facFive_contExpon")
 })
+
+
+dat <- data.frame(factorLargeCounts = factor(rep(letters[1:8], seq(10, 80, 10))))
+options <- analysisOptions("Descriptives")
+options$variables <- "factorLargeCounts"
+options$descriptivesDotPlot <- TRUE
+results <- runAnalysis("Descriptives", dat, options)
+
+test_that("dot plot with large counts is legible", {
+  plotName <- results[["results"]][["DotPlots"]][["collection"]][["DotPlots_factorLargeCounts"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "dot_plot_large_counts")
+})

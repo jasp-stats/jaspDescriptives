@@ -1281,6 +1281,16 @@ Descriptives <- function(jaspResults, dataset, options) {
     tb <- as.data.frame(table(x))
     scaleX <- ggplot2::scale_x_discrete(limits = factor(tb[, 1L]))
 
+    # so the geom_dotplot is very weird and the dot sizes are independent of the y-axis.
+    # hence to avoid exceeding the y-axis, we need to make the dots smaller...
+    # see also the many issues on the ggplot repo about the dotplot...
+    # for example https://github.com/tidyverse/ggplot2/issues/2203
+    # this post provides alternatives we should consider for the current implementation
+    # https://stackoverflow.com/questions/53697235/ggplot-dotplot-what-is-the-proper-use-of-geom-dotplot
+    maxFreq <- max(tb[["Freq"]])
+    if (maxFreq >= 17L)
+      dotsize <- 17 / maxFreq
+
   } else {
 
     xBreaks <- jaspGraphs::getPrettyAxisBreaks(x)
