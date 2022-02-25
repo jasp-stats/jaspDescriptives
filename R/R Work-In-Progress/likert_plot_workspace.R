@@ -171,7 +171,7 @@ likert_Plot <- function (dataset) {
   resultsHigh <- resultsLong[resultsLong$value > 0,]
   p <- NULL
   p <- ggplot2::ggplot(resultsLong, ggplot2::aes(y = value, x = Item, group = Item)) +
-    ggplot2::geom_hline(yintercept = 0) +
+    ggplot2::geom_hline(yintercept = 0, color = "grey90") +
     ggplot2::geom_bar(data = resultsLow[nrow(resultsLow):1,], ggplot2::aes(fill = variable), stat = "identity") +
     ggplot2::geom_bar(data = resultsHigh, ggplot2::aes(fill = variable), stat = "identity")
 
@@ -209,7 +209,7 @@ likert_Plot <- function (dataset) {
 
   p <- p + ggplot2::theme(legend.position = "bottom")
 
-  p <- p + ggplot2::theme(panel.background = ggplot2::element_rect(size = 1, color = "grey70", fill = NA))
+  p <- p + ggplot2::theme(panel.background = ggplot2::element_rect(size = 1, color = "grey90", fill = NA))
 
   p <- p + ggplot2::theme(text = ggplot2::element_text(size = jaspGraphs::getGraphOption("fontsize")))
 
@@ -217,7 +217,10 @@ likert_Plot <- function (dataset) {
 }
 
 
-pdf("plot.pdf")
+
+
+
+png("plot.png")
 likert_Plot(dataset.factors)
 dev.off()
 

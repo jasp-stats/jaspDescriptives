@@ -14,13 +14,13 @@ library(jaspResults)
 
 
 setwd('/Users/lucat/OneDrive/Dokumente/Uni Amsterdam/Internship/Example Data/')
-write.csv(miss,"LikertData_NA.csv", row.names = FALSE)
+write.csv(df,"LikertData_Even.csv", row.names = FALSE)
 
 
 
 x <- 1:5
 is.double(x)
-x_double <- as.double(x)        #
+x_double <- as.double(x)
 class(x)
 class(x_double)
 is.double(x_double)

@@ -292,9 +292,9 @@ Descriptives <- function(jaspResults, dataset, options) {
       if (is.double(dataset.factors[[.v(var)]])) {
         if (makeSplit){
           for (i in 1:length(splitLevels))
-            splitDat.factors[[i]] <- splitDat.factors[[i]][,!names(splitDat.factors[[i]]) %in% c(var), drop = FALSE]
+            splitDat.factors[[i]] <- splitDat.factors[[i]][, !names(splitDat.factors[[i]]) %in% c(var), drop = FALSE]
         } else {
-          dataset.factors <- dataset.factors[,!names(dataset.factors) %in% c(var), drop = FALSE]
+          dataset.factors <- dataset.factors[, !names(dataset.factors) %in% c(var), drop = FALSE]
         }
       }
     }
@@ -2012,10 +2012,11 @@ Descriptives <- function(jaspResults, dataset, options) {
   if(length(narows) > 0) {
     resultsTwo[narows,]$high <- 0
   }
+
   l <- list(results = results, items = dataset, levels = levels(dataset[, 1]), sum = resultsTwo)
 
   # Likert Plot Part:
-  textSize <- 5
+  textSize <- 6
   textColor <- "black"
   yMin <- -100
   yMax <- 100
@@ -2052,7 +2053,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   resultsHigh <- resultsLong[resultsLong$value > 0,]
   p <- NULL
   p <- ggplot2::ggplot(resultsLong, ggplot2::aes(y = value, x = Item, group = Item)) +
-    ggplot2::geom_hline(yintercept = 0) +
+    ggplot2::geom_hline(yintercept = 0, color = "grey90") +
     ggplot2::geom_bar(data = resultsLow[nrow(resultsLow):1,], ggplot2::aes(fill = variable), stat = "identity") +
     ggplot2::geom_bar(data = resultsHigh, ggplot2::aes(fill = variable), stat = "identity")
 
@@ -2090,9 +2091,11 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   p <- p + ggplot2::theme(legend.position = "bottom")
 
-  p <- p + ggplot2::theme(panel.background = ggplot2::element_rect(size = 1, color = "grey70", fill = NA))
+  p <- p + ggplot2::theme(panel.background = ggplot2::element_rect(size = 1, color = "grey90", fill = NA))
 
-  p <- p + ggplot2::theme(text = ggplot2::element_text(size = jaspGraphs::getGraphOption("fontsize")))
+  p <- p + ggplot2::theme(text = ggplot2::element_text(size = 23))
+
+  #p <- p + ggplot2::theme(text = ggplot2::element_text(size = jaspGraphs::getGraphOption("fontsize")))
 
   #p <- p + jaspGraphs::themeJaspRaw()
 
