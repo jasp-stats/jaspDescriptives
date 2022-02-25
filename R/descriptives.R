@@ -287,6 +287,18 @@ Descriptives <- function(jaspResults, dataset, options) {
 
     likPlots <- jaspResults[["likertPlot"]]
 
+    for (var in variables) {
+      # exclude non-categorical variables
+      if (is.double(dataset.factors[[.v(var)]])) {
+        if (makeSplit){
+          for (i in 1:length(splitLevels))
+            splitDat.factors[[i]] <- splitDat.factors[[i]][,!names(splitDat.factors[[i]]) %in% c(var), drop = FALSE]
+        } else {
+          dataset.factors <- dataset.factors[,!names(dataset.factors) %in% c(var), drop = FALSE]
+        }
+      }
+    }
+
     if (makeSplit) {
       for (i in 1:length(splitLevels))
         likPlots[[splitLevels[i]]] <- .descriptivesLikertPlots(splitDat.factors[[i]], options, splitLevels[i])
@@ -1913,11 +1925,11 @@ Descriptives <- function(jaspResults, dataset, options) {
 
 .descriptivesLikertPlots <- function(dataset, options, name) {
 
-  variables <- unlist(options$variables)
-  leng <- length(variables)
+  #variables <- unlist(options$variables)
+  leng <- length(dataset)
   depends <- c("descriptivesLikertPlot", "splitby", "variables")
 
-  likPlot <- createJaspPlot(title = name, dependencies = depends, width = 900, height = 210*(leng*0.8))
+  likPlot <- createJaspPlot(title = name, dependencies = depends, width = 1050, height = 210*(leng*0.8))
 
   # Likert Part: Preparing & summarize data in the likert format (% of levels per variable)
   nLevels <- nlevels(dataset[, 1])
@@ -1925,12 +1937,15 @@ Descriptives <- function(jaspResults, dataset, options) {
   lowRange <- 1:floor(center - 0.5)
   highRange <- ceiling(center + 0.5):nLevels
 
-  if (center < 1.5 || center > (nLevels - 0.5)) {
-    stop(paste0("Items must have 2 or more levels!"))
-  }
   if (!all(sapply(dataset, function(x) nlevels(x)) == nLevels)) {
-    stop("All items (columns) must have the same number of levels")
+    likPlot$setError(gettext("All items (columns) must have the same number of levels!"))
+    return(likPlot)
   }
+  if (center < 1.5 || center > (nLevels - 0.5)) {
+    likPlot$setError(gettext("Items must have 2 or more levels!"))
+    return(likPlot)
+  }
+
   results <- data.frame()
   results <- data.frame(Response = 1:nLevels)
   for(i in 1:ncol(dataset)) {
@@ -1961,7 +1976,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     resultsTwo$neutral <- results[,(highRange[1] - 1)]
   }
   row.names(resultsTwo) <- 1:nrow(resultsTwo)
-  resultsTwo <- resultsTwo[order(resultsTwo$high, decreasing = TRUE),]
+  #resultsTwo <- resultsTwo[order(resultsTwo$high, decreasing = TRUE),]  #important for low - high order of items in plot
 
   results <- cbind(row.names(results), results)
   names(results)[1] <- "Item"
@@ -2009,8 +2024,8 @@ Descriptives <- function(jaspResults, dataset, options) {
                                 new.row.names = 1:(length(l$results[2:length(l$results)])*length(l$results$Item)),
                                 direction = "long")
 
-  order <- l$sum[order(l$sum$high), "Item"] #important for low - high order of items in plot
-  resultsLong$Item <- factor(resultsLong$Item, levels = order)
+  #order <- l$sum[order(l$sum$high), "Item"]  #important for low - high order of items in plot
+  resultsLong$Item <- factor(resultsLong$Item, levels = rev(l$results$Item))
   orderTwo <- l$levels                      # important for the correct legend sequence
   resultsLong$variable <- factor(resultsLong$variable, levels = orderTwo)
 
@@ -2032,7 +2047,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     ggplot2::geom_bar(data = resultsHigh, ggplot2::aes(fill = variable), stat = "identity")
 
   names(cols) <- levels(resultsLong$variable)
-  p <- p + ggplot2::scale_fill_manual("Response", breaks = names(cols), values = scales::alpha(cols, 1), drop = FALSE)
+  p <- p + ggplot2::scale_fill_manual("Response", breaks = names(cols), values = cols, drop = FALSE)
 
   p <- p + ggplot2::geom_text(data = l$sum,    # plot.percent.low
                               y = yMin,
@@ -2068,6 +2083,8 @@ Descriptives <- function(jaspResults, dataset, options) {
   p <- p + ggplot2::theme(panel.background = ggplot2::element_rect(size = 1, color = "grey70", fill = NA))
 
   p <- p + ggplot2::theme(text = ggplot2::element_text(size = jaspGraphs::getGraphOption("fontsize")))
+
+  #p <- p + jaspGraphs::themeJaspRaw()
 
   likPlot$plotObject <- p
 
