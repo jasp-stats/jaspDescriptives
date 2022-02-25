@@ -12,25 +12,9 @@ library(jaspResults)
 
 
 
+
 setwd('/Users/lucat/OneDrive/Dokumente/Uni Amsterdam/Internship/Example Data/')
-library(data.table)
-
-dataset <- read.csv("LikertData.csv")[, -c(1,2)]
-dataset <- fread("LikertData.csv")[, -c(1,2)]
-class(dataset)
-
-dataset[1:length(dataset)] <- as.factor(dataset[1:length(dataset)])
-
-likert_Plot(dataset, "LOL")
-
-dataset[1:length(dataset)] <- lapply(dataset[1:length(dataset)], factor)
-
-
-typeof(dataset[,1])
-class(dataset[,1])
-dataset[,1] <- factor(dataset[,1])
-
-
+write.csv(miss,"LikertData_NA.csv", row.names = FALSE)
 
 
 

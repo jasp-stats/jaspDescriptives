@@ -105,7 +105,7 @@ likert_Plot <- function (dataset) {
     resultsTwo$neutral <- results[,(highRange[1] - 1)]
   }
   row.names(resultsTwo) <- 1:nrow(resultsTwo)
-  resultsTwo <- resultsTwo[order(resultsTwo$high, decreasing = TRUE),]
+  #resultsTwo <- resultsTwo[order(resultsTwo$high, decreasing = TRUE),]  #important for low - high order of items in plot
 
   results <- cbind(row.names(results), results)
   names(results)[1] <- "Item"
@@ -153,8 +153,8 @@ likert_Plot <- function (dataset) {
                                 new.row.names = 1:(length(l$results[2:length(l$results)])*length(l$results$Item)),
                                 direction = "long")
 
-  order <- l$sum[order(l$sum$high), "Item"] #important for low - high order of items in plot
-  resultsLong$Item <- factor(resultsLong$Item, levels = order)
+  #order <- l$sum[order(l$sum$high), "Item"] #important for low - high order of items in plot
+  resultsLong$Item <- factor(resultsLong$Item, levels = rev(l$results$Item))
   orderTwo <- l$levels                      # important for the correct legend sequence
   resultsLong$variable <- factor(resultsLong$variable, levels = orderTwo)
 
@@ -176,7 +176,7 @@ likert_Plot <- function (dataset) {
     ggplot2::geom_bar(data = resultsHigh, ggplot2::aes(fill = variable), stat = "identity")
 
   names(cols) <- levels(resultsLong$variable)
-  p <- p + ggplot2::scale_fill_manual("Response", breaks = names(cols), values = scales::alpha(cols, 1), drop = FALSE)
+  p <- p + ggplot2::scale_fill_manual("Response", breaks = names(cols), values = cols, drop = FALSE)
 
   p <- p + ggplot2::geom_text(data = l$sum,    # plot.percent.low
                               y = yMin,
@@ -214,7 +214,6 @@ likert_Plot <- function (dataset) {
   p <- p + ggplot2::theme(text = ggplot2::element_text(size = jaspGraphs::getGraphOption("fontsize")))
 
   return(p)
-  #return(createJaspPlot(plot=p, aspectRatio=1, title=name))
 }
 
 
@@ -229,7 +228,7 @@ likert_Plot(items28)
 
 # Comparing to Likert Version
 library(likert)
-f <- likert(dataset.factors)
+f <- likert(items28)
 plot(f)
 
 # Debugging my function
@@ -240,7 +239,7 @@ undebug(likert_Plot)
 
 # Simulating Missing Values
 library(mice)
-miss <- ampute(dataset.factors, prop = 0.7, patterns = NULL, freq = NULL, mech = "MAR",
+miss <- ampute(dataset.factors, prop = 0.3, patterns = NULL, freq = NULL, mech = "MAR",
                weights = NULL, cont = TRUE, type = NULL, odds = NULL,
                bycases = TRUE, run = TRUE)
 miss <- miss$amp
@@ -249,7 +248,6 @@ likert_Plot(miss)
 # Amount missing/not missing
 sum(is.na(miss))
 sum(!is.na(miss))
-
 
 
 # Palettes to choose from (probably substituted with a JASP palette)
