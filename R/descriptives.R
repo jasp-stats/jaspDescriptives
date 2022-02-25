@@ -1939,7 +1939,11 @@ Descriptives <- function(jaspResults, dataset, options) {
   leng <- length(dataset)
   depends <- c("descriptivesLikertPlot", "splitby", "variables")
 
-  likPlot <- createJaspPlot(title = name, dependencies = depends, width = 1050, height = 210*(leng*0.8))
+  if (leng == 1){
+    likPlot <- createJaspPlot(title = name, dependencies = depends, width = 1050, height = 250)
+  } else {
+    likPlot <- createJaspPlot(title = name, dependencies = depends, width = 1050, height = 200*(leng*0.8))
+  }
 
   # Likert Part: Preparing & summarize data in the likert format (% of levels per variable)
   nLevels <- nlevels(dataset[, 1])
@@ -2093,7 +2097,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   p <- p + ggplot2::theme(panel.background = ggplot2::element_rect(size = 1, color = "grey90", fill = NA))
 
-  p <- p + ggplot2::theme(text = ggplot2::element_text(size = 23))
+  p <- p + ggplot2::theme(text = ggplot2::element_text(size = 22.5))
 
   #p <- p + ggplot2::theme(text = ggplot2::element_text(size = jaspGraphs::getGraphOption("fontsize")))
 
