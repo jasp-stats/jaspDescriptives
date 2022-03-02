@@ -281,14 +281,14 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (options[["descriptivesLikertPlot"]] && length(variables) > 0){
     if (is.null(jaspResults[["likertPlot"]])) {
       jaspResults[["likertPlot"]] <- createJaspContainer(gettext("Likert Plots"))
-      jaspResults[["likertPlot"]]$dependOn(c("splitby", "descriptivesLikertPlot", "variables"))
+      jaspResults[["likertPlot"]]$dependOn(c("splitby", "descriptivesLikertPlot", "variables", "fontSizeLikert"))
       jaspResults[["likertPlot"]]$position <- 15
     }
 
     likPlots <- jaspResults[["likertPlot"]]
 
     for (var in variables) {
-      # exclude non-categorical variables
+      # exclude non-categorical variables from dataframe
       if (is.double(dataset.factors[[.v(var)]])) {
         if (makeSplit){
           for (i in 1:length(splitLevels))
@@ -307,25 +307,6 @@ Descriptives <- function(jaspResults, dataset, options) {
       jaspResults[["likertPlot"]] <- .descriptivesLikertPlots(dataset.factors, options, gettext("Likert Plot")) # Create one plot
     }
   }
-
-  # Likert Plot
-  #if (options[["descriptivesLikertPlot"]]) {
-  #  if(is.null(jaspResults[["likertPlot"]])) {
-  #    if (makeSplit) {
-  #      jaspResults[["likertPlot"]] <- createJaspContainer(gettext("Likert Plots"))
-  #      likPlot <- jaspResults[["likertPlot"]]
-  #      likPlot$dependOn(c("descriptivesLikertPlot", "splitby", "variables"))
-
-  #      for (i in 1:length(splitLevels))
-  #        likPlot[[splitLevels[i]]] <- .descriptivesLikertPlots(splitDat.factors[[i]], options, splitLevels[i])
-
-  #    } else {
-  #      jaspResults[["likertPlot"]] <- .descriptivesLikertPlots(dataset.factors, options, gettext("Likert Plot")) # Create one plot
-  #    }
-
-  #   jaspResults[["likertPlot"]]$position <- 15
-  #  }
-  #}
 
   return()
 }
@@ -1935,14 +1916,13 @@ Descriptives <- function(jaspResults, dataset, options) {
 
 .descriptivesLikertPlots <- function(dataset, options, name) {
 
-  #variables <- unlist(options$variables)
   leng <- length(dataset)
-  depends <- c("descriptivesLikertPlot", "splitby", "variables")
+  depends <- c("descriptivesLikertPlot", "splitby", "variables", "fontSizeLikert")
 
   if (leng == 1){
-    likPlot <- createJaspPlot(title = name, dependencies = depends, width = 1050, height = 250)
+    likPlot <- createJaspPlot(title = name, dependencies = depends, width = 1300, height = 250)
   } else {
-    likPlot <- createJaspPlot(title = name, dependencies = depends, width = 1050, height = 200*(leng*0.8))
+    likPlot <- createJaspPlot(title = name, dependencies = depends, width = 1300, height = 200*(leng*0.8))
   }
 
   # Likert Part: Preparing & summarize data in the likert format (% of levels per variable)
@@ -2025,6 +2005,8 @@ Descriptives <- function(jaspResults, dataset, options) {
   yMin <- -100
   yMax <- 100
   yBuffer <- 5
+
+  #palette <- jaspGraphs::JASPcolors(options[["colorPalette"]])
   palette <- c("#D8B365", "#E1C58B", "#EBD9B2", "#F5ECD8",
                "#D5ECEA", "#ACD9D5", "#83C6C0", "#5AB4AC")
   cols <- scales::gradient_n_pal(palette, values = NULL)(seq(0, 1, length.out = nLevels))
@@ -2041,7 +2023,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   #order <- l$sum[order(l$sum$high), "Item"]  #important for low - high order of items in plot
   resultsLong$Item <- factor(resultsLong$Item, levels = rev(l$results$Item))
-  orderTwo <- l$levels                      # important for the correct legend sequence
+  orderTwo <- l$levels                        # important for the correct legend sequence
   resultsLong$variable <- factor(resultsLong$variable, levels = orderTwo)
 
   rows <- which(resultsLong$variable %in% names(l$results)[2:(length(lowRange) + 1)])
@@ -2093,15 +2075,21 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   p <- p + ggplot2::scale_y_continuous(labels = function(x) return(abs(x)), limits = c(yMin - yBuffer, yMax + yBuffer))
 
-  p <- p + ggplot2::theme(legend.position = "bottom")
+  p <- p + ggplot2::theme(legend.position = "bottom") + ggplot2::guides(fill = ggplot2::guide_legend(byrow = TRUE))
 
   p <- p + ggplot2::theme(panel.background = ggplot2::element_rect(size = 1, color = "grey90", fill = NA))
 
   p <- p + ggplot2::theme(text = ggplot2::element_text(size = 22.5))
 
-  #p <- p + ggplot2::theme(text = ggplot2::element_text(size = jaspGraphs::getGraphOption("fontsize")))
-
-  #p <- p + jaspGraphs::themeJaspRaw()
+  if (options[["fontSizeLikert"]] == "small"){        # Customizable Font Size
+    p <- p + ggplot2::theme(axis.text.y = ggplot2::element_text(size = 20))
+  } else if (options[["fontSizeLikert"]] == "medium") {
+    p <- p + ggplot2::theme(axis.text.y = ggplot2::element_text(size = 22.5))
+  } else if (options[["fontSizeLikert"]] == "large") {
+    p <- p + ggplot2::theme(axis.text.y = ggplot2::element_text(size = 25))
+  } else {
+    p <- p + ggplot2::theme(text = ggplot2::element_text(size = 22.5))
+  }
 
   likPlot$plotObject <- p
 
