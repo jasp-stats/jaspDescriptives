@@ -115,6 +115,19 @@ Form
 			CheckBox {				name: "descriptivesPiechart";	label: qsTr("Pie charts")						}
 			CheckBox {				name: "descriptivesDotPlot";	label: qsTr("Dot plots")						}
 			CheckBox {				name: "descriptivesLikertPlot";	label: qsTr("Likert plots")						}
+			DropDown {
+					name: "fontSizeLikert"
+					label: qsTr("Font Size Likert Items")
+					indexDefaultValue: 0
+					values:
+						[
+						{label: qsTr("Normal"),				value: "normal"},
+						{label: qsTr("Small"),				value: "small"},
+						{label: qsTr("Medium"),				value: "medium"},
+						{label: qsTr("Large"),				value: "large"}
+					]
+					id: fontSizeLikert
+				}
 		}
 
 
