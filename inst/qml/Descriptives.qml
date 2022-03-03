@@ -53,15 +53,6 @@ Form
 
 		Group
 		{
-			title: qsTr("Central tendency")
-
-			CheckBox { name: "mode";			label: qsTr("Mode");					}
-			CheckBox { name: "median";			label: qsTr("Median")					}
-			CheckBox { name: "mean";			label: qsTr("Mean");	checked: true	}
-		}
-
-		Group
-		{
 			title:	qsTr("Quantiles")
 
 			CheckBox { name: "percentileValuesQuartiles";	label: qsTr("Quartiles") }
@@ -95,11 +86,29 @@ Form
 			}
 		}
 
+		Group
+		{
+			title: qsTr("Central tendency")
+
+			CheckBox { name: "mode";			label: qsTr("Mode");					}
+			CheckBox { name: "median";			label: qsTr("Median")					}
+			CheckBox { name: "mean";			label: qsTr("Mean");	checked: true	}
+		}
 
 		Group
 		{
-			title:		qsTr("Dispersion")
-			columns:	2
+			title:	qsTr("Distribution")
+
+			CheckBox { name: "skewness";			label: qsTr("Skewness")						}
+			CheckBox { name: "kurtosis";			label: qsTr("Kurtosis")						}
+			CheckBox { name: "shapiro";				label: qsTr("Shapiro-Wilk test")			}
+			CheckBox { name: "sum";					label: qsTr("Sum");							}
+		}
+
+		Group
+		{
+			title:				qsTr("Dispersion")
+			columns:			2
 
 			CheckBox { name: "standardErrorMean";	label: qsTr("S.E. mean")							}
 			CheckBox { name: "standardDeviation";	label: qsTr("Std. deviation");		checked: true	}
@@ -111,16 +120,6 @@ Form
 			CheckBox { name: "range";				label: qsTr("Range")								}
 			CheckBox { name: "minimum";				label: qsTr("Minimum");				checked: true	}
 			CheckBox { name: "maximum";				label: qsTr("Maximum");				checked: true	}
-		}
-
-		Group
-		{
-			title:	qsTr("Distribution")
-
-			CheckBox { name: "skewness";			label: qsTr("Skewness")						}
-			CheckBox { name: "kurtosis";			label: qsTr("Kurtosis")						}
-			CheckBox { name: "shapiro";				label: qsTr("Shapiro-Wilk test")			}
-			CheckBox { name: "sum";					label: qsTr("Sum");							}
 		}
 
 		CheckBox { name: "statisticsValuesAreGroupMidpoints"; label: qsTr("Values are group midpoints"); debug: true }
