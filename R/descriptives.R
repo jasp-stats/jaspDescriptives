@@ -90,7 +90,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     if(is.null(jaspResults[["distributionPlots"]])) {
       jaspResults[["distributionPlots"]] <- createJaspContainer(gettext("Distribution Plots"))
       jaspResults[["distributionPlots"]]$dependOn(c("plotVariables", "splitby", "binWidthType", "distPlotDensity",
-                                                    "distPlotRug", "numberOfBins"))
+                                                    "distPlotRug", "distParetoChart", "numberOfBins"))
       jaspResults[["distributionPlots"]]$position <- 5
     }
 
@@ -982,21 +982,21 @@ Descriptives <- function(jaspResults, dataset, options) {
     plotResult$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
 
     for (l in split) {
-      plotResult[[l]] <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset[[l]], variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDensity, rugs = options$distPlotRug, title = l, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
+      plotResult[[l]] <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset[[l]], variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDensity, rugs = options$distPlotRug, pareto = options$distParetoChart, title = l, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
       plotResult[[l]]$dependOn(optionsFromObject = plotResult)
     }
 
     return(plotResult)
   } else {
     column <- dataset[[.v(variable)]]
-    aPlot <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset, variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDensity, rugs = options$distPlotRug, title = variable, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
+    aPlot <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset, variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDensity, rugs = options$distPlotRug, pareto = options$distParetoChart, title = variable, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
     aPlot$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
 
     return(aPlot)
   }
 }
 
-.descriptivesFrequencyPlots_SubFunc <- function(dataset, variable, width, height, displayDensity, rugs, title,  binWidthType, numberOfBins) {
+.descriptivesFrequencyPlots_SubFunc <- function(dataset, variable, width, height, displayDensity, rugs, pareto, title,  binWidthType, numberOfBins) {
   freqPlot <- createJaspPlot(title = title, width = width, height = height)
 
   errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 3")
@@ -1006,7 +1006,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (!is.null(errorMessage))
     freqPlot$setError(gettextf("Plotting not possible: %s", errorMessage))
   else if (length(column) > 0 && isDiscrete)
-    freqPlot$plotObject <- .barplotJASP(column, variable)
+    freqPlot$plotObject <- .barplotJASP(column, variable, pareto = pareto)
   else if (length(column) > 0 && !isDiscrete)
     freqPlot$plotObject <- .plotMarginal(column, variableName = variable, displayDensity = displayDensity, rugs = rugs, binWidthType = binWidthType, numberOfBins = numberOfBins)
 
@@ -1349,16 +1349,39 @@ Descriptives <- function(jaspResults, dataset, options) {
 
 }
 
-.barplotJASP <- function(column, variable) {
+.barplotJASP <- function(column, variable, pareto) {
 
   tb <- as.data.frame(table(column))
-  p  <- ggplot2::ggplot(data = data.frame(x = tb[, 1], y = tb[, 2]), ggplot2::aes(x = x, y = y)) +
-    ggplot2::geom_bar(stat = "identity", fill = "grey", col = "black", size = .3) +
-    ggplot2::xlab(variable) +
-    ggplot2::ylab(gettext("Counts")) +
-    jaspGraphs::geom_rangeframe() +
-    jaspGraphs::themeJaspRaw() +
-    ggplot2::theme(plot.margin = ggplot2::margin(5))
+
+  # Pareto Option
+  if(pareto){
+    tb <- tb[order(tb$Freq, decreasing=TRUE), ]
+    tb$cums <- cumsum(tb$Freq)
+    tb$cums <- 100 * tb$cums/tail(tb$cums, n = 1)
+    yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(tb$Freq, 0))
+    scaleRight <- tail(tb$cums, n = 1)/tail(yBreaks, n = 1)
+
+    p <- ggplot2::ggplot(data = data.frame(x = tb[, 1], y = tb[, 2]), ggplot2::aes(x = reorder(x, -y), y = y)) +
+      ggplot2::geom_bar(stat = "identity", fill = "grey", col = "black", size = .3) +
+      ggplot2::xlab(variable) +
+      ggplot2::ylab(gettext("Counts")) +
+      ggplot2::geom_path(ggplot2::aes(y = tb[, 3]/scaleRight, group = 1), colour = "black", size = 1) +
+      ggplot2::geom_point(ggplot2::aes(y = tb[, 3]/scaleRight, group = 1), colour = "steelblue", size = 3) +
+      ggplot2::scale_y_continuous(breaks = yBreaks, limits = range(yBreaks),
+                                  sec.axis = ggplot2::sec_axis(~.*scaleRight, name = "Cumulative (%)", breaks = seq(0,100,10))) +
+      jaspGraphs::geom_rangeframe(sides = "rbl") +
+      jaspGraphs::themeJaspRaw() +
+      ggplot2::theme(plot.margin = ggplot2::margin(5))
+
+  } else {
+    p  <- ggplot2::ggplot(data = data.frame(x = tb[, 1], y = tb[, 2]), ggplot2::aes(x = x, y = y)) +
+      ggplot2::geom_bar(stat = "identity", fill = "grey", col = "black", size = .3) +
+      ggplot2::xlab(variable) +
+      ggplot2::ylab(gettext("Counts")) +
+      jaspGraphs::geom_rangeframe() +
+      jaspGraphs::themeJaspRaw() +
+      ggplot2::theme(plot.margin = ggplot2::margin(5))
+  }
 
   return(p)
 }
@@ -2079,7 +2102,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   p <- p + ggplot2::theme(panel.background = ggplot2::element_rect(size = 1, color = "grey90", fill = NA))
 
-  p <- p + ggplot2::theme(text = ggplot2::element_text(size = 22.5))
+  p <- p + ggplot2::theme(text = ggplot2::element_text(size = 22.5), axis.title.x = ggplot2::element_text(size = 18))
 
   if (options[["fontSizeLikert"]] == "small"){        # Customizable Font Size
     p <- p + ggplot2::theme(axis.text.y = ggplot2::element_text(size = 20))
@@ -2087,8 +2110,6 @@ Descriptives <- function(jaspResults, dataset, options) {
     p <- p + ggplot2::theme(axis.text.y = ggplot2::element_text(size = 22.5))
   } else if (options[["fontSizeLikert"]] == "large") {
     p <- p + ggplot2::theme(axis.text.y = ggplot2::element_text(size = 25))
-  } else {
-    p <- p + ggplot2::theme(text = ggplot2::element_text(size = 22.5))
   }
 
   likPlot$plotObject <- p
