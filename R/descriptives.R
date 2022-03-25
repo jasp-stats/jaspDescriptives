@@ -1368,9 +1368,10 @@ Descriptives <- function(jaspResults, dataset, options) {
       ggplot2::geom_path(ggplot2::aes(y = tb[, 3]/scaleRight, group = 1), colour = "black", size = 1) +
       ggplot2::geom_point(ggplot2::aes(y = tb[, 3]/scaleRight, group = 1), colour = "steelblue", size = 3) +
       ggplot2::scale_y_continuous(breaks = yBreaks, limits = range(yBreaks),
-                                  sec.axis = ggplot2::sec_axis(~.*scaleRight, name = "Cumulative (%)", breaks = seq(0,100,10))) +
+                                  sec.axis = ggplot2::sec_axis(~.*scaleRight, name = "Cumulative (%)", breaks = seq(0,100,20))) +
       jaspGraphs::geom_rangeframe(sides = "rbl") +
       jaspGraphs::themeJaspRaw() +
+      # ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 35, hjust = 1)) + # Rotation x-labels
       ggplot2::theme(plot.margin = ggplot2::margin(5))
 
   } else {
