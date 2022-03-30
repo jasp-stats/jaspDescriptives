@@ -80,34 +80,51 @@ Form
 			Group
 			{
 				Layout.columnSpan: 2
-				enabled: plotVariables.checked || plotCorrelationMatrix.checked
-
-				indent:		true
-				CheckBox {			name: "distPlotDensity";	label: qsTr("Display density")						}
-				CheckBox {			name: "distPlotRug";		label: qsTr("Display rug marks")					}
-				CheckBox {			name: "distParetoChart";	label: qsTr("Pareto Chart") 						}
-				DropDown {
-					name: "binWidthType"
-					label: qsTr("Bin width type")
-					indexDefaultValue: 0
-					values:
-						[
-						{label: qsTr("Sturges"),				value: "sturges"},
-						{label: qsTr("Scott"),					value: "scott"},
-						{label: qsTr("Doane"),					value: "doane"},
-						{label: qsTr("Freedman-Diaconis"),		value: "fd"	},
-						{label: qsTr("Manual"),					value: "manual"	}
-					]
-					id: binWidthType
-				}
-				DoubleField
+				Group
 				{
-					name:			"numberOfBins"
-					label:			qsTr("Number of bins")
-					defaultValue:	30
-					min:			3;
-					max:			10000;
-					enabled:		binWidthType.currentValue === "manual"
+					enabled: plotVariables.checked || plotCorrelationMatrix.checked
+					indent:		true
+					CheckBox {			name: "distPlotDensity";	label: qsTr("Display density")						}
+					CheckBox {			name: "distPlotRug";		label: qsTr("Display rug marks")					}
+					DropDown {
+						name: "binWidthType"
+						label: qsTr("Bin width type")
+						indexDefaultValue: 0
+						values:
+							[
+							{label: qsTr("Sturges"),				value: "sturges"},
+							{label: qsTr("Scott"),					value: "scott"},
+							{label: qsTr("Doane"),					value: "doane"},
+							{label: qsTr("Freedman-Diaconis"),		value: "fd"	},
+							{label: qsTr("Manual"),					value: "manual"	}
+						]
+						id: binWidthType
+					}
+					DoubleField
+					{
+						name:			"numberOfBins"
+						label:			qsTr("Number of bins")
+						defaultValue:	30
+						min:			3;
+						max:			10000;
+						enabled:		binWidthType.currentValue === "manual"
+					}
+				}
+				Group
+				{
+					enabled: plotVariables.checked
+					indent: true
+					columns: 3
+					CheckBox {			name: "distParetoChart";	label: qsTr("Pareto Chart") 					}
+					CheckBox {			name: "optParetoRule";		label: qsTr("Pareto Rule"); childrenOnSameRow: true				
+					DoubleField { 		
+						name: 			"paretoRule"; 		
+						label: 			qsTr(""); 	
+						negativeValues: false; 		
+						defaultValue: 	80;
+						min:			1;
+						max:			100;						
+					}}
 				}
 			}
 
