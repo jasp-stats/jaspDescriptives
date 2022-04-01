@@ -90,8 +90,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     if(is.null(jaspResults[["distributionPlots"]])) {
       jaspResults[["distributionPlots"]] <- createJaspContainer(gettext("Distribution Plots"))
       jaspResults[["distributionPlots"]]$dependOn(c("plotVariables", "splitby", "binWidthType", "distPlotDensity",
-                                                    "distPlotRug", "distParetoChart", "optParetoRule", "paretoRule",
-                                                    "numberOfBins"))
+                                                    "distPlotRug", "numberOfBins"))
       jaspResults[["distributionPlots"]]$position <- 5
     }
 
@@ -306,6 +305,30 @@ Descriptives <- function(jaspResults, dataset, options) {
 
     } else {
       jaspResults[["likertPlot"]] <- .descriptivesLikertPlots(dataset.factors, options, gettext("Likert Plot")) # Create one plot
+    }
+  }
+
+  # Pareto Plot
+  if (options$distParetoChart) {
+    if(is.null(jaspResults[["paretoPlots"]])) {
+      jaspResults[["paretoPlots"]] <- createJaspContainer(gettext("Pareto Plots"))
+      jaspResults[["paretoPlots"]]$dependOn(c("distParetoChart", "splitby", "optParetoRule", "paretoRule"))
+      jaspResults[["paretoPlots"]]$position <- 16
+    }
+
+    parPlots <- jaspResults[["paretoPlots"]]
+
+    for (var in variables) {
+      # skip non-categorical variables
+      if(is.double(dataset.factors[[.v(var)]]))next
+
+      if(is.null(parPlots[[var]])) {
+        if (makeSplit) {
+          parPlots[[var]] <- .descriptivesParetoPlots(dataset = splitDat.factors, options = options, variable = var)
+        } else {
+          parPlots[[var]] <- .descriptivesParetoPlots(dataset = dataset.factors, options = options, variable = var)
+        }
+      }
     }
   }
 
@@ -983,21 +1006,21 @@ Descriptives <- function(jaspResults, dataset, options) {
     plotResult$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
 
     for (l in split) {
-      plotResult[[l]] <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset[[l]], variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDensity, rugs = options$distPlotRug, pareto = options$distParetoChart, paretoR = options$optParetoRule, paretoN = options$paretoRule, title = l, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
+      plotResult[[l]] <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset[[l]], variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDensity, rugs = options$distPlotRug, title = l, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
       plotResult[[l]]$dependOn(optionsFromObject = plotResult)
     }
 
     return(plotResult)
   } else {
     column <- dataset[[.v(variable)]]
-    aPlot <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset, variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDensity, rugs = options$distPlotRug, pareto = options$distParetoChart, paretoR = options$optParetoRule, paretoN = options$paretoRule, title = variable, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
+    aPlot <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset, variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDensity, rugs = options$distPlotRug, title = variable, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
     aPlot$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
 
     return(aPlot)
   }
 }
 
-.descriptivesFrequencyPlots_SubFunc <- function(dataset, variable, width, height, displayDensity, rugs, pareto, paretoR, paretoN, title,  binWidthType, numberOfBins) {
+.descriptivesFrequencyPlots_SubFunc <- function(dataset, variable, width, height, displayDensity, rugs, title,  binWidthType, numberOfBins) {
   freqPlot <- createJaspPlot(title = title, width = width, height = height)
 
   errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 3")
@@ -1007,7 +1030,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (!is.null(errorMessage))
     freqPlot$setError(gettextf("Plotting not possible: %s", errorMessage))
   else if (length(column) > 0 && isDiscrete)
-    freqPlot$plotObject <- .barplotJASP(column, variable, pareto = pareto, paretoR = paretoR, paretoN = paretoN)
+    freqPlot$plotObject <- .barplotJASP(column, variable)
   else if (length(column) > 0 && !isDiscrete)
     freqPlot$plotObject <- .plotMarginal(column, variableName = variable, displayDensity = displayDensity, rugs = rugs, binWidthType = binWidthType, numberOfBins = numberOfBins)
 
@@ -1350,57 +1373,16 @@ Descriptives <- function(jaspResults, dataset, options) {
 
 }
 
-.barplotJASP <- function(column, variable, pareto, paretoR, paretoN) {
+.barplotJASP <- function(column, variable) {
 
   tb <- as.data.frame(table(column))
-
-  # Pareto Option
-  if(pareto){
-    tb <- tb[order(tb$Freq, decreasing = TRUE), ]
-    tb$cums <- cumsum(tb$Freq)
-    tb$cums <- 100 * tb$cums/tail(tb$cums, n = 1)
-    yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(0, tb$Freq))
-    scaleRight <- tail(tb$cums, n = 1)/tail(yBreaks, n = 1)
-
-    p <- ggplot2::ggplot(data = data.frame(x = tb[, 1], y = tb[, 2]), ggplot2::aes(x = reorder(x, -y), y = y)) +
-      ggplot2::geom_bar(stat = "identity", fill = "grey", col = "black", size = .3) +
-      ggplot2::xlab(variable) +
-      ggplot2::ylab(gettext("Counts"))
-
-    # Adding Pareto Line
-    if (paretoR){
-      perc <- paretoN
-      prop <- perc/100
-      colOrdered <- as.numeric(tb$column[order(tb$column, decreasing = FALSE)])
-      interSec <- approx(colOrdered, tb$cums, n = 1000)     # Finding x axis intersection at ?%
-      interY <- which.min(abs(interSec$y - perc))
-      interX <- interSec$x[interY]
-
-      p <- p + ggplot2::geom_segment(ggplot2::aes(x = interX, xend = (nrow(tb) + 0.5), y = (max(yBreaks)*prop), yend = (max(yBreaks)*prop)),
-                                     linetype = "dashed", color = "orange", size = 1.3)
-      p <- p + ggplot2::geom_segment(ggplot2::aes(x = interX, xend = interX, y = 0, yend = (max(yBreaks)*prop)),
-                                     linetype = "dashed", color = "orange", size = 1.3)
-    }
-
-    # Adding cumulative percentages
-    p <- p + ggplot2::geom_path(ggplot2::aes(y = tb[, 3]/scaleRight, group = 1), colour = "black", size = 1) +
-      ggplot2::geom_point(ggplot2::aes(y = tb[, 3]/scaleRight, group = 1), colour = "steelblue", size = 3) +
-      ggplot2::scale_y_continuous(breaks = yBreaks, limits = range(yBreaks),
-                                  sec.axis = ggplot2::sec_axis(~.*scaleRight, name = "Cumulative (%)", breaks = seq(0,100,20))) +
-      jaspGraphs::geom_rangeframe(sides = "rbl") +
-      jaspGraphs::themeJaspRaw() +
-      ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1)) +
-      ggplot2::theme(plot.margin = ggplot2::margin(5))
-
-  } else {
-    p  <- ggplot2::ggplot(data = data.frame(x = tb[, 1], y = tb[, 2]), ggplot2::aes(x = x, y = y)) +
-      ggplot2::geom_bar(stat = "identity", fill = "grey", col = "black", size = .3) +
-      ggplot2::xlab(variable) +
-      ggplot2::ylab(gettext("Counts")) +
-      jaspGraphs::geom_rangeframe() +
-      jaspGraphs::themeJaspRaw() +
-      ggplot2::theme(plot.margin = ggplot2::margin(5))
-  }
+  p  <- ggplot2::ggplot(data = data.frame(x = tb[, 1], y = tb[, 2]), ggplot2::aes(x = x, y = y)) +
+    ggplot2::geom_bar(stat = "identity", fill = "grey", col = "black", size = .3) +
+    ggplot2::xlab(variable) +
+    ggplot2::ylab(gettext("Counts")) +
+    jaspGraphs::geom_rangeframe() +
+    jaspGraphs::themeJaspRaw() +
+    ggplot2::theme(plot.margin = ggplot2::margin(5))
 
   return(p)
 }
@@ -2135,3 +2117,85 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   return(likPlot)
 }
+
+.descriptivesParetoPlots <- function(dataset, options, variable) {
+  if (options$splitby != "" ) {
+    # return a collection
+    split <- names(dataset)
+
+    plotResult <- createJaspContainer(title = variable)
+    plotResult$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
+
+    for (l in split) {
+      plotResult[[l]] <- .descriptivesParetoPlots_SubFunc(dataset = dataset[[l]], variable = variable, width = options$plotWidth,
+                                                          height = options$plotHeight, title = l, pareto = options$distParetoChart,
+                                                          paretoR = options$optParetoRule, paretoN = options$paretoRule)
+      plotResult[[l]]$dependOn(optionsFromObject = plotResult)
+    }
+
+    return(plotResult)
+  } else {
+    pPlot <- .descriptivesParetoPlots_SubFunc(dataset = dataset, variable = variable, width = options$plotWidth,
+                                              height = options$plotHeight, title = variable, pareto = options$distParetoChart,
+                                              paretoR = options$optParetoRule, paretoN = options$paretoRule)
+    pPlot$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
+
+    return(pPlot)
+  }
+}
+
+.descriptivesParetoPlots_SubFunc <- function(dataset, variable, width, height, title, pareto, paretoR, paretoN) {
+  parePlot <- createJaspPlot(title = title, width = width, height = height)
+
+  errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 3")
+  column <- dataset[[variable]]
+  column <- column[!is.na(column)]
+  if (!is.null(errorMessage))
+    parePlot$setError(gettextf("Plotting not possible: %s", errorMessage))
+  else if (length(column) > 0)
+    parePlot$plotObject <- .paretoPlots(column, variable, pareto, paretoR, paretoN)
+
+  return(parePlot)
+}
+
+.paretoPlots <- function(column, variable, pareto, paretoR, paretoN) {
+
+  tb <- as.data.frame(table(column))
+  tb <- tb[order(tb$Freq, decreasing = TRUE), ]
+  tb$cums <- cumsum(tb$Freq)
+  tb$cums <- 100 * tb$cums/tail(tb$cums, n = 1)
+  yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(0, tb$Freq))
+  scaleRight <- tail(tb$cums, n = 1)/tail(yBreaks, n = 1)
+
+  # Ordered (decreasing) distribution chart
+  p <- ggplot2::ggplot(data = data.frame(x = tb[, 1], y = tb[, 2]), ggplot2::aes(x = reorder(x, -y), y = y)) +
+    ggplot2::geom_bar(stat = "identity", fill = "grey", col = "black", size = .3) +
+    ggplot2::xlab(variable) +
+    ggplot2::ylab(gettext("Counts"))
+
+  # Adding Pareto Line
+  if (paretoR){
+    perc <- paretoN
+    prop <- perc/100
+    colOrdered <- as.numeric(tb$column[order(tb$column, decreasing = FALSE)])
+    interSec <- approx(colOrdered, tb$cums, n = 1000)     # Finding x axis intersection at ?%
+    interY <- which.min(abs(interSec$y - perc))
+    interX <- interSec$x[interY]
+
+    p <- p + ggplot2::geom_segment(ggplot2::aes(x = interX, xend = (nrow(tb) + 0.5), y = (max(yBreaks)*prop), yend = (max(yBreaks)*prop)),
+                                   linetype = "dashed", color = "orange", size = 1.3)
+    p <- p + ggplot2::geom_segment(ggplot2::aes(x = interX, xend = interX, y = 0, yend = (max(yBreaks)*prop)),
+                                   linetype = "dashed", color = "orange", size = 1.3)
+  }
+
+  # Adding cumulative percentages
+  p <- p + ggplot2::geom_path(ggplot2::aes(y = tb[, 3]/scaleRight, group = 1), colour = "black", size = 1) +
+    ggplot2::geom_point(ggplot2::aes(y = tb[, 3]/scaleRight, group = 1), colour = "steelblue", size = 3) +
+    ggplot2::scale_y_continuous(breaks = yBreaks, limits = range(yBreaks),
+                                sec.axis = ggplot2::sec_axis(~.*scaleRight, name = "Cumulative (%)", breaks = seq(0,100,20))) +
+    jaspGraphs::geom_rangeframe(sides = "rbl") +
+    jaspGraphs::themeJaspRaw() +
+    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1)) +
+    ggplot2::theme(plot.margin = ggplot2::margin(5))
+}
+
