@@ -1,30 +1,37 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2022-04-02 11:56+0000\n"
+"Last-Translator: Ivan <kulikov@mail.tsu.ru>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.12-dev\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
 msgid "Descriptives"
-msgstr ""
+msgstr "Описательные статистики"
 
 msgctxt "Description|"
 msgid "Descriptive Statistics"
-msgstr ""
+msgstr "Описательные статистики"
 
 msgctxt "Descriptives|"
 msgid "Variables"
-msgstr ""
+msgstr "Переменные"
 
 msgctxt "Descriptives|"
 msgid "Split"
-msgstr ""
+msgstr "Группировка"
 
 msgctxt "Descriptives|"
 msgid "Frequency tables"
-msgstr ""
+msgstr "Таблицы частот"
 
 msgctxt "Descriptives|"
 msgid "Maximum distinct values"
@@ -51,19 +58,19 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Plots"
-msgstr ""
+msgstr "Графики"
 
 msgctxt "Descriptives|"
 msgid "Color palette"
-msgstr ""
+msgstr "Цветовое оформление"
 
 msgctxt "Descriptives|"
 msgid "Colorblind"
-msgstr ""
+msgstr "Цветовая слепота"
 
 msgctxt "Descriptives|"
 msgid "Colorblind Alt."
-msgstr ""
+msgstr "Цветовая слепота (альт.)"
 
 msgctxt "Descriptives|"
 msgid "Viridis"
@@ -99,7 +106,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Label outliers"
-msgstr ""
+msgstr "Отметить выбросы"
 
 msgctxt "Descriptives|"
 msgid "Scatter Plots"
@@ -115,7 +122,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Histogram"
-msgstr ""
+msgstr "Гистограмма"
 
 msgctxt "Descriptives|"
 msgid "None"
@@ -139,7 +146,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Show confidence interval"
-msgstr ""
+msgstr "Показать доверительный интервал"
 
 msgctxt "Descriptives|"
 msgid "Show legend"
@@ -151,7 +158,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Distribution plots"
-msgstr ""
+msgstr "Графики распределения"
 
 msgctxt "Descriptives|"
 msgid "Display density"
@@ -159,7 +166,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Correlation plots"
-msgstr ""
+msgstr "Графики корреляций"
 
 msgctxt "Descriptives|"
 msgid "Q-Q plots"
@@ -175,7 +182,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Quartiles"
-msgstr ""
+msgstr "Квартили"
 
 msgctxt "Descriptives|"
 msgid "Cut points for: "
@@ -187,27 +194,27 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Percentiles:"
-msgstr ""
+msgstr "Процентили:"
 
 msgctxt "Descriptives|"
 msgid "Central Tendency"
-msgstr ""
+msgstr "Центральная тенденция"
 
 msgctxt "Descriptives|"
 msgid "Mean"
-msgstr ""
+msgstr "Среднее значение"
 
 msgctxt "Descriptives|"
 msgid "Median"
-msgstr ""
+msgstr "Медиана"
 
 msgctxt "Descriptives|"
 msgid "Mode"
-msgstr ""
+msgstr "Мода"
 
 msgctxt "Descriptives|"
 msgid "Sum"
-msgstr ""
+msgstr "Сумма"
 
 msgctxt "Descriptives|"
 msgid "Dispersion"
@@ -215,11 +222,11 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "S.E. mean"
-msgstr ""
+msgstr "Стандартная ошибка среднего"
 
 msgctxt "Descriptives|"
 msgid "Std. deviation"
-msgstr ""
+msgstr "Стандартное отклонение"
 
 msgctxt "Descriptives|"
 msgid "MAD"
@@ -231,35 +238,35 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "IQR"
-msgstr ""
+msgstr "Межквартильный интервал"
 
 msgctxt "Descriptives|"
 msgid "Variance"
-msgstr ""
+msgstr "Дисперсия"
 
 msgctxt "Descriptives|"
 msgid "Range"
-msgstr ""
+msgstr "Размах"
 
 msgctxt "Descriptives|"
 msgid "Minimum"
-msgstr ""
+msgstr "Минимум"
 
 msgctxt "Descriptives|"
 msgid "Maximum"
-msgstr ""
+msgstr "Максимум"
 
 msgctxt "Descriptives|"
 msgid "Distribution"
-msgstr ""
+msgstr "Распределение"
 
 msgctxt "Descriptives|"
 msgid "Skewness"
-msgstr ""
+msgstr "Асимметрия"
 
 msgctxt "Descriptives|"
 msgid "Kurtosis"
-msgstr ""
+msgstr "Эксцесс"
 
 msgctxt "Descriptives|"
 msgid "Shapiro-Wilk test"
@@ -355,11 +362,11 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Quantiles"
-msgstr ""
+msgstr "Квантили"
 
 msgctxt "Descriptives|"
 msgid "Sample Size"
-msgstr ""
+msgstr "Размер выборки"
 
 msgctxt "Descriptives|"
 msgid "Valid"
@@ -367,7 +374,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Missing"
-msgstr ""
+msgstr "Пропущенные значения"
 
 msgctxt "Descriptives|"
 msgid "Tile Heatmap"
@@ -411,8 +418,8 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Number of observations"
-msgstr ""
+msgstr "Количество наблюдений"
 
 msgctxt "Descriptives|"
 msgid "For nominal and ordinal variables"
-msgstr ""
+msgstr "Для номинативных и порядковых переменных"
