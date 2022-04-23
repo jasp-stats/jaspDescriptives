@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-04-02 11:56+0000\n"
-"Last-Translator: Ivan <kulikov@mail.tsu.ru>\n"
+"PO-Revision-Date: 2022-04-22 15:14+0000\n"
+"Last-Translator: 12Riklama18 <12riklama18@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/ru/>\n"
 "Language: ru\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.12-dev\n"
+"X-Generator: Weblate 4.12.1-dev\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
@@ -31,7 +31,7 @@ msgstr "Группировка"
 
 msgctxt "Descriptives|"
 msgid "Frequency tables"
-msgstr "Таблицы частот"
+msgstr "Таблицы частотности"
 
 msgctxt "Descriptives|"
 msgid "Maximum distinct values"
@@ -43,7 +43,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "scale"
-msgstr ""
+msgstr "шкала"
 
 msgctxt "Descriptives|"
 msgid ""
@@ -78,23 +78,23 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "ggplot2"
-msgstr ""
+msgstr "ggplot2"
 
 msgctxt "Descriptives|"
 msgid "Gray"
-msgstr ""
+msgstr "Серый"
 
 msgctxt "Descriptives|"
 msgid "Boxplots"
-msgstr ""
+msgstr "Ящики с усами"
 
 msgctxt "Descriptives|"
 msgid "Boxplot element"
-msgstr ""
+msgstr "Элемент ящика с усами"
 
 msgctxt "Descriptives|"
 msgid "Violin element"
-msgstr ""
+msgstr "Элемент графика виолончели"
 
 msgctxt "Descriptives|"
 msgid "Jitter element"
@@ -102,7 +102,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Use color palette"
-msgstr ""
+msgstr "Использовать цветовое оформление"
 
 msgctxt "Descriptives|"
 msgid "Label outliers"
@@ -110,7 +110,7 @@ msgstr "Отметить выбросы"
 
 msgctxt "Descriptives|"
 msgid "Scatter Plots"
-msgstr ""
+msgstr "График рассеяния"
 
 msgctxt "Descriptives|"
 msgid "Graph above scatter plot"
@@ -218,7 +218,7 @@ msgstr "Сумма"
 
 msgctxt "Descriptives|"
 msgid "Dispersion"
-msgstr ""
+msgstr "Дисперсия"
 
 msgctxt "Descriptives|"
 msgid "S.E. mean"
@@ -270,7 +270,7 @@ msgstr "Эксцесс"
 
 msgctxt "Descriptives|"
 msgid "Shapiro-Wilk test"
-msgstr ""
+msgstr "Критерий Шапиро-Уилка"
 
 msgctxt "Descriptives|"
 msgid "Values are group midpoints"
