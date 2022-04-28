@@ -2185,7 +2185,6 @@ Descriptives <- function(jaspResults, dataset, options) {
                                 sec.axis = ggplot2::sec_axis(~.*scaleRight, name = "Cumulative (%)", breaks = seq(0,100,20))) +
     jaspGraphs::geom_rangeframe(sides = "rbl") +
     jaspGraphs::themeJaspRaw() +
-    ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 45, hjust = 1)) +
     ggplot2::theme(plot.margin = ggplot2::margin(5))
 }
 
