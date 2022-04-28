@@ -23,6 +23,10 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
   - Label outliers: Optionally, the outliers are labelled. Outliers are based on the interquartile range (IQR), i.e., [25th percentile] - 1.5 × IQR and [75th percentile] + 1.5 × IQR.
   - Color: Displays in color.
     - Has selectable boxplot, violin, and jitter elements for displaying the distribution of the data.
+- Likert plots: Works only for nominal and ordinal variables. Displays a horizontally stacked bar plot, generating a new bar for every additional variable added.
+  - Adjustable font size for vertical axis: Controls the font size of variable names on the vertical axis. By default, the normal font size is used, three more sizes are available.
+- Pareto plots: Works only for nominal and ordinal variables. Displays an ordered descending frequency distribution. By default, a cumulative line is added indicating the proportional contribution of each factor/level within the variable.
+  - Parteo rule: Draws two additonal lines, one vertically and one horizontally, that intersect and stop at the height of the input number.
 
 ### Statistics
 - Central Tendency (only for continuous variables):
@@ -87,6 +91,19 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
 
 #### Boxplots
 - For continuous variables, displays a boxplot. Optionally, the outliers are labelled. Outliers are based on the interquartile range (IQR), i.e., [25th percentile] - 1.5 × IQR and [75th percentile] + 1.5 × IQR. Can also display in color, and has selectable boxplot, violin, and jitter elements for displaying the distribution of the data. This can be split by a categorical variable such as experimental condition.
+
+#### Likert plots
+- Displays a horizontally stacked bar chart showing the contribution of levels within a variable in percent. Order of levels depends on defined order in the JASP data table. A legend below the graph provides an overview of levels and their respective colors in the graph.
+  - The y-axis represents the variables used, the x-axis represents the percentages. Percentage contribution of all lower-order (below the middle level) and higher-order (above the middle level) levels are displayed on their respective side of the graph.
+  - The graph displays percentages on the x-axis as positive in both directions. Reason for the chosen display (in two directions) is the graphs usefulness in survey research where levels often follow a likert based order (e.g., high - low, likely - unlikely, agreement - disagreement). Therefore, the graph contains a split between levels at their median.
+  - The number of variable levels determines the number of layers displayed (Note: variables require the same amount of levels). Layers represent the percentage distribution of the levels of the variable under investigation.
+  - If the variables contain an uneven amount of levels, the middle level is displayed as a grey block in the middle of the stacked bar with its percentage contribution on top.
+- Available font sizes: normal, small, medium, large.
+
+#### Pareto plots
+- Displays the counts of each factor/level within the variable in a descending order. The y-axis represents the frequency of each factor, the x-axis represents the levels of the variable in an ordered sequence.
+- By default, a cumulative line is drawn indicating the proportional contribution of each factor. A second vertical axis to the right side of the graph scales with this line and represents percentages to enable the description of the cumulative line.
+- If "Pareto rule" is enabled, the two new lines enable a more precise assessment of factor/level contribution to the overall contribution by using different input numbers.
 
 #### Frequency Tables (nominal and ordinal variables)
 - Displays a frequency table for each variable.
