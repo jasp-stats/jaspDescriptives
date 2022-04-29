@@ -281,7 +281,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (options[["descriptivesLikertPlot"]] && length(variables) > 0){
     if (is.null(jaspResults[["likertPlot"]])) {
       jaspResults[["likertPlot"]] <- createJaspContainer(gettext("Likert Plots"))
-      jaspResults[["likertPlot"]]$dependOn(c("splitby", "descriptivesLikertPlot", "variables", "fontSizeLikert"))
+      jaspResults[["likertPlot"]]$dependOn(c("descriptivesLikertPlot", "splitby", "variables", "fontSizeLikert"))
       jaspResults[["likertPlot"]]$position <- 15
     }
 
@@ -2065,14 +2065,13 @@ Descriptives <- function(jaspResults, dataset, options) {
                               ggplot2::aes(x = Item, label = paste0(round(low), "%")),
                               size = textSize,
                               hjust = 0.7,
-                              color = textColor)
-
-  p <- p + ggplot2::geom_text(data = l$sum,    # plot.percent.high
-                              y = 100,
-                              ggplot2::aes(x = Item, label = paste0(round(high), "%")),
-                              size = textSize,
-                              hjust = 0.3,
-                              color = textColor)
+                              color = textColor) +
+    ggplot2::geom_text(data = l$sum,           # plot.percent.high
+                       y = 100,
+                       ggplot2::aes(x = Item, label = paste0(round(high), "%")),
+                       size = textSize,
+                       hjust = 0.3,
+                       color = textColor)
 
   if (nLevels%%2 == 1) {                       # plot.percent.neutral
     p <- p + ggplot2::geom_text(data = l$sum,
@@ -2085,15 +2084,11 @@ Descriptives <- function(jaspResults, dataset, options) {
   p <- p + ggplot2::coord_flip() +
     ggplot2::ylab("Percentage") +
     ggplot2::xlab("") +
-    ggplot2::theme(axis.ticks = ggplot2::element_blank())
-
-  p <- p + ggplot2::scale_y_continuous(labels = function(x) return(abs(x)), limits = c(yMin - yBuffer, yMax + yBuffer))
-
-  p <- p + ggplot2::theme(legend.position = "bottom") + ggplot2::guides(fill = ggplot2::guide_legend(byrow = TRUE))
-
-  p <- p + ggplot2::theme(panel.background = ggplot2::element_rect(size = 1, color = "grey90", fill = NA))
-
-  p <- p + ggplot2::theme(text = ggplot2::element_text(size = 22.5), axis.title.x = ggplot2::element_text(size = 18))
+    ggplot2::theme(axis.ticks = ggplot2::element_blank()) +
+    ggplot2::scale_y_continuous(labels = function(x) return(abs(x)), limits = c(yMin - yBuffer, yMax + yBuffer)) +
+    ggplot2::theme(legend.position = "bottom") + ggplot2::guides(fill = ggplot2::guide_legend(byrow = TRUE)) +
+    ggplot2::theme(panel.background = ggplot2::element_rect(size = 1, color = "grey90", fill = NA)) +
+    ggplot2::theme(text = ggplot2::element_text(size = 22.5), axis.title.x = ggplot2::element_text(size = 18))
 
   if (options[["fontSizeLikert"]] == "small"){        # Customizable Font Size
     p <- p + ggplot2::theme(axis.text.y = ggplot2::element_text(size = 20))
@@ -2165,8 +2160,8 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   # Adding Pareto Line
   if (paretoR){
-    perc <- paretoN
-    prop <- perc/100
+    prop <- paretoN
+    perc <- prop*100
     colOrdered <- as.numeric(tb$column[order(tb$column, decreasing = FALSE)])
     interSec <- approx(colOrdered, tb$cums, n = 1000)     # Finding x axis intersection at ?%
     interY <- which.min(abs(interSec$y - perc))

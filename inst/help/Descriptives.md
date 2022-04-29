@@ -26,7 +26,7 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
 - Likert plots: Works only for nominal and ordinal variables. Displays a horizontally stacked bar plot, generating a new bar for every additional variable added.
   - Adjustable font size for vertical axis: Controls the font size of variable names on the vertical axis. By default, the normal font size is used, three more sizes are available.
 - Pareto plots: Works only for nominal and ordinal variables. Displays an ordered descending frequency distribution. By default, a cumulative line is added indicating the proportional contribution of each factor/level within the variable.
-  - Parteo rule: Draws two additonal lines, one vertically and one horizontally, that intersect and stop at the height of the input number.
+  - Parteo rule: Draws two additonal lines, one vertically and one horizontally, that intersect and stop at the height of the input number (scales with cumulative line). By default, it is set to 95%. This can be changed into the desired percentage.
 
 ### Statistics
 - Central Tendency (only for continuous variables):
@@ -101,9 +101,9 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
 - Available font sizes: normal, small, medium, large.
 
 #### Pareto plots
-- Displays the counts of each factor/level within the variable in a descending order. The y-axis represents the frequency of each factor, the x-axis represents the levels of the variable in an ordered sequence.
-- By default, a cumulative line is drawn indicating the proportional contribution of each factor. A second vertical axis to the right side of the graph scales with this line and represents percentages to enable the description of the cumulative line.
-- If "Pareto rule" is enabled, the two new lines enable a more precise assessment of factor/level contribution to the overall contribution by using different input numbers.
+- Displays the counts of each factor/level within the variable in a descending order. The y-axis represents the frequency (counts as grey bars) of each factor/level, the x-axis represents the factors/levels of the variable in an ordered sequence.
+- By default, a cumulative line is drawn indicating the proportional contribution of each factor. A second vertical axis to the right side of the graph scales with this cumulative line and represents percentages to enable the description of the cumulative line.
+- If "Pareto rule" is enabled, the two new lines enable a more precise assessment of factor/level contribution to the overall contribution (in percent) by using different input numbers.
 
 #### Frequency Tables (nominal and ordinal variables)
 - Displays a frequency table for each variable.

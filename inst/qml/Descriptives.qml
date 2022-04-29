@@ -233,16 +233,8 @@ Form
 				{			
 					name: 		"optParetoRule";		
 					label: 		qsTr("Pareto rule"); 
-					childrenOnSameRow: true				
-					DoubleField 
-					{ 		
-						name: 				"paretoRule"; 		
-						label: 				qsTr(""); 	
-						negativeValues: 	false; 		
-						defaultValue: 		80;
-						min:				1;
-						max:				100;						
-					}
+					childrenOnSameRow: true
+					CIField { name: "paretoRule" }
 				}
 			}	
 		}
