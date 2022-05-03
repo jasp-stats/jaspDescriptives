@@ -109,6 +109,7 @@ Form
 		{
 			title:				qsTr("Dispersion")
 			columns:			2
+			Layout.columnSpan:	2
 
 			CheckBox { name: "standardErrorMean";	label: qsTr("S.E. mean")							}
 			CheckBox { name: "standardDeviation";	label: qsTr("Std. deviation");		checked: true	}
