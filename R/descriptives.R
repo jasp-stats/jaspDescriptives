@@ -89,8 +89,8 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (options$plotVariables) {
     if(is.null(jaspResults[["distributionPlots"]])) {
       jaspResults[["distributionPlots"]] <- createJaspContainer(gettext("Distribution Plots"))
-      jaspResults[["distributionPlots"]]$dependOn(c("plotVariables", "splitby", "binWidthType", "distPlotDensity",
-                                                    "distPlotRug", "numberOfBins"))
+      jaspResults[["distributionPlots"]]$dependOn(c("plotVariables", "splitby", "binWidthType", "overlay",
+                                                    "distPlotDensity", "distPlotRug", "numberOfBins"))
       jaspResults[["distributionPlots"]]$position <- 5
     }
 
@@ -99,9 +99,9 @@ Descriptives <- function(jaspResults, dataset, options) {
     for (var in variables) {
       if(is.null(distPlots[[var]])) {
         if (makeSplit) {
-          distPlots[[var]] <- .descriptivesFrequencyPlots(dataset = splitDat.factors, options = options, variable = var)
+          distPlots[[var]] <- .descriptivesFrequencyPlots(dataset = splitDat.factors, options = options, variable = var, overlayFactor = splitFactor)
         } else {
-          distPlots[[var]] <- .descriptivesFrequencyPlots(dataset = dataset.factors, options = options, variable = var)
+          distPlots[[var]] <- .descriptivesFrequencyPlots(dataset = dataset.factors, options = options, variable = var, overlayFactor = splitFactor)
         }
       }
     }
@@ -941,24 +941,55 @@ Descriptives <- function(jaspResults, dataset, options) {
 }
 
 
-.descriptivesFrequencyPlots <- function(dataset, options, variable) {
+.descriptivesFrequencyPlots <- function(dataset, options, variable, overlayFactor) {
   if (options$splitby != "" ) {
     # return a collection
     split <- names(dataset)
 
-    plotResult <- createJaspContainer(title = variable)
-    plotResult$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
+    if (options$overlay) {
 
-    for (l in split) {
-      plotResult[[l]] <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset[[l]], variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDensity, rugs = options$distPlotRug, title = l, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
-      plotResult[[l]]$dependOn(optionsFromObject = plotResult)
+      #overlayFactor = Descriptives.splitFactor#dataset[[.v(splitName)]]
+
+      plotResult <- createJaspContainer(title = variable)
+      plotResult$dependOn(c("splitby", "overlay"), optionContainsValue = list(variables = variable))
+
+      #for (l in split) {
+      plotResult <- .descriptivesFrequencyPlots_SubFunc_Overlay(dataset = dataset, variable = variable, overlayFactor = overlayFactor, splitByName =  options$splitby, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDensity, rugs = options$distPlotRug, title = variable, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
+      plotResult$dependOn(optionsFromObject = plotResult)
+      #}
+
+      return(plotResult)
+
+    } else {
+
+      plotResult <- createJaspContainer(title = variable)
+      plotResult$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
+
+      for (l in split) {
+        plotResult[[l]] <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset[[l]], variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDensity, rugs = options$distPlotRug, title = l, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
+        plotResult[[l]]$dependOn(optionsFromObject = plotResult)
+      }
+
+      return(plotResult)
+
     }
 
-    return(plotResult)
   } else {
-    column <- dataset[[.v(variable)]]
-    aPlot <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset, variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDensity, rugs = options$distPlotRug, title = variable, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
-    aPlot$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
+
+    if (options$overlay == TRUE) {
+      overlayFactor = NULL
+      column <- dataset[[.v(variable)]]
+      aPlot <- .descriptivesFrequencyPlots_SubFunc_Overlay(dataset = dataset, variable = variable, overlayFactor=overlayFactor, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDensity, rugs = options$distPlotRug, title = variable, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
+      aPlot$dependOn(c("splitby", "overlay"), optionContainsValue = list(variables = variable))
+
+    } else {
+
+      column <- dataset[[.v(variable)]]
+      aPlot <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset, variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDensity, rugs = options$distPlotRug, title = variable, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
+      aPlot$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
+
+    }
+
 
     return(aPlot)
   }
@@ -977,6 +1008,25 @@ Descriptives <- function(jaspResults, dataset, options) {
     freqPlot$plotObject <- .barplotJASP(column, variable)
   else if (length(column) > 0 && !isDiscrete)
     freqPlot$plotObject <- .plotMarginal(column, variableName = variable, displayDensity = displayDensity, rugs = rugs, binWidthType = binWidthType, numberOfBins = numberOfBins)
+
+  return(freqPlot)
+}
+
+.descriptivesFrequencyPlots_SubFunc_Overlay <- function(dataset, variable, overlayFactor, splitByName =  splitByName, width, height, displayDensity, rugs, title,  binWidthType, numberOfBins) {
+  freqPlot <- createJaspPlot(title = title, width = width, height = height)
+
+  errorMessage <- NULL #.descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 3")
+  column <- dataset[[variable]]
+  column <- column[!is.na(column)]
+  #print(do.call(rbind, dataset))
+
+  isDiscrete <- is.factor(column) || is.character(column)
+  if (!is.null(errorMessage))
+    freqPlot$setError(gettextf("Plotting not possible: %s", errorMessage))
+  else if (length(column) > 0 && isDiscrete)
+    freqPlot$plotObject <- .barplotJASP(column, variable)
+  else #if (length(column) > 0 && !isDiscrete)
+    freqPlot$plotObject <- .plotMarginal_Overlay(column = do.call(rbind, dataset), variableName = variable, overlayFactor, splitByName =  splitByName, displayDensity = displayDensity, rugs = rugs, binWidthType = binWidthType, numberOfBins = numberOfBins)
 
   return(freqPlot)
 }
@@ -1238,6 +1288,111 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   return(p)
 }
+
+
+
+.plotMarginal_Overlay <- function(column, variableName, overlayFactor, splitByName,
+                          rugs = FALSE, displayDensity = FALSE, binWidthType = c("doane", "fd", "scott", "sturges", "manual"),
+                          numberOfBins = NA,
+                          lwd = 1) {
+  binWidthType <- match.arg(binWidthType)
+  #column <- as.numeric(column)
+  variable <- column[[variableName]] #na.omit(column)
+
+  #message(variable)
+
+  if (length(variable) == 0)
+    return(NULL)
+
+  if (binWidthType == "doane") {  # https://en.wikipedia.org/wiki/Histogram#Doane's_formula
+    sigma.g1 <- sqrt((6*(length(variable) - 2)) / ((length(variable) + 1)*(length(variable) + 3)))
+    g1 <- mean(abs(variable)^3)
+    k <- 1 + log2(length(variable)) + log2(1 + (g1 / sigma.g1))
+    binWidthType <- k
+  } else if (binWidthType == "fd" && nclass.FD(variable) > 10000) { # FD-method will produce extreme number of bins and crash ggplot, mention this in footnote
+    binWidthType <- 10000
+  } else if (binWidthType == "manual") {
+    binWidthType <- numberOfBins
+  }
+
+
+  h <- hist(variable, plot = FALSE, breaks = binWidthType)
+
+  if (!displayDensity)
+    yhigh <- max(h$counts)
+  else {
+    dens <- density(variable)
+    yhigh <- max(max(h$density), max(dens$y))
+  }
+
+  ylow <- 0
+  xticks <- base::pretty(c(variable, h$breaks), min.n = 3)
+
+  if (!displayDensity) {
+    p <-
+      jaspGraphs::drawAxis(
+        xName = variableName, yName = gettext("Counts"), xBreaks = xticks,
+        yBreaks = base::pretty(c(0, h$counts)), force = TRUE, xLabels = xticks
+      )
+  } else {
+    p <-
+      jaspGraphs::drawAxis(
+        xName = variableName, yName = gettext("Density"), xBreaks = xticks,
+        yBreaks = c(0,  1.05 * yhigh), force = TRUE, yLabels = NULL,
+        xLabels = xticks
+      )
+  }
+
+
+  if (displayDensity) {
+    p <- p +
+      ggplot2::geom_histogram(
+        data    = data.frame(x = variable, g = overlayFactor),
+        mapping = ggplot2::aes(x = x, fill=factor(g), y = ..density..),#options$splitBy, y = ..density..),
+        breaks  = h[["breaks"]],
+        position = 'identity',
+        alpha   = 0.2,
+        col     = "black",
+        size    = .7
+      ) +
+      ggplot2::geom_line(
+        data    = data.frame(x = dens$x, y = dens$y),
+        mapping = ggplot2::aes(x = x, y = y),
+        lwd     = lwd,
+        col     = "black"
+      ) + ggplot2::scale_fill_manual(name = splitByName, values = rainbow(nlevels(overlayFactor)))
+
+  } else {
+
+
+    p <- p +
+      ggplot2::geom_histogram(
+        data     = data.frame(x = variable, g = overlayFactor),
+        mapping  = ggplot2::aes(x = x, fill = factor(g)),
+        breaks   = h[["breaks"]],
+        position = "identity",
+        alpha    = 0.2,
+        col      = "black",
+        size     = .7
+      ) + ggplot2::scale_fill_manual(name = splitByName, values = rainbow(nlevels(overlayFactor)))
+
+  }
+
+  if (rugs)
+    p <- p + ggplot2::geom_rug(data = data.frame(variable), mapping = ggplot2::aes(x = variable), sides = "b")
+
+  # JASP theme
+  p <- jaspGraphs::themeJasp(p, legend.position = 'right',
+                             axisTickWidth = .7,
+                             bty = list(type = "n", ldwX = .7, lwdY = 1))
+  # TODO: Fix jaspgraphs axis width X vs Y. See @vandenman.
+
+  if (displayDensity)
+    p <- p + ggplot2::theme(axis.ticks.y = ggplot2::element_blank())
+
+  return(p)
+}
+
 
 .descriptivesDotPlots <- function(dataset, options, variable){
 

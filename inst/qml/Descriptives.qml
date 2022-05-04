@@ -145,6 +145,7 @@ Form
 				enabled: plotVariables.checked || plotCorrelationMatrix.checked
 
 				indent:		true
+				CheckBox {			name: "overlay";			label: qsTr("Overlay")								}
 				CheckBox {			name: "distPlotDensity";	label: qsTr("Display density")						}
 				CheckBox {			name: "distPlotRug";		label: qsTr("Display rug marks")					}
 				DropDown {
