@@ -211,7 +211,7 @@ Form
 				label: 		qsTr("Likert plots")				
 				DropDown 
 				{
-					name: 		"fontSizeLikert"
+					name: 		"fontSizeLikert";
 					label: 		qsTr("Adjustable font size for vertical axis")
 					indexDefaultValue: 0
 					values:
@@ -227,7 +227,7 @@ Form
 			
 			CheckBox 
 			{			
-				name: 		"distParetoChart";	
+				name: 		"descriptivesParetoPlot";	
 				label: 		qsTr("Pareto plot")
 				CheckBox 
 				{			

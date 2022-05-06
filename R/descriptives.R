@@ -309,7 +309,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Pareto Plot
-  if (options$distParetoChart) {
+  if (options$descriptivesParetoPlot) {
     if(is.null(jaspResults[["paretoPlots"]])) {
       jaspResults[["paretoPlots"]] <- createJaspContainer(gettext("Pareto Plots"))
       jaspResults[["paretoPlots"]]$dependOn(c("distParetoChart", "splitby", "optParetoRule", "paretoRule"))
@@ -2113,7 +2113,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
     for (l in split) {
       plotResult[[l]] <- .descriptivesParetoPlots_SubFunc(dataset = dataset[[l]], variable = variable, width = options$plotWidth,
-                                                          height = options$plotHeight, title = l, pareto = options$distParetoChart,
+                                                          height = options$plotHeight, title = l, pareto = options$descriptivesParetoPlot,
                                                           paretoR = options$optParetoRule, paretoN = options$paretoRule)
       plotResult[[l]]$dependOn(optionsFromObject = plotResult)
     }
@@ -2121,7 +2121,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     return(plotResult)
   } else {
     pPlot <- .descriptivesParetoPlots_SubFunc(dataset = dataset, variable = variable, width = options$plotWidth,
-                                              height = options$plotHeight, title = variable, pareto = options$distParetoChart,
+                                              height = options$plotHeight, title = variable, pareto = options$descriptivesParetoPlot,
                                               paretoR = options$optParetoRule, paretoN = options$paretoRule)
     pPlot$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
 
@@ -2163,7 +2163,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     prop <- paretoN
     perc <- prop*100
     colOrdered <- as.numeric(tb$column[order(tb$column, decreasing = FALSE)])
-    interSec <- approx(colOrdered, tb$cums, n = 1000)     # Finding x axis intersection at ?%
+    interSec <- approx(colOrdered, tb$cums, n = 1000)     # Finding x axis intersection at paretoN%
     interY <- which.min(abs(interSec$y - perc))
     interX <- interSec$x[interY]
 
@@ -2176,7 +2176,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   # Adding cumulative percentages
   p <- p + ggplot2::geom_path(ggplot2::aes(y = tb[, 3]/scaleRight, group = 1), colour = "black", size = 1) +
     ggplot2::geom_point(ggplot2::aes(y = tb[, 3]/scaleRight, group = 1), colour = "steelblue", size = 3) +
-    ggplot2::scale_y_continuous(breaks = yBreaks, limits = range(yBreaks),
+    ggplot2::scale_y_continuous(breaks = yBreaks, limits = range(yBreaks), oob = scales::rescale_none,
                                 sec.axis = ggplot2::sec_axis(~.*scaleRight, name = "Cumulative (%)", breaks = seq(0,100,20))) +
     jaspGraphs::geom_rangeframe(sides = "rbl") +
     jaspGraphs::themeJaspRaw() +
