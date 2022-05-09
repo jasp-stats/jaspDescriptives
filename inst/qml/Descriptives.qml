@@ -206,6 +206,19 @@ Form
 			}
 			
 			CheckBox 
+			{			
+				name: 		"descriptivesParetoPlot";	
+				label: 		qsTr("Pareto plots")
+				CheckBox 
+				{			
+					name: 		"optParetoRule";		
+					label: 		qsTr("Pareto rule"); 
+					childrenOnSameRow: true
+					CIField { name: "paretoRule" }
+				}
+			}
+			
+			CheckBox 
 			{	
 				name: 		"descriptivesLikertPlot";	
 				label: 		qsTr("Likert plots")				
@@ -224,19 +237,34 @@ Form
 					id: fontSizeLikert
 				}
 			}
-			
-			CheckBox 
-			{			
-				name: 		"descriptivesParetoPlot";	
-				label: 		qsTr("Pareto plot")
-				CheckBox 
-				{			
-					name: 		"optParetoRule";		
-					label: 		qsTr("Pareto rule"); 
-					childrenOnSameRow: true
-					CIField { name: "paretoRule" }
+		}
+		
+		Group
+		{
+			VariablesForm
+			{
+				preferredHeight: 100 * preferencesModel.uiScale
+				AvailableVariablesList 
+				{ 
+					name: "densityPlotVariables"
+					title: qsTr("Density plots") 
+					source: ["variables"] 
 				}
-			}	
+				AssignedVariablesList 
+				{ 
+					name: "densityPlotHorizontal"
+					title: qsTr("Horizontal axis:") 
+					singleVariable: true
+					allowedColumns: ["scale"] 
+				}
+				AssignedVariablesList 
+				{ 
+					name: "densityPlotSeparate"
+					title: qsTr("Separate densities:") 
+					singleVariable: true
+					suggestedColumns: ["ordinal", "nominal"] 
+				}
+			}
 		}
 
 		Group

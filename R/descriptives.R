@@ -309,10 +309,10 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Pareto Plot
-  if (options$descriptivesParetoPlot) {
+  if (options[["descriptivesParetoPlot"]]) {
     if(is.null(jaspResults[["paretoPlots"]])) {
       jaspResults[["paretoPlots"]] <- createJaspContainer(gettext("Pareto Plots"))
-      jaspResults[["paretoPlots"]]$dependOn(c("distParetoChart", "splitby", "optParetoRule", "paretoRule"))
+      jaspResults[["paretoPlots"]]$dependOn(c("descriptivesParetoPlot", "splitby", "optParetoRule", "paretoRule"))
       jaspResults[["paretoPlots"]]$position <- 16
     }
 
@@ -2112,25 +2112,23 @@ Descriptives <- function(jaspResults, dataset, options) {
     plotResult$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
 
     for (l in split) {
-      plotResult[[l]] <- .descriptivesParetoPlots_SubFunc(dataset = dataset[[l]], variable = variable, width = options$plotWidth,
-                                                          height = options$plotHeight, title = l, pareto = options$descriptivesParetoPlot,
-                                                          paretoR = options$optParetoRule, paretoN = options$paretoRule)
+      plotResult[[l]] <- .descriptivesParetoPlots_SubFunc(dataset = dataset[[l]], variable = variable,
+                                                          title = l, options = options)
       plotResult[[l]]$dependOn(optionsFromObject = plotResult)
     }
 
     return(plotResult)
   } else {
-    pPlot <- .descriptivesParetoPlots_SubFunc(dataset = dataset, variable = variable, width = options$plotWidth,
-                                              height = options$plotHeight, title = variable, pareto = options$descriptivesParetoPlot,
-                                              paretoR = options$optParetoRule, paretoN = options$paretoRule)
+    pPlot <- .descriptivesParetoPlots_SubFunc(dataset = dataset, variable = variable,
+                                              title = variable, options = options)
     pPlot$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
 
     return(pPlot)
   }
 }
 
-.descriptivesParetoPlots_SubFunc <- function(dataset, variable, width, height, title, pareto, paretoR, paretoN) {
-  parePlot <- createJaspPlot(title = title, width = width, height = height)
+.descriptivesParetoPlots_SubFunc <- function(dataset, variable, title, options) {
+  parePlot <- createJaspPlot(title = title, width = options[["plotWidth"]], height = options[["plotHeight"]])
 
   errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 3")
   column <- dataset[[variable]]
@@ -2138,12 +2136,12 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (!is.null(errorMessage))
     parePlot$setError(gettextf("Plotting not possible: %s", errorMessage))
   else if (length(column) > 0)
-    parePlot$plotObject <- .paretoPlots(column, variable, pareto, paretoR, paretoN)
+    parePlot$plotObject <- .paretoPlots(column, variable, options)
 
   return(parePlot)
 }
 
-.paretoPlots <- function(column, variable, pareto, paretoR, paretoN) {
+.paretoPlots <- function(column, variable, options) {
 
   tb <- as.data.frame(table(column))
   tb <- tb[order(tb$Freq, decreasing = TRUE), ]
@@ -2159,11 +2157,11 @@ Descriptives <- function(jaspResults, dataset, options) {
     ggplot2::ylab(gettext("Counts"))
 
   # Adding Pareto Line
-  if (paretoR){
-    prop <- paretoN
+  if (options[["optParetoRule"]]){
+    prop <- options[["paretoRule"]]
     perc <- prop*100
     colOrdered <- as.numeric(tb$column[order(tb$column, decreasing = FALSE)])
-    interSec <- approx(colOrdered, tb$cums, n = 1000)     # Finding x axis intersection at paretoN%
+    interSec <- approx(colOrdered, tb$cums, n = 1000)     # Finding x axis intersection at X%
     interY <- which.min(abs(interSec$y - perc))
     interX <- interSec$x[interY]
 
@@ -2182,4 +2180,3 @@ Descriptives <- function(jaspResults, dataset, options) {
     jaspGraphs::themeJaspRaw() +
     ggplot2::theme(plot.margin = ggplot2::margin(5))
 }
-
