@@ -109,5 +109,4 @@ Met beschrijvende statistieken kunt u basis beschrijvende statistieken verkrijge
 - ggrepel
 - grid
 - stats
-- stringr
 

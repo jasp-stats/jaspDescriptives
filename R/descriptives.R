@@ -931,8 +931,8 @@ Descriptives <- function(jaspResults, dataset, options) {
 .displayErrorDescriptives <- function(errorMessage=NULL) {
   df <- data.frame(
     x = 0, y = 1,
-    # automatically places \n after about 40 characters (but does not split words)
-    label = stringr::str_wrap(errorMessage, width = 40)
+    # base R version of stringr::str_wrap that automatically places \n after about 40 characters (but does not split words)
+    label = paste(strwrap(errorMessage, width = 40, prefix = "\n", initial = ""), collapse = "")
   )
   p <- ggplot2::ggplot(data = df, ggplot2::aes(x = x, y = y, label = label)) +
     ggplot2::geom_text(size = .4*jaspGraphs::getGraphOption("fontsize")) +
