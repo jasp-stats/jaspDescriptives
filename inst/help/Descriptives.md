@@ -23,10 +23,13 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
   - Label outliers: Optionally, the outliers are labelled. Outliers are based on the interquartile range (IQR), i.e., [25th percentile] - 1.5 × IQR and [75th percentile] + 1.5 × IQR.
   - Color: Displays in color.
     - Has selectable boxplot, violin, and jitter elements for displaying the distribution of the data.
-- Likert plots: Works only for nominal and ordinal variables. Displays a horizontally stacked bar plot, generating a new bar for every additional variable added.
-  - Adjustable font size for vertical axis: Controls the font size of variable names on the vertical axis. By default, the normal font size is used, three more sizes are available.
-- Pareto plots: Works only for nominal and ordinal variables. Displays an ordered descending frequency distribution. By default, a cumulative line is added indicating the proportional contribution of each factor/level within the variable.
+- Pareto plots: Can only be displayed for nominal and ordinal variables. Displays an ordered descending frequency distribution. By default, a cumulative line is added indicating the proportional contribution of each factor/level within the variable.
   - Parteo rule: Draws two additonal lines, one vertically and one horizontally, that intersect and stop at the height of the input number (scales with cumulative line). By default, it is set to 95%. This can be changed into the desired percentage.
+- Likert plots: Can only be displayed for nominal and ordinal variables. Displays a horizontally stacked bar plot, generating a new bar for every additional variable added.
+  - Adjustable font size for vertical axis: Controls the font size of variable names on the vertical axis. By default, the normal font size is used, three more sizes are available.
+- Density plots: Can only be displayed for scale (continuous) variables. Uses the kernel density estimation to visualize the distribution of a numeric variable. 
+  - Separate densities: By placing a nominal or ordinal variable in this box, different distributions corresponding to the different levels of the variable will be displayed.
+  - Transparency: Adjustable transparency for color within area below the density line (ranges from 0 to 100).
 
 ### Statistics
 - Central Tendency (only for continuous variables):
@@ -92,6 +95,11 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
 #### Boxplots
 - For continuous variables, displays a boxplot. Optionally, the outliers are labelled. Outliers are based on the interquartile range (IQR), i.e., [25th percentile] - 1.5 × IQR and [75th percentile] + 1.5 × IQR. Can also display in color, and has selectable boxplot, violin, and jitter elements for displaying the distribution of the data. This can be split by a categorical variable such as experimental condition.
 
+#### Pareto plots
+- Displays the counts of each factor/level within the variable in a descending order. The y-axis represents the frequency (counts as grey bars) of each factor/level, the x-axis represents the factors/levels of the variable in an ordered sequence.
+- By default, a cumulative line is drawn indicating the proportional contribution of each factor. A second vertical axis to the right side of the graph scales with this cumulative line and represents percentages to enable the description of the cumulative line.
+- If "Pareto rule" is enabled, the two new lines enable a more precise assessment of factor/level contribution to the overall contribution (in percent) by using different input numbers.
+
 #### Likert plots
 - Displays a horizontally stacked bar chart showing the contribution of levels within a variable in percent. Order of levels depends on defined order in the JASP data table. A legend below the graph provides an overview of levels and their respective colors in the graph.
   - The y-axis represents the variables used, the x-axis represents the percentages. Percentage contribution of all lower-order (below the middle level) and higher-order (above the middle level) levels are displayed on their respective side of the graph.
@@ -100,10 +108,10 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
   - If the variables contain an uneven amount of levels, the middle level is displayed as a grey block in the middle of the stacked bar with its percentage contribution on top.
 - Available font sizes: normal, small, medium, large.
 
-#### Pareto plots
-- Displays the counts of each factor/level within the variable in a descending order. The y-axis represents the frequency (counts as grey bars) of each factor/level, the x-axis represents the factors/levels of the variable in an ordered sequence.
-- By default, a cumulative line is drawn indicating the proportional contribution of each factor. A second vertical axis to the right side of the graph scales with this cumulative line and represents percentages to enable the description of the cumulative line.
-- If "Pareto rule" is enabled, the two new lines enable a more precise assessment of factor/level contribution to the overall contribution (in percent) by using different input numbers.
+#### Density plots
+- Diplays the distribution of a numeric variable. If other nominal or ordinal variables are included, different distributions representing different values of the other variable are displayed in the same plot.
+- The y-axis represents the probability density for the kernel density estimation (probability per unit on the x-axis), the x-axis represents the variables used.
+- Appearance can be manipulated by adjusting color palette and transparency.
 
 #### Frequency Tables (nominal and ordinal variables)
 - Displays a frequency table for each variable.
