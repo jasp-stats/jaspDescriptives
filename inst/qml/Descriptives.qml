@@ -241,30 +241,34 @@ Form
 		
 		Group
 		{
+			title: "<b>" + qsTr("Density plots") + "<b>"
+			
+			CheckBox { name: "descriptivesDensityPlot"; label: qsTr("Display density plots") }
 			VariablesForm
 			{
 				preferredHeight: 100 * preferencesModel.uiScale
 				AvailableVariablesList 
 				{ 
-					name: "densityPlotVariables"
-					title: qsTr("Density plots") 
-					source: ["variables"] 
-				}
-				AssignedVariablesList 
-				{ 
-					name: "densityPlotHorizontal"
-					title: qsTr("Horizontal axis:") 
-					singleVariable: true
-					allowedColumns: ["scale"] 
+					name: "densityPlotVariables" 
+					source: [{ name: "allVariablesList", discard: ["variables", "splitby"], use: "type=ordinal|nominal|nominalText"}]
 				}
 				AssignedVariablesList 
 				{ 
 					name: "densityPlotSeparate"
-					title: qsTr("Separate densities:") 
 					singleVariable: true
+					title: qsTr("Separate densities:")
 					suggestedColumns: ["ordinal", "nominal"] 
 				}
 			}
+			DoubleField
+				{
+					name:			"transparency";
+					label:			qsTr("Transparency");
+					fieldWidth:		32;
+					defaultValue:	20;
+					min:			0;
+					max:			100
+				}
 		}
 
 		Group
