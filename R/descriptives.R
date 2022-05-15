@@ -277,17 +277,42 @@ Descriptives <- function(jaspResults, dataset, options) {
     .descriptivesHeatmaps(jaspResults[["heatmaps"]], dataset.factors, variables, options)
   }
 
-  # Likert plot
-  if (options[["descriptivesLikertPlot"]] && length(variables) > 0){
+  # Pareto plots
+  if (options[["descriptivesParetoPlot"]]) {
+    if(is.null(jaspResults[["paretoPlots"]])) {
+      jaspResults[["paretoPlots"]] <- createJaspContainer(gettext("Pareto Plots"))
+      jaspResults[["paretoPlots"]]$dependOn(c("descriptivesParetoPlot", "splitby", "optParetoRule", "paretoRule"))
+      jaspResults[["paretoPlots"]]$position <- 15
+    }
+
+    parPlots <- jaspResults[["paretoPlots"]]
+
+    for (var in variables) {
+      # skip non-categorical variables
+      if(is.double(dataset.factors[[.v(var)]]))next
+
+      if(is.null(parPlots[[var]])) {
+        if (makeSplit) {
+          parPlots[[var]] <- .descriptivesParetoPlots(dataset = splitDat.factors, options = options, variable = var)
+        } else {
+          parPlots[[var]] <- .descriptivesParetoPlots(dataset = dataset.factors, options = options, variable = var)
+        }
+      }
+    }
+  }
+
+  # Likert plots
+  if (options[["descriptivesLikertPlot"]] && !all(lapply(dataset.factors, is.double) == TRUE)){
     if (is.null(jaspResults[["likertPlot"]])) {
       jaspResults[["likertPlot"]] <- createJaspContainer(gettext("Likert Plots"))
       jaspResults[["likertPlot"]]$dependOn(c("descriptivesLikertPlot", "splitby", "variables", "fontSizeLikert"))
-      jaspResults[["likertPlot"]]$position <- 15
+      jaspResults[["likertPlot"]]$position <- 16
     }
 
     likPlots <- jaspResults[["likertPlot"]]
 
     for (var in variables) {
+
       # exclude non-categorical variables from dataframe
       if (is.double(dataset.factors[[.v(var)]])) {
         if (makeSplit){
@@ -308,28 +333,16 @@ Descriptives <- function(jaspResults, dataset, options) {
     }
   }
 
-  # Pareto Plot
-  if (options[["descriptivesParetoPlot"]]) {
-    if(is.null(jaspResults[["paretoPlots"]])) {
-      jaspResults[["paretoPlots"]] <- createJaspContainer(gettext("Pareto Plots"))
-      jaspResults[["paretoPlots"]]$dependOn(c("descriptivesParetoPlot", "splitby", "optParetoRule", "paretoRule"))
-      jaspResults[["paretoPlots"]]$position <- 16
+  # Density plots
+  if (options[["descriptivesDensityPlot"]]) {
+    if(is.null(jaspResults[["densityPlot"]])) {
+      jaspResults[["densityPlot"]] <- createJaspContainer(gettext("Density Plots"))
+      jaspResults[["densityPlot"]]$dependOn(c("descriptivesDensityPlot", "densityPlotSeparate",
+                                              "colorPalette", "splitby", "variables", "transparency"))
+      jaspResults[["densityPlot"]]$position <- 17
     }
 
-    parPlots <- jaspResults[["paretoPlots"]]
-
-    for (var in variables) {
-      # skip non-categorical variables
-      if(is.double(dataset.factors[[.v(var)]]))next
-
-      if(is.null(parPlots[[var]])) {
-        if (makeSplit) {
-          parPlots[[var]] <- .descriptivesParetoPlots(dataset = splitDat.factors, options = options, variable = var)
-        } else {
-          parPlots[[var]] <- .descriptivesParetoPlots(dataset = dataset.factors, options = options, variable = var)
-        }
-      }
-    }
+    .descriptivesDensityPlots(jaspResults[["densityPlot"]], dataset.factors, variables, options)
   }
 
   return()
@@ -1933,23 +1946,24 @@ Descriptives <- function(jaspResults, dataset, options) {
   leng <- length(dataset)
   depends <- c("descriptivesLikertPlot", "splitby", "variables", "fontSizeLikert")
 
-  if (leng == 1){
-    likPlot <- createJaspPlot(title = name, dependencies = depends, width = 1300, height = 250)
-  } else {
-    likPlot <- createJaspPlot(title = name, dependencies = depends, width = 1300, height = 200*(leng*0.8))
+  likPlot <- createJaspPlot(title = name, dependencies = depends, width = 1300, height = if(leng == 1) 250 else 200*(leng*0.8))
+  errorMessage <- .descriptivesCheckPlotErrors(dataset, names(dataset), obsAmount = "< 2")
+  if (!is.null(errorMessage)){
+    likPlot$setError(gettextf("Plotting not possible: %s", errorMessage))
+    return(likPlot)
   }
 
   # Likert Part: Preparing & summarize data in the likert format (% of levels per variable)
-  nLevels <- nlevels(dataset[, 1])
+  nLevels <- nlevels(factor(dataset[, 1]))
   center <- (nLevels - 1)/2 + 1
   lowRange <- 1:floor(center - 0.5)
   highRange <- ceiling(center + 0.5):nLevels
 
-  if (!all(sapply(dataset, function(x) nlevels(x)) == nLevels)) {
+  if (!all(sapply(dataset, function(x) nlevels(factor(x))) == nLevels)) {
     likPlot$setError(gettext("All items (columns) must have the same number of levels!"))
     return(likPlot)
   }
-  if (center < 1.5 || center > (nLevels - 0.5)) {
+  if (center < 1.5) {
     likPlot$setError(gettext("Items must have 2 or more levels!"))
     return(likPlot)
   }
@@ -2128,20 +2142,20 @@ Descriptives <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesParetoPlots_SubFunc <- function(dataset, variable, title, options) {
-  parePlot <- createJaspPlot(title = title, width = options[["plotWidth"]], height = options[["plotHeight"]])
+  parPlot <- createJaspPlot(title = title, width = options[["plotWidth"]], height = options[["plotHeight"]])
 
-  errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 3")
+  errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 2")
   column <- dataset[[variable]]
   column <- column[!is.na(column)]
   if (!is.null(errorMessage))
-    parePlot$setError(gettextf("Plotting not possible: %s", errorMessage))
+    parPlot$setError(gettextf("Plotting not possible: %s", errorMessage))
   else if (length(column) > 0)
-    parePlot$plotObject <- .paretoPlots(column, variable, options)
+    parPlot$plotObject <- .descriptivesParetoPlots_Fill(column, variable, options)
 
-  return(parePlot)
+  return(parPlot)
 }
 
-.paretoPlots <- function(column, variable, options) {
+.descriptivesParetoPlots_Fill <- function(column, variable, options) {
 
   tb <- as.data.frame(table(column))
   tb <- tb[order(tb$Freq, decreasing = TRUE), ]
@@ -2179,4 +2193,86 @@ Descriptives <- function(jaspResults, dataset, options) {
     jaspGraphs::geom_rangeframe(sides = "rbl") +
     jaspGraphs::themeJaspRaw() +
     ggplot2::theme(plot.margin = ggplot2::margin(5))
+}
+
+.descriptivesDensityPlots <- function(container, dataset, variables, options) {
+
+  # we are not ready to plot
+  if(length(variables) == 0) return()
+
+  if(options[["densityPlotSeparate"]] != ""){
+    separator <- .readDataSetToEnd(columns.as.factor = options[["densityPlotSeparate"]])
+    separator <- separator[,,drop = TRUE]
+  }
+
+  for (i in seq_along(variables)) {
+
+    if(!is.double(dataset[[.v(i)]]))next
+
+    variableName  <- variables[[i]]
+    variable <- .readDataSetToEnd(columns.as.numeric = variableName)
+    variable <- variable[,,drop = TRUE]
+
+    if(options[["densityPlotSeparate"]] != ""){
+      data <- data.frame(variable, separator)
+    } else {
+      data <- data.frame(variable)
+    }
+
+    if(options[["splitby"]] != "") {
+      container[[variableName]] <- createJaspContainer(variableName)
+      splitBy <- .readDataSetToEnd(columns.as.factor = options[["splitby"]])
+      data$split <- splitBy[,,drop = TRUE]
+      data <- na.omit(data)
+      groups <- levels(data$split)
+
+      for(g in seq_along(groups)) {
+        activeCases <- groups[g] == data$split
+        .descriptivesDensityPlotsFill(container[[variableName]], data[activeCases,], groups[g], variableName, g, options)
+      }
+    } else {
+      data <- na.omit(data)
+      .descriptivesDensityPlotsFill(container, data, variableName, variableName, i, options)
+    }
+  }
+}
+
+.descriptivesDensityPlotsFill <- function(container, data, plotName, axeName, position, options) {
+
+  data$split <- NULL
+  plotSize <- c(500, 500)
+  trans <- 1 - (options[["transparency"]]/100)
+  if(options[["densityPlotSeparate"]] != ""){
+    plotSize <- plotSize + c(300, 300)
+    p <- ggplot2::ggplot(data, ggplot2::aes(x = variable, fill = separator))
+    scale_fill <- jaspGraphs::scale_JASPfill_discrete(palette = options[["colorPalette"]],
+                                                      name = options[["densityPlotSeparate"]])
+  } else {
+    p <- ggplot2::ggplot(data, ggplot2::aes(x = variable, fill = factor(1)))
+    scale_fill <- jaspGraphs::scale_JASPfill_discrete(palette = options[["colorPalette"]])
+  }
+
+  densPlot <- createJaspPlot(title = plotName, width = plotSize[1], height = plotSize[2], position = position)
+  if(options[["densityPlotSeparate"]] != "" && any(table(data$separator) == 1)) {
+    densPlot$setError(gettext("Levels within variable require at least two or more data points!"))
+  } else {
+    p <- p + ggplot2::geom_density(alpha = trans) +
+      ggplot2::xlab(axeName) +
+      ggplot2::ylab(gettext("Density"))
+
+    yRange <- ggplot2::ggplot_build(p)$layout$panel_scales_y[[1]]$range$range
+    xRange <- ggplot2::ggplot_build(p)$layout$panel_scales_x[[1]]$range$range
+    yBreaks <- jaspGraphs::getPrettyAxisBreaks(yRange)
+    xBreaks <- jaspGraphs::getPrettyAxisBreaks(xRange)
+
+    p <- p + ggplot2::scale_y_continuous(breaks = yBreaks, limits = range(yBreaks)) +
+      ggplot2::scale_x_continuous(breaks = xBreaks, limits = range(xBreaks)) +
+      scale_fill +
+      jaspGraphs::geom_rangeframe(sides = "bl") +
+      jaspGraphs::themeJaspRaw(legend.position = if(options[["densityPlotSeparate"]] != "") "right" else "none")
+
+    densPlot$plotObject <- p
+  }
+
+  container[[plotName]] <- densPlot
 }
