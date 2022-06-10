@@ -11,7 +11,7 @@ Description
 	maintainer	: "JASP Team <jasp-stats.org>"
 	website		: "jasp-stats.org"
 	license		: "GPL (>= 2)"
-	icon		: "analysis-descryptives.svg"
+	icon		: "analysis-descriptives.svg"
 
 	Analysis
 	{
