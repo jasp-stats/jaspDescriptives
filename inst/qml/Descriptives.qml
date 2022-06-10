@@ -497,6 +497,7 @@ Form
 			}
 		}
 
+		CheckBox { name: "statisticsValuesAreGroupMidpoints"; label: qsTr("Values are group midpoints"); debug: true }
 	}
 
 	Section
