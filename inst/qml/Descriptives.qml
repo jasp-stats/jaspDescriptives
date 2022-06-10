@@ -117,7 +117,6 @@ Form
 			columns:			2
 			Layout.columnSpan:	2
 
-			CheckBox { name: "seMean";						label: qsTr("S.E. mean")							}
 			CheckBox { name: "sd";							label: qsTr("Std. deviation");		checked: true	}
 			CheckBox { name: "coefficientOfVariation";		label: qsTr("Coefficient of variation");			}
 			CheckBox { name: "mad";							label: qsTr("MAD")									}
@@ -454,6 +453,48 @@ Form
 				info: qsTr("The scale parameter controls how much the table is expanded. For example, scale = 2 will cause the table to be roughly twice as long as the default (scale = 1).")
 			}
 			info	: qsTr("Create a Stem and leaf table.")
+		}
+		
+		Group
+		{
+			title:		qsTr("Inference")
+			
+			CheckBox { name: "seMean";	label: qsTr("S.E. mean")			}
+			
+			CheckBox
+			{
+				name: "meanCi" 
+				label: qsTr("Confidence interval")
+				
+				CIField 
+				{ 
+					name: "meanCiPercent" 
+					label: qsTr("Width")
+				}
+				
+				DropDown 
+				{
+					name: "meanCiMethod"
+					label: qsTr("Method")
+					id: ciMethod
+					indexDefaultValue: 0
+					values:
+					[
+						{label: qsTr("Normal model"),	value: "normalModel"},
+						{label: qsTr("Boostrap"),		value: "bootstrap"}
+					]
+				}
+			
+				DoubleField
+				{
+					name:			"bootstrapSamples"
+					label:			qsTr("Bootstrap samples")
+					defaultValue:	1000
+					min:			1;
+					max:			50000;
+					enabled:		ciMethod.currentValue === "bootstrap"
+				}
+			}
 		}
 
 	}

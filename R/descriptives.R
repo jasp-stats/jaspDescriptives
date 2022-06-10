@@ -465,13 +465,15 @@ Descriptives <- function(jaspResults, dataset, options) {
   stats                   <- createJaspTable(gettext("Descriptive Statistics"))
   stats$transpose         <- !options[["descriptivesTableTransposed"]] # the table is transposed by default
   stats$position          <- 1
+  
+  formattedCiPercent <- format(100 * options[["meanCiPercent"]], digits = 3, drop0trailing = TRUE) 
 
   if (numberMissingSplitBy)
     stats$addFootnote(message=gettextf("Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s", numberMissingSplitBy, options$splitBy))
 
   stats$dependOn(c("splitBy", "variables", "quantilesForEqualGroupsNumber", "percentileValues", "mode", "median", "mean", "seMean",
     "sd", "coefficientOfVariation", "variance", "skewness", "kurtosis", "shapiroWilkTest", "range", "iqr", "mad", "madRobust", "minimum", "maximum",
-    "sum", "quartiles", "quantilesForEqualGroups", "percentiles", "descriptivesTableTransposed", "valid", "missing"))
+    "sum", "quartiles", "quantilesForEqualGroups", "percentiles", "descriptivesTableTransposed", "valid", "missing", "meanCi", "meanCiPercent", "meanCiMethod"))
 
   if (wantsSplit) {
     stats$transposeWithOvertitle <- TRUE
@@ -487,6 +489,8 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (options$median)                         stats$addColumnInfo(name="Median",                      title=gettext("Median"),                  type="number")
   if (options$mean)                           stats$addColumnInfo(name="Mean",                        title=gettext("Mean"), 				            type="number")
   if (options$seMean)              stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of Mean"),      type="number")
+  if (options$meanCi) {             stats$addColumnInfo(name="CIUB",                        title=gettext("Upper"),                                      type="number", overtitle = gettextf("%s %% Confidence Interval", formattedCiPercent))
+                                    stats$addColumnInfo(name="CILB",                        title=gettext("Lower"),                                      type="number", overtitle = gettextf("%s %% Confidence Interval", formattedCiPercent)) }
   if (options$sd)              stats$addColumnInfo(name="Std. Deviation",              title=gettext("Std. Deviation"),          type="number")
   if (options$coefficientOfVariation)         stats$addColumnInfo(name="Coefficient of Variation",    title=gettext("Coefficient of variation"),type="number")
   if (options$mad)                            stats$addColumnInfo(name="MAD",                         title=gettext("MAD"),                     type="number")
@@ -541,7 +545,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     for (variable in variables) {
       for (l in 1:nLevels) {
         column    <- dataset[[ .v(variable) ]][split==splitLevels[l]]
-        subReturn <- .descriptivesDescriptivesTable_subFunction(column, list(Variable = variable, Level = splitLevels[l]), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote)
+        subReturn <- .descriptivesDescriptivesTable_subFunction(column, list(Variable = variable, Level = splitLevels[l]), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, jaspResults)
 
         shouldAddNominalTextFootnote      <- subReturn$shouldAddNominalTextFootnote
         shouldAddModeMoreThanOnceFootnote <- subReturn$shouldAddModeMoreThanOnceFootnote
@@ -562,7 +566,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   } else { #we dont want to split
     for (variable in variables) {
       column    <- dataset[[.v(variable)]]
-      subReturn <- .descriptivesDescriptivesTable_subFunction(column, list(Variable=variable), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote)
+      subReturn <- .descriptivesDescriptivesTable_subFunction(column, list(Variable=variable), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, jaspResults)
 
       shouldAddNominalTextFootnote      <- subReturn$shouldAddNominalTextFootnote
       shouldAddModeMoreThanOnceFootnote <- subReturn$shouldAddModeMoreThanOnceFootnote
@@ -591,9 +595,9 @@ Descriptives <- function(jaspResults, dataset, options) {
   return(stats)
 }
 
-.descriptivesDescriptivesTable_subFunction <- function(column, resultsCol, options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote) {
-  equalGroupsNo           <- options$quantilesForEqualGroupsNumber
-  percentilesPercentiles  <- unique(options$percentileValues)
+.descriptivesDescriptivesTable_subFunction <- function(column, resultsCol, options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, jaspResults) {
+  equalGroupsNo           <- options$percentileValuesEqualGroupsNo
+  percentilesPercentiles  <- unique(options$percentileValuesPercentilesPercentiles)
 
   rows        <- length(column)
   na.omitted  <- na.omit(column)
@@ -627,6 +631,13 @@ Descriptives <- function(jaspResults, dataset, options) {
   resultsCol[["Minimum"]]                 <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$minimum,           na.omitted, min)
   resultsCol[["Maximum"]]                 <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$maximum,           na.omitted, max)
   resultsCol[["Sum"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$sum,               na.omitted, sum)
+  
+  if (options[["meanCi"]]) {
+    variableName <- ifelse(is.null(resultsCol[["Level"]]), resultsCol[["Variable"]], paste0(resultsCol[["Variable"]], resultsCol[["Level"]]))
+    ciResults <- .descriptivesMeanCI(na.omitted, options, jaspResults, variableName)
+    resultsCol[["CIUB"]] <- ciResults$upper
+    resultsCol[["CILB"]]  <- ciResults$lower
+  }
 
   # should explain supremum and infimum of an empty set?
   if((options$minimum || options$maximum) && valid == 0) shouldAddExplainEmptySet <- TRUE else shouldAddExplainEmptySet <- FALSE
@@ -1670,6 +1681,46 @@ Descriptives <- function(jaspResults, dataset, options) {
   SEK <- 2 * .descriptivesSES(x) * sqrt((n^2 - 1) / ((n - 3) * (n + 5)))
 
   return(SEK)
+}
+
+.descriptivesMeanCI <- function(data, options, jaspResults, variableName) {
+  ciWidth <- options[["meanCiPercent"]]
+  if (options[["meanCiMethod"]] == "normalModel") {
+    xBar <- mean(data)
+    se <- sd(data) / sqrt(length(data))
+    z <- qnorm((1 - ciWidth)  / 2, lower.tail = FALSE)
+    lowerBound <- xBar - z * se
+    upperBound <- xBar + z * se
+  } else if (options[["meanCiMethod"]] == "bootstrap") {
+    stateContainerName <- paste0("bootstrapSamples", variableName)
+    .meanBoot(data, options, jaspResults, stateContainerName)
+    means <- jaspResults[[stateContainerName]]$object
+    percentiles <- (1 + c(-ciWidth, ciWidth)) / 2
+    CIs <- quantile(means, probs = percentiles)
+    lowerBound <- CIs[1]
+    upperBound <- CIs[2]
+  }
+  return(list("upper" = upperBound,
+              "lower" = lowerBound))
+}
+
+.meanBoot <- function(data, options, jaspResults, stateContainerName) {
+  if (!is.null(jaspResults[[stateContainerName]]$object))
+    return()
+  
+  bootstrapSamples <- createJaspState()
+  k <- options[["bootstrapSamples"]]
+  means <- numeric(k)
+  n <- length(data)
+  for (i in seq_len(k)) {
+    bootData <- sample(data, size = n, replace = TRUE)
+    means[i] <- mean(bootData)
+  }
+  bootstrapSamples$object <- means
+  jaspResults[[stateContainerName]] <- bootstrapSamples
+  jaspResults[[stateContainerName]]$dependOn(options = c(
+    "bootstrapSamples", "meanCiPercent"))
+  return()
 }
 
 .descriptivesQQPlot <- function(dataset, options,  qqvar, levelName=NULL) {
