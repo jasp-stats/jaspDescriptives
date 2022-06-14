@@ -196,7 +196,7 @@ msgid "Percentiles:"
 msgstr "百分位數"
 
 msgctxt "Descriptives|"
-msgid "Central Tendency"
+msgid "Central tendency"
 msgstr "集中趨勢"
 
 msgctxt "Descriptives|"

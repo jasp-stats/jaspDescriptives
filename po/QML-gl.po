@@ -53,8 +53,8 @@ msgid "Chart Values"
 msgstr "Valores de Gráfico"
 
 msgctxt "Descriptives|"
-msgid "Central Tendency"
-msgstr "Tendencia Central"
+msgid "Central tendency"
+msgstr "Tendencia central"
 
 msgctxt "Descriptives|"
 msgid "Skewness"
@@ -363,8 +363,8 @@ msgid "Quantiles"
 msgstr "Cuantiles"
 
 msgctxt "Descriptives|"
-msgid "Sample Size"
-msgstr "Tamaño da Mostra"
+msgid "Sample size"
+msgstr "Tamaño da mostra"
 
 msgctxt "Descriptives|"
 msgid "Valid"

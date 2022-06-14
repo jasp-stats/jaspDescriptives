@@ -251,7 +251,7 @@ msgid "Percentiles:"
 msgstr "百分位数："
 
 msgctxt "Descriptives|"
-msgid "Central Tendency"
+msgid "Central tendency"
 msgstr "集中趋势"
 
 msgctxt "Descriptives|"
@@ -367,7 +367,7 @@ msgid "Quantiles"
 msgstr "分位数"
 
 msgctxt "Descriptives|"
-msgid "Sample Size"
+msgid "Sample size"
 msgstr "样本量"
 
 msgctxt "Descriptives|"

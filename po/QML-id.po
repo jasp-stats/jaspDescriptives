@@ -198,8 +198,8 @@ msgid "Percentiles:"
 msgstr "Persentil:"
 
 msgctxt "Descriptives|"
-msgid "Central Tendency"
-msgstr "Kecenderungan Terpusat"
+msgid "Central tendency"
+msgstr "Kecenderungan terpusat"
 
 msgctxt "Descriptives|"
 msgid "Mean"
