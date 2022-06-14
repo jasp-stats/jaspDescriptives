@@ -359,7 +359,7 @@ msgid "Quantiles"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Sample Size"
+msgid "Sample size"
 msgstr ""
 
 msgctxt "Descriptives|"

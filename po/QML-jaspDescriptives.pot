@@ -189,7 +189,7 @@ msgid "Percentiles:"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Central Tendency"
+msgid "Central tendency"
 msgstr ""
 
 msgctxt "Descriptives|"
@@ -357,7 +357,7 @@ msgid "Quantiles"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Sample Size"
+msgid "Sample size"
 msgstr ""
 
 msgctxt "Descriptives|"

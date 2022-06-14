@@ -73,7 +73,7 @@ msgid "Percentiles:"
 msgstr "Percentis:"
 
 msgctxt "Descriptives|"
-msgid "Central Tendency"
+msgid "Central tendency"
 msgstr "Tendência central"
 
 msgctxt "Descriptives|"

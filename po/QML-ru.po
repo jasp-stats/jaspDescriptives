@@ -197,7 +197,7 @@ msgid "Percentiles:"
 msgstr "Процентили:"
 
 msgctxt "Descriptives|"
-msgid "Central Tendency"
+msgid "Central tendency"
 msgstr "Центральная тенденция"
 
 msgctxt "Descriptives|"
@@ -365,7 +365,7 @@ msgid "Quantiles"
 msgstr "Квантили"
 
 msgctxt "Descriptives|"
-msgid "Sample Size"
+msgid "Sample size"
 msgstr "Размер выборки"
 
 msgctxt "Descriptives|"
