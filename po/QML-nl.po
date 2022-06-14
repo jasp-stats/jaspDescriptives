@@ -54,10 +54,6 @@ msgid "Create a Stem and leaf table."
 msgstr "Maak een steelbladdiagram."
 
 msgctxt "Descriptives|"
-msgid "Plots"
-msgstr "Grafieken"
-
-msgctxt "Descriptives|"
 msgid "Color palette"
 msgstr "Kleurenpalet"
 
@@ -104,10 +100,6 @@ msgstr "Gebruik kleurenpalet"
 msgctxt "Descriptives|"
 msgid "Label outliers"
 msgstr "Label uitschieters"
-
-msgctxt "Descriptives|"
-msgid "Scatter Plots"
-msgstr "Spreidingsdiagram"
 
 msgctxt "Descriptives|"
 msgid "Graph above scatter plot"
@@ -374,10 +366,6 @@ msgid "Missing"
 msgstr "Ontbrekend"
 
 msgctxt "Descriptives|"
-msgid "Tile Heatmap"
-msgstr "Titel Heatmap"
-
-msgctxt "Descriptives|"
 msgid "Horizontal axis:"
 msgstr "Horizontale as:"
 
@@ -420,3 +408,15 @@ msgstr "Aantal waarnemingen"
 msgctxt "Descriptives|"
 msgid "For nominal and ordinal variables"
 msgstr "Voor nominale en ordinale variabelen"
+
+msgctxt "Descriptives|"
+msgid "Scatter plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Tile heatmaps for selected variables"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Tables"
+msgstr ""

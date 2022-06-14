@@ -56,10 +56,6 @@ msgid "Create a Stem and leaf table."
 msgstr "Buat tabel Batang dan daun."
 
 msgctxt "Descriptives|"
-msgid "Plots"
-msgstr "Plot"
-
-msgctxt "Descriptives|"
 msgid "Color palette"
 msgstr "Palet warna"
 
@@ -108,10 +104,6 @@ msgstr "Gunakan palet warna"
 msgctxt "Descriptives|"
 msgid "Label outliers"
 msgstr "Label pencilan"
-
-msgctxt "Descriptives|"
-msgid "Scatter Plots"
-msgstr "Plot Pencar"
 
 msgctxt "Descriptives|"
 msgid "Graph above scatter plot"
@@ -369,19 +361,11 @@ msgid "Quantiles"
 msgstr "Kuantil"
 
 msgctxt "Descriptives|"
-msgid "Sample Size"
-msgstr ""
-
-msgctxt "Descriptives|"
 msgid "Valid"
 msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Missing"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Tile Heatmap"
 msgstr ""
 
 msgctxt "Descriptives|"
@@ -426,4 +410,20 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "For nominal and ordinal variables"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Sample size"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Scatter plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Tile heatmaps for selected variables"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Tables"
 msgstr ""

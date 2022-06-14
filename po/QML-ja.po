@@ -53,10 +53,6 @@ msgid "Create a Stem and leaf table."
 msgstr "幹葉図を作成する。"
 
 msgctxt "Descriptives|"
-msgid "Plots"
-msgstr "プロット"
-
-msgctxt "Descriptives|"
 msgid "Color palette"
 msgstr "カラーパレット"
 
@@ -103,10 +99,6 @@ msgstr "カラーパレットを使用"
 msgctxt "Descriptives|"
 msgid "Label outliers"
 msgstr "外れ値をラベル"
-
-msgctxt "Descriptives|"
-msgid "Scatter Plots"
-msgstr "散布図"
 
 msgctxt "Descriptives|"
 msgid "Graph above scatter plot"
@@ -373,10 +365,6 @@ msgid "Missing"
 msgstr "欠損値"
 
 msgctxt "Descriptives|"
-msgid "Tile Heatmap"
-msgstr "タイルヒートマップ"
-
-msgctxt "Descriptives|"
 msgid "Horizontal axis:"
 msgstr "横軸:"
 
@@ -419,3 +407,15 @@ msgstr "観測数"
 msgctxt "Descriptives|"
 msgid "For nominal and ordinal variables"
 msgstr "名義・順序変数の場合"
+
+msgctxt "Descriptives|"
+msgid "Scatter plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Tile heatmaps for selected variables"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Tables"
+msgstr ""

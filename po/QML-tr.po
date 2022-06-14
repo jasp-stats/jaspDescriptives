@@ -59,10 +59,6 @@ msgid "Create a Stem and leaf table."
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Plots"
-msgstr ""
-
-msgctxt "Descriptives|"
 msgid "Customizable plots"
 msgstr ""
 
@@ -112,10 +108,6 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Label outliers"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Scatter Plots"
 msgstr ""
 
 msgctxt "Descriptives|"
@@ -243,10 +235,6 @@ msgid "Percentiles:"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Central Tendency"
-msgstr ""
-
-msgctxt "Descriptives|"
 msgid "Mean"
 msgstr ""
 
@@ -359,19 +347,11 @@ msgid "Quantiles"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Sample Size"
-msgstr ""
-
-msgctxt "Descriptives|"
 msgid "Valid"
 msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Missing"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Tile Heatmap"
 msgstr ""
 
 msgctxt "Descriptives|"
@@ -416,4 +396,24 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "For nominal and ordinal variables"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Sample size"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Central tendency"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Scatter plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Tile heatmaps for selected variables"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Tables"
 msgstr ""

@@ -55,10 +55,6 @@ msgid "Create a Stem and leaf table."
 msgstr "Erstelle ein Stamm-Blatt-Diagramm."
 
 msgctxt "Descriptives|"
-msgid "Plots"
-msgstr "Abbildungen"
-
-msgctxt "Descriptives|"
 msgid "Color palette"
 msgstr "Farbpalette"
 
@@ -105,10 +101,6 @@ msgstr "Farbpalette nutzen"
 msgctxt "Descriptives|"
 msgid "Label outliers"
 msgstr "Ausreißer beschriften"
-
-msgctxt "Descriptives|"
-msgid "Scatter Plots"
-msgstr "Streudiagramm"
 
 msgctxt "Descriptives|"
 msgid "Graph above scatter plot"
@@ -375,10 +367,6 @@ msgid "Missing"
 msgstr "Fehlend"
 
 msgctxt "Descriptives|"
-msgid "Tile Heatmap"
-msgstr "Kachel-Heatmap"
-
-msgctxt "Descriptives|"
 msgid "Horizontal axis:"
 msgstr "Horizontale Achse:"
 
@@ -421,3 +409,15 @@ msgstr "Anzahl Beobachtungen"
 msgctxt "Descriptives|"
 msgid "For nominal and ordinal variables"
 msgstr "Für nominale und ordinale Variablen"
+
+msgctxt "Descriptives|"
+msgid "Scatter plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Tile heatmaps for selected variables"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Tables"
+msgstr ""
