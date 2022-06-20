@@ -81,7 +81,7 @@
 <text x='593.92' y='537.32' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='9.46px' lengthAdjust='spacingAndGlyphs'>5</text>
 <text x='363.77' y='567.49' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='54.80px' lengthAdjust='spacingAndGlyphs'>facFive</text>
 <text transform='translate(16.68,267.91) rotate(-90)' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='53.88px' lengthAdjust='spacingAndGlyphs'>Counts</text>
-<text transform='translate(704.77,267.91) rotate(90)' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='116.21px' lengthAdjust='spacingAndGlyphs'>Cumulative (%)</text>
+<text transform='translate(704.77,267.91) rotate(90)' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='118.13px' lengthAdjust='spacingAndGlyphs'>Percentage (%)</text>
 <text x='363.77' y='16.68' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='53.87px' lengthAdjust='spacingAndGlyphs'>parPlot</text>
 </g>
 </svg>

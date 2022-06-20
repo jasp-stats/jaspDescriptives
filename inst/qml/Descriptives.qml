@@ -272,6 +272,82 @@ Form
 			}
 		}
 
+		CheckBox 
+		{			
+			name: 		"descriptivesParetoPlot"
+			label: 		qsTr("Pareto plots")
+			
+			CheckBox 
+			{			
+				name: 				"optParetoRule"	
+				label: 				qsTr("Pareto rule")
+				childrenOnSameRow: 	true
+				
+				CIField { name: 	"paretoRule" }
+			}
+		}
+		
+		CheckBox 
+		{	
+			name: 		"descriptivesLikertPlot"	
+			label: 		qsTr("Likert plots")				
+			
+			DropDown 
+			{
+				id: 				fontSizeLikert
+				name: 				"fontSizeLikert"
+				label: 				qsTr("Adjustable font size for vertical axis")
+				indexDefaultValue: 	0
+				values:
+				[
+					{label: qsTr("Normal"), 	value: "normal"},
+					{label: qsTr("Small"),		value: "small"},
+					{label: qsTr("Medium"),		value: "medium"},
+					{label: qsTr("Large"),		value: "large"}
+				]
+			}
+		}
+			
+		Group
+		{
+			
+			VariablesForm
+			{
+				preferredHeight: 100 * preferencesModel.uiScale
+				
+				AvailableVariablesList 
+				{ 
+					name: 				"densityPlotVariables"
+					label: 				qsTr("Density plots")
+					source: 			[{ name: "allVariablesList", discard: ["variables", "splitby"], use: "type=ordinal|nominal|nominalText"}]
+				}
+				
+				AssignedVariablesList 
+				{ 
+					name: 				"densityPlotSeparate"
+					singleVariable: 	true
+					title: 				qsTr("Separate densities:")
+					suggestedColumns: 	["ordinal", "nominal"] 
+				}
+			}
+			
+			CheckBox 
+			{ 
+				name: 		"descriptivesDensityPlot"
+				label: 		qsTr("Display density plots") 
+			
+				DoubleField
+				{
+					name:			"transparency"
+					label:			qsTr("Transparency")
+					fieldWidth:		32
+					defaultValue:	20
+					min:			0
+					max:			100
+				}
+			}
+		}
+
 		VariablesForm
 		{
 			preferredHeight: 100 * preferencesModel.uiScale
