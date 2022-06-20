@@ -279,7 +279,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   # Pareto plots
   if (options[["descriptivesParetoPlot"]]) {
-    if(is.null(jaspResults[["paretoPlots"]])) {
+    if (is.null(jaspResults[["paretoPlots"]])) {
       jaspResults[["paretoPlots"]] <- createJaspContainer(gettext("Pareto Plots"))
       jaspResults[["paretoPlots"]]$dependOn(c("descriptivesParetoPlot", "splitby", "optParetoRule", "paretoRule"))
       jaspResults[["paretoPlots"]]$position <- 15
@@ -289,9 +289,9 @@ Descriptives <- function(jaspResults, dataset, options) {
 
     for (var in variables) {
       # skip non-categorical variables
-      if(is.double(dataset.factors[[.v(var)]]))next
+      if (is.double(dataset.factors[[(var)]])) next
 
-      if(is.null(parPlots[[var]])) {
+      if (is.null(parPlots[[var]])) {
         if (makeSplit) {
           parPlots[[var]] <- .descriptivesParetoPlots(dataset = splitDat.factors, options = options, variable = var)
         } else {
@@ -302,7 +302,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Likert plots
-  if (options[["descriptivesLikertPlot"]] && !all(lapply(dataset.factors, is.double) == TRUE)){
+  if (options[["descriptivesLikertPlot"]] && !all(lapply(dataset.factors, is.double) == TRUE)) {
     if (is.null(jaspResults[["likertPlot"]])) {
       jaspResults[["likertPlot"]] <- createJaspContainer(gettext("Likert Plots"))
       jaspResults[["likertPlot"]]$dependOn(c("descriptivesLikertPlot", "splitby", "variables", "fontSizeLikert"))
@@ -312,10 +312,9 @@ Descriptives <- function(jaspResults, dataset, options) {
     likPlots <- jaspResults[["likertPlot"]]
 
     for (var in variables) {
-
       # exclude non-categorical variables from dataframe
-      if (is.double(dataset.factors[[.v(var)]])) {
-        if (makeSplit){
+      if (is.double(dataset.factors[[(var)]])) {
+        if (makeSplit) {
           for (i in 1:length(splitLevels))
             splitDat.factors[[i]] <- splitDat.factors[[i]][, !names(splitDat.factors[[i]]) %in% c(var), drop = FALSE]
         } else {
@@ -335,7 +334,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   # Density plots
   if (options[["descriptivesDensityPlot"]]) {
-    if(is.null(jaspResults[["densityPlot"]])) {
+    if (is.null(jaspResults[["densityPlot"]])) {
       jaspResults[["densityPlot"]] <- createJaspContainer(gettext("Density Plots"))
       jaspResults[["densityPlot"]]$dependOn(c("descriptivesDensityPlot", "densityPlotSeparate",
                                               "colorPalette", "splitby", "variables", "transparency"))
@@ -1958,7 +1957,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   likPlot <- createJaspPlot(title = name, dependencies = depends, width = 1300, height = if(leng == 1) 250 else 200*(leng*0.8))
   errorMessage <- .descriptivesCheckPlotErrors(dataset, names(dataset), obsAmount = "< 2")
-  if (!is.null(errorMessage)){
+  if (!is.null(errorMessage)) {
     likPlot$setError(gettextf("Plotting not possible: %s", errorMessage))
     return(likPlot)
   }
@@ -1978,9 +1977,10 @@ Descriptives <- function(jaspResults, dataset, options) {
     return(likPlot)
   }
 
+  # Summarizing item contribution and get clean data
   results <- data.frame()
   results <- data.frame(Response = 1:nLevels)
-  for(i in 1:ncol(dataset)) {
+  for (i in 1:ncol(dataset)) {
     t <- table(dataset[,i])
     t <- (t/sum(t) * 100)
     results <- cbind(results, as.data.frame(t)[,2])
@@ -1990,32 +1990,32 @@ Descriptives <- function(jaspResults, dataset, options) {
   names(results) <- levels(dataset[,1])
   results <- results[2:nrow(results),]
 
-  resultsTwo <- data.frame(Item = row.names(results),    # Summarizing likert data: high, low, neutral %
+  # Summarizing likert data: high, low, neutral %
+  resultsTwo <- data.frame(Item = row.names(results),
                            low = rep(NA, nrow(results)),
                            neutral = rep(NA, nrow(results)),
                            high = rep(NA, nrow(results)))
-  if(length(lowRange) == 1) {
+  if (length(lowRange) == 1) {
     resultsTwo$low <- results[,lowRange]
   } else {
     resultsTwo$low <- apply(results[,lowRange], 1, sum)
   }
-  if(length(highRange) == 1) {
+  if (length(highRange) == 1) {
     resultsTwo$high <- results[,highRange]
   } else {
     resultsTwo$high <- apply(results[,highRange], 1, sum)
   }
-  if(lowRange[length(lowRange)] + 1 != highRange[1]) {
+  if (lowRange[length(lowRange)] + 1 != highRange[1]) {
     resultsTwo$neutral <- results[,(highRange[1] - 1)]
   }
   row.names(resultsTwo) <- 1:nrow(resultsTwo)
-  #resultsTwo <- resultsTwo[order(resultsTwo$high, decreasing = TRUE),]  #important for low - high order of items in plot
 
   results <- cbind(row.names(results), results)
   names(results)[1] <- "Item"
   row.names(results) <- 1:nrow(results)
 
   # Correcting for missing values in "results"
-  for(i in 2:ncol(results)) {
+  for (i in 2:ncol(results)) {
     narows <- which(is.na(results[,i]))
     if (length(narows) > 0) {
       results[narows,i] <- 0
@@ -2023,19 +2023,19 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
   # Correcting for missing values in "resultsTwo"
   narows <- which(is.na(resultsTwo$low))
-  if(length(narows) > 0) {
+  if (length(narows) > 0) {
     resultsTwo[narows,]$low <- 0
   }
   narows <- which(is.na(resultsTwo$neutral))
-  if(length(narows) > 0) {
+  if (length(narows) > 0) {
     resultsTwo[narows,]$neutral <- 0
   }
   narows <- which(is.na(resultsTwo$high))
-  if(length(narows) > 0) {
+  if (length(narows) > 0) {
     resultsTwo[narows,]$high <- 0
   }
 
-  l <- list(results = results, items = dataset, levels = levels(dataset[, 1]), sum = resultsTwo)
+  lik <- list(results = results, levels = levels(dataset[, 1]), sum = resultsTwo)
 
   # Likert Plot Part:
   textSize <- 6
@@ -2044,30 +2044,31 @@ Descriptives <- function(jaspResults, dataset, options) {
   yMax <- 100
   yBuffer <- 5
 
-  #palette <- jaspGraphs::JASPcolors(options[["colorPalette"]])
   palette <- c("#D8B365", "#E1C58B", "#EBD9B2", "#F5ECD8",
                "#D5ECEA", "#ACD9D5", "#83C6C0", "#5AB4AC")
   cols <- scales::gradient_n_pal(palette, values = NULL)(seq(0, 1, length.out = nLevels))
-  if (center%%1 == 0){
+  if (center%%1 == 0) {
     cols[center] <- "grey90"
   }
-  resultsLong <- stats::reshape(data = l$results, idvar = "Item",
+
+  resultsLong <- stats::reshape(data = lik$results,
+                                idvar = "Item",
                                 v.name = c("value"),
-                                varying = c(names(l$results[,2:length(l$results)])),
-                                times = c(names(l$results[,2:length(l$results)])),
+                                varying = c(names(lik$results[,2:length(lik$results)])),
+                                times = c(names(lik$results[,2:length(lik$results)])),
                                 timevar = "variable",
-                                new.row.names = 1:(length(l$results[2:length(l$results)])*length(l$results$Item)),
+                                new.row.names = 1:(length(lik$results[2:length(lik$results)])*length(lik$results$Item)),
                                 direction = "long")
 
-  #order <- l$sum[order(l$sum$high), "Item"]  #important for low - high order of items in plot
-  resultsLong$Item <- factor(resultsLong$Item, levels = rev(l$results$Item))
-  orderTwo <- l$levels                        # important for the correct legend sequence
-  resultsLong$variable <- factor(resultsLong$variable, levels = orderTwo)
+  resultsLong$Item <- factor(resultsLong$Item, levels = rev(lik$results$Item))
+  orderLeg <- lik$levels  # important for the correct legend sequence
+  resultsLong$variable <- factor(resultsLong$variable, levels = orderLeg)
 
-  rows <- which(resultsLong$variable %in% names(l$results)[2:(length(lowRange) + 1)])
+  # Make high, low, neutral values distinguishable
+  rows <- which(resultsLong$variable %in% names(lik$results)[2:(length(lowRange) + 1)])
   resultsLong[rows, "value"] <- -1 * resultsLong[rows, "value"]
   if (center%%1 == 0) {
-    rowsMid <- which(resultsLong$variable %in% names(l$results)[center + 1])
+    rowsMid <- which(resultsLong$variable %in% names(lik$results)[center + 1])
     tmp <- resultsLong[rowsMid,]
     tmp$value <- tmp$value/2 * -1
     resultsLong[rowsMid, "value"] <- resultsLong[rowsMid, "value"]/2
@@ -2075,7 +2076,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
   resultsLow <- resultsLong[resultsLong$value < 0,]
   resultsHigh <- resultsLong[resultsLong$value > 0,]
-  p <- NULL
+
   p <- ggplot2::ggplot(resultsLong, ggplot2::aes(y = value, x = Item, group = Item)) +
     ggplot2::geom_hline(yintercept = 0, color = "grey90") +
     ggplot2::geom_bar(data = resultsLow[nrow(resultsLow):1,], ggplot2::aes(fill = variable), stat = "identity") +
@@ -2084,21 +2085,21 @@ Descriptives <- function(jaspResults, dataset, options) {
   names(cols) <- levels(resultsLong$variable)
   p <- p + ggplot2::scale_fill_manual("Response", breaks = names(cols), values = cols, drop = FALSE)
 
-  p <- p + ggplot2::geom_text(data = l$sum,    # plot.percent.low
+  p <- p + ggplot2::geom_text(data = lik$sum,    # plot percent low
                               y = yMin,
                               ggplot2::aes(x = Item, label = paste0(round(low), "%")),
                               size = textSize,
                               hjust = 0.7,
                               color = textColor) +
-    ggplot2::geom_text(data = l$sum,           # plot.percent.high
+    ggplot2::geom_text(data = lik$sum,           # plot percent high
                        y = 100,
                        ggplot2::aes(x = Item, label = paste0(round(high), "%")),
                        size = textSize,
                        hjust = 0.3,
                        color = textColor)
 
-  if (nLevels%%2 == 1) {                       # plot.percent.neutral
-    p <- p + ggplot2::geom_text(data = l$sum,
+  if (nLevels%%2 == 1) {                       # plot percent neutral
+    p <- p + ggplot2::geom_text(data = lik$sum,
                                 y = 0,
                                 ggplot2::aes(x = Item, label = paste0(round(neutral), "%")),
                                 size = textSize,
@@ -2114,7 +2115,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     ggplot2::theme(panel.background = ggplot2::element_rect(size = 1, color = "grey90", fill = NA)) +
     ggplot2::theme(text = ggplot2::element_text(size = 22.5), axis.title.x = ggplot2::element_text(size = 18))
 
-  if (options[["fontSizeLikert"]] == "small"){        # Customizable Font Size
+  if (options[["fontSizeLikert"]] == "small") {
     p <- p + ggplot2::theme(axis.text.y = ggplot2::element_text(size = 20))
   } else if (options[["fontSizeLikert"]] == "medium") {
     p <- p + ggplot2::theme(axis.text.y = ggplot2::element_text(size = 22.5))
@@ -2129,22 +2130,19 @@ Descriptives <- function(jaspResults, dataset, options) {
 
 .descriptivesParetoPlots <- function(dataset, options, variable) {
   if (options$splitby != "" ) {
-    # return a collection
     split <- names(dataset)
 
     plotResult <- createJaspContainer(title = variable)
     plotResult$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
 
-    for (l in split) {
-      plotResult[[l]] <- .descriptivesParetoPlots_SubFunc(dataset = dataset[[l]], variable = variable,
-                                                          title = l, options = options)
-      plotResult[[l]]$dependOn(optionsFromObject = plotResult)
+    for (i in split) {
+      plotResult[[i]] <- .descriptivesParetoPlots_SubFunc(dataset[[i]], variable, i, options)
+      plotResult[[i]]$dependOn(optionsFromObject = plotResult)
     }
 
     return(plotResult)
   } else {
-    pPlot <- .descriptivesParetoPlots_SubFunc(dataset = dataset, variable = variable,
-                                              title = variable, options = options)
+    pPlot <- .descriptivesParetoPlots_SubFunc(dataset, variable, variable, options)
     pPlot$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
 
     return(pPlot)
@@ -2172,26 +2170,26 @@ Descriptives <- function(jaspResults, dataset, options) {
   tb$cums <- cumsum(tb$Freq)
   tb$cums <- 100 * tb$cums/tail(tb$cums, n = 1)
   yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(0, tb$Freq))
-  scaleRight <- tail(tb$cums, n = 1)/tail(yBreaks, n = 1)
+  scaleRight <- tail(tb$cums, n = 1)/tail(yBreaks, n = 1) # scaling factor for 2nd y axis & cumulative line
 
-  # Ordered (decreasing) distribution chart
+  # Ordered distribution chart
   p <- ggplot2::ggplot(data = data.frame(x = tb[, 1], y = tb[, 2]), ggplot2::aes(x = reorder(x, -y), y = y)) +
     ggplot2::geom_bar(stat = "identity", fill = "grey", col = "black", size = .3) +
     ggplot2::xlab(variable) +
     ggplot2::ylab(gettext("Counts"))
 
   # Adding Pareto Line
-  if (options[["optParetoRule"]]){
-    prop <- options[["paretoRule"]]
-    perc <- prop*100
+  if (options[["optParetoRule"]]) {
+    perc <- options[["paretoRule"]]
+    absVal <- perc*100  # to get absolute value of percentage
     colOrdered <- as.numeric(tb$column[order(tb$column, decreasing = FALSE)])
     interSec <- approx(colOrdered, tb$cums, n = 1000)     # Finding x axis intersection at X%
-    interY <- which.min(abs(interSec$y - perc))
+    interY <- which.min(abs(interSec$y - absVal))
     interX <- interSec$x[interY]
 
-    p <- p + ggplot2::geom_segment(ggplot2::aes(x = interX, xend = (nrow(tb) + 0.5), y = (max(yBreaks)*prop), yend = (max(yBreaks)*prop)),
+    p <- p + ggplot2::geom_segment(ggplot2::aes(x = interX, xend = (nrow(tb) + 0.5), y = (max(yBreaks)*perc), yend = (max(yBreaks)*perc)),
                                    linetype = "dashed", color = "orange", size = 1.3)
-    p <- p + ggplot2::geom_segment(ggplot2::aes(x = interX, xend = interX, y = 0, yend = (max(yBreaks)*prop)),
+    p <- p + ggplot2::geom_segment(ggplot2::aes(x = interX, xend = interX, y = 0, yend = (max(yBreaks)*perc)),
                                    linetype = "dashed", color = "orange", size = 1.3)
   }
 
@@ -2199,7 +2197,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   p <- p + ggplot2::geom_path(ggplot2::aes(y = tb[, 3]/scaleRight, group = 1), colour = "black", size = 1) +
     ggplot2::geom_point(ggplot2::aes(y = tb[, 3]/scaleRight, group = 1), colour = "steelblue", size = 3) +
     ggplot2::scale_y_continuous(breaks = yBreaks, limits = range(yBreaks), oob = scales::rescale_none,
-                                sec.axis = ggplot2::sec_axis(~.*scaleRight, name = "Cumulative (%)", breaks = seq(0,100,20))) +
+                                sec.axis = ggplot2::sec_axis(~.*scaleRight, name = "Percentage (%)", breaks = seq(0,100,20))) +
     jaspGraphs::geom_rangeframe(sides = "rbl") +
     jaspGraphs::themeJaspRaw() +
     ggplot2::theme(plot.margin = ggplot2::margin(5))
@@ -2208,37 +2206,37 @@ Descriptives <- function(jaspResults, dataset, options) {
 .descriptivesDensityPlots <- function(container, dataset, variables, options) {
 
   # we are not ready to plot
-  if(length(variables) == 0) return()
+  if (length(variables) == 0) return()
 
-  if(options[["densityPlotSeparate"]] != ""){
+  if (options[["densityPlotSeparate"]] != "") {
     separator <- .readDataSetToEnd(columns.as.factor = options[["densityPlotSeparate"]])
     separator <- separator[,,drop = TRUE]
   }
 
   for (i in seq_along(variables)) {
 
-    if(!is.double(dataset[[.v(i)]]))next
+    if (!is.double(dataset[[(i)]])) next
 
     variableName  <- variables[[i]]
     variable <- .readDataSetToEnd(columns.as.numeric = variableName)
     variable <- variable[,,drop = TRUE]
 
-    if(options[["densityPlotSeparate"]] != ""){
+    if (options[["densityPlotSeparate"]] != "") {
       data <- data.frame(variable, separator)
     } else {
       data <- data.frame(variable)
     }
 
-    if(options[["splitby"]] != "") {
+    if (options[["splitby"]] != "") {
       container[[variableName]] <- createJaspContainer(variableName)
       splitBy <- .readDataSetToEnd(columns.as.factor = options[["splitby"]])
       data$split <- splitBy[,,drop = TRUE]
       data <- na.omit(data)
       groups <- levels(data$split)
 
-      for(g in seq_along(groups)) {
-        activeCases <- groups[g] == data$split
-        .descriptivesDensityPlotsFill(container[[variableName]], data[activeCases,], groups[g], variableName, g, options)
+      for (g in seq_along(groups)) {
+        active <- groups[g] == data$split
+        .descriptivesDensityPlotsFill(container[[variableName]], data[active,], groups[g], variableName, g, options)
       }
     } else {
       data <- na.omit(data)
@@ -2252,7 +2250,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   data$split <- NULL
   plotSize <- c(500, 500)
   trans <- 1 - (options[["transparency"]]/100)
-  if(options[["densityPlotSeparate"]] != ""){
+  if (options[["densityPlotSeparate"]] != "") {
     plotSize <- plotSize + c(300, 300)
     p <- ggplot2::ggplot(data, ggplot2::aes(x = variable, fill = separator))
     scale_fill <- jaspGraphs::scale_JASPfill_discrete(palette = options[["colorPalette"]],
@@ -2263,13 +2261,14 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   densPlot <- createJaspPlot(title = plotName, width = plotSize[1], height = plotSize[2], position = position)
-  if(options[["densityPlotSeparate"]] != "" && any(table(data$separator) == 1)) {
+  if (options[["densityPlotSeparate"]] != "" && any(table(data$separator) == 1)) {
     densPlot$setError(gettext("Levels within variable require at least two or more data points!"))
   } else {
     p <- p + ggplot2::geom_density(alpha = trans) +
       ggplot2::xlab(axeName) +
       ggplot2::ylab(gettext("Density"))
 
+    # Determine range of axes to generate pretty breaks
     yRange <- ggplot2::ggplot_build(p)$layout$panel_scales_y[[1]]$range$range
     xRange <- ggplot2::ggplot_build(p)$layout$panel_scales_x[[1]]$range$range
     yBreaks <- jaspGraphs::getPrettyAxisBreaks(yRange)
