@@ -23,6 +23,13 @@ Met beschrijvende statistieken kunt u basis beschrijvende statistieken verkrijge
   - Label uitschieters: De uitschieters worden gelabeld. Uitschieters worden gebaseerd op de interkwartielafstand (IQR). Bijv., [25e percentiel] - 1.5 × IQR en [75e percentiel] +  1.5 × IQR.
   - Kleur: Geeft weer in kleur.
 	- Heeft selecteerbare boxplot, viool- en jitterelementen voor het weergeven van de verdeling van de data. 
+- Pareto plots: Kan alleen worden weergegeven voor nominale en ordinale variabelen. Geeft een geordende aflopende frequentieverdeling weer. Standaard wordt een cumulatieve lijn toegevoegd die de proportionele bijdrage van elke factor/niveau binnen de variabele aangeeft.
+  - Parteo-regel: Tekent twee extra lijnen, één verticaal en één horizontaal, die elkaar snijden en stoppen op de hoogte van het ingevoerde getal (schaalt mee met cumulatieve lijn). Standaard is deze ingesteld op 95%. Dit kan worden veranderd in het gewenste percentage.
+- Likert plots: Kan alleen worden weergegeven voor nominale en ordinale variabelen. Geeft een horizontaal gestapelde staafdiagram weer, waarbij een nieuwe staaf wordt gegenereerd voor elke extra variabele die wordt toegevoegd.
+  - Instelbare lettergrootte voor verticale as: Regelt de lettergrootte van variabelenamen op de verticale as. Standaard wordt de normale lettergrootte gebruikt, maar er zijn nog drie andere groottes beschikbaar.
+- Dichtheidsplots: Kan alleen worden weergegeven voor schaal (continue) variabelen. Gebruikt de kernel dichtheidsschatting om de verdeling van een numerieke variabele te visualiseren. 
+  - Gescheiden dichtheden: Door een nominale of ordinale variabele in dit vak te plaatsen, worden verschillende verdelingen die overeenkomen met de verschillende niveaus van de variabele weergegeven.
+  - Transparantie: Instelbare transparantie voor de kleur binnen het gebied onder de dichtheidslijn (varieert van 0 tot 100).
 
 ### Statistieken
 - Percentielwaarden: 
@@ -84,6 +91,24 @@ Met beschrijvende statistieken kunt u basis beschrijvende statistieken verkrijge
 
 #### Boxplots
 - Geeft voor continue variabelen een boxplot weer. De uitschieters kunnen gelabeld worden op basis van de interkwartiel afstand (IQR), bijv., [25e percentiel] - 1.5 × IQR en [75e percentiel] + 1.5 × IQR. Kan ook in kleur worden weergegeven en heeft selecteerbare boxplot-, viool- en jitterelementen voor het weergeven van de verdeling van de data. Dit kan worden gesplitst op basis van een categorische variabele zoals een experimentele conditie. 
+
+#### Pareto plots
+- Toont de tellingen van elke factor/niveau binnen de variabele in een aflopende volgorde. De y-as vertegenwoordigt de frequentie (tellingen als grijze balken) van elke factor/niveau, de x-as vertegenwoordigt de factoren/niveaus van de variabele in een geordende volgorde.
+- Standaard wordt een cumulatieve lijn getekend die de proportionele bijdrage van elke factor aangeeft. Een tweede verticale as aan de rechterkant van de grafiek schaalt mee met deze cumulatieve lijn en geeft percentages weer om de beschrijving van de cumulatieve lijn mogelijk te maken.
+- Als de "Pareto-regel" is ingeschakeld, maken de twee nieuwe lijnen een nauwkeuriger beoordeling mogelijk van de bijdrage van factoren/niveau's aan de totale bijdrage (in procenten) door verschillende invoernummers te gebruiken.
+
+#### Likert plots
+- Toont een horizontaal gestapeld staafdiagram dat de bijdrage van niveaus binnen een variabele in procenten weergeeft. De volgorde van de niveaus hangt af van de gedefinieerde volgorde in de JASP-gegevenstabel. Een legenda onder de grafiek geeft een overzicht van de niveaus en hun respectievelijke kleuren in de grafiek.
+  - De y-as staat voor de gebruikte variabelen, de x-as voor de percentages. De procentuele bijdrage van alle lagere-orde- (onder het middelste niveau) en hogere-orde- (boven het middelste niveau) niveaus wordt aan hun respectieve kant van de grafiek weergegeven.
+  - De grafiek geeft de percentages op de x-as in beide richtingen positief weer. De reden voor de gekozen weergave (in twee richtingen) is de bruikbaarheid van de grafiek in enquête-onderzoek waar de niveaus vaak een likert-volgorde volgen (b.v. hoog - laag, waarschijnlijk - onwaarschijnlijk, eens - oneens). Daarom bevat de grafiek een splitsing tussen niveaus bij hun mediaan.
+  - Het aantal variabele niveaus bepaalt het aantal weergegeven lagen (Opmerking: variabelen vereisen hetzelfde aantal niveaus). Lagen geven de procentuele verdeling van de niveaus van de onderzochte variabele weer.
+  - Als de variabelen een ongelijk aantal niveaus bevatten, wordt het middelste niveau weergegeven als een grijs blok in het midden van de gestapelde balk met zijn procentuele bijdrage erbovenop.
+- Beschikbare lettergrootten: normaal, klein, middelgroot, groot.
+
+#### Dichtheidsplots
+- Geeft de verdeling van een numerieke variabele weer. Indien andere nominale of ordinale variabelen zijn opgenomen, worden verschillende verdelingen die verschillende waarden van de andere variabele vertegenwoordigen, in dezelfde plot weergegeven.
+- De y-as vertegenwoordigt de waarschijnlijkheidsdichtheid voor de kernel dichtheidsschatting (waarschijnlijkheid per eenheid op de x-as), de x-as vertegenwoordigt de gebruikte variabelen.
+- Het uiterlijk kan worden gemanipuleerd door het kleurenpalet en de transparantie aan te passen.
 
 #### Frequentietabellen (voor categorische variabelen) 
 - Geeft een frequentietabel voor elke variabele weer. 
