@@ -13,8 +13,7 @@ Imports:
   ggplot2,
   ggrepel,
   jaspBase,
-  jaspGraphs,
-  stringr
+  jaspGraphs
 Remotes:
   jasp-stats/jaspBase,
   jasp-stats/jaspGraphs

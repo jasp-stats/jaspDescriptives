@@ -112,5 +112,4 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
 - ggrepel
 - grid
 - stats
-- stringr
 
