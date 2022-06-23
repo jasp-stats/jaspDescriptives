@@ -289,18 +289,30 @@ Descriptives <- function(jaspResults, dataset, options) {
 
     for (var in variables) {
       # skip non-categorical variables
-      if (is.double(dataset.factors[[(var)]])) next
+      if (is.double(dataset.factors[[var]])) next
 
       if (is.null(parPlots[[var]])) {
         if (makeSplit) {
-          parPlots[[var]] <- .descriptivesParetoPlots(dataset = splitDat.factors, options = options, variable = var)
+          parPlots[[var]] <- .descriptivesParetoPlots(splitDat.factors, options, var)
         } else {
-          parPlots[[var]] <- .descriptivesParetoPlots(dataset = dataset.factors, options = options, variable = var)
+          parPlots[[var]] <- .descriptivesParetoPlots(dataset.factors, options, var)
         }
       }
     }
   }
 
+  # Density plots
+  if (options[["descriptivesDensityPlot"]]) {
+    if (is.null(jaspResults[["densityPlot"]])) {
+      jaspResults[["densityPlot"]] <- createJaspContainer(gettext("Density Plots"))
+      jaspResults[["densityPlot"]]$dependOn(c("descriptivesDensityPlot", "densityPlotSeparate",
+                                              "colorPalette", "splitby", "variables", "transparency"))
+      jaspResults[["densityPlot"]]$position <- 17
+    }
+    
+    .descriptivesDensityPlots(jaspResults[["densityPlot"]], dataset.factors, variables, options)
+  }
+  
   # Likert plots
   if (options[["descriptivesLikertPlot"]] && !all(lapply(dataset.factors, is.double) == TRUE)) {
     if (is.null(jaspResults[["likertPlot"]])) {
@@ -313,7 +325,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
     for (var in variables) {
       # exclude non-categorical variables from dataframe
-      if (is.double(dataset.factors[[(var)]])) {
+      if (is.double(dataset.factors[[var]])) {
         if (makeSplit) {
           for (i in 1:length(splitLevels))
             splitDat.factors[[i]] <- splitDat.factors[[i]][, !names(splitDat.factors[[i]]) %in% c(var), drop = FALSE]
@@ -326,22 +338,9 @@ Descriptives <- function(jaspResults, dataset, options) {
     if (makeSplit) {
       for (i in 1:length(splitLevels))
         likPlots[[splitLevels[i]]] <- .descriptivesLikertPlots(splitDat.factors[[i]], options, splitLevels[i])
-
     } else {
-      jaspResults[["likertPlot"]] <- .descriptivesLikertPlots(dataset.factors, options, gettext("Likert Plot")) # Create one plot
+      jaspResults[["likertPlot"]] <- .descriptivesLikertPlots(dataset.factors, options, gettext("Likert Plot"))
     }
-  }
-
-  # Density plots
-  if (options[["descriptivesDensityPlot"]]) {
-    if (is.null(jaspResults[["densityPlot"]])) {
-      jaspResults[["densityPlot"]] <- createJaspContainer(gettext("Density Plots"))
-      jaspResults[["densityPlot"]]$dependOn(c("descriptivesDensityPlot", "densityPlotSeparate",
-                                              "colorPalette", "splitby", "variables", "transparency"))
-      jaspResults[["densityPlot"]]$position <- 17
-    }
-
-    .descriptivesDensityPlots(jaspResults[["densityPlot"]], dataset.factors, variables, options)
   }
 
   return()
@@ -1955,7 +1954,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   leng <- length(dataset)
   depends <- c("descriptivesLikertPlot", "splitby", "variables", "fontSizeLikert")
 
-  likPlot <- createJaspPlot(title = name, dependencies = depends, width = 1300, height = if(leng == 1) 250 else 200*(leng*0.8))
+  likPlot <- createJaspPlot(title = name, dependencies = depends, width = 1300, height = if (leng == 1) 250 else 200*(leng*0.8))
   errorMessage <- .descriptivesCheckPlotErrors(dataset, names(dataset), obsAmount = "< 2")
   if (!is.null(errorMessage)) {
     likPlot$setError(gettextf("Plotting not possible: %s", errorMessage))
@@ -1981,14 +1980,14 @@ Descriptives <- function(jaspResults, dataset, options) {
   results <- data.frame()
   results <- data.frame(Response = 1:nLevels)
   for (i in 1:ncol(dataset)) {
-    t <- table(dataset[,i])
-    t <- (t/sum(t) * 100)
-    results <- cbind(results, as.data.frame(t)[,2])
+    t <- table(dataset[, i])
+    t <- (t/sum(t)*100)
+    results <- cbind(results, as.data.frame(t)[, 2])
     names(results)[ncol(results)] <- names(dataset)[i]
   }
   results <- as.data.frame(t(results))
-  names(results) <- levels(dataset[,1])
-  results <- results[2:nrow(results),]
+  names(results) <- levels(dataset[, 1])
+  results <- results[2:nrow(results), ]
 
   # Summarizing likert data: high, low, neutral %
   resultsTwo <- data.frame(Item = row.names(results),
@@ -1996,17 +1995,17 @@ Descriptives <- function(jaspResults, dataset, options) {
                            neutral = rep(NA, nrow(results)),
                            high = rep(NA, nrow(results)))
   if (length(lowRange) == 1) {
-    resultsTwo$low <- results[,lowRange]
+    resultsTwo$low <- results[, lowRange]
   } else {
-    resultsTwo$low <- apply(results[,lowRange], 1, sum)
+    resultsTwo$low <- apply(results[, lowRange], 1, sum)
   }
   if (length(highRange) == 1) {
-    resultsTwo$high <- results[,highRange]
+    resultsTwo$high <- results[, highRange]
   } else {
-    resultsTwo$high <- apply(results[,highRange], 1, sum)
+    resultsTwo$high <- apply(results[, highRange], 1, sum)
   }
   if (lowRange[length(lowRange)] + 1 != highRange[1]) {
-    resultsTwo$neutral <- results[,(highRange[1] - 1)]
+    resultsTwo$neutral <- results[, (highRange[1] - 1)]
   }
   row.names(resultsTwo) <- 1:nrow(resultsTwo)
 
@@ -2016,23 +2015,23 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   # Correcting for missing values in "results"
   for (i in 2:ncol(results)) {
-    narows <- which(is.na(results[,i]))
+    narows <- which(is.na(results[, i]))
     if (length(narows) > 0) {
-      results[narows,i] <- 0
+      results[narows, i] <- 0
     }
   }
   # Correcting for missing values in "resultsTwo"
   narows <- which(is.na(resultsTwo$low))
   if (length(narows) > 0) {
-    resultsTwo[narows,]$low <- 0
+    resultsTwo[narows, ]$low <- 0
   }
   narows <- which(is.na(resultsTwo$neutral))
   if (length(narows) > 0) {
-    resultsTwo[narows,]$neutral <- 0
+    resultsTwo[narows, ]$neutral <- 0
   }
   narows <- which(is.na(resultsTwo$high))
   if (length(narows) > 0) {
-    resultsTwo[narows,]$high <- 0
+    resultsTwo[narows, ]$high <- 0
   }
 
   lik <- list(results = results, levels = levels(dataset[, 1]), sum = resultsTwo)
@@ -2054,8 +2053,8 @@ Descriptives <- function(jaspResults, dataset, options) {
   resultsLong <- stats::reshape(data = lik$results,
                                 idvar = "Item",
                                 v.name = c("value"),
-                                varying = c(names(lik$results[,2:length(lik$results)])),
-                                times = c(names(lik$results[,2:length(lik$results)])),
+                                varying = c(names(lik$results[, 2:length(lik$results)])),
+                                times = c(names(lik$results[, 2:length(lik$results)])),
                                 timevar = "variable",
                                 new.row.names = 1:(length(lik$results[2:length(lik$results)])*length(lik$results$Item)),
                                 direction = "long")
@@ -2066,20 +2065,20 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   # Make high, low, neutral values distinguishable
   rows <- which(resultsLong$variable %in% names(lik$results)[2:(length(lowRange) + 1)])
-  resultsLong[rows, "value"] <- -1 * resultsLong[rows, "value"]
+  resultsLong[rows, "value"] <- -1*resultsLong[rows, "value"]
   if (center%%1 == 0) {
     rowsMid <- which(resultsLong$variable %in% names(lik$results)[center + 1])
-    tmp <- resultsLong[rowsMid,]
-    tmp$value <- tmp$value/2 * -1
+    tmp <- resultsLong[rowsMid, ]
+    tmp$value <- tmp$value/2*-1
     resultsLong[rowsMid, "value"] <- resultsLong[rowsMid, "value"]/2
     resultsLong <- rbind(resultsLong, tmp)
   }
-  resultsLow <- resultsLong[resultsLong$value < 0,]
-  resultsHigh <- resultsLong[resultsLong$value > 0,]
+  resultsLow <- resultsLong[resultsLong$value < 0, ]
+  resultsHigh <- resultsLong[resultsLong$value > 0, ]
 
   p <- ggplot2::ggplot(resultsLong, ggplot2::aes(y = value, x = Item, group = Item)) +
     ggplot2::geom_hline(yintercept = 0, color = "grey90") +
-    ggplot2::geom_bar(data = resultsLow[nrow(resultsLow):1,], ggplot2::aes(fill = variable), stat = "identity") +
+    ggplot2::geom_bar(data = resultsLow[nrow(resultsLow):1, ], ggplot2::aes(fill = variable), stat = "identity") +
     ggplot2::geom_bar(data = resultsHigh, ggplot2::aes(fill = variable), stat = "identity")
 
   names(cols) <- levels(resultsLong$variable)
@@ -2129,7 +2128,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesParetoPlots <- function(dataset, options, variable) {
-  if (options$splitby != "" ) {
+  if (options$splitby != "") {
     split <- names(dataset)
 
     plotResult <- createJaspContainer(title = variable)
@@ -2197,7 +2196,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   p <- p + ggplot2::geom_path(ggplot2::aes(y = tb[, 3]/scaleRight, group = 1), colour = "black", size = 1) +
     ggplot2::geom_point(ggplot2::aes(y = tb[, 3]/scaleRight, group = 1), colour = "steelblue", size = 3) +
     ggplot2::scale_y_continuous(breaks = yBreaks, limits = range(yBreaks), oob = scales::rescale_none,
-                                sec.axis = ggplot2::sec_axis(~.*scaleRight, name = "Percentage (%)", breaks = seq(0,100,20))) +
+                                sec.axis = ggplot2::sec_axis(~.*scaleRight, name = "Percentage (%)", breaks = seq(0, 100, 20))) +
     jaspGraphs::geom_rangeframe(sides = "rbl") +
     jaspGraphs::themeJaspRaw() +
     ggplot2::theme(plot.margin = ggplot2::margin(5))
@@ -2210,16 +2209,16 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   if (options[["densityPlotSeparate"]] != "") {
     separator <- .readDataSetToEnd(columns.as.factor = options[["densityPlotSeparate"]])
-    separator <- separator[,,drop = TRUE]
+    separator <- separator[,, drop = TRUE]
   }
 
   for (i in seq_along(variables)) {
 
-    if (!is.double(dataset[[(i)]])) next
+    if (!is.double(dataset[[i]])) next
 
-    variableName  <- variables[[i]]
+    variableName <- variables[[i]]
     variable <- .readDataSetToEnd(columns.as.numeric = variableName)
-    variable <- variable[,,drop = TRUE]
+    variable <- variable[,, drop = TRUE]
 
     if (options[["densityPlotSeparate"]] != "") {
       data <- data.frame(variable, separator)
@@ -2230,13 +2229,13 @@ Descriptives <- function(jaspResults, dataset, options) {
     if (options[["splitby"]] != "") {
       container[[variableName]] <- createJaspContainer(variableName)
       splitBy <- .readDataSetToEnd(columns.as.factor = options[["splitby"]])
-      data$split <- splitBy[,,drop = TRUE]
+      data$split <- splitBy[,, drop = TRUE]
       data <- na.omit(data)
       groups <- levels(data$split)
 
       for (g in seq_along(groups)) {
         active <- groups[g] == data$split
-        .descriptivesDensityPlotsFill(container[[variableName]], data[active,], groups[g], variableName, g, options)
+        .descriptivesDensityPlotsFill(container[[variableName]], data[active, ], groups[g], variableName, g, options)
       }
     } else {
       data <- na.omit(data)
