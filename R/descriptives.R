@@ -314,7 +314,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
   
   # Likert plots
-  if (options[["descriptivesLikertPlot"]] && !all(lapply(dataset.factors, is.double) == TRUE)) {
+  if (options[["descriptivesLikertPlot"]] && !all(lapply(dataset.factors, is.double))) {
     if (is.null(jaspResults[["likertPlot"]])) {
       jaspResults[["likertPlot"]] <- createJaspContainer(gettext("Likert Plots"))
       jaspResults[["likertPlot"]]$dependOn(c("descriptivesLikertPlot", "splitby", "variables", "fontSizeLikert"))
@@ -1978,8 +1978,8 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   # Summarizing item contribution and get clean data
   results <- data.frame()
-  results <- data.frame(Response = 1:nLevels)
-  for (i in 1:ncol(dataset)) {
+  results <- data.frame(Response = seq_len(nLevels))
+  for (i in seq_len(ncol(dataset))) {
     t <- table(dataset[, i])
     t <- (t/sum(t)*100)
     results <- cbind(results, as.data.frame(t)[, 2])
@@ -2007,11 +2007,11 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (lowRange[length(lowRange)] + 1 != highRange[1]) {
     resultsTwo$neutral <- results[, (highRange[1] - 1)]
   }
-  row.names(resultsTwo) <- 1:nrow(resultsTwo)
+  row.names(resultsTwo) <- seq_len(nrow(resultsTwo))
 
   results <- cbind(row.names(results), results)
   names(results)[1] <- "Item"
-  row.names(results) <- 1:nrow(results)
+  row.names(results) <- seq_len(nrow(results))
 
   # Correcting for missing values in "results"
   for (i in 2:ncol(results)) {
@@ -2056,7 +2056,7 @@ Descriptives <- function(jaspResults, dataset, options) {
                                 varying = c(names(lik$results[, 2:length(lik$results)])),
                                 times = c(names(lik$results[, 2:length(lik$results)])),
                                 timevar = "variable",
-                                new.row.names = 1:(length(lik$results[2:length(lik$results)])*length(lik$results$Item)),
+                                new.row.names = seq_len(length(lik$results[2:length(lik$results)])*length(lik$results$Item)),
                                 direction = "long")
 
   resultsLong$Item <- factor(resultsLong$Item, levels = rev(lik$results$Item))
@@ -2114,13 +2114,13 @@ Descriptives <- function(jaspResults, dataset, options) {
     ggplot2::theme(panel.background = ggplot2::element_rect(size = 1, color = "grey90", fill = NA)) +
     ggplot2::theme(text = ggplot2::element_text(size = 22.5), axis.title.x = ggplot2::element_text(size = 18))
 
-  if (options[["fontSizeLikert"]] == "small") {
-    p <- p + ggplot2::theme(axis.text.y = ggplot2::element_text(size = 20))
-  } else if (options[["fontSizeLikert"]] == "medium") {
-    p <- p + ggplot2::theme(axis.text.y = ggplot2::element_text(size = 22.5))
-  } else if (options[["fontSizeLikert"]] == "large") {
-    p <- p + ggplot2::theme(axis.text.y = ggplot2::element_text(size = 25))
-  }
+  p <- p + ggplot2::theme(axis.text.y = ggplot2::element_text(
+    switch(options[["fontSizeLikert"]],
+           "normal" = 22.5, # inherited from theme(text)
+           "small"  = 20,
+           "medium" = 22.5,
+           "large"  = 25
+    )))
 
   likPlot$plotObject <- p
 
@@ -2247,10 +2247,8 @@ Descriptives <- function(jaspResults, dataset, options) {
 .descriptivesDensityPlotsFill <- function(container, data, plotName, axeName, position, options) {
 
   data$split <- NULL
-  plotSize <- c(500, 500)
   trans <- 1 - (options[["transparency"]]/100)
   if (options[["densityPlotSeparate"]] != "") {
-    plotSize <- plotSize + c(300, 300)
     p <- ggplot2::ggplot(data, ggplot2::aes(x = variable, fill = separator))
     scale_fill <- jaspGraphs::scale_JASPfill_discrete(palette = options[["colorPalette"]],
                                                       name = options[["densityPlotSeparate"]])
@@ -2259,13 +2257,11 @@ Descriptives <- function(jaspResults, dataset, options) {
     scale_fill <- jaspGraphs::scale_JASPfill_discrete(palette = options[["colorPalette"]])
   }
 
-  densPlot <- createJaspPlot(title = plotName, width = plotSize[1], height = plotSize[2], position = position)
+  densPlot <- createJaspPlot(title = plotName, width = 480, height = 320, position = position)
   if (options[["densityPlotSeparate"]] != "" && any(table(data$separator) == 1)) {
     densPlot$setError(gettext("Levels within variable require at least two or more data points!"))
   } else {
-    p <- p + ggplot2::geom_density(alpha = trans) +
-      ggplot2::xlab(axeName) +
-      ggplot2::ylab(gettext("Density"))
+    p <- p + ggplot2::geom_density(alpha = trans)
 
     # Determine range of axes to generate pretty breaks
     yRange <- ggplot2::ggplot_build(p)$layout$panel_scales_y[[1]]$range$range
@@ -2273,10 +2269,10 @@ Descriptives <- function(jaspResults, dataset, options) {
     yBreaks <- jaspGraphs::getPrettyAxisBreaks(yRange)
     xBreaks <- jaspGraphs::getPrettyAxisBreaks(xRange)
 
-    p <- p + ggplot2::scale_y_continuous(breaks = yBreaks, limits = range(yBreaks)) +
-      ggplot2::scale_x_continuous(breaks = xBreaks, limits = range(xBreaks)) +
+    p <- p + ggplot2::scale_y_continuous(name = "Density", breaks = yBreaks, limits = range(yBreaks)) +
+      ggplot2::scale_x_continuous(name = axeName, breaks = xBreaks, limits = range(xBreaks)) +
       scale_fill +
-      jaspGraphs::geom_rangeframe(sides = "bl") +
+      jaspGraphs::geom_rangeframe() +
       jaspGraphs::themeJaspRaw(legend.position = if(options[["densityPlotSeparate"]] != "") "right" else "none")
 
     densPlot$plotObject <- p
