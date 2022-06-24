@@ -2115,11 +2115,10 @@ Descriptives <- function(jaspResults, dataset, options) {
     ggplot2::theme(text = ggplot2::element_text(size = 22.5), axis.title.x = ggplot2::element_text(size = 18))
 
   p <- p + ggplot2::theme(axis.text.y = ggplot2::element_text(
-    switch(options[["fontSizeLikert"]],
-           "normal" = 22.5, # inherited from theme(text)
-           "small"  = 20,
-           "medium" = 22.5,
-           "large"  = 25
+    size = switch(options[["fontSizeLikert"]],
+                  "small"  = 20,
+                  "medium" = 22.5,
+                  "large"  = 25
     )))
 
   likPlot$plotObject <- p

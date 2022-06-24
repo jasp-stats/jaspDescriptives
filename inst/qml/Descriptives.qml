@@ -179,6 +179,40 @@ Form
 			CheckBox {				name: "descriptivesQQPlot";		label: qsTr("Q-Q plots")						}
 			CheckBox {				name: "descriptivesPiechart";	label: qsTr("Pie charts")						}
 			CheckBox {				name: "descriptivesDotPlot";	label: qsTr("Dot plots")						}
+			CheckBox 
+			{			
+				name: 		"descriptivesParetoPlot"
+				label: 		qsTr("Pareto plots")
+				
+				CheckBox 
+				{			
+					name: 				"optParetoRule"	
+					label: 				qsTr("Pareto rule")
+					childrenOnSameRow: 	true
+					
+					CIField { name: 	"paretoRule" }
+				}
+			}
+			CheckBox 
+			{	
+				name: 		"descriptivesLikertPlot"	
+				label: 		qsTr("Likert plots")				
+				
+				DropDown 
+				{
+					id: 				fontSizeLikert
+					name: 				"fontSizeLikert"
+					label: 				qsTr("Adjustable font size for vertical axis")
+					indexDefaultValue: 	0
+					values:
+					[
+						{label: qsTr("Normal"), 	value: "normal"},
+						{label: qsTr("Small"),		value: "small"},
+						{label: qsTr("Medium"),		value: "medium"},
+						{label: qsTr("Large"),		value: "large"}
+					]
+				}
+			}
 		}
 	}
 
@@ -269,42 +303,6 @@ Form
 				name: "showLegend"
 				label: qsTr("Show legend")
 				checked: true
-			}
-		}
-
-		CheckBox 
-		{			
-			name: 		"descriptivesParetoPlot"
-			label: 		qsTr("Pareto plots")
-			
-			CheckBox 
-			{			
-				name: 				"optParetoRule"	
-				label: 				qsTr("Pareto rule")
-				childrenOnSameRow: 	true
-				
-				CIField { name: 	"paretoRule" }
-			}
-		}
-		
-		CheckBox 
-		{	
-			name: 		"descriptivesLikertPlot"	
-			label: 		qsTr("Likert plots")				
-			
-			DropDown 
-			{
-				id: 				fontSizeLikert
-				name: 				"fontSizeLikert"
-				label: 				qsTr("Adjustable font size for vertical axis")
-				indexDefaultValue: 	0
-				values:
-				[
-					{label: qsTr("Normal"), 	value: "normal"},
-					{label: qsTr("Small"),		value: "small"},
-					{label: qsTr("Medium"),		value: "medium"},
-					{label: qsTr("Large"),		value: "large"}
-				]
 			}
 		}
 			
