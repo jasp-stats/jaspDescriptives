@@ -309,10 +309,10 @@ Descriptives <- function(jaspResults, dataset, options) {
                                               "colorPalette", "splitby", "variables", "transparency"))
       jaspResults[["densityPlot"]]$position <- 17
     }
-    
+
     .descriptivesDensityPlots(jaspResults[["densityPlot"]], dataset.factors, variables, options)
   }
-  
+
   # Likert plots
   if (options[["descriptivesLikertPlot"]] && !all(lapply(dataset.factors, is.double))) {
     if (is.null(jaspResults[["likertPlot"]])) {
@@ -2127,7 +2127,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesParetoPlots <- function(dataset, options, variable) {
-  if (options$splitby != "") {
+  if (options[["splitby"]] != "") {
     split <- names(dataset)
 
     plotResult <- createJaspContainer(title = variable)
