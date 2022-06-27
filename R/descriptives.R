@@ -1994,15 +1994,15 @@ Descriptives <- function(jaspResults, dataset, options) {
                            low = rep(NA, nrow(results)),
                            neutral = rep(NA, nrow(results)),
                            high = rep(NA, nrow(results)))
-  if (length(lowRange) == 1) {
-    resultsTwo$low <- results[, lowRange]
+  resultsTwo$low <- if (length(lowRange) == 1) {
+    results[, lowRange]
   } else {
-    resultsTwo$low <- apply(results[, lowRange], 1, sum)
+    apply(results[, lowRange], 1, sum)
   }
-  if (length(highRange) == 1) {
-    resultsTwo$high <- results[, highRange]
+  resultsTwo$high <- if (length(highRange) == 1) {
+    results[, highRange]
   } else {
-    resultsTwo$high <- apply(results[, highRange], 1, sum)
+    apply(results[, highRange], 1, sum)
   }
   if (lowRange[length(lowRange)] + 1 != highRange[1]) {
     resultsTwo$neutral <- results[, (highRange[1] - 1)]
@@ -2219,10 +2219,10 @@ Descriptives <- function(jaspResults, dataset, options) {
     variable <- .readDataSetToEnd(columns.as.numeric = variableName)
     variable <- variable[,, drop = TRUE]
 
-    if (options[["densityPlotSeparate"]] != "") {
-      data <- data.frame(variable, separator)
+    data <- if (options[["densityPlotSeparate"]] != "") {
+      data.frame(variable, separator)
     } else {
-      data <- data.frame(variable)
+      data.frame(variable)
     }
 
     if (options[["splitby"]] != "") {
