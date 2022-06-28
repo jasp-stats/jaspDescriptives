@@ -2,34 +2,37 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2022-01-15 03:18\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2022-06-29 08:59+0000\n"
+"Last-Translator: José Ramón Rueda <joseramon.rueda@ehu.es>\n"
+"Language-Team: Basque <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-r/eu/>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 
 msgid "Frequency Tables"
-msgstr ""
+msgstr "Maiztasun-taulak"
 
 msgid "Correlation plots"
-msgstr ""
+msgstr "Korrelazio-grafikoak"
 
 msgid "Correlation plot"
-msgstr ""
+msgstr "Korrelazio-grafikoa"
 
 msgid "Distribution Plots"
-msgstr ""
+msgstr "Banaketa-grafikoak"
 
 msgid "Boxplots"
-msgstr ""
+msgstr "Kutxa-grafikoak"
 
 msgid "Q-Q Plots"
-msgstr ""
+msgstr "Q-Q grafikoaK"
 
 msgid "Q-Q Plot"
-msgstr ""
+msgstr "Q-Q grafikoa"
 
 msgid "Plotting is not possible: Variable only contains NA!"
 msgstr ""
@@ -140,7 +143,7 @@ msgid "More than one mode exists, only the first is reported"
 msgstr ""
 
 msgid "Total"
-msgstr ""
+msgstr "Guztira"
 
 msgid "All variables have more than %1$s distinct values"
 msgstr ""
@@ -172,8 +175,9 @@ msgstr ""
 msgid "Plotting is not possible: No plot type selected!"
 msgstr ""
 
+#, fuzzy
 msgid "Counts"
-msgstr ""
+msgstr "Zenbaketak"
 
 msgid "No non-missing values!"
 msgstr ""
