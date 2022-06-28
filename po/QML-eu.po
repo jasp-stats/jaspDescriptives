@@ -1,81 +1,98 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2022-06-29 08:59+0000\n"
+"Last-Translator: José Ramón Rueda <joseramon.rueda@ehu.es>\n"
+"Language-Team: Basque <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/eu/>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 4.13.1-dev\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
 msgid "Descriptives"
-msgstr ""
+msgstr "Deskribatzaileak"
 
 msgctxt "Description|"
 msgid "Descriptive Statistics"
-msgstr ""
+msgstr "Estatistika deskribatzailea"
 
 msgctxt "Descriptives|"
 msgid "Variables"
-msgstr ""
+msgstr "Aldagaiak"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Split"
-msgstr ""
+msgstr "Bereizi"
 
 msgctxt "Descriptives|"
 msgid "Frequency tables"
-msgstr ""
+msgstr "Maiztasun-taulak"
 
 msgctxt "Descriptives|"
 msgid "Maximum distinct values"
-msgstr ""
+msgstr "Gehieneko balio desberdinak"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Stem and leaf tables"
-msgstr ""
+msgstr "Zurtoin eta orri taulak"
 
 msgctxt "Descriptives|"
 msgid "scale"
-msgstr ""
+msgstr "eskala"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "The scale parameter controls how much the table is expanded. For example, "
 "scale = 2 will cause the table to be roughly twice as long as the default "
 "(scale = 1)."
 msgstr ""
+"Eskalaren parametroak kontrolatzen du taula zenbat hedatzen den. Adibidez, = "
+"2 eskalan, taula lehenetsitakoaren bikoitza izango da gutxi gorabehera ("
+"eskala = 1)."
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Create a Stem and leaf table."
-msgstr ""
+msgstr "Zurtoin eta hosto taula sortu"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Color palette"
-msgstr ""
+msgstr "Koloretako paleta"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Colorblind"
-msgstr ""
+msgstr "Koloregabea"
 
 msgctxt "Descriptives|"
 msgid "Colorblind Alt."
-msgstr ""
+msgstr "Alt. koloregabea"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Viridis"
-msgstr ""
+msgstr "kolore-eskalak"
 
 msgctxt "Descriptives|"
 msgid "ggplot2"
-msgstr ""
+msgstr "ggplot2"
 
 msgctxt "Descriptives|"
 msgid "Gray"
-msgstr ""
+msgstr "Grisa"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Boxplots"
-msgstr ""
+msgstr "Kutxa-diagrama"
 
 msgctxt "Descriptives|"
 msgid "Boxplot element"
@@ -91,11 +108,12 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Use color palette"
-msgstr ""
+msgstr "Koloretako paleta erabili"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Label outliers"
-msgstr ""
+msgstr "Etiketatu datu anomaloak"
 
 msgctxt "Descriptives|"
 msgid "Graph above scatter plot"
@@ -103,35 +121,35 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Density"
-msgstr ""
+msgstr "Dentsitatea"
 
 msgctxt "Descriptives|"
 msgid "Histogram"
-msgstr ""
+msgstr "Histograma"
 
 msgctxt "Descriptives|"
 msgid "None"
-msgstr ""
+msgstr "Bat ere ez"
 
 msgctxt "Descriptives|"
 msgid "Graph right of scatter plot"
-msgstr ""
+msgstr "Sakabanatze-diagramaren eskubi aldean erakutsi"
 
 msgctxt "Descriptives|"
 msgid "Add regression line"
-msgstr ""
+msgstr "Gehitu erregresio-lerroa"
 
 msgctxt "Descriptives|"
 msgid "Smooth"
-msgstr ""
+msgstr "Leuna"
 
 msgctxt "Descriptives|"
 msgid "Linear"
-msgstr ""
+msgstr "Lineala"
 
 msgctxt "Descriptives|"
 msgid "Show confidence interval"
-msgstr ""
+msgstr "Konfiantza-tartea erakutsi"
 
 msgctxt "Descriptives|"
 msgid "Show legend"
@@ -139,47 +157,50 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Basic plots"
-msgstr ""
+msgstr "Oinarrizko grafikoak"
 
 msgctxt "Descriptives|"
 msgid "Distribution plots"
-msgstr ""
+msgstr "Sakabanatze-diagramak"
 
 msgctxt "Descriptives|"
 msgid "Display density"
-msgstr ""
+msgstr "Dentsitatea erakutsi"
 
 msgctxt "Descriptives|"
 msgid "Correlation plots"
-msgstr ""
+msgstr "Korrelazio-grafikoak"
 
 msgctxt "Descriptives|"
 msgid "Q-Q plots"
-msgstr ""
+msgstr "QQ-grafikoak"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Pie charts"
-msgstr ""
+msgstr "Sektore-grafikoa"
 
 msgctxt "Descriptives|"
 msgid "Statistics"
-msgstr ""
+msgstr "Estatistikoak"
 
 msgctxt "Descriptives|"
 msgid "Quartiles"
-msgstr ""
+msgstr "Kuartilak"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Cut points for: "
-msgstr ""
+msgstr "Ebakitze-puntuak: "
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid " equal groups"
-msgstr ""
+msgstr " talde berdinak"
 
 msgctxt "Descriptives|"
 msgid "Percentiles:"
-msgstr ""
+msgstr "Pertzentilak:"
 
 msgctxt "Descriptives|"
 msgid "Central tendency"
@@ -187,31 +208,31 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Mean"
-msgstr ""
+msgstr "Batezbestekoa"
 
 msgctxt "Descriptives|"
 msgid "Median"
-msgstr ""
+msgstr "Mediana"
 
 msgctxt "Descriptives|"
 msgid "Mode"
-msgstr ""
+msgstr "Moda"
 
 msgctxt "Descriptives|"
 msgid "Sum"
-msgstr ""
+msgstr "Batuketa"
 
 msgctxt "Descriptives|"
 msgid "Dispersion"
-msgstr ""
+msgstr "Sakabanaketa"
 
 msgctxt "Descriptives|"
 msgid "S.E. mean"
-msgstr ""
+msgstr "Batezbestekoaren errore estandarra"
 
 msgctxt "Descriptives|"
 msgid "Std. deviation"
-msgstr ""
+msgstr "Desbideratze estandarra"
 
 msgctxt "Descriptives|"
 msgid "MAD"
@@ -221,73 +242,79 @@ msgctxt "Descriptives|"
 msgid "MAD robust"
 msgstr ""
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "IQR"
-msgstr ""
+msgstr "Koartilen arteko tartea"
 
 msgctxt "Descriptives|"
 msgid "Variance"
-msgstr ""
+msgstr "Bariantza"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Range"
-msgstr ""
+msgstr "Heina"
 
 msgctxt "Descriptives|"
 msgid "Minimum"
-msgstr ""
+msgstr "Gutxienekoa"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Maximum"
-msgstr ""
+msgstr "Gehienez"
 
 msgctxt "Descriptives|"
 msgid "Distribution"
-msgstr ""
+msgstr "Banaketa"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Skewness"
-msgstr ""
+msgstr "Asimetria"
 
 msgctxt "Descriptives|"
 msgid "Kurtosis"
-msgstr ""
+msgstr "Kurtosia"
 
 msgctxt "Descriptives|"
 msgid "Shapiro-Wilk test"
-msgstr ""
+msgstr "Shapiro-Wilk proba"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Values are group midpoints"
-msgstr ""
+msgstr "Balioak taldearen batez besteko puntuak dira"
 
 msgctxt "Descriptives|"
 msgid "Charts"
-msgstr ""
+msgstr "Grafikoak"
 
 msgctxt "Descriptives|"
 msgid "Chart Type"
-msgstr ""
+msgstr "Grafiko mota"
 
 msgctxt "Descriptives|"
 msgid "Bar charts"
-msgstr ""
+msgstr "Barra-grafikoak"
 
 msgctxt "Descriptives|"
 msgid "Histograms"
-msgstr ""
+msgstr "Histogramak"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Chart Values"
-msgstr ""
+msgstr "Grafiko-balioak"
 
 msgctxt "Descriptives|"
 msgid "Frequencies"
-msgstr ""
+msgstr "Maiztasunak"
 
 msgctxt "Descriptives|"
 msgid "Percentages"
-msgstr ""
+msgstr "Ehunekoak"
 
 msgctxt "Descriptives|"
 msgid "Display rug marks"
@@ -299,39 +326,43 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Sturges"
-msgstr ""
+msgstr "Sturges"
 
 msgctxt "Descriptives|"
 msgid "Scott"
-msgstr ""
+msgstr "Scott"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Doane"
-msgstr ""
+msgstr "Doane"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Freedman-Diaconis"
-msgstr ""
+msgstr "Freedman-Diaconis"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Manual"
-msgstr ""
+msgstr "Esku-liburua"
 
 msgctxt "Descriptives|"
 msgid "Number of bins"
 msgstr ""
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Interval plots"
-msgstr ""
+msgstr "Tarte-diagramak"
 
 msgctxt "Descriptives|"
 msgid "Coefficient of variation"
-msgstr ""
+msgstr "Aldakuntza-koefizientea"
 
 msgctxt "Description|"
 msgid "Explore the data with tables and plots"
-msgstr ""
+msgstr "Datuak taula eta grafikoekin arakatu"
 
 msgctxt "Descriptives|"
 msgid "Transpose descriptives table"
@@ -343,7 +374,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Dot plots"
-msgstr ""
+msgstr "Puntu-grafikoak"
 
 msgctxt "Descriptives|"
 msgid "Quantiles"
@@ -351,35 +382,38 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Sample size"
-msgstr ""
+msgstr "Laginaren tamaina"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Valid"
-msgstr ""
+msgstr "Baliozkoa"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Missing"
-msgstr ""
+msgstr "Falta da"
 
 msgctxt "Descriptives|"
 msgid "Horizontal axis:"
-msgstr ""
+msgstr "Ardatz horizontala:"
 
 msgctxt "Descriptives|"
 msgid "Vertical axis:"
-msgstr ""
+msgstr "Ardatz bertikala:"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Display legend"
-msgstr ""
+msgstr "Erakutsi textua"
 
 msgctxt "Descriptives|"
 msgid "Display value"
-msgstr ""
+msgstr "Erakutsi balioa"
 
 msgctxt "Descriptives|"
 msgid "Relative text size"
-msgstr ""
+msgstr "Testuaren tamaina erlatiboa"
 
 msgctxt "Descriptives|"
 msgid "Width to height ratio of tiles"
@@ -391,11 +425,11 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "For scale variables"
-msgstr ""
+msgstr "Eskala-aldagaietarako"
 
 msgctxt "Descriptives|"
 msgid "Value itself"
-msgstr ""
+msgstr "Balioa berez"
 
 msgctxt "Descriptives|"
 msgid "Number of observations"
@@ -407,7 +441,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Scatter plots"
-msgstr ""
+msgstr "Sakabanatze grafikoak"
 
 msgctxt "Descriptives|"
 msgid "Tile heatmaps for selected variables"
