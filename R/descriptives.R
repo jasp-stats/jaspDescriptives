@@ -314,10 +314,10 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Likert plots
-  if (options[["descriptivesLikertPlot"]] && !all(lapply(dataset.factors, is.double))) {
+  if (options[["descriptivesLikertPlot"]] && !all(lapply(dataset.factors[variables], is.double))) {
     if (is.null(jaspResults[["likertPlot"]])) {
       jaspResults[["likertPlot"]] <- createJaspContainer(gettext("Likert Plots"))
-      jaspResults[["likertPlot"]]$dependOn(c("descriptivesLikertPlot", "splitby", "variables", "fontSizeLikert"))
+      jaspResults[["likertPlot"]]$dependOn(c("descriptivesLikertPlot", "splitby", "variables", "descriptivesLikertPlotFontSize"))
       jaspResults[["likertPlot"]]$position <- 16
     }
 
@@ -1952,7 +1952,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 .descriptivesLikertPlots <- function(dataset, options, name) {
 
   leng <- length(dataset)
-  depends <- c("descriptivesLikertPlot", "splitby", "variables", "fontSizeLikert")
+  depends <- c("descriptivesLikertPlot", "splitby", "variables", "descriptivesLikertPlotFontSize")
 
   likPlot <- createJaspPlot(title = name, dependencies = depends, width = 1300, height = if (leng == 1) 250 else 200*(leng*0.8))
   errorMessage <- .descriptivesCheckPlotErrors(dataset, names(dataset), obsAmount = "< 2")
@@ -1968,7 +1968,8 @@ Descriptives <- function(jaspResults, dataset, options) {
   highRange <- ceiling(center + 0.5):nLevels
 
   if (!all(sapply(dataset, function(x) nlevels(factor(x))) == nLevels)) {
-    likPlot$setError(gettext("All items (columns) must have the same number of levels!"))
+    likPlot$setError(gettext("All categorical variables must have the same number of levels! 
+                             Note, one plot containing all specified variables is created."))
     return(likPlot)
   }
   if (center < 1.5) {
@@ -1997,12 +1998,12 @@ Descriptives <- function(jaspResults, dataset, options) {
   resultsTwo$low <- if (length(lowRange) == 1) {
     results[, lowRange]
   } else {
-    apply(results[, lowRange], 1, sum)
+    rowSums(results[, lowRange])
   }
   resultsTwo$high <- if (length(highRange) == 1) {
     results[, highRange]
   } else {
-    apply(results[, highRange], 1, sum)
+    rowSums(results[, highRange])
   }
   if (lowRange[length(lowRange)] + 1 != highRange[1]) {
     resultsTwo$neutral <- results[, (highRange[1] - 1)]
@@ -2115,7 +2116,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     ggplot2::theme(text = ggplot2::element_text(size = 22.5), axis.title.x = ggplot2::element_text(size = 18))
 
   p <- p + ggplot2::theme(axis.text.y = ggplot2::element_text(
-    size = switch(options[["fontSizeLikert"]],
+    size = switch(options[["descriptivesLikertPlotFontSize"]],
                   "small"  = 20,
                   "medium" = 22.5,
                   "large"  = 25

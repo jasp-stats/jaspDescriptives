@@ -179,6 +179,12 @@ Form
 			CheckBox {				name: "descriptivesQQPlot";		label: qsTr("Q-Q plots")						}
 			CheckBox {				name: "descriptivesPiechart";	label: qsTr("Pie charts")						}
 			CheckBox {				name: "descriptivesDotPlot";	label: qsTr("Dot plots")						}
+		}	
+		
+		Group
+		{
+			title: "<b>" + qsTr("Categorical plots") + "<b>"
+			
 			CheckBox 
 			{			
 				name: 		"descriptivesParetoPlot"
@@ -193,6 +199,7 @@ Form
 					CIField { name: 	"paretoRule" }
 				}
 			}
+			
 			CheckBox 
 			{	
 				name: 		"descriptivesLikertPlot"	
@@ -200,8 +207,8 @@ Form
 				
 				DropDown 
 				{
-					id: 				fontSizeLikert
-					name: 				"fontSizeLikert"
+					id: 				descriptivesLikertPlotFontSize
+					name: 				"descriptivesLikertPlotFontSize"
 					label: 				qsTr("Adjustable font size for vertical axis")
 					indexDefaultValue: 	0
 					values:
