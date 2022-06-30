@@ -26,6 +26,7 @@ Met beschrijvende statistieken kunt u basis beschrijvende statistieken verkrijge
 - Pareto plots: Kan alleen worden weergegeven voor nominale en ordinale variabelen. Geeft een geordende aflopende frequentieverdeling weer. Standaard wordt een cumulatieve lijn toegevoegd die de proportionele bijdrage van elke factor/niveau binnen de variabele aangeeft.
   - Parteo-regel: Tekent twee extra lijnen, één verticaal en één horizontaal, die elkaar snijden en stoppen op de hoogte van het ingevoerde getal (schaalt mee met cumulatieve lijn). Standaard is deze ingesteld op 95%. Dit kan worden veranderd in het gewenste percentage.
 - Likert plots: Kan alleen worden weergegeven voor nominale en ordinale variabelen. Geeft een horizontaal gestapelde staafdiagram weer, waarbij een nieuwe staaf wordt gegenereerd voor elke extra variabele die wordt toegevoegd.
+  - Veronderstel dat alle variabelen dezelfde niveaus hebben: Geeft één plot weer die alle variabelen bevat. Variabelen hebben hetzelfde aantal niveaus.
   - Instelbare lettergrootte voor verticale as: Regelt de lettergrootte van variabelenamen op de verticale as. Standaard wordt de normale lettergrootte gebruikt, maar er zijn nog drie andere groottes beschikbaar.
 - Dichtheidsplots: Kan alleen worden weergegeven voor schaal (continue) variabelen. Gebruikt de kernel dichtheidsschatting om de verdeling van een numerieke variabele te visualiseren. 
   - Gescheiden dichtheden: Door een nominale of ordinale variabele in dit vak te plaatsen, worden verschillende verdelingen die overeenkomen met de verschillende niveaus van de variabele weergegeven.
@@ -101,7 +102,7 @@ Met beschrijvende statistieken kunt u basis beschrijvende statistieken verkrijge
 - Toont een horizontaal gestapeld staafdiagram dat de bijdrage van niveaus binnen een variabele in procenten weergeeft. De volgorde van de niveaus hangt af van de gedefinieerde volgorde in de JASP-gegevenstabel. Een legenda onder de grafiek geeft een overzicht van de niveaus en hun respectievelijke kleuren in de grafiek.
   - De y-as staat voor de gebruikte variabelen, de x-as voor de percentages. De procentuele bijdrage van alle lagere-orde- (onder het middelste niveau) en hogere-orde- (boven het middelste niveau) niveaus wordt aan hun respectieve kant van de grafiek weergegeven.
   - De grafiek geeft de percentages op de x-as in beide richtingen positief weer. De reden voor de gekozen weergave (in twee richtingen) is de bruikbaarheid van de grafiek in enquête-onderzoek waar de niveaus vaak een likert-volgorde volgen (b.v. hoog - laag, waarschijnlijk - onwaarschijnlijk, eens - oneens). Daarom bevat de grafiek een splitsing tussen niveaus bij hun mediaan.
-  - Het aantal variabele niveaus bepaalt het aantal weergegeven lagen (Opmerking: variabelen vereisen hetzelfde aantal niveaus). Lagen geven de procentuele verdeling van de niveaus van de onderzochte variabele weer.
+  - Het aantal variabele niveaus bepaalt het aantal weergegeven lagen. Lagen geven de procentuele verdeling van de niveaus van de onderzochte variabele weer.
   - Als de variabelen een ongelijk aantal niveaus bevatten, wordt het middelste niveau weergegeven als een grijs blok in het midden van de gestapelde balk met zijn procentuele bijdrage erbovenop.
 - Beschikbare lettergrootten: normaal, klein, middelgroot, groot.
 

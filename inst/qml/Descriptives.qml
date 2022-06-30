@@ -183,7 +183,7 @@ Form
 		
 		Group
 		{
-			title: "<b>" + qsTr("Categorical plots") + "<b>"
+			title: qsTr("Categorical plots")
 			
 			CheckBox 
 			{			
@@ -192,23 +192,30 @@ Form
 				
 				CheckBox 
 				{			
-					name: 				"optParetoRule"	
+					name: 				"paretoPlotRule"	
 					label: 				qsTr("Pareto rule")
 					childrenOnSameRow: 	true
 					
-					CIField { name: 	"paretoRule" }
+					CIField { name: 	"paretoPlotRuleField" }
 				}
 			}
 			
 			CheckBox 
 			{	
 				name: 		"descriptivesLikertPlot"	
-				label: 		qsTr("Likert plots")				
+				label: 		qsTr("Likert plots")	
+
+				CheckBox 
+				{			
+					name: 				"likertPlotEqualLevel"	
+					label: 				qsTr("Assume all variables share the same levels")
+					childrenOnSameRow: 	true
+				}				
 				
 				DropDown 
 				{
-					id: 				descriptivesLikertPlotFontSize
-					name: 				"descriptivesLikertPlotFontSize"
+					id: 				likertPlotFontSize
+					name: 				"likertPlotFontSize"
 					label: 				qsTr("Adjustable font size for vertical axis")
 					indexDefaultValue: 	0
 					values:

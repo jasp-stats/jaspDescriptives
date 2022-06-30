@@ -26,6 +26,7 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
 - Pareto plots: Can only be displayed for nominal and ordinal variables. Displays an ordered descending frequency distribution. By default, a cumulative line is added indicating the proportional contribution of each factor/level within the variable.
   - Parteo rule: Draws two additonal lines, one vertically and one horizontally, that intersect and stop at the height of the input number (scales with cumulative line). By default, it is set to 95%. This can be changed into the desired percentage.
 - Likert plots: Can only be displayed for nominal and ordinal variables. Displays a horizontally stacked bar plot, generating a new bar for every additional variable added.
+  - Assume all variables share the same levels: Displays one plot containing all variables. Variables require the same number of levels.
   - Adjustable font size for vertical axis: Controls the font size of variable names on the vertical axis. By default, the normal font size is used, three more sizes are available.
 - Density plots: Can only be displayed for scale (continuous) variables. Uses the kernel density estimation to visualize the distribution of a numeric variable. 
   - Separate densities: By placing a nominal or ordinal variable in this box, different distributions corresponding to the different levels of the variable will be displayed.
@@ -104,7 +105,7 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
 - Displays a horizontally stacked bar chart showing the contribution of levels within a variable in percent. Order of levels depends on defined order in the JASP data table. A legend below the graph provides an overview of levels and their respective colors in the graph.
   - The y-axis represents the variables used, the x-axis represents the percentages. Percentage contribution of all lower-order (below the middle level) and higher-order (above the middle level) levels are displayed on their respective side of the graph.
   - The graph displays percentages on the x-axis as positive in both directions. Reason for the chosen display (in two directions) is the graphs usefulness in survey research where levels often follow a likert based order (e.g., high - low, likely - unlikely, agreement - disagreement). Therefore, the graph contains a split between levels at their median.
-  - The number of variable levels determines the number of layers displayed (Note: variables require the same amount of levels). Layers represent the percentage distribution of the levels of the variable under investigation.
+  - The number of variable levels determines the number of layers displayed. Layers represent the percentage distribution of the levels of the variable under investigation.
   - If the variables contain an uneven amount of levels, the middle level is displayed as a grey block in the middle of the stacked bar with its percentage contribution on top.
 - Available font sizes: normal, small, medium, large.
 

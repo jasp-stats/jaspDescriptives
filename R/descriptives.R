@@ -281,7 +281,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (options[["descriptivesParetoPlot"]]) {
     if (is.null(jaspResults[["paretoPlots"]])) {
       jaspResults[["paretoPlots"]] <- createJaspContainer(gettext("Pareto Plots"))
-      jaspResults[["paretoPlots"]]$dependOn(c("descriptivesParetoPlot", "splitby", "optParetoRule", "paretoRule"))
+      jaspResults[["paretoPlots"]]$dependOn(c("descriptivesParetoPlot", "splitby", "paretoPlotRule", "paretoPlotRuleField"))
       jaspResults[["paretoPlots"]]$position <- 15
     }
 
@@ -293,9 +293,9 @@ Descriptives <- function(jaspResults, dataset, options) {
 
       if (is.null(parPlots[[var]])) {
         if (makeSplit) {
-          parPlots[[var]] <- .descriptivesParetoPlots(splitDat.factors, options, var)
+          parPlots[[var]] <- .descriptivesParetoPlots(splitDat.factors, var, options)
         } else {
-          parPlots[[var]] <- .descriptivesParetoPlots(dataset.factors, options, var)
+          parPlots[[var]] <- .descriptivesParetoPlots(dataset.factors, var, options)
         }
       }
     }
@@ -317,7 +317,8 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (options[["descriptivesLikertPlot"]] && !all(lapply(dataset.factors[variables], is.double))) {
     if (is.null(jaspResults[["likertPlot"]])) {
       jaspResults[["likertPlot"]] <- createJaspContainer(gettext("Likert Plots"))
-      jaspResults[["likertPlot"]]$dependOn(c("descriptivesLikertPlot", "splitby", "variables", "descriptivesLikertPlotFontSize"))
+      jaspResults[["likertPlot"]]$dependOn(c("descriptivesLikertPlot", "splitby", "variables",
+                                             "likertPlotEqualLevel", "likertPlotFontSize"))
       jaspResults[["likertPlot"]]$position <- 16
     }
 
@@ -337,9 +338,9 @@ Descriptives <- function(jaspResults, dataset, options) {
 
     if (makeSplit) {
       for (i in 1:length(splitLevels))
-        likPlots[[splitLevels[i]]] <- .descriptivesLikertPlots(splitDat.factors[[i]], options, splitLevels[i])
+        likPlots[[splitLevels[i]]] <- .descriptivesLikertPlots(splitDat.factors[[i]], splitLevels[i], options)
     } else {
-      jaspResults[["likertPlot"]] <- .descriptivesLikertPlots(dataset.factors, options, gettext("Likert Plot"))
+      jaspResults[["likertPlot"]] <- .descriptivesLikertPlots(dataset.factors, gettext("Likert Plots"), options)
     }
   }
 
@@ -1949,13 +1950,34 @@ Descriptives <- function(jaspResults, dataset, options) {
   return(data)
 }
 
-.descriptivesLikertPlots <- function(dataset, options, name) {
+.descriptivesLikertPlots <- function(dataset, name, options) {
+
+  variables <- names(dataset)
+
+  if (options[["likertPlotEqualLevel"]]) {
+
+    plotR <- .descriptivesLikertPlotsFill(dataset, variables, name, options)
+    return(plotR)
+
+  } else {
+
+    plotResult <- createJaspContainer(title = name)
+    for (var in variables) {
+      data <- dataset[, names(dataset) %in% c(var), drop = FALSE]
+      plotResult[[var]] <- .descriptivesLikertPlotsFill(data, var, var, options)
+    }
+    return(plotResult)
+
+  }
+}
+
+.descriptivesLikertPlotsFill <- function(dataset, variables, name, options) {
 
   leng <- length(dataset)
-  depends <- c("descriptivesLikertPlot", "splitby", "variables", "descriptivesLikertPlotFontSize")
+  depends <- c("descriptivesLikertPlot", "splitby", "variables", "likertPlotEqualLevel", "likertPlotFontSize")
 
   likPlot <- createJaspPlot(title = name, dependencies = depends, width = 1300, height = if (leng == 1) 250 else 200*(leng*0.8))
-  errorMessage <- .descriptivesCheckPlotErrors(dataset, names(dataset), obsAmount = "< 2")
+  errorMessage <- .descriptivesCheckPlotErrors(dataset, variables, obsAmount = "< 2")
   if (!is.null(errorMessage)) {
     likPlot$setError(gettextf("Plotting not possible: %s", errorMessage))
     return(likPlot)
@@ -1968,8 +1990,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   highRange <- ceiling(center + 0.5):nLevels
 
   if (!all(sapply(dataset, function(x) nlevels(factor(x))) == nLevels)) {
-    likPlot$setError(gettext("All categorical variables must have the same number of levels! 
-                             Note, one plot containing all specified variables is created."))
+    likPlot$setError(gettext("All categorical variables must have the same number of levels!"))
     return(likPlot)
   }
   if (center < 1.5) {
@@ -2116,7 +2137,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     ggplot2::theme(text = ggplot2::element_text(size = 22.5), axis.title.x = ggplot2::element_text(size = 18))
 
   p <- p + ggplot2::theme(axis.text.y = ggplot2::element_text(
-    size = switch(options[["descriptivesLikertPlotFontSize"]],
+    size = switch(options[["likertPlotFontSize"]],
                   "small"  = 20,
                   "medium" = 22.5,
                   "large"  = 25
@@ -2127,7 +2148,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   return(likPlot)
 }
 
-.descriptivesParetoPlots <- function(dataset, options, variable) {
+.descriptivesParetoPlots <- function(dataset, variable, options) {
   if (options[["splitby"]] != "") {
     split <- names(dataset)
 
@@ -2178,8 +2199,8 @@ Descriptives <- function(jaspResults, dataset, options) {
     ggplot2::ylab(gettext("Counts"))
 
   # Adding Pareto Line
-  if (options[["optParetoRule"]]) {
-    perc <- options[["paretoRule"]]
+  if (options[["paretoPlotRule"]]) {
+    perc <- options[["paretoPlotRuleField"]]
     absVal <- perc*100  # to get absolute value of percentage
     colOrdered <- as.numeric(tb$column[order(tb$column, decreasing = FALSE)])
     interSec <- approx(colOrdered, tb$cums, n = 1000)     # Finding x axis intersection at X%
