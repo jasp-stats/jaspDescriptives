@@ -159,6 +159,36 @@ test_that("Pie chart matches", {
   jaspTools::expect_equal_plots(testPlot, "pieChart")
 })
 
+test_that("Pareto plot matches", {
+  options <- jaspTools::analysisOptions("Descriptives")
+  options$variables <- "facFive"
+  options$descriptivesParetoPlot <- TRUE
+  results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
+  testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "parPlot")
+})
+
+test_that("Likert plot matches", {
+  options <- jaspTools::analysisOptions("Descriptives")
+  options$variables <- "facFive"
+  options$descriptivesLikertPlot <- TRUE
+  options$likertPlotEqualLevel <- TRUE
+  options$likertPlotFontSize <- "normal"
+  results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
+  testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "likPlot")
+})
+
+test_that("Density plot matches", {
+  options <- jaspTools::analysisOptions("Descriptives")
+  options$variables <- "contNormal"
+  options$descriptivesDensityPlot <- TRUE
+  options$densityPlotSeparate <- "facFive"
+  results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
+  testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "densPlot")
+})
+
 test_that("Analysis handles identical variables", {
   # catches this: https://github.com/jasp-stats/jasp-issues/issues/553
   options <- jaspTools::analysisOptions("Descriptives")

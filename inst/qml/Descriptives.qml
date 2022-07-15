@@ -179,6 +179,54 @@ Form
 			CheckBox {				name: "descriptivesQQPlot";		label: qsTr("Q-Q plots")						}
 			CheckBox {				name: "descriptivesPiechart";	label: qsTr("Pie charts")						}
 			CheckBox {				name: "descriptivesDotPlot";	label: qsTr("Dot plots")						}
+		}	
+		
+		Group
+		{
+			title: qsTr("Categorical plots")
+			
+			CheckBox 
+			{			
+				name: 		"descriptivesParetoPlot"
+				label: 		qsTr("Pareto plots")
+				
+				CheckBox 
+				{			
+					name: 				"paretoPlotRule"	
+					label: 				qsTr("Pareto rule")
+					childrenOnSameRow: 	true
+					
+					CIField { name: 	"paretoPlotRuleField" }
+				}
+			}
+			
+			CheckBox 
+			{	
+				name: 		"descriptivesLikertPlot"	
+				label: 		qsTr("Likert plots")	
+
+				CheckBox 
+				{			
+					name: 				"likertPlotEqualLevel"	
+					label: 				qsTr("Assume all variables share the same levels")
+					childrenOnSameRow: 	true
+				}				
+				
+				DropDown 
+				{
+					id: 				likertPlotFontSize
+					name: 				"likertPlotFontSize"
+					label: 				qsTr("Adjustable font size for vertical axis")
+					indexDefaultValue: 	0
+					values:
+					[
+						{label: qsTr("Normal"), 	value: "normal"},
+						{label: qsTr("Small"),		value: "small"},
+						{label: qsTr("Medium"),		value: "medium"},
+						{label: qsTr("Large"),		value: "large"}
+					]
+				}
+			}
 		}
 	}
 
@@ -269,6 +317,46 @@ Form
 				name: "showLegend"
 				label: qsTr("Show legend")
 				checked: true
+			}
+		}
+			
+		Group
+		{
+			
+			VariablesForm
+			{
+				preferredHeight: 100 * preferencesModel.uiScale
+				
+				AvailableVariablesList 
+				{ 
+					name: 				"densityPlotVariables"
+					label: 				qsTr("Density plots")
+					source: 			[{ name: "allVariablesList", discard: ["variables", "splitby"], use: "type=ordinal|nominal|nominalText"}]
+				}
+				
+				AssignedVariablesList 
+				{ 
+					name: 				"densityPlotSeparate"
+					singleVariable: 	true
+					title: 				qsTr("Separate densities:")
+					suggestedColumns: 	["ordinal", "nominal"] 
+				}
+			}
+			
+			CheckBox 
+			{ 
+				name: 		"descriptivesDensityPlot"
+				label: 		qsTr("Display density plots") 
+			
+				DoubleField
+				{
+					name:			"transparency"
+					label:			qsTr("Transparency")
+					fieldWidth:		32
+					defaultValue:	20
+					min:			0
+					max:			100
+				}
 			}
 		}
 
