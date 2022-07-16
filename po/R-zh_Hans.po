@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2022-01-15 03:18\n"
+"POT-Creation-Date: 2022-07-16 03:40\n"
 "PO-Revision-Date: 2022-01-17 12:28+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -54,6 +54,18 @@ msgstr "点图"
 
 msgid "Heatmaps"
 msgstr "热图"
+
+#, fuzzy
+msgid "Pareto Plots"
+msgstr "点图"
+
+#, fuzzy
+msgid "Density Plots"
+msgstr "点图"
+
+#, fuzzy
+msgid "Likert Plots"
+msgstr "点图"
 
 msgid "Descriptive Statistics"
 msgstr "描述性统计"
@@ -203,6 +215,15 @@ msgid ""
 "There must be a unique value per combination of levels of horizontal and "
 "vertical axis!"
 msgstr "每个横轴和纵轴的水平组合必须对应一个唯一值！"
+
+msgid "All categorical variables must have the same number of levels!"
+msgstr ""
+
+msgid "Items must have 2 or more levels!"
+msgstr ""
+
+msgid "Levels within variable require at least two or more data points!"
+msgstr ""
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""

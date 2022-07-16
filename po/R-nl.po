@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2022-01-15 03:18\n"
+"POT-Creation-Date: 2022-07-16 03:40\n"
 "PO-Revision-Date: 2022-02-05 03:16+0000\n"
 "Last-Translator: Jill de Ron <jillderon93@gmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
@@ -55,6 +55,18 @@ msgstr "Dotplots"
 
 msgid "Heatmaps"
 msgstr "Warmtekaarten"
+
+#, fuzzy
+msgid "Pareto Plots"
+msgstr "Dotplots"
+
+#, fuzzy
+msgid "Density Plots"
+msgstr "Dotplots"
+
+#, fuzzy
+msgid "Likert Plots"
+msgstr "Dotplots"
 
 msgid "Descriptive Statistics"
 msgstr "Beschrijvende Statistiek"
@@ -213,6 +225,15 @@ msgid ""
 msgstr ""
 "Er moet een unieke waarde zijn per combinatie van niveaus voor de "
 "horizontale en de verticale as!"
+
+msgid "All categorical variables must have the same number of levels!"
+msgstr ""
+
+msgid "Items must have 2 or more levels!"
+msgstr ""
+
+msgid "Levels within variable require at least two or more data points!"
+msgstr ""
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""

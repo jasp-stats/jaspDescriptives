@@ -421,3 +421,59 @@ msgstr "Cuadrar los mapas de calor para las variables elegidas"
 msgctxt "Descriptives|"
 msgid "Tables"
 msgstr "Tablas"
+
+msgctxt "Descriptives|"
+msgid "Categorical plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Pareto plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Pareto rule"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Likert plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Assume all variables share the same levels"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Adjustable font size for vertical axis"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Normal"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Small"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Medium"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Large"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Density plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Separate densities:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Display density plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Transparency"
+msgstr ""
