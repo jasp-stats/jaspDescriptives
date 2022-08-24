@@ -19,7 +19,7 @@ test_that("Main table results match", {
   options$quantilesForEqualGroups <- TRUE
   options$quantilesForEqualGroupsNumber <- 5
   options$percentiles <- TRUE
-  options$percentileValuesPercentilesPercentiles <- c(2, 5, 8)
+  options$percentileValues <- c(2, 5, 8)
   options$quartiles <- TRUE
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   table <- results[["results"]][["stats"]][["data"]]

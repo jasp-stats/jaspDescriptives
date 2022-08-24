@@ -80,7 +80,7 @@ Form
 				TextField
 				{
 					inputType:	"doubleArray"
-					name:		"percentileValuesPercentilesPercentiles"
+					name:		"percentileValues"
 					fieldWidth: 60
 				}
 			}

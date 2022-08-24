@@ -353,7 +353,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   wantsSplit              <- options$splitby != ""
   variables               <- unlist(options$variables)
   equalGroupsNo           <- options$quantilesForEqualGroupsNumber
-  percentilesPercentiles  <- unique(options$percentileValuesPercentilesPercentiles)
+  percentilesPercentiles  <- unique(options$percentileValues)
   stats                   <- createJaspTable(gettext("Descriptive Statistics"))
   stats$transpose         <- !options[["descriptivesTableTransposed"]] # the table is transposed by default
   stats$position          <- 1
@@ -361,7 +361,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (numberMissingSplitBy)
     stats$addFootnote(message=gettextf("Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s", numberMissingSplitBy, options$splitby))
 
-  stats$dependOn(c("splitby", "variables", "quantilesForEqualGroupsNumber", "percentileValuesPercentilesPercentiles", "mode", "median", "mean", "standardErrorMean",
+  stats$dependOn(c("splitby", "variables", "quantilesForEqualGroupsNumber", "percentileValues", "mode", "median", "mean", "standardErrorMean",
     "standardDeviation", "cOfVariation", "variance", "skewness", "kurtosis", "shapiro", "range", "iqr", "mad", "madrobust", "minimum", "maximum",
     "sum", "quartiles", "quantilesForEqualGroups", "percentiles", "descriptivesTableTransposed", "valid", "missing"))
 
@@ -485,7 +485,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
 .descriptivesDescriptivesTable_subFunction <- function(column, resultsCol, options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote) {
   equalGroupsNo           <- options$quantilesForEqualGroupsNumber
-  percentilesPercentiles  <- unique(options$percentileValuesPercentilesPercentiles)
+  percentilesPercentiles  <- unique(options$percentileValues)
 
   rows        <- length(column)
   na.omitted  <- na.omit(column)
