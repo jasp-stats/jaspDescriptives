@@ -11,5 +11,7 @@ Upgrades
 		toVersion:		"0.16.4"
 
 		ChangeRename { from: "transposeMainTable"; to: "descriptivesTableTransposed" }
+        ChangeRename { from: "percentileValuesQuartiles"; to: "quartiles" }
+        
 	}
 }

@@ -55,7 +55,7 @@ Form
 		{
 			title:	qsTr("Quantiles")
 
-			CheckBox { name: "percentileValuesQuartiles";	label: qsTr("Quartiles") }
+			CheckBox { name: "quartiles";	label: qsTr("Quartiles") }
 			CheckBox
 			{
 				name:				"percentileValuesEqualGroups"; label: qsTr("Cut points for: ")

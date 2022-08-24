@@ -363,7 +363,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   stats$dependOn(c("splitby", "variables", "percentileValuesEqualGroupsNo", "percentileValuesPercentilesPercentiles", "mode", "median", "mean", "standardErrorMean",
     "standardDeviation", "cOfVariation", "variance", "skewness", "kurtosis", "shapiro", "range", "iqr", "mad", "madrobust", "minimum", "maximum",
-    "sum", "percentileValuesQuartiles", "percentileValuesEqualGroups", "percentileValuesPercentiles", "descriptivesTableTransposed", "valid", "missing"))
+    "sum", "quartiles", "percentileValuesEqualGroups", "percentileValuesPercentiles", "descriptivesTableTransposed", "valid", "missing"))
 
   if (wantsSplit) {
     stats$transposeWithOvertitle <- TRUE
@@ -395,7 +395,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (options$minimum)              stats$addColumnInfo(name="Minimum",                     title=gettext("Minimum"),                 type="number")
   if (options$maximum)              stats$addColumnInfo(name="Maximum",                     title=gettext("Maximum"),                 type="number")
 
-  if (options$percentileValuesQuartiles) {
+  if (options$quartiles) {
                                     stats$addColumnInfo(name="q1", title="25th percentile", type="number")
                                     stats$addColumnInfo(name="q2", title="50th percentile", type="number")
                                     stats$addColumnInfo(name="q3", title="75th percentile", type="number")
@@ -490,7 +490,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   rows        <- length(column)
   na.omitted  <- na.omit(column)
 
-  if (base::is.factor(na.omitted) && (options$mode || options$median || options$mean || options$minimum || options$standardErrorMean || options$iqr || options$mad || options$madrobust || options$kurtosis || options$shapiro || options$skewness || options$percentileValuesQuartiles || options$variance || options$standardDeviation ||  options$cOfVariation || options$percentileValuesPercentiles || options$sum || options$maximum)) {
+  if (base::is.factor(na.omitted) && (options$mode || options$median || options$mean || options$minimum || options$standardErrorMean || options$iqr || options$mad || options$madrobust || options$kurtosis || options$shapiro || options$skewness || options$quartiles || options$variance || options$standardDeviation ||  options$cOfVariation || options$percentileValuesPercentiles || options$sum || options$maximum)) {
     shouldAddNominalTextFootnote <- TRUE
   }
 
@@ -538,7 +538,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     resultsCol[["Mode"]] <- NULL
   }
 
-  if (options$percentileValuesQuartiles) {
+  if (options$quartiles) {
     if (base::is.factor(na.omitted) == FALSE) {
       resultsCol[["q1"]] <- .clean(quantile(na.omitted, c(.25), names=F))
       resultsCol[["q2"]] <- .clean(quantile(na.omitted, c(.5), names=F))
