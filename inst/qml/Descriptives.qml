@@ -35,7 +35,7 @@ Form
 
 	CheckBox
 	{
-		name	: "transposeMainTable"
+		name	: "descriptivesTableTransposed"
 		label	: qsTr("Transpose descriptives table")
 		checked	: false
 	}

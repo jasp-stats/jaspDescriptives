@@ -355,7 +355,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   equalGroupsNo           <- options$percentileValuesEqualGroupsNo
   percentilesPercentiles  <- unique(options$percentileValuesPercentilesPercentiles)
   stats                   <- createJaspTable(gettext("Descriptive Statistics"))
-  stats$transpose         <- !options[["transposeMainTable"]] # the table is transposed by default
+  stats$transpose         <- !options[["descriptivesTableTransposed"]] # the table is transposed by default
   stats$position          <- 1
 
   if (numberMissingSplitBy)
@@ -363,7 +363,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   stats$dependOn(c("splitby", "variables", "percentileValuesEqualGroupsNo", "percentileValuesPercentilesPercentiles", "mode", "median", "mean", "standardErrorMean",
     "standardDeviation", "cOfVariation", "variance", "skewness", "kurtosis", "shapiro", "range", "iqr", "mad", "madrobust", "minimum", "maximum",
-    "sum", "percentileValuesQuartiles", "percentileValuesEqualGroups", "percentileValuesPercentiles", "transposeMainTable", "valid", "missing"))
+    "sum", "percentileValuesQuartiles", "percentileValuesEqualGroups", "percentileValuesPercentiles", "descriptivesTableTransposed", "valid", "missing"))
 
   if (wantsSplit) {
     stats$transposeWithOvertitle <- TRUE
