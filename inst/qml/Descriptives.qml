@@ -63,7 +63,7 @@ Form
 
 				IntegerField
 				{
-					name:			"percentileValuesEqualGroupsNo"
+					name:			"quantilesForEqualGroupsNumber"
 					min:			2
 					max:			1000
 					defaultValue:	4

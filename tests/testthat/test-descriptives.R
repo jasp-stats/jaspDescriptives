@@ -17,7 +17,7 @@ test_that("Main table results match", {
   options$shapiro <- TRUE
   options$mode <- TRUE
   options$quantilesForEqualGroups <- TRUE
-  options$percentileValuesEqualGroupsNo <- 5
+  options$quantilesForEqualGroupsNumber <- 5
   options$percentileValuesPercentiles <- TRUE
   options$percentileValuesPercentilesPercentiles <- c(2, 5, 8)
   options$quartiles <- TRUE
