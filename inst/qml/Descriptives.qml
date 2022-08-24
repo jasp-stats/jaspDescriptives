@@ -73,7 +73,7 @@ Form
 
 			CheckBox
 			{
-				name:				"percentileValuesPercentiles"
+				name:				"percentiles"
 				label:				qsTr("Percentiles:")
 				childrenOnSameRow:	true
 

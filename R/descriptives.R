@@ -363,7 +363,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   stats$dependOn(c("splitby", "variables", "quantilesForEqualGroupsNumber", "percentileValuesPercentilesPercentiles", "mode", "median", "mean", "standardErrorMean",
     "standardDeviation", "cOfVariation", "variance", "skewness", "kurtosis", "shapiro", "range", "iqr", "mad", "madrobust", "minimum", "maximum",
-    "sum", "quartiles", "quantilesForEqualGroups", "percentileValuesPercentiles", "descriptivesTableTransposed", "valid", "missing"))
+    "sum", "quartiles", "quantilesForEqualGroups", "percentiles", "descriptivesTableTransposed", "valid", "missing"))
 
   if (wantsSplit) {
     stats$transposeWithOvertitle <- TRUE
@@ -409,7 +409,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   }
 
-  if (options$percentileValuesPercentiles) {
+  if (options$percentiles) {
 
     for (i in percentilesPercentiles)
       stats$addColumnInfo(name=paste("pc", i, sep=""), title=gettextf("%gth percentile", i), type="number")
@@ -490,7 +490,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   rows        <- length(column)
   na.omitted  <- na.omit(column)
 
-  if (base::is.factor(na.omitted) && (options$mode || options$median || options$mean || options$minimum || options$standardErrorMean || options$iqr || options$mad || options$madrobust || options$kurtosis || options$shapiro || options$skewness || options$quartiles || options$variance || options$standardDeviation ||  options$cOfVariation || options$percentileValuesPercentiles || options$sum || options$maximum)) {
+  if (base::is.factor(na.omitted) && (options$mode || options$median || options$mean || options$minimum || options$standardErrorMean || options$iqr || options$mad || options$madrobust || options$kurtosis || options$shapiro || options$skewness || options$quartiles || options$variance || options$standardDeviation ||  options$cOfVariation || options$percentiles || options$sum || options$maximum)) {
     shouldAddNominalTextFootnote <- TRUE
   }
 
@@ -561,7 +561,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   percentileNames <- NULL
 
-  if (options$percentileValuesPercentiles)
+  if (options$percentiles)
     percentileNames <- paste("pc", percentilesPercentiles, sep="")
 
   for (row in names(resultsCol)) {
@@ -582,7 +582,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
     }
 
-    if (options$percentileValuesPercentiles) {
+    if (options$percentiles) {
 
       for (i in percentilesPercentiles)
         resultsCol[[paste("pc", i, sep="")]] <- .clean(quantile(na.omitted, c(i / 100), names=F))
@@ -596,7 +596,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
     }
 
-    if (options$percentileValuesPercentiles) {
+    if (options$percentiles) {
 
       for (i in percentilesPercentiles)
         resultsCol[[paste("pc", i, sep="")]] <- ""

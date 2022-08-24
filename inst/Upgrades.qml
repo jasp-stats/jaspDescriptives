@@ -14,5 +14,6 @@ Upgrades
         ChangeRename { from: "percentileValuesQuartiles"; to: "quartiles" }
         ChangeRename { from: "percentileValuesEqualGroups"; to: "quantilesForEqualGroups" }
         ChangeRename { from: "percentileValuesEqualGroupsNo"; to: "quantilesForEqualGroupsNumber" }
+        ChangeRename { from: "percentileValuesPercentiles"; to: "percentiles" }
 	}
 }
