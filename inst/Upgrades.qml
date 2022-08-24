@@ -12,6 +12,7 @@ Upgrades
 
 		ChangeRename { from: "transposeMainTable"; to: "descriptivesTableTransposed" }
         ChangeRename { from: "percentileValuesQuartiles"; to: "quartiles" }
+        ChangeRename { from: "percentileValuesEqualGroups"; to: "quantilesForEqualGroups" }
         
 	}
 }

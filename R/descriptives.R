@@ -363,7 +363,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   stats$dependOn(c("splitby", "variables", "percentileValuesEqualGroupsNo", "percentileValuesPercentilesPercentiles", "mode", "median", "mean", "standardErrorMean",
     "standardDeviation", "cOfVariation", "variance", "skewness", "kurtosis", "shapiro", "range", "iqr", "mad", "madrobust", "minimum", "maximum",
-    "sum", "quartiles", "percentileValuesEqualGroups", "percentileValuesPercentiles", "descriptivesTableTransposed", "valid", "missing"))
+    "sum", "quartiles", "quantilesForEqualGroups", "percentileValuesPercentiles", "descriptivesTableTransposed", "valid", "missing"))
 
   if (wantsSplit) {
     stats$transposeWithOvertitle <- TRUE
@@ -401,7 +401,7 @@ Descriptives <- function(jaspResults, dataset, options) {
                                     stats$addColumnInfo(name="q3", title="75th percentile", type="number")
   }
 
-  if (options$percentileValuesEqualGroups)  {# I've read that there are several ways how to estimate percentiles so it should be checked if it match the SPSS way
+  if (options$quantilesForEqualGroups)  {# I've read that there are several ways how to estimate percentiles so it should be checked if it match the SPSS way
     tempPercentNames <- 1/equalGroupsNo * 1:(equalGroupsNo-1) * 100
 
     for (i in seq_along(tempPercentNames))
@@ -556,7 +556,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   equalGroupNames <- NULL
 
-  if (options$percentileValuesEqualGroups)
+  if (options$quantilesForEqualGroups)
     equalGroupNames <- paste("eg", seq(equalGroupsNo - 1), sep="")
 
   percentileNames <- NULL
@@ -575,7 +575,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   if (base::is.factor(na.omitted) == FALSE) {
-    if (options$percentileValuesEqualGroups) {
+    if (options$quantilesForEqualGroups) {
 
       for (i in seq(equalGroupsNo - 1))
         resultsCol[[paste("eg", i, sep="")]] <- .clean(quantile(na.omitted, c(i / equalGroupsNo), names=F))
@@ -589,7 +589,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
     }
   } else {
-    if (options$percentileValuesEqualGroups) {
+    if (options$quantilesForEqualGroups) {
 
       for (i in seq(equalGroupsNo - 1))
         resultsCol[[paste("eg", i, sep="")]] <- ""

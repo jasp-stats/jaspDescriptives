@@ -58,7 +58,7 @@ Form
 			CheckBox { name: "quartiles";	label: qsTr("Quartiles") }
 			CheckBox
 			{
-				name:				"percentileValuesEqualGroups"; label: qsTr("Cut points for: ")
+				name:				"quantilesForEqualGroups"; label: qsTr("Cut points for: ")
 				childrenOnSameRow:	true
 
 				IntegerField
