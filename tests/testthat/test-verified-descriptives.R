@@ -13,7 +13,7 @@ test_that("Main table results match R, SPSS, SAS and MiniTab", {
   options$minimum
   options$maximum
   options$mode <- TRUE
-  options$percentileValuesQuartiles <- TRUE
+  options$quartiles <- TRUE
   
   # Main table
   results <- jaspTools::runAnalysis("Descriptives",

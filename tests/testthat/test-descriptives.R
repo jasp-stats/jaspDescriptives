@@ -20,7 +20,7 @@ test_that("Main table results match", {
   options$percentileValuesEqualGroupsNo <- 5
   options$percentileValuesPercentiles <- TRUE
   options$percentileValuesPercentilesPercentiles <- c(2, 5, 8)
-  options$percentileValuesQuartiles <- TRUE
+  options$quartiles <- TRUE
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   table <- results[["results"]][["stats"]][["data"]]
   jaspTools::expect_equal_tables(table,
