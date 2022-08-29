@@ -1050,14 +1050,14 @@ Descriptives <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesSplitPlot <- function(dataset, options,  variable) {
-  depends <- c("splitPlotColour", "boxPlotViolin", "boxPlotBoxPlot", "splitPlotJitter", "splitPlotOutlierLabel")
+  depends <- c("splitPlotColour", "boxPlotViolin", "boxPlotBoxPlot", "boxPlotJitter", "splitPlotOutlierLabel")
 
   thePlot <- createJaspPlot(title=variable, width=options$plotWidth, height=options$plotHeight, dependencies=depends)
 
   errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 1")
   if (!is.null(errorMessage)) {
     thePlot$setError(gettextf("Plotting not possible: %s", errorMessage))
-  } else if (!(options$boxPlotViolin || options$boxPlotBoxPlot || options$splitPlotJitter)) {
+  } else if (!(options$boxPlotViolin || options$boxPlotBoxPlot || options$boxPlotJitter)) {
     thePlot$setError(gettext("Plotting is not possible: No plot type selected!"))
   } else {
     # we need to know which index in y is related to which index in the actual data, so we should not forget the NAs somehow, lets make a list of indices.
@@ -1114,7 +1114,7 @@ Descriptives <- function(jaspResults, dataset, options) {
       p <- ggplot2::ggplot(plotDat, ggplot2::aes(x=group, y, fill=group)) + ggplot2::scale_fill_manual(values=rep("grey", nlevels(group))) + ggplot2::scale_colour_manual(values=rep("grey", nlevels(group)))
     }
 
-    if (options$boxPlotViolin && options$boxPlotBoxPlot && options$splitPlotJitter) {
+    if (options$boxPlotViolin && options$boxPlotBoxPlot && options$boxPlotJitter) {
       p <- p +
         ggplot2::geom_violin(trim = F, size = 0.75, width = vioWidth, scale = "width") +
         ggplot2::stat_boxplot(geom = "errorbar", size = 0.75, width = boxWidth/2) +
@@ -1127,12 +1127,12 @@ Descriptives <- function(jaspResults, dataset, options) {
         ggplot2::stat_boxplot(geom = "errorbar", size = 0.75, width = boxWidth/2) +
         ggplot2::geom_boxplot(size = 0.75, outlier.size = 1.5, width = boxWidth) +
         ggplot2::geom_violin(trim = F, size = 0.75, width = vioWidth, fill = "transparent", scale = "width")
-    } else if (options$boxPlotBoxPlot && options$splitPlotJitter) {
+    } else if (options$boxPlotBoxPlot && options$boxPlotJitter) {
       p <- p +
         ggplot2::stat_boxplot(geom = "errorbar", size = 0.75, width = boxWidth/2 ) +
         ggplot2::geom_boxplot(size = 0.75, outlier.shape = NA, width = boxWidth) +
         ggplot2::geom_jitter(size = 2.5, shape = 1, stroke = 1, position = ggplot2::position_jitter(width=0.05, height = 0), fill = "transparent")
-    } else if (options$boxPlotViolin && options$splitPlotJitter) {
+    } else if (options$boxPlotViolin && options$boxPlotJitter) {
       p <- p +
         ggplot2::geom_violin(trim = F, size = 0.75, width = 0.75*boxWidth, scale = "width") +
         ggplot2::geom_jitter(size = 2.5, shape = 1, stroke = 1, position = ggplot2::position_jitter(width=0.05, height = 0), fill = "transparent")
@@ -1142,11 +1142,11 @@ Descriptives <- function(jaspResults, dataset, options) {
       p <- p +
         ggplot2::stat_boxplot(geom = "errorbar",size = 0.75, width = boxWidth/2 ) +
         ggplot2::geom_boxplot(size = 0.75, outlier.size = 1.5, width = boxWidth)
-    } else if (options$splitPlotJitter) {
+    } else if (options$boxPlotJitter) {
       p <- p + ggplot2::geom_jitter(size = 2.5, ggplot2::aes(colour = group), position = ggplot2::position_jitter(width=0.1, height = 0))
     }
 
-    if (options$splitPlotOutlierLabel && (options$boxPlotBoxPlot || options$splitPlotJitter))
+    if (options$splitPlotOutlierLabel && (options$boxPlotBoxPlot || options$boxPlotJitter))
       p <- p + ggrepel::geom_text_repel(ggplot2::aes(label=label), hjust=-0.3)
 
     ### Theming & Cleaning
