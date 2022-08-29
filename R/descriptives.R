@@ -1050,7 +1050,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesSplitPlot <- function(dataset, options,  variable) {
-  depends <- c("boxPlotColourPalette", "boxPlotViolin", "boxPlotBoxPlot", "boxPlotJitter", "splitPlotOutlierLabel")
+  depends <- c("boxPlotColourPalette", "boxPlotViolin", "boxPlotBoxPlot", "boxPlotJitter", "boxPlotOutlierLabel")
 
   thePlot <- createJaspPlot(title=variable, width=options$plotWidth, height=options$plotHeight, dependencies=depends)
 
@@ -1146,7 +1146,7 @@ Descriptives <- function(jaspResults, dataset, options) {
       p <- p + ggplot2::geom_jitter(size = 2.5, ggplot2::aes(colour = group), position = ggplot2::position_jitter(width=0.1, height = 0))
     }
 
-    if (options$splitPlotOutlierLabel && (options$boxPlotBoxPlot || options$boxPlotJitter))
+    if (options$boxPlotOutlierLabel && (options$boxPlotBoxPlot || options$boxPlotJitter))
       p <- p + ggrepel::geom_text_repel(ggplot2::aes(label=label), hjust=-0.3)
 
     ### Theming & Cleaning

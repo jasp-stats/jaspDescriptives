@@ -264,7 +264,7 @@ Form
 				}
 				Group {
 					CheckBox {  name: "boxPlotColourPalette";		label: qsTr("Use color palette")				}
-					CheckBox {	name: "splitPlotOutlierLabel";	label: qsTr("Label outliers")					}
+					CheckBox {	name: "boxPlotOutlierLabel";	label: qsTr("Label outliers")					}
 				}
 			}
 		}

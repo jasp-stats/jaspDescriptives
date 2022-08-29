@@ -107,7 +107,7 @@ test_that("Boxplot matches", {
   options$boxPlotBoxPlot <- TRUE
   options$boxPlotColourPalette <- TRUE
   options$boxPlotJitter <- TRUE
-  options$splitPlotOutlierLabel <- TRUE
+  options$boxPlotOutlierLabel <- TRUE
   options$boxPlotViolin <- TRUE
   options$boxPlot <- TRUE
   options$colorPalette <- "ggplot2"
