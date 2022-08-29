@@ -176,7 +176,7 @@ Form
 		Group
 		{
 			CheckBox {				name: "descriptivesIntervalPlot";label: qsTr("Interval plots")					}
-			CheckBox {				name: "descriptivesQQPlot";		label: qsTr("Q-Q plots")						}
+			CheckBox {				name: "descriptivesQqPlot";		label: qsTr("Q-Q plots")						}
 			CheckBox {				name: "descriptivesPiechart";	label: qsTr("Pie charts")						}
 			CheckBox {				name: "descriptivesDotPlot";	label: qsTr("Dot plots")						}
 		}	

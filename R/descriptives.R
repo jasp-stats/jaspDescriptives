@@ -126,13 +126,13 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # QQ plots
-  if (options$descriptivesQQPlot) {
+  if (options$descriptivesQqPlot) {
     if(is.null(jaspResults[["QQPlots"]])) {
       if(length(variables)>1 || length(levels(dataset[[.v(splitName)]]))>1) #there will be more than one Q-Q Plot
         jaspResults[["QQPlots"]] <- createJaspContainer(gettext("Q-Q Plots"))
       else #only one Q-Q Plot
         jaspResults[["QQPlots"]] <- createJaspContainer(gettext("Q-Q Plot"))
-      jaspResults[["QQPlots"]]$dependOn(c("descriptivesQQPlot", "splitby"))
+      jaspResults[["QQPlots"]]$dependOn(c("descriptivesQqPlot", "splitby"))
       jaspResults[["QQPlots"]]$position <- 8
     }
     QQPlots <- jaspResults[["QQPlots"]]

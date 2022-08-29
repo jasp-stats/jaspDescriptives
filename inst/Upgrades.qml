@@ -24,6 +24,6 @@ Upgrades
         ChangeRename { from: "plotCorrelationMatrix"; to: "correlationPlots" }
         ChangeRename { from: "distPlotDensity"; to: "distPlotDisplayDensity" }
         ChangeRename { from: "distPlotRug"; to: "distPlotDisplayRugMarks" }
-
+        ChangeRename { from: "descriptivesQQPlot"; to: "descriptivesQqPlot" }
 	}
 }
