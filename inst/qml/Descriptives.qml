@@ -304,7 +304,7 @@ Form
 
 				CheckBox
 				{
-					name: "addSmoothCi"
+					name: "regressionLineCi"
 					label: qsTr("Show confidence interval")
 					checked: true
 					childrenOnSameRow: true
