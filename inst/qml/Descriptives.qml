@@ -253,7 +253,7 @@ Form
 
 		CheckBox
 		{
-			name: "splitPlots";
+			name: "boxPlot";
 			label: qsTr("Boxplots")
 			Group {
 				columns: 2

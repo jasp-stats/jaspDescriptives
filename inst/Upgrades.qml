@@ -30,5 +30,6 @@ Upgrades
         ChangeRename { from: "addSmooth"; to: "regressionLine" }
         ChangeRename { from: "addSmoothCI"; to: "regressionLineCi" }
         ChangeRename { from: "addSmoothCIValue"; to: "regressionLineCiValue" }
+        ChangeRename { from: "splitPlots"; to: "boxPlot" }
 	}
 }

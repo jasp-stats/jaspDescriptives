@@ -108,14 +108,14 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Box plots
-  if (options$splitPlots) {
-    if(is.null(jaspResults[["splitPlots"]])) {
-      jaspResults[["splitPlots"]] <- createJaspContainer(gettext("Boxplots"))
-      jaspResults[["splitPlots"]]$dependOn(c("splitPlots", "splitby"))
-      jaspResults[["splitPlots"]]$position <- 7
+  if (options$boxPlot) {
+    if(is.null(jaspResults[["boxPlot"]])) {
+      jaspResults[["boxPlot"]] <- createJaspContainer(gettext("Boxplots"))
+      jaspResults[["boxPlot"]]$dependOn(c("boxPlot", "splitby"))
+      jaspResults[["boxPlot"]]$position <- 7
     }
 
-    splitPlots <- jaspResults[["splitPlots"]]
+    splitPlots <- jaspResults[["boxPlot"]]
 
     for (var in variables) {
       if(is.null(splitPlots[[var]]) && .descriptivesIsNumericColumn(dataset.factors, var)) {

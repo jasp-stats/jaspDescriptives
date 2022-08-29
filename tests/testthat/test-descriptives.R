@@ -109,7 +109,7 @@ test_that("Boxplot matches", {
   options$splitPlotJitter <- TRUE
   options$splitPlotOutlierLabel <- TRUE
   options$splitPlotViolin <- TRUE
-  options$splitPlots <- TRUE
+  options$boxPlot <- TRUE
   options$colorPalette <- "ggplot2"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
