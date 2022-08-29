@@ -263,7 +263,7 @@ Form
 					CheckBox {	name: "boxPlotJitter";			label: qsTr("Jitter element")					}
 				}
 				Group {
-					CheckBox {  name: "splitPlotColourPalette";		label: qsTr("Use color palette")				}
+					CheckBox {  name: "boxPlotColourPalette";		label: qsTr("Use color palette")				}
 					CheckBox {	name: "splitPlotOutlierLabel";	label: qsTr("Label outliers")					}
 				}
 			}

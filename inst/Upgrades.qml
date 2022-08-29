@@ -34,6 +34,6 @@ Upgrades
         ChangeRename { from: "splitPlotBoxplot"; to: "boxPlotBoxPlot" }
         ChangeRename { from: "splitPlotViolin"; to: "boxPlotViolin" }
         ChangeRename { from: "splitPlotJitter"; to: "boxPlotJitter" }
-        ChangeRename { from: "splitPlotColour"; to: "splitPlotColourPalette" }
+        ChangeRename { from: "splitPlotColour"; to: "boxPlotColourPalette" }
 	}
 }
