@@ -207,7 +207,7 @@ Form
 
 				CheckBox 
 				{			
-					name: 				"likertPlotEqualLevel"	
+					name: 				"likertPlotAssumeVariablesSameLevel"	
 					label: 				qsTr("Assume all variables share the same levels")
 					childrenOnSameRow: 	true
 				}				

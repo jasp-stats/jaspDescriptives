@@ -318,7 +318,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     if (is.null(jaspResults[["likertPlot"]])) {
       jaspResults[["likertPlot"]] <- createJaspContainer(gettext("Likert Plots"))
       jaspResults[["likertPlot"]]$dependOn(c("descriptivesLikertPlot", "splitby", "variables",
-                                             "likertPlotEqualLevel", "likertPlotFontSize"))
+                                             "likertPlotAssumeVariablesSameLevel", "likertPlotFontSize"))
       jaspResults[["likertPlot"]]$position <- 16
     }
 
@@ -1954,7 +1954,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   variables <- names(dataset)
 
-  if (options[["likertPlotEqualLevel"]]) {
+  if (options[["likertPlotAssumeVariablesSameLevel"]]) {
 
     plotR <- .descriptivesLikertPlotsFill(dataset, variables, name, options)
     return(plotR)
@@ -1974,7 +1974,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 .descriptivesLikertPlotsFill <- function(dataset, variables, name, options) {
 
   leng <- length(dataset)
-  depends <- c("descriptivesLikertPlot", "splitby", "variables", "likertPlotEqualLevel", "likertPlotFontSize")
+  depends <- c("descriptivesLikertPlot", "splitby", "variables", "likertPlotAssumeVariablesSameLevel", "likertPlotFontSize")
 
   likPlot <- createJaspPlot(title = name, dependencies = depends, width = 1300, height = if (leng == 1) 250 else 200*(leng*0.8))
   errorMessage <- .descriptivesCheckPlotErrors(dataset, variables, obsAmount = "< 2")
