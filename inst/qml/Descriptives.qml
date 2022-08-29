@@ -145,7 +145,7 @@ Form
 				enabled: distributionPlots.checked || correlationPlots.checked
 
 				indent:		true
-				CheckBox {			name: "distPlotDensity";	label: qsTr("Display density")						}
+				CheckBox {			name: "distPlotDisplayDensity";	label: qsTr("Display density")						}
 				CheckBox {			name: "distPlotRug";		label: qsTr("Display rug marks")					}
 				DropDown {
 					name: "binWidthType"

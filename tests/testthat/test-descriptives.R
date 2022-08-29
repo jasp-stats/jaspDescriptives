@@ -93,7 +93,7 @@ test_that("Correlation plot matches", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- c("contNormal", "contGamma")
   options$correlationPlots <- TRUE
-  options$distPlotDensity <- TRUE
+  options$distPlotDisplayDensity <- TRUE
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "correlation")
