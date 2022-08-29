@@ -29,6 +29,6 @@ Upgrades
         ChangeRename { from: "likertPlotFontSize"; to: "likertPlotAdjustableFontSize" }
         ChangeRename { from: "addSmooth"; to: "regressionLine" }
         ChangeRename { from: "addSmoothCI"; to: "regressionLineCi" }
-        ChangeRename { from: "addSmoothCIValue"; to: "addSmoothCiValue" }
+        ChangeRename { from: "addSmoothCIValue"; to: "regressionLineCiValue" }
 	}
 }

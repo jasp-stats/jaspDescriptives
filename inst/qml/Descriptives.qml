@@ -308,7 +308,7 @@ Form
 					label: qsTr("Show confidence interval")
 					checked: true
 					childrenOnSameRow: true
-					CIField {	name: "addSmoothCiValue" }
+					CIField {	name: "regressionLineCiValue" }
 				}
 			}
 			CheckBox
