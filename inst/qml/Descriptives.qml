@@ -146,7 +146,7 @@ Form
 
 				indent:		true
 				CheckBox {			name: "distPlotDisplayDensity";	label: qsTr("Display density")						}
-				CheckBox {			name: "distPlotRug";		label: qsTr("Display rug marks")					}
+				CheckBox {			name: "distPlotDisplayRugMarks";		label: qsTr("Display rug marks")					}
 				DropDown {
 					name: "binWidthType"
 					label: qsTr("Bin width type")

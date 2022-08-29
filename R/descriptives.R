@@ -90,7 +90,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     if(is.null(jaspResults[["distributionPlots"]])) {
       jaspResults[["distributionPlots"]] <- createJaspContainer(gettext("Distribution Plots"))
       jaspResults[["distributionPlots"]]$dependOn(c("distributionPlots", "splitby", "binWidthType", "distPlotDisplayDensity",
-                                                    "distPlotRug", "numberOfBins"))
+                                                    "distPlotDisplayRugMarks", "numberOfBins"))
       jaspResults[["distributionPlots"]]$position <- 5
     }
 
@@ -777,7 +777,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   variables <- unlist(options$variables)
 
   l         <- length(variables)
-  depends   <- c("correlationPlots", "variables", "splitby", "binWidthType", "distPlotDisplayDensity", "distPlotRug", "numberOfBins")
+  depends   <- c("correlationPlots", "variables", "splitby", "binWidthType", "distPlotDisplayDensity", "distPlotDisplayRugMarks", "numberOfBins")
 
   if (l == 0) #Nothing to plot
     return(NULL)
@@ -810,7 +810,7 @@ Descriptives <- function(jaspResults, dataset, options) {
         column         = dataset[[variables[[row]]]],
         variableName   = NULL,
         displayDensity = options[["distPlotDisplayDensity"]],
-        rugs           = options[["distPlotRug"]],
+        rugs           = options[["distPlotDisplayRugMarks"]],
         binWidthType   = options[["binWidthType"]],
         numberOfBins   = options[["numberOfBins"]],
         lwd            = .7
@@ -1018,14 +1018,14 @@ Descriptives <- function(jaspResults, dataset, options) {
     plotResult$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
 
     for (l in split) {
-      plotResult[[l]] <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset[[l]], variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDisplayDensity, rugs = options$distPlotRug, title = l, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
+      plotResult[[l]] <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset[[l]], variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDisplayDensity, rugs = options$distPlotDisplayRugMarks, title = l, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
       plotResult[[l]]$dependOn(optionsFromObject = plotResult)
     }
 
     return(plotResult)
   } else {
     column <- dataset[[.v(variable)]]
-    aPlot <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset, variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDisplayDensity, rugs = options$distPlotRug, title = variable, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
+    aPlot <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset, variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDisplayDensity, rugs = options$distPlotDisplayRugMarks, title = variable, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
     aPlot$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
 
     return(aPlot)
