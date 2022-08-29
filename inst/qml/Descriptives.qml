@@ -258,7 +258,7 @@ Form
 			Group {
 				columns: 2
 				Group {
-					CheckBox {	name: "splitPlotBoxplot";		label: qsTr("Boxplot element"); checked: true	}
+					CheckBox {	name: "boxPlotBoxPlot";			label: qsTr("Boxplot element"); checked: true	}
 					CheckBox {	name: "splitPlotViolin";		label: qsTr("Violin element")					}
 					CheckBox {	name: "splitPlotJitter";		label: qsTr("Jitter element")					}
 				}

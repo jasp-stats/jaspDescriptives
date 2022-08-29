@@ -1050,14 +1050,14 @@ Descriptives <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesSplitPlot <- function(dataset, options,  variable) {
-  depends <- c("splitPlotColour", "splitPlotViolin", "splitPlotBoxplot", "splitPlotJitter", "splitPlotOutlierLabel")
+  depends <- c("splitPlotColour", "splitPlotViolin", "boxPlotBoxPlot", "splitPlotJitter", "splitPlotOutlierLabel")
 
   thePlot <- createJaspPlot(title=variable, width=options$plotWidth, height=options$plotHeight, dependencies=depends)
 
   errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 1")
   if (!is.null(errorMessage)) {
     thePlot$setError(gettextf("Plotting not possible: %s", errorMessage))
-  } else if (!(options$splitPlotViolin || options$splitPlotBoxplot || options$splitPlotJitter)) {
+  } else if (!(options$splitPlotViolin || options$boxPlotBoxPlot || options$splitPlotJitter)) {
     thePlot$setError(gettext("Plotting is not possible: No plot type selected!"))
   } else {
     # we need to know which index in y is related to which index in the actual data, so we should not forget the NAs somehow, lets make a list of indices.
@@ -1114,20 +1114,20 @@ Descriptives <- function(jaspResults, dataset, options) {
       p <- ggplot2::ggplot(plotDat, ggplot2::aes(x=group, y, fill=group)) + ggplot2::scale_fill_manual(values=rep("grey", nlevels(group))) + ggplot2::scale_colour_manual(values=rep("grey", nlevels(group)))
     }
 
-    if (options$splitPlotViolin && options$splitPlotBoxplot && options$splitPlotJitter) {
+    if (options$splitPlotViolin && options$boxPlotBoxPlot && options$splitPlotJitter) {
       p <- p +
         ggplot2::geom_violin(trim = F, size = 0.75, width = vioWidth, scale = "width") +
         ggplot2::stat_boxplot(geom = "errorbar", size = 0.75, width = boxWidth/2) +
         ggplot2::geom_boxplot(size = 0.75, width = boxWidth, outlier.shape = NA) +
         ggplot2::geom_violin(trim = F, size = 0.75, width = vioWidth, fill = "transparent", scale = "width") +
         ggplot2::geom_jitter(size = 2.5, shape = 1, stroke = 1, position = ggplot2::position_jitter(width=0.05, height = 0), fill = "transparent")
-    } else if (options$splitPlotBoxplot && options$splitPlotViolin) {
+    } else if (options$boxPlotBoxPlot && options$splitPlotViolin) {
       p <- p +
         ggplot2::geom_violin(trim = F, size = 0.75, width = vioWidth, scale = "width") +
         ggplot2::stat_boxplot(geom = "errorbar", size = 0.75, width = boxWidth/2) +
         ggplot2::geom_boxplot(size = 0.75, outlier.size = 1.5, width = boxWidth) +
         ggplot2::geom_violin(trim = F, size = 0.75, width = vioWidth, fill = "transparent", scale = "width")
-    } else if (options$splitPlotBoxplot && options$splitPlotJitter) {
+    } else if (options$boxPlotBoxPlot && options$splitPlotJitter) {
       p <- p +
         ggplot2::stat_boxplot(geom = "errorbar", size = 0.75, width = boxWidth/2 ) +
         ggplot2::geom_boxplot(size = 0.75, outlier.shape = NA, width = boxWidth) +
@@ -1138,7 +1138,7 @@ Descriptives <- function(jaspResults, dataset, options) {
         ggplot2::geom_jitter(size = 2.5, shape = 1, stroke = 1, position = ggplot2::position_jitter(width=0.05, height = 0), fill = "transparent")
     } else if (options$splitPlotViolin) {
       p <- p + ggplot2::geom_violin(trim = F, size = 0.75, scale = "width", width = 0.75*boxWidth)
-    } else if (options$splitPlotBoxplot) {
+    } else if (options$boxPlotBoxPlot) {
       p <- p +
         ggplot2::stat_boxplot(geom = "errorbar",size = 0.75, width = boxWidth/2 ) +
         ggplot2::geom_boxplot(size = 0.75, outlier.size = 1.5, width = boxWidth)
@@ -1146,7 +1146,7 @@ Descriptives <- function(jaspResults, dataset, options) {
       p <- p + ggplot2::geom_jitter(size = 2.5, ggplot2::aes(colour = group), position = ggplot2::position_jitter(width=0.1, height = 0))
     }
 
-    if (options$splitPlotOutlierLabel && (options$splitPlotBoxplot || options$splitPlotJitter))
+    if (options$splitPlotOutlierLabel && (options$boxPlotBoxPlot || options$splitPlotJitter))
       p <- p + ggrepel::geom_text_repel(ggplot2::aes(label=label), hjust=-0.3)
 
     ### Theming & Cleaning

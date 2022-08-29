@@ -104,7 +104,7 @@ test_that("Boxplot matches", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "contGamma"
   options$splitby <- "facFive"
-  options$splitPlotBoxplot <- TRUE
+  options$boxPlotBoxPlot <- TRUE
   options$splitPlotColour <- TRUE
   options$splitPlotJitter <- TRUE
   options$splitPlotOutlierLabel <- TRUE
