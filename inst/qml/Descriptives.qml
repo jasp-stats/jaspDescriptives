@@ -304,7 +304,7 @@ Form
 
 				CheckBox
 				{
-					name: "addSmoothCI"
+					name: "addSmoothCi"
 					label: qsTr("Show confidence interval")
 					checked: true
 					childrenOnSameRow: true

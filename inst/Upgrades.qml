@@ -28,5 +28,6 @@ Upgrades
         ChangeRename { from: "likertPlotEqualLevel"; to: "likertPlotAssumeVariablesSameLevel" }
         ChangeRename { from: "likertPlotFontSize"; to: "likertPlotAdjustableFontSize" }
         ChangeRename { from: "addSmooth"; to: "regressionLine" }
+        ChangeRename { from: "addSmoothCI"; to: "addSmoothCi" }
 	}
 }
