@@ -108,7 +108,7 @@ test_that("Boxplot matches", {
   options$splitPlotColour <- TRUE
   options$splitPlotJitter <- TRUE
   options$splitPlotOutlierLabel <- TRUE
-  options$splitPlotViolin <- TRUE
+  options$boxPlotViolin <- TRUE
   options$boxPlot <- TRUE
   options$colorPalette <- "ggplot2"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
