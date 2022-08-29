@@ -371,7 +371,7 @@ Form
 			}
 			AssignedVariablesList
 			{
-				name: "heatmapHorizontal"
+				name: "heatmapHorizontalAxis"
 				label: qsTr("Horizontal axis:")
 				singleVariable: true
 			}

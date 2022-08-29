@@ -264,10 +264,10 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Heatmap
-  if (options[["heatmapHorizontal"]] != "" && options[["heatmapVertical"]] != "") {
+  if (options[["heatmapHorizontalAxis"]] != "" && options[["heatmapVertical"]] != "") {
     if(is.null(jaspResults[["heatmaps"]])) {
       jaspResults[["heatmaps"]] <- createJaspContainer(gettext("Heatmaps"))
-      jaspResults[["heatmaps"]]$dependOn(c("heatmapHorizontal", "heatmapVertical",
+      jaspResults[["heatmaps"]]$dependOn(c("heatmapHorizontalAxis", "heatmapVertical",
                                            "heatmapPlotValue", "heatmapRectangleRatio", "heatmapLegend",
                                            "heatmapStatisticContinuous", "heatmapStatisticDiscrete",
                                            "colorPalette", "splitby", "variables"))
@@ -1859,7 +1859,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
 
 .descriptivesHeatmaps <- function(container, dataset, variables, options) {
-  axesNames <- c(options[["heatmapHorizontal"]], options[["heatmapVertical"]])
+  axesNames <- c(options[["heatmapHorizontalAxis"]], options[["heatmapVertical"]])
 
   # we are not ready to plot
   if(length(variables) == 0) return()
