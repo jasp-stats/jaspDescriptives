@@ -19,5 +19,6 @@ Upgrades
         ChangeRename { from: "shapiro"; to: "shapiroWilkTest" }
         ChangeRename { from: "standardErrorMean"; to: "seMean" }
         ChangeRename { from: "cOfVariation"; to: "coefficientOfVariation" }
+        ChangeRename { from: "madrobust"; to: "madRobust" }
 	}
 }

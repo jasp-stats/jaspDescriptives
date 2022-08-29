@@ -115,7 +115,7 @@ Form
 			CheckBox { name: "standardDeviation";			label: qsTr("Std. deviation");		checked: true	}
 			CheckBox { name: "coefficientOfVariation";		label: qsTr("Coefficient of variation");			}
 			CheckBox { name: "mad";							label: qsTr("MAD")									}
-			CheckBox { name: "madrobust";					label: qsTr("MAD robust")							}
+			CheckBox { name: "madRobust";					label: qsTr("MAD robust")							}
 			CheckBox { name: "iqr";							label: qsTr("IQR")									}
 			CheckBox { name: "variance";					label: qsTr("Variance")								}
 			CheckBox { name: "range";						label: qsTr("Range")								}
