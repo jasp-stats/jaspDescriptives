@@ -216,7 +216,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (options[["scatterPlot"]]) {
     if(is.null(jaspResults[["scatterPlots"]])) {
       jaspResults[["scatterPlots"]] <- createJaspContainer(gettext("Scatter Plots"))
-      jaspResults[["scatterPlots"]]$dependOn(c("splitby", "scatterPlot", "graphTypeAbove", "graphTypeRight", "addSmooth",
+      jaspResults[["scatterPlots"]]$dependOn(c("splitby", "scatterPlot", "graphTypeAbove", "graphTypeRight", "regressionLine",
                                                "addSmoothCI", "addSmoothCIValue", "regressionType", "showLegend",
                                                "colorPalette"))
       jaspResults[["scatterPlots"]]$position <- 10
@@ -1724,7 +1724,7 @@ Descriptives <- function(jaspResults, dataset, options) {
           xName             = v1,
           yName             = v2,
           showLegend        = options[["showLegend"]],
-          addSmooth         = options[["addSmooth"]],
+          addSmooth         = options[["regressionLine"]],
           addSmoothCI       = options[["addSmoothCI"]],
           smoothCIValue     = options[["addSmoothCIValue"]],
           forceLinearSmooth = options[["regressionType"]] == "linear",

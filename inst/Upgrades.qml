@@ -27,5 +27,6 @@ Upgrades
         ChangeRename { from: "descriptivesQQPlot"; to: "descriptivesQqPlot" }
         ChangeRename { from: "likertPlotEqualLevel"; to: "likertPlotAssumeVariablesSameLevel" }
         ChangeRename { from: "likertPlotFontSize"; to: "likertPlotAdjustableFontSize" }
+        ChangeRename { from: "addSmooth"; to: "regressionLine" }
 	}
 }

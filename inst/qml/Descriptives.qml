@@ -292,7 +292,7 @@ Form
 			}
 			CheckBox
 			{
-				name: "addSmooth"
+				name: "regressionLine"
 				label: qsTr("Add regression line")
 				checked: true
 				RadioButtonGroup
