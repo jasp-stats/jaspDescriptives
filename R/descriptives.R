@@ -362,7 +362,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     stats$addFootnote(message=gettextf("Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s", numberMissingSplitBy, options$splitby))
 
   stats$dependOn(c("splitby", "variables", "quantilesForEqualGroupsNumber", "percentileValues", "mode", "median", "mean", "standardErrorMean",
-    "standardDeviation", "cOfVariation", "variance", "skewness", "kurtosis", "shapiroWilkTest", "range", "iqr", "mad", "madrobust", "minimum", "maximum",
+    "standardDeviation", "coefficientOfVariation", "variance", "skewness", "kurtosis", "shapiroWilkTest", "range", "iqr", "mad", "madrobust", "minimum", "maximum",
     "sum", "quartiles", "quantilesForEqualGroups", "percentiles", "descriptivesTableTransposed", "valid", "missing"))
 
   if (wantsSplit) {
@@ -373,27 +373,27 @@ Descriptives <- function(jaspResults, dataset, options) {
     stats$addColumnInfo(name="Variable",  title="", type="string")
   }
 
-  if (options$valid)                stats$addColumnInfo(name="Valid",                       title=gettext("Valid"),                   type="integer")
-  if (options$missing)              stats$addColumnInfo(name="Missing",                     title=gettext("Missing"),                 type="integer")
-  if (options$mode)                 stats$addColumnInfo(name="Mode",                        title=gettext("Mode"),                    type="number")
-  if (options$median)               stats$addColumnInfo(name="Median",                      title=gettext("Median"),                  type="number")
-  if (options$mean)                 stats$addColumnInfo(name="Mean",                        title=gettext("Mean"), 				            type="number")
-  if (options$standardErrorMean)    stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of Mean"),      type="number")
-  if (options$standardDeviation)    stats$addColumnInfo(name="Std. Deviation",              title=gettext("Std. Deviation"),          type="number")
-  if (options$cOfVariation)         stats$addColumnInfo(name="Coefficient of Variation",    title=gettext("Coefficient of variation"),type="number")
-  if (options$mad)                  stats$addColumnInfo(name="MAD",                         title=gettext("MAD"),                     type="number")
-  if (options$madrobust)            stats$addColumnInfo(name="MAD Robust",                  title=gettext("MAD robust"),              type="number")
-  if (options$iqr)                  stats$addColumnInfo(name="IQR",                         title=gettext("IQR"),                     type="number")
-  if (options$variance)             stats$addColumnInfo(name="Variance",                    title=gettext("Variance"),                type="number")
-  if (options$skewness) {           stats$addColumnInfo(name="Skewness",                    title=gettext("Skewness"),                type="number")
-                                    stats$addColumnInfo(name="Std. Error of Skewness",      title=gettext("Std. Error of Skewness"),  type="number") }
-  if (options$kurtosis) {           stats$addColumnInfo(name="Kurtosis",                    title=gettext("Kurtosis"),                type="number")
-                                    stats$addColumnInfo(name="Std. Error of Kurtosis",      title=gettext("Std. Error of Kurtosis"),  type="number") }
-  if (options$shapiroWilkTest) {    stats$addColumnInfo(name="Shapiro-Wilk",                title=gettext("Shapiro-Wilk"),            type="number")
-                                    stats$addColumnInfo(name="P-value of Shapiro-Wilk",     title=gettext("P-value of Shapiro-Wilk"), type="pvalue") }
-  if (options$range)                stats$addColumnInfo(name="Range",                       title=gettext("Range"),                   type="number")
-  if (options$minimum)              stats$addColumnInfo(name="Minimum",                     title=gettext("Minimum"),                 type="number")
-  if (options$maximum)              stats$addColumnInfo(name="Maximum",                     title=gettext("Maximum"),                 type="number")
+  if (options$valid)                          stats$addColumnInfo(name="Valid",                       title=gettext("Valid"),                   type="integer")
+  if (options$missing)                        stats$addColumnInfo(name="Missing",                     title=gettext("Missing"),                 type="integer")
+  if (options$mode)                           stats$addColumnInfo(name="Mode",                        title=gettext("Mode"),                    type="number")
+  if (options$median)                         stats$addColumnInfo(name="Median",                      title=gettext("Median"),                  type="number")
+  if (options$mean)                           stats$addColumnInfo(name="Mean",                        title=gettext("Mean"), 				            type="number")
+  if (options$standardErrorMean)              stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of Mean"),      type="number")
+  if (options$standardDeviation)              stats$addColumnInfo(name="Std. Deviation",              title=gettext("Std. Deviation"),          type="number")
+  if (options$coefficientOfVariation)         stats$addColumnInfo(name="Coefficient of Variation",    title=gettext("Coefficient of variation"),type="number")
+  if (options$mad)                            stats$addColumnInfo(name="MAD",                         title=gettext("MAD"),                     type="number")
+  if (options$madrobust)                      stats$addColumnInfo(name="MAD Robust",                  title=gettext("MAD robust"),              type="number")
+  if (options$iqr)                            stats$addColumnInfo(name="IQR",                         title=gettext("IQR"),                     type="number")
+  if (options$variance)                       stats$addColumnInfo(name="Variance",                    title=gettext("Variance"),                type="number")
+  if (options$skewness) {                     stats$addColumnInfo(name="Skewness",                    title=gettext("Skewness"),                type="number")
+                                              stats$addColumnInfo(name="Std. Error of Skewness",      title=gettext("Std. Error of Skewness"),  type="number") }
+  if (options$kurtosis) {                     stats$addColumnInfo(name="Kurtosis",                    title=gettext("Kurtosis"),                type="number")
+                                              stats$addColumnInfo(name="Std. Error of Kurtosis",      title=gettext("Std. Error of Kurtosis"),  type="number") }
+  if (options$shapiroWilkTest) {              stats$addColumnInfo(name="Shapiro-Wilk",                title=gettext("Shapiro-Wilk"),            type="number")
+                                              stats$addColumnInfo(name="P-value of Shapiro-Wilk",     title=gettext("P-value of Shapiro-Wilk"), type="pvalue") }
+  if (options$range)                          stats$addColumnInfo(name="Range",                       title=gettext("Range"),                   type="number")
+  if (options$minimum)                        stats$addColumnInfo(name="Minimum",                     title=gettext("Minimum"),                 type="number")
+  if (options$maximum)                        stats$addColumnInfo(name="Maximum",                     title=gettext("Maximum"),                 type="number")
 
   if (options$quartiles) {
                                     stats$addColumnInfo(name="q1", title="25th percentile", type="number")
@@ -490,7 +490,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   rows        <- length(column)
   na.omitted  <- na.omit(column)
 
-  if (base::is.factor(na.omitted) && (options$mode || options$median || options$mean || options$minimum || options$seMean || options$iqr || options$mad || options$madrobust || options$kurtosis || options$shapiroWilkTest || options$skewness || options$quartiles || options$variance || options$standardDeviation ||  options$cOfVariation || options$percentiles || options$sum || options$maximum)) {
+  if (base::is.factor(na.omitted) && (options$mode || options$median || options$mean || options$minimum || options$seMean || options$iqr || options$mad || options$madrobust || options$kurtosis || options$shapiroWilkTest || options$skewness || options$quartiles || options$variance || options$standardDeviation ||  options$coefficientOfVariation || options$percentiles || options$sum || options$maximum)) {
     shouldAddNominalTextFootnote <- TRUE
   }
 
@@ -504,7 +504,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   resultsCol[["Mean"]]                    <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$mean,              na.omitted, mean)
   resultsCol[["Std. Error of Mean"]]      <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$seMean, na.omitted, function(param) { sd(param)/sqrt(length(param))} )
   resultsCol[["Std. Deviation"]]          <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$standardDeviation, na.omitted, sd)
-  resultsCol[["Coefficient of Variation"]]<- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$cOfVariation,      na.omitted, function(param) { sd(param) / mean(param)})
+  resultsCol[["Coefficient of Variation"]]<- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$coefficientOfVariation,      na.omitted, function(param) { sd(param) / mean(param)})
   resultsCol[["MAD"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$mad,               na.omitted, function(param) { mad(param, constant = 1) } )
   resultsCol[["MAD Robust"]]              <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$madrobust,         na.omitted, mad)
   resultsCol[["IQR"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$iqr,               na.omitted, .descriptivesIqr)

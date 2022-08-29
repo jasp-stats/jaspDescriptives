@@ -18,5 +18,6 @@ Upgrades
         ChangeRename { from: "percentileValuesPercentilesPercentiles"; to: "percentileValues" }
         ChangeRename { from: "shapiro"; to: "shapiroWilkTest" }
         ChangeRename { from: "standardErrorMean"; to: "seMean" }
+        ChangeRename { from: "cOfVariation"; to: "coefficientOfVariation" }
 	}
 }
