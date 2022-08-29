@@ -92,7 +92,7 @@ test_that("Distribution plot matches", {
 test_that("Correlation plot matches", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- c("contNormal", "contGamma")
-  options$plotCorrelationMatrix <- TRUE
+  options$correlationPlots <- TRUE
   options$distPlotDensity <- TRUE
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
@@ -129,7 +129,7 @@ test_that("Scatter plot matches", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- c("contcor1", "contcor2")
   # incorrectly parsed by jaspTools, which matches "enabled: distributionPlots.checked" a couple lines down and sets the option to true
-  options$plotCorrelationMatrix <- FALSE
+  options$correlationPlots <- FALSE
   options$scatterPlot <- TRUE
   options$colorPalette <- "ggplot2"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
@@ -285,7 +285,7 @@ test_that("Stem and leaf tables match", {
 })
 
 options <- analysisOptions("Descriptives")
-options$plotCorrelationMatrix <- FALSE
+options$correlationPlots <- FALSE
 options$distributionPlots <- TRUE
 options$variables <- "facGender"
 set.seed(1)

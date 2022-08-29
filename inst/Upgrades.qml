@@ -21,5 +21,7 @@ Upgrades
         ChangeRename { from: "cOfVariation"; to: "coefficientOfVariation" }
         ChangeRename { from: "madrobust"; to: "madRobust" }
         ChangeRename { from: "plotVariables"; to: "distributionPlots" }
+        ChangeRename { from: "plotCorrelationMatrix"; to: "correlationPlots" }
+
 	}
 }

@@ -137,12 +137,12 @@ Form
 			{
 				columns: 2
 				CheckBox {				name: "distributionPlots";			label: qsTr("Distribution plots");	id:	distributionPlots					}
-				CheckBox {				name: "plotCorrelationMatrix";	label: qsTr("Correlation plots");	id:	plotCorrelationMatrix			}
+				CheckBox {				name: "correlationPlots";	label: qsTr("Correlation plots");	id:	correlationPlots			}
 			}
 
 			Group
 			{
-				enabled: distributionPlots.checked || plotCorrelationMatrix.checked
+				enabled: distributionPlots.checked || correlationPlots.checked
 
 				indent:		true
 				CheckBox {			name: "distPlotDensity";	label: qsTr("Display density")						}

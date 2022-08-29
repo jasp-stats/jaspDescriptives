@@ -67,12 +67,12 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Correlation plot
-  if (options$plotCorrelationMatrix && length(variables) > 1) {
+  if (options$correlationPlots && length(variables) > 1) {
     if(is.null(jaspResults[["matrixPlot"]])) {
       if (makeSplit) {
         jaspResults[["matrixPlot"]] <- createJaspContainer(title=gettext("Correlation plots"))
         corrPlot <- jaspResults[["matrixPlot"]]
-        corrPlot$dependOn(c("plotCorrelationMatrix", "splitby", "variables"))
+        corrPlot$dependOn(c("correlationPlots", "splitby", "variables"))
 
         for (i in 1:length(splitLevels))
           corrPlot[[splitLevels[i]]] <- .descriptivesMatrixPlot(splitDat.factors[[i]], options, splitLevels[i])
@@ -777,7 +777,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   variables <- unlist(options$variables)
 
   l         <- length(variables)
-  depends   <- c("plotCorrelationMatrix", "variables", "splitby", "binWidthType", "distPlotDensity", "distPlotRug", "numberOfBins")
+  depends   <- c("correlationPlots", "variables", "splitby", "binWidthType", "distPlotDensity", "distPlotRug", "numberOfBins")
 
   if (l == 0) #Nothing to plot
     return(NULL)
