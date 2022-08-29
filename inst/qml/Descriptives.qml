@@ -386,7 +386,7 @@ Form
 		Group
 		{
 			indent: true
-			CheckBox { name: "heatmapLegend"; label: qsTr("Display legend")	}
+			CheckBox { name: "heatmapDisplayLegend"; label: qsTr("Display legend")	}
 			CheckBox
 			{
 				name: "heatmapPlotValue"; label: qsTr("Display value"); childrenOnSameRow: false;

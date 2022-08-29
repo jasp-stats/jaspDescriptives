@@ -39,5 +39,6 @@ Upgrades
         ChangeRename { from: "descriptivesDensityPlot"; to: "descriptivesDisplayDensityPlot" }
         ChangeRename { from: "heatmapHorizontal"; to: "heatmapHorizontalAxis" }
         ChangeRename { from: "heatmapVertical"; to: "heatmapVerticalAxis" }
+        ChangeRename { from: "heatmapLegend"; to: "heatmapDisplayLegend" }
 	}
 }
