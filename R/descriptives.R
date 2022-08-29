@@ -1050,7 +1050,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesSplitPlot <- function(dataset, options,  variable) {
-  depends <- c("splitPlotColour", "boxPlotViolin", "boxPlotBoxPlot", "boxPlotJitter", "splitPlotOutlierLabel")
+  depends <- c("splitPlotColourPalette", "boxPlotViolin", "boxPlotBoxPlot", "boxPlotJitter", "splitPlotOutlierLabel")
 
   thePlot <- createJaspPlot(title=variable, width=options$plotWidth, height=options$plotHeight, dependencies=depends)
 
@@ -1106,7 +1106,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
     plotDat$label <- ifelse(plotDat$outlier, row.names(plotDat),"")
 
-    if (options$splitPlotColour) {
+    if (options$splitPlotColourPalette) {
       thePlot$dependOn("colorPalette") # only add color as dependency if the user wants it
       palette <- options[["colorPalette"]]
       p <- ggplot2::ggplot(plotDat, ggplot2::aes(x=group, y, fill=group)) + jaspGraphs::scale_JASPfill_discrete(palette) + jaspGraphs::scale_JASPcolor_discrete(palette)

@@ -105,7 +105,7 @@ test_that("Boxplot matches", {
   options$variables <- "contGamma"
   options$splitby <- "facFive"
   options$boxPlotBoxPlot <- TRUE
-  options$splitPlotColour <- TRUE
+  options$splitPlotColourPalette <- TRUE
   options$boxPlotJitter <- TRUE
   options$splitPlotOutlierLabel <- TRUE
   options$boxPlotViolin <- TRUE
