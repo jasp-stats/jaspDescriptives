@@ -264,7 +264,7 @@ Form
 				}
 				Group {
 					CheckBox {  name: "boxPlotColourPalette";		label: qsTr("Use color palette")				}
-					CheckBox {	name: "boxPlotOutlierLabel";	label: qsTr("Label outliers")					}
+					CheckBox {	name: "boxPlotOutlierLabel";		label: qsTr("Label outliers")					}
 				}
 			}
 		}
@@ -345,7 +345,7 @@ Form
 			
 			CheckBox 
 			{ 
-				name: 		"descriptivesDensityPlot"
+				name: 		"descriptivesDisplayDensityPlot"
 				label: 		qsTr("Display density plots") 
 			
 				DoubleField

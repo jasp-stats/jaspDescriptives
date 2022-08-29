@@ -182,7 +182,7 @@ test_that("Likert plot matches", {
 test_that("Density plot matches", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "contNormal"
-  options$descriptivesDensityPlot <- TRUE
+  options$descriptivesDisplayDensityPlot <- TRUE
   options$densityPlotSeparate <- "facFive"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]

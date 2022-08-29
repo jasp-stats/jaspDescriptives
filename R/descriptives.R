@@ -302,10 +302,10 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Density plots
-  if (options[["descriptivesDensityPlot"]]) {
+  if (options[["descriptivesDisplayDensityPlot"]]) {
     if (is.null(jaspResults[["densityPlot"]])) {
       jaspResults[["densityPlot"]] <- createJaspContainer(gettext("Density Plots"))
-      jaspResults[["densityPlot"]]$dependOn(c("descriptivesDensityPlot", "densityPlotSeparate",
+      jaspResults[["densityPlot"]]$dependOn(c("descriptivesDisplayDensityPlot", "densityPlotSeparate",
                                               "colorPalette", "splitby", "variables", "transparency"))
       jaspResults[["densityPlot"]]$position <- 17
     }

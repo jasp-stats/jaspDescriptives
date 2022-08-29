@@ -36,5 +36,6 @@ Upgrades
         ChangeRename { from: "splitPlotJitter"; to: "boxPlotJitter" }
         ChangeRename { from: "splitPlotColour"; to: "boxPlotColourPalette" }
         ChangeRename { from: "splitPlotOutlierLabel"; to: "boxPlotOutlierLabel" }
+        ChangeRename { from: "descriptivesDensityPlot"; to: "descriptivesDisplayDensityPlot" }
 	}
 }
