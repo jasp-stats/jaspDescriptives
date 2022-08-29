@@ -86,10 +86,10 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Distribution plots
-  if (options$plotVariables) {
+  if (options$distributionPlots) {
     if(is.null(jaspResults[["distributionPlots"]])) {
       jaspResults[["distributionPlots"]] <- createJaspContainer(gettext("Distribution Plots"))
-      jaspResults[["distributionPlots"]]$dependOn(c("plotVariables", "splitby", "binWidthType", "distPlotDensity",
+      jaspResults[["distributionPlots"]]$dependOn(c("distributionPlots", "splitby", "binWidthType", "distPlotDensity",
                                                     "distPlotRug", "numberOfBins"))
       jaspResults[["distributionPlots"]]$position <- 5
     }

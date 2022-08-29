@@ -83,7 +83,7 @@ test_that("Distribution plot matches", {
   skip("This test need to be verified")
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "contNormal"
-  options$plotVariables <- TRUE
+  options$distributionPlots <- TRUE
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "distribution")
@@ -128,7 +128,7 @@ test_that("Q-QPlot plot matches", {
 test_that("Scatter plot matches", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- c("contcor1", "contcor2")
-  # incorrectly parsed by jaspTools, which matches "enabled: plotVariables.checked" a couple lines down and sets the option to true
+  # incorrectly parsed by jaspTools, which matches "enabled: distributionPlots.checked" a couple lines down and sets the option to true
   options$plotCorrelationMatrix <- FALSE
   options$scatterPlot <- TRUE
   options$colorPalette <- "ggplot2"
@@ -286,7 +286,7 @@ test_that("Stem and leaf tables match", {
 
 options <- analysisOptions("Descriptives")
 options$plotCorrelationMatrix <- FALSE
-options$plotVariables <- TRUE
+options$distributionPlots <- TRUE
 options$variables <- "facGender"
 set.seed(1)
 results <- runAnalysis("Descriptives", "debug.csv", options)
