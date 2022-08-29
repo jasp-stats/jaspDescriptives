@@ -308,7 +308,7 @@ Form
 					label: qsTr("Show confidence interval")
 					checked: true
 					childrenOnSameRow: true
-					CIField {	name: "addSmoothCIValue" }
+					CIField {	name: "addSmoothCiValue" }
 				}
 			}
 			CheckBox
