@@ -38,5 +38,6 @@ Upgrades
         ChangeRename { from: "splitPlotOutlierLabel"; to: "boxPlotOutlierLabel" }
         ChangeRename { from: "descriptivesDensityPlot"; to: "descriptivesDisplayDensityPlot" }
         ChangeRename { from: "heatmapHorizontal"; to: "heatmapHorizontalAxis" }
+        ChangeRename { from: "heatmapVertical"; to: "heatmapVerticalAxis" }
 	}
 }
