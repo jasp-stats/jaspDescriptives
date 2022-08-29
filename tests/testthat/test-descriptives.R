@@ -11,7 +11,7 @@ test_that("Main table results match", {
   options$sum <- TRUE
   options$variance <- TRUE
   options$range <- TRUE
-  options$standardErrorMean <- TRUE
+  options$seMean <- TRUE
   options$kurtosis <- TRUE
   options$skewness <- TRUE
   options$shapiroWilkTest <- TRUE

@@ -9,7 +9,7 @@ test_that("Main table results match R, SPSS, SAS and MiniTab", {
   options$variance <- TRUE
   options$mode <- FALSE
   options$standardDeviation <- TRUE
-  options$standardErrorMean <- TRUE
+  options$seMean <- TRUE
   options$minimum
   options$maximum
   options$mode <- TRUE
