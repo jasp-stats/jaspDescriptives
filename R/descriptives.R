@@ -318,7 +318,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     if (is.null(jaspResults[["likertPlot"]])) {
       jaspResults[["likertPlot"]] <- createJaspContainer(gettext("Likert Plots"))
       jaspResults[["likertPlot"]]$dependOn(c("descriptivesLikertPlot", "splitby", "variables",
-                                             "likertPlotAssumeVariablesSameLevel", "likertPlotFontSize"))
+                                             "likertPlotAssumeVariablesSameLevel", "likertPlotAdjustableFontSize"))
       jaspResults[["likertPlot"]]$position <- 16
     }
 
@@ -1974,7 +1974,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 .descriptivesLikertPlotsFill <- function(dataset, variables, name, options) {
 
   leng <- length(dataset)
-  depends <- c("descriptivesLikertPlot", "splitby", "variables", "likertPlotAssumeVariablesSameLevel", "likertPlotFontSize")
+  depends <- c("descriptivesLikertPlot", "splitby", "variables", "likertPlotAssumeVariablesSameLevel", "likertPlotAdjustableFontSize")
 
   likPlot <- createJaspPlot(title = name, dependencies = depends, width = 1300, height = if (leng == 1) 250 else 200*(leng*0.8))
   errorMessage <- .descriptivesCheckPlotErrors(dataset, variables, obsAmount = "< 2")
@@ -2137,7 +2137,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     ggplot2::theme(text = ggplot2::element_text(size = 22.5), axis.title.x = ggplot2::element_text(size = 18))
 
   p <- p + ggplot2::theme(axis.text.y = ggplot2::element_text(
-    size = switch(options[["likertPlotFontSize"]],
+    size = switch(options[["likertPlotAdjustableFontSize"]],
                   "small"  = 20,
                   "medium" = 22.5,
                   "large"  = 25

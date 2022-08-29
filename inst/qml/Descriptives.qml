@@ -214,8 +214,8 @@ Form
 				
 				DropDown 
 				{
-					id: 				likertPlotFontSize
-					name: 				"likertPlotFontSize"
+					id: 				likertPlotAdjustableFontSize
+					name: 				"likertPlotAdjustableFontSize"
 					label: 				qsTr("Adjustable font size for vertical axis")
 					indexDefaultValue: 	0
 					values:

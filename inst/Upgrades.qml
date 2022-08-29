@@ -26,5 +26,6 @@ Upgrades
         ChangeRename { from: "distPlotRug"; to: "distPlotDisplayRugMarks" }
         ChangeRename { from: "descriptivesQQPlot"; to: "descriptivesQqPlot" }
         ChangeRename { from: "likertPlotEqualLevel"; to: "likertPlotAssumeVariablesSameLevel" }
+        ChangeRename { from: "likertPlotFontSize"; to: "likertPlotAdjustableFontSize" }
 	}
 }
