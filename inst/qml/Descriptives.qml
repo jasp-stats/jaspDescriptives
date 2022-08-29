@@ -101,7 +101,7 @@ Form
 
 			CheckBox { name: "skewness";			label: qsTr("Skewness")						}
 			CheckBox { name: "kurtosis";			label: qsTr("Kurtosis")						}
-			CheckBox { name: "shapiro";				label: qsTr("Shapiro-Wilk test")			}
+			CheckBox { name: "shapiroWilkTest";		label: qsTr("Shapiro-Wilk test")			}
 			CheckBox { name: "sum";					label: qsTr("Sum");							}
 		}
 

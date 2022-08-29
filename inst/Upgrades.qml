@@ -16,5 +16,6 @@ Upgrades
         ChangeRename { from: "percentileValuesEqualGroupsNo"; to: "quantilesForEqualGroupsNumber" }
         ChangeRename { from: "percentileValuesPercentiles"; to: "percentiles" }
         ChangeRename { from: "percentileValuesPercentilesPercentiles"; to: "percentileValues" }
+        ChangeRename { from: "shapiro"; to: "shapiroWilkTest" }
 	}
 }

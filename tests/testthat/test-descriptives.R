@@ -14,7 +14,7 @@ test_that("Main table results match", {
   options$standardErrorMean <- TRUE
   options$kurtosis <- TRUE
   options$skewness <- TRUE
-  options$shapiro <- TRUE
+  options$shapiroWilkTest <- TRUE
   options$mode <- TRUE
   options$quantilesForEqualGroups <- TRUE
   options$quantilesForEqualGroupsNumber <- 5
@@ -194,7 +194,7 @@ test_that("Analysis handles identical variables", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- list("contNormal", "debSame")
   options$splitby <- "facFive"
-  options$shapiro <- TRUE
+  options$shapiroWilkTest <- TRUE
   options$skewness <- TRUE
   options$kurtosis <- TRUE
 
