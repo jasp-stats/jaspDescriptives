@@ -1913,7 +1913,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
     if(options[["heatmapDisplayValue"]])
       plot <- plot + ggplot2::geom_text(ggplot2::aes(x = horizontal, y = vertical, label = label),
-                                        size = 8 * options[["heatmapPlotValueSize"]])
+                                        size = 8 * options[["heatmapDisplayValueRelativeTextSize"]])
 
     palette <- options[["colorPalette"]]
     if(is.factor(data[["value"]]))
