@@ -59,7 +59,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (options$frequencyTables) {
     if(is.null(jaspResults[["tables"]])) {
       jaspResults[["tables"]] <- createJaspContainer(gettext("Frequency Tables"))
-      jaspResults[["tables"]]$dependOn(c("frequencyTables", "splitby", "frequencyTablesMaximumAmount"))
+      jaspResults[["tables"]]$dependOn(c("frequencyTables", "splitby", "frequencyTablesMaximumDistinctValues"))
       jaspResults[["tables"]]$position <- 3
     }
 
@@ -629,7 +629,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   splitLevels <- levels(splitFactor)
 
   omittedVariables <- character()
-  maximumDistinctValues <- options[["frequencyTablesMaximumAmount"]]
+  maximumDistinctValues <- options[["frequencyTablesMaximumDistinctValues"]]
 
   for (variable in options$variables) {
     column <- dataset[[variable]]

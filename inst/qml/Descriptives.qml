@@ -430,7 +430,7 @@ Form
 			label:			qsTr("Frequency tables")
 			IntegerField
 			{
-				name:			"frequencyTablesMaximumAmount"
+				name:			"frequencyTablesMaximumDistinctValues"
 				label:			qsTr("Maximum distinct values")
 				min:			1
 				defaultValue:	10

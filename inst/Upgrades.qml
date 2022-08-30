@@ -43,5 +43,6 @@ Upgrades
         ChangeRename { from: "heatmapPlotValue"; to: "heatmapDisplayValue" }
         ChangeRename { from: "heatmapPlotValueSize"; to: "heatmapDisplayValueRelativeTextSize" }
         ChangeRename { from: "heatmapRectangleRatio"; to: "heatmapTileWidthHeightRatio" }
+        ChangeRename { from: "frequencyTablesMaximumAmount"; to: "frequencyTablesMaximumDistinctValues" }
 	}
 }
