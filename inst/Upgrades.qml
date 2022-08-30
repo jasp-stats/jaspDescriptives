@@ -40,5 +40,6 @@ Upgrades
         ChangeRename { from: "heatmapHorizontal"; to: "heatmapHorizontalAxis" }
         ChangeRename { from: "heatmapVertical"; to: "heatmapVerticalAxis" }
         ChangeRename { from: "heatmapLegend"; to: "heatmapDisplayLegend" }
+        ChangeRename { from: "heatmapPlotValue"; to: "heatmapDisplayValue" }
 	}
 }

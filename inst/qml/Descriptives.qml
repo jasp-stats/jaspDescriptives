@@ -389,7 +389,7 @@ Form
 			CheckBox { name: "heatmapDisplayLegend"; label: qsTr("Display legend")	}
 			CheckBox
 			{
-				name: "heatmapPlotValue"; label: qsTr("Display value"); childrenOnSameRow: false;
+				name: "heatmapDisplayValue"; label: qsTr("Display value"); childrenOnSameRow: false;
 				DoubleField { name: "heatmapPlotValueSize"; label: qsTr("Relative text size"); negativeValues: false; defaultValue: 1 }
 			}
 			DoubleField { name: "heatmapRectangleRatio"; label: qsTr("Width to height ratio of tiles"); negativeValues: false; defaultValue: 1}

@@ -268,7 +268,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     if(is.null(jaspResults[["heatmaps"]])) {
       jaspResults[["heatmaps"]] <- createJaspContainer(gettext("Heatmaps"))
       jaspResults[["heatmaps"]]$dependOn(c("heatmapHorizontalAxis", "heatmapVerticalAxis",
-                                           "heatmapPlotValue", "heatmapRectangleRatio", "heatmapDisplayLegend",
+                                           "heatmapDisplayValue", "heatmapRectangleRatio", "heatmapDisplayLegend",
                                            "heatmapStatisticContinuous", "heatmapStatisticDiscrete",
                                            "colorPalette", "splitby", "variables"))
       jaspResults[["heatmaps"]]$position <- 14
@@ -1911,7 +1911,7 @@ Descriptives <- function(jaspResults, dataset, options) {
       ggplot2::ylab(axesNames[2]) +
       ggplot2::coord_fixed(ratio = 1/options[["heatmapRectangleRatio"]])
 
-    if(options[["heatmapPlotValue"]])
+    if(options[["heatmapDisplayValue"]])
       plot <- plot + ggplot2::geom_text(ggplot2::aes(x = horizontal, y = vertical, label = label),
                                         size = 8 * options[["heatmapPlotValueSize"]])
 
