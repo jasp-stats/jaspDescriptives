@@ -112,7 +112,7 @@ Form
 			Layout.columnSpan:	2
 
 			CheckBox { name: "seMean";						label: qsTr("S.E. mean")							}
-			CheckBox { name: "standardDeviation";			label: qsTr("Std. deviation");		checked: true	}
+			CheckBox { name: "sd";							label: qsTr("Std. deviation");		checked: true	}
 			CheckBox { name: "coefficientOfVariation";		label: qsTr("Coefficient of variation");			}
 			CheckBox { name: "mad";							label: qsTr("MAD")									}
 			CheckBox { name: "madRobust";					label: qsTr("MAD robust")							}
