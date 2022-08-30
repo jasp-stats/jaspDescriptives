@@ -268,7 +268,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     if(is.null(jaspResults[["heatmaps"]])) {
       jaspResults[["heatmaps"]] <- createJaspContainer(gettext("Heatmaps"))
       jaspResults[["heatmaps"]]$dependOn(c("heatmapHorizontalAxis", "heatmapVerticalAxis",
-                                           "heatmapDisplayValue", "heatmapRectangleRatio", "heatmapDisplayLegend",
+                                           "heatmapDisplayValue", "heatmapTileWidthHeightRatio", "heatmapDisplayLegend",
                                            "heatmapStatisticContinuous", "heatmapStatisticDiscrete",
                                            "colorPalette", "splitby", "variables"))
       jaspResults[["heatmaps"]]$position <- 14
@@ -1894,7 +1894,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   nLevels <- c(nlevels(data[["horizontal"]]), nlevels(data[["vertical"]]))
-  plotSize <- c(200 + nLevels * 20) * c(options[["heatmapRectangleRatio"]], 1)
+  plotSize <- c(200 + nLevels * 20) * c(options[["heatmapTileWidthHeightRatio"]], 1)
   if(any(plotSize > 700))
     plotSize <- ( plotSize/max(plotSize) ) * 700
   if(options[["heatmapDisplayLegend"]])
@@ -1909,7 +1909,7 @@ Descriptives <- function(jaspResults, dataset, options) {
       ggplot2::geom_tile(color = "black", size = 1) +
       ggplot2::xlab(axesNames[1]) +
       ggplot2::ylab(axesNames[2]) +
-      ggplot2::coord_fixed(ratio = 1/options[["heatmapRectangleRatio"]])
+      ggplot2::coord_fixed(ratio = 1/options[["heatmapTileWidthHeightRatio"]])
 
     if(options[["heatmapDisplayValue"]])
       plot <- plot + ggplot2::geom_text(ggplot2::aes(x = horizontal, y = vertical, label = label),

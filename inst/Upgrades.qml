@@ -42,5 +42,6 @@ Upgrades
         ChangeRename { from: "heatmapLegend"; to: "heatmapDisplayLegend" }
         ChangeRename { from: "heatmapPlotValue"; to: "heatmapDisplayValue" }
         ChangeRename { from: "heatmapPlotValueSize"; to: "heatmapDisplayValueRelativeTextSize" }
+        ChangeRename { from: "heatmapRectangleRatio"; to: "heatmapTileWidthHeightRatio" }
 	}
 }

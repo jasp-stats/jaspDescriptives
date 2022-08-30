@@ -392,7 +392,7 @@ Form
 				name: "heatmapDisplayValue"; label: qsTr("Display value"); childrenOnSameRow: false;
 				DoubleField { name: "heatmapDisplayValueRelativeTextSize"; label: qsTr("Relative text size"); negativeValues: false; defaultValue: 1 }
 			}
-			DoubleField { name: "heatmapRectangleRatio"; label: qsTr("Width to height ratio of tiles"); negativeValues: false; defaultValue: 1}
+			DoubleField { name: "heatmapTileWidthHeightRatio"; label: qsTr("Width to height ratio of tiles"); negativeValues: false; defaultValue: 1}
 
 			Group
 			{
