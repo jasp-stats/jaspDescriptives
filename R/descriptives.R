@@ -806,15 +806,28 @@ Descriptives <- function(jaspResults, dataset, options) {
     if (variable.statuses[[row]]$error != "") {
       plotMat[[row, row]] <- .displayErrorDescriptives(errorMessage=variable.statuses[[row]]$error)
     } else {
-      plotMat[[row, row]] <- .plotMarginal(
-        column         = dataset[[variables[[row]]]],
-        variableName   = NULL,
-        displayDensity = options[["distPlotDensity"]],
-        rugs           = options[["distPlotRug"]],
-        binWidthType   = options[["binWidthType"]],
-        numberOfBins   = options[["numberOfBins"]],
-        lwd            = .7
-      )
+      column <- dataset[[variables[[row]]]]
+      isDiscrete <- is.factor(column) || is.character(column)
+
+      if (isDiscrete) {
+        plotMat[[row, row]] <- .barplotJASP(column, NULL) +
+        ggplot2::ylab(gettext("Density")) +
+        ggplot2::theme(
+                    plot.margin = ggplot2::margin(5), 
+                    axis.ticks.y = ggplot2::element_blank(),
+                    axis.text.y = ggplot2::element_blank())
+    
+      } else {
+        plotMat[[row, row]] <- .plotMarginal(
+          column         = column,
+          variableName   = NULL,
+          displayDensity = options[["distPlotDensity"]],
+          rugs           = options[["distPlotRug"]],
+          binWidthType   = options[["binWidthType"]],
+          numberOfBins   = options[["numberOfBins"]],
+          lwd            = .7
+        )
+      }
       axisBreaks[[row]] <- jaspGraphs::getAxisBreaks(plotMat[[row, row]])
     }
   }
