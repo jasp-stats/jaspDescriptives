@@ -481,7 +481,7 @@ Form
 					values:
 					[
 						{label: qsTr("Normal model"),	value: "normalModel"},
-						{label: qsTr("Boostrap"),		value: "bootstrap"}
+						{label: qsTr("Bootstrap"),		value: "bootstrap"}
 					]
 				}
 			
