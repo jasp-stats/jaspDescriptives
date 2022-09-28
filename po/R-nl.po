@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2022-07-16 03:40\n"
-"PO-Revision-Date: 2022-02-05 03:16+0000\n"
-"Last-Translator: Jill de Ron <jillderon93@gmail.com>\n"
+"PO-Revision-Date: 2022-09-28 09:46+0000\n"
+"Last-Translator: DanaJohanna <dana__@live.nl>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/nl/>\n"
 "Language: nl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
-"X-Generator: Weblate 4.11-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 
 msgid "Frequency Tables"
 msgstr "Frequentietabellen"
@@ -56,17 +56,14 @@ msgstr "Dotplots"
 msgid "Heatmaps"
 msgstr "Warmtekaarten"
 
-#, fuzzy
 msgid "Pareto Plots"
-msgstr "Dotplots"
+msgstr "Pareto grafieken"
 
-#, fuzzy
 msgid "Density Plots"
-msgstr "Dotplots"
+msgstr "Verdelingsgrafieken"
 
-#, fuzzy
 msgid "Likert Plots"
-msgstr "Dotplots"
+msgstr "Likertgrafieken"
 
 msgid "Descriptive Statistics"
 msgstr "Beschrijvende Statistiek"
@@ -192,7 +189,7 @@ msgid "Density"
 msgstr "Dichtheid"
 
 msgid "Plotting not possible: %s"
-msgstr "Grafiek maken niet mogelijk: %s"
+msgstr "Plotten niet mogelijk: %s"
 
 msgid "Plotting is not possible: No plot type selected!"
 msgstr "Grafiek maken is niet mogelijk: Geen grafiektype geselecteerd!"
@@ -227,13 +224,13 @@ msgstr ""
 "horizontale en de verticale as!"
 
 msgid "All categorical variables must have the same number of levels!"
-msgstr ""
+msgstr "Alle kwalitatieve variabelen moeten hetzelfde aantal niveaus hebben!"
 
 msgid "Items must have 2 or more levels!"
-msgstr ""
+msgstr "Items moeten 2 of meer niveaus hebben!"
 
 msgid "Levels within variable require at least two or more data points!"
-msgstr ""
+msgstr "Niveaus binnen variabele vereist minstens 2 datapunten!"
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
