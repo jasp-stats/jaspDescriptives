@@ -633,7 +633,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   resultsCol[["Sum"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$sum,               na.omitted, sum)
   
   if (options[["meanCi"]]) {
-    variableName <- ifelse(is.null(resultsCol[["Level"]]), resultsCol[["Variable"]], paste0(resultsCol[["Variable"]], resultsCol[["Level"]]))
+    variableName <- if (is.null(resultsCol[["Level"]])) resultsCol[["Variable"]] else paste0(resultsCol[["Variable"]], resultsCol[["Level"]])
     ciResults <- .descriptivesMeanCI(na.omitted, options, jaspResults, variableName)
     resultsCol[["CIUB"]] <- ciResults$upper
     resultsCol[["CILB"]] <- ciResults$lower
