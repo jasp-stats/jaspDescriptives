@@ -636,7 +636,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     variableName <- ifelse(is.null(resultsCol[["Level"]]), resultsCol[["Variable"]], paste0(resultsCol[["Variable"]], resultsCol[["Level"]]))
     ciResults <- .descriptivesMeanCI(na.omitted, options, jaspResults, variableName)
     resultsCol[["CIUB"]] <- ciResults$upper
-    resultsCol[["CILB"]]  <- ciResults$lower
+    resultsCol[["CILB"]] <- ciResults$lower
   }
 
   # should explain supremum and infimum of an empty set?
