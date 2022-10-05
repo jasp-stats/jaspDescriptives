@@ -5,7 +5,7 @@ context("Descriptives")
 test_that("Main table results match", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "contNormal"
-  options$splitby <- "contBinom"
+  options$splitBy <- "contBinom"
   options$median <- TRUE
   options$mode <- TRUE
   options$sum <- TRUE
@@ -44,7 +44,7 @@ test_that("Main table results match", {
 test_that("Frequencies table matches", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "facGender"
-  options$splitby <- "contBinom"
+  options$splitBy <- "contBinom"
   options$frequencyTables <- TRUE
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   table <- results[["results"]][["tables"]][["collection"]][["tables_facGender"]][["data"]]
@@ -65,7 +65,7 @@ test_that("Frequencies table matches with missing values", {
   split <- rep(1:2, each=15)
   data <- data.frame(x=as.factor(x), split=as.factor(split))
   options$variables <- "x"
-  options$splitby <- "split"
+  options$splitBy <- "split"
   options$frequencyTables <- TRUE
   results <- jaspTools::runAnalysis("Descriptives", data, options)
   table <- results[["results"]][["tables"]][["collection"]][["tables_x"]][["data"]]
@@ -93,7 +93,7 @@ test_that("Correlation plot matches", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- c("contNormal", "contGamma")
   options$correlationPlots <- TRUE
-  options$distPlotDisplayDensity <- TRUE
+  options$distributionAndCorrelationPlotDensity <- TRUE
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "correlation")
@@ -103,7 +103,7 @@ test_that("Boxplot matches", {
   set.seed(0)
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "contGamma"
-  options$splitby <- "facFive"
+  options$splitBy <- "facFive"
   options$boxPlotBoxPlot <- TRUE
   options$boxPlotColourPalette <- TRUE
   options$boxPlotJitter <- TRUE
@@ -119,7 +119,7 @@ test_that("Boxplot matches", {
 test_that("Q-QPlot plot matches", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "contNormal"
-  options$descriptivesQqPlot <- TRUE
+  options$qqPlot <- TRUE
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "qqplot")
@@ -141,7 +141,7 @@ test_that("Scatter plot matches", {
 test_that("Dot plot matches", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "contNormal"
-  options$descriptivesDotPlot <- TRUE
+  options$dotPlot <- TRUE
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
 
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
@@ -151,7 +151,7 @@ test_that("Dot plot matches", {
 test_that("Pie chart matches", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "facFive"
-  options$descriptivesPiechart <- TRUE
+  options$pieChart <- TRUE
   options$colorPalette <- "ggplot2"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
 
@@ -162,7 +162,7 @@ test_that("Pie chart matches", {
 test_that("Pareto plot matches", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "facFive"
-  options$descriptivesParetoPlot <- TRUE
+  options$paretoPlot <- TRUE
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "parPlot")
@@ -171,7 +171,7 @@ test_that("Pareto plot matches", {
 test_that("Likert plot matches", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "facFive"
-  options$descriptivesLikertPlot <- TRUE
+  options$likertPlot <- TRUE
   options$likertPlotAssumeVariablesSameLevel <- TRUE
   options$likertPlotAdjustableFontSize <- "normal"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
@@ -182,7 +182,7 @@ test_that("Likert plot matches", {
 test_that("Density plot matches", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "contNormal"
-  options$descriptivesDisplayDensityPlot <- TRUE
+  options$densityPlot <- TRUE
   options$densityPlotSeparate <- "facFive"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
@@ -193,7 +193,7 @@ test_that("Analysis handles identical variables", {
   # catches this: https://github.com/jasp-stats/jasp-issues/issues/553
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- list("contNormal", "debSame")
-  options$splitby <- "facFive"
+  options$splitBy <- "facFive"
   options$shapiroWilkTest <- TRUE
   options$skewness <- TRUE
   options$kurtosis <- TRUE
@@ -236,7 +236,7 @@ test_that("Analysis handles identical variables", {
 test_that("Analysis explains supremum and infimum of empty sets", {
   options <- analysisOptions("Descriptives")
   options$variables <- "debMiss99"
-  options$splitby <- "contBinom"
+  options$splitBy <- "contBinom"
 
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
 
@@ -262,7 +262,7 @@ test_that("Stem and leaf tables match", {
     label = "stem and life without split"
   )
 
-  options$splitby <- "contBinom"
+  options$splitBy <- "contBinom"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   table0 <- results[["results"]][["stemAndLeaf"]][["collection"]][["stemAndLeaf_contNormal"]][["collection"]][["stemAndLeaf_contNormal_stem_and_leaf_contNormal_0"]][["data"]]
   expect_equal_tables(
@@ -300,8 +300,8 @@ test_that("facGender plot matches", {
 
 options <- analysisOptions("Descriptives")
 options$variables <- "contExpon"
-options$splitby   <- "facFive"
-options$descriptivesIntervalPlot <- TRUE
+options$splitBy   <- "facFive"
+options$intervalPlot <- TRUE
 set.seed(1)
 results <- runAnalysis("Descriptives", "test.csv", options)
 
@@ -315,7 +315,7 @@ test_that("interval plot across groups matches", {
 dat <- data.frame(factorLargeCounts = factor(rep(letters[1:8], seq(10, 80, 10))))
 options <- analysisOptions("Descriptives")
 options$variables <- "factorLargeCounts"
-options$descriptivesDotPlot <- TRUE
+options$dotPlot <- TRUE
 results <- runAnalysis("Descriptives", dat, options)
 
 test_that("dot plot with large counts is legible", {
