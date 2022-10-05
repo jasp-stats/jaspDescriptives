@@ -30,7 +30,7 @@ Form
 	{
 		AvailableVariablesList	{ name: "allVariablesList"								}
 		AssignedVariablesList	{ name: "variables";		title: qsTr("Variables")	}
-		AssignedVariablesList	{ name: "splitby";			title: qsTr("Split");		singleVariable: true; suggestedColumns: ["ordinal", "nominal"];	id: splitBy }
+		AssignedVariablesList	{ name: "splitBy";			title: qsTr("Split");		singleVariable: true; suggestedColumns: ["ordinal", "nominal"];	id: splitBy }
 	}
 
 	CheckBox
@@ -145,10 +145,10 @@ Form
 				enabled: distributionPlots.checked || correlationPlots.checked
 
 				indent:		true
-				CheckBox {			name: "distPlotDisplayDensity";	label: qsTr("Display density")						}
-				CheckBox {			name: "distPlotDisplayRugMarks";		label: qsTr("Display rug marks")					}
+				CheckBox {	name: "distributionAndCorrelationPlotDensity";		label: qsTr("Display density")						}
+				CheckBox {	name: "distributionAndCorrelationPlotRugMarks";		label: qsTr("Display rug marks")					}
 				DropDown {
-					name: "binWidthType"
+					name: "distributionAndCorrelationPlotHistogramBinWidthType"
 					label: qsTr("Bin width type")
 					indexDefaultValue: 0
 					values:
@@ -163,7 +163,7 @@ Form
 				}
 				DoubleField
 				{
-					name:			"numberOfBins"
+					name:			"distributionAndCorrelationPlotHistogramManualNumberOfBins"
 					label:			qsTr("Number of bins")
 					defaultValue:	30
 					min:			3;
@@ -175,10 +175,10 @@ Form
 
 		Group
 		{
-			CheckBox {				name: "descriptivesIntervalPlot";label: qsTr("Interval plots")					}
-			CheckBox {				name: "descriptivesQqPlot";		label: qsTr("Q-Q plots")						}
-			CheckBox {				name: "descriptivesPiechart";	label: qsTr("Pie charts")						}
-			CheckBox {				name: "descriptivesDotPlot";	label: qsTr("Dot plots")						}
+			CheckBox {				name: "intervalPlot";	label: qsTr("Interval plots")					}
+			CheckBox {				name: "qqPlot";			label: qsTr("Q-Q plots")						}
+			CheckBox {				name: "pieChart";		label: qsTr("Pie charts")						}
+			CheckBox {				name: "dotPlot";		label: qsTr("Dot plots")						}
 		}	
 		
 		Group
@@ -187,7 +187,7 @@ Form
 			
 			CheckBox 
 			{			
-				name: 		"descriptivesParetoPlot"
+				name: 		"paretoPlot"
 				label: 		qsTr("Pareto plots")
 				
 				CheckBox 
@@ -196,13 +196,13 @@ Form
 					label: 				qsTr("Pareto rule")
 					childrenOnSameRow: 	true
 					
-					CIField { name: 	"paretoPlotRuleField" }
+					CIField { name: 	"paretoPlotRuleCi" }
 				}
 			}
 			
 			CheckBox 
 			{	
-				name: 		"descriptivesLikertPlot"	
+				name: 		"likertPlot"
 				label: 		qsTr("Likert plots")	
 
 				CheckBox 
@@ -276,7 +276,7 @@ Form
 			columns: 2
 			RadioButtonGroup
 			{
-				name:	"graphTypeAbove";
+				name:	"scatterPlotGraphTypeAbove";
 				title:	qsTr("Graph above scatter plot")
 				RadioButton { value: "density";		label: qsTr("Density");		checked: true	}
 				RadioButton { value: "histogram";	label: qsTr("Histogram")					}
@@ -284,7 +284,7 @@ Form
 			}
 			RadioButtonGroup
 			{
-				name:	"graphTypeRight";
+				name:	"scatterPlotGraphTypeRight";
 				title:	qsTr("Graph right of scatter plot")
 				RadioButton { value: "density";		label: qsTr("Density");		checked: true	}
 				RadioButton { value: "histogram";	label: qsTr("Histogram")					}
@@ -292,29 +292,29 @@ Form
 			}
 			CheckBox
 			{
-				name: "regressionLine"
+				name: "scatterPlotRegressionLine"
 				label: qsTr("Add regression line")
 				checked: true
 				RadioButtonGroup
 				{
-					name:	"regressionType";
+					name:	"scatterPlotRegressionLineType";
 					RadioButton { value: "smooth";	label: qsTr("Smooth");	checked: true	}
 					RadioButton { value: "linear";	label: qsTr("Linear")					}
 				}
 
 				CheckBox
 				{
-					name: "regressionLineCi"
+					name: "scatterPlotRegressionLineCi"
 					label: qsTr("Show confidence interval")
 					checked: true
 					childrenOnSameRow: true
-					CIField {	name: "regressionLineCiValue" }
+					CIField {	name: "scatterPlotRegressionLineCiLevel" }
 				}
 			}
 			CheckBox
 			{
 				enabled: splitBy.count > 0
-				name: "showLegend"
+				name: "scatterPlotLegend"
 				label: qsTr("Show legend")
 				checked: true
 			}
@@ -345,12 +345,12 @@ Form
 			
 			CheckBox 
 			{ 
-				name: 		"descriptivesDisplayDensityPlot"
+				name: 		"densityPlot"
 				label: 		qsTr("Display density plots") 
 			
 				DoubleField
 				{
-					name:			"transparency"
+					name:			"densityPlotTransparency"
 					label:			qsTr("Transparency")
 					fieldWidth:		32
 					defaultValue:	20
@@ -386,7 +386,7 @@ Form
 		Group
 		{
 			indent: true
-			CheckBox { name: "heatmapDisplayLegend"; label: qsTr("Display legend")	}
+			CheckBox { name: "heatmapLegend"; label: qsTr("Display legend")	}
 			CheckBox
 			{
 				name: "heatmapDisplayValue"; label: qsTr("Display value"); childrenOnSameRow: false;
