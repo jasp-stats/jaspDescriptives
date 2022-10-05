@@ -30,12 +30,12 @@ Form
 	{
 		AvailableVariablesList	{ name: "allVariablesList"								}
 		AssignedVariablesList	{ name: "variables";		title: qsTr("Variables")	}
-		AssignedVariablesList	{ name: "splitby";			title: qsTr("Split");		singleVariable: true; suggestedColumns: ["ordinal", "nominal"];	id: splitBy }
+		AssignedVariablesList	{ name: "splitBy";			title: qsTr("Split");		singleVariable: true; suggestedColumns: ["ordinal", "nominal"];	id: splitBy }
 	}
 
 	CheckBox
 	{
-		name	: "transposeMainTable"
+		name	: "descriptivesTableTransposed"
 		label	: qsTr("Transpose descriptives table")
 		checked	: false
 	}
@@ -55,15 +55,15 @@ Form
 		{
 			title:	qsTr("Quantiles")
 
-			CheckBox { name: "percentileValuesQuartiles";	label: qsTr("Quartiles") }
+			CheckBox { name: "quartiles";	label: qsTr("Quartiles") }
 			CheckBox
 			{
-				name:				"percentileValuesEqualGroups"; label: qsTr("Cut points for: ")
+				name:				"quantilesForEqualGroups"; label: qsTr("Cut points for: ")
 				childrenOnSameRow:	true
 
 				IntegerField
 				{
-					name:			"percentileValuesEqualGroupsNo"
+					name:			"quantilesForEqualGroupsNumber"
 					min:			2
 					max:			1000
 					defaultValue:	4
@@ -73,14 +73,14 @@ Form
 
 			CheckBox
 			{
-				name:				"percentileValuesPercentiles"
+				name:				"percentiles"
 				label:				qsTr("Percentiles:")
 				childrenOnSameRow:	true
 
 				TextField
 				{
 					inputType:	"doubleArray"
-					name:		"percentileValuesPercentilesPercentiles"
+					name:		"percentileValues"
 					fieldWidth: 60
 				}
 			}
@@ -101,7 +101,7 @@ Form
 
 			CheckBox { name: "skewness";			label: qsTr("Skewness")						}
 			CheckBox { name: "kurtosis";			label: qsTr("Kurtosis")						}
-			CheckBox { name: "shapiro";				label: qsTr("Shapiro-Wilk test")			}
+			CheckBox { name: "shapiroWilkTest";		label: qsTr("Shapiro-Wilk test")			}
 			CheckBox { name: "sum";					label: qsTr("Sum");							}
 		}
 
@@ -111,16 +111,16 @@ Form
 			columns:			2
 			Layout.columnSpan:	2
 
-			CheckBox { name: "standardErrorMean";	label: qsTr("S.E. mean")							}
-			CheckBox { name: "standardDeviation";	label: qsTr("Std. deviation");		checked: true	}
-			CheckBox { name: "cOfVariation";		label: qsTr("Coefficient of variation");			}
-			CheckBox { name: "mad";					label: qsTr("MAD")									}
-			CheckBox { name: "madrobust";			label: qsTr("MAD robust")							}
-			CheckBox { name: "iqr";					label: qsTr("IQR")									}
-			CheckBox { name: "variance";			label: qsTr("Variance")								}
-			CheckBox { name: "range";				label: qsTr("Range")								}
-			CheckBox { name: "minimum";				label: qsTr("Minimum");				checked: true	}
-			CheckBox { name: "maximum";				label: qsTr("Maximum");				checked: true	}
+			CheckBox { name: "seMean";						label: qsTr("S.E. mean")							}
+			CheckBox { name: "sd";							label: qsTr("Std. deviation");		checked: true	}
+			CheckBox { name: "coefficientOfVariation";		label: qsTr("Coefficient of variation");			}
+			CheckBox { name: "mad";							label: qsTr("MAD")									}
+			CheckBox { name: "madRobust";					label: qsTr("MAD robust")							}
+			CheckBox { name: "iqr";							label: qsTr("IQR")									}
+			CheckBox { name: "variance";					label: qsTr("Variance")								}
+			CheckBox { name: "range";						label: qsTr("Range")								}
+			CheckBox { name: "minimum";						label: qsTr("Minimum");				checked: true	}
+			CheckBox { name: "maximum";						label: qsTr("Maximum");				checked: true	}
 		}
 
 		CheckBox { name: "statisticsValuesAreGroupMidpoints"; label: qsTr("Values are group midpoints"); debug: true }
@@ -136,19 +136,19 @@ Form
 			Group
 			{
 				columns: 2
-				CheckBox {				name: "plotVariables";			label: qsTr("Distribution plots");	id:	plotVariables					}
-				CheckBox {				name: "plotCorrelationMatrix";	label: qsTr("Correlation plots");	id:	plotCorrelationMatrix			}
+				CheckBox {				name: "distributionPlots";			label: qsTr("Distribution plots");	id:	distributionPlots					}
+				CheckBox {				name: "correlationPlots";	label: qsTr("Correlation plots");	id:	correlationPlots			}
 			}
 
 			Group
 			{
-				enabled: plotVariables.checked || plotCorrelationMatrix.checked
+				enabled: distributionPlots.checked || correlationPlots.checked
 
 				indent:		true
-				CheckBox {			name: "distPlotDensity";	label: qsTr("Display density")						}
-				CheckBox {			name: "distPlotRug";		label: qsTr("Display rug marks")					}
+				CheckBox {	name: "distributionAndCorrelationPlotDensity";		label: qsTr("Display density")						}
+				CheckBox {	name: "distributionAndCorrelationPlotRugMarks";		label: qsTr("Display rug marks")					}
 				DropDown {
-					name: "binWidthType"
+					name: "distributionAndCorrelationPlotHistogramBinWidthType"
 					label: qsTr("Bin width type")
 					indexDefaultValue: 0
 					values:
@@ -163,7 +163,7 @@ Form
 				}
 				DoubleField
 				{
-					name:			"numberOfBins"
+					name:			"distributionAndCorrelationPlotHistogramManualNumberOfBins"
 					label:			qsTr("Number of bins")
 					defaultValue:	30
 					min:			3;
@@ -175,10 +175,10 @@ Form
 
 		Group
 		{
-			CheckBox {				name: "descriptivesIntervalPlot";label: qsTr("Interval plots")					}
-			CheckBox {				name: "descriptivesQQPlot";		label: qsTr("Q-Q plots")						}
-			CheckBox {				name: "descriptivesPiechart";	label: qsTr("Pie charts")						}
-			CheckBox {				name: "descriptivesDotPlot";	label: qsTr("Dot plots")						}
+			CheckBox {				name: "intervalPlot";	label: qsTr("Interval plots")					}
+			CheckBox {				name: "qqPlot";			label: qsTr("Q-Q plots")						}
+			CheckBox {				name: "pieChart";		label: qsTr("Pie charts")						}
+			CheckBox {				name: "dotPlot";		label: qsTr("Dot plots")						}
 		}	
 		
 		Group
@@ -187,7 +187,7 @@ Form
 			
 			CheckBox 
 			{			
-				name: 		"descriptivesParetoPlot"
+				name: 		"paretoPlot"
 				label: 		qsTr("Pareto plots")
 				
 				CheckBox 
@@ -196,26 +196,26 @@ Form
 					label: 				qsTr("Pareto rule")
 					childrenOnSameRow: 	true
 					
-					CIField { name: 	"paretoPlotRuleField" }
+					CIField { name: 	"paretoPlotRuleCi" }
 				}
 			}
 			
 			CheckBox 
 			{	
-				name: 		"descriptivesLikertPlot"	
+				name: 		"likertPlot"
 				label: 		qsTr("Likert plots")	
 
 				CheckBox 
 				{			
-					name: 				"likertPlotEqualLevel"	
+					name: 				"likertPlotAssumeVariablesSameLevel"	
 					label: 				qsTr("Assume all variables share the same levels")
 					childrenOnSameRow: 	true
 				}				
 				
 				DropDown 
 				{
-					id: 				likertPlotFontSize
-					name: 				"likertPlotFontSize"
+					id: 				likertPlotAdjustableFontSize
+					name: 				"likertPlotAdjustableFontSize"
 					label: 				qsTr("Adjustable font size for vertical axis")
 					indexDefaultValue: 	0
 					values:
@@ -253,18 +253,18 @@ Form
 
 		CheckBox
 		{
-			name: "splitPlots";
+			name: "boxPlot";
 			label: qsTr("Boxplots")
 			Group {
 				columns: 2
 				Group {
-					CheckBox {	name: "splitPlotBoxplot";		label: qsTr("Boxplot element"); checked: true	}
-					CheckBox {	name: "splitPlotViolin";		label: qsTr("Violin element")					}
-					CheckBox {	name: "splitPlotJitter";		label: qsTr("Jitter element")					}
+					CheckBox {	name: "boxPlotBoxPlot";			label: qsTr("Boxplot element"); checked: true	}
+					CheckBox {	name: "boxPlotViolin";			label: qsTr("Violin element")					}
+					CheckBox {	name: "boxPlotJitter";			label: qsTr("Jitter element")					}
 				}
 				Group {
-					CheckBox {  name: "splitPlotColour";		label: qsTr("Use color palette")				}
-					CheckBox {	name: "splitPlotOutlierLabel";	label: qsTr("Label outliers")					}
+					CheckBox {  name: "boxPlotColourPalette";		label: qsTr("Use color palette")				}
+					CheckBox {	name: "boxPlotOutlierLabel";		label: qsTr("Label outliers")					}
 				}
 			}
 		}
@@ -276,7 +276,7 @@ Form
 			columns: 2
 			RadioButtonGroup
 			{
-				name:	"graphTypeAbove";
+				name:	"scatterPlotGraphTypeAbove";
 				title:	qsTr("Graph above scatter plot")
 				RadioButton { value: "density";		label: qsTr("Density");		checked: true	}
 				RadioButton { value: "histogram";	label: qsTr("Histogram")					}
@@ -284,7 +284,7 @@ Form
 			}
 			RadioButtonGroup
 			{
-				name:	"graphTypeRight";
+				name:	"scatterPlotGraphTypeRight";
 				title:	qsTr("Graph right of scatter plot")
 				RadioButton { value: "density";		label: qsTr("Density");		checked: true	}
 				RadioButton { value: "histogram";	label: qsTr("Histogram")					}
@@ -292,29 +292,29 @@ Form
 			}
 			CheckBox
 			{
-				name: "addSmooth"
+				name: "scatterPlotRegressionLine"
 				label: qsTr("Add regression line")
 				checked: true
 				RadioButtonGroup
 				{
-					name:	"regressionType";
+					name:	"scatterPlotRegressionLineType";
 					RadioButton { value: "smooth";	label: qsTr("Smooth");	checked: true	}
 					RadioButton { value: "linear";	label: qsTr("Linear")					}
 				}
 
 				CheckBox
 				{
-					name: "addSmoothCI"
+					name: "scatterPlotRegressionLineCi"
 					label: qsTr("Show confidence interval")
 					checked: true
 					childrenOnSameRow: true
-					CIField {	name: "addSmoothCIValue" }
+					CIField {	name: "scatterPlotRegressionLineCiLevel" }
 				}
 			}
 			CheckBox
 			{
 				enabled: splitBy.count > 0
-				name: "showLegend"
+				name: "scatterPlotLegend"
 				label: qsTr("Show legend")
 				checked: true
 			}
@@ -345,12 +345,12 @@ Form
 			
 			CheckBox 
 			{ 
-				name: 		"descriptivesDensityPlot"
+				name: 		"densityPlot"
 				label: 		qsTr("Display density plots") 
 			
 				DoubleField
 				{
-					name:			"transparency"
+					name:			"densityPlotTransparency"
 					label:			qsTr("Transparency")
 					fieldWidth:		32
 					defaultValue:	20
@@ -371,13 +371,13 @@ Form
 			}
 			AssignedVariablesList
 			{
-				name: "heatmapHorizontal"
+				name: "heatmapHorizontalAxis"
 				label: qsTr("Horizontal axis:")
 				singleVariable: true
 			}
 			AssignedVariablesList
 			{
-				name: "heatmapVertical"
+				name: "heatmapVerticalAxis"
 				label: qsTr("Vertical axis:")
 				singleVariable: true
 			}
@@ -389,10 +389,10 @@ Form
 			CheckBox { name: "heatmapLegend"; label: qsTr("Display legend")	}
 			CheckBox
 			{
-				name: "heatmapPlotValue"; label: qsTr("Display value"); childrenOnSameRow: false;
-				DoubleField { name: "heatmapPlotValueSize"; label: qsTr("Relative text size"); negativeValues: false; defaultValue: 1 }
+				name: "heatmapDisplayValue"; label: qsTr("Display value"); childrenOnSameRow: false;
+				DoubleField { name: "heatmapDisplayValueRelativeTextSize"; label: qsTr("Relative text size"); negativeValues: false; defaultValue: 1 }
 			}
-			DoubleField { name: "heatmapRectangleRatio"; label: qsTr("Width to height ratio of tiles"); negativeValues: false; defaultValue: 1}
+			DoubleField { name: "heatmapTileWidthHeightRatio"; label: qsTr("Width to height ratio of tiles"); negativeValues: false; defaultValue: 1}
 
 			Group
 			{
@@ -430,7 +430,7 @@ Form
 			label:			qsTr("Frequency tables")
 			IntegerField
 			{
-				name:			"frequencyTablesMaximumAmount"
+				name:			"frequencyTablesMaximumDistinctValues"
 				label:			qsTr("Maximum distinct values")
 				min:			1
 				defaultValue:	10

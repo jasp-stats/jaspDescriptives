@@ -23,7 +23,7 @@ gettextf <- function(fmt, ..., domain = NULL)  {
 
 Descriptives <- function(jaspResults, dataset, options) {
   variables <- unlist(options$variables)
-  splitName <- options$splitby
+  splitName <- options$splitBy
   makeSplit <- splitName != ""
   numberMissingSplitBy <- 0
 
@@ -59,7 +59,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (options$frequencyTables) {
     if(is.null(jaspResults[["tables"]])) {
       jaspResults[["tables"]] <- createJaspContainer(gettext("Frequency Tables"))
-      jaspResults[["tables"]]$dependOn(c("frequencyTables", "splitby", "frequencyTablesMaximumAmount"))
+      jaspResults[["tables"]]$dependOn(c("frequencyTables", "splitBy", "frequencyTablesMaximumDistinctValues"))
       jaspResults[["tables"]]$position <- 3
     }
 
@@ -67,12 +67,12 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Correlation plot
-  if (options$plotCorrelationMatrix && length(variables) > 1) {
+  if (options$correlationPlots && length(variables) > 1) {
     if(is.null(jaspResults[["matrixPlot"]])) {
       if (makeSplit) {
         jaspResults[["matrixPlot"]] <- createJaspContainer(title=gettext("Correlation plots"))
         corrPlot <- jaspResults[["matrixPlot"]]
-        corrPlot$dependOn(c("plotCorrelationMatrix", "splitby", "variables"))
+        corrPlot$dependOn(c("correlationPlots", "splitBy", "variables"))
 
         for (i in 1:length(splitLevels))
           corrPlot[[splitLevels[i]]] <- .descriptivesMatrixPlot(splitDat.factors[[i]], options, splitLevels[i])
@@ -86,11 +86,11 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Distribution plots
-  if (options$plotVariables) {
+  if (options$distributionPlots) {
     if(is.null(jaspResults[["distributionPlots"]])) {
       jaspResults[["distributionPlots"]] <- createJaspContainer(gettext("Distribution Plots"))
-      jaspResults[["distributionPlots"]]$dependOn(c("plotVariables", "splitby", "binWidthType", "distPlotDensity",
-                                                    "distPlotRug", "numberOfBins"))
+      jaspResults[["distributionPlots"]]$dependOn(c("distributionPlots", "splitBy", "distributionAndCorrelationPlotHistogramBinWidthType", "distributionAndCorrelationPlotDensity",
+                                                    "distributionAndCorrelationPlotRugMarks", "distributionAndCorrelationPlotHistogramManualNumberOfBins"))
       jaspResults[["distributionPlots"]]$position <- 5
     }
 
@@ -108,14 +108,14 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Box plots
-  if (options$splitPlots) {
-    if(is.null(jaspResults[["splitPlots"]])) {
-      jaspResults[["splitPlots"]] <- createJaspContainer(gettext("Boxplots"))
-      jaspResults[["splitPlots"]]$dependOn(c("splitPlots", "splitby"))
-      jaspResults[["splitPlots"]]$position <- 7
+  if (options$boxPlot) {
+    if(is.null(jaspResults[["boxPlot"]])) {
+      jaspResults[["boxPlot"]] <- createJaspContainer(gettext("Boxplots"))
+      jaspResults[["boxPlot"]]$dependOn(c("boxPlot", "splitBy"))
+      jaspResults[["boxPlot"]]$position <- 7
     }
 
-    splitPlots <- jaspResults[["splitPlots"]]
+    splitPlots <- jaspResults[["boxPlot"]]
 
     for (var in variables) {
       if(is.null(splitPlots[[var]]) && .descriptivesIsNumericColumn(dataset.factors, var)) {
@@ -126,20 +126,20 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # QQ plots
-  if (options$descriptivesQQPlot) {
+  if (options$qqPlot) {
     if(is.null(jaspResults[["QQPlots"]])) {
       if(length(variables)>1 || length(levels(dataset[[.v(splitName)]]))>1) #there will be more than one Q-Q Plot
         jaspResults[["QQPlots"]] <- createJaspContainer(gettext("Q-Q Plots"))
       else #only one Q-Q Plot
         jaspResults[["QQPlots"]] <- createJaspContainer(gettext("Q-Q Plot"))
-      jaspResults[["QQPlots"]]$dependOn(c("descriptivesQQPlot", "splitby"))
+      jaspResults[["QQPlots"]]$dependOn(c("qqPlot", "splitBy"))
       jaspResults[["QQPlots"]]$position <- 8
     }
     QQPlots <- jaspResults[["QQPlots"]]
     if(makeSplit) {
       qqSplitFactor     <- dataset[[.v(splitName)]]
       if(length(qqSplitFactor)==0)
-        return(createJaspPlot(error=gettext("Plotting is not possible: Variable only contains NA!"), dependencies="splitby"))
+        return(createJaspPlot(error=gettext("Plotting is not possible: Variable only contains NA!"), dependencies="splitBy"))
       #gives the different split values
       qqSplitLevels     <- levels(qqSplitFactor)
       # remove missing values from the grouping variable
@@ -167,11 +167,11 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Pie charts
-  if (options$descriptivesPiechart) {
+  if (options$pieChart) {
 
     if(is.null(jaspResults[["pieCharts"]])) {
       jaspResults[["pieCharts"]] <- createJaspContainer(gettext("Pie charts"))
-      jaspResults[["pieCharts"]]$dependOn(c("splitby", "descriptivesPiechart", "colorPalette"))
+      jaspResults[["pieCharts"]]$dependOn(c("splitBy", "pieChart", "colorPalette"))
       jaspResults[["pieCharts"]]$position <- 9
     }
 
@@ -195,7 +195,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (options[["stemAndLeaf"]]) {
     if(is.null(jaspResults[["stemAndLeaf"]])) {
       jaspResults[["stemAndLeaf"]] <- createJaspContainer(gettext("Stem and Leaf"))
-      jaspResults[["stemAndLeaf"]]$dependOn(c("splitby", "stemAndLeaf", "stemAndLeafScale"))
+      jaspResults[["stemAndLeaf"]]$dependOn(c("splitBy", "stemAndLeaf", "stemAndLeafScale"))
       jaspResults[["stemAndLeaf"]]$position <- 11
     }
 
@@ -216,8 +216,8 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (options[["scatterPlot"]]) {
     if(is.null(jaspResults[["scatterPlots"]])) {
       jaspResults[["scatterPlots"]] <- createJaspContainer(gettext("Scatter Plots"))
-      jaspResults[["scatterPlots"]]$dependOn(c("splitby", "scatterPlot", "graphTypeAbove", "graphTypeRight", "addSmooth",
-                                               "addSmoothCI", "addSmoothCIValue", "regressionType", "showLegend",
+      jaspResults[["scatterPlots"]]$dependOn(c("splitBy", "scatterPlot", "scatterPlotGraphTypeAbove", "scatterPlotGraphTypeRight", "scatterPlotRegressionLine",
+                                               "scatterPlotRegressionLineCi", "scatterPlotRegressionLineCiLevel", "scatterPlotRegressionLineType", "scatterPlotLegend",
                                                "colorPalette"))
       jaspResults[["scatterPlots"]]$position <- 10
     }
@@ -225,10 +225,10 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Interval plots
-  if (options$descriptivesIntervalPlot) {
+  if (options$intervalPlot) {
     if(is.null(jaspResults[["IntervalPlots"]])) {
       jaspResults[["IntervalPlots"]] <- createJaspContainer(gettext("Interval plots"))
-      jaspResults[["IntervalPlots"]]$dependOn(c("descriptivesIntervalPlot", "splitby"))
+      jaspResults[["IntervalPlots"]]$dependOn(c("intervalPlot", "splitBy"))
       jaspResults[["IntervalPlots"]]$position <- 12
     }
 
@@ -243,11 +243,11 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Dot plots
-  if (options[["descriptivesDotPlot"]]){
+  if (options[["dotPlot"]]){
 
     if (is.null(jaspResults[["DotPlots"]])) {
       jaspResults[["DotPlots"]] <- createJaspContainer(gettext("Dot Plots"))
-      jaspResults[["DotPlots"]]$dependOn(c("splitby", "descriptivesDotPlot"))
+      jaspResults[["DotPlots"]]$dependOn(c("splitBy", "dotPlot"))
       jaspResults[["DotPlots"]]$position <- 13
     }
 
@@ -264,13 +264,13 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Heatmap
-  if (options[["heatmapHorizontal"]] != "" && options[["heatmapVertical"]] != "") {
+  if (options[["heatmapHorizontalAxis"]] != "" && options[["heatmapVerticalAxis"]] != "") {
     if(is.null(jaspResults[["heatmaps"]])) {
       jaspResults[["heatmaps"]] <- createJaspContainer(gettext("Heatmaps"))
-      jaspResults[["heatmaps"]]$dependOn(c("heatmapHorizontal", "heatmapVertical",
-                                           "heatmapPlotValue", "heatmapRectangleRatio", "heatmapLegend",
+      jaspResults[["heatmaps"]]$dependOn(c("heatmapHorizontalAxis", "heatmapVerticalAxis",
+                                           "heatmapDisplayValue", "heatmapTileWidthHeightRatio", "heatmapDisplayLegend",
                                            "heatmapStatisticContinuous", "heatmapStatisticDiscrete",
-                                           "colorPalette", "splitby", "variables"))
+                                           "colorPalette", "splitBy", "variables"))
       jaspResults[["heatmaps"]]$position <- 14
     }
 
@@ -278,10 +278,10 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Pareto plots
-  if (options[["descriptivesParetoPlot"]]) {
+  if (options[["paretoPlot"]]) {
     if (is.null(jaspResults[["paretoPlots"]])) {
       jaspResults[["paretoPlots"]] <- createJaspContainer(gettext("Pareto Plots"))
-      jaspResults[["paretoPlots"]]$dependOn(c("descriptivesParetoPlot", "splitby", "paretoPlotRule", "paretoPlotRuleField"))
+      jaspResults[["paretoPlots"]]$dependOn(c("paretoPlot", "splitBy", "paretoPlotRule", "paretoPlotRuleCi"))
       jaspResults[["paretoPlots"]]$position <- 15
     }
 
@@ -302,11 +302,11 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Density plots
-  if (options[["descriptivesDensityPlot"]]) {
+  if (options[["densityPlot"]]) {
     if (is.null(jaspResults[["densityPlot"]])) {
       jaspResults[["densityPlot"]] <- createJaspContainer(gettext("Density Plots"))
-      jaspResults[["densityPlot"]]$dependOn(c("descriptivesDensityPlot", "densityPlotSeparate",
-                                              "colorPalette", "splitby", "variables", "transparency"))
+      jaspResults[["densityPlot"]]$dependOn(c("densityPlot", "densityPlotSeparate",
+                                              "colorPalette", "splitBy", "variables", "densityPlotTransparency"))
       jaspResults[["densityPlot"]]$position <- 17
     }
 
@@ -314,11 +314,11 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   # Likert plots
-  if (options[["descriptivesLikertPlot"]] && !all(lapply(dataset.factors[variables], is.double))) {
+  if (options[["likertPlot"]] && !all(lapply(dataset.factors[variables], is.double))) {
     if (is.null(jaspResults[["likertPlot"]])) {
       jaspResults[["likertPlot"]] <- createJaspContainer(gettext("Likert Plots"))
-      jaspResults[["likertPlot"]]$dependOn(c("descriptivesLikertPlot", "splitby", "variables",
-                                             "likertPlotEqualLevel", "likertPlotFontSize"))
+      jaspResults[["likertPlot"]]$dependOn(c("likertPlot", "splitBy", "variables",
+                                             "likertPlotAssumeVariablesSameLevel", "likertPlotAdjustableFontSize"))
       jaspResults[["likertPlot"]]$position <- 16
     }
 
@@ -350,20 +350,20 @@ Descriptives <- function(jaspResults, dataset, options) {
 .descriptivesDescriptivesTable <- function(dataset, options, jaspResults, numberMissingSplitBy=0) {
   if (!is.null(jaspResults[["stats"]])) return() #The options for this table didn't change so we don't need to rebuild it
 
-  wantsSplit              <- options$splitby != ""
+  wantsSplit              <- options$splitBy != ""
   variables               <- unlist(options$variables)
-  equalGroupsNo           <- options$percentileValuesEqualGroupsNo
-  percentilesPercentiles  <- unique(options$percentileValuesPercentilesPercentiles)
+  equalGroupsNo           <- options$quantilesForEqualGroupsNumber
+  percentilesPercentiles  <- unique(options$percentileValues)
   stats                   <- createJaspTable(gettext("Descriptive Statistics"))
-  stats$transpose         <- !options[["transposeMainTable"]] # the table is transposed by default
+  stats$transpose         <- !options[["descriptivesTableTransposed"]] # the table is transposed by default
   stats$position          <- 1
 
   if (numberMissingSplitBy)
-    stats$addFootnote(message=gettextf("Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s", numberMissingSplitBy, options$splitby))
+    stats$addFootnote(message=gettextf("Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s", numberMissingSplitBy, options$splitBy))
 
-  stats$dependOn(c("splitby", "variables", "percentileValuesEqualGroupsNo", "percentileValuesPercentilesPercentiles", "mode", "median", "mean", "standardErrorMean",
-    "standardDeviation", "cOfVariation", "variance", "skewness", "kurtosis", "shapiro", "range", "iqr", "mad", "madrobust", "minimum", "maximum",
-    "sum", "percentileValuesQuartiles", "percentileValuesEqualGroups", "percentileValuesPercentiles", "transposeMainTable", "valid", "missing"))
+  stats$dependOn(c("splitBy", "variables", "quantilesForEqualGroupsNumber", "percentileValues", "mode", "median", "mean", "seMean",
+    "sd", "coefficientOfVariation", "variance", "skewness", "kurtosis", "shapiroWilkTest", "range", "iqr", "mad", "madRobust", "minimum", "maximum",
+    "sum", "quartiles", "quantilesForEqualGroups", "percentiles", "descriptivesTableTransposed", "valid", "missing"))
 
   if (wantsSplit) {
     stats$transposeWithOvertitle <- TRUE
@@ -373,35 +373,35 @@ Descriptives <- function(jaspResults, dataset, options) {
     stats$addColumnInfo(name="Variable",  title="", type="string")
   }
 
-  if (options$valid)                stats$addColumnInfo(name="Valid",                       title=gettext("Valid"),                   type="integer")
-  if (options$missing)              stats$addColumnInfo(name="Missing",                     title=gettext("Missing"),                 type="integer")
-  if (options$mode)                 stats$addColumnInfo(name="Mode",                        title=gettext("Mode"),                    type="number")
-  if (options$median)               stats$addColumnInfo(name="Median",                      title=gettext("Median"),                  type="number")
-  if (options$mean)                 stats$addColumnInfo(name="Mean",                        title=gettext("Mean"), 				            type="number")
-  if (options$standardErrorMean)    stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of Mean"),      type="number")
-  if (options$standardDeviation)    stats$addColumnInfo(name="Std. Deviation",              title=gettext("Std. Deviation"),          type="number")
-  if (options$cOfVariation)         stats$addColumnInfo(name="Coefficient of Variation",    title=gettext("Coefficient of variation"),type="number")
-  if (options$mad)                  stats$addColumnInfo(name="MAD",                         title=gettext("MAD"),                     type="number")
-  if (options$madrobust)            stats$addColumnInfo(name="MAD Robust",                  title=gettext("MAD robust"),              type="number")
-  if (options$iqr)                  stats$addColumnInfo(name="IQR",                         title=gettext("IQR"),                     type="number")
-  if (options$variance)             stats$addColumnInfo(name="Variance",                    title=gettext("Variance"),                type="number")
-  if (options$skewness) {           stats$addColumnInfo(name="Skewness",                    title=gettext("Skewness"),                type="number")
-                                    stats$addColumnInfo(name="Std. Error of Skewness",      title=gettext("Std. Error of Skewness"),  type="number") }
-  if (options$kurtosis) {           stats$addColumnInfo(name="Kurtosis",                    title=gettext("Kurtosis"),                type="number")
-                                    stats$addColumnInfo(name="Std. Error of Kurtosis",      title=gettext("Std. Error of Kurtosis"),  type="number") }
-  if (options$shapiro) {            stats$addColumnInfo(name="Shapiro-Wilk",                title=gettext("Shapiro-Wilk"),            type="number")
-                                    stats$addColumnInfo(name="P-value of Shapiro-Wilk",     title=gettext("P-value of Shapiro-Wilk"), type="pvalue") }
-  if (options$range)                stats$addColumnInfo(name="Range",                       title=gettext("Range"),                   type="number")
-  if (options$minimum)              stats$addColumnInfo(name="Minimum",                     title=gettext("Minimum"),                 type="number")
-  if (options$maximum)              stats$addColumnInfo(name="Maximum",                     title=gettext("Maximum"),                 type="number")
+  if (options$valid)                          stats$addColumnInfo(name="Valid",                       title=gettext("Valid"),                   type="integer")
+  if (options$missing)                        stats$addColumnInfo(name="Missing",                     title=gettext("Missing"),                 type="integer")
+  if (options$mode)                           stats$addColumnInfo(name="Mode",                        title=gettext("Mode"),                    type="number")
+  if (options$median)                         stats$addColumnInfo(name="Median",                      title=gettext("Median"),                  type="number")
+  if (options$mean)                           stats$addColumnInfo(name="Mean",                        title=gettext("Mean"), 				            type="number")
+  if (options$seMean)              stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of Mean"),      type="number")
+  if (options$sd)              stats$addColumnInfo(name="Std. Deviation",              title=gettext("Std. Deviation"),          type="number")
+  if (options$coefficientOfVariation)         stats$addColumnInfo(name="Coefficient of Variation",    title=gettext("Coefficient of variation"),type="number")
+  if (options$mad)                            stats$addColumnInfo(name="MAD",                         title=gettext("MAD"),                     type="number")
+  if (options$madRobust)                      stats$addColumnInfo(name="MAD Robust",                  title=gettext("MAD robust"),              type="number")
+  if (options$iqr)                            stats$addColumnInfo(name="IQR",                         title=gettext("IQR"),                     type="number")
+  if (options$variance)                       stats$addColumnInfo(name="Variance",                    title=gettext("Variance"),                type="number")
+  if (options$skewness) {                     stats$addColumnInfo(name="Skewness",                    title=gettext("Skewness"),                type="number")
+                                              stats$addColumnInfo(name="Std. Error of Skewness",      title=gettext("Std. Error of Skewness"),  type="number") }
+  if (options$kurtosis) {                     stats$addColumnInfo(name="Kurtosis",                    title=gettext("Kurtosis"),                type="number")
+                                              stats$addColumnInfo(name="Std. Error of Kurtosis",      title=gettext("Std. Error of Kurtosis"),  type="number") }
+  if (options$shapiroWilkTest) {              stats$addColumnInfo(name="Shapiro-Wilk",                title=gettext("Shapiro-Wilk"),            type="number")
+                                              stats$addColumnInfo(name="P-value of Shapiro-Wilk",     title=gettext("P-value of Shapiro-Wilk"), type="pvalue") }
+  if (options$range)                          stats$addColumnInfo(name="Range",                       title=gettext("Range"),                   type="number")
+  if (options$minimum)                        stats$addColumnInfo(name="Minimum",                     title=gettext("Minimum"),                 type="number")
+  if (options$maximum)                        stats$addColumnInfo(name="Maximum",                     title=gettext("Maximum"),                 type="number")
 
-  if (options$percentileValuesQuartiles) {
+  if (options$quartiles) {
                                     stats$addColumnInfo(name="q1", title="25th percentile", type="number")
                                     stats$addColumnInfo(name="q2", title="50th percentile", type="number")
                                     stats$addColumnInfo(name="q3", title="75th percentile", type="number")
   }
 
-  if (options$percentileValuesEqualGroups)  {# I've read that there are several ways how to estimate percentiles so it should be checked if it match the SPSS way
+  if (options$quantilesForEqualGroups)  {# I've read that there are several ways how to estimate percentiles so it should be checked if it match the SPSS way
     tempPercentNames <- 1/equalGroupsNo * 1:(equalGroupsNo-1) * 100
 
     for (i in seq_along(tempPercentNames))
@@ -409,7 +409,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   }
 
-  if (options$percentileValuesPercentiles) {
+  if (options$percentiles) {
 
     for (i in percentilesPercentiles)
       stats$addColumnInfo(name=paste("pc", i, sep=""), title=gettextf("%gth percentile", i), type="number")
@@ -426,7 +426,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   # Find the number of levels to loop over
   if (wantsSplit) {
-    split       <- dataset[[.v(options$splitby)]]
+    split       <- dataset[[.v(options$splitBy)]]
     splitLevels <- levels(split)
     nLevels     <- length(levels(split))
 
@@ -484,17 +484,17 @@ Descriptives <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesDescriptivesTable_subFunction <- function(column, resultsCol, options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote) {
-  equalGroupsNo           <- options$percentileValuesEqualGroupsNo
-  percentilesPercentiles  <- unique(options$percentileValuesPercentilesPercentiles)
+  equalGroupsNo           <- options$quantilesForEqualGroupsNumber
+  percentilesPercentiles  <- unique(options$percentileValues)
 
   rows        <- length(column)
   na.omitted  <- na.omit(column)
 
-  if (base::is.factor(na.omitted) && (options$mode || options$median || options$mean || options$minimum || options$standardErrorMean || options$iqr || options$mad || options$madrobust || options$kurtosis || options$shapiro || options$skewness || options$percentileValuesQuartiles || options$variance || options$standardDeviation ||  options$cOfVariation || options$percentileValuesPercentiles || options$sum || options$maximum)) {
+  if (base::is.factor(na.omitted) && (options$mode || options$median || options$mean || options$minimum || options$seMean || options$iqr || options$mad || options$madRobust || options$kurtosis || options$shapiroWilkTest || options$skewness || options$quartiles || options$variance || options$sd ||  options$coefficientOfVariation || options$percentiles || options$sum || options$maximum)) {
     shouldAddNominalTextFootnote <- TRUE
   }
 
-  shouldAddIdenticalFootnote <- all(na.omitted[1] == na.omitted) && (options$skewness || options$kurtosis || options$shapiro)
+  shouldAddIdenticalFootnote <- all(na.omitted[1] == na.omitted) && (options$skewness || options$kurtosis || options$shapiroWilkTest)
 
   valid <- length(na.omitted)
   resultsCol[["Valid"]]                   <- if (options$valid)   valid
@@ -502,19 +502,19 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   resultsCol[["Median"]]                  <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$median,            na.omitted, median)
   resultsCol[["Mean"]]                    <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$mean,              na.omitted, mean)
-  resultsCol[["Std. Error of Mean"]]      <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$standardErrorMean, na.omitted, function(param) { sd(param)/sqrt(length(param))} )
-  resultsCol[["Std. Deviation"]]          <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$standardDeviation, na.omitted, sd)
-  resultsCol[["Coefficient of Variation"]]<- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$cOfVariation,      na.omitted, function(param) { sd(param) / mean(param)})
+  resultsCol[["Std. Error of Mean"]]      <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$seMean, na.omitted, function(param) { sd(param)/sqrt(length(param))} )
+  resultsCol[["Std. Deviation"]]          <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$sd, na.omitted, sd)
+  resultsCol[["Coefficient of Variation"]]<- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$coefficientOfVariation,      na.omitted, function(param) { sd(param) / mean(param)})
   resultsCol[["MAD"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$mad,               na.omitted, function(param) { mad(param, constant = 1) } )
-  resultsCol[["MAD Robust"]]              <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$madrobust,         na.omitted, mad)
+  resultsCol[["MAD Robust"]]              <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$madRobust,         na.omitted, mad)
   resultsCol[["IQR"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$iqr,               na.omitted, .descriptivesIqr)
   resultsCol[["Variance"]]                <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$variance,          na.omitted, var)
   resultsCol[["Kurtosis"]]                <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$kurtosis,          na.omitted, .descriptivesKurtosis)
   resultsCol[["Std. Error of Kurtosis"]]  <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$kurtosis,          na.omitted, .descriptivesSEK)
   resultsCol[["Skewness"]]                <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$skewness,          na.omitted, .descriptivesSkewness)
   resultsCol[["Std. Error of Skewness"]]  <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$skewness,          na.omitted, .descriptivesSES)
-  resultsCol[["Shapiro-Wilk"]]            <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$shapiro,           na.omitted, function(param) { res <- try(shapiro.test(param)$statistic); if(isTryError(res)) NA else res })
-  resultsCol[["P-value of Shapiro-Wilk"]] <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$shapiro,           na.omitted, function(param) { res <- try(shapiro.test(param)$p.value);   if(isTryError(res)) NA else res })
+  resultsCol[["Shapiro-Wilk"]]            <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$shapiroWilkTest,   na.omitted, function(param) { res <- try(shapiro.test(param)$statistic); if(isTryError(res)) NA else res })
+  resultsCol[["P-value of Shapiro-Wilk"]] <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$shapiroWilkTest,   na.omitted, function(param) { res <- try(shapiro.test(param)$p.value);   if(isTryError(res)) NA else res })
   resultsCol[["Range"]]                   <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$range,             na.omitted, function(param) { range(param)[2] - range(param)[1]})
   resultsCol[["Minimum"]]                 <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$minimum,           na.omitted, min)
   resultsCol[["Maximum"]]                 <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$maximum,           na.omitted, max)
@@ -538,7 +538,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     resultsCol[["Mode"]] <- NULL
   }
 
-  if (options$percentileValuesQuartiles) {
+  if (options$quartiles) {
     if (base::is.factor(na.omitted) == FALSE) {
       resultsCol[["q1"]] <- .clean(quantile(na.omitted, c(.25), names=F))
       resultsCol[["q2"]] <- .clean(quantile(na.omitted, c(.5), names=F))
@@ -556,12 +556,12 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   equalGroupNames <- NULL
 
-  if (options$percentileValuesEqualGroups)
+  if (options$quantilesForEqualGroups)
     equalGroupNames <- paste("eg", seq(equalGroupsNo - 1), sep="")
 
   percentileNames <- NULL
 
-  if (options$percentileValuesPercentiles)
+  if (options$percentiles)
     percentileNames <- paste("pc", percentilesPercentiles, sep="")
 
   for (row in names(resultsCol)) {
@@ -575,28 +575,28 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   if (base::is.factor(na.omitted) == FALSE) {
-    if (options$percentileValuesEqualGroups) {
+    if (options$quantilesForEqualGroups) {
 
       for (i in seq(equalGroupsNo - 1))
         resultsCol[[paste("eg", i, sep="")]] <- .clean(quantile(na.omitted, c(i / equalGroupsNo), names=F))
 
     }
 
-    if (options$percentileValuesPercentiles) {
+    if (options$percentiles) {
 
       for (i in percentilesPercentiles)
         resultsCol[[paste("pc", i, sep="")]] <- .clean(quantile(na.omitted, c(i / 100), names=F))
 
     }
   } else {
-    if (options$percentileValuesEqualGroups) {
+    if (options$quantilesForEqualGroups) {
 
       for (i in seq(equalGroupsNo - 1))
         resultsCol[[paste("eg", i, sep="")]] <- ""
 
     }
 
-    if (options$percentileValuesPercentiles) {
+    if (options$percentiles) {
 
       for (i in percentilesPercentiles)
         resultsCol[[paste("pc", i, sep="")]] <- ""
@@ -623,13 +623,13 @@ Descriptives <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesFrequencyTables <- function(dataset, options, freqTabs) {
-  splitName   <- options$splitby
+  splitName   <- options$splitBy
   wantsSplit  <- splitName!=""
   splitFactor <- dataset[[.v(splitName)]]
   splitLevels <- levels(splitFactor)
 
   omittedVariables <- character()
-  maximumDistinctValues <- options[["frequencyTablesMaximumAmount"]]
+  maximumDistinctValues <- options[["frequencyTablesMaximumDistinctValues"]]
 
   for (variable in options$variables) {
     column <- dataset[[variable]]
@@ -777,7 +777,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   variables <- unlist(options$variables)
 
   l         <- length(variables)
-  depends   <- c("plotCorrelationMatrix", "variables", "splitby", "binWidthType", "distPlotDensity", "distPlotRug", "numberOfBins")
+  depends   <- c("correlationPlots", "variables", "splitBy", "distributionAndCorrelationPlotHistogramBinWidthType", "distributionAndCorrelationPlotDensity", "distributionAndCorrelationPlotRugMarks", "distributionAndCorrelationPlotHistogramManualNumberOfBins")
 
   if (l == 0) #Nothing to plot
     return(NULL)
@@ -809,10 +809,10 @@ Descriptives <- function(jaspResults, dataset, options) {
       plotMat[[row, row]] <- .plotMarginal(
         column         = dataset[[variables[[row]]]],
         variableName   = NULL,
-        displayDensity = options[["distPlotDensity"]],
-        rugs           = options[["distPlotRug"]],
-        binWidthType   = options[["binWidthType"]],
-        numberOfBins   = options[["numberOfBins"]],
+        displayDensity = options[["distributionAndCorrelationPlotDensity"]],
+        rugs           = options[["distributionAndCorrelationPlotRugMarks"]],
+        binWidthType   = options[["distributionAndCorrelationPlotHistogramBinWidthType"]],
+        numberOfBins   = options[["distributionAndCorrelationPlotHistogramManualNumberOfBins"]],
         lwd            = .7
       )
       axisBreaks[[row]] <- jaspGraphs::getAxisBreaks(plotMat[[row, row]])
@@ -1010,23 +1010,23 @@ Descriptives <- function(jaspResults, dataset, options) {
 
 
 .descriptivesFrequencyPlots <- function(dataset, options, variable) {
-  if (options$splitby != "" ) {
+  if (options$splitBy != "" ) {
     # return a collection
     split <- names(dataset)
 
     plotResult <- createJaspContainer(title = variable)
-    plotResult$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
+    plotResult$dependOn(options = "splitBy", optionContainsValue = list(variables = variable))
 
     for (l in split) {
-      plotResult[[l]] <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset[[l]], variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDensity, rugs = options$distPlotRug, title = l, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
+      plotResult[[l]] <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset[[l]], variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distributionAndCorrelationPlotDensity, rugs = options$distributionAndCorrelationPlotRugMarks, title = l, binWidthType = options$distributionAndCorrelationPlotHistogramBinWidthType, numberOfBins = options$distributionAndCorrelationPlotHistogramManualNumberOfBins)
       plotResult[[l]]$dependOn(optionsFromObject = plotResult)
     }
 
     return(plotResult)
   } else {
     column <- dataset[[.v(variable)]]
-    aPlot <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset, variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distPlotDensity, rugs = options$distPlotRug, title = variable, binWidthType = options$binWidthType, numberOfBins = options$numberOfBins)
-    aPlot$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
+    aPlot <- .descriptivesFrequencyPlots_SubFunc(dataset = dataset, variable = variable, width = options$plotWidth, height = options$plotHeight, displayDensity = options$distributionAndCorrelationPlotDensity, rugs = options$distributionAndCorrelationPlotRugMarks, title = variable, binWidthType = options$distributionAndCorrelationPlotHistogramBinWidthType, numberOfBins = options$distributionAndCorrelationPlotHistogramManualNumberOfBins)
+    aPlot$dependOn(options = "splitBy", optionContainsValue = list(variables = variable))
 
     return(aPlot)
   }
@@ -1050,14 +1050,14 @@ Descriptives <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesSplitPlot <- function(dataset, options,  variable) {
-  depends <- c("splitPlotColour", "splitPlotViolin", "splitPlotBoxplot", "splitPlotJitter", "splitPlotOutlierLabel")
+  depends <- c("boxPlotColourPalette", "boxPlotViolin", "boxPlotBoxPlot", "boxPlotJitter", "boxPlotOutlierLabel")
 
   thePlot <- createJaspPlot(title=variable, width=options$plotWidth, height=options$plotHeight, dependencies=depends)
 
   errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 1")
   if (!is.null(errorMessage)) {
     thePlot$setError(gettextf("Plotting not possible: %s", errorMessage))
-  } else if (!(options$splitPlotViolin || options$splitPlotBoxplot || options$splitPlotJitter)) {
+  } else if (!(options$boxPlotViolin || options$boxPlotBoxPlot || options$boxPlotJitter)) {
     thePlot$setError(gettext("Plotting is not possible: No plot type selected!"))
   } else {
     # we need to know which index in y is related to which index in the actual data, so we should not forget the NAs somehow, lets make a list of indices.
@@ -1078,14 +1078,14 @@ Descriptives <- function(jaspResults, dataset, options) {
       yWithNAIndex <- yWithNAIndex + 1
     }
 
-    if (is.null(dataset[[options$splitby]])){
+    if (is.null(dataset[[options$splitBy]])){
       group     <- factor(rep("",length(y)))
       xlab      <- "Total"
       boxWidth  <- 0.2
       vioWidth  <- 0.3
     } else {
-      group     <- as.factor(dataset[[options$splitby]])[!is.na(dataset[[variable]])]
-      xlab      <- options$splitby
+      group     <- as.factor(dataset[[options$splitBy]])[!is.na(dataset[[variable]])]
+      xlab      <- options$splitBy
       boxWidth  <- 0.4
       vioWidth  <- 0.6
     }
@@ -1106,7 +1106,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
     plotDat$label <- ifelse(plotDat$outlier, row.names(plotDat),"")
 
-    if (options$splitPlotColour) {
+    if (options$boxPlotColourPalette) {
       thePlot$dependOn("colorPalette") # only add color as dependency if the user wants it
       palette <- options[["colorPalette"]]
       p <- ggplot2::ggplot(plotDat, ggplot2::aes(x=group, y, fill=group)) + jaspGraphs::scale_JASPfill_discrete(palette) + jaspGraphs::scale_JASPcolor_discrete(palette)
@@ -1114,43 +1114,43 @@ Descriptives <- function(jaspResults, dataset, options) {
       p <- ggplot2::ggplot(plotDat, ggplot2::aes(x=group, y, fill=group)) + ggplot2::scale_fill_manual(values=rep("grey", nlevels(group))) + ggplot2::scale_colour_manual(values=rep("grey", nlevels(group)))
     }
 
-    if (options$splitPlotViolin && options$splitPlotBoxplot && options$splitPlotJitter) {
+    if (options$boxPlotViolin && options$boxPlotBoxPlot && options$boxPlotJitter) {
       p <- p +
         ggplot2::geom_violin(trim = F, size = 0.75, width = vioWidth, scale = "width") +
         ggplot2::stat_boxplot(geom = "errorbar", size = 0.75, width = boxWidth/2) +
         ggplot2::geom_boxplot(size = 0.75, width = boxWidth, outlier.shape = NA) +
         ggplot2::geom_violin(trim = F, size = 0.75, width = vioWidth, fill = "transparent", scale = "width") +
         ggplot2::geom_jitter(size = 2.5, shape = 1, stroke = 1, position = ggplot2::position_jitter(width=0.05, height = 0), fill = "transparent")
-    } else if (options$splitPlotBoxplot && options$splitPlotViolin) {
+    } else if (options$boxPlotBoxPlot && options$boxPlotViolin) {
       p <- p +
         ggplot2::geom_violin(trim = F, size = 0.75, width = vioWidth, scale = "width") +
         ggplot2::stat_boxplot(geom = "errorbar", size = 0.75, width = boxWidth/2) +
         ggplot2::geom_boxplot(size = 0.75, outlier.size = 1.5, width = boxWidth) +
         ggplot2::geom_violin(trim = F, size = 0.75, width = vioWidth, fill = "transparent", scale = "width")
-    } else if (options$splitPlotBoxplot && options$splitPlotJitter) {
+    } else if (options$boxPlotBoxPlot && options$boxPlotJitter) {
       p <- p +
         ggplot2::stat_boxplot(geom = "errorbar", size = 0.75, width = boxWidth/2 ) +
         ggplot2::geom_boxplot(size = 0.75, outlier.shape = NA, width = boxWidth) +
         ggplot2::geom_jitter(size = 2.5, shape = 1, stroke = 1, position = ggplot2::position_jitter(width=0.05, height = 0), fill = "transparent")
-    } else if (options$splitPlotViolin && options$splitPlotJitter) {
+    } else if (options$boxPlotViolin && options$boxPlotJitter) {
       p <- p +
         ggplot2::geom_violin(trim = F, size = 0.75, width = 0.75*boxWidth, scale = "width") +
         ggplot2::geom_jitter(size = 2.5, shape = 1, stroke = 1, position = ggplot2::position_jitter(width=0.05, height = 0), fill = "transparent")
-    } else if (options$splitPlotViolin) {
+    } else if (options$boxPlotViolin) {
       p <- p + ggplot2::geom_violin(trim = F, size = 0.75, scale = "width", width = 0.75*boxWidth)
-    } else if (options$splitPlotBoxplot) {
+    } else if (options$boxPlotBoxPlot) {
       p <- p +
         ggplot2::stat_boxplot(geom = "errorbar",size = 0.75, width = boxWidth/2 ) +
         ggplot2::geom_boxplot(size = 0.75, outlier.size = 1.5, width = boxWidth)
-    } else if (options$splitPlotJitter) {
+    } else if (options$boxPlotJitter) {
       p <- p + ggplot2::geom_jitter(size = 2.5, ggplot2::aes(colour = group), position = ggplot2::position_jitter(width=0.1, height = 0))
     }
 
-    if (options$splitPlotOutlierLabel && (options$splitPlotBoxplot || options$splitPlotJitter))
+    if (options$boxPlotOutlierLabel && (options$boxPlotBoxPlot || options$boxPlotJitter))
       p <- p + ggrepel::geom_text_repel(ggplot2::aes(label=label), hjust=-0.3)
 
     ### Theming & Cleaning
-    yBreaks <- if (options[["splitPlotViolin"]])
+    yBreaks <- if (options[["boxPlotViolin"]])
       jaspGraphs::getPrettyAxisBreaks(range(unlist(tapply(y, group, function(x) range(x, density(x)$x)), use.names = FALSE)))
     else
       jaspGraphs::getPrettyAxisBreaks(p[["data"]][["y"]])
@@ -1178,12 +1178,12 @@ Descriptives <- function(jaspResults, dataset, options) {
     y <- na.omit(dataset[[.v(variable)]])
   }
 
-  if (is.null(dataset[[options$splitby]])) {
+  if (is.null(dataset[[options$splitBy]])) {
     group     <- factor(rep("",length(y)))
     xlab      <- gettext("Total")
   } else {
-    group     <- as.factor(dataset[[options$splitby]])[!is.na(dataset[[variable]])]
-    xlab      <- options$splitby
+    group     <- as.factor(dataset[[options$splitBy]])[!is.na(dataset[[variable]])]
+    xlab      <- options$splitBy
   }
 
   plotDat <- data.frame(group = group, y = y)
@@ -1310,7 +1310,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 .descriptivesDotPlots <- function(dataset, options, variable){
 
 
-  if (options$splitby != "" ) {
+  if (options$splitBy != "" ) {
     # return a collection
     levelsSplitFactor <- names(dataset)
 
@@ -1627,7 +1627,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesPieChart <- function(dataset, options, variable) {
-  if (options$splitby != "" ) {
+  if (options$splitBy != "" ) {
     # return a collection
     split <- names(dataset)
 
@@ -1644,7 +1644,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   } else {
     aPlot <- .descriptivesPieChart_SubFunc(dataset=dataset, variable=variable, width=options$plotWidth, height=options$plotHeight, title = variable,
                                            palette = options[["colorPalette"]])
-    aPlot$dependOn(options="splitby", optionContainsValue=list(variables=variable))
+    aPlot$dependOn(options="splitBy", optionContainsValue=list(variables=variable))
 
     return(aPlot)
   }
@@ -1723,13 +1723,13 @@ Descriptives <- function(jaspResults, dataset, options) {
           group             = group,
           xName             = v1,
           yName             = v2,
-          showLegend        = options[["showLegend"]],
-          addSmooth         = options[["addSmooth"]],
-          addSmoothCI       = options[["addSmoothCI"]],
-          smoothCIValue     = options[["addSmoothCIValue"]],
-          forceLinearSmooth = options[["regressionType"]] == "linear",
-          plotAbove         = options[["graphTypeAbove"]],
-          plotRight         = options[["graphTypeRight"]],
+          showLegend        = options[["scatterPlotLegend"]],
+          addSmooth         = options[["scatterPlotRegressionLine"]],
+          addSmoothCI       = options[["scatterPlotRegressionLineCi"]],
+          smoothCIValue     = options[["scatterPlotRegressionLineCiLevel"]],
+          forceLinearSmooth = options[["scatterPlotRegressionLineType"]] == "linear",
+          plotAbove         = options[["scatterPlotGraphTypeAbove"]],
+          plotRight         = options[["scatterPlotGraphTypeRight"]],
           legendTitle       = legendTitle
         ))
 
@@ -1859,7 +1859,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
 
 .descriptivesHeatmaps <- function(container, dataset, variables, options) {
-  axesNames <- c(options[["heatmapHorizontal"]], options[["heatmapVertical"]])
+  axesNames <- c(options[["heatmapHorizontalAxis"]], options[["heatmapVerticalAxis"]])
 
   # we are not ready to plot
   if(length(variables) == 0) return()
@@ -1870,11 +1870,11 @@ Descriptives <- function(jaspResults, dataset, options) {
     variableName  <- variables[[i]]
     variable <- dataset[[variableName]]
 
-    if(options[["splitby"]] == "") {
+    if(options[["splitBy"]] == "") {
       .descriptivesCreateSingleHeatmap(container, axes, axesNames, variable, variableName, i, options)
     } else {
       container[[variableName]] <- createJaspContainer(variableName)
-      splitBy <- dataset[, options[["splitby"]]]
+      splitBy <- dataset[, options[["splitBy"]]]
       groups <- levels(splitBy)
 
       for(g in seq_along(groups)) {
@@ -1894,10 +1894,10 @@ Descriptives <- function(jaspResults, dataset, options) {
   }
 
   nLevels <- c(nlevels(data[["horizontal"]]), nlevels(data[["vertical"]]))
-  plotSize <- c(200 + nLevels * 20) * c(options[["heatmapRectangleRatio"]], 1)
+  plotSize <- c(200 + nLevels * 20) * c(options[["heatmapTileWidthHeightRatio"]], 1)
   if(any(plotSize > 700))
     plotSize <- ( plotSize/max(plotSize) ) * 700
-  if(options[["heatmapLegend"]])
+  if(options[["heatmapDisplayLegend"]])
     plotSize <- plotSize + c(50, 50)
 
   if(any(table(data[["horizontal"]], data[["vertical"]]) > 1)) {
@@ -1909,11 +1909,11 @@ Descriptives <- function(jaspResults, dataset, options) {
       ggplot2::geom_tile(color = "black", size = 1) +
       ggplot2::xlab(axesNames[1]) +
       ggplot2::ylab(axesNames[2]) +
-      ggplot2::coord_fixed(ratio = 1/options[["heatmapRectangleRatio"]])
+      ggplot2::coord_fixed(ratio = 1/options[["heatmapTileWidthHeightRatio"]])
 
-    if(options[["heatmapPlotValue"]])
+    if(options[["heatmapDisplayValue"]])
       plot <- plot + ggplot2::geom_text(ggplot2::aes(x = horizontal, y = vertical, label = label),
-                                        size = 8 * options[["heatmapPlotValueSize"]])
+                                        size = 8 * options[["heatmapDisplayValueRelativeTextSize"]])
 
     palette <- options[["colorPalette"]]
     if(is.factor(data[["value"]]))
@@ -1921,7 +1921,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     else
       plot <- plot + jaspGraphs::scale_JASPfill_continuous(palette)
 
-    plot <- jaspGraphs::themeJasp(plot, legend.position = if(options[["heatmapLegend"]]) "right" else "none")
+    plot <- jaspGraphs::themeJasp(plot, legend.position = if(options[["heatmapDisplayLegend"]]) "right" else "none")
 
     jaspPlot$plotObject <- plot
   }
@@ -1954,7 +1954,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   variables <- names(dataset)
 
-  if (options[["likertPlotEqualLevel"]]) {
+  if (options[["likertPlotAssumeVariablesSameLevel"]]) {
 
     plotR <- .descriptivesLikertPlotsFill(dataset, variables, name, options)
     return(plotR)
@@ -1974,7 +1974,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 .descriptivesLikertPlotsFill <- function(dataset, variables, name, options) {
 
   leng <- length(dataset)
-  depends <- c("descriptivesLikertPlot", "splitby", "variables", "likertPlotEqualLevel", "likertPlotFontSize")
+  depends <- c("likertPlot", "splitBy", "variables", "likertPlotAssumeVariablesSameLevel", "likertPlotAdjustableFontSize")
 
   likPlot <- createJaspPlot(title = name, dependencies = depends, width = 1300, height = if (leng == 1) 250 else 200*(leng*0.8))
   errorMessage <- .descriptivesCheckPlotErrors(dataset, variables, obsAmount = "< 2")
@@ -2137,7 +2137,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     ggplot2::theme(text = ggplot2::element_text(size = 22.5), axis.title.x = ggplot2::element_text(size = 18))
 
   p <- p + ggplot2::theme(axis.text.y = ggplot2::element_text(
-    size = switch(options[["likertPlotFontSize"]],
+    size = switch(options[["likertPlotAdjustableFontSize"]],
                   "small"  = 20,
                   "medium" = 22.5,
                   "large"  = 25
@@ -2149,11 +2149,11 @@ Descriptives <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesParetoPlots <- function(dataset, variable, options) {
-  if (options[["splitby"]] != "") {
+  if (options[["splitBy"]] != "") {
     split <- names(dataset)
 
     plotResult <- createJaspContainer(title = variable)
-    plotResult$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
+    plotResult$dependOn(options = "splitBy", optionContainsValue = list(variables = variable))
 
     for (i in split) {
       plotResult[[i]] <- .descriptivesParetoPlots_SubFunc(dataset[[i]], variable, i, options)
@@ -2163,7 +2163,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     return(plotResult)
   } else {
     pPlot <- .descriptivesParetoPlots_SubFunc(dataset, variable, variable, options)
-    pPlot$dependOn(options = "splitby", optionContainsValue = list(variables = variable))
+    pPlot$dependOn(options = "splitBy", optionContainsValue = list(variables = variable))
 
     return(pPlot)
   }
@@ -2200,7 +2200,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   # Adding Pareto Line
   if (options[["paretoPlotRule"]]) {
-    perc <- options[["paretoPlotRuleField"]]
+    perc <- options[["paretoPlotRuleCi"]]
     absVal <- perc*100  # to get absolute value of percentage
     colOrdered <- as.numeric(tb$column[order(tb$column, decreasing = FALSE)])
     interSec <- approx(colOrdered, tb$cums, n = 1000)     # Finding x axis intersection at X%
@@ -2247,9 +2247,9 @@ Descriptives <- function(jaspResults, dataset, options) {
       data.frame(variable)
     }
 
-    if (options[["splitby"]] != "") {
+    if (options[["splitBy"]] != "") {
       container[[variableName]] <- createJaspContainer(variableName)
-      splitBy <- .readDataSetToEnd(columns.as.factor = options[["splitby"]])
+      splitBy <- .readDataSetToEnd(columns.as.factor = options[["splitBy"]])
       data$split <- splitBy[,, drop = TRUE]
       data <- na.omit(data)
       groups <- levels(data$split)
@@ -2268,7 +2268,7 @@ Descriptives <- function(jaspResults, dataset, options) {
 .descriptivesDensityPlotsFill <- function(container, data, plotName, axeName, position, options) {
 
   data$split <- NULL
-  trans <- 1 - (options[["transparency"]]/100)
+  trans <- 1 - (options[["densityPlotTransparency"]]/100)
   if (options[["densityPlotSeparate"]] != "") {
     p <- ggplot2::ggplot(data, ggplot2::aes(x = variable, fill = separator))
     scale_fill <- jaspGraphs::scale_JASPfill_discrete(palette = options[["colorPalette"]],

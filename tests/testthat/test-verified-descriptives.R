@@ -8,12 +8,12 @@ test_that("Main table results match R, SPSS, SAS and MiniTab", {
   options$median <- TRUE
   options$variance <- TRUE
   options$mode <- FALSE
-  options$standardDeviation <- TRUE
-  options$standardErrorMean <- TRUE
+  options$sd <- TRUE
+  options$seMean <- TRUE
   options$minimum
   options$maximum
   options$mode <- TRUE
-  options$percentileValuesQuartiles <- TRUE
+  options$quartiles <- TRUE
   
   # Main table
   results <- jaspTools::runAnalysis("Descriptives",
