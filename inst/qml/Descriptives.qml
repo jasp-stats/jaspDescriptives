@@ -26,6 +26,12 @@ import JASP				1.0
 Form
 {
 	columns: 1
+
+	Formula
+	{
+		rhs: "variables"
+	}
+
 	VariablesForm
 	{
 		AvailableVariablesList	{ name: "allVariablesList"								}
