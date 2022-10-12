@@ -21,6 +21,114 @@ gettextf <- function(fmt, ..., domain = NULL)  {
   return(sprintf(gettext(fmt, domain = domain), ...))
 }
 
+DescriptivesWrapper <- function(
+          formula = NULL,
+          data = NULL,
+          boxPlot = FALSE,
+          boxPlotBoxPlot = TRUE,
+          boxPlotColourPalette = FALSE,
+          boxPlotJitter = FALSE,
+          boxPlotOutlierLabel = FALSE,
+          boxPlotViolin = FALSE,
+          chartType = "_1noCharts",
+          chartValues = "_1frequencies",
+          coefficientOfVariation = FALSE,
+          colorPalette = "colorblind",
+          correlationPlots = FALSE,
+          densityPlot = FALSE,
+          densityPlotSeparate = "",
+          densityPlotTransparency = 20,
+          descriptivesTableTransposed = FALSE,
+          distributionAndCorrelationPlotDensity = FALSE,
+          distributionAndCorrelationPlotHistogramBinWidthType = "sturges",
+          distributionAndCorrelationPlotHistogramManualNumberOfBins = 30,
+          distributionAndCorrelationPlotRugMarks = FALSE,
+          distributionPlots = FALSE,
+          dotPlot = FALSE,
+          frequencyTables = FALSE,
+          frequencyTablesMaximumDistinctValues = 10,
+          heatmapDisplayValue = FALSE,
+          heatmapDisplayValueRelativeTextSize = 1,
+          heatmapHorizontalAxis = "",
+          heatmapLegend = FALSE,
+          heatmapStatisticContinuous = "mean",
+          heatmapStatisticDiscrete = "mode",
+          heatmapTileWidthHeightRatio = 1,
+          heatmapVerticalAxis = "",
+          intervalPlot = FALSE,
+          iqr = FALSE,
+          kurtosis = FALSE,
+          likertPlot = FALSE,
+          likertPlotAdjustableFontSize = "normal",
+          likertPlotAssumeVariablesSameLevel = FALSE,
+          mad = FALSE,
+          madRobust = FALSE,
+          maximum = TRUE,
+          mean = TRUE,
+          median = FALSE,
+          minimum = TRUE,
+          missing = TRUE,
+          mode = FALSE,
+          paretoPlot = FALSE,
+          paretoPlotRule = FALSE,
+          paretoPlotRuleCi = 0.95,
+          percentileValues = list(),
+          percentiles = FALSE,
+          pieChart = FALSE,
+          plotHeight = 320,
+          plotWidth = 480,
+          qqPlot = FALSE,
+          quantilesForEqualGroups = FALSE,
+          quantilesForEqualGroupsNumber = 4,
+          quartiles = FALSE,
+          range = FALSE,
+          scatterPlot = FALSE,
+          scatterPlotGraphTypeAbove = "density",
+          scatterPlotGraphTypeRight = "density",
+          scatterPlotLegend = TRUE,
+          scatterPlotRegressionLine = TRUE,
+          scatterPlotRegressionLineCi = TRUE,
+          scatterPlotRegressionLineCiLevel = 0.95,
+          scatterPlotRegressionLineType = "smooth",
+          sd = TRUE,
+          seMean = FALSE,
+          shapiroWilkTest = FALSE,
+          skewness = FALSE,
+          splitBy = "",
+          statisticsValuesAreGroupMidpoints = FALSE,
+          stemAndLeaf = FALSE,
+          stemAndLeafScale = 1,
+          sum = FALSE,
+          valid = TRUE,
+          variables = list(),
+          variance = FALSE) {
+
+   defaultArgCalls <- formals(jaspDescriptives::DescriptivesWrapper)
+   defaultArgs <- lapply(defaultArgCalls, eval)
+   options <- as.list(match.call())[-1L]
+   options <- lapply(options, eval)
+   defaults <- setdiff(names(defaultArgs), names(options))
+   options[defaults] <- defaultArgs[defaults]
+   options[["data"]] <- NULL
+
+   if (!is.null(formula)) {
+      if (!inherits(formula, "formula")) {
+         formula <- as.formula(formula)
+      }
+      options$formula <- deparse1(formula)
+   }
+
+   if (jaspResultsCalledFromJasp()) {
+      result <- list("options" = options, "analysis"="jaspDescriptives::Descriptives")
+      result <- jsonlite::toJSON(result, auto_unbox = TRUE, digits = NA, null="null")
+      toString(result)
+   } else {
+      options <- checkAnalysisOptions("jaspDescriptives::Descriptives", options)
+      jaspTools::runAnalysis("jaspDescriptives::Descriptives", data, options)
+   }
+
+}
+
 Descriptives <- function(jaspResults, dataset, options) {
   variables <- unlist(options$variables)
   splitName <- options$splitBy
