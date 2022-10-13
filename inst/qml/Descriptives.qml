@@ -464,7 +464,7 @@ Form
 			CheckBox
 			{
 				name: "meanCi" 
-				label: qsTr("Confidence interval")
+				label: qsTr("Mean confidence interval ")
 				
 				CIField 
 				{ 
