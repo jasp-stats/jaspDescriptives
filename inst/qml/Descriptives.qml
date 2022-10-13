@@ -337,7 +337,7 @@ Form
 				{ 
 					name: 				"densityPlotVariables"
 					label: 				qsTr("Density plots")
-					source: 			[{ name: "allVariablesList", discard: ["variables", "splitby"], use: "type=ordinal|nominal|nominalText"}]
+					source: 			[{ name: "allVariablesList", discard: ["variables", "splitBy"], use: "type=ordinal|nominal|nominalText"}]
 				}
 				
 				AssignedVariablesList 
@@ -373,7 +373,7 @@ Form
 			{
 				name: "heatMapVariables"
 				label: qsTr("Tile heatmaps for selected variables")
-				source: [{ name: "allVariablesList", discard: ["variables", "splitby"], use: "type=ordinal|nominal|nominalText"}]
+				source: [{ name: "allVariablesList", discard: ["variables", "splitBy"], use: "type=ordinal|nominal|nominalText"}]
 			}
 			AssignedVariablesList
 			{
