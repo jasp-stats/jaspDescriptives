@@ -22,8 +22,8 @@ gettextf <- function(fmt, ..., domain = NULL)  {
 }
 
 DescriptivesWrapper <- function(
-          formula = NULL,
           data = NULL,
+          formula = NULL,
           boxPlot = FALSE,
           boxPlotBoxPlot = TRUE,
           boxPlotColourPalette = FALSE,
