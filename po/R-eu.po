@@ -148,8 +148,8 @@ msgid "All values are identical"
 msgstr ""
 
 msgid ""
-"Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set "
-"is %s."
+"Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty set "
+"is %2$s."
 msgstr ""
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
