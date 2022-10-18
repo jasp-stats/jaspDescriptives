@@ -128,6 +128,48 @@ Form
 			CheckBox { name: "maximum";						label: qsTr("Maximum");				checked: true	}
 		}
 
+				Group
+		{
+			title:		qsTr("Inference")
+			
+			CheckBox { name: "seMean";	label: qsTr("S.E. mean")			}
+			
+			CheckBox
+			{
+				name: "meanCi" 
+				label: qsTr("Confidence internval for mean")
+				
+				CIField 
+				{ 
+					name: "meanCiPercent" 
+					label: qsTr("Width")
+				}
+				
+				DropDown 
+				{
+					name: "meanCiMethod"
+					label: qsTr("Method")
+					id: ciMethod
+					indexDefaultValue: 0
+					values:
+					[
+						{label: qsTr("Normal model"),	value: "normalModel"},
+						{label: qsTr("Bootstrap"),		value: "bootstrap"}
+					]
+				}
+			
+				DoubleField
+				{
+					name:			"bootstrapSamples"
+					label:			qsTr("Bootstrap samples")
+					defaultValue:	1000
+					min:			1;
+					max:			50000;
+					enabled:		ciMethod.currentValue === "bootstrap"
+				}
+			}
+		}
+
 		CheckBox { name: "statisticsValuesAreGroupMidpoints"; label: qsTr("Values are group midpoints"); debug: true }
 	}
 
@@ -454,50 +496,6 @@ Form
 			}
 			info	: qsTr("Create a Stem and leaf table.")
 		}
-		
-		Group
-		{
-			title:		qsTr("Inference")
-			
-			CheckBox { name: "seMean";	label: qsTr("S.E. mean")			}
-			
-			CheckBox
-			{
-				name: "meanCi" 
-				label: qsTr("Mean confidence interval ")
-				
-				CIField 
-				{ 
-					name: "meanCiPercent" 
-					label: qsTr("Width")
-				}
-				
-				DropDown 
-				{
-					name: "meanCiMethod"
-					label: qsTr("Method")
-					id: ciMethod
-					indexDefaultValue: 0
-					values:
-					[
-						{label: qsTr("Normal model"),	value: "normalModel"},
-						{label: qsTr("Bootstrap"),		value: "bootstrap"}
-					]
-				}
-			
-				DoubleField
-				{
-					name:			"bootstrapSamples"
-					label:			qsTr("Bootstrap samples")
-					defaultValue:	1000
-					min:			1;
-					max:			50000;
-					enabled:		ciMethod.currentValue === "bootstrap"
-				}
-			}
-		}
-
-		CheckBox { name: "statisticsValuesAreGroupMidpoints"; label: qsTr("Values are group midpoints"); debug: true }
 	}
 
 	Section
