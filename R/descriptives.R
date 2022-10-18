@@ -471,15 +471,9 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (numberMissingSplitBy)
     stats$addFootnote(message=gettextf("Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s", numberMissingSplitBy, options$splitBy))
 
-<<<<<<< HEAD
   stats$dependOn(c("splitBy", "variables", "quantilesForEqualGroupsNumber", "percentileValues", "mode", "median", "mean", "seMean",
     "sd", "coefficientOfVariation", "variance", "skewness", "kurtosis", "shapiroWilkTest", "range", "iqr", "mad", "madRobust", "minimum", "maximum",
-    "sum", "quartiles", "quantilesForEqualGroups", "percentiles", "descriptivesTableTransposed", "valid", "missing", "meanCi", "meanCiPercent", "meanCiMethod"))
-=======
-  stats$dependOn(c("splitby", "variables", "percentileValuesEqualGroupsNo", "percentileValuesPercentilesPercentiles", "mode", "median", "mean", "standardErrorMean",
-    "standardDeviation", "cOfVariation", "variance", "skewness", "kurtosis", "shapiro", "range", "iqr", "mad", "madrobust", "minimum", "maximum",
-    "sum", "percentileValuesQuartiles", "percentileValuesEqualGroups", "percentileValuesPercentiles", "transposeMainTable", "valid", "missing", "meanCi", "meanCiPercent", "meanCiMethod", "bootstrapSamples"))
->>>>>>> 5a359ad (Don's feedback and clarify CIs are for mean)
+    "sum", "quartiles", "quantilesForEqualGroups", "percentiles", "descriptivesTableTransposed", "valid", "missing", "meanCi", "meanCiPercent", "meanCiMethod", "bootstrapSamples"))
 
   if (wantsSplit) {
     stats$transposeWithOvertitle <- TRUE
@@ -489,16 +483,15 @@ Descriptives <- function(jaspResults, dataset, options) {
     stats$addColumnInfo(name="Variable",  title="", type="string")
   }
 
-<<<<<<< HEAD
   if (options$valid)                          stats$addColumnInfo(name="Valid",                       title=gettext("Valid"),                   type="integer")
   if (options$missing)                        stats$addColumnInfo(name="Missing",                     title=gettext("Missing"),                 type="integer")
   if (options$mode)                           stats$addColumnInfo(name="Mode",                        title=gettext("Mode"),                    type="number")
   if (options$median)                         stats$addColumnInfo(name="Median",                      title=gettext("Median"),                  type="number")
   if (options$mean)                           stats$addColumnInfo(name="Mean",                        title=gettext("Mean"), 				            type="number")
-  if (options$seMean)              stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of Mean"),      type="number")
-  if (options$meanCi) {             stats$addColumnInfo(name="CIUB",                        title=gettext("Upper"),                                      type="number", overtitle = gettextf("%s %% Confidence Interval", formattedCiPercent))
-                                    stats$addColumnInfo(name="CILB",                        title=gettext("Lower"),                                      type="number", overtitle = gettextf("%s %% Confidence Interval", formattedCiPercent)) }
-  if (options$sd)              stats$addColumnInfo(name="Std. Deviation",              title=gettext("Std. Deviation"),          type="number")
+  if (options$seMean)                         stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of Mean"),      type="number")
+  if (options$meanCi) {                       stats$addColumnInfo(name="CIUB",                        title=gettext("Upper"),                   type="number", overtitle = gettextf("%s %% Confidence Interval", formattedCiPercent))
+                                              stats$addColumnInfo(name="CILB",                        title=gettext("Lower"),                   type="number", overtitle = gettextf("%s %% Confidence Interval", formattedCiPercent)) }
+  if (options$sd)                             stats$addColumnInfo(name="Std. Deviation",              title=gettext("Std. Deviation"),          type="number")
   if (options$coefficientOfVariation)         stats$addColumnInfo(name="Coefficient of Variation",    title=gettext("Coefficient of variation"),type="number")
   if (options$mad)                            stats$addColumnInfo(name="MAD",                         title=gettext("MAD"),                     type="number")
   if (options$madRobust)                      stats$addColumnInfo(name="MAD Robust",                  title=gettext("MAD robust"),              type="number")
@@ -513,31 +506,6 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (options$range)                          stats$addColumnInfo(name="Range",                       title=gettext("Range"),                   type="number")
   if (options$minimum)                        stats$addColumnInfo(name="Minimum",                     title=gettext("Minimum"),                 type="number")
   if (options$maximum)                        stats$addColumnInfo(name="Maximum",                     title=gettext("Maximum"),                 type="number")
-=======
-  if (options$valid)                stats$addColumnInfo(name="Valid",                       title=gettext("Valid"),                                      type="integer")
-  if (options$missing)              stats$addColumnInfo(name="Missing",                     title=gettext("Missing"),                                    type="integer")
-  if (options$mode)                 stats$addColumnInfo(name="Mode",                        title=gettext("Mode"),                                       type="number")
-  if (options$median)               stats$addColumnInfo(name="Median",                      title=gettext("Median"),                                     type="number")
-  if (options$mean)                 stats$addColumnInfo(name="Mean",                        title=gettext("Mean"), 				                               type="number")
-  if (options$standardErrorMean)    stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of Mean"),                         type="number")
-  if (options$meanCi) {             stats$addColumnInfo(name="CIUB",                        title=gettext("Upper"),                                      type="number", overtitle = gettextf("%s %% Confidence Interval of Mean", formattedCiPercent))
-                                    stats$addColumnInfo(name="CILB",                        title=gettext("Lower"),                                      type="number", overtitle = gettextf("%s %% Confidence Interval of Mean", formattedCiPercent)) }
-  if (options$standardDeviation)    stats$addColumnInfo(name="Std. Deviation",              title=gettext("Std. Deviation"),                             type="number")
-  if (options$cOfVariation)         stats$addColumnInfo(name="Coefficient of Variation",    title=gettext("Coefficient of variation"),                   type="number")
-  if (options$mad)                  stats$addColumnInfo(name="MAD",                         title=gettext("MAD"),                                        type="number")
-  if (options$madrobust)            stats$addColumnInfo(name="MAD Robust",                  title=gettext("MAD robust"),                                 type="number")
-  if (options$iqr)                  stats$addColumnInfo(name="IQR",                         title=gettext("IQR"),                                        type="number")
-  if (options$variance)             stats$addColumnInfo(name="Variance",                    title=gettext("Variance"),                                   type="number")
-  if (options$skewness) {           stats$addColumnInfo(name="Skewness",                    title=gettext("Skewness"),                                   type="number")
-                                    stats$addColumnInfo(name="Std. Error of Skewness",      title=gettext("Std. Error of Skewness"),                     type="number") }
-  if (options$kurtosis) {           stats$addColumnInfo(name="Kurtosis",                    title=gettext("Kurtosis"),                                   type="number")
-                                    stats$addColumnInfo(name="Std. Error of Kurtosis",      title=gettext("Std. Error of Kurtosis"),                     type="number") }
-  if (options$shapiro) {            stats$addColumnInfo(name="Shapiro-Wilk",                title=gettext("Shapiro-Wilk"),                               type="number")
-                                    stats$addColumnInfo(name="P-value of Shapiro-Wilk",     title=gettext("P-value of Shapiro-Wilk"),                    type="pvalue") }
-  if (options$range)                stats$addColumnInfo(name="Range",                       title=gettext("Range"),                                      type="number")
-  if (options$minimum)              stats$addColumnInfo(name="Minimum",                     title=gettext("Minimum"),                                    type="number")
-  if (options$maximum)              stats$addColumnInfo(name="Maximum",                     title=gettext("Maximum"),                                    type="number")
->>>>>>> 5a359ad (Don's feedback and clarify CIs are for mean)
 
   if (options$quartiles) {
                                     stats$addColumnInfo(name="q1", title="25th percentile", type="number")
