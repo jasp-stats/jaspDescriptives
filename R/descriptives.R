@@ -489,8 +489,8 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (options$median)                         stats$addColumnInfo(name="Median",                      title=gettext("Median"),                  type="number")
   if (options$mean)                           stats$addColumnInfo(name="Mean",                        title=gettext("Mean"), 				            type="number")
   if (options$seMean)                         stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of Mean"),      type="number")
-  if (options$meanCi) {                       stats$addColumnInfo(name="CIUB",                        title=gettext("Upper"),                   type="number", overtitle = gettextf("%s %% Confidence Interval", formattedCiPercent))
-                                              stats$addColumnInfo(name="CILB",                        title=gettext("Lower"),                   type="number", overtitle = gettextf("%s %% Confidence Interval", formattedCiPercent)) }
+  if (options$meanCi) {                       stats$addColumnInfo(name="CIUB",                        title=gettext("Upper"),                   type="number", overtitle = gettextf("%s%% Confidence Interval", formattedCiPercent))
+                                              stats$addColumnInfo(name="CILB",                        title=gettext("Lower"),                   type="number", overtitle = gettextf("%s%% Confidence Interval", formattedCiPercent)) }
   if (options$sd)                             stats$addColumnInfo(name="Std. Deviation",              title=gettext("Std. Deviation"),          type="number")
   if (options$coefficientOfVariation)         stats$addColumnInfo(name="Coefficient of Variation",    title=gettext("Coefficient of variation"),type="number")
   if (options$mad)                            stats$addColumnInfo(name="MAD",                         title=gettext("MAD"),                     type="number")
