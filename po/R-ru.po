@@ -88,7 +88,7 @@ msgid "Std. Error of Mean"
 msgstr ""
 
 msgid "Std. Deviation"
-msgstr ""
+msgstr "Ст. отклонение"
 
 msgid "Coefficient of variation"
 msgstr ""
@@ -118,7 +118,7 @@ msgid "Std. Error of Kurtosis"
 msgstr ""
 
 msgid "Shapiro-Wilk"
-msgstr ""
+msgstr "Критерий Шапиро-Уилка"
 
 msgid "P-value of Shapiro-Wilk"
 msgstr ""
@@ -142,8 +142,8 @@ msgid "All values are identical"
 msgstr ""
 
 msgid ""
-"Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty set "
-"is %2$s."
+"Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty "
+"set is %2$s."
 msgstr ""
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
@@ -235,3 +235,8 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] ""
 msgstr[1] ""
+
+msgid ""
+"Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set "
+"is %s."
+msgstr ""
