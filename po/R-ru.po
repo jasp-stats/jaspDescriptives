@@ -82,7 +82,7 @@ msgid "Median"
 msgstr ""
 
 msgid "Mean"
-msgstr ""
+msgstr "Среднее"
 
 msgid "Std. Error of Mean"
 msgstr ""
@@ -91,7 +91,7 @@ msgid "Std. Deviation"
 msgstr "Ст. отклонение"
 
 msgid "Coefficient of variation"
-msgstr ""
+msgstr "Коэффициент изменчивости"
 
 msgid "MAD"
 msgstr ""
