@@ -148,9 +148,9 @@ msgid "All values are identical"
 msgstr "所有數值皆相同"
 
 msgid ""
-"Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set "
-"is %s."
-msgstr "空集合的最大下界為 %s, 最小上界為 %s."
+"Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty set "
+"is %2$s."
+msgstr "空集合的最大下界為 %1$s, 最小上界為 %2$s."
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
 msgstr "<i>Nominal Text</i> 變項有些數值次數為零"

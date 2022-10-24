@@ -148,9 +148,9 @@ msgid "All values are identical"
 msgstr "すべての値が同一です"
 
 msgid ""
-"Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set "
-"is %s."
-msgstr "空のセットの最小値は %s、空のセットの最大値は %s です。"
+"Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty set "
+"is %2$s."
+msgstr "空のセットの最小値は %1$s、空のセットの最大値は %2$s です。"
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
 msgstr "<i>名義</i>変数に使用できる値はありません"

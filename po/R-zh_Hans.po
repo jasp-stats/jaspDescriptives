@@ -145,9 +145,9 @@ msgid "All values are identical"
 msgstr "所有值都是相同的"
 
 msgid ""
-"Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set "
-"is %s."
-msgstr "空集的下确界（最小值）是 %s，空集的上确界（最大值）是 %s。"
+"Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty set "
+"is %2$s."
+msgstr "空集的下确界（最小值）是 %1$s，空集的上确界（最大值）是 %2$s。"
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
 msgstr "并非所有值都可用于 <i> 名义文本 </i> 变量"
