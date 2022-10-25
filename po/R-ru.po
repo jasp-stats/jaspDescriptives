@@ -2,90 +2,96 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2022-07-16 03:40\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2022-10-26 00:31+0000\n"
+"Last-Translator: fedder <fedor.derish@gmail.com>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-r/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.14.2-dev\n"
 
 msgid "Frequency Tables"
-msgstr ""
+msgstr "Таблицы частот"
 
 msgid "Correlation plots"
-msgstr ""
+msgstr "Корреляционные графики"
 
 msgid "Correlation plot"
-msgstr ""
+msgstr "Корреляционный график"
 
 msgid "Distribution Plots"
-msgstr ""
+msgstr "Графики распределения"
 
 msgid "Boxplots"
-msgstr ""
+msgstr "Коробчатые графики"
 
 msgid "Q-Q Plots"
-msgstr ""
+msgstr "К-К графики"
 
 msgid "Q-Q Plot"
-msgstr ""
+msgstr "К-К график"
 
 msgid "Plotting is not possible: Variable only contains NA!"
-msgstr ""
+msgstr "Построение графика невозможно: Переменная содержит только NA!"
 
 msgid "Pie charts"
-msgstr ""
+msgstr "Круговые диаграммы"
 
 msgid "Stem and Leaf"
-msgstr ""
+msgstr "Графики \"Стебель-листья\""
 
 msgid "Scatter Plots"
-msgstr ""
+msgstr "Диаграммы рассеяния"
 
 msgid "Interval plots"
-msgstr ""
+msgstr "Интервальные графики"
 
 msgid "Dot Plots"
-msgstr ""
+msgstr "Точечные графики"
 
 msgid "Heatmaps"
-msgstr ""
+msgstr "Теплые карты"
 
 msgid "Pareto Plots"
-msgstr ""
+msgstr "Графики Парето"
 
 msgid "Density Plots"
-msgstr ""
+msgstr "Графики плотности"
 
 msgid "Likert Plots"
-msgstr ""
+msgstr "Графики Ликерта"
 
 msgid "Descriptive Statistics"
-msgstr ""
+msgstr "Описательные статистики"
 
 msgid ""
 "Excluded %1$i rows from the analysis that correspond to the missing values "
 "of the split-by variable %2$s"
 msgstr ""
+"Из анализа исключено %1$i строк, соответствующих отсутствующим значениям "
+"группирующей переменной %2$s."
 
 msgid "Valid"
-msgstr ""
+msgstr "Присутствующие"
 
 msgid "Missing"
-msgstr ""
+msgstr "Пропущенные"
 
 msgid "Mode"
-msgstr ""
+msgstr "Мода"
 
 msgid "Median"
-msgstr ""
+msgstr "Медиана"
 
 msgid "Mean"
 msgstr "Среднее"
 
 msgid "Std. Error of Mean"
-msgstr ""
+msgstr "Ст. ошибка среднего"
 
 msgid "Std. Deviation"
 msgstr "Ст. отклонение"
@@ -94,149 +100,158 @@ msgid "Coefficient of variation"
 msgstr "Коэффициент изменчивости"
 
 msgid "MAD"
-msgstr ""
+msgstr "Медианное абсолютное отклонение (MAD)"
 
 msgid "MAD robust"
-msgstr ""
+msgstr "устойчивая оценка MAD"
 
 msgid "IQR"
-msgstr ""
+msgstr "Межквартильный размах (IQR)"
 
 msgid "Variance"
-msgstr ""
+msgstr "Дисперсия"
 
 msgid "Skewness"
-msgstr ""
+msgstr "Асимметрия"
 
 msgid "Std. Error of Skewness"
-msgstr ""
+msgstr "Ст. ошибка асимметрии"
 
 msgid "Kurtosis"
-msgstr ""
+msgstr "Эксцесс"
 
 msgid "Std. Error of Kurtosis"
-msgstr ""
+msgstr "Ст. ошибка эксцесса"
 
 msgid "Shapiro-Wilk"
 msgstr "Критерий Шапиро-Уилка"
 
 msgid "P-value of Shapiro-Wilk"
-msgstr ""
+msgstr "p (критерий Шапиро-Уилка)"
 
 msgid "Range"
-msgstr ""
+msgstr "Размах"
 
 msgid "Minimum"
-msgstr ""
+msgstr "Минимум"
 
 msgid "Maximum"
-msgstr ""
+msgstr "Максимум"
 
 msgid "%gth percentile"
-msgstr ""
+msgstr "%g-й процентиль"
 
 msgid "Sum"
-msgstr ""
+msgstr "Сумма"
 
 msgid "All values are identical"
-msgstr ""
+msgstr "Все значения идентичны"
 
 msgid ""
 "Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty "
 "set is %2$s."
 msgstr ""
+"Минимум пустого множества равен %1$s, максимум пустого множества равен %2$s."
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
-msgstr ""
+msgstr "Не все значения доступны для <i>текстовых номинативных переменных </i>"
 
 msgid "More than one mode exists, only the first is reported"
-msgstr ""
+msgstr "Обнаружено более одной моды, представлена меньшая"
 
 msgid "Total"
-msgstr ""
+msgstr "Итого"
 
 msgid "All variables have more than %1$s distinct values"
-msgstr ""
+msgstr "Все переменные имеют более %1$s различных значений"
 
 msgid "Frequencies"
-msgstr ""
+msgstr "Частоты"
 
 msgid "Frequencies for %s"
-msgstr ""
+msgstr "Частоты для %s"
 
 msgid "Frequency"
-msgstr ""
+msgstr "Частота"
 
 msgid "Percent"
-msgstr ""
+msgstr "Процент"
 
 msgid "Valid Percent"
-msgstr ""
+msgstr "Процент относительно присутствующих значений"
 
 msgid "Cumulative Percent"
-msgstr ""
+msgstr "Накопленный процент"
 
 msgid "Density"
-msgstr ""
+msgstr "Плотность"
 
 msgid "Plotting not possible: %s"
-msgstr ""
+msgstr "Невозможно построить график: %s"
 
 msgid "Plotting is not possible: No plot type selected!"
-msgstr ""
+msgstr "Построение графика невозможно: Выбран не тот тип графика!"
 
 msgid "Counts"
 msgstr ""
 
 msgid "No non-missing values!"
-msgstr ""
+msgstr "Нет непропущенных значений!"
 
 msgid "Theoretical Quantiles"
-msgstr ""
+msgstr "Теоретические квантили"
 
 msgid "Sample Quantiles"
-msgstr ""
+msgstr "Выборочные квантили"
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
 "missing observations"
 msgstr ""
+"Не удалось составить таблицу \"Стебель и листья\", поскольку имеется менее "
+"двух неотсутствующих наблюдений"
 
 msgid "The decimal point is at the |"
-msgstr ""
+msgstr "Десятичная запятая находится в |"
 
 msgid ""
 "There must be a unique value per combination of levels of horizontal and "
 "vertical axis!"
 msgstr ""
+"Для каждой комбинации уровней горизонтальной и вертикальной оси должно быть "
+"свое уникальное значение!"
 
 msgid "All categorical variables must have the same number of levels!"
 msgstr ""
+"Все категориальные переменные должны иметь одинаковое количество уровней!"
 
 msgid "Items must have 2 or more levels!"
-msgstr ""
+msgstr "Пункты должны иметь 2 или более уровней!"
 
 msgid "Levels within variable require at least two or more data points!"
-msgstr ""
+msgstr "Градации переменной требуют как минимум двух или более значений!"
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
 "The following variables have more than %1$s distinct values and are omitted: "
 "%2$s."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%2$s имеет более чем %1$s различных значений и опущено."
+msgstr[1] "%2$s имеют более чем %1$s различных значений и опущены."
+msgstr[2] "%2$s имеют более чем %1$s различных значений и опущены."
 
 msgid "The decimal point is %s digit to the right of the |"
 msgid_plural "The decimal point is %s digits to the right of the |"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Десятичный знак — это %s цифра справа от |"
+msgstr[1] "Десятичный знак — это %s цифры справа от |"
+msgstr[2] "Десятичный знак — это %s цифры справа от |"
 
 msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Десятичный знак — это %s цифра слева от |"
+msgstr[1] "Десятичный знак — это %s цифры слева от |"
+msgstr[2] "Десятичный знак — это %s цифры слева от |"
 
 msgid ""
 "Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set "
 "is %s."
-msgstr ""
+msgstr "Минимум пустого набора равен %s, максимум пустого набора равен %s."
