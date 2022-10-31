@@ -53,19 +53,16 @@ msgid "Dot Plots"
 msgstr "點圖"
 
 msgid "Heatmaps"
-msgstr ""
+msgstr "熱圖"
 
-#, fuzzy
 msgid "Pareto Plots"
-msgstr "點圖"
+msgstr "柏拉圖"
 
-#, fuzzy
 msgid "Density Plots"
-msgstr "點圖"
+msgstr "密度圖"
 
-#, fuzzy
 msgid "Likert Plots"
-msgstr "點圖"
+msgstr "李克特圖"
 
 msgid "Descriptive Statistics"
 msgstr "描述統計數"
@@ -148,8 +145,8 @@ msgid "All values are identical"
 msgstr "所有數值皆相同"
 
 msgid ""
-"Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty set "
-"is %2$s."
+"Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty "
+"set is %2$s."
 msgstr "空集合的最大下界為 %1$s, 最小上界為 %2$s."
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
@@ -211,25 +208,26 @@ msgstr "無法繪製莖葉圖:因該變項少於兩個數值"
 msgid "The decimal point is at the |"
 msgstr "小數點位數"
 
+#, fuzzy
 msgid ""
 "There must be a unique value per combination of levels of horizontal and "
 "vertical axis!"
-msgstr ""
+msgstr "每個橫軸縱軸的水準組合需要有一個特定值"
 
 msgid "All categorical variables must have the same number of levels!"
-msgstr ""
+msgstr "所有類別變數需要有相同的水準數!"
 
 msgid "Items must have 2 or more levels!"
-msgstr ""
+msgstr "項目至少需要有兩個水準！"
 
 msgid "Levels within variable require at least two or more data points!"
-msgstr ""
+msgstr "變數的個別水準中需要至少兩個資料點！"
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
 "The following variables have more than %1$s distinct values and are omitted: "
 "%2$s."
-msgstr[0] "下列變項包含 %1$s 個以上的不同數值, 故略過: %2$s"
+msgstr[0] "下列變數包含 %1$s 個以上的不同數值, 故略過: %2$s"
 
 msgid "The decimal point is %s digit to the right of the |"
 msgid_plural "The decimal point is %s digits to the right of the |"
@@ -238,3 +236,8 @@ msgstr[0] "小數點位數為 | 右邊 %s 位數"
 msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "小數點位數為 | 左邊 %s 位數"
+
+msgid ""
+"Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set "
+"is %s."
+msgstr "空集合的最小下界為 %s, 最大上界為 %s."
