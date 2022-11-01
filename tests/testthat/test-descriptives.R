@@ -41,6 +41,27 @@ test_that("Main table results match", {
   )
 })
 
+# test confidence intervals only
+test_that("Descriptive Statistics table results match", {
+  options <- analysisOptions("Descriptives")
+  options$variables <- "contNormal"
+  options$valid <- FALSE
+  options$missing <- FALSE
+  options$variance <- TRUE
+  options$minimum <- FALSE
+  options$maximum <- FALSE
+  options$meanCi <- TRUE
+  options$sdCi <- TRUE
+  options$varianceCi <- TRUE
+  set.seed(1)
+  results <- runAnalysis("Descriptives", "test.csv", options)
+  table <- results[["results"]][["stats"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(-0.18874858754, -0.396193843016565, 0.018696667936565, 0.869717253788563,
+                                      1.24667712392121, 1.05841360919316, "contNormal", 1.1202393681253,
+                                      0.749471492180139, 1.54256388211921))
+})
+
 test_that("Frequencies table matches", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "facGender"
