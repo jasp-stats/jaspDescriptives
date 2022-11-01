@@ -626,8 +626,8 @@ Descriptives <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesDescriptivesTable_subFunction <- function(column, resultsCol, options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, jaspResults) {
-  equalGroupsNo           <- options$percentileValuesEqualGroupsNo
-  percentilesPercentiles  <- unique(options$percentileValuesPercentilesPercentiles)
+  equalGroupsNo           <- options$quantilesForEqualGroupsNumber
+  percentilesPercentiles  <- unique(options$percentileValues)
 
   rows        <- length(column)
   na.omitted  <- na.omit(column)
