@@ -1792,42 +1792,6 @@ Descriptives <- function(jaspResults, dataset, options) {
   return(list(means = means, sds = sds, variances = variances))
 }
 
-# .sdBoot <- function(data, options, jaspResults, stateContainerName) {
-#   if (!is.null(jaspResults[[stateContainerName]]$object))
-#     return(jaspResults[[stateContainerName]]$object)
-# 
-#   bootstrapSamples <- createJaspState()
-#   k <- options[["sdCiBootstrapSamples"]]
-#   sds <- numeric(k)
-#   n <- length(data)
-#   for (i in seq_len(k)) {
-#     bootData <- sample(data, size = n, replace = TRUE)
-#     sds[i] <- sd(bootData)
-#   }
-#   bootstrapSamples$object <- sds
-#   jaspResults[[stateContainerName]] <- bootstrapSamples
-#   jaspResults[[stateContainerName]]$dependOn(options = c("sdCiBootstrapSamples"))
-#   return(sds)
-# }
-# 
-# .varianceBoot <- function(data, options, jaspResults, stateContainerName) {
-#   if (!is.null(jaspResults[[stateContainerName]]$object))
-#     return(jaspResults[[stateContainerName]]$object)
-#   
-#   bootstrapSamples <- createJaspState()
-#   k <- options[["varianceCiBootstrapSamples"]]
-#   variances <- numeric(k)
-#   n <- length(data)
-#   for (i in seq_len(k)) {
-#     bootData <- sample(data, size = n, replace = TRUE)
-#     variances[i] <- var(bootData)
-#   }
-#   bootstrapSamples$object <- variances
-#   jaspResults[[stateContainerName]] <- bootstrapSamples
-#   jaspResults[[stateContainerName]]$dependOn(options = c("varianceCiBootstrapSamples"))
-#   return(variances)
-# }
-
 .descriptivesQQPlot <- function(dataset, options,  qqvar, levelName=NULL) {
   #to put a subtitle if there is a split
   title <- qqvar
