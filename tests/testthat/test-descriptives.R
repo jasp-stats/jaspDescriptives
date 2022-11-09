@@ -53,13 +53,14 @@ test_that("Descriptive Statistics table results match", {
   options$meanCi <- TRUE
   options$sdCi <- TRUE
   options$varianceCi <- TRUE
+  options$sdCi <- TRUE
   set.seed(1)
   results <- runAnalysis("Descriptives", "test.csv", options)
   table <- results[["results"]][["stats"]][["data"]]
   jaspTools::expect_equal_tables(table,
                                  list(-0.18874858754, -0.396193843016565, 0.018696667936565, 0.869717253788563,
                                       1.24667712392121, 1.05841360919316, "contNormal", 1.1202393681253,
-                                      0.749471492180139, 1.54256388211921))
+                                      0.756408180905588, 1.55420388476218))
 })
 
 test_that("Frequencies table matches", {
