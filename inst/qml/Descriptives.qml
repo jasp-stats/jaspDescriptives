@@ -157,36 +157,17 @@ Form
 						{label: qsTr("Bootstrap"),		value: "bootstrap"}
 					]
 				}
-			
-				DoubleField
-				{
-					name:			"meanCiBootstrapSamples"
-					label:			qsTr("Bootstrap samples")
-					defaultValue:	1000
-					min:			1;
-					max:			50000;
-					enabled:		ciMethod.currentValue === "bootstrap"
-				}
 			}
 			
 			CheckBox
 			{
 				name: "sdCi" 
-				label: qsTr("Confidence interval for std. devitation")
+				label: qsTr("Confidence interval for std. deviation")
 
 				CIField 
 				{ 
 					name: "sdCiLevel" 
 					label: qsTr("Width")
-				}
-
-				DoubleField
-				{
-					name:			"sdCiBootstrapSamples"
-					label:			qsTr("Bootstrap samples")
-					defaultValue:	1000
-					min:			1;
-					max:			50000;
 				}
 			}
 
@@ -200,10 +181,15 @@ Form
 					name: "varianceCiLevel" 
 					label: qsTr("Width")
 				}
+			}
 
-				DoubleField
+			Group
+			{ 
+    			title: qsTr("Bootstrap confidence interval options")
+    			
+				IntegerField 
 				{
-					name:			"varianceCiBootstrapSamples"
+					name:			"ciBootstrapSamples"
 					label:			qsTr("Bootstrap samples")
 					defaultValue:	1000
 					min:			1;
