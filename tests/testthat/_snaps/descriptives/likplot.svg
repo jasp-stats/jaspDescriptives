@@ -38,11 +38,11 @@
 <polyline points='537.82,530.60 537.82,35.15 ' style='stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;' />
 <polyline points='672.71,530.60 672.71,35.15 ' style='stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;' />
 <line x1='402.93' y1='530.60' x2='402.93' y2='35.15' style='stroke-width: 1.07; stroke: #E5E5E5; stroke-linecap: butt;' />
-<rect x='402.93' y='97.08' width='53.96' height='371.59' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #7F7F7F;' />
-<rect x='456.88' y='97.08' width='53.96' height='371.59' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #7F7F7F;' />
-<rect x='510.84' y='97.08' width='53.96' height='371.59' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #7F7F7F;' />
-<rect x='564.79' y='97.08' width='53.96' height='371.59' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #7F7F7F;' />
-<rect x='618.75' y='97.08' width='53.96' height='371.59' style='stroke-width: 1.07; stroke: none; stroke-linecap: square; stroke-linejoin: miter; fill: #7F7F7F;' />
+<rect x='402.93' y='97.08' width='53.96' height='371.59' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7F7F7F;' />
+<rect x='456.88' y='97.08' width='53.96' height='371.59' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7F7F7F;' />
+<rect x='510.84' y='97.08' width='53.96' height='371.59' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7F7F7F;' />
+<rect x='564.79' y='97.08' width='53.96' height='371.59' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7F7F7F;' />
+<rect x='618.75' y='97.08' width='53.96' height='371.59' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #7F7F7F;' />
 <text x='126.32' y='288.75' text-anchor='middle' style='font-size: 17.07px; font-family: sans;' textLength='34.17px' lengthAdjust='spacingAndGlyphs'>40%</text>
 <text x='679.54' y='288.75' text-anchor='middle' style='font-size: 17.07px; font-family: sans;' textLength='34.17px' lengthAdjust='spacingAndGlyphs'>40%</text>
 <text x='402.93' y='288.75' text-anchor='middle' style='font-size: 17.07px; font-family: sans;' textLength='34.17px' lengthAdjust='spacingAndGlyphs'>20%</text>
