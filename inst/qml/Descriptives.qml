@@ -190,12 +190,6 @@ Form
 					max:			50000;
 				}
 			}
-			
-			CheckBox
-			{
-				name: "sdCi" 
-				label: qsTr("Confidence interval for std. devitation")
-			}
 		}
 
 		CheckBox { name: "statisticsValuesAreGroupMidpoints"; label: qsTr("Values are group midpoints"); debug: true }
