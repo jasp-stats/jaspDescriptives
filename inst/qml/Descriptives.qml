@@ -117,7 +117,6 @@ Form
 			columns:			2
 			Layout.columnSpan:	2
 
-			CheckBox { name: "seMean";						label: qsTr("S.E. mean")							}
 			CheckBox { name: "sd";							label: qsTr("Std. deviation");		checked: true	}
 			CheckBox { name: "coefficientOfVariation";		label: qsTr("Coefficient of variation");			}
 			CheckBox { name: "mad";							label: qsTr("MAD")									}
@@ -127,6 +126,82 @@ Form
 			CheckBox { name: "range";						label: qsTr("Range")								}
 			CheckBox { name: "minimum";						label: qsTr("Minimum");				checked: true	}
 			CheckBox { name: "maximum";						label: qsTr("Maximum");				checked: true	}
+		}
+
+				Group
+		{
+			title:		qsTr("Inference")
+			
+			CheckBox { name: "seMean";	label: qsTr("S.E. mean")			}
+			
+			CheckBox
+			{
+				name: "meanCi" 
+				label: qsTr("Confidence interval for mean")
+				
+				CIField 
+				{ 
+					name: "meanCiLevel" 
+					label: qsTr("Width")
+				}
+				
+				DropDown 
+				{
+					name: "meanCiMethod"
+					label: qsTr("Method")
+					id: ciMethod
+					indexDefaultValue: 0
+					values:
+					[
+						{label: qsTr("Normal model"),	value: "normalModel"},
+						{label: qsTr("Bootstrap"),		value: "bootstrap"}
+					]
+				}
+			}
+			
+			CheckBox
+			{
+				name: "sdCi" 
+				label: qsTr("Confidence interval for std. deviation")
+
+				CIField 
+				{ 
+					name: "sdCiLevel" 
+					label: qsTr("Width")
+				}
+			}
+
+			CheckBox
+			{
+				name: "varianceCi" 
+				label: qsTr("Confidence interval for variance")
+
+				CIField 
+				{ 
+					name: "varianceCiLevel" 
+					label: qsTr("Width")
+				}
+			}
+
+			Group
+			{ 
+    			title: qsTr("Bootstrap confidence interval options")
+    			
+				IntegerField 
+				{
+					name:			"ciBootstrapSamples"
+					label:			qsTr("Bootstrap samples")
+					defaultValue:	1000
+					min:			1;
+					max:			50000;
+				}
+			}
+			
+			CheckBox
+			{
+				name: "sdCi" 
+				label: qsTr("Confidence interval for std. devitation")
+			}
 		}
 
 		CheckBox { name: "statisticsValuesAreGroupMidpoints"; label: qsTr("Values are group midpoints"); debug: true }
@@ -455,7 +530,6 @@ Form
 			}
 			info	: qsTr("Create a Stem and leaf table.")
 		}
-
 	}
 
 	Section
