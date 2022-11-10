@@ -361,9 +361,11 @@ Descriptives <- function(jaspResults, dataset, options) {
   if (numberMissingSplitBy)
     stats$addFootnote(message=gettextf("Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s", numberMissingSplitBy, options$splitBy))
 
-  stats$dependOn(c("splitBy", "variables", "quantilesForEqualGroupsNumber", "percentileValues", "mode", "median", "mean", "seMean",
-    "sd", "coefficientOfVariation", "variance", "skewness", "kurtosis", "shapiroWilkTest", "range", "iqr", "mad", "madRobust", "minimum", "maximum",
-    "sum", "quartiles", "quantilesForEqualGroups", "percentiles", "descriptivesTableTransposed", "valid", "missing"))
+  stats$dependOn(c("splitBy", "variables", "quantilesForEqualGroupsNumber", "percentileValues", "mode", "median", "mean",
+                   "seMean", "sd", "coefficientOfVariation", "variance", "skewness", "kurtosis", "shapiroWilkTest",
+                   "range", "iqr", "mad", "madRobust", "minimum", "maximum", "sum", "quartiles", "quantilesForEqualGroups",
+                   "percentiles", "descriptivesTableTransposed", "valid", "missing", "meanCi", "meanCiLevel", "meanCiMethod",
+                   "sdCi", "sdCiLevel", "varianceCi", "varianceCiLevel", "ciBootstrapSamples"))
 
   if (wantsSplit) {
     stats$transposeWithOvertitle <- TRUE
@@ -372,19 +374,52 @@ Descriptives <- function(jaspResults, dataset, options) {
   } else {
     stats$addColumnInfo(name="Variable",  title="", type="string")
   }
+  
+  formattedMeanCiPercent <- format(100 * options[["meanCiLevel"]], digits = 3, drop0trailing = TRUE)
+  formattedSdCiPercent <- format(100 * options[["sdCiLevel"]], digits = 3, drop0trailing = TRUE)
+  formattedVarianceCiPercent <- format(100 * options[["varianceCiLevel"]], digits = 3, drop0trailing = TRUE) 
+  
+  # only add overtitle for CIs if table is transposed, else describe CIs in title
+  if (options[["descriptivesTableTransposed"]]) {
+    meanCiOvertitle <- gettextf("%s%% Confidence Interval Mean", formattedMeanCiPercent)
+    sdCiOvertitle <- gettextf("%s%% Confidence Interval Std. Dev.", formattedSdCiPercent)
+    varianceCiOvertitle <- gettextf("%s%% Confidence Interval Variance", formattedVarianceCiPercent)
+    meanCiUbTitle <- gettext("Upper")
+    meanCiLbTitle <- gettext("Lower")
+    sdCiUbTitle <- gettext("Upper")
+    sdCiLbTitle <- gettext("Lower")
+    varianceCiUbTitle <- gettext("Upper")
+    varianceCiLbTitle <- gettext("Lower")
+  } else {
+    meanCiOvertitle <- NULL
+    sdCiOvertitle <- NULL
+    varianceCiOvertitle <- NULL
+    meanCiUbTitle <- gettextf("%s%% CI Mean Upper", formattedMeanCiPercent)
+    meanCiLbTitle <- gettextf("%s%% CI Mean Lower", formattedMeanCiPercent)
+    sdCiUbTitle <- gettextf("%s%% CI Std. Dev. Upper", formattedSdCiPercent)
+    sdCiLbTitle <- gettextf("%s%% CI Std. Dev. Lower", formattedSdCiPercent)
+    varianceCiUbTitle <- gettextf("%s%% CI Variance Upper", formattedVarianceCiPercent)
+    varianceCiLbTitle <- gettextf("%s%% CI Variance Lower", formattedVarianceCiPercent)
+  }
 
   if (options$valid)                          stats$addColumnInfo(name="Valid",                       title=gettext("Valid"),                   type="integer")
   if (options$missing)                        stats$addColumnInfo(name="Missing",                     title=gettext("Missing"),                 type="integer")
   if (options$mode)                           stats$addColumnInfo(name="Mode",                        title=gettext("Mode"),                    type="number")
   if (options$median)                         stats$addColumnInfo(name="Median",                      title=gettext("Median"),                  type="number")
   if (options$mean)                           stats$addColumnInfo(name="Mean",                        title=gettext("Mean"), 				            type="number")
-  if (options$seMean)              stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of Mean"),      type="number")
-  if (options$sd)              stats$addColumnInfo(name="Std. Deviation",              title=gettext("Std. Deviation"),          type="number")
+  if (options$seMean)                         stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of Mean"),      type="number")
+  if (options$meanCi) {                       stats$addColumnInfo(name="MeanCIUB",                    title=meanCiUbTitle,                      type="number", overtitle = meanCiOvertitle)
+                                              stats$addColumnInfo(name="MeanCILB",                    title=meanCiLbTitle,                      type="number", overtitle = meanCiOvertitle)}
+  if (options$sd)                             stats$addColumnInfo(name="Std. Deviation",              title=gettext("Std. Deviation"),          type="number")
+  if (options$sdCi) {                         stats$addColumnInfo(name="SdCIUB",                      title=sdCiUbTitle,                        type="number", overtitle = sdCiOvertitle)
+                                              stats$addColumnInfo(name="SdCILB",                      title=sdCiLbTitle,                        type="number", overtitle = sdCiOvertitle)}
   if (options$coefficientOfVariation)         stats$addColumnInfo(name="Coefficient of Variation",    title=gettext("Coefficient of variation"),type="number")
   if (options$mad)                            stats$addColumnInfo(name="MAD",                         title=gettext("MAD"),                     type="number")
   if (options$madRobust)                      stats$addColumnInfo(name="MAD Robust",                  title=gettext("MAD robust"),              type="number")
   if (options$iqr)                            stats$addColumnInfo(name="IQR",                         title=gettext("IQR"),                     type="number")
   if (options$variance)                       stats$addColumnInfo(name="Variance",                    title=gettext("Variance"),                type="number")
+  if (options$varianceCi) {                   stats$addColumnInfo(name="VarianceCIUB",                title=varianceCiUbTitle,                  type="number", overtitle = varianceCiOvertitle)
+                                              stats$addColumnInfo(name="VarianceCILB",                title=varianceCiLbTitle,                  type="number", overtitle = varianceCiOvertitle)} 
   if (options$skewness) {                     stats$addColumnInfo(name="Skewness",                    title=gettext("Skewness"),                type="number")
                                               stats$addColumnInfo(name="Std. Error of Skewness",      title=gettext("Std. Error of Skewness"),  type="number") }
   if (options$kurtosis) {                     stats$addColumnInfo(name="Kurtosis",                    title=gettext("Kurtosis"),                type="number")
@@ -433,7 +468,7 @@ Descriptives <- function(jaspResults, dataset, options) {
     for (variable in variables) {
       for (l in 1:nLevels) {
         column    <- dataset[[ .v(variable) ]][split==splitLevels[l]]
-        subReturn <- .descriptivesDescriptivesTable_subFunction(column, list(Variable = variable, Level = splitLevels[l]), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote)
+        subReturn <- .descriptivesDescriptivesTable_subFunction(column, list(Variable = variable, Level = splitLevels[l]), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, jaspResults)
 
         shouldAddNominalTextFootnote      <- subReturn$shouldAddNominalTextFootnote
         shouldAddModeMoreThanOnceFootnote <- subReturn$shouldAddModeMoreThanOnceFootnote
@@ -454,7 +489,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   } else { #we dont want to split
     for (variable in variables) {
       column    <- dataset[[.v(variable)]]
-      subReturn <- .descriptivesDescriptivesTable_subFunction(column, list(Variable=variable), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote)
+      subReturn <- .descriptivesDescriptivesTable_subFunction(column, list(Variable=variable), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, jaspResults)
 
       shouldAddNominalTextFootnote      <- subReturn$shouldAddNominalTextFootnote
       shouldAddModeMoreThanOnceFootnote <- subReturn$shouldAddModeMoreThanOnceFootnote
@@ -483,7 +518,7 @@ Descriptives <- function(jaspResults, dataset, options) {
   return(stats)
 }
 
-.descriptivesDescriptivesTable_subFunction <- function(column, resultsCol, options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote) {
+.descriptivesDescriptivesTable_subFunction <- function(column, resultsCol, options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, jaspResults) {
   equalGroupsNo           <- options$quantilesForEqualGroupsNumber
   percentilesPercentiles  <- unique(options$percentileValues)
 
@@ -519,6 +554,25 @@ Descriptives <- function(jaspResults, dataset, options) {
   resultsCol[["Minimum"]]                 <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$minimum,           na.omitted, min)
   resultsCol[["Maximum"]]                 <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$maximum,           na.omitted, max)
   resultsCol[["Sum"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$sum,               na.omitted, sum)
+  
+  if (options[["meanCi"]]) {
+    variableName <- if (is.null(resultsCol[["Level"]])) resultsCol[["Variable"]] else paste0(resultsCol[["Variable"]], resultsCol[["Level"]])
+    meanCiResults <- .descriptivesMeanCI(na.omitted, options, jaspResults, variableName)
+    resultsCol[["MeanCIUB"]] <- meanCiResults$upper
+    resultsCol[["MeanCILB"]] <- meanCiResults$lower
+  }
+  if (options[["sdCi"]]) {
+    variableName <- if (is.null(resultsCol[["Level"]])) resultsCol[["Variable"]] else paste0(resultsCol[["Variable"]], resultsCol[["Level"]])
+    sdCiResults <- .descriptivesSdCI(na.omitted, options, jaspResults, variableName)
+    resultsCol[["SdCIUB"]] <- sdCiResults$upper
+    resultsCol[["SdCILB"]] <- sdCiResults$lower
+  }
+  if (options[["varianceCi"]]) {
+    variableName <- if (is.null(resultsCol[["Level"]])) resultsCol[["Variable"]] else paste0(resultsCol[["Variable"]], resultsCol[["Level"]])
+    varianceCiResults <- .descriptivesVarianceCI(na.omitted, options, jaspResults, variableName)
+    resultsCol[["VarianceCIUB"]] <- varianceCiResults$upper
+    resultsCol[["VarianceCILB"]] <- varianceCiResults$lower
+  }
 
   # should explain supremum and infimum of an empty set?
   if((options$minimum || options$maximum) && valid == 0) shouldAddExplainEmptySet <- TRUE else shouldAddExplainEmptySet <- FALSE
@@ -1562,6 +1616,72 @@ Descriptives <- function(jaspResults, dataset, options) {
   SEK <- 2 * .descriptivesSES(x) * sqrt((n^2 - 1) / ((n - 3) * (n + 5)))
 
   return(SEK)
+}
+
+.descriptivesMeanCI <- function(data, options, jaspResults, variableName) {
+  ciWidth <- options[["meanCiLevel"]]
+  if (options[["meanCiMethod"]] == "normalModel") {
+    xBar <- mean(data)
+    se <- sd(data) / sqrt(length(data))
+    z <- qnorm((1 - ciWidth)  / 2, lower.tail = FALSE)
+    lowerBound <- xBar - z * se
+    upperBound <- xBar + z * se
+  } else if (options[["meanCiMethod"]] == "bootstrap") {
+    stateContainerName <- paste0("bootstrapSamples", variableName)
+    means <- .bootstrapStats(data, options, jaspResults, stateContainerName)$means
+    percentiles <- (1 + c(-ciWidth, ciWidth)) / 2
+    CIs <- quantile(means, probs = percentiles)
+    lowerBound <- CIs[1]
+    upperBound <- CIs[2]
+  }
+  return(list("upper" = upperBound,
+              "lower" = lowerBound))
+}
+
+.descriptivesSdCI <- function(data, options, jaspResults, variableName) {
+  ciWidth <- options[["sdCiLevel"]]
+    stateContainerName <- paste0("bootstrapSamples", variableName)
+    sds <- .bootstrapStats(data, options, jaspResults, stateContainerName)$sds
+    percentiles <- (1 + c(-ciWidth, ciWidth)) / 2
+    CIs <- quantile(sds, probs = percentiles)
+    lowerBound <- CIs[1]
+    upperBound <- CIs[2]
+  return(list("upper" = upperBound,
+              "lower" = lowerBound))
+}
+
+.descriptivesVarianceCI <- function(data, options, jaspResults, variableName) {
+  ciWidth <- options[["varianceCiLevel"]]
+  stateContainerName <- paste0("bootstrapSamples", variableName)
+  variances <- .bootstrapStats(data, options, jaspResults, stateContainerName)$variances
+  percentiles <- (1 + c(-ciWidth, ciWidth)) / 2
+  CIs <- quantile(variances, probs = percentiles)
+  lowerBound <- CIs[1]
+  upperBound <- CIs[2]
+  return(list("upper" = upperBound,
+              "lower" = lowerBound))
+}
+
+.bootstrapStats <- function(data, options, jaspResults, stateContainerName) {
+  if (!is.null(jaspResults[[stateContainerName]]$object))
+    return(jaspResults[[stateContainerName]]$object)
+  
+  bootstrapSamples <- createJaspState()
+  k <- options[["ciBootstrapSamples"]]
+  means <- numeric(k)
+  sds <- numeric(k)
+  variances <- numeric(k)
+  n <- length(data)
+  for (i in seq_len(k)) {
+    bootData <- sample(data, size = n, replace = TRUE)
+    means[i] <- mean(bootData)
+    sds[i] <- sd(bootData)
+    variances[i] <- var(bootData)
+  }
+  bootstrapSamples$object <- list(means = means, sds = sds, variances = variances)
+  jaspResults[[stateContainerName]] <- bootstrapSamples
+  jaspResults[[stateContainerName]]$dependOn(options = c("ciBootstrapSamples"))
+  return(list(means = means, sds = sds, variances = variances))
 }
 
 .descriptivesQQPlot <- function(dataset, options,  qqvar, levelName=NULL) {
