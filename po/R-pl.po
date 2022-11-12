@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2022-07-16 03:40\n"
-"PO-Revision-Date: 2021-12-26 15:54+0000\n"
-"Last-Translator: Andrzej Wiśniewski <andrzej551@wp.pl>\n"
+"PO-Revision-Date: 2022-11-09 17:29+0000\n"
+"Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/pl/>\n"
 "Language: pl\n"
@@ -12,236 +12,246 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.10.1\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 msgid "Frequency Tables"
-msgstr "tablica częstości"
+msgstr "Tabela częstości"
 
 msgid "Correlation plots"
-msgstr "wykres korelacyjny"
+msgstr "Wykres korelacji"
 
 msgid "Correlation plot"
-msgstr ""
+msgstr "Wykres korelacji"
 
 msgid "Distribution Plots"
-msgstr "wykres rozkładu"
+msgstr "Wykresy rozkładu"
 
 msgid "Boxplots"
-msgstr "wykres pudełkowy"
+msgstr "Wykresy pudełkowe"
 
 msgid "Q-Q Plots"
-msgstr "wykres Q-Q"
+msgstr "Wykresy K-K"
 
 msgid "Q-Q Plot"
-msgstr ""
+msgstr "Wykres K-K"
 
 msgid "Plotting is not possible: Variable only contains NA!"
-msgstr "Wykres nie jest dostępny: zmienna zawiera wyłącznie braki danych"
+msgstr ""
+"Wykonanie wykresu nie jest możliwe: zmienna zawiera wyłącznie braki danych!"
 
 msgid "Pie charts"
-msgstr ""
+msgstr "Wykresy kołowe"
 
 msgid "Stem and Leaf"
-msgstr "łodygi i liście"
+msgstr "Łodyga i liście"
 
 msgid "Scatter Plots"
-msgstr "wykres rozrzutu"
+msgstr "Wykresy rozrzutu"
 
 msgid "Interval plots"
-msgstr ""
+msgstr "Wykresy przedziałów ufności"
 
 msgid "Dot Plots"
-msgstr "wykres punktowy"
+msgstr "Wykresy punktowe"
 
 msgid "Heatmaps"
-msgstr ""
+msgstr "Mapy cieplne"
 
-#, fuzzy
 msgid "Pareto Plots"
-msgstr "wykres punktowy"
+msgstr "Wykresy Pareto"
 
-#, fuzzy
 msgid "Density Plots"
-msgstr "wykres punktowy"
+msgstr "Wykresy gęstości"
 
-#, fuzzy
 msgid "Likert Plots"
-msgstr "wykres punktowy"
+msgstr "Wykresy Likerta"
 
 msgid "Descriptive Statistics"
-msgstr "statystyki opisowe"
+msgstr "Statystyki opisowe"
 
 msgid ""
 "Excluded %1$i rows from the analysis that correspond to the missing values "
 "of the split-by variable %2$s"
 msgstr ""
+"Wykluczono z analizy %1$i wierszy, które odpowiadają brakującym wartościom "
+"zmiennej grupującej %2$s"
 
 msgid "Valid"
-msgstr "prawidłowe"
+msgstr "Ważne"
 
 msgid "Missing"
-msgstr "braki"
+msgstr "Braki"
 
 msgid "Mode"
-msgstr "tryb"
+msgstr "Tryb"
 
 msgid "Median"
-msgstr "mediana"
+msgstr "Mediana"
 
 msgid "Mean"
-msgstr "średnia"
+msgstr "Średnia"
 
 msgid "Std. Error of Mean"
-msgstr "błąd standardowy średniej"
+msgstr "Błąd standardowy średniej"
 
 msgid "Std. Deviation"
-msgstr "odchylenie standardowe"
+msgstr "Odchylenie standardowe"
 
 msgid "Coefficient of variation"
-msgstr "współczynnik wariancji"
+msgstr "Współczynnik wariancji"
 
 msgid "MAD"
-msgstr ""
+msgstr "MAD"
 
 msgid "MAD robust"
-msgstr ""
+msgstr "MAD (wersja odporna)"
 
 msgid "IQR"
-msgstr ""
+msgstr "IQR"
 
 msgid "Variance"
-msgstr ""
+msgstr "Wariancja"
 
 msgid "Skewness"
-msgstr ""
+msgstr "Skośność"
 
 msgid "Std. Error of Skewness"
-msgstr "błąd standardowy skośności"
+msgstr "Błąd standardowy skośności"
 
 msgid "Kurtosis"
-msgstr "kurtoza"
+msgstr "Kurtoza"
 
 msgid "Std. Error of Kurtosis"
-msgstr "błąd standardowy kurtozy"
+msgstr "Błąd standardowy kurtozy"
 
 msgid "Shapiro-Wilk"
-msgstr ""
+msgstr "Shapiro-Wilk"
 
 msgid "P-value of Shapiro-Wilk"
-msgstr "wartość p testu Shapiro-Wilka zgodności z rozkładem normalnym"
+msgstr "Wartość p testu Shapiro-Wilka"
 
 msgid "Range"
-msgstr ""
+msgstr "Rozstęp"
 
 msgid "Minimum"
-msgstr ""
+msgstr "Minimum"
 
 msgid "Maximum"
-msgstr ""
+msgstr "Maksimum"
 
 msgid "%gth percentile"
-msgstr ""
+msgstr "%g-ty percentyl"
 
 msgid "Sum"
-msgstr "suma"
+msgstr "Suma"
 
 msgid "All values are identical"
-msgstr "wszystkie wartości są identyczne"
+msgstr "Wszystkie wartości są identyczne"
 
 msgid ""
 "Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty set "
 "is %2$s."
 msgstr ""
+"Infimum (minimum) zbioru pustego to %1$s, supremum (maksimum) zbioru pustego "
+"to %2$s."
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
-msgstr ""
+msgstr "Nie wszystkie wartości są dostępne dla zmiennych <i>Nominal Text</i>"
 
 msgid "More than one mode exists, only the first is reported"
-msgstr ""
+msgstr "Istnieje więcej niż jedna modalna, podana została pierwsza z nich"
 
 msgid "Total"
-msgstr ""
+msgstr "Całość"
 
 msgid "All variables have more than %1$s distinct values"
-msgstr ""
+msgstr "Wszystkie zmienne mają więcej niż %1$s różnych wartości"
 
 msgid "Frequencies"
-msgstr ""
+msgstr "Częstości"
 
 msgid "Frequencies for %s"
-msgstr ""
+msgstr "Częstości dla %s"
 
 msgid "Frequency"
-msgstr ""
+msgstr "Częstość"
 
 msgid "Percent"
-msgstr ""
+msgstr "Procent"
 
 msgid "Valid Percent"
-msgstr ""
+msgstr "Procent ważnych"
 
 msgid "Cumulative Percent"
-msgstr ""
+msgstr "Procent skumulowany"
 
 msgid "Density"
-msgstr "gęstość"
+msgstr "Gęstość"
 
 msgid "Plotting not possible: %s"
-msgstr ""
+msgstr "Nie można wykonać wykresu: %s"
 
 msgid "Plotting is not possible: No plot type selected!"
-msgstr ""
+msgstr "Wykonanie wykresu nie jest możliwe: nie wybrano typu wykresu!"
 
 msgid "Counts"
-msgstr ""
+msgstr "Liczebności"
 
 msgid "No non-missing values!"
-msgstr ""
+msgstr "Występują wyłącznie braki danych!"
 
 msgid "Theoretical Quantiles"
-msgstr ""
+msgstr "Kwantyle teoretyczne"
 
 msgid "Sample Quantiles"
-msgstr ""
+msgstr "Kwantyle z próby"
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
 "missing observations"
 msgstr ""
+"Wykres typu łodyga i liście nie mógł zostać utworzony, ponieważ istnieją "
+"mniej niż 2 ważne obserwacje"
 
 msgid "The decimal point is at the |"
-msgstr ""
+msgstr "Punkt dziesiętny znajduje się w |"
 
 msgid ""
 "There must be a unique value per combination of levels of horizontal and "
 "vertical axis!"
 msgstr ""
+"Każda kombinacja poziomów osi poziomej i pionowej musi mieć unikalną wartość!"
 
 msgid "All categorical variables must have the same number of levels!"
-msgstr ""
+msgstr "Wszystkie zmienne kategorialne muszą mieć taką samą liczbę poziomów!"
 
 msgid "Items must have 2 or more levels!"
-msgstr ""
+msgstr "Itemy muszą mieć 2 lub więcej poziomów!"
 
 msgid "Levels within variable require at least two or more data points!"
 msgstr ""
+"Poziomy w ramach zmiennej wymagają co najmniej dwóch lub więcej wartości!"
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
 "The following variables have more than %1$s distinct values and are omitted: "
 "%2$s."
-msgstr[0] ""
+msgstr[0] "%2$s ma więcej niż %1$s różnych wartości, dlatego jest pomijana."
 msgstr[1] ""
+"Następujące zmienne mają więcej niż %1$s różnych wartości, dlatego są "
+"pomijane: %2$s."
 msgstr[2] ""
+"Następujące zmienne mają więcej niż %1$s różnych wartości, dlatego są "
+"pomijane: %2$s."
 
 msgid "The decimal point is %s digit to the right of the |"
 msgid_plural "The decimal point is %s digits to the right of the |"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Punkt dziesiętny znajduje się %s cyfrę na prawo od |"
+msgstr[1] "Punkt dziesiętny znajduje się %s cyfry na prawo od |"
+msgstr[2] "Punkt dziesiętny znajduje się %s cyfr na prawo od |"
 
 msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Punkt dziesiętny znajduje się %s cyfrę na lewo od |"
+msgstr[1] "Punkt dziesiętny znajduje się %s cyfry na lewo od |"
+msgstr[2] "Punkt dziesiętny znajduje się %s cyfr na lewo od |"
