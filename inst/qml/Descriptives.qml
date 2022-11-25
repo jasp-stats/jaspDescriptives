@@ -83,9 +83,11 @@ Form
 				label:				qsTr("Percentiles:")
 				childrenOnSameRow:	true
 
-				TextField
+				DoubleField
 				{
 					inputType:	"doubleArray"
+					min:        0
+					max:        100
 					name:		"percentileValues"
 					fieldWidth: 60
 				}
