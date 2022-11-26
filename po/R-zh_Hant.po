@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2022-07-16 03:40\n"
-"PO-Revision-Date: 2022-11-14 06:44+0000\n"
+"PO-Revision-Date: 2022-11-25 06:47+0000\n"
 "Last-Translator: Changya Hu <changyahu@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "jasp/jaspdescriptives-r/zh_Hant/>\n"
@@ -93,6 +93,7 @@ msgstr "平均數之標準誤"
 msgid "Std. Deviation"
 msgstr "標準差"
 
+#, fuzzy
 msgid "Coefficient of variation"
 msgstr "變異係數"
 
@@ -179,6 +180,7 @@ msgstr "有效百分比"
 msgid "Cumulative Percent"
 msgstr "累積百分比"
 
+#, fuzzy
 msgid "Density"
 msgstr "密度"
 
