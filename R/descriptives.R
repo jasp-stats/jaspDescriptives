@@ -554,9 +554,13 @@ Descriptives <- function(jaspResults, dataset, options) {
 
   if (options$percentiles) {
 
-    for (i in percentilesPercentiles)
-      stats$addColumnInfo(name=paste("pc", i, sep=""), title=gettextf("%gth percentile", i), type="number")
-
+    for (i in percentilesPercentiles){
+      if (i >= 0 && i <= 100) {
+        stats$addColumnInfo(name=paste("pc", i, sep=""), title=gettextf("%gth percentile", i), type="number")
+      }else{
+        .quitAnalysis(gettext("Error in Percentiles, all values should >=0 and <=100"))
+      }
+    }
   }
 
   if (options$sum)                  stats$addColumnInfo(name="Sum",                         title=gettext("Sum"),                     type="number")
