@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2022-07-16 03:40\n"
+"POT-Creation-Date: 2022-11-28 15:55\n"
 "PO-Revision-Date: 2022-10-26 00:31+0000\n"
 "Last-Translator: fedder <fedor.derish@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
@@ -74,6 +74,39 @@ msgid ""
 msgstr ""
 "Из анализа исключено %1$i строк, соответствующих отсутствующим значениям "
 "группирующей переменной %2$s."
+
+msgid "%s%% Confidence Interval Mean"
+msgstr ""
+
+msgid "%s%% Confidence Interval Std. Dev."
+msgstr ""
+
+msgid "%s%% Confidence Interval Variance"
+msgstr ""
+
+msgid "Upper"
+msgstr ""
+
+msgid "Lower"
+msgstr ""
+
+msgid "%s%% CI Mean Upper"
+msgstr ""
+
+msgid "%s%% CI Mean Lower"
+msgstr ""
+
+msgid "%s%% CI Std. Dev. Upper"
+msgstr ""
+
+msgid "%s%% CI Std. Dev. Lower"
+msgstr ""
+
+msgid "%s%% CI Variance Upper"
+msgstr ""
+
+msgid "%s%% CI Variance Lower"
+msgstr ""
 
 msgid "Valid"
 msgstr "Присутствующие"
@@ -251,7 +284,7 @@ msgstr[0] "Десятичный знак — это %s цифра слева о�
 msgstr[1] "Десятичный знак — это %s цифры слева от |"
 msgstr[2] "Десятичный знак — это %s цифры слева от |"
 
-msgid ""
-"Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set "
-"is %s."
-msgstr "Минимум пустого набора равен %s, максимум пустого набора равен %s."
+#~ msgid ""
+#~ "Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty "
+#~ "set is %s."
+#~ msgstr "Минимум пустого набора равен %s, максимум пустого набора равен %s."

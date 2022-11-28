@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2022-07-16 03:40\n"
+"POT-Creation-Date: 2022-11-28 15:55\n"
 "PO-Revision-Date: 2021-04-19 01:26+0000\n"
 "Last-Translator: phlostically <phlostically@mailinator.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/jasp/"
@@ -74,6 +74,39 @@ msgstr ""
 msgid ""
 "Excluded %1$i rows from the analysis that correspond to the missing values "
 "of the split-by variable %2$s"
+msgstr ""
+
+msgid "%s%% Confidence Interval Mean"
+msgstr ""
+
+msgid "%s%% Confidence Interval Std. Dev."
+msgstr ""
+
+msgid "%s%% Confidence Interval Variance"
+msgstr ""
+
+msgid "Upper"
+msgstr ""
+
+msgid "Lower"
+msgstr ""
+
+msgid "%s%% CI Mean Upper"
+msgstr ""
+
+msgid "%s%% CI Mean Lower"
+msgstr ""
+
+msgid "%s%% CI Std. Dev. Upper"
+msgstr ""
+
+msgid "%s%% CI Std. Dev. Lower"
+msgstr ""
+
+msgid "%s%% CI Variance Upper"
+msgstr ""
+
+msgid "%s%% CI Variance Lower"
 msgstr ""
 
 msgid "Valid"
@@ -149,8 +182,8 @@ msgid "All values are identical"
 msgstr ""
 
 msgid ""
-"Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty set "
-"is %2$s."
+"Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty "
+"set is %2$s."
 msgstr ""
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"

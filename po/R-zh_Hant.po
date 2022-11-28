@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2022-07-16 03:40\n"
+"POT-Creation-Date: 2022-11-28 15:55\n"
 "PO-Revision-Date: 2022-11-25 06:47+0000\n"
 "Last-Translator: Changya Hu <changyahu@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -71,6 +71,39 @@ msgid ""
 "Excluded %1$i rows from the analysis that correspond to the missing values "
 "of the split-by variable %2$s"
 msgstr "因為以%2$s分群變項中有遺漏值，共有%1$i 資料未納入分析"
+
+msgid "%s%% Confidence Interval Mean"
+msgstr ""
+
+msgid "%s%% Confidence Interval Std. Dev."
+msgstr ""
+
+msgid "%s%% Confidence Interval Variance"
+msgstr ""
+
+msgid "Upper"
+msgstr ""
+
+msgid "Lower"
+msgstr ""
+
+msgid "%s%% CI Mean Upper"
+msgstr ""
+
+msgid "%s%% CI Mean Lower"
+msgstr ""
+
+msgid "%s%% CI Std. Dev. Upper"
+msgstr ""
+
+msgid "%s%% CI Std. Dev. Lower"
+msgstr ""
+
+msgid "%s%% CI Variance Upper"
+msgstr ""
+
+msgid "%s%% CI Variance Lower"
+msgstr ""
 
 msgid "Valid"
 msgstr "有效"
@@ -239,7 +272,7 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "小數點位數為 | 左邊 %s 位數"
 
-msgid ""
-"Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty set "
-"is %s."
-msgstr "空集合的最小下界為 %s, 最大上界為 %s."
+#~ msgid ""
+#~ "Infimum (minimum) of an empty set is %s, supremum (maximum) of an empty "
+#~ "set is %s."
+#~ msgstr "空集合的最小下界為 %s, 最大上界為 %s."

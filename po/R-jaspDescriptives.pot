@@ -1,14 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.17.0\n"
-"POT-Creation-Date: 2022-10-08 03:44\n"
+"POT-Creation-Date: 2022-11-28 15:55\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 msgid "Frequency Tables"
 msgstr ""
@@ -65,6 +66,39 @@ msgid "Descriptive Statistics"
 msgstr ""
 
 msgid "Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s"
+msgstr ""
+
+msgid "%s%% Confidence Interval Mean"
+msgstr ""
+
+msgid "%s%% Confidence Interval Std. Dev."
+msgstr ""
+
+msgid "%s%% Confidence Interval Variance"
+msgstr ""
+
+msgid "Upper"
+msgstr ""
+
+msgid "Lower"
+msgstr ""
+
+msgid "%s%% CI Mean Upper"
+msgstr ""
+
+msgid "%s%% CI Mean Lower"
+msgstr ""
+
+msgid "%s%% CI Std. Dev. Upper"
+msgstr ""
+
+msgid "%s%% CI Std. Dev. Lower"
+msgstr ""
+
+msgid "%s%% CI Variance Upper"
+msgstr ""
+
+msgid "%s%% CI Variance Lower"
 msgstr ""
 
 msgid "Valid"

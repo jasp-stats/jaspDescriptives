@@ -475,3 +475,43 @@ msgstr ""
 msgctxt "Descriptives|"
 msgid "Transparency"
 msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Inference"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Confidence interval for mean"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Width"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Method"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Normal model"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Bootstrap"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Confidence interval for std. deviation"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Confidence interval for variance"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Bootstrap confidence interval options"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Bootstrap samples"
+msgstr ""

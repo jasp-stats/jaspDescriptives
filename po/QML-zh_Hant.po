@@ -1,17 +1,11 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-10-30 19:47+0000\n"
-"Last-Translator: Changya Hu <changyahu@gmail.com>\n"
-"Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
-"jasp/jaspdescriptives-qml/zh_Hant/>\n"
-"Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.9-dev\n"
-"X-Qt-Contexts: true\n"
 "X-Language: zh_Hant\n"
+"X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
 msgid "Descriptives"
@@ -55,10 +49,6 @@ msgstr "此參數設定圖表大小倍數。如scale=2時，表格大小約是sc
 msgctxt "Descriptives|"
 msgid "Create a Stem and leaf table."
 msgstr "製作莖葉圖"
-
-msgctxt "Descriptives|"
-msgid "Plots"
-msgstr "統計圖"
 
 msgctxt "Descriptives|"
 msgid "Color palette"
@@ -107,10 +97,6 @@ msgstr "使用調色盤"
 msgctxt "Descriptives|"
 msgid "Label outliers"
 msgstr "標示離群值"
-
-msgctxt "Descriptives|"
-msgid "Scatter Plots"
-msgstr "散佈圖"
 
 msgctxt "Descriptives|"
 msgid "Graph above scatter plot"
@@ -363,3 +349,167 @@ msgstr "點圖"
 msgctxt "Descriptives|"
 msgid "Quantiles"
 msgstr "分位数"
+
+msgctxt "Descriptives|"
+msgid "Sample size"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Valid"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Missing"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Inference"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Confidence interval for mean"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Width"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Method"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Normal model"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Bootstrap"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Confidence interval for std. deviation"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Confidence interval for variance"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Bootstrap confidence interval options"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Bootstrap samples"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Categorical plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Pareto plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Pareto rule"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Likert plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Assume all variables share the same levels"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Adjustable font size for vertical axis"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Normal"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Small"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Medium"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Large"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Scatter plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Density plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Separate densities:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Display density plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Transparency"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Tile heatmaps for selected variables"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Horizontal axis:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Vertical axis:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Display legend"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Display value"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Relative text size"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Width to height ratio of tiles"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Statistic to plot"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "For scale variables"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Value itself"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Number of observations"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "For nominal and ordinal variables"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Tables"
+msgstr ""

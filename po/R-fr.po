@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2022-07-16 03:40\n"
+"POT-Creation-Date: 2022-11-28 15:55\n"
 "PO-Revision-Date: 2022-10-01 04:05+0000\n"
 "Last-Translator: JASP Stats <b.boutin@uva.nl>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/jasp/"
@@ -73,6 +73,39 @@ msgid ""
 msgstr ""
 "%1$i lignes exclues de l'analyse qui correspondent aux valeurs manquantes de "
 "la variable fractionnée %2$s"
+
+msgid "%s%% Confidence Interval Mean"
+msgstr ""
+
+msgid "%s%% Confidence Interval Std. Dev."
+msgstr ""
+
+msgid "%s%% Confidence Interval Variance"
+msgstr ""
+
+msgid "Upper"
+msgstr ""
+
+msgid "Lower"
+msgstr ""
+
+msgid "%s%% CI Mean Upper"
+msgstr ""
+
+msgid "%s%% CI Mean Lower"
+msgstr ""
+
+msgid "%s%% CI Std. Dev. Upper"
+msgstr ""
+
+msgid "%s%% CI Std. Dev. Lower"
+msgstr ""
+
+msgid "%s%% CI Variance Upper"
+msgstr ""
+
+msgid "%s%% CI Variance Lower"
+msgstr ""
 
 msgid "Valid"
 msgstr "Valide"
@@ -147,8 +180,8 @@ msgid "All values are identical"
 msgstr "Toutes les valeurs sont identiques"
 
 msgid ""
-"Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty set "
-"is %2$s."
+"Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty "
+"set is %2$s."
 msgstr ""
 "L'infimum (minimum) d'un ensemble vide est %1$s, le supremum (maximum) d'un "
 "ensemble vide est %2$s."
