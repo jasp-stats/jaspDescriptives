@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2022-11-28 15:55\n"
+"POT-Creation-Date: 2022-12-03 03:19\n"
 "PO-Revision-Date: 2021-04-19 01:26+0000\n"
 "Last-Translator: phlostically <phlostically@mailinator.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/jasp/"
@@ -173,6 +173,9 @@ msgid "Maximum"
 msgstr "Maksimumo"
 
 msgid "%gth percentile"
+msgstr ""
+
+msgid "Error in Percentiles, all values should >=0 and <=100"
 msgstr ""
 
 msgid "Sum"

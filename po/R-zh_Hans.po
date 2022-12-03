@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2022-11-28 15:55\n"
+"POT-Creation-Date: 2022-12-03 03:19\n"
 "PO-Revision-Date: 2022-09-21 16:17+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -170,6 +170,9 @@ msgstr "最大值"
 
 msgid "%gth percentile"
 msgstr "第 %g 百分位"
+
+msgid "Error in Percentiles, all values should >=0 and <=100"
+msgstr ""
 
 msgid "Sum"
 msgstr "总和"

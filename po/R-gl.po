@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-11-28 15:55\n"
+"POT-Creation-Date: 2022-12-03 03:19\n"
 "PO-Revision-Date: 2022-07-19 10:03+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
@@ -180,6 +180,9 @@ msgstr "Máximo"
 
 msgid "%gth percentile"
 msgstr "Percentil %g-ésimo"
+
+msgid "Error in Percentiles, all values should >=0 and <=100"
+msgstr ""
 
 msgid "Sum"
 msgstr "Suma"

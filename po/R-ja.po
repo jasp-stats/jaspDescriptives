@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.11.0\n"
-"POT-Creation-Date: 2022-11-28 15:55\n"
+"POT-Creation-Date: 2022-12-03 03:19\n"
 "PO-Revision-Date: 2021-11-08 13:05+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -173,6 +173,9 @@ msgstr "最大値"
 
 msgid "%gth percentile"
 msgstr "第%gパーセンタイル"
+
+msgid "Error in Percentiles, all values should >=0 and <=100"
+msgstr ""
 
 msgid "Sum"
 msgstr "総和"
