@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
 "POT-Creation-Date: 2022-12-03 03:19\n"
-"PO-Revision-Date: 2022-07-19 10:20+0000\n"
+"PO-Revision-Date: 2022-12-10 12:02+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/es/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 msgid "Frequency Tables"
 msgstr "Tablas de Frecuencias"
@@ -75,37 +75,37 @@ msgstr ""
 "ausentes de la variable %2$s de separación"
 
 msgid "%s%% Confidence Interval Mean"
-msgstr ""
+msgstr "Media de Intervalos con %s%% de Confianza"
 
 msgid "%s%% Confidence Interval Std. Dev."
-msgstr ""
+msgstr "Desv. Típ. de Intervalos con %s%% de Confianza"
 
 msgid "%s%% Confidence Interval Variance"
-msgstr ""
+msgstr "Varianza de Intervalos con %s%% de Confianza"
 
 msgid "Upper"
-msgstr ""
+msgstr "Superior"
 
 msgid "Lower"
-msgstr ""
+msgstr "Inferior"
 
 msgid "%s%% CI Mean Upper"
-msgstr ""
+msgstr "Superior de la Media de los IC con %s%%"
 
 msgid "%s%% CI Mean Lower"
-msgstr ""
+msgstr "Inferior de la Media de los IC con %s%%"
 
 msgid "%s%% CI Std. Dev. Upper"
-msgstr ""
+msgstr "Superior de Desv. Típ. de los IC con %s%%"
 
 msgid "%s%% CI Std. Dev. Lower"
-msgstr ""
+msgstr "Inferior de Desv. Típ. de los IC con %s%%"
 
 msgid "%s%% CI Variance Upper"
-msgstr ""
+msgstr "Superior de Varianza de los IC con %s%%"
 
 msgid "%s%% CI Variance Lower"
-msgstr ""
+msgstr "Inferior de Varianza de los IC con %s%%"
 
 msgid "Valid"
 msgstr "Válido"
@@ -174,7 +174,7 @@ msgid "%gth percentile"
 msgstr "Percentil %g-ésimo"
 
 msgid "Error in Percentiles, all values should >=0 and <=100"
-msgstr ""
+msgstr "Fallo en los Percentiles: todos los valores deben ser >=0 y <=100"
 
 msgid "Sum"
 msgstr "Suma"
