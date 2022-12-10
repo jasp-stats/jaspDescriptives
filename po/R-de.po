@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2022-12-03 03:19\n"
-"PO-Revision-Date: 2022-07-17 05:39+0000\n"
+"PO-Revision-Date: 2022-12-10 12:02+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/de/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 msgid "Frequency Tables"
 msgstr "Häufigkeitstabellen"
@@ -76,37 +76,37 @@ msgstr ""
 "entsprechen, wurden aus der Analyse ausgeschlossen"
 
 msgid "%s%% Confidence Interval Mean"
-msgstr ""
+msgstr "%s%% Konfidenzintervall Mittelwert"
 
 msgid "%s%% Confidence Interval Std. Dev."
-msgstr ""
+msgstr "%s%% Konfidenzintervall Std.-Abw."
 
 msgid "%s%% Confidence Interval Variance"
-msgstr ""
+msgstr "%s%% Konfidenzintervall Varianz"
 
 msgid "Upper"
-msgstr ""
+msgstr "Obergrenze"
 
 msgid "Lower"
-msgstr ""
+msgstr "Untergrenze"
 
 msgid "%s%% CI Mean Upper"
-msgstr ""
+msgstr "%s%% KI Mittelwert Obergrenze"
 
 msgid "%s%% CI Mean Lower"
-msgstr ""
+msgstr "%s%% KI Mittelwert Untergrenze"
 
 msgid "%s%% CI Std. Dev. Upper"
-msgstr ""
+msgstr "%s%% KI Std.-Abw. Obergrenze"
 
 msgid "%s%% CI Std. Dev. Lower"
-msgstr ""
+msgstr "%s%% KI Std.-Abw. Untergrenze"
 
 msgid "%s%% CI Variance Upper"
-msgstr ""
+msgstr "%s%% KI Varianz Obergrenze"
 
 msgid "%s%% CI Variance Lower"
-msgstr ""
+msgstr "%s%% KI Varianz Untergrenze"
 
 msgid "Valid"
 msgstr "Gültig"
@@ -175,7 +175,7 @@ msgid "%gth percentile"
 msgstr "%ges Perzentil"
 
 msgid "Error in Percentiles, all values should >=0 and <=100"
-msgstr ""
+msgstr "Fehler in Perzentilen, alle Werte sollten >=0 und <=100 sein"
 
 msgid "Sum"
 msgstr "Summe"
