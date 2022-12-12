@@ -1,6 +1,6 @@
 import(jaspBase)
 export(Descriptives)
+export(DescriptivesInternal)
 export(.descriptivesScatterPlots)
 export(.poly.predDescriptives)
 export(.plotMarginal)
-export(DescriptivesWrapper)
