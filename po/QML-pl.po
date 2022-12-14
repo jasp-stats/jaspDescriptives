@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2022-11-09 17:29+0000\n"
+"PO-Revision-Date: 2022-12-15 17:32+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/pl/>\n"
@@ -338,7 +338,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Interval plots"
-msgstr ""
+msgstr "Słupki błędów"
 
 msgctxt "Descriptives|"
 msgid "Coefficient of Variation"
