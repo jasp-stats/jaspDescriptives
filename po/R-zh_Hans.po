@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2022-12-03 03:19\n"
-"PO-Revision-Date: 2022-09-21 16:17+0000\n"
+"PO-Revision-Date: 2022-12-15 17:32+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "jasp/jaspdescriptives-r/zh_Hans/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14.1\n"
+"X-Generator: Weblate 4.15-dev\n"
 
 msgid "Frequency Tables"
 msgstr "频率表"
@@ -73,37 +73,37 @@ msgid ""
 msgstr "从分析中排除了与拆分变量 %2$s 相对应的缺失值 %1$i 行"
 
 msgid "%s%% Confidence Interval Mean"
-msgstr ""
+msgstr "%s%% 置信区间均值"
 
 msgid "%s%% Confidence Interval Std. Dev."
-msgstr ""
+msgstr "%s%% 置信区间标准差"
 
 msgid "%s%% Confidence Interval Variance"
-msgstr ""
+msgstr "%s%% 置信区间方差"
 
 msgid "Upper"
-msgstr ""
+msgstr "上界"
 
 msgid "Lower"
-msgstr ""
+msgstr "下界"
 
 msgid "%s%% CI Mean Upper"
-msgstr ""
+msgstr "%s%% CI 均值上界"
 
 msgid "%s%% CI Mean Lower"
-msgstr ""
+msgstr "%s%% CI 均值下界"
 
 msgid "%s%% CI Std. Dev. Upper"
-msgstr ""
+msgstr "%s%% CI 标准差上界"
 
 msgid "%s%% CI Std. Dev. Lower"
-msgstr ""
+msgstr "%s%% CI 标准差下界"
 
 msgid "%s%% CI Variance Upper"
-msgstr ""
+msgstr "%s%% CI 方差上界"
 
 msgid "%s%% CI Variance Lower"
-msgstr ""
+msgstr "%s%% CI 方差下界"
 
 msgid "Valid"
 msgstr "有效"
@@ -172,7 +172,7 @@ msgid "%gth percentile"
 msgstr "第 %g 百分位"
 
 msgid "Error in Percentiles, all values should >=0 and <=100"
-msgstr ""
+msgstr "百分位数中有误，所有值应介于0~100之间。"
 
 msgid "Sum"
 msgstr "总和"
