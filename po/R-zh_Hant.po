@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2022-12-03 03:19\n"
-"PO-Revision-Date: 2022-12-23 07:49+0000\n"
+"PO-Revision-Date: 2022-12-24 03:17+0000\n"
 "Last-Translator: Changya Hu <changyahu@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "jasp/jaspdescriptives-r/zh_Hant/>\n"
@@ -53,6 +53,7 @@ msgstr "區間圖"
 msgid "Dot Plots"
 msgstr "點圖"
 
+#, fuzzy
 msgid "Heatmaps"
 msgstr "熱圖"
 
@@ -222,6 +223,7 @@ msgstr "累積百分比"
 msgid "Density"
 msgstr "密度"
 
+#, fuzzy
 msgid "Plotting not possible: %s"
 msgstr "無法繪圖: %s"
 
