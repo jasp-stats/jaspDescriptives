@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2022-12-03 03:19\n"
-"PO-Revision-Date: 2022-12-20 20:17+0000\n"
+"PO-Revision-Date: 2022-12-23 07:49+0000\n"
 "Last-Translator: Changya Hu <changyahu@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "jasp/jaspdescriptives-r/zh_Hant/>\n"
@@ -19,6 +19,7 @@ msgstr "次數表"
 msgid "Correlation plots"
 msgstr "相關圖"
 
+#, fuzzy
 msgid "Correlation plot"
 msgstr "相關圖"
 
@@ -157,7 +158,7 @@ msgid "Std. Error of Kurtosis"
 msgstr "峰度標準誤"
 
 msgid "Shapiro-Wilk"
-msgstr "Shapiro-Wilk 檢定"
+msgstr "Shapiro-Wilk"
 
 msgid "P-value of Shapiro-Wilk"
 msgstr "Shapiro-Wilk 檢定之p值"
