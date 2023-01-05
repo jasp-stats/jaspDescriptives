@@ -431,9 +431,9 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if (options$maximum)                        stats$addColumnInfo(name="Maximum",                     title=gettext("Maximum"),                 type="number")
 
   if (options$quartiles) {
-                                    stats$addColumnInfo(name="q1", title="25th percentile", type="number")
-                                    stats$addColumnInfo(name="q2", title="50th percentile", type="number")
-                                    stats$addColumnInfo(name="q3", title="75th percentile", type="number")
+                                    stats$addColumnInfo(name="q1", title=gettext("25th percentile"), type="number")
+                                    stats$addColumnInfo(name="q2", title=gettext("50th percentile"), type="number")
+                                    stats$addColumnInfo(name="q3", title=gettext("75th percentile"), type="number")
   }
 
   if (options$quantilesForEqualGroups)  {# I've read that there are several ways how to estimate percentiles so it should be checked if it match the SPSS way
@@ -1931,9 +1931,9 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 .descriptivesStemAndLeafCreateSingleTable <- function(x, title, scale = 1, width = 80, atom = 1e-08) {
 
   tb <- createJaspTable(title = title)
-  tb$addColumnInfo(name = "left",  title =  "Stem", type = "integer")
+  tb$addColumnInfo(name = "left",  title =  gettext("Stem"), type = "integer")
   tb$addColumnInfo(name = "sep",   title =  "",     type = "separator")
-  tb$addColumnInfo(name = "right", title =  "Leaf", type = "string")
+  tb$addColumnInfo(name = "right", title =  gettext("Leaf"), type = "string")
 
   if (length(na.omit(x)) < 2L) {
     tb$setError(gettext("A stem and leaf table could not be made because there are fewer than 2 non-missing observations"))
