@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.11.0\n"
-"POT-Creation-Date: 2022-12-03 03:19\n"
+"POT-Creation-Date: 2023-01-07 03:19\n"
 "PO-Revision-Date: 2021-11-08 13:05+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -171,6 +171,18 @@ msgstr "最小値"
 msgid "Maximum"
 msgstr "最大値"
 
+#, fuzzy
+msgid "25th percentile"
+msgstr "第%gパーセンタイル"
+
+#, fuzzy
+msgid "50th percentile"
+msgstr "第%gパーセンタイル"
+
+#, fuzzy
+msgid "75th percentile"
+msgstr "第%gパーセンタイル"
+
 msgid "%gth percentile"
 msgstr "第%gパーセンタイル"
 
@@ -238,6 +250,12 @@ msgstr "理論上の分位数"
 
 msgid "Sample Quantiles"
 msgstr "サンプル分位数"
+
+msgid "Stem"
+msgstr ""
+
+msgid "Leaf"
+msgstr ""
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2022-12-03 03:19\n"
+"POT-Creation-Date: 2023-01-07 03:19\n"
 "PO-Revision-Date: 2022-12-15 17:32+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
@@ -171,6 +171,18 @@ msgstr "Minimum"
 msgid "Maximum"
 msgstr "Maksimum"
 
+#, fuzzy
+msgid "25th percentile"
+msgstr "%g-ty percentyl"
+
+#, fuzzy
+msgid "50th percentile"
+msgstr "%g-ty percentyl"
+
+#, fuzzy
+msgid "75th percentile"
+msgstr "%g-ty percentyl"
+
 msgid "%gth percentile"
 msgstr "%g-ty percentyl"
 
@@ -240,6 +252,12 @@ msgstr "Kwantyle teoretyczne"
 
 msgid "Sample Quantiles"
 msgstr "Kwantyle z próby"
+
+msgid "Stem"
+msgstr ""
+
+msgid "Leaf"
+msgstr ""
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"

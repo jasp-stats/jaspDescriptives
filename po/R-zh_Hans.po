@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2022-12-03 03:19\n"
+"POT-Creation-Date: 2023-01-07 03:19\n"
 "PO-Revision-Date: 2022-12-15 17:32+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -168,6 +168,18 @@ msgstr "最小值"
 msgid "Maximum"
 msgstr "最大值"
 
+#, fuzzy
+msgid "25th percentile"
+msgstr "第 %g 百分位"
+
+#, fuzzy
+msgid "50th percentile"
+msgstr "第 %g 百分位"
+
+#, fuzzy
+msgid "75th percentile"
+msgstr "第 %g 百分位"
+
 msgid "%gth percentile"
 msgstr "第 %g 百分位"
 
@@ -235,6 +247,12 @@ msgstr "理论分位数( Theoretical Quantile)"
 
 msgid "Sample Quantiles"
 msgstr "样本分位数"
+
+msgid "Stem"
+msgstr ""
+
+msgid "Leaf"
+msgstr ""
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"

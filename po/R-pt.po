@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2022-12-03 03:19\n"
+"POT-Creation-Date: 2023-01-07 03:19\n"
 "PO-Revision-Date: 2021-09-02 14:35+0000\n"
 "Last-Translator: Laura Durans <lauraadurans@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
@@ -177,6 +177,18 @@ msgstr "Mínimo"
 msgid "Maximum"
 msgstr "Máximo"
 
+#, fuzzy
+msgid "25th percentile"
+msgstr "%go. percentil"
+
+#, fuzzy
+msgid "50th percentile"
+msgstr "%go. percentil"
+
+#, fuzzy
+msgid "75th percentile"
+msgstr "%go. percentil"
+
 msgid "%gth percentile"
 msgstr "%go. percentil"
 
@@ -249,6 +261,12 @@ msgstr "Quantis teóricos"
 
 msgid "Sample Quantiles"
 msgstr "Quartil da amostra"
+
+msgid "Stem"
+msgstr ""
+
+msgid "Leaf"
+msgstr ""
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"

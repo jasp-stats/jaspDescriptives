@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2022-12-03 03:19\n"
+"POT-Creation-Date: 2023-01-07 03:19\n"
 "PO-Revision-Date: 2022-06-29 08:59+0000\n"
 "Last-Translator: José Ramón Rueda <joseramon.rueda@ehu.es>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/jasp/"
@@ -171,6 +171,15 @@ msgstr ""
 msgid "Maximum"
 msgstr ""
 
+msgid "25th percentile"
+msgstr ""
+
+msgid "50th percentile"
+msgstr ""
+
+msgid "75th percentile"
+msgstr ""
+
 msgid "%gth percentile"
 msgstr ""
 
@@ -238,6 +247,12 @@ msgid "Theoretical Quantiles"
 msgstr ""
 
 msgid "Sample Quantiles"
+msgstr ""
+
+msgid "Stem"
+msgstr ""
+
+msgid "Leaf"
 msgstr ""
 
 msgid ""

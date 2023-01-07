@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2022-12-03 03:19\n"
+"POT-Creation-Date: 2023-01-07 03:19\n"
 "PO-Revision-Date: 2021-04-19 01:26+0000\n"
 "Last-Translator: phlostically <phlostically@mailinator.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/jasp/"
@@ -172,6 +172,15 @@ msgstr "Minimumo"
 msgid "Maximum"
 msgstr "Maksimumo"
 
+msgid "25th percentile"
+msgstr ""
+
+msgid "50th percentile"
+msgstr ""
+
+msgid "75th percentile"
+msgstr ""
+
 msgid "%gth percentile"
 msgstr ""
 
@@ -238,6 +247,12 @@ msgid "Theoretical Quantiles"
 msgstr ""
 
 msgid "Sample Quantiles"
+msgstr ""
+
+msgid "Stem"
+msgstr ""
+
+msgid "Leaf"
 msgstr ""
 
 msgid ""

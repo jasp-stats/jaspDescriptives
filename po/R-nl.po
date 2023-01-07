@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2022-12-03 03:19\n"
+"POT-Creation-Date: 2023-01-07 03:19\n"
 "PO-Revision-Date: 2022-09-28 09:46+0000\n"
 "Last-Translator: DanaJohanna <dana__@live.nl>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
@@ -171,6 +171,18 @@ msgstr "Minimum"
 msgid "Maximum"
 msgstr "Maximum"
 
+#, fuzzy
+msgid "25th percentile"
+msgstr "%ge percentiel"
+
+#, fuzzy
+msgid "50th percentile"
+msgstr "%ge percentiel"
+
+#, fuzzy
+msgid "75th percentile"
+msgstr "%ge percentiel"
+
 msgid "%gth percentile"
 msgstr "%ge percentiel"
 
@@ -241,6 +253,12 @@ msgstr "Theoretische Kwantielen"
 
 msgid "Sample Quantiles"
 msgstr "Steekproefkwantielen"
+
+msgid "Stem"
+msgstr ""
+
+msgid "Leaf"
+msgstr ""
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2022-12-03 03:19\n"
+"POT-Creation-Date: 2023-01-07 03:19\n"
 "PO-Revision-Date: 2023-01-04 18:52+0000\n"
 "Last-Translator: fedder <fedor.derish@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
@@ -171,6 +171,18 @@ msgstr "Минимум"
 msgid "Maximum"
 msgstr "Максимум"
 
+#, fuzzy
+msgid "25th percentile"
+msgstr "%g-й процентиль"
+
+#, fuzzy
+msgid "50th percentile"
+msgstr "%g-й процентиль"
+
+#, fuzzy
+msgid "75th percentile"
+msgstr "%g-й процентиль"
+
 msgid "%gth percentile"
 msgstr "%g-й процентиль"
 
@@ -239,6 +251,12 @@ msgstr "Теоретические квантили"
 
 msgid "Sample Quantiles"
 msgstr "Выборочные квантили"
+
+msgid "Stem"
+msgstr ""
+
+msgid "Leaf"
+msgstr ""
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
