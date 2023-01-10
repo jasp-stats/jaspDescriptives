@@ -374,11 +374,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   } else {
     stats$addColumnInfo(name="Variable",  title="", type="string")
   }
-  
+
   formattedMeanCiPercent <- format(100 * options[["meanCiLevel"]], digits = 3, drop0trailing = TRUE)
   formattedSdCiPercent <- format(100 * options[["sdCiLevel"]], digits = 3, drop0trailing = TRUE)
-  formattedVarianceCiPercent <- format(100 * options[["varianceCiLevel"]], digits = 3, drop0trailing = TRUE) 
-  
+  formattedVarianceCiPercent <- format(100 * options[["varianceCiLevel"]], digits = 3, drop0trailing = TRUE)
+
   # only add overtitle for CIs if table is transposed, else describe CIs in title
   if (options[["descriptivesTableTransposed"]]) {
     meanCiOvertitle <- gettextf("%s%% Confidence Interval Mean", formattedMeanCiPercent)
@@ -419,7 +419,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if (options$iqr)                            stats$addColumnInfo(name="IQR",                         title=gettext("IQR"),                     type="number")
   if (options$variance)                       stats$addColumnInfo(name="Variance",                    title=gettext("Variance"),                type="number")
   if (options$varianceCi) {                   stats$addColumnInfo(name="VarianceCIUB",                title=varianceCiUbTitle,                  type="number", overtitle = varianceCiOvertitle)
-                                              stats$addColumnInfo(name="VarianceCILB",                title=varianceCiLbTitle,                  type="number", overtitle = varianceCiOvertitle)} 
+                                              stats$addColumnInfo(name="VarianceCILB",                title=varianceCiLbTitle,                  type="number", overtitle = varianceCiOvertitle)}
   if (options$skewness) {                     stats$addColumnInfo(name="Skewness",                    title=gettext("Skewness"),                type="number")
                                               stats$addColumnInfo(name="Std. Error of Skewness",      title=gettext("Std. Error of Skewness"),  type="number") }
   if (options$kurtosis) {                     stats$addColumnInfo(name="Kurtosis",                    title=gettext("Kurtosis"),                type="number")
@@ -558,22 +558,33 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   resultsCol[["Minimum"]]                 <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$minimum,           na.omitted, min)
   resultsCol[["Maximum"]]                 <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$maximum,           na.omitted, max)
   resultsCol[["Sum"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$sum,               na.omitted, sum)
-  
+
+  # validator for meanCi, sdCi, and varianceCi
+  ciOptionChecker <- function(fun, na.omitted, options, jaspResults, variableName) {
+    if (is.factor(na.omitted)) { # show empty cells when things cannot be computed
+      return(list(upper = "", lower = ""))
+    } else if (length(na.omitted) == 0L) { # show NaN when things can be computed in principle but not for this variable
+      return(list(upper = NaN, lower = NaN))
+    } else {
+      return(fun(na.omitted, options, jaspResults, variableName))
+    }
+  }
+
   if (options[["meanCi"]]) {
     variableName <- if (is.null(resultsCol[["Level"]])) resultsCol[["Variable"]] else paste0(resultsCol[["Variable"]], resultsCol[["Level"]])
-    meanCiResults <- .descriptivesMeanCI(na.omitted, options, jaspResults, variableName)
+    meanCiResults <- ciOptionChecker(.descriptivesMeanCI, na.omitted, options, jaspResults, variableName)
     resultsCol[["MeanCIUB"]] <- meanCiResults$upper
     resultsCol[["MeanCILB"]] <- meanCiResults$lower
   }
   if (options[["sdCi"]]) {
     variableName <- if (is.null(resultsCol[["Level"]])) resultsCol[["Variable"]] else paste0(resultsCol[["Variable"]], resultsCol[["Level"]])
-    sdCiResults <- .descriptivesSdCI(na.omitted, options, jaspResults, variableName)
+    sdCiResults <- ciOptionChecker(.descriptivesSdCI, na.omitted, options, jaspResults, variableName)
     resultsCol[["SdCIUB"]] <- sdCiResults$upper
     resultsCol[["SdCILB"]] <- sdCiResults$lower
   }
   if (options[["varianceCi"]]) {
     variableName <- if (is.null(resultsCol[["Level"]])) resultsCol[["Variable"]] else paste0(resultsCol[["Variable"]], resultsCol[["Level"]])
-    varianceCiResults <- .descriptivesVarianceCI(na.omitted, options, jaspResults, variableName)
+    varianceCiResults <- ciOptionChecker(.descriptivesVarianceCI, na.omitted, options, jaspResults, variableName)
     resultsCol[["VarianceCIUB"]] <- varianceCiResults$upper
     resultsCol[["VarianceCILB"]] <- varianceCiResults$lower
   }
@@ -1669,7 +1680,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 .bootstrapStats <- function(data, options, jaspResults, stateContainerName) {
   if (!is.null(jaspResults[[stateContainerName]]$object))
     return(jaspResults[[stateContainerName]]$object)
-  
+
   bootstrapSamples <- createJaspState()
   k <- options[["ciBootstrapSamples"]]
   means <- numeric(k)
