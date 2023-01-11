@@ -3,7 +3,7 @@ import JASP.Module 	1.0
 
 Description
 {
-	name		: "jaspDescriptives"
+	name		: "jaspDescriptives2"
 	title		: qsTr("Descriptives")
 	description	: qsTr("Explore the data with tables and plots")
 	version		: "0.17.0"
