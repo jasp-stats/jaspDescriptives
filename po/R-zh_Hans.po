@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2023-01-07 03:19\n"
-"PO-Revision-Date: 2022-12-15 17:32+0000\n"
+"PO-Revision-Date: 2023-01-07 10:08+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "jasp/jaspdescriptives-r/zh_Hans/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.15.1-dev\n"
 
 msgid "Frequency Tables"
 msgstr "频率表"
@@ -168,17 +168,14 @@ msgstr "最小值"
 msgid "Maximum"
 msgstr "最大值"
 
-#, fuzzy
 msgid "25th percentile"
-msgstr "第 %g 百分位"
+msgstr "第 25 百分位"
 
-#, fuzzy
 msgid "50th percentile"
-msgstr "第 %g 百分位"
+msgstr "第 50 百分位"
 
-#, fuzzy
 msgid "75th percentile"
-msgstr "第 %g 百分位"
+msgstr "第 75 百分位"
 
 msgid "%gth percentile"
 msgstr "第 %g 百分位"
@@ -249,10 +246,10 @@ msgid "Sample Quantiles"
 msgstr "样本分位数"
 
 msgid "Stem"
-msgstr ""
+msgstr "茎"
 
 msgid "Leaf"
-msgstr ""
+msgstr "叶"
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
