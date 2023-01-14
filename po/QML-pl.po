@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-04 18:50+0000\n"
+"PO-Revision-Date: 2023-01-13 12:30+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/pl/>\n"
@@ -35,11 +35,11 @@ msgstr "Tabele częstości"
 
 msgctxt "Descriptives|"
 msgid "Maximum distinct values"
-msgstr ""
+msgstr "Maksymalna liczba wartości"
 
 msgctxt "Descriptives|"
 msgid "Stem and leaf tables"
-msgstr "Wykres łodygα i liście"
+msgstr "Wykres łodyga i liście"
 
 msgctxt "Descriptives|"
 msgid "scale"
@@ -51,10 +51,13 @@ msgid ""
 "scale = 2 will cause the table to be roughly twice as long as the default "
 "(scale = 1)."
 msgstr ""
+"Parametr \"skala\" określa, jak bardzo tabela zostanie poszerzona. Na "
+"przykład skala = 2 spowoduje, że tabela będzie około dwa razy dłuższa niż "
+"domyślnie (skala = 1)."
 
 msgctxt "Descriptives|"
 msgid "Create a Stem and leaf table."
-msgstr "Utwórz wykres typu łodyga i liście."
+msgstr "Utwórz wykres łodyga i liście."
 
 msgctxt "Descriptives|"
 msgid "Plots"
@@ -66,15 +69,15 @@ msgstr "Paleta kolorów"
 
 msgctxt "Descriptives|"
 msgid "Colorblind"
-msgstr ""
+msgstr "Colorblind"
 
 msgctxt "Descriptives|"
 msgid "Colorblind Alt."
-msgstr ""
+msgstr "Colorblind Alt."
 
 msgctxt "Descriptives|"
 msgid "Viridis"
-msgstr ""
+msgstr "Viridis"
 
 msgctxt "Descriptives|"
 msgid "ggplot2"
@@ -102,7 +105,7 @@ msgstr "Wykres z losowym szumem"
 
 msgctxt "Descriptives|"
 msgid "Use color palette"
-msgstr "Użyj palety kolorów"
+msgstr "Wyświetl w kolorze"
 
 msgctxt "Descriptives|"
 msgid "Label outliers"
@@ -114,7 +117,7 @@ msgstr "Wykresy rozrzutu"
 
 msgctxt "Descriptives|"
 msgid "Graph above scatter plot"
-msgstr "Graf powyżej wykresu rozrzutu"
+msgstr "Wykres nad wykresem rozrzutu"
 
 msgctxt "Descriptives|"
 msgid "Density"
@@ -130,7 +133,7 @@ msgstr "Brak"
 
 msgctxt "Descriptives|"
 msgid "Graph right of scatter plot"
-msgstr "Graf po prawej stronie wykresu rozrzutu"
+msgstr "Wykres po prawej stronie wykresu rozrzutu"
 
 msgctxt "Descriptives|"
 msgid "Add regression line"
@@ -138,11 +141,11 @@ msgstr "Dodaj linię regresji"
 
 msgctxt "Descriptives|"
 msgid "Smooth"
-msgstr "Gładka"
+msgstr "Wygładzona"
 
 msgctxt "Descriptives|"
 msgid "Linear"
-msgstr "Linia"
+msgstr "Linia prosta"
 
 msgctxt "Descriptives|"
 msgid "Show confidence interval"
@@ -158,7 +161,7 @@ msgstr "Podstawowe wykresy"
 
 msgctxt "Descriptives|"
 msgid "Distribution plots"
-msgstr "Wykresy rozkładu"
+msgstr "Histogramy"
 
 msgctxt "Descriptives|"
 msgid "Display density"
@@ -186,7 +189,7 @@ msgstr "Kwartyle"
 
 msgctxt "Descriptives|"
 msgid "Cut points for: "
-msgstr "Punkty cięcia dla: "
+msgstr "Podziel na "
 
 msgctxt "Descriptives|"
 msgid " equal groups"
@@ -226,7 +229,7 @@ msgstr "Błąd stand. średniej"
 
 msgctxt "Descriptives|"
 msgid "Std.deviation"
-msgstr "Odch. standardowe"
+msgstr "Odchylenie std."
 
 msgctxt "Descriptives|"
 msgid "MAD"
@@ -294,7 +297,7 @@ msgstr "Histogramy"
 
 msgctxt "Descriptives|"
 msgid "Chart Values"
-msgstr ""
+msgstr "Wartości na wykresie"
 
 msgctxt "Descriptives|"
 msgid "Frequencies"
@@ -306,23 +309,23 @@ msgstr "Procenty"
 
 msgctxt "Descriptives|"
 msgid "Display rug marks"
-msgstr ""
+msgstr "Wyświetl rugi"
 
 msgctxt "Descriptives|"
 msgid "Bin width type"
-msgstr ""
+msgstr "Metoda dla słupków"
 
 msgctxt "Descriptives|"
 msgid "Sturges"
-msgstr ""
+msgstr "Sturges"
 
 msgctxt "Descriptives|"
 msgid "Scott"
-msgstr ""
+msgstr "Scott"
 
 msgctxt "Descriptives|"
 msgid "Doane"
-msgstr ""
+msgstr "Doane"
 
 msgctxt "Descriptives|"
 msgid "Freedman-Diaconis"
@@ -330,11 +333,11 @@ msgstr "Freedman-Diaconis"
 
 msgctxt "Descriptives|"
 msgid "Manual"
-msgstr ""
+msgstr "Ręcznie"
 
 msgctxt "Descriptives|"
 msgid "Number of bins"
-msgstr ""
+msgstr "Liczba słupków"
 
 msgctxt "Descriptives|"
 msgid "Interval plots"
@@ -342,7 +345,7 @@ msgstr "Słupki błędów"
 
 msgctxt "Descriptives|"
 msgid "Coefficient of Variation"
-msgstr "Współczynnik wariancji"
+msgstr "Współczynnik zmienności"
 
 msgctxt "Description|"
 msgid "Explore the data with tables and plots"
@@ -350,11 +353,11 @@ msgstr "Przeglądaj dane za pomocą tabel i wykresów"
 
 msgctxt "Descriptives|"
 msgid "Transpose descriptives table"
-msgstr "Transponuj tabelę opisową"
+msgstr "Transponuj tabelę"
 
 msgctxt "Descriptives|"
 msgid "Customizable plots"
-msgstr "Wykresu konfigurowalne"
+msgstr "Wykresy konfigurowalne"
 
 msgctxt "Descriptives|"
 msgid "Dot plots"
