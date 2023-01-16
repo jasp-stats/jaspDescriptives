@@ -361,7 +361,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if (numberMissingSplitBy)
     stats$addFootnote(message=gettextf("Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s", numberMissingSplitBy, options$splitBy))
 
-  stats$dependOn(c("splitBy", "variables", "quantilesForEqualGroupsNumber", "percentileValues", "mode", "median", "mean",
+  stats$dependOn(c("splitBy", "variables", "quantilesForEqualGroupsNumber", "percentileValues", "mode", "median", "mean", "geometricMean", "harmonicMean",
                    "seMean", "sd", "coefficientOfVariation", "variance", "skewness", "kurtosis", "shapiroWilkTest",
                    "range", "iqr", "mad", "madRobust", "minimum", "maximum", "sum", "quartiles", "quantilesForEqualGroups",
                    "percentiles", "descriptivesTableTransposed", "valid", "missing", "meanCi", "meanCiLevel", "meanCiMethod",
@@ -374,11 +374,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   } else {
     stats$addColumnInfo(name="Variable",  title="", type="string")
   }
-  
+
   formattedMeanCiPercent <- format(100 * options[["meanCiLevel"]], digits = 3, drop0trailing = TRUE)
   formattedSdCiPercent <- format(100 * options[["sdCiLevel"]], digits = 3, drop0trailing = TRUE)
-  formattedVarianceCiPercent <- format(100 * options[["varianceCiLevel"]], digits = 3, drop0trailing = TRUE) 
-  
+  formattedVarianceCiPercent <- format(100 * options[["varianceCiLevel"]], digits = 3, drop0trailing = TRUE)
+
   # only add overtitle for CIs if table is transposed, else describe CIs in title
   if (options[["descriptivesTableTransposed"]]) {
     meanCiOvertitle <- gettextf("%s%% Confidence Interval Mean", formattedMeanCiPercent)
@@ -406,7 +406,15 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if (options$missing)                        stats$addColumnInfo(name="Missing",                     title=gettext("Missing"),                 type="integer")
   if (options$mode)                           stats$addColumnInfo(name="Mode",                        title=gettext("Mode"),                    type="number")
   if (options$median)                         stats$addColumnInfo(name="Median",                      title=gettext("Median"),                  type="number")
-  if (options$mean)                           stats$addColumnInfo(name="Mean",                        title=gettext("Mean"), 				            type="number")
+
+  if (sum(options$mean, options$geometricMean, options$harmonicMean) > 1) {
+    if (options$mean)               stats$addColumnInfo(name="Mean",                        title=gettext("Arithmetic Mean"),         type="number")
+  } else {
+    if (options$mean)               stats$addColumnInfo(name="Mean",                        title=gettext("Mean"), 				            type="number")
+  }
+  if (options$geometricMean)                  stats$addColumnInfo(name="Geometric Mean",              title=gettext("Geometric Mean"), 				  type="number")
+  if (options$harmonicMean)                   stats$addColumnInfo(name="Harmonic Mean",               title=gettext("Harmonic Mean"), 				  type="number")
+
   if (options$seMean)                         stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of Mean"),      type="number")
   if (options$meanCi) {                       stats$addColumnInfo(name="MeanCIUB",                    title=meanCiUbTitle,                      type="number", overtitle = meanCiOvertitle)
                                               stats$addColumnInfo(name="MeanCILB",                    title=meanCiLbTitle,                      type="number", overtitle = meanCiOvertitle)}
@@ -419,7 +427,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if (options$iqr)                            stats$addColumnInfo(name="IQR",                         title=gettext("IQR"),                     type="number")
   if (options$variance)                       stats$addColumnInfo(name="Variance",                    title=gettext("Variance"),                type="number")
   if (options$varianceCi) {                   stats$addColumnInfo(name="VarianceCIUB",                title=varianceCiUbTitle,                  type="number", overtitle = varianceCiOvertitle)
-                                              stats$addColumnInfo(name="VarianceCILB",                title=varianceCiLbTitle,                  type="number", overtitle = varianceCiOvertitle)} 
+                                              stats$addColumnInfo(name="VarianceCILB",                title=varianceCiLbTitle,                  type="number", overtitle = varianceCiOvertitle)}
   if (options$skewness) {                     stats$addColumnInfo(name="Skewness",                    title=gettext("Skewness"),                type="number")
                                               stats$addColumnInfo(name="Std. Error of Skewness",      title=gettext("Std. Error of Skewness"),  type="number") }
   if (options$kurtosis) {                     stats$addColumnInfo(name="Kurtosis",                    title=gettext("Kurtosis"),                type="number")
@@ -519,6 +527,26 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if(shouldAddModeMoreThanOnceFootnote)
     stats$addFootnote(message=gettext("More than one mode exists, only the first is reported"), colNames="Mode")
 
+
+  #Determine which numeric variables contain values of 0 or lower
+  numeric_variables <- colnames(dataset[, variables])[unlist(sapply(dataset[, variables], is.numeric))]
+  if(length(numeric_variables) > 0) {
+    zero_or_negative_variables <- colnames(dataset[, numeric_variables])[unlist(sapply(dataset[, numeric_variables], function(x) any(x <= 0)))]
+    zero_or_negative_variables <- zero_or_negative_variables[!is.na(zero_or_negative_variables)]
+  } else {
+    zero_or_negative_variables <- NULL
+  }
+  #Add geometric/harmonic mean footnote
+  if(length(zero_or_negative_variables > 0)) {
+    if(options$geometricMean && options$harmonicMean) {
+      stats$addFootnote(gettextf("The geometric and harmonic means are only defined for a set of non-zero, positive numbers. The following variable(s) contain(s) zero or negative values: %s", paste(zero_or_negative_variables, collapse = ", ")))
+    } else if (options$geometricMean) {
+      stats$addFootnote(gettextf("The geometric mean is only defined for a set of non-zero, positive numbers. The following variable(s) contain(s) zero or negative values: %s", paste(zero_or_negative_variables, collapse = ", ")))
+    } else if (options$harmonicMean) {
+      stats$addFootnote(gettextf("The harmonic mean is only defined for a set of non-zero, positive numbers. The following variable(s) contain(s) zero or negative values: %s", paste(zero_or_negative_variables, collapse = ", ")))
+    }
+  }
+
   return(stats)
 }
 
@@ -529,21 +557,46 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   rows        <- length(column)
   na.omitted  <- na.omit(column)
 
-  if (base::is.factor(na.omitted) && (options$mode || options$median || options$mean || options$minimum || options$seMean || options$iqr || options$mad || options$madRobust || options$kurtosis || options$shapiroWilkTest || options$skewness || options$quartiles || options$variance || options$sd ||  options$coefficientOfVariation || options$percentiles || options$sum || options$maximum)) {
+  if (base::is.factor(na.omitted) && (options$mode || options$median || options$mean || options$geometricMean || harmonicMean || options$minimum || options$seMean || options$iqr || options$mad || options$madRobust || options$kurtosis || options$shapiroWilkTest || options$skewness || options$quartiles || options$variance || options$sd ||  options$coefficientOfVariation || options$percentiles || options$sum || options$maximum)) {
     shouldAddNominalTextFootnote <- TRUE
   }
 
   shouldAddIdenticalFootnote <- all(na.omitted[1] == na.omitted) && (options$skewness || options$kurtosis || options$shapiroWilkTest)
 
+  geometricMean <- function (x)
+  {
+    if (!is.numeric(x) || any(x <= 0)) {
+      geometric_mean <- NULL
+    } else {
+      # Compute the geometric mean
+      geometric_mean <- exp(mean(log(x)))
+    }
+    return(geometric_mean)
+  }
+
+  harmonicMean <- function (x)
+  {
+    if (!is.numeric(x) || any(x <= 0)) {
+      harmonic_mean <- NULL
+    } else {
+      # Compute the harmonic mean
+      n <- length(x)
+      sum_reciprocals <- sum(1/x)
+      harmonic_mean <- n / sum_reciprocals
+    }
+    return(harmonic_mean)
+  }
+
   valid <- length(na.omitted)
   resultsCol[["Valid"]]                   <- if (options$valid)   valid
   resultsCol[["Missing"]]                 <- if (options$missing) rows - length(na.omitted)
-
   resultsCol[["Median"]]                  <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$median,            na.omitted, median)
-  resultsCol[["Mean"]]                    <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$mean,              na.omitted, mean)
-  resultsCol[["Std. Error of Mean"]]      <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$seMean, na.omitted, function(param) { sd(param)/sqrt(length(param))} )
-  resultsCol[["Std. Deviation"]]          <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$sd, na.omitted, sd)
-  resultsCol[["Coefficient of Variation"]]<- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$coefficientOfVariation,      na.omitted, function(param) { sd(param) / mean(param)})
+  resultsCol[["Mean"]]                    <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$mean,    na.omitted, mean)
+  resultsCol[["Geometric Mean"]]          <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$geometricMean,     na.omitted, geometricMean)
+  resultsCol[["Harmonic Mean"]]           <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$harmonicMean,      na.omitted, harmonicMean)
+  resultsCol[["Std. Error of Mean"]]      <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$seMean,            na.omitted, function(param) { sd(param)/sqrt(length(param))} )
+  resultsCol[["Std. Deviation"]]          <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$sd,                na.omitted, sd)
+  resultsCol[["Coefficient of Variation"]]<- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$coefficientOfVariation, na.omitted, function(param) { sd(param) / mean(param)})
   resultsCol[["MAD"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$mad,               na.omitted, function(param) { mad(param, constant = 1) } )
   resultsCol[["MAD Robust"]]              <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$madRobust,         na.omitted, mad)
   resultsCol[["IQR"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$iqr,               na.omitted, .descriptivesIqr)
@@ -558,7 +611,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   resultsCol[["Minimum"]]                 <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$minimum,           na.omitted, min)
   resultsCol[["Maximum"]]                 <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$maximum,           na.omitted, max)
   resultsCol[["Sum"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$sum,               na.omitted, sum)
-  
+
   if (options[["meanCi"]]) {
     variableName <- if (is.null(resultsCol[["Level"]])) resultsCol[["Variable"]] else paste0(resultsCol[["Variable"]], resultsCol[["Level"]])
     meanCiResults <- .descriptivesMeanCI(na.omitted, options, jaspResults, variableName)
@@ -1669,7 +1722,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 .bootstrapStats <- function(data, options, jaspResults, stateContainerName) {
   if (!is.null(jaspResults[[stateContainerName]]$object))
     return(jaspResults[[stateContainerName]]$object)
-  
+
   bootstrapSamples <- createJaspState()
   k <- options[["ciBootstrapSamples"]]
   means <- numeric(k)

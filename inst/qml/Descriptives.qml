@@ -97,7 +97,9 @@ Form
 
 			CheckBox { name: "mode";			label: qsTr("Mode");					}
 			CheckBox { name: "median";			label: qsTr("Median")					}
-			CheckBox { name: "mean";			label: qsTr("Mean");	checked: true	}
+			CheckBox { name: "mean";	label: qsTr("Arithmetic mean");	checked: true	}
+			CheckBox { name: "geometricMean";	label: qsTr("Geometric mean")			}
+			CheckBox { name: "harmonicMean";	label: qsTr("Harmonic mean")			}
 		}
 
 		Group
@@ -130,21 +132,21 @@ Form
 				Group
 		{
 			title:		qsTr("Inference")
-			
+
 			CheckBox { name: "seMean";	label: qsTr("S.E. mean")			}
-			
+
 			CheckBox
 			{
-				name: "meanCi" 
+				name: "meanCi"
 				label: qsTr("Confidence interval for mean")
-				
-				CIField 
-				{ 
-					name: "meanCiLevel" 
+
+				CIField
+				{
+					name: "meanCiLevel"
 					label: qsTr("Width")
 				}
-				
-				DropDown 
+
+				DropDown
 				{
 					name: "meanCiMethod"
 					label: qsTr("Method")
@@ -157,36 +159,36 @@ Form
 					]
 				}
 			}
-			
+
 			CheckBox
 			{
-				name: "sdCi" 
+				name: "sdCi"
 				label: qsTr("Confidence interval for std. deviation")
 
-				CIField 
-				{ 
-					name: "sdCiLevel" 
+				CIField
+				{
+					name: "sdCiLevel"
 					label: qsTr("Width")
 				}
 			}
 
 			CheckBox
 			{
-				name: "varianceCi" 
+				name: "varianceCi"
 				label: qsTr("Confidence interval for variance")
 
-				CIField 
-				{ 
-					name: "varianceCiLevel" 
+				CIField
+				{
+					name: "varianceCiLevel"
 					label: qsTr("Width")
 				}
 			}
 
 			Group
-			{ 
+			{
     			title: qsTr("Bootstrap confidence interval options")
-    			
-				IntegerField 
+
+				IntegerField
 				{
 					name:			"ciBootstrapSamples"
 					label:			qsTr("Bootstrap samples")
@@ -253,40 +255,40 @@ Form
 			CheckBox {				name: "qqPlot";			label: qsTr("Q-Q plots")						}
 			CheckBox {				name: "pieChart";		label: qsTr("Pie charts")						}
 			CheckBox {				name: "dotPlot";		label: qsTr("Dot plots")						}
-		}	
-		
+		}
+
 		Group
 		{
 			title: qsTr("Categorical plots")
-			
-			CheckBox 
-			{			
+
+			CheckBox
+			{
 				name: 		"paretoPlot"
 				label: 		qsTr("Pareto plots")
-				
-				CheckBox 
-				{			
-					name: 				"paretoPlotRule"	
+
+				CheckBox
+				{
+					name: 				"paretoPlotRule"
 					label: 				qsTr("Pareto rule")
 					childrenOnSameRow: 	true
-					
+
 					CIField { name: 	"paretoPlotRuleCi" }
 				}
 			}
-			
-			CheckBox 
-			{	
-				name: 		"likertPlot"
-				label: 		qsTr("Likert plots")	
 
-				CheckBox 
-				{			
-					name: 				"likertPlotAssumeVariablesSameLevel"	
+			CheckBox
+			{
+				name: 		"likertPlot"
+				label: 		qsTr("Likert plots")
+
+				CheckBox
+				{
+					name: 				"likertPlotAssumeVariablesSameLevel"
 					label: 				qsTr("Assume all variables share the same levels")
 					childrenOnSameRow: 	true
-				}				
-				
-				DropDown 
+				}
+
+				DropDown
 				{
 					id: 				likertPlotAdjustableFontSize
 					name: 				"likertPlotAdjustableFontSize"
@@ -393,35 +395,35 @@ Form
 				checked: true
 			}
 		}
-			
+
 		Group
 		{
-			
+
 			VariablesForm
 			{
 				preferredHeight: 100 * preferencesModel.uiScale
-				
-				AvailableVariablesList 
-				{ 
+
+				AvailableVariablesList
+				{
 					name: 				"densityPlotVariables"
 					label: 				qsTr("Density plots")
 					source: 			[{ name: "allVariablesList", discard: ["variables", "splitBy"], use: "type=ordinal|nominal|nominalText"}]
 				}
-				
-				AssignedVariablesList 
-				{ 
+
+				AssignedVariablesList
+				{
 					name: 				"densityPlotSeparate"
 					singleVariable: 	true
 					title: 				qsTr("Separate densities:")
-					suggestedColumns: 	["ordinal", "nominal"] 
+					suggestedColumns: 	["ordinal", "nominal"]
 				}
 			}
-			
-			CheckBox 
-			{ 
+
+			CheckBox
+			{
 				name: 		"densityPlot"
-				label: 		qsTr("Display density plots") 
-			
+				label: 		qsTr("Display density plots")
+
 				DoubleField
 				{
 					name:			"densityPlotTransparency"
