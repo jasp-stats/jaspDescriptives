@@ -1,10 +1,16 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-01-30 16:45+0000\n"
+"Last-Translator: fedder <fedor.derish@gmail.com>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/ru/>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.16-dev\n"
 "X-Language: ru\n"
 "X-Qt-Contexts: true\n"
 
@@ -224,7 +230,7 @@ msgstr "Медианное абсолютное отклонение (MAD)"
 
 msgctxt "Descriptives|"
 msgid "MAD robust"
-msgstr "робастное MAD"
+msgstr "Робастное MAD"
 
 msgctxt "Descriptives|"
 msgid "IQR"
@@ -296,7 +302,7 @@ msgstr "Проценты"
 
 msgctxt "Descriptives|"
 msgid "Display rug marks"
-msgstr "Отобразить засечки"
+msgstr "Добавить засечки"
 
 msgctxt "Descriptives|"
 msgid "Bin width type"
@@ -359,10 +365,9 @@ msgctxt "Descriptives|"
 msgid "Sample size"
 msgstr "Размер выборки"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Valid"
-msgstr "Существующие наблюдения"
+msgstr "Существующие"
 
 msgctxt "Descriptives|"
 msgid "Missing"
@@ -378,11 +383,11 @@ msgstr "Вертикальная ось:"
 
 msgctxt "Descriptives|"
 msgid "Display legend"
-msgstr "Отобразить надпись"
+msgstr "Добавить надпись"
 
 msgctxt "Descriptives|"
 msgid "Display value"
-msgstr "Отобразить значение"
+msgstr "Добавить значение"
 
 msgctxt "Descriptives|"
 msgid "Relative text size"
@@ -394,7 +399,7 @@ msgstr "Коэффициент отношения ширины и высоты �
 
 msgctxt "Descriptives|"
 msgid "Statistic to plot"
-msgstr "Статистика для построения графика"
+msgstr "Статистика для графика"
 
 msgctxt "Descriptives|"
 msgid "For scale variables"
@@ -414,108 +419,109 @@ msgstr "Для номинативных и порядковых переменн
 
 msgctxt "Descriptives|"
 msgid "Inference"
-msgstr ""
+msgstr "Вывод"
 
 msgctxt "Descriptives|"
 msgid "Confidence interval for mean"
-msgstr ""
+msgstr "Доверительный интервал для среднего"
 
 msgctxt "Descriptives|"
 msgid "Width"
-msgstr ""
+msgstr "Ширина"
 
 msgctxt "Descriptives|"
 msgid "Method"
-msgstr ""
+msgstr "Метод"
 
 msgctxt "Descriptives|"
 msgid "Normal model"
-msgstr ""
+msgstr "Нормальная модель"
 
 msgctxt "Descriptives|"
 msgid "Bootstrap"
-msgstr ""
+msgstr "Бутстрэп"
 
 msgctxt "Descriptives|"
 msgid "Confidence interval for std. deviation"
-msgstr ""
+msgstr "Доверительный интервал для стд. отклонения"
 
 msgctxt "Descriptives|"
 msgid "Confidence interval for variance"
-msgstr ""
+msgstr "Доверительный интервал для дисперсии"
 
 msgctxt "Descriptives|"
 msgid "Bootstrap confidence interval options"
-msgstr ""
+msgstr "Параметры доверительного интервала бутстрепа"
 
 msgctxt "Descriptives|"
 msgid "Bootstrap samples"
-msgstr ""
+msgstr "Выборки бутстрэпа"
 
 msgctxt "Descriptives|"
 msgid "Categorical plots"
-msgstr ""
+msgstr "Категориальные графики"
 
 msgctxt "Descriptives|"
 msgid "Pareto plots"
-msgstr ""
+msgstr "Диаграммы Парето"
 
 msgctxt "Descriptives|"
 msgid "Pareto rule"
-msgstr ""
+msgstr "Правило Парето"
 
 msgctxt "Descriptives|"
 msgid "Likert plots"
-msgstr ""
+msgstr "Диаграммы Ликерта"
 
 msgctxt "Descriptives|"
 msgid "Assume all variables share the same levels"
-msgstr ""
+msgstr "Все переменные имеют одинаковые уровни"
 
 msgctxt "Descriptives|"
 msgid "Adjustable font size for vertical axis"
-msgstr ""
+msgstr "Регулируемый размер шрифта для вертикальной оси"
 
 msgctxt "Descriptives|"
 msgid "Normal"
-msgstr ""
+msgstr "Обычный"
 
 msgctxt "Descriptives|"
 msgid "Small"
-msgstr ""
+msgstr "Маленький"
 
 msgctxt "Descriptives|"
 msgid "Medium"
-msgstr ""
+msgstr "Средний"
 
 msgctxt "Descriptives|"
 msgid "Large"
-msgstr ""
+msgstr "Большой"
 
 msgctxt "Descriptives|"
 msgid "Scatter plots"
-msgstr ""
+msgstr "Диаграммы рассеяния"
 
 msgctxt "Descriptives|"
 msgid "Density plots"
-msgstr ""
+msgstr "Графики плотности"
 
 msgctxt "Descriptives|"
 msgid "Separate densities:"
-msgstr ""
+msgstr "Разделить плотности:"
 
 msgctxt "Descriptives|"
 msgid "Display density plots"
-msgstr ""
+msgstr "Отобразить графики плотности"
 
 msgctxt "Descriptives|"
 msgid "Transparency"
-msgstr ""
+msgstr "Прозрачность"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Tile heatmaps for selected variables"
-msgstr ""
+msgstr "Плитки теплых карт для выбранных переменных"
 
 msgctxt "Descriptives|"
 msgid "Tables"
-msgstr ""
+msgstr "Таблицы"
