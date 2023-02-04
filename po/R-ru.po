@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2023-01-07 03:19\n"
-"PO-Revision-Date: 2023-01-04 18:52+0000\n"
+"PO-Revision-Date: 2023-01-30 17:41+0000\n"
 "Last-Translator: fedder <fedor.derish@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/ru/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.16-dev\n"
 
 msgid "Frequency Tables"
 msgstr "Таблицы частот"
@@ -109,7 +109,7 @@ msgid "%s%% CI Variance Lower"
 msgstr "%s%% ДИ Дисперсии (нижняя граница)"
 
 msgid "Valid"
-msgstr "Присутствующие"
+msgstr "Существующие"
 
 msgid "Missing"
 msgstr "Пропущенные"
@@ -171,17 +171,14 @@ msgstr "Минимум"
 msgid "Maximum"
 msgstr "Максимум"
 
-#, fuzzy
 msgid "25th percentile"
-msgstr "%g-й процентиль"
+msgstr "25-й процентиль"
 
-#, fuzzy
 msgid "50th percentile"
-msgstr "%g-й процентиль"
+msgstr "50-й процентиль"
 
-#, fuzzy
 msgid "75th percentile"
-msgstr "%g-й процентиль"
+msgstr "75-й процентиль"
 
 msgid "%gth percentile"
 msgstr "%g-й процентиль"
@@ -235,7 +232,7 @@ msgid "Density"
 msgstr "Плотность"
 
 msgid "Plotting not possible: %s"
-msgstr "Невозможно построить график: %s"
+msgstr "Построение графиков невозможно: %s"
 
 msgid "Plotting is not possible: No plot type selected!"
 msgstr "Построение графика невозможно: Выбран не тот тип графика!"
@@ -253,10 +250,10 @@ msgid "Sample Quantiles"
 msgstr "Выборочные квантили"
 
 msgid "Stem"
-msgstr ""
+msgstr "Стебель"
 
 msgid "Leaf"
-msgstr ""
+msgstr "Стебель"
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
