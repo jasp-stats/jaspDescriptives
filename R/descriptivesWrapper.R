@@ -19,7 +19,7 @@
 
 Descriptives <- function(
           data = NULL,
-          version = "0.17",
+          version = "0.17.1",
           formula = NULL,
           boxPlot = FALSE,
           boxPlotBoxPlot = TRUE,
