@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2023-01-07 03:19\n"
-"PO-Revision-Date: 2023-01-30 17:41+0000\n"
+"PO-Revision-Date: 2023-02-09 17:38+0000\n"
 "Last-Translator: fedder <fedor.derish@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/ru/>\n"
@@ -84,11 +84,13 @@ msgstr "%s%% Доверительный Интервал Стд. Откл."
 msgid "%s%% Confidence Interval Variance"
 msgstr "%s%% Доверительный Интервал Дисперсии"
 
+#, fuzzy
 msgid "Upper"
-msgstr "Верхний"
+msgstr "Верхняя граница"
 
+#, fuzzy
 msgid "Lower"
-msgstr "Нижний"
+msgstr "Нижняя граница"
 
 msgid "%s%% CI Mean Upper"
 msgstr "%s%% ДИ Среднего (верхняя граница)"
@@ -228,6 +230,7 @@ msgstr "Процент относительно присутствующих з�
 msgid "Cumulative Percent"
 msgstr "Накопленный процент"
 
+#, fuzzy
 msgid "Density"
 msgstr "Плотность"
 
