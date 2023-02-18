@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2023-01-07 03:19\n"
-"PO-Revision-Date: 2023-02-09 17:38+0000\n"
+"PO-Revision-Date: 2023-02-18 03:17+0000\n"
 "Last-Translator: fedder <fedor.derish@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/ru/>\n"
@@ -84,11 +84,9 @@ msgstr "%s%% Доверительный Интервал Стд. Откл."
 msgid "%s%% Confidence Interval Variance"
 msgstr "%s%% Доверительный Интервал Дисперсии"
 
-#, fuzzy
 msgid "Upper"
 msgstr "Верхняя граница"
 
-#, fuzzy
 msgid "Lower"
 msgstr "Нижняя граница"
 
@@ -207,7 +205,7 @@ msgid "More than one mode exists, only the first is reported"
 msgstr "Обнаружено более одной моды, представлена меньшая"
 
 msgid "Total"
-msgstr "Итого"
+msgstr "Всего"
 
 msgid "All variables have more than %1$s distinct values"
 msgstr "Все переменные имеют более %1$s различных значений"
