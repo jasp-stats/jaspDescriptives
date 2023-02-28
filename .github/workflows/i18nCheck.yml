@@ -1,0 +1,8 @@
+
+on: [push, pull_request]
+
+name: i18n-check
+
+jobs:
+  i18n-check:
+    uses: jasp-stats/jasp-actions/.github/workflows/i18nCheck.yml@tr_unittest
