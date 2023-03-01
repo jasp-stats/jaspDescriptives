@@ -268,7 +268,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     if(is.null(jaspResults[["heatmaps"]])) {
       jaspResults[["heatmaps"]] <- createJaspContainer(gettext("Heatmaps"))
       jaspResults[["heatmaps"]]$dependOn(c("heatmapHorizontalAxis", "heatmapVerticalAxis",
-                                           "heatmapDisplayValue", "heatmapTileWidthHeightRatio", "heatmapDisplayLegend",
+                                           "heatmapDisplayValue", "heatmapTileWidthHeightRatio", "heatmapLegend",
                                            "heatmapStatisticContinuous", "heatmapStatisticDiscrete",
                                            "colorPalette", "splitBy", "variables"))
       jaspResults[["heatmaps"]]$position <- 14
@@ -2032,7 +2032,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   plotSize <- c(200 + nLevels * 20) * c(options[["heatmapTileWidthHeightRatio"]], 1)
   if(any(plotSize > 700))
     plotSize <- ( plotSize/max(plotSize) ) * 700
-  if(options[["heatmapDisplayLegend"]])
+  if(options[["heatmapLegend"]])
     plotSize <- plotSize + c(50, 50)
 
   if(any(table(data[["horizontal"]], data[["vertical"]]) > 1)) {
@@ -2056,7 +2056,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     else
       plot <- plot + jaspGraphs::scale_JASPfill_continuous(palette)
 
-    plot <- jaspGraphs::themeJasp(plot, legend.position = if(options[["heatmapDisplayLegend"]]) "right" else "none")
+    plot <- jaspGraphs::themeJasp(plot, legend.position = if(options[["heatmapLegend"]]) "right" else "none")
 
     jaspPlot$plotObject <- plot
   }
