@@ -59,4 +59,13 @@ Upgrades
 		ChangeRename { from: "heatmapRectangleRatio";						to: "heatmapTileWidthHeightRatio"			}
 		ChangeRename { from: "frequencyTablesMaximumAmount";				to: "frequencyTablesMaximumDistinctValues"	}
 	}
+
+	Upgrade
+	{
+		functionName:	"Descriptives"
+		fromVersion:	"0.17.1"
+		toVersion:		"0.17.2"
+		// This change was previously errorenously omitted
+		ChangeRename { from: "heatmapDisplayLegend";		to: "heatmapLegend"								}
+	}
 }
