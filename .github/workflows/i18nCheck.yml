@@ -1,9 +1,9 @@
 on: 
   push:
-    paths: ['**.R', '**.qml', 'tests/**', 'inst/**', '**.Rd', '**.c', '**.cpp', '**.h', '**.hpp', '**.yml']
+    paths: ['**.R', '**.qml', '**.yml']
  
   pull_request:
-    paths: ['**.R', '**.qml', 'tests/**', 'inst/**', '**.Rd', '**.c', '**.cpp', '**.h', '**.hpp', '**.yml']
+    paths: ['**.R', '**.qml', '**.yml']
   
   workflow_dispatch:
 
