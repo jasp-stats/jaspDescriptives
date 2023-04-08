@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2023-01-07 03:19\n"
-"PO-Revision-Date: 2023-01-13 12:30+0000\n"
+"PO-Revision-Date: 2023-04-04 15:39+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/pl/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.17-dev\n"
 
 msgid "Frequency Tables"
 msgstr "Tabela częstości"
@@ -76,13 +76,13 @@ msgstr ""
 "grupującej %2$s"
 
 msgid "%s%% Confidence Interval Mean"
-msgstr ""
+msgstr "%s%% przedział ufności średniej"
 
 msgid "%s%% Confidence Interval Std. Dev."
-msgstr ""
+msgstr "%s%% przedział ufności odch. stand."
 
 msgid "%s%% Confidence Interval Variance"
-msgstr ""
+msgstr "%s%% przedział ufności wariancji"
 
 msgid "Upper"
 msgstr "Górny"
@@ -91,22 +91,22 @@ msgid "Lower"
 msgstr "Dolny"
 
 msgid "%s%% CI Mean Upper"
-msgstr ""
+msgstr "górna granica %s%% PU średniej"
 
 msgid "%s%% CI Mean Lower"
-msgstr ""
+msgstr "dolna granica %s%% PU średniej"
 
 msgid "%s%% CI Std. Dev. Upper"
-msgstr ""
+msgstr "górna granica %s%% PU odch. stand."
 
 msgid "%s%% CI Std. Dev. Lower"
-msgstr ""
+msgstr "dolna granica %s%% PU odch. stand."
 
 msgid "%s%% CI Variance Upper"
-msgstr ""
+msgstr "górna granica %s%% PU wariancji"
 
 msgid "%s%% CI Variance Lower"
-msgstr ""
+msgstr "dolna granica %s%% PU wariancji"
 
 msgid "Valid"
 msgstr "Ważne"
@@ -171,23 +171,20 @@ msgstr "Minimum"
 msgid "Maximum"
 msgstr "Maksimum"
 
-#, fuzzy
 msgid "25th percentile"
-msgstr "%g-ty percentyl"
+msgstr "25 percentyl"
 
-#, fuzzy
 msgid "50th percentile"
-msgstr "%g-ty percentyl"
+msgstr "50 percentyl"
 
-#, fuzzy
 msgid "75th percentile"
-msgstr "%g-ty percentyl"
+msgstr "75 percentyl"
 
 msgid "%gth percentile"
 msgstr "%g-ty percentyl"
 
 msgid "Error in Percentiles, all values should >=0 and <=100"
-msgstr ""
+msgstr "Błąd w percentylach; wszystkie wartości powinny być w zakresie 0-100"
 
 msgid "Sum"
 msgstr "Suma"
@@ -254,10 +251,10 @@ msgid "Sample Quantiles"
 msgstr "Kwantyle z próby"
 
 msgid "Stem"
-msgstr ""
+msgstr "Łodyga"
 
 msgid "Leaf"
-msgstr ""
+msgstr "Liść"
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
