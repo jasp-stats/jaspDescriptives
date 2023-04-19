@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2023-01-07 03:19\n"
-"PO-Revision-Date: 2023-04-19 19:59+0000\n"
-"Last-Translator: Rens <rdofferhoff@protonmail.com>\n"
+"PO-Revision-Date: 2023-04-20 12:51+0000\n"
+"Last-Translator: Don van den Bergh <donvdbergh@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/nl/>\n"
 "Language: nl\n"
@@ -78,7 +78,6 @@ msgstr ""
 msgid "%s%% Confidence Interval Mean"
 msgstr "%s%% Betrouwbaarheidsinterval Gemiddelde"
 
-#, fuzzy
 msgid "%s%% Confidence Interval Std. Dev."
 msgstr "%s%% Betrouwbaarheidsinterval Std. Dev."
 
@@ -172,17 +171,14 @@ msgstr "Minimum"
 msgid "Maximum"
 msgstr "Maximum"
 
-#, fuzzy
 msgid "25th percentile"
-msgstr "%ge percentiel"
+msgstr "25ste percentiel"
 
-#, fuzzy
 msgid "50th percentile"
-msgstr "%ge percentiel"
+msgstr "50ste percentiel"
 
-#, fuzzy
 msgid "75th percentile"
-msgstr "%ge percentiel"
+msgstr "75ste percentiel"
 
 msgid "%gth percentile"
 msgstr "%ge percentiel"
@@ -256,10 +252,10 @@ msgid "Sample Quantiles"
 msgstr "Steekproefkwantielen"
 
 msgid "Stem"
-msgstr ""
+msgstr "Stam"
 
 msgid "Leaf"
-msgstr ""
+msgstr "Blad"
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
