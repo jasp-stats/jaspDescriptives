@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2023-01-07 03:19\n"
-"PO-Revision-Date: 2023-01-11 15:54+0000\n"
-"Last-Translator: Johnny van Doorn <johnnydoorn@gmail.com>\n"
+"PO-Revision-Date: 2023-04-20 12:51+0000\n"
+"Last-Translator: Don van den Bergh <donvdbergh@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/nl/>\n"
 "Language: nl\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 msgid "Frequency Tables"
 msgstr "Frequentietabellen"
@@ -76,37 +76,37 @@ msgstr ""
 "waarden van de splitsvariabele %2$s"
 
 msgid "%s%% Confidence Interval Mean"
-msgstr ""
+msgstr "%s%% Betrouwbaarheidsinterval Gemiddelde"
 
 msgid "%s%% Confidence Interval Std. Dev."
-msgstr ""
+msgstr "%s%% Betrouwbaarheidsinterval Std. Dev."
 
 msgid "%s%% Confidence Interval Variance"
-msgstr ""
+msgstr "%s%% Betrouwbaarheidsinterval Variantie"
 
 msgid "Upper"
-msgstr ""
+msgstr "Boven"
 
 msgid "Lower"
-msgstr ""
+msgstr "Onder"
 
 msgid "%s%% CI Mean Upper"
-msgstr ""
+msgstr "%s%% BI Gemiddelde Bovengrens"
 
 msgid "%s%% CI Mean Lower"
-msgstr ""
+msgstr "%s%% BI Gemiddelde Ondergrens"
 
 msgid "%s%% CI Std. Dev. Upper"
-msgstr ""
+msgstr "%s%% CI Std. Dev. Bovengrens"
 
 msgid "%s%% CI Std. Dev. Lower"
-msgstr ""
+msgstr "%s%% BI Std. Dev. Ondergrens"
 
 msgid "%s%% CI Variance Upper"
-msgstr ""
+msgstr "%s%% BI Variantie Bovengrens"
 
 msgid "%s%% CI Variance Lower"
-msgstr ""
+msgstr "%s%% BI Variantie Ondergrens"
 
 msgid "Valid"
 msgstr "Geldig"
@@ -171,23 +171,20 @@ msgstr "Minimum"
 msgid "Maximum"
 msgstr "Maximum"
 
-#, fuzzy
 msgid "25th percentile"
-msgstr "%ge percentiel"
+msgstr "25ste percentiel"
 
-#, fuzzy
 msgid "50th percentile"
-msgstr "%ge percentiel"
+msgstr "50ste percentiel"
 
-#, fuzzy
 msgid "75th percentile"
-msgstr "%ge percentiel"
+msgstr "75ste percentiel"
 
 msgid "%gth percentile"
 msgstr "%ge percentiel"
 
 msgid "Error in Percentiles, all values should >=0 and <=100"
-msgstr ""
+msgstr "Fout in percentielen, alle waarden moeten >=0 en <=100"
 
 msgid "Sum"
 msgstr "Som"
@@ -255,10 +252,10 @@ msgid "Sample Quantiles"
 msgstr "Steekproefkwantielen"
 
 msgid "Stem"
-msgstr ""
+msgstr "Stam"
 
 msgid "Leaf"
-msgstr ""
+msgstr "Blad"
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"

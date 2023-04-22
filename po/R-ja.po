@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.11.0\n"
 "POT-Creation-Date: 2023-01-07 03:19\n"
-"PO-Revision-Date: 2021-11-08 13:05+0000\n"
+"PO-Revision-Date: 2023-04-21 21:08+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/ja/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.9-dev\n"
+"X-Generator: Weblate 4.18-dev\n"
 
 msgid "Frequency Tables"
 msgstr "度数分布表"
@@ -53,19 +53,16 @@ msgid "Dot Plots"
 msgstr "ドットプロット"
 
 msgid "Heatmaps"
-msgstr ""
+msgstr "ヒートマップ"
 
-#, fuzzy
 msgid "Pareto Plots"
-msgstr "ドットプロット"
+msgstr "パレートプロット"
 
-#, fuzzy
 msgid "Density Plots"
-msgstr "ドットプロット"
+msgstr "密度プロット"
 
-#, fuzzy
 msgid "Likert Plots"
-msgstr "ドットプロット"
+msgstr "リッカートプロット"
 
 msgid "Descriptive Statistics"
 msgstr "記述統計"
@@ -76,37 +73,37 @@ msgid ""
 msgstr "分割変数%2$sの欠落値に対応する分析から%1$i行を除外しました"
 
 msgid "%s%% Confidence Interval Mean"
-msgstr ""
+msgstr "%s%% 信頼区間 平均"
 
 msgid "%s%% Confidence Interval Std. Dev."
-msgstr ""
+msgstr "%s%% 信頼区間 標準偏差"
 
 msgid "%s%% Confidence Interval Variance"
-msgstr ""
+msgstr "%s%% 信頼区間 分散"
 
 msgid "Upper"
-msgstr ""
+msgstr "上限"
 
 msgid "Lower"
-msgstr ""
+msgstr "下限"
 
 msgid "%s%% CI Mean Upper"
-msgstr ""
+msgstr "%s%% 信頼区間 平均 上限"
 
 msgid "%s%% CI Mean Lower"
-msgstr ""
+msgstr "%s%% 信頼区間 平均 下限"
 
 msgid "%s%% CI Std. Dev. Upper"
-msgstr ""
+msgstr "%s%% 信頼区間 標準偏差 上限"
 
 msgid "%s%% CI Std. Dev. Lower"
-msgstr ""
+msgstr "%s%% 信頼区間 標準偏差 下限"
 
 msgid "%s%% CI Variance Upper"
-msgstr ""
+msgstr "%s%% 信頼区間 分散 上限"
 
 msgid "%s%% CI Variance Lower"
-msgstr ""
+msgstr "%s%% 信頼区間 分散 下限"
 
 msgid "Valid"
 msgstr "妥当"
@@ -187,7 +184,7 @@ msgid "%gth percentile"
 msgstr "第%gパーセンタイル"
 
 msgid "Error in Percentiles, all values should >=0 and <=100"
-msgstr ""
+msgstr "パーセンタイルのエラー、すべての値は >=0 と <=100 である必要があります"
 
 msgid "Sum"
 msgstr "総和"
@@ -252,10 +249,10 @@ msgid "Sample Quantiles"
 msgstr "サンプル分位数"
 
 msgid "Stem"
-msgstr ""
+msgstr "幹"
 
 msgid "Leaf"
-msgstr ""
+msgstr "葉"
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
@@ -268,13 +265,13 @@ msgstr "小数点は|にあります"
 msgid ""
 "There must be a unique value per combination of levels of horizontal and "
 "vertical axis!"
-msgstr ""
+msgstr "横軸と縦軸のレベルの組み合わせごとに一意の値が必要です!"
 
 msgid "All categorical variables must have the same number of levels!"
-msgstr ""
+msgstr "すべてのカテゴリ変数は、同じ水準数でなければなりません!"
 
 msgid "Items must have 2 or more levels!"
-msgstr ""
+msgstr "項目は、2つ以上の水準である必要があります!"
 
 msgid "Levels within variable require at least two or more data points!"
 msgstr ""
