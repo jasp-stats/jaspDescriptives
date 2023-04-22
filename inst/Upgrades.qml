@@ -65,7 +65,11 @@ Upgrades
 		functionName:	"Descriptives"
 		fromVersion:	"0.17.1"
 		toVersion:		"0.17.2"
-		// This change was previously errorenously omitted
-		ChangeRename { from: "heatmapDisplayLegend";		to: "heatmapLegend"								}
+		// This change was previously errorenously omitted, but should only be added if missing. As 0.17.1 could actually add it itself when making a new analysis
+		ChangeRename 
+		{ 	
+			condition: function(options) { return options["heatmapLegend"]  == undefined }; 
+			from: "heatmapDisplayLegend";		to: "heatmapLegend"								
+		}
 	}
 }
