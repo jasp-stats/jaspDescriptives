@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2023-01-07 03:19\n"
-"PO-Revision-Date: 2023-05-04 19:40+0000\n"
+"PO-Revision-Date: 2023-05-12 06:57+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/pl/>\n"
@@ -88,7 +88,7 @@ msgid "Upper"
 msgstr "Górna granica"
 
 msgid "Lower"
-msgstr "Dolny"
+msgstr "Dolna granica"
 
 msgid "%s%% CI Mean Upper"
 msgstr "górna granica %s%% PU średniej"
@@ -124,10 +124,10 @@ msgid "Mean"
 msgstr "Średnia"
 
 msgid "Std. Error of Mean"
-msgstr "Błąd standardowy średniej"
+msgstr "Błąd stand. średniej"
 
 msgid "Std. Deviation"
-msgstr "Odchylenie stand."
+msgstr "Odch. stand."
 
 msgid "Coefficient of variation"
 msgstr "Współczynnik zmienności"
@@ -148,13 +148,13 @@ msgid "Skewness"
 msgstr "Skośność"
 
 msgid "Std. Error of Skewness"
-msgstr "Błąd standardowy skośności"
+msgstr "Błąd stand. skośności"
 
 msgid "Kurtosis"
 msgstr "Kurtoza"
 
 msgid "Std. Error of Kurtosis"
-msgstr "Błąd standardowy kurtozy"
+msgstr "Błąd stand. kurtozy"
 
 msgid "Shapiro-Wilk"
 msgstr "Shapiro-Wilk"
@@ -172,19 +172,20 @@ msgid "Maximum"
 msgstr "Maksimum"
 
 msgid "25th percentile"
-msgstr "25 percentyl"
+msgstr "25-ty percentyl"
 
 msgid "50th percentile"
-msgstr "50 percentyl"
+msgstr "50-ty percentyl"
 
 msgid "75th percentile"
-msgstr "75 percentyl"
+msgstr "75-ty percentyl"
 
 msgid "%gth percentile"
 msgstr "%g-ty percentyl"
 
 msgid "Error in Percentiles, all values should >=0 and <=100"
-msgstr "Błąd w percentylach; wszystkie wartości powinny być w zakresie 0-100"
+msgstr ""
+"Błąd w funkcji Percentyle; wszystkie wartości powinny być w zakresie 0-100"
 
 msgid "Sum"
 msgstr "Suma"
@@ -239,7 +240,7 @@ msgid "Plotting is not possible: No plot type selected!"
 msgstr "Nie można utworzyć wykresu: nie wybrano typu wykresu!"
 
 msgid "Counts"
-msgstr "Liczebność"
+msgstr "Liczebności"
 
 msgid "No non-missing values!"
 msgstr "Występują wyłącznie braki danych!"
