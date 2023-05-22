@@ -593,25 +593,30 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if((options$minimum || options$maximum) && valid == 0) shouldAddExplainEmptySet <- TRUE else shouldAddExplainEmptySet <- FALSE
 
   if (options$mode) {
-    if (base::is.factor(na.omitted) == FALSE) {
-      mode <- as.numeric(names(table(na.omitted)[table(na.omitted)==max(table(na.omitted))]))
 
-      if (length(mode) > 1)
-        shouldAddModeMoreThanOnceFootnote <- TRUE
-
-      resultsCol[["Mode"]] <- .clean(mode[1])
-    } else {
-      resultsCol[["Mode"]] <- ""
+    if (is.numeric(na.omitted)) { # scale data
+      temp <- .desriptivesComputeModeContinuous(na.omitted)
+      mode <- temp[["xValues"]]
+    } else { # ordinal, nominal, or nominal text data
+      tb <- table(na.omitted)
+      mode <- as.numeric(names(tb[tb == max(tb)]))
     }
+
+    if (length(mode) > 1L)
+      shouldAddModeMoreThanOnceFootnote <- TRUE
+
+    resultsCol[["Mode"]] <- mode[1L]
+
   } else {
     resultsCol[["Mode"]] <- NULL
   }
 
   if (options$quartiles) {
-    if (base::is.factor(na.omitted) == FALSE) {
-      resultsCol[["q1"]] <- .clean(quantile(na.omitted, c(.25), names=F))
-      resultsCol[["q2"]] <- .clean(quantile(na.omitted, c(.5), names=F))
-      resultsCol[["q3"]] <- .clean(quantile(na.omitted, c(.75), names=F))
+    if (is.numeric(na.omitted)) {
+      qs <- quantile(na.omitted, c(.25, .5, .75), names = FALSE)
+      resultsCol[["q1"]] <- qs[1L]
+      resultsCol[["q2"]] <- qs[2L]
+      resultsCol[["q3"]] <- qs[3L]
     } else {
       resultsCol[["q1"]] <- ""
       resultsCol[["q2"]] <- ""
@@ -626,12 +631,12 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   equalGroupNames <- NULL
 
   if (options$quantilesForEqualGroups)
-    equalGroupNames <- paste("eg", seq(equalGroupsNo - 1), sep="")
+    equalGroupNames <- paste0("eg", seq(equalGroupsNo - 1))
 
   percentileNames <- NULL
 
   if (options$percentiles)
-    percentileNames <- paste("pc", percentilesPercentiles, sep="")
+    percentileNames <- paste0("pc", percentilesPercentiles)
 
   for (row in names(resultsCol)) {
 
@@ -1697,6 +1702,36 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   jaspResults[[stateContainerName]] <- bootstrapSamples
   jaspResults[[stateContainerName]]$dependOn(options = c("ciBootstrapSamples"))
   return(list(means = means, sds = sds, variances = variances))
+}
+
+.desriptivesComputeModeContinuous <- function(x) {
+
+  n <- 2^15
+  bw <- stats::bw.nrd0(x)
+  lowsup <- -Inf
+  uppsup <- Inf
+  # based on multimode::nmodes
+  fn <- stats::density(x, bw = bw, n = n)
+  z  <- c(1:(n - 1))
+  re <- z[diff(fn$y) > 0]
+  z2 <- c(1:length(re))
+  se <- z2[diff(re) > 1]
+  posic <- re[se]
+  if (re[length(re)] < (n - 1)) {
+    posic <- c(posic, re[length(re)])
+  }
+  posic <- posic[fn$x[posic] > lowsup]
+  posic <- posic[fn$x[posic] < uppsup]
+  num  <- length(posic)
+  # end of multimode::nmodes
+  xValues <- fn[["x"]][posic]
+  yValues <- fn[["y"]][posic]
+  return(list(
+    numModes = num,
+    xValues  = xValues,
+    yValues  = yValues,
+    bw       = bw
+  ))
 }
 
 .descriptivesQQPlot <- function(dataset, options,  qqvar, levelName=NULL) {
