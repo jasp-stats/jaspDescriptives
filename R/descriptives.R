@@ -496,7 +496,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       subReturn <- .descriptivesDescriptivesTable_subFunction(column, list(Variable=variable), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, jaspResults)
 
       shouldAddNominalTextFootnote      <- subReturn$shouldAddNominalTextFootnote
-      shouldAddModeMoreThanOnceFootnote <- subReturn$shouldAddModeMoreThanOnceFootnote
 
       stats$addRows(subReturn$resultsCol, rowNames = variable)
 
@@ -509,15 +508,17 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
         stats$addFootnote(message  = gettextf("Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty set is %2$s.", "\u221E", "-\u221E"),
                           colNames = c("Minimum", "Maximum"),
                           rowNames = variable)
+
+      if(subReturn$shouldAddModeMoreThanOnceFootnote)
+        stats$addFootnote(message  = gettext("More than one mode exists. The first mode is reported for ordinal and nominal data, the mode with the highest density estimate is reported for continuous data."),
+                          colNames = "Mode",
+                          rowNames = variable)
+
     }
   }
 
-
   if (shouldAddNominalTextFootnote)
     stats$addFootnote(message=gettext("Not all values are available for <i>Nominal Text</i> variables"))
-
-  if(shouldAddModeMoreThanOnceFootnote)
-    stats$addFootnote(message=gettext("More than one mode exists, only the first is reported"), colNames="Mode")
 
   return(stats)
 }
@@ -596,14 +597,15 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
     if (is.numeric(na.omitted)) { # scale data
       temp <- .desriptivesComputeModeContinuous(na.omitted)
-      mode <- temp[["xValues"]]
+      mode <- temp[["xValues"]][which.max(temp[["yValues"]])]
+
+      shouldAddModeMoreThanOnceFootnote <- temp[["numModes"]] > 1L
     } else { # ordinal, nominal, or nominal text data
       tb <- table(na.omitted)
       mode <- as.numeric(names(tb[tb == max(tb)]))
-    }
 
-    if (length(mode) > 1L)
-      shouldAddModeMoreThanOnceFootnote <- TRUE
+      shouldAddModeMoreThanOnceFootnote <- length(mode) > 1L
+    }
 
     resultsCol[["Mode"]] <- mode[1L]
 
@@ -612,11 +614,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   }
 
   if (options$quartiles) {
-    if (is.numeric(na.omitted)) {
-      qs <- quantile(na.omitted, c(.25, .5, .75), names = FALSE)
-      resultsCol[["q1"]] <- qs[1L]
-      resultsCol[["q2"]] <- qs[2L]
-      resultsCol[["q3"]] <- qs[3L]
+    if (base::is.factor(na.omitted) == FALSE) {
+      resultsCol[["q1"]] <- .clean(quantile(na.omitted, c(.25), names=F))
+      resultsCol[["q2"]] <- .clean(quantile(na.omitted, c(.5), names=F))
+      resultsCol[["q3"]] <- .clean(quantile(na.omitted, c(.75), names=F))
     } else {
       resultsCol[["q1"]] <- ""
       resultsCol[["q2"]] <- ""
