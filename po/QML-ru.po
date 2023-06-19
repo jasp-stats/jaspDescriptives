@@ -1,10 +1,16 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-06-20 12:51+0000\n"
+"Last-Translator: Borisov Igor Borisovich <borisov_i@pimunn.net>\n"
+"Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/ru/>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 4.18.1\n"
 "X-Language: ru\n"
 "X-Qt-Contexts: true\n"
 
@@ -80,7 +86,7 @@ msgstr "Серый"
 
 msgctxt "Descriptives|"
 msgid "Boxplots"
-msgstr "Коробчатые графики"
+msgstr "Ящичковые диаграммы"
 
 msgctxt "Descriptives|"
 msgid "Boxplot element"
@@ -128,11 +134,11 @@ msgstr "Добавить линию регрессии"
 
 msgctxt "Descriptives|"
 msgid "Smooth"
-msgstr "Интерполяция (кривая)"
+msgstr "Сглаживание"
 
 msgctxt "Descriptives|"
 msgid "Linear"
-msgstr "Аппроксимация (прямая)"
+msgstr "Линейный график"
 
 msgctxt "Descriptives|"
 msgid "Show confidence interval"
@@ -140,7 +146,7 @@ msgstr "Показать доверительный интервал"
 
 msgctxt "Descriptives|"
 msgid "Show legend"
-msgstr "Показать надпись"
+msgstr "Показать легенду"
 
 msgctxt "Descriptives|"
 msgid "Basic plots"
@@ -160,7 +166,7 @@ msgstr "Графики корреляций"
 
 msgctxt "Descriptives|"
 msgid "Q-Q plots"
-msgstr "К-К графики"
+msgstr "Графики Q-Q"
 
 msgctxt "Descriptives|"
 msgid "Pie charts"
@@ -188,7 +194,7 @@ msgstr "Процентили:"
 
 msgctxt "Descriptives|"
 msgid "Central tendency"
-msgstr "Меры центральной тенденции"
+msgstr "Центральные характеристики"
 
 msgctxt "Descriptives|"
 msgid "Mean"
@@ -208,7 +214,7 @@ msgstr "Сумма"
 
 msgctxt "Descriptives|"
 msgid "Dispersion"
-msgstr "Меры изменчивости (разброса)"
+msgstr "Дисперсия"
 
 msgctxt "Descriptives|"
 msgid "S.E. mean"
@@ -216,7 +222,7 @@ msgstr "Стандартная ошибка среднего"
 
 msgctxt "Descriptives|"
 msgid "Std. deviation"
-msgstr "Ст. отклонение"
+msgstr "Стандартное отклонение"
 
 msgctxt "Descriptives|"
 msgid "MAD"
@@ -276,7 +282,7 @@ msgstr "Тип диаграммы"
 
 msgctxt "Descriptives|"
 msgid "Bar charts"
-msgstr "Линейчатые диаграммы"
+msgstr "Столбчатые диаграммы"
 
 msgctxt "Descriptives|"
 msgid "Histograms"
@@ -328,11 +334,11 @@ msgstr "Количество столбцов"
 
 msgctxt "Descriptives|"
 msgid "Interval plots"
-msgstr "Графики интервалов"
+msgstr "Интервальные графики"
 
 msgctxt "Descriptives|"
 msgid "Coefficient of variation"
-msgstr "Коэффициент изменчивости"
+msgstr "Коэффициент вариации"
 
 msgctxt "Description|"
 msgid "Explore the data with tables and plots"
@@ -344,7 +350,7 @@ msgstr "Транспонировать таблицу описательных �
 
 msgctxt "Descriptives|"
 msgid "Customizable plots"
-msgstr "Дополнительные графики"
+msgstr "Настраиваемые графики"
 
 msgctxt "Descriptives|"
 msgid "Dot plots"
@@ -356,7 +362,7 @@ msgstr "Квантили"
 
 msgctxt "Descriptives|"
 msgid "Sample size"
-msgstr "Размер выборки"
+msgstr "Объём выборки"
 
 msgctxt "Descriptives|"
 msgid "Valid"
@@ -364,7 +370,7 @@ msgstr "Существующие"
 
 msgctxt "Descriptives|"
 msgid "Missing"
-msgstr "Пропущенные"
+msgstr "Промах"
 
 msgctxt "Descriptives|"
 msgid "Horizontal axis:"
@@ -376,11 +382,11 @@ msgstr "Вертикальная ось:"
 
 msgctxt "Descriptives|"
 msgid "Display legend"
-msgstr "Добавить надпись"
+msgstr "Показать легенду"
 
 msgctxt "Descriptives|"
 msgid "Display value"
-msgstr "Добавить значение"
+msgstr "Показать значение"
 
 msgctxt "Descriptives|"
 msgid "Relative text size"
@@ -396,7 +402,7 @@ msgstr "Статистика для графика"
 
 msgctxt "Descriptives|"
 msgid "For scale variables"
-msgstr "Для количественных переменных"
+msgstr "Для шкальных переменных"
 
 msgctxt "Descriptives|"
 msgid "Value itself"
@@ -436,7 +442,7 @@ msgstr "Бутстрэп"
 
 msgctxt "Descriptives|"
 msgid "Confidence interval for std. deviation"
-msgstr "Доверительный интервал для стд. отклонения"
+msgstr "Доверительный интервал для стандартного отклонения"
 
 msgctxt "Descriptives|"
 msgid "Confidence interval for variance"
@@ -468,7 +474,7 @@ msgstr "Диаграммы Ликерта"
 
 msgctxt "Descriptives|"
 msgid "Assume all variables share the same levels"
-msgstr "Все переменные имеют одинаковые уровни"
+msgstr "Предполагая, что все переменные имеют одинаковые уровни"
 
 msgctxt "Descriptives|"
 msgid "Adjustable font size for vertical axis"
@@ -512,7 +518,7 @@ msgstr "Прозрачность"
 
 msgctxt "Descriptives|"
 msgid "Tile heatmaps for selected variables"
-msgstr "Теплые карты для выбранных переменных"
+msgstr "Тепловые карты для выбранных переменных"
 
 msgctxt "Descriptives|"
 msgid "Tables"
