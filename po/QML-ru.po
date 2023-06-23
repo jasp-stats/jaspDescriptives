@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-06-20 12:51+0000\n"
+"PO-Revision-Date: 2023-06-24 03:19+0000\n"
 "Last-Translator: Borisov Igor Borisovich <borisov_i@pimunn.net>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/ru/>\n"
@@ -302,11 +302,11 @@ msgstr "Проценты"
 
 msgctxt "Descriptives|"
 msgid "Display rug marks"
-msgstr "Добавить засечки"
+msgstr "Добавить засечки для исходных данных"
 
 msgctxt "Descriptives|"
 msgid "Bin width type"
-msgstr "Способ определения ширины столбца"
+msgstr "Алгоритм  определения ширины столбца"
 
 msgctxt "Descriptives|"
 msgid "Sturges"
@@ -398,7 +398,7 @@ msgstr "Коэффициент отношения ширины и высоты �
 
 msgctxt "Descriptives|"
 msgid "Statistic to plot"
-msgstr "Статистика для графика"
+msgstr "Отображать следующую статистическую величину"
 
 msgctxt "Descriptives|"
 msgid "For scale variables"
