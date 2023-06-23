@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2023-01-07 03:19\n"
-"PO-Revision-Date: 2023-06-16 13:48+0000\n"
+"PO-Revision-Date: 2023-06-24 03:20+0000\n"
 "Last-Translator: Borisov Igor Borisovich <borisov_i@pimunn.net>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/ru/>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "X-Generator: Weblate 4.18.1\n"
 
 msgid "Frequency Tables"
-msgstr "Таблицы частот"
+msgstr "Частотные таблицы"
 
 msgid "Correlation plots"
 msgstr "Корреляционные графики"
@@ -27,13 +27,13 @@ msgid "Distribution Plots"
 msgstr "Графики распределения"
 
 msgid "Boxplots"
-msgstr "Коробчатые графики"
+msgstr "Ящичковые диаграммы"
 
 msgid "Q-Q Plots"
-msgstr "К-К графики"
+msgstr "Графики Q-Q"
 
 msgid "Q-Q Plot"
-msgstr "К-К график"
+msgstr "График Q-Q"
 
 msgid "Plotting is not possible: Variable only contains NA!"
 msgstr "Построение графика невозможно: Переменная содержит только NA!"
@@ -42,7 +42,7 @@ msgid "Pie charts"
 msgstr "Круговые диаграммы"
 
 msgid "Stem and Leaf"
-msgstr "Графики \"Стебель-листья\""
+msgstr "Ствол-лист"
 
 msgid "Scatter Plots"
 msgstr "Диаграммы рассеяния"
@@ -54,7 +54,7 @@ msgid "Dot Plots"
 msgstr "Точечные графики"
 
 msgid "Heatmaps"
-msgstr "Теплые карты"
+msgstr "Теплловые карты"
 
 msgid "Pareto Plots"
 msgstr "Графики Парето"
@@ -79,7 +79,7 @@ msgid "%s%% Confidence Interval Mean"
 msgstr "%s%% Доверительный Интервал Среднего"
 
 msgid "%s%% Confidence Interval Std. Dev."
-msgstr "%s%% Доверительный Интервал Стд. Откл."
+msgstr "%s%% Доверительный Интервал Стандартного отклонения"
 
 msgid "%s%% Confidence Interval Variance"
 msgstr "%s%% Доверительный Интервал Дисперсии"
@@ -97,10 +97,10 @@ msgid "%s%% CI Mean Lower"
 msgstr "%s%% ДИ Среднего (нижняя граница)"
 
 msgid "%s%% CI Std. Dev. Upper"
-msgstr "%s%% ДИ Стд. Откл. (верхняя граница)"
+msgstr "%s%% ДИ Стандартного отклонения (верхняя граница)"
 
 msgid "%s%% CI Std. Dev. Lower"
-msgstr "%s%% ДИ Стд. Откл. (нижняя граница)"
+msgstr "%s%% ДИ Стандартного отклонения (нижняя граница)"
 
 msgid "%s%% CI Variance Upper"
 msgstr "%s%% ДИ Дисперсии (верхняя граница)"
@@ -124,19 +124,19 @@ msgid "Mean"
 msgstr "Среднее"
 
 msgid "Std. Error of Mean"
-msgstr "Ст. ошибка среднего"
+msgstr "Стандартная ошибка среднего"
 
 msgid "Std. Deviation"
-msgstr "Ст. отклонение"
+msgstr "Стандартное отклонение"
 
 msgid "Coefficient of variation"
-msgstr "Коэффициент изменчивости"
+msgstr "Коэффициент вариации"
 
 msgid "MAD"
 msgstr "Медианное абсолютное отклонение (MAD)"
 
 msgid "MAD robust"
-msgstr "устойчивая оценка MAD"
+msgstr "Робастное медианное абсолютное отклонение (MAD)"
 
 msgid "IQR"
 msgstr "Межквартильный размах (IQR)"
@@ -148,19 +148,19 @@ msgid "Skewness"
 msgstr "Асимметрия"
 
 msgid "Std. Error of Skewness"
-msgstr "Ст. ошибка асимметрии"
+msgstr "Стандартная ошибка асимметрии"
 
 msgid "Kurtosis"
 msgstr "Эксцесс"
 
 msgid "Std. Error of Kurtosis"
-msgstr "Ст. ошибка эксцесса"
+msgstr "Стандартная ошибка эксцесса"
 
 msgid "Shapiro-Wilk"
 msgstr "Критерий Шапиро-Уилка"
 
 msgid "P-value of Shapiro-Wilk"
-msgstr "p (критерий Шапиро-Уилка)"
+msgstr "P-значение коэффициента Шапиро-Уилка"
 
 msgid "Range"
 msgstr "Размах"
@@ -184,7 +184,7 @@ msgid "%gth percentile"
 msgstr "%g-й процентиль"
 
 msgid "Error in Percentiles, all values should >=0 and <=100"
-msgstr "Ошибка в процентилях, все значения должны >=0 и <=100"
+msgstr "Ошибка в процентилях, все значения должны быть >=0 и <=100"
 
 msgid "Sum"
 msgstr "Сумма"
@@ -216,7 +216,7 @@ msgid "Frequencies"
 msgstr "Частоты"
 
 msgid "Frequencies for %s"
-msgstr "Частоты для %s"
+msgstr "Частоты для %-ных величин"
 
 msgid "Frequency"
 msgstr "Частота"
@@ -225,7 +225,7 @@ msgid "Percent"
 msgstr "Процент"
 
 msgid "Valid Percent"
-msgstr "Процент относительно присутствующих значений"
+msgstr "Значимый процент"
 
 msgid "Cumulative Percent"
 msgstr "Накопленный процент"
@@ -237,7 +237,7 @@ msgid "Plotting not possible: %s"
 msgstr "Построение графиков невозможно: %s"
 
 msgid "Plotting is not possible: No plot type selected!"
-msgstr "Построение графика невозможно: Выбран не тот тип графика!"
+msgstr "Построение графика невозможно: Ни один тип графика не выбран!"
 
 msgid "Counts"
 msgstr "Количество"
@@ -252,17 +252,17 @@ msgid "Sample Quantiles"
 msgstr "Выборочные квантили"
 
 msgid "Stem"
-msgstr "Стебель"
+msgstr "Ствол"
 
 msgid "Leaf"
-msgstr "Стебель"
+msgstr "Лист"
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
 "missing observations"
 msgstr ""
-"Не удалось составить таблицу \"Стебель и листья\", поскольку имеется менее "
-"двух неотсутствующих наблюдений"
+"Не удалось составить  \"Ствол-лист\"диаграмму, поскольку имеется менее двух "
+"не пропущенных наблюдений"
 
 msgid "The decimal point is at the |"
 msgstr "Десятичная запятая находится в |"
