@@ -40,7 +40,7 @@ Met beschrijvende statistieken kunt u basis beschrijvende statistieken verkrijge
 - Centrale tendens (alleen continue variabelen):
   - Gemiddelde: Rekenkundig gemiddelde van de datapunten.
   - Mediaan: Mediaan van de datapunten.
-  - Modus: Modus van de datapunten; als er meerdere modi zijn, wordt slechts de eerste gerapporteerd. 
+  - Modus: Modus van de datapunten; als er meerdere modi zijn, wordt slechts de eerste gerapporteerd. Voor nominale en ordinale data is de modus de meest voorkomende geobserveerde waarde. Voor continue data wordt de waarde met de grootste geschatte dichtheid gerapporteerd (zie 'Verdelingsgrafieken' -> 'Geef dichtheid weer'). Wanneer een voetnoot over multimodaliteit wordt weergeven voor continue variabelen raden wij aan om de data te visualizeren om multimodaliteit te controleren.
   - Som: De som van de datapunten. 
 - Spreiding (alleen voor continue variabelen): 
   - S.E. Gemiddelde: De standaardfout van het gemiddelde. 

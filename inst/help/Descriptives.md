@@ -34,7 +34,7 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
 
 ### Statistics
 - Central Tendency (only for continuous variables):
-  - Mode: Mode of the data points; if more than one mode exists, only the first is reported.
+  - Mode: Mode of the data points; if more than one mode exists, only the first is reported. For nominal and ordinal data, the mode is the most frequent observed value. For continuous data, the mode is the value with highest density estimate (see 'Distribution Plots' -> 'Display density'). If a footnote about multimodality for continuous variables is reported, we recommend visualizing the data to check for multimodality.
   - Median: Median of the data points.
   - Mean: Arithmetic mean of the data points
 - Percentile Values:
