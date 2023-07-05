@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2023-01-07 03:19\n"
-"PO-Revision-Date: 2022-12-30 02:50+0000\n"
+"PO-Revision-Date: 2023-07-06 07:51+0000\n"
 "Last-Translator: Josée Turcotte <jturcotte@laurentienne.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/fr/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 5.0-dev\n"
 
 msgid "Frequency Tables"
 msgstr "Tableaux de Fréquence"
@@ -78,7 +78,7 @@ msgid "%s%% Confidence Interval Mean"
 msgstr "Intervalle de confiance de la moyenne %s%%"
 
 msgid "%s%% Confidence Interval Std. Dev."
-msgstr "Intervalle de confiance de l'Ecart-Type %s%%"
+msgstr "Intervalle de confiance de l'écart-type %s%%"
 
 msgid "%s%% Confidence Interval Variance"
 msgstr "Intervalle de confiance de la Variance %s%%"
@@ -170,17 +170,14 @@ msgstr "Minimum"
 msgid "Maximum"
 msgstr "Maximum"
 
-#, fuzzy
 msgid "25th percentile"
-msgstr "%gième centile"
+msgstr "25ième centile"
 
-#, fuzzy
 msgid "50th percentile"
-msgstr "%gième centile"
+msgstr "50ième centile"
 
-#, fuzzy
 msgid "75th percentile"
-msgstr "%gième centile"
+msgstr "75ième centile"
 
 msgid "%gth percentile"
 msgstr "%gième centile"
@@ -256,10 +253,10 @@ msgid "Sample Quantiles"
 msgstr "Quantiles de l'échantillon"
 
 msgid "Stem"
-msgstr ""
+msgstr "Tige"
 
 msgid "Leaf"
-msgstr ""
+msgstr "Feuille"
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
