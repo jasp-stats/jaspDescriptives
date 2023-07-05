@@ -496,7 +496,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       subReturn <- .descriptivesDescriptivesTable_subFunction(column, list(Variable=variable), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, jaspResults)
 
       shouldAddNominalTextFootnote      <- subReturn$shouldAddNominalTextFootnote
-      shouldAddModeMoreThanOnceFootnote <- subReturn$shouldAddModeMoreThanOnceFootnote
 
       stats$addRows(subReturn$resultsCol, rowNames = variable)
 
@@ -509,15 +508,17 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
         stats$addFootnote(message  = gettextf("Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty set is %2$s.", "\u221E", "-\u221E"),
                           colNames = c("Minimum", "Maximum"),
                           rowNames = variable)
+
+      if(subReturn$shouldAddModeMoreThanOnceFootnote)
+        stats$addFootnote(message  = gettext("More than one mode exists. For nominal and ordinal data, the first mode is reported. For continuous data, the mode with the highest density estimate is reported but multiple modes may exist. We recommend visualizing the data to check for multimodality."),
+                          colNames = "Mode",
+                          rowNames = variable)
+
     }
   }
 
-
   if (shouldAddNominalTextFootnote)
     stats$addFootnote(message=gettext("Not all values are available for <i>Nominal Text</i> variables"))
-
-  if(shouldAddModeMoreThanOnceFootnote)
-    stats$addFootnote(message=gettext("More than one mode exists, only the first is reported"), colNames="Mode")
 
   return(stats)
 }
@@ -593,16 +594,21 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if((options$minimum || options$maximum) && valid == 0) shouldAddExplainEmptySet <- TRUE else shouldAddExplainEmptySet <- FALSE
 
   if (options$mode) {
-    if (base::is.factor(na.omitted) == FALSE) {
-      mode <- as.numeric(names(table(na.omitted)[table(na.omitted)==max(table(na.omitted))]))
 
-      if (length(mode) > 1)
-        shouldAddModeMoreThanOnceFootnote <- TRUE
+    if (is.numeric(na.omitted)) { # scale data
+      temp <- .desriptivesComputeModeContinuous(na.omitted)
+      mode <- temp[["xValues"]][which.max(temp[["yValues"]])]
 
-      resultsCol[["Mode"]] <- .clean(mode[1])
-    } else {
-      resultsCol[["Mode"]] <- ""
+      shouldAddModeMoreThanOnceFootnote <- temp[["numModes"]] > 1L
+    } else { # ordinal, nominal, or nominal text data
+      tb <- table(na.omitted)
+      mode <- as.numeric(names(tb[tb == max(tb)]))
+
+      shouldAddModeMoreThanOnceFootnote <- length(mode) > 1L
     }
+
+    resultsCol[["Mode"]] <- mode[1L]
+
   } else {
     resultsCol[["Mode"]] <- NULL
   }
@@ -626,12 +632,12 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   equalGroupNames <- NULL
 
   if (options$quantilesForEqualGroups)
-    equalGroupNames <- paste("eg", seq(equalGroupsNo - 1), sep="")
+    equalGroupNames <- paste0("eg", seq(equalGroupsNo - 1))
 
   percentileNames <- NULL
 
   if (options$percentiles)
-    percentileNames <- paste("pc", percentilesPercentiles, sep="")
+    percentileNames <- paste0("pc", percentilesPercentiles)
 
   for (row in names(resultsCol)) {
 
@@ -1697,6 +1703,36 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   jaspResults[[stateContainerName]] <- bootstrapSamples
   jaspResults[[stateContainerName]]$dependOn(options = c("ciBootstrapSamples"))
   return(list(means = means, sds = sds, variances = variances))
+}
+
+.desriptivesComputeModeContinuous <- function(x) {
+
+  n <- 2^15
+  bw <- stats::bw.nrd0(x)
+  lowsup <- -Inf
+  uppsup <- Inf
+  # based on multimode::nmodes
+  fn <- stats::density(x, bw = bw, n = n)
+  z  <- c(1:(n - 1))
+  re <- z[diff(fn$y) > 0]
+  z2 <- c(1:length(re))
+  se <- z2[diff(re) > 1]
+  posic <- re[se]
+  if (re[length(re)] < (n - 1)) {
+    posic <- c(posic, re[length(re)])
+  }
+  posic <- posic[fn$x[posic] > lowsup]
+  posic <- posic[fn$x[posic] < uppsup]
+  num  <- length(posic)
+  # end of multimode::nmodes
+  xValues <- fn[["x"]][posic]
+  yValues <- fn[["y"]][posic]
+  return(list(
+    numModes = num,
+    xValues  = xValues,
+    yValues  = yValues,
+    bw       = bw
+  ))
 }
 
 .descriptivesQQPlot <- function(dataset, options,  qqvar, levelName=NULL) {
