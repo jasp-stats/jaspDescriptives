@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2023-07-08 03:23\n"
-"PO-Revision-Date: 2023-07-15 12:10+0000\n"
+"PO-Revision-Date: 2023-07-16 19:06+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/de/>\n"
@@ -151,10 +151,10 @@ msgid "Std. Error of Skewness"
 msgstr "Std.-Fehler Schiefe"
 
 msgid "Kurtosis"
-msgstr "Wölbung / Kurtosis"
+msgstr "Wölbung"
 
 msgid "Std. Error of Kurtosis"
-msgstr "Std.-Fehler der Wölbung"
+msgstr "Std.-Fehler Wölbung"
 
 msgid "Shapiro-Wilk"
 msgstr "Shapiro-Wilk"
@@ -181,7 +181,7 @@ msgid "75th percentile"
 msgstr "75. Perzentil"
 
 msgid "%gth percentile"
-msgstr "%ges Perzentil"
+msgstr "%g. Perzentil"
 
 msgid "Error in Percentiles, all values should >=0 and <=100"
 msgstr "Fehler in Perzentilen, alle Werte sollten >=0 und <=100 sein"
@@ -232,10 +232,10 @@ msgid "Percent"
 msgstr "Prozent"
 
 msgid "Valid Percent"
-msgstr "Prozent Gültig"
+msgstr "Prozent gültig"
 
 msgid "Cumulative Percent"
-msgstr "Kumulative Prozent"
+msgstr "Prozent kumulativ"
 
 msgid "Density"
 msgstr "Dichte"
