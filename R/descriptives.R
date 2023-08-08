@@ -338,7 +338,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
     for (var in variables) {
       # exclude non-categorical variables from dataframe
-      if (is.double(dataset.factors[[var]])) {
+      if (is.numeric(dataset.factors[[var]])) {
         if (makeSplit) {
           for (i in seq_along(splitLevels))
             splitDat.factors[[i]] <- splitDat.factors[[i]][, !names(splitDat.factors[[i]]) %in% c(var), drop = FALSE]
@@ -2058,6 +2058,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesLikertPlots <- function(dataset, name, options) {
+  if(ncol(dataset) == 0) return()
   variables <- names(dataset)
 
   if (options[["likertPlotAssumeVariablesSameLevel"]]) {
