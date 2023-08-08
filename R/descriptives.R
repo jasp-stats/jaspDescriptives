@@ -2085,12 +2085,12 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   }
 
   # Likert Part: Preparing & summarize data in the likert format (% of levels per variable)
-  nLevels <- nlevels(factor(dataset[, 1]))
+  nLevels <- nlevels(dataset[, 1])
   center <- (nLevels - 1) / 2 + 1
   lowRange <- 1:floor(center - 0.5)
   highRange <- ceiling(center + 0.5):nLevels
 
-  if (!all(sapply(dataset, function(x) nlevels(factor(x))) == nLevels)) {
+  if (!all(sapply(dataset, function(x) nlevels(x)) == nLevels)) {
     likPlot$setError(gettext("All categorical variables must have the same number of levels!"))
     return(likPlot)
   }
