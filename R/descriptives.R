@@ -338,7 +338,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
     for (var in variables) {
       # exclude non-categorical variables from dataframe
-      if (is.double(dataset.factors[[var]])) {
+      if (is.numeric(dataset.factors[[var]])) {
         if (makeSplit) {
           for (i in seq_along(splitLevels))
             splitDat.factors[[i]] <- splitDat.factors[[i]][, !names(splitDat.factors[[i]]) %in% c(var), drop = FALSE]
@@ -2058,6 +2058,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesLikertPlots <- function(dataset, name, options) {
+  if(ncol(dataset) == 0) return()
   variables <- names(dataset)
 
   if (options[["likertPlotAssumeVariablesSameLevel"]]) {
@@ -2085,12 +2086,12 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   }
 
   # Likert Part: Preparing & summarize data in the likert format (% of levels per variable)
-  nLevels <- nlevels(factor(dataset[, 1]))
+  nLevels <- nlevels(dataset[, 1])
   center <- (nLevels - 1) / 2 + 1
   lowRange <- 1:floor(center - 0.5)
   highRange <- ceiling(center + 0.5):nLevels
 
-  if (!all(sapply(dataset, function(x) nlevels(factor(x))) == nLevels)) {
+  if (!all(sapply(dataset, function(x) nlevels(x)) == nLevels)) {
     likPlot$setError(gettext("All categorical variables must have the same number of levels!"))
     return(likPlot)
   }

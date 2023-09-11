@@ -196,7 +196,9 @@ test_that("Likert plot matches", {
   options$likertPlot <- TRUE
   options$likertPlotAssumeVariablesSameLevel <- TRUE
   options$likertPlotAdjustableFontSize <- "normal"
-  results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
+  df <- jaspTools:::loadCorrectDataset("test.csv")
+  df$facFive <- as.ordered(df$facFive)
+  results <- jaspTools::runAnalysis("Descriptives", df, options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "likPlot")
 })
