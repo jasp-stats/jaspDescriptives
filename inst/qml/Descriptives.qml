@@ -152,8 +152,8 @@ Form
 					indexDefaultValue: 0
 					values:
 					[
-						{label: qsTr("Normal model"),	value: "normalModel"},
 						{label: qsTr("T model"),	value: "oneSampleTTest"},
+						{label: qsTr("Normal model"),	value: "normalModel"},
 						{label: qsTr("Bootstrap"),		value: "bootstrap"}
 					]
 				}
