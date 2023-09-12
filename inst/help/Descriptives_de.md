@@ -60,7 +60,7 @@ Deskriptive Statistiken ermöglicht es dem Benutzer, grundlegende deskriptive St
   - Std.-Fehler Mittelwert: Standardfehler des Mittelwerts.
   - Konfidenzintervall des Mittelwerts:
     - Breite: Breite des Konfidenzintervalls.
-    - Methode: Wie soll das Konfidenzintervall berechnet werden? Als Standard wird ein Normalmodell angenommen ($$bar{x} z_{95} mal SE$). Alternative Möglichkeiten sind ein "T-Modell", das zu den gleichen Ergebnissen wie ein T-Test für eine Stichprobe führt, oder "Bootstrap".
+    - Methode: Wie soll das Konfidenzintervall berechnet werden? Standardmäßig wird ein `T-Modell` verwendet, das die gleichen Ergebnisse wie ein T-Test für eine Stichprobe führt. Alternative Optionen sind ein normales Modell ($\bar{x} \pm z_{95}\times SE$) oder `Bootstrap`.
   - Konfidenzintervall für der Std.-Abweichung: ein Konfidenzintervall für der Standardabweichung auf der Grundlage von Bootstrap-Stichproben.
   - Konfidenzintervall für der Varianz: ein Konfidenzintervall für der Varianz auf der Grundlage von Bootstrap-Stichproben.
   - Bootstrap Stichprobenanzahl: die Anzahl der Bootstrap-Stichproben.

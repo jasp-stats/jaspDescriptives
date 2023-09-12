@@ -59,7 +59,7 @@ Met beschrijvende statistieken kunt u basis beschrijvende statistieken verkrijge
   - S.E. Gemiddelde: De standaardfout van het gemiddelde.
   - Betrouwbaarheidsinterval voor het gemiddelde:
     - Breedte: breedte of the confidence interval.
-    - Methode: Hoe moet het betrouwbaarheidsinterval berekent worden? Als standaard wordt een normaal model aangenomen ($\bar{x} \pm z_{95}\times SE$). Alternatieve mogelijkheden zijn een `T model`, dat resultaten identiek aan een T-Toets voor Eén gemiddelde of `Bootstrap`.
+    - Methode: Hoe moet het betrouwbaarheidsinterval berekent worden? Als standaard wordt een `T-model` gebruikt dat dezelfde resultaten oplevert als een T-Toets voor Eén gemiddelde. Alternatieve opties zijn een normaal model ($bar{x} z_{95} maal SE$) of `Bootstrap`.
   - Betrouwbaarheidsinterval voor de standaarddeviatie: een betrouwbaarheidsinterval voor de standaarddeviatie gebaseerd op bootstrap samples.
   - Betrouwbaarheidsinterval voor de variantie: een betrouwbaarheidsinterval voor de variantie gebaseerd op bootstrap samples.
   - Bootstrap samples: het aantal bootstrap samples.
