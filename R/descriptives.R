@@ -1575,6 +1575,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     CIs <- quantile(means, probs = percentiles)
     lowerBound <- CIs[1]
     upperBound <- CIs[2]
+  } else if (options[["meanCiMethod"]] == "oneSampleTTest") {
+    ttestResult <- stats::t.test(x = data)
+    CIs <- ttestResult[["conf.int"]]
+    lowerBound <- CIs[1]
+    upperBound <- CIs[2]
   }
   return(list(
     "upper" = upperBound,

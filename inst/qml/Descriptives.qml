@@ -153,6 +153,7 @@ Form
 					values:
 					[
 						{label: qsTr("Normal model"),	value: "normalModel"},
+						{label: qsTr("T model"),	value: "oneSampleTTest"},
 						{label: qsTr("Bootstrap"),		value: "bootstrap"}
 					]
 				}

@@ -42,7 +42,6 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
   - Cut points for x equal groups: Displays the cut points that divide the data into x equal groups; default is 4 equal groups.
   - Percentiles: Displays the xth percentile; percentile values must be separated by comma.
 - Dispersion (only for continuous variables):
-  - S.E. mean: Standard error of the mean.
   - Std. deviation: Standard deviation of the data points.
   - Coefficient of variation: The Coefficient of variation gives us the relative dispersion of the data, in contrast to the standard deviation, which gives the absolute dispersion. For this purpose, the standard deviation is divided by the mean value, so that the unit is truncated away.
   - MAD: Median absolute deviation of the data points.
@@ -57,6 +56,14 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
   - Kurtosis: Kurtosis of the distribution of the data points.
   - Shapiro-Wilk test
   - Sum: Sum of the data points.
+- Inference:
+  - S.E. mean: Standard error of the mean.
+  - Confidence interval for the mean:
+    - Width: width of the confidence interval.
+    - Method: How should the confidence interval be computed? By default, we use a normal model ($\bar{x} \pm z_{95}\times SE$). Alternative options are a `T model`, which yields results identical to a one-sample t-test, or `Bootstrap`.
+  - Confidence interval for the std. deviation: a confidence interval for the standard deviation based on bootstrap samples.
+  - Confidence interval for the variance: a confidence interval for the variance based on bootstrap samples.
+  - Bootstrap samples: the number of bootstrap samples to be used.
 
 ### Output
 -------
