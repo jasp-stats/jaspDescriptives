@@ -54,6 +54,7 @@ test_that("Descriptive Statistics table results match", {
   options$sdCi <- TRUE
   options$varianceCi <- TRUE
   options$sdCi <- TRUE
+  options$meanCiMethod <- "normalModel"
   set.seed(1)
   results <- runAnalysis("Descriptives", "test.csv", options)
   table <- results[["results"]][["stats"]][["data"]]
@@ -61,6 +62,45 @@ test_that("Descriptive Statistics table results match", {
                                  list(-0.18874858754, -0.396193843016565, 0.018696667936565, 0.869717253788563,
                                       1.24667712392121, 1.05841360919316, "contNormal", 1.1202393681253,
                                       0.756408180905588, 1.55420388476218))
+})
+
+# test confidence intervals only
+test_that("Descriptive Statistics table results match", {
+  options <- analysisOptions("Descriptives")
+  options$variables <- c("contNormal", "contGamma")
+  options$valid <- FALSE
+  options$missing <- FALSE
+  options$variance <- FALSE
+  options$minimum <- FALSE
+  options$maximum <- FALSE
+  options$meanCi <- TRUE
+  options$meanCiMethod <- "oneSampleTTest"
+  set.seed(1)
+  results <- runAnalysis("Descriptives", "test.csv", options)
+  table <- results[["results"]][["stats"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list(-0.18874858754, -0.398760810055083, 0.0212636349750834, 1.05841360919316,
+                                      "contNormal", 2.03296079621, 1.72889718286736, 2.33702440955264,
+                                      1.53241112621044, "contGamma"))
+
+  # compare against stats::t.test directly since these should be identical
+  options <- analysisOptions("Descriptives")
+  options$variables <- "extra"
+  options$valid <- FALSE
+  options$missing <- FALSE
+  options$variance <- FALSE
+  options$minimum <- FALSE
+  options$maximum <- FALSE
+  options$meanCi <- TRUE
+  options$meanCiMethod <- "oneSampleTTest"
+  data("sleep")
+  set.seed(1)
+  results <- runAnalysis("Descriptives", sleep, options)
+  table <- results[["results"]][["stats"]][["data"]]
+  baseR <- c(t.test(extra ~ 1, data = sleep)$conf.int)
+  jasp  <- c(table[[1]][["MeanCILB"]], table[[1]][["MeanCIUB"]])
+  testthat::expect_equal(jasp, baseR)
+
 })
 
 test_that("Frequencies table matches", {
@@ -208,6 +248,8 @@ test_that("Density plot matches", {
   options$variables <- "contNormal"
   options$densityPlot <- TRUE
   options$densityPlotSeparate <- "facFive"
+  # https://github.com/jasp-stats/jaspDescriptives/pull/216 added a reuseable QML element for colorPalette, but jaspTools doesn't understand that so we have to add the default value manually
+  options$colorPalette <- "colorblind"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "densPlot")

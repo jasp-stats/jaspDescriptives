@@ -42,7 +42,6 @@ Deskriptive Statistiken ermöglicht es dem Benutzer, grundlegende deskriptive St
   - Schnittpunkte für x gleiche Gruppen: Zeigt die Schnittpunkte an, die die Daten in x gleich große Gruppen einteilen; Standardeinstellung ist 4 gleich große Gruppen.
   - Perzentile: Zeigt das x-te Perzentil an; Perzentilwerte müssen durch Komma getrennt sein.
 - Streuung (nur für kontinuierliche Variablen):
-  - Std.-Fehler Mittelwert: Standardfehler des Mittelwerts.
   - Std.-Abweichung: Standardabweichung der Datenpunkte.
   - Variationskoeffizient: Der Variationskoeffizient gibt uns die relative Streuung der Daten an im Gegensatz zur Standardabweichung, die die absolute Streuung angibt. Dazu wird die Standardabweichung durch den Mittelwert dividiert, sodass die Einheit herausgekürzt wird.
   - MAD: Median der absoluten Abweichungen der Datenpunkte.
@@ -57,6 +56,14 @@ Deskriptive Statistiken ermöglicht es dem Benutzer, grundlegende deskriptive St
   - Wölbung: Wölbung (Kurtosis) der Verteilung der Datenpunkte.
   - Shapiro-Wilk-Test
   - Summe: Summe der Datenpunkte.
+- Inferenz:
+  - Std.-Fehler Mittelwert: Standardfehler des Mittelwerts.
+  - Konfidenzintervall des Mittelwerts:
+    - Breite: Breite des Konfidenzintervalls.
+    - Methode: Wie soll das Konfidenzintervall berechnet werden? Standardmäßig wird ein `T-Modell` verwendet, das die gleichen Ergebnisse wie ein T-Test für eine Stichprobe führt. Alternative Optionen sind ein normales Modell (\\\\(\\bar{x} \\pm z_{95}\\times SE\\\\)) oder `Bootstrap`.
+  - Konfidenzintervall für der Std.-Abweichung: ein Konfidenzintervall für der Standardabweichung auf der Grundlage von Bootstrap-Stichproben.
+  - Konfidenzintervall für der Varianz: ein Konfidenzintervall für der Varianz auf der Grundlage von Bootstrap-Stichproben.
+  - Bootstrap Stichprobenanzahl: die Anzahl der Bootstrap-Stichproben.
 
 ### Ausgabe
 -------
