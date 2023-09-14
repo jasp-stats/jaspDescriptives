@@ -60,7 +60,7 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
   - S.E. mean: Standard error of the mean.
   - Confidence interval for the mean:
     - Width: width of the confidence interval.
-    - Method: How should the confidence interval be computed? By default, we use a `T model`, which yields results identical to a one-sample t-test. Alternative options are a normal model ($\bar{x} \pm z_{95}\times SE$), or `Bootstrap`.
+    - Method: How should the confidence interval be computed? By default, we use a `T model`, which yields results identical to a one-sample t-test. Alternative options are a normal model (\\\\(\\bar{x} \\pm z_{95}\\times SE\\\\)), or `Bootstrap`.
   - Confidence interval for the std. deviation: a confidence interval for the standard deviation based on bootstrap samples.
   - Confidence interval for the variance: a confidence interval for the variance based on bootstrap samples.
   - Bootstrap samples: the number of bootstrap samples to be used.
