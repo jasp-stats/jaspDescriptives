@@ -55,30 +55,6 @@ msgid "Create a Stem and leaf table."
 msgstr "Создать ствол - лист диаграмму."
 
 msgctxt "Descriptives|"
-msgid "Color palette"
-msgstr "Цветовое оформление"
-
-msgctxt "Descriptives|"
-msgid "Colorblind"
-msgstr "Бесцветный"
-
-msgctxt "Descriptives|"
-msgid "Colorblind Alt."
-msgstr "Бесцветный (альт)."
-
-msgctxt "Descriptives|"
-msgid "Viridis"
-msgstr "Зелёный"
-
-msgctxt "Descriptives|"
-msgid "ggplot2"
-msgstr "Пакет визуализации данных ggplot2"
-
-msgctxt "Descriptives|"
-msgid "Gray"
-msgstr "Серый"
-
-msgctxt "Descriptives|"
 msgid "Boxplots"
 msgstr "Ящичковые диаграммы"
 
@@ -517,3 +493,7 @@ msgstr "Тепловые карты для выбранных переменны
 msgctxt "Descriptives|"
 msgid "Tables"
 msgstr "Таблицы"
+
+msgctxt "Descriptives|"
+msgid "T model"
+msgstr ""

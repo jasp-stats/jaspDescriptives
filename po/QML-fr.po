@@ -54,30 +54,6 @@ msgid "Create a Stem and leaf table."
 msgstr "Créez un tableau en forme de tiges et de feuilles."
 
 msgctxt "Descriptives|"
-msgid "Color palette"
-msgstr "Palette de couleurs"
-
-msgctxt "Descriptives|"
-msgid "Colorblind"
-msgstr "Daltonien"
-
-msgctxt "Descriptives|"
-msgid "Colorblind Alt."
-msgstr "Daltonien alt."
-
-msgctxt "Descriptives|"
-msgid "Viridis"
-msgstr "Viridis"
-
-msgctxt "Descriptives|"
-msgid "ggplot2"
-msgstr "ggplot2"
-
-msgctxt "Descriptives|"
-msgid "Gray"
-msgstr "Gris"
-
-msgctxt "Descriptives|"
 msgid "Boxplots"
 msgstr "Boîtes à moustaches"
 
@@ -516,3 +492,7 @@ msgstr "Options d'intervalle de confiance du Bootstrap"
 msgctxt "Descriptives|"
 msgid "Bootstrap samples"
 msgstr "Échantillons du Bootstrap"
+
+msgctxt "Descriptives|"
+msgid "T model"
+msgstr ""

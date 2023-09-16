@@ -13,14 +13,6 @@ msgid "Distribution"
 msgstr "Distribución"
 
 msgctxt "Descriptives|"
-msgid "ggplot2"
-msgstr "GGplot2"
-
-msgctxt "Descriptives|"
-msgid "Color palette"
-msgstr "Paleta de cores"
-
-msgctxt "Descriptives|"
 msgid "IQR"
 msgstr "RIC(IQR)"
 
@@ -241,22 +233,6 @@ msgstr ""
 msgctxt "Descriptives|"
 msgid "Create a Stem and leaf table."
 msgstr "Xerar unha táboa de Talo e folla."
-
-msgctxt "Descriptives|"
-msgid "Colorblind"
-msgstr "Daltónica"
-
-msgctxt "Descriptives|"
-msgid "Colorblind Alt."
-msgstr "Daltónica Alternativa"
-
-msgctxt "Descriptives|"
-msgid "Viridis"
-msgstr "Violeta"
-
-msgctxt "Descriptives|"
-msgid "Gray"
-msgstr "Gris"
 
 msgctxt "Descriptives|"
 msgid "Density"
@@ -517,3 +493,7 @@ msgstr "Opcións do Intervalo de Confianza de Bootstrap"
 msgctxt "Descriptives|"
 msgid "Bootstrap samples"
 msgstr "Mostras de Bootstrap"
+
+msgctxt "Descriptives|"
+msgid "T model"
+msgstr ""

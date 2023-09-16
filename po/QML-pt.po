@@ -141,30 +141,6 @@ msgid "Show legend"
 msgstr "Mostrar legenda"
 
 msgctxt "Descriptives|"
-msgid "Color palette"
-msgstr "Paleta de cores"
-
-msgctxt "Descriptives|"
-msgid "Colorblind"
-msgstr "Daltônico"
-
-msgctxt "Descriptives|"
-msgid "Colorblind Alt."
-msgstr "Daltônico alt."
-
-msgctxt "Descriptives|"
-msgid "Viridis"
-msgstr "Verde"
-
-msgctxt "Descriptives|"
-msgid "ggplot2"
-msgstr "ggplot2"
-
-msgctxt "Descriptives|"
-msgid "Gray"
-msgstr "Cinza"
-
-msgctxt "Descriptives|"
 msgid "Use color palette"
 msgstr "Usar paleta de cores"
 
@@ -516,4 +492,8 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Bootstrap samples"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "T model"
 msgstr ""

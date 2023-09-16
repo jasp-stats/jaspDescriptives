@@ -53,30 +53,6 @@ msgid "Create a Stem and leaf table."
 msgstr "幹葉図を作成する。"
 
 msgctxt "Descriptives|"
-msgid "Color palette"
-msgstr "カラーパレット"
-
-msgctxt "Descriptives|"
-msgid "Colorblind"
-msgstr "カラーブラインド"
-
-msgctxt "Descriptives|"
-msgid "Colorblind Alt."
-msgstr "カラーブラインドのための代案"
-
-msgctxt "Descriptives|"
-msgid "Viridis"
-msgstr "ビリジアン"
-
-msgctxt "Descriptives|"
-msgid "ggplot2"
-msgstr "ggplot2"
-
-msgctxt "Descriptives|"
-msgid "Gray"
-msgstr "灰色"
-
-msgctxt "Descriptives|"
 msgid "Boxplots"
 msgstr "箱ひげ図"
 
@@ -514,4 +490,8 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Bootstrap samples"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "T model"
 msgstr ""

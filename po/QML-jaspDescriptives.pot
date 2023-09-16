@@ -49,30 +49,6 @@ msgid "Create a Stem and leaf table."
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Color palette"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Colorblind"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Colorblind Alt."
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Viridis"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "ggplot2"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Gray"
-msgstr ""
-
-msgctxt "Descriptives|"
 msgid "Boxplots"
 msgstr ""
 
@@ -510,4 +486,8 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Bootstrap samples"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "T model"
 msgstr ""

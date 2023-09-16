@@ -65,30 +65,6 @@ msgid "Customizable plots"
 msgstr "自定义绘图"
 
 msgctxt "Descriptives|"
-msgid "Color palette"
-msgstr "调色板"
-
-msgctxt "Descriptives|"
-msgid "Colorblind"
-msgstr "色盲"
-
-msgctxt "Descriptives|"
-msgid "Colorblind Alt."
-msgstr "色盲 Alt."
-
-msgctxt "Descriptives|"
-msgid "Viridis"
-msgstr "Viridis"
-
-msgctxt "Descriptives|"
-msgid "ggplot2"
-msgstr "ggplot2"
-
-msgctxt "Descriptives|"
-msgid "Gray"
-msgstr "灰色"
-
-msgctxt "Descriptives|"
 msgid "Boxplots"
 msgstr "箱线图"
 
@@ -515,3 +491,7 @@ msgstr "Bootstrap 置信区间选项"
 msgctxt "Descriptives|"
 msgid "Bootstrap samples"
 msgstr "Bootstrap 抽样次数"
+
+msgctxt "Descriptives|"
+msgid "T model"
+msgstr ""

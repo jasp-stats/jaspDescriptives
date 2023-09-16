@@ -55,30 +55,6 @@ msgid "Create a Stem and leaf table."
 msgstr "Erstelle eine Stängel-Blatt-Tabelle."
 
 msgctxt "Descriptives|"
-msgid "Color palette"
-msgstr "Farbpalette"
-
-msgctxt "Descriptives|"
-msgid "Colorblind"
-msgstr "Farbenblind"
-
-msgctxt "Descriptives|"
-msgid "Colorblind Alt."
-msgstr "Farbenblind alt."
-
-msgctxt "Descriptives|"
-msgid "Viridis"
-msgstr "Viridis"
-
-msgctxt "Descriptives|"
-msgid "ggplot2"
-msgstr "ggplot2"
-
-msgctxt "Descriptives|"
-msgid "Gray"
-msgstr "Grau"
-
-msgctxt "Descriptives|"
 msgid "Boxplots"
 msgstr "Boxplots"
 
@@ -517,3 +493,7 @@ msgstr "Bootstrap-Konfidenzintervall-Optionen"
 msgctxt "Descriptives|"
 msgid "Bootstrap samples"
 msgstr "Bootstrap Stichprobenanzahl"
+
+msgctxt "Descriptives|"
+msgid "T model"
+msgstr ""

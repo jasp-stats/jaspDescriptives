@@ -51,30 +51,6 @@ msgid "Create a Stem and leaf table."
 msgstr "製作莖葉圖"
 
 msgctxt "Descriptives|"
-msgid "Color palette"
-msgstr "調色盤"
-
-msgctxt "Descriptives|"
-msgid "Colorblind"
-msgstr "色盲友善配色選擇一"
-
-msgctxt "Descriptives|"
-msgid "Colorblind Alt."
-msgstr "色盲友善配色選擇二"
-
-msgctxt "Descriptives|"
-msgid "Viridis"
-msgstr "色盲友善配色選擇三"
-
-msgctxt "Descriptives|"
-msgid "ggplot2"
-msgstr "ggplot2配色"
-
-msgctxt "Descriptives|"
-msgid "Gray"
-msgstr "灰階"
-
-msgctxt "Descriptives|"
 msgid "Boxplots"
 msgstr "箱形圖"
 
@@ -532,3 +508,7 @@ msgstr "名義變數和次序變數"
 msgctxt "Descriptives|"
 msgid "Tables"
 msgstr "表"
+
+msgctxt "Descriptives|"
+msgid "T model"
+msgstr ""

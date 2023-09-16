@@ -55,30 +55,6 @@ msgid "Create a Stem and leaf table."
 msgstr "Utwórz wykres łodyga i liście."
 
 msgctxt "Descriptives|"
-msgid "Color palette"
-msgstr "Paleta kolorów"
-
-msgctxt "Descriptives|"
-msgid "Colorblind"
-msgstr "Kontrastowy"
-
-msgctxt "Descriptives|"
-msgid "Colorblind Alt."
-msgstr "Kontrastowy 2"
-
-msgctxt "Descriptives|"
-msgid "Viridis"
-msgstr "Viridis"
-
-msgctxt "Descriptives|"
-msgid "ggplot2"
-msgstr "ggplot2"
-
-msgctxt "Descriptives|"
-msgid "Gray"
-msgstr "Szary"
-
-msgctxt "Descriptives|"
 msgid "Boxplots"
 msgstr "Wykresy pudełkowe"
 
@@ -517,3 +493,7 @@ msgstr "Dla zmiennych nominalnych i porządkowych"
 msgctxt "Descriptives|"
 msgid "Tables"
 msgstr "Tabele"
+
+msgctxt "Descriptives|"
+msgid "T model"
+msgstr ""
