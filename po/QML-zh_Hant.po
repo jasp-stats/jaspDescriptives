@@ -1,27 +1,33 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-10-05 13:12+0000\n"
+"Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
+"Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
+"jasp/jaspdescriptives-qml/zh_Hant/>\n"
+"Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.1-dev\n"
 "X-Language: zh_Hant\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
 msgid "Descriptives"
-msgstr "描述統計"
+msgstr "描述性統計"
 
 msgctxt "Description|"
 msgid "Descriptive Statistics"
-msgstr "描述統計數"
+msgstr "描述性統計量"
 
 msgctxt "Descriptives|"
 msgid "Variables"
-msgstr "變項"
+msgstr "變量"
 
 msgctxt "Descriptives|"
 msgid "Split"
-msgstr "分群"
+msgstr "分組"
 
 msgctxt "Descriptives|"
 msgid "Frequency tables"
@@ -362,10 +368,9 @@ msgctxt "Descriptives|"
 msgid "Normal model"
 msgstr "普通模型"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Bootstrap"
-msgstr "拔靴法"
+msgstr "拔靴(Bootstrap)法"
 
 msgctxt "Descriptives|"
 msgid "Confidence interval for std. deviation"
@@ -379,10 +384,9 @@ msgctxt "Descriptives|"
 msgid "Bootstrap confidence interval options"
 msgstr "拔靴法信賴區間選項"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Bootstrap samples"
-msgstr "拔靴法樣本"
+msgstr "拔靴法抽樣數"
 
 msgctxt "Descriptives|"
 msgid "Categorical plots"
@@ -409,10 +413,9 @@ msgctxt "Descriptives|"
 msgid "Adjustable font size for vertical axis"
 msgstr "垂直軸字體大小可調整"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Normal"
-msgstr "常態"
+msgstr "一般"
 
 #, fuzzy
 msgctxt "Descriptives|"
@@ -495,10 +498,9 @@ msgctxt "Descriptives|"
 msgid "Value itself"
 msgstr "變數值"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Number of observations"
-msgstr "觀察次數"
+msgstr "觀測值數量"
 
 msgctxt "Descriptives|"
 msgid "For nominal and ordinal variables"
