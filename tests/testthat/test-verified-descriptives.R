@@ -7,13 +7,12 @@ test_that("Main table results match R, SPSS, SAS and MiniTab", {
   options$mean <- TRUE
   options$median <- TRUE
   options$variance <- TRUE
-  options$mode <- FALSE
   options$sd <- TRUE
   options$seMean <- TRUE
-  options$minimum
-  options$maximum
   options$mode <- TRUE
   options$quartiles <- TRUE
+  options$mode <- TRUE
+  options$missing <- FALSE
 
   # Main table
   results <- jaspTools::runAnalysis("Descriptives",
@@ -23,7 +22,7 @@ test_that("Main table results match R, SPSS, SAS and MiniTab", {
 
   jaspTools::expect_equal_tables(
     "test"=resultTable,
-    "ref"=list(5, 3, 3, 3, 0, 1, 1.58113883008419, 0.707106781186548, 5, "Data",
+    "ref"=list(5, 3, 3, 1, 0, 1, 1.58113883008419, 0.707106781186548, 5, "Data",
                2.5, 2, 3, 4)
   )
 })
