@@ -477,6 +477,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   # lets just add footnotes once instead of a gazillion times..
   shouldAddNominalTextFootnote <- FALSE
   shouldAddModeMoreThanOnceFootnote <- FALSE
+  shouldAddModeContinuousTreatedAsDiscreteFootnote <- FALSE
 
   # Find the number of levels to loop over
   if (wantsSplit) {
@@ -487,10 +488,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     for (variable in variables) {
       for (l in seq_len(nLevels)) {
         column <- dataset[[variable]][split == splitLevels[l]]
-        subReturn <- .descriptivesDescriptivesTable_subFunction(column, list(Variable = variable, Level = splitLevels[l]), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, jaspResults)
+        subReturn <- .descriptivesDescriptivesTable_subFunction(column, list(Variable = variable, Level = splitLevels[l]), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, shouldAddModeContinuousTreatedAsDiscreteFootnote, jaspResults)
 
-        shouldAddNominalTextFootnote <- subReturn$shouldAddNominalTextFootnote
-        shouldAddModeMoreThanOnceFootnote <- subReturn$shouldAddModeMoreThanOnceFootnote
+        shouldAddNominalTextFootnote                     <- subReturn$shouldAddNominalTextFootnote
+        shouldAddModeMoreThanOnceFootnote                <- subReturn$shouldAddModeMoreThanOnceFootnote
+        shouldAddModeContinuousTreatedAsDiscreteFootnote <- subReturn$shouldAddModeContinuousTreatedAsDiscreteFootnote
 
         stats$addRows(subReturn$resultsCol, rowNames = paste0(variable, l))
 
@@ -509,14 +511,26 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
             rowNames = paste0(variable, l)
           )
         }
+
+        if(subReturn$shouldAddModeMoreThanOnceFootnote)
+          stats$addFootnote(message  = gettext("More than one mode exists. For nominal and ordinal data, the first mode is reported. For continuous data, the mode with the highest density estimate is reported but multiple modes may exist. We recommend visualizing the data to check for multimodality."),
+                            colNames = "Mode",
+                            rowNames = variable)
+
+        if (subReturn$shouldAddModeContinuousTreatedAsDiscreteFootnote)
+          stats$addFootnote(message  = gettext("The mode is computed assuming that variables are discreet."),
+                            colNames = "Mode",
+                            rowNames = variable)
       }
     }
   } else { # we dont want to split
     for (variable in variables) {
       column <- dataset[[variable]]
-      subReturn <- .descriptivesDescriptivesTable_subFunction(column, list(Variable = variable), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, jaspResults)
+      subReturn <- .descriptivesDescriptivesTable_subFunction(column, list(Variable = variable), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, shouldAddModeContinuousTreatedAsDiscreteFootnote, jaspResults)
 
-      shouldAddNominalTextFootnote      <- subReturn$shouldAddNominalTextFootnote
+      shouldAddNominalTextFootnote                     <- subReturn$shouldAddNominalTextFootnote
+      shouldAddModeMoreThanOnceFootnote                <- subReturn$shouldAddModeMoreThanOnceFootnote
+      shouldAddModeContinuousTreatedAsDiscreteFootnote <- subReturn$shouldAddModeContinuousTreatedAsDiscreteFootnote
 
       stats$addRows(subReturn$resultsCol, rowNames = variable)
 
@@ -538,6 +552,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
                           colNames = "Mode",
                           rowNames = variable)
 
+      if (subReturn$shouldAddModeContinuousTreatedAsDiscreteFootnote)
+        stats$addFootnote(message  = gettext("The mode is computed assuming that variables are discreet."),
+                          colNames = "Mode",
+                          rowNames = variable)
     }
   }
 
@@ -547,7 +565,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   return(stats)
 }
 
-.descriptivesDescriptivesTable_subFunction <- function(column, resultsCol, options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, jaspResults) {
+.descriptivesDescriptivesTable_subFunction <- function(column, resultsCol, options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, shouldAddModeContinuousTreatedAsDiscreteFootnote, jaspResults) {
   equalGroupsNo          <- options$quantilesForEqualGroupsNumber
   percentilesPercentiles <- unique(options$percentileValues)
 
@@ -619,22 +637,28 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
   if (options$mode) {
 
-    if (is.numeric(na.omitted)) { # scale data
+    # TODO: fix this after we have mixed columns (DvdB)
+    if (FALSE && is.numeric(na.omitted)) { # scale data
       temp <- .desriptivesComputeModeContinuous(na.omitted)
       mode <- temp[["xValues"]][which.max(temp[["yValues"]])]
 
       shouldAddModeMoreThanOnceFootnote <- temp[["numModes"]] > 1L
     } else { # ordinal, nominal, or nominal text data
       tb <- table(na.omitted)
-      mode <- as.numeric(names(tb[tb == max(tb)]))
+      mode <- names(tb[tb == max(tb)])[1] # use only the first mode
+      mode <- if (!is.na(suppressWarnings(as.numeric(mode)))) {
+        as.numeric(mode) # the most frequent value with mixed columns we can always show this one
+      } else {
+        which.max(tb) # the index of the most frequent value, not great for nominal text but better than nothing?
+      }
 
       shouldAddModeMoreThanOnceFootnote <- length(mode) > 1L
     }
 
+    shouldAddModeContinuousTreatedAsDiscreteFootnote <- is.numeric(na.omitted)
+
     resultsCol[["Mode"]] <- mode[1L]
 
-  } else {
-    resultsCol[["Mode"]] <- NULL
   }
 
   if (options$quartiles) {
@@ -707,6 +731,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     resultsCol = resultsCol,
     shouldAddNominalTextFootnote = shouldAddNominalTextFootnote,
     shouldAddModeMoreThanOnceFootnote = shouldAddModeMoreThanOnceFootnote,
+    shouldAddModeContinuousTreatedAsDiscreteFootnote = shouldAddModeContinuousTreatedAsDiscreteFootnote,
     shouldAddIdenticalFootnote = shouldAddIdenticalFootnote,
     shouldAddExplainEmptySet = shouldAddExplainEmptySet
   ))
