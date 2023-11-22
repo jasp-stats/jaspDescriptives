@@ -19,7 +19,7 @@
 
 Descriptives <- function(
           data = NULL,
-          version = "0.17.1",
+          version = "0.18.2",
           formula = NULL,
           boxPlot = FALSE,
           boxPlotBoxPlot = TRUE,
@@ -27,8 +27,8 @@ Descriptives <- function(
           boxPlotJitter = FALSE,
           boxPlotOutlierLabel = FALSE,
           boxPlotViolin = FALSE,
-          chartType = "_1noCharts",
-          chartValues = "_1frequencies",
+          chartType = "_3pieCharts",
+          chartValues = "_2percentages",
           ciBootstrapSamples = 1000,
           coefficientOfVariation = FALSE,
           colorPalette = "colorblind",
@@ -65,7 +65,7 @@ Descriptives <- function(
           mean = TRUE,
           meanCi = FALSE,
           meanCiLevel = 0.95,
-          meanCiMethod = "normalModel",
+          meanCiMethod = "oneSampleTTest",
           median = FALSE,
           minimum = TRUE,
           missing = TRUE,
