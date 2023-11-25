@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2023-07-08 03:23\n"
+"POT-Creation-Date: 2023-11-25 03:18\n"
 "PO-Revision-Date: 2023-09-28 01:01+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -203,6 +203,9 @@ msgstr ""
 "当前存在的众数不止一个。对于名义数据和有序数据，报告第1个众数。对于连续数据，"
 "报告具有最高密度估计的众数，但可能存在多个众数。我们建议可视化数据以查看多个"
 "众数。"
+
+msgid "The mode is computed assuming that variables are discreet."
+msgstr ""
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
 msgstr "并非所有值都可用于 <i> 名义文本 </i> 变量"

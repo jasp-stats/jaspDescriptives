@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2023-07-08 03:23\n"
+"POT-Creation-Date: 2023-11-25 03:18\n"
 "PO-Revision-Date: 2022-06-29 08:59+0000\n"
 "Last-Translator: José Ramón Rueda <joseramon.rueda@ehu.es>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/jasp/"
@@ -202,6 +202,9 @@ msgid ""
 "reported. For continuous data, the mode with the highest density estimate is "
 "reported but multiple modes may exist. We recommend visualizing the data to "
 "check for multimodality."
+msgstr ""
+
+msgid "The mode is computed assuming that variables are discreet."
 msgstr ""
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2023-07-08 03:23\n"
+"POT-Creation-Date: 2023-11-25 03:18\n"
 "PO-Revision-Date: 2023-07-12 02:23+0000\n"
 "Last-Translator: Josée Turcotte <jturcotte@laurentienne.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/jasp/"
@@ -208,6 +208,9 @@ msgstr ""
 "premier mode est rapporté. Pour les données continues, le mode ayant la plus "
 "haute densité est rapporté mais plusieurs modes peuvent exister. Nous "
 "recommandons de visualiser les données afin de vérifier les multi-modalités."
+
+msgid "The mode is computed assuming that variables are discreet."
+msgstr ""
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
 msgstr ""
