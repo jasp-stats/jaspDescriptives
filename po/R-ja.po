@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.11.0\n"
 "POT-Creation-Date: 2023-11-25 03:18\n"
-"PO-Revision-Date: 2023-04-21 21:08+0000\n"
+"PO-Revision-Date: 2023-12-02 03:17+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/ja/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 5.3-dev\n"
 
 msgid "Frequency Tables"
 msgstr "度数分布表"
@@ -168,17 +168,14 @@ msgstr "最小値"
 msgid "Maximum"
 msgstr "最大値"
 
-#, fuzzy
 msgid "25th percentile"
-msgstr "第%gパーセンタイル"
+msgstr "25パーセンタイル"
 
-#, fuzzy
 msgid "50th percentile"
-msgstr "第%gパーセンタイル"
+msgstr "50パーセンタイル"
 
-#, fuzzy
 msgid "75th percentile"
-msgstr "第%gパーセンタイル"
+msgstr "75パーセンタイル"
 
 msgid "%gth percentile"
 msgstr "第%gパーセンタイル"
@@ -203,6 +200,10 @@ msgid ""
 "reported but multiple modes may exist. We recommend visualizing the data to "
 "check for multimodality."
 msgstr ""
+"複数のモード（峰）が存在します。名義や順序データでは、最初のモードが報告され"
+"ます。連続データでは、最も高密度の推定値が報告されます。ただし、複数のモード"
+"が存在するかもしれません。データの可視化を行い、多峰性について確認することを"
+"推奨します。"
 
 msgid "The mode is computed assuming that variables are discreet."
 msgstr ""
@@ -281,7 +282,7 @@ msgid "Items must have 2 or more levels!"
 msgstr "項目は、2つ以上の水準である必要があります!"
 
 msgid "Levels within variable require at least two or more data points!"
-msgstr ""
+msgstr "変数内の水準は少なくとも2つ以上のデータポイントが必要です!"
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
