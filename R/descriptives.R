@@ -1601,7 +1601,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     lowerBound <- CIs[1]
     upperBound <- CIs[2]
   } else if (options[["meanCiMethod"]] == "oneSampleTTest") {
-    ttestResult <- stats::t.test(x = data)
+    ttestResult <- stats::t.test(x = data, conf.level = ciWidth)
     CIs <- ttestResult[["conf.int"]]
     lowerBound <- CIs[1]
     upperBound <- CIs[2]
