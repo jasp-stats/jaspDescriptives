@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2023-11-25 03:18\n"
-"PO-Revision-Date: 2022-12-24 03:17+0000\n"
-"Last-Translator: Changya Hu <changyahu@gmail.com>\n"
+"PO-Revision-Date: 2023-12-16 03:16+0000\n"
+"Last-Translator: Ginger Shu-Ying Yeh <gingershuying@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "jasp/jaspdescriptives-r/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.15.1-dev\n"
+"X-Generator: Weblate 5.3\n"
 
 msgid "Frequency Tables"
 msgstr "次數表"
@@ -19,7 +19,6 @@ msgstr "次數表"
 msgid "Correlation plots"
 msgstr "相關圖"
 
-#, fuzzy
 msgid "Correlation plot"
 msgstr "相關圖"
 
@@ -53,7 +52,6 @@ msgstr "區間圖"
 msgid "Dot Plots"
 msgstr "點圖"
 
-#, fuzzy
 msgid "Heatmaps"
 msgstr "熱圖"
 
@@ -67,7 +65,7 @@ msgid "Likert Plots"
 msgstr "李克特圖"
 
 msgid "Descriptive Statistics"
-msgstr "描述統計數"
+msgstr "敘述統計量"
 
 msgid ""
 "Excluded %1$i rows from the analysis that correspond to the missing values "
@@ -78,16 +76,14 @@ msgid "%s%% Confidence Interval Mean"
 msgstr "%s%% 信賴區間平均數"
 
 msgid "%s%% Confidence Interval Std. Dev."
-msgstr "%s%% 信賴區間標準差"
+msgstr "%s%% 信賴區間標準差。"
 
 msgid "%s%% Confidence Interval Variance"
 msgstr "%s%% 信賴區間變異數"
 
-#, fuzzy
 msgid "Upper"
 msgstr "上界"
 
-#, fuzzy
 msgid "Lower"
 msgstr "下界"
 
@@ -130,12 +126,11 @@ msgstr "平均數之標準誤"
 msgid "Std. Deviation"
 msgstr "標準差"
 
-#, fuzzy
 msgid "Coefficient of variation"
 msgstr "變異係數"
 
 msgid "MAD"
-msgstr "中位數絕對離差"
+msgstr "MAD(平均絕對誤差)"
 
 msgid "MAD robust"
 msgstr "中位數絕對離差(穩健)"
@@ -173,20 +168,17 @@ msgstr "最小值"
 msgid "Maximum"
 msgstr "最大值"
 
-#, fuzzy
 msgid "25th percentile"
-msgstr "第%g百分位數"
+msgstr "第25百分位數"
 
-#, fuzzy
 msgid "50th percentile"
-msgstr "第%g百分位數"
+msgstr "第50百分位數"
 
-#, fuzzy
 msgid "75th percentile"
-msgstr "第%g百分位數"
+msgstr "第75百分位數"
 
 msgid "%gth percentile"
-msgstr "第%g百分位數"
+msgstr "第g百分位數"
 
 msgid "Error in Percentiles, all values should >=0 and <=100"
 msgstr "百分位數有誤，所有數值都應大於等於0且小於等於100"
@@ -208,9 +200,12 @@ msgid ""
 "reported but multiple modes may exist. We recommend visualizing the data to "
 "check for multimodality."
 msgstr ""
+"存在超過一個眾數。對於名義資料和順序資料，顯示第一個眾數。對於連續資料，雖然"
+"可能存在多個眾數，但顯示具有最高機率密度估計的眾數。建議圖形檢查資料是否存在"
+"多個眾數。"
 
 msgid "The mode is computed assuming that variables are discreet."
-msgstr ""
+msgstr "計算眾數時假設變數為間斷型。"
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
 msgstr "<i>Nominal Text</i> 變項有些數值次數為零"
@@ -242,15 +237,14 @@ msgstr "累積百分比"
 msgid "Density"
 msgstr "密度"
 
-#, fuzzy
 msgid "Plotting not possible: %s"
-msgstr "無法繪圖: %s"
+msgstr "無法繪圖：%s"
 
 msgid "Plotting is not possible: No plot type selected!"
 msgstr "無法繪圖：未選取統計圖類型!"
 
 msgid "Counts"
-msgstr "次數"
+msgstr "計數"
 
 msgid "No non-missing values!"
 msgstr "皆為遺漏值!"
@@ -262,10 +256,10 @@ msgid "Sample Quantiles"
 msgstr "樣本分位数"
 
 msgid "Stem"
-msgstr ""
+msgstr "莖"
 
 msgid "Leaf"
-msgstr ""
+msgstr "葉"
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
@@ -275,11 +269,10 @@ msgstr "無法繪製莖葉圖:因該變項少於兩個數值"
 msgid "The decimal point is at the |"
 msgstr "小數點位數"
 
-#, fuzzy
 msgid ""
 "There must be a unique value per combination of levels of horizontal and "
 "vertical axis!"
-msgstr "每個橫軸縱軸的水準組合需要有一個特定值"
+msgstr "每個橫軸縱軸的水準組合需要有一個特定值!"
 
 msgid "All categorical variables must have the same number of levels!"
 msgstr "所有類別變數需要有相同的水準數!"
