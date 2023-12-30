@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2023-12-27 14:09+0000\n"
+"Last-Translator: Rania Rahida <raniarahida@gmail.com>\n"
+"Language-Team: Indonesian <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/id/>\n"
+"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.4-dev\n"
 "X-Language: id\n"
 "X-Qt-Contexts: true\n"
 
@@ -30,7 +36,7 @@ msgstr "Tabel frekuensi"
 
 msgctxt "Descriptives|"
 msgid "Maximum distinct values"
-msgstr ""
+msgstr "Nilai maksimum yang berbeda"
 
 msgctxt "Descriptives|"
 msgid "Stem and leaf tables"
@@ -274,9 +280,10 @@ msgctxt "Descriptives|"
 msgid "Percentages"
 msgstr "Persentase"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Display rug marks"
-msgstr ""
+msgstr "Menampilkan tanda"
 
 msgctxt "Descriptives|"
 msgid "Bin width type"
@@ -335,21 +342,22 @@ msgctxt "Descriptives|"
 msgid "Quantiles"
 msgstr "Kuantil"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Valid"
-msgstr ""
+msgstr "Valid"
 
 msgctxt "Descriptives|"
 msgid "Missing"
-msgstr ""
+msgstr "Hilang"
 
 msgctxt "Descriptives|"
 msgid "Horizontal axis:"
-msgstr ""
+msgstr "Sumbu horizontal:"
 
 msgctxt "Descriptives|"
 msgid "Vertical axis:"
-msgstr ""
+msgstr "Sumbu vertikal:"
 
 msgctxt "Descriptives|"
 msgid "Display legend"
@@ -361,15 +369,16 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Relative text size"
-msgstr ""
+msgstr "Ukuran teks relatif"
 
 msgctxt "Descriptives|"
 msgid "Width to height ratio of tiles"
 msgstr ""
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Statistic to plot"
-msgstr ""
+msgstr "Statistik untuk plot"
 
 msgctxt "Descriptives|"
 msgid "For scale variables"
@@ -389,11 +398,12 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Sample size"
-msgstr ""
+msgstr "Ukuran sampel"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Scatter plots"
-msgstr ""
+msgstr "Plot sebar"
 
 msgctxt "Descriptives|"
 msgid "Tile heatmaps for selected variables"
