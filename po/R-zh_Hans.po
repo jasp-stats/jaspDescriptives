@@ -204,7 +204,7 @@ msgstr ""
 "报告具有最高密度估计的众数，但可能存在多个众数。我们建议可视化数据以查看多个"
 "众数。"
 
-msgid "The mode is computed assuming that variables are discreet."
+msgid "The mode is computed assuming that variables are discrete."
 msgstr "计算众数时假设变量是离散的."
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"

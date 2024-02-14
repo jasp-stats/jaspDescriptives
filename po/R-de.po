@@ -210,7 +210,7 @@ msgstr ""
 "Dichteschätzung gemeldet, es können jedoch mehrere Modi vorhanden sein. Wir "
 "empfehlen, die Daten zu visualisieren, um sie auf Multimodalität zu prüfen."
 
-msgid "The mode is computed assuming that variables are discreet."
+msgid "The mode is computed assuming that variables are discrete."
 msgstr ""
 "Der Modus wird unter der Annahme berechnet, dass Variablen diskret sind."
 

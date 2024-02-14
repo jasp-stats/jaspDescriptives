@@ -211,7 +211,7 @@ msgstr ""
 "najwyższym oszacowaniem gęstości. Zalecamy wizualizację danych w celu "
 "sprawdzenia wielomodalności."
 
-msgid "The mode is computed assuming that variables are discreet."
+msgid "The mode is computed assuming that variables are discrete."
 msgstr "Modalna została obliczona przy założeniu, że zmienne są dyskretne."
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"

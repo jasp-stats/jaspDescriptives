@@ -217,7 +217,7 @@ msgstr ""
 "alta, pero poden existir varios modos. Aconsellamos visualizar os datos para "
 "verificar a multimodalidade."
 
-msgid "The mode is computed assuming that variables are discreet."
+msgid "The mode is computed assuming that variables are discrete."
 msgstr "A moda calcúlase asumindo que as variables son discretas."
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
