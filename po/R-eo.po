@@ -205,7 +205,7 @@ msgid ""
 "check for multimodality."
 msgstr ""
 
-msgid "The mode is computed assuming that variables are discreet."
+msgid "The mode is computed assuming that variables are discrete."
 msgstr ""
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"

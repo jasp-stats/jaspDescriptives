@@ -211,7 +211,7 @@ msgstr ""
 "haute densité est rapporté mais plusieurs modes peuvent exister. Nous "
 "recommandons de visualiser les données afin de vérifier les multi-modalités."
 
-msgid "The mode is computed assuming that variables are discreet."
+msgid "The mode is computed assuming that variables are discrete."
 msgstr ""
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"

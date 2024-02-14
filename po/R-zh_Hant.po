@@ -204,7 +204,7 @@ msgstr ""
 "可能存在多個眾數，但顯示具有最高機率密度估計的眾數。建議圖形檢查資料是否存在"
 "多個眾數。"
 
-msgid "The mode is computed assuming that variables are discreet."
+msgid "The mode is computed assuming that variables are discrete."
 msgstr "計算眾數時假設變數為間斷型。"
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
