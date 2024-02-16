@@ -382,9 +382,13 @@ Form
 			}
 		}
 			
-		Group
+		CheckBox
 		{
 			
+			name: 		"densityPlot"
+			label: 		qsTr("Density plots")
+			columns: 2
+
 			VariablesForm
 			{
 				preferredHeight: 100 * preferencesModel.uiScale
@@ -392,7 +396,7 @@ Form
 				AvailableVariablesList 
 				{ 
 					name: 				"densityPlotVariables"
-					label: 				qsTr("Density plots")
+					label: 				qsTr("")
 					source: 			[{ name: "allVariablesList", discard: ["variables", "splitBy"], use: "type=ordinal|nominal|nominalText"}]
 				}
 				
@@ -405,61 +409,58 @@ Form
 				}
 			}
 			
-			CheckBox 
-			{ 
-				name: 		"densityPlot"
-				label: 		qsTr("Display density plots") 
+			DoubleField
+			{
+				name:			"densityPlotTransparency"
+				label:			qsTr("Transparency")
+				fieldWidth:		32
+				defaultValue:	20
+				min:			0
+				max:			100
+			}
 			
-				DoubleField
+		}
+		CheckBox 
+		{
+			 
+				name: 		"heatmapPlot"
+				label: 		qsTr("Tile heatmaps for selected variables")
+				columns: 1
+		
+			VariablesForm
+			{
+				preferredHeight: 100 * preferencesModel.uiScale
+				AvailableVariablesList
 				{
-					name:			"densityPlotTransparency"
-					label:			qsTr("Transparency")
-					fieldWidth:		32
-					defaultValue:	20
-					min:			0
-					max:			100
+					name: "heatmapVariables"
+					label: qsTr("")
+					source: [{ name: "allVariablesList", discard: ["variables", "splitBy"], use: "type=ordinal|nominal|nominalText"}]
+				}
+				AssignedVariablesList
+				{
+					name: "heatmapHorizontalAxis"
+					label: qsTr("Horizontal axis:")
+					singleVariable: true
+				}
+				AssignedVariablesList
+				{
+					name: "heatmapVerticalAxis"
+					label: qsTr("Vertical axis:")
+					singleVariable: true
 				}
 			}
-		}
 
-		VariablesForm
-		{
-			preferredHeight: 100 * preferencesModel.uiScale
-			AvailableVariablesList
-			{
-				name: "heatMapVariables"
-				label: qsTr("Tile heatmaps for selected variables")
-				source: [{ name: "allVariablesList", discard: ["variables", "splitBy"], use: "type=ordinal|nominal|nominalText"}]
-			}
-			AssignedVariablesList
-			{
-				name: "heatmapHorizontalAxis"
-				label: qsTr("Horizontal axis:")
-				singleVariable: true
-			}
-			AssignedVariablesList
-			{
-				name: "heatmapVerticalAxis"
-				label: qsTr("Vertical axis:")
-				singleVariable: true
-			}
-		}
-
-		Group
-		{
-			indent: true
-			CheckBox { name: "heatmapLegend"; label: qsTr("Display legend")	}
-			CheckBox
-			{
-				name: "heatmapDisplayValue"; label: qsTr("Display value"); childrenOnSameRow: false;
-				DoubleField { name: "heatmapDisplayValueRelativeTextSize"; label: qsTr("Relative text size"); negativeValues: false; defaultValue: 1 }
-			}
+			// CheckBox
+			// {
+			// 	name: "heatmapDisplayValue"; label: qsTr("Display value"); childrenOnSameRow: false;
+			// }
 			DoubleField { name: "heatmapTileWidthHeightRatio"; label: qsTr("Width to height ratio of tiles"); negativeValues: false; defaultValue: 1}
 
-			Group
+			CheckBox
 			{
 				columns: 2
-				title: qsTr("Statistic to plot")
+				name: "heatmapDisplayValue"
+				label: qsTr("Display value")
 				RadioButtonGroup
 				{
 					name: "heatmapStatisticContinuous"
@@ -478,7 +479,11 @@ Form
 					RadioButton { value: "identity";	label: qsTr("Value itself") }
 					RadioButton { value: "length";		label: qsTr("Number of observations") }
 				}
+				DoubleField { name: "heatmapDisplayValueRelativeTextSize"; label: qsTr("Relative text size"); negativeValues: false; defaultValue: 1 }
+
 			}
+			CheckBox { name: "heatmapLegend"; label: qsTr("Display legend")	}
+
 		}
 	}
 
