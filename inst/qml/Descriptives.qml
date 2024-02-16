@@ -450,10 +450,6 @@ Form
 				}
 			}
 
-			// CheckBox
-			// {
-			// 	name: "heatmapDisplayValue"; label: qsTr("Display value"); childrenOnSameRow: false;
-			// }
 			DoubleField { name: "heatmapTileWidthHeightRatio"; label: qsTr("Width to height ratio of tiles"); negativeValues: false; defaultValue: 1}
 
 			CheckBox
