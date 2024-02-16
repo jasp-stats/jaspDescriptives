@@ -1802,20 +1802,21 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
 .descriptivesScatterPlots <- function(jaspContainer, dataset, variables, split, options, name = NULL, dependOnVariables = TRUE) {
   jaspGraphs::setGraphOption("palette", options[["colorPalette"]])
+  # omit NAs here so it also affects the split variable
+  dataset <- na.omit(dataset)
+  
   if (!is.null(split) && split != "") {
     group <- dataset[, split]
     legendTitle <- split
   } else {
     group <- NULL
+    split <- NULL
     legendTitle <- NULL
   }
 
   # remove non-numeric variables
   numerics <- sapply(variables, .descriptivesIsNumericColumn, dataset = dataset)
-  variablesB64 <- variables
-  variablesB64 <- variablesB64[numerics]
   variables <- variables[numerics]
-
   nvar <- length(variables)
   # Set's a message with instruction for user using jaspHtml
   if (nvar < 2L) {
@@ -1845,15 +1846,14 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
           scatterPlot$dependOn(optionContainsValue = list(variables = c(v1, v2)))
         }
 
-        scatterData <- dataset[, c(variablesB64[i], variablesB64[j])]
-        errorMessage <- .descriptivesCheckPlotErrors(scatterData, c(v1, v2), obsAmount = "< 2")
+        errorMessage <- .descriptivesCheckPlotErrors(dataset, c(v1, v2, split), obsAmount = "< 2")
         if (is.null(errorMessage)) {
-          scatterData <- na.omit(scatterData)
-          scatterData <- apply(scatterData, 2, as.numeric) # ensure nominal ints are numeric
+          
+          scatterData <- apply(dataset[, c(v1, v2)], 2, as.numeric) # ensure nominal ints are numeric
 
           p <- try(jaspGraphs::JASPScatterPlot(
-            x                 = scatterData[, variablesB64[i]],
-            y                 = scatterData[, variablesB64[j]],
+            x                 = scatterData[, v1],
+            y                 = scatterData[, v2],
             group             = group,
             xName             = v1,
             yName             = v2,
