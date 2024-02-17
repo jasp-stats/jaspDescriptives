@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2023-11-25 03:18\n"
+"POT-Creation-Date: 2024-02-17 03:23\n"
 "PO-Revision-Date: 2023-12-19 10:10+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -205,6 +205,10 @@ msgstr ""
 "多個眾數。"
 
 msgid "The mode is computed assuming that variables are discrete."
+msgstr "計算眾數時假設變數為間斷型。"
+
+#, fuzzy
+msgid "The mode is computed assuming that variables are discreet."
 msgstr "計算眾數時假設變數為間斷型。"
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"

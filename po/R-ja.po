@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.11.0\n"
-"POT-Creation-Date: 2023-11-25 03:18\n"
+"POT-Creation-Date: 2024-02-17 03:23\n"
 "PO-Revision-Date: 2023-12-02 03:17+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -206,6 +206,9 @@ msgstr ""
 "推奨します。"
 
 msgid "The mode is computed assuming that variables are discrete."
+msgstr ""
+
+msgid "The mode is computed assuming that variables are discreet."
 msgstr ""
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"

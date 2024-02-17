@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2023-11-25 03:18\n"
+"POT-Creation-Date: 2024-02-17 03:23\n"
 "PO-Revision-Date: 2024-01-25 02:01+0000\n"
 "Last-Translator: Michael Cantinotti <michael.cantinotti@uqtr.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/jasp/"
@@ -212,6 +212,9 @@ msgstr ""
 "recommandons de visualiser les données afin de vérifier les multi-modalités."
 
 msgid "The mode is computed assuming that variables are discrete."
+msgstr ""
+
+msgid "The mode is computed assuming that variables are discreet."
 msgstr ""
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"

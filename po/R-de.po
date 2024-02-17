@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2023-11-25 03:18\n"
+"POT-Creation-Date: 2024-02-17 03:23\n"
 "PO-Revision-Date: 2023-12-19 10:10+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
@@ -211,6 +211,11 @@ msgstr ""
 "empfehlen, die Daten zu visualisieren, um sie auf Multimodalität zu prüfen."
 
 msgid "The mode is computed assuming that variables are discrete."
+msgstr ""
+"Der Modus wird unter der Annahme berechnet, dass Variablen diskret sind."
+
+#, fuzzy
+msgid "The mode is computed assuming that variables are discreet."
 msgstr ""
 "Der Modus wird unter der Annahme berechnet, dass Variablen diskret sind."
 

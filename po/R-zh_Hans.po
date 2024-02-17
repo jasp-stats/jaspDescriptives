@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2023-11-25 03:18\n"
+"POT-Creation-Date: 2024-02-17 03:23\n"
 "PO-Revision-Date: 2023-11-30 03:02+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -205,6 +205,10 @@ msgstr ""
 "众数。"
 
 msgid "The mode is computed assuming that variables are discrete."
+msgstr "计算众数时假设变量是离散的."
+
+#, fuzzy
+msgid "The mode is computed assuming that variables are discreet."
 msgstr "计算众数时假设变量是离散的."
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
