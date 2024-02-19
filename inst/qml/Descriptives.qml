@@ -386,7 +386,7 @@ Form
 		{
 			
 			name: 		"densityPlot"
-			label: 		qsTr("Density plots")
+			label: 		qsTr("Frequency plots")
 			columns: 2
 
 			VariablesForm
@@ -396,19 +396,41 @@ Form
 				AvailableVariablesList 
 				{ 
 					name: 				"densityPlotVariables"
-					label: 				qsTr("")
 					source: 			[{ name: "allVariablesList", discard: ["variables", "splitBy"], use: "type=ordinal|nominal|nominalText"}]
 				}
 				
 				AssignedVariablesList 
 				{ 
 					name: 				"densityPlotSeparate"
+					id: 				densityPlotSeparate
 					singleVariable: 	true
-					title: 				qsTr("Separate densities:")
+					title: 				qsTr("Separate frequencies:")
 					suggestedColumns: 	["ordinal", "nominal"] 
 				}
 			}
 			
+			RadioButtonGroup
+			{
+				name:	"densityPlotType"
+				id: 	densityPlotType
+				title:	qsTr("Type:")
+				RadioButton { value: "density";		label: qsTr("Density");		checked: true	}
+				RadioButton 
+				{ 
+					value: "histogram"
+					label: qsTr("Histogram")
+					RadioButtonGroup
+					{
+						name:	"customHistogramPosition";
+						id: 	customHistogramPosition
+						title:	qsTr("How to combine separate frequencies")
+						RadioButton { value: "stack";		label: qsTr("Stack");		checked: true	}
+						RadioButton { value: "identity";		label: qsTr("Identity")					}
+						RadioButton { value: "dodge";	label: qsTr("Dodge")							}
+					}					
+				}
+			}
+
 			DoubleField
 			{
 				name:			"densityPlotTransparency"
@@ -417,8 +439,8 @@ Form
 				defaultValue:	20
 				min:			0
 				max:			100
+				enabled: densityPlotSeparate.count > 0 && ((densityPlotType.value === "density") || (densityPlotType.value === "histogram" && customHistogramPosition.value === "identity"))
 			}
-			
 		}
 		CheckBox 
 		{
@@ -433,7 +455,6 @@ Form
 				AvailableVariablesList
 				{
 					name: "heatmapVariables"
-					label: qsTr("")
 					source: [{ name: "allVariablesList", discard: ["variables", "splitBy"], use: "type=ordinal|nominal|nominalText"}]
 				}
 				AssignedVariablesList
