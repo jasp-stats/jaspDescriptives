@@ -276,7 +276,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
         "heatmapHorizontalAxis", "heatmapVerticalAxis",
         "heatmapDisplayValue", "heatmapTileWidthHeightRatio", "heatmapLegend",
         "heatmapStatisticContinuous", "heatmapStatisticDiscrete",
-        "colorPalette", "splitBy", "variables"
+        "colorPalette", "splitBy", "variables", "heatmapPlot"
       ))
       jaspResults[["heatmaps"]]$position <- 14
     }
@@ -308,21 +308,21 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       }
     }
   }
-
+  
   # Density plots
   if (options[["densityPlot"]]) {
     if (is.null(jaspResults[["densityPlot"]])) {
       jaspResults[["densityPlot"]] <- createJaspContainer(gettext("Density Plots"))
       jaspResults[["densityPlot"]]$dependOn(c(
-        "densityPlot", "densityPlotSeparate",
+        "densityPlot", "densityPlotSeparate", "densityPlotType", "customHistogramPosition",
         "colorPalette", "splitBy", "variables", "densityPlotTransparency"
       ))
       jaspResults[["densityPlot"]]$position <- 17
     }
-
+    
     .descriptivesDensityPlots(jaspResults[["densityPlot"]], dataset.factors, variables, options)
   }
-
+  
   # Likert plots
   if (options[["likertPlot"]] && !all(lapply(dataset.factors[variables], is.double))) {
     if (is.null(jaspResults[["likertPlot"]])) {
@@ -1994,7 +1994,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   axesNames <- c(options[["heatmapHorizontalAxis"]], options[["heatmapVerticalAxis"]])
 
   # we are not ready to plot
-  if (length(variables) == 0)
+  if (length(variables) == 0 || isFALSE(options[["heatmapPlot"]]))
     return()
 
   axes <- .readDataSetToEnd(columns.as.factor = axesNames)
@@ -2417,38 +2417,51 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
 .descriptivesDensityPlotsFill <- function(container, data, plotName, axeName, position, options) {
   data$split <- NULL
-  trans <- 1 - (options[["densityPlotTransparency"]] / 100)
+
   if (options[["densityPlotSeparate"]] != "") {
+    
+    trans <- 1 - (options[["densityPlotTransparency"]] / 100)
     p <- ggplot2::ggplot(data, ggplot2::aes(x = variable, fill = separator))
     scale_fill <- jaspGraphs::scale_JASPfill_discrete(
       palette = options[["colorPalette"]],
-      name = options[["densityPlotSeparate"]]
-    )
+      name = options[["densityPlotSeparate"]])
+    if (options[["densityPlotType"]] == "histogram" && (options[["customHistogramPosition"]] != "identity")) {
+      trans <- 1
+    }
+    
   } else {
     p <- ggplot2::ggplot(data, ggplot2::aes(x = variable, fill = factor(1)))
     scale_fill <- jaspGraphs::scale_JASPfill_discrete(palette = options[["colorPalette"]])
+    trans <- 1
   }
 
   densPlot <- createJaspPlot(title = plotName, width = 480, height = 320, position = position)
   if (options[["densityPlotSeparate"]] != "" && any(table(data$separator) == 1)) {
     densPlot$setError(gettext("Levels within variable require at least two or more data points!"))
   } else {
-    p <- p + ggplot2::geom_density(alpha = trans)
+    # p <- p + ggplot2::geom_histogram(position = "identity", alpha = trans)
+    if (options[["densityPlotType"]] == "density") {
+      p <- p + ggplot2::geom_density(alpha = trans)
+      thisYlab = "Density"
+    } else if (options[["densityPlotType"]] == "histogram") {
+      p <- p + ggplot2::geom_histogram(position = options[["customHistogramPosition"]], alpha = trans)
+      thisYlab = "Frequency"
+    }
 
     # Determine range of axes to generate pretty breaks
     yRange <- ggplot2::ggplot_build(p)$layout$panel_scales_y[[1]]$range$range
     xRange <- ggplot2::ggplot_build(p)$layout$panel_scales_x[[1]]$range$range
     yBreaks <- jaspGraphs::getPrettyAxisBreaks(yRange)
     xBreaks <- jaspGraphs::getPrettyAxisBreaks(xRange)
-
-    p <- p + ggplot2::scale_y_continuous(name = "Density", breaks = yBreaks, limits = range(yBreaks)) +
+    
+    p <- p + ggplot2::scale_y_continuous(name = thisYlab, breaks = yBreaks, limits = range(yBreaks)) +
       ggplot2::scale_x_continuous(name = axeName, breaks = xBreaks, limits = range(xBreaks)) +
       scale_fill +
       jaspGraphs::geom_rangeframe() +
       jaspGraphs::themeJaspRaw(legend.position = if (options[["densityPlotSeparate"]] != "") "right" else "none")
-
+    
     densPlot$plotObject <- p
   }
-
+  
   container[[plotName]] <- densPlot
 }
