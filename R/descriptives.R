@@ -2438,12 +2438,12 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   } else if (options[["densityPlotType"]] == "histogram") {
 
     densPlot$plotObject <- jaspGraphs::jaspHistogram(x = data[["variable"]], 
-                                                     densityShade = (options[["customHistogramPosition"]] == "identity"),
-                                                     densityShadeAlpha = options[["densityPlotTransparency"]]/100,
                                                      xName = axeName,
                                                      groupingVariableName = options[["densityPlotSeparate"]],
                                                      groupingVariable = data[["separator"]],
                                                      histogramPosition = options[["customHistogramPosition"]])
+    if (options[["customHistogramPosition"]] == "identity")
+      densPlot$plotObject$layers[[1]]$aes_params$alpha <- 1 - (options[["densityPlotTransparency"]]/100)
   }
   
   
