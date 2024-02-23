@@ -2417,7 +2417,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
 .descriptivesDensityPlotsFill <- function(container, data, plotName, axeName, position, options) {
   data$split <- NULL
-
+# browser()
   if (options[["densityPlotSeparate"]] != "") {
     
     trans <- 1 - (options[["densityPlotTransparency"]] / 100)
@@ -2425,7 +2425,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     scale_fill <- jaspGraphs::scale_JASPfill_discrete(
       palette = options[["colorPalette"]],
       name = options[["densityPlotSeparate"]])
-    if (options[["densityPlotType"]] == "histogram" && (options[["customHistogramPosition"]] != "identity")) {
+    if (options[["densityPlotType"]] == "histogram") {
       trans <- 1
     }
     
@@ -2443,24 +2443,33 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     if (options[["densityPlotType"]] == "density") {
       p <- p + ggplot2::geom_density(alpha = trans)
       thisYlab = "Density"
+      
+      # Determine range of axes to generate pretty breaks
+      yRange <- ggplot2::ggplot_build(p)$layout$panel_scales_y[[1]]$range$range
+      xRange <- ggplot2::ggplot_build(p)$layout$panel_scales_x[[1]]$range$range
+      yBreaks <- jaspGraphs::getPrettyAxisBreaks(yRange)
+      xBreaks <- jaspGraphs::getPrettyAxisBreaks(xRange)
+      
+      p <- p + ggplot2::scale_y_continuous(name = thisYlab, breaks = yBreaks, limits = range(yBreaks)) +
+        ggplot2::scale_x_continuous(name = axeName, breaks = xBreaks, limits = range(xBreaks)) +
+        scale_fill +
+        jaspGraphs::geom_rangeframe() +
+        jaspGraphs::themeJaspRaw(legend.position = if (options[["densityPlotSeparate"]] != "") "right" else "none")
+      
+      densPlot$plotObject <- p
+      
     } else if (options[["densityPlotType"]] == "histogram") {
-      p <- p + ggplot2::geom_histogram(position = options[["customHistogramPosition"]], alpha = trans)
-      thisYlab = "Frequency"
+      # p <- p + ggplot2::geom_histogram(position = options[["customHistogramPosition"]], alpha = trans)
+      # thisYlab = "Frequency"
+      p <- jaspGraphs::jaspHistogram(x = data[["variable"]], 
+                                     densityShade = (options[["customHistogramPosition"]] == "identity"),
+                                     densityShadeAlpha = options[["densityPlotTransparency"]]/100,
+                                     xName = axeName,
+                                     groupingVariableName = options[["densityPlotSeparate"]],
+                                     groupingVariable = data[["separator"]],
+                                     histogramPosition = options[["customHistogramPosition"]])
+      densPlot$plotObject <- p
     }
-
-    # Determine range of axes to generate pretty breaks
-    yRange <- ggplot2::ggplot_build(p)$layout$panel_scales_y[[1]]$range$range
-    xRange <- ggplot2::ggplot_build(p)$layout$panel_scales_x[[1]]$range$range
-    yBreaks <- jaspGraphs::getPrettyAxisBreaks(yRange)
-    xBreaks <- jaspGraphs::getPrettyAxisBreaks(xRange)
-    
-    p <- p + ggplot2::scale_y_continuous(name = thisYlab, breaks = yBreaks, limits = range(yBreaks)) +
-      ggplot2::scale_x_continuous(name = axeName, breaks = xBreaks, limits = range(xBreaks)) +
-      scale_fill +
-      jaspGraphs::geom_rangeframe() +
-      jaspGraphs::themeJaspRaw(legend.position = if (options[["densityPlotSeparate"]] != "") "right" else "none")
-    
-    densPlot$plotObject <- p
   }
   
   container[[plotName]] <- densPlot
