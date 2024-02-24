@@ -374,10 +374,6 @@ msgid "Width to height ratio of tiles"
 msgstr "Rapport largeur/hauteur des tuiles"
 
 msgctxt "Descriptives|"
-msgid "Statistic to plot"
-msgstr "Statistique à tracer"
-
-msgctxt "Descriptives|"
 msgid "For scale variables"
 msgstr "Pour les variables scalaires"
 
@@ -438,18 +434,6 @@ msgid "Large"
 msgstr "Grand"
 
 msgctxt "Descriptives|"
-msgid "Density plots"
-msgstr "Diagrammes de densité"
-
-msgctxt "Descriptives|"
-msgid "Separate densities:"
-msgstr "Densités distinctes :"
-
-msgctxt "Descriptives|"
-msgid "Display density plots"
-msgstr "Afficher les graphiques de densité"
-
-msgctxt "Descriptives|"
 msgid "Transparency"
 msgstr "Transparence"
 
@@ -496,3 +480,31 @@ msgstr "Échantillons du Bootstrap"
 msgctxt "Descriptives|"
 msgid "T model"
 msgstr "Modèle T"
+
+msgctxt "Descriptives|"
+msgid "Frequency plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Separate frequencies:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Type:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "How to combine separate frequencies"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Stack"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Identity"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Dodge"
+msgstr ""

@@ -367,10 +367,6 @@ msgid "Width to height ratio of tiles"
 msgstr "Коэффициент отношения ширины и высоты плиток"
 
 msgctxt "Descriptives|"
-msgid "Statistic to plot"
-msgstr "Отображать следующую статистическую величину"
-
-msgctxt "Descriptives|"
 msgid "For scale variables"
 msgstr "Для шкальных переменных"
 
@@ -471,18 +467,6 @@ msgid "Scatter plots"
 msgstr "Диаграммы рассеяния"
 
 msgctxt "Descriptives|"
-msgid "Density plots"
-msgstr "Графики плотности"
-
-msgctxt "Descriptives|"
-msgid "Separate densities:"
-msgstr "Разделить плотности:"
-
-msgctxt "Descriptives|"
-msgid "Display density plots"
-msgstr "Отобразить графики плотности"
-
-msgctxt "Descriptives|"
 msgid "Transparency"
 msgstr "Прозрачность"
 
@@ -496,4 +480,32 @@ msgstr "Таблицы"
 
 msgctxt "Descriptives|"
 msgid "T model"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Frequency plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Separate frequencies:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Type:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "How to combine separate frequencies"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Stack"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Identity"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Dodge"
 msgstr ""

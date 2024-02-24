@@ -359,10 +359,6 @@ msgid "Width to height ratio of tiles"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Statistic to plot"
-msgstr ""
-
-msgctxt "Descriptives|"
 msgid "For scale variables"
 msgstr ""
 
@@ -435,18 +431,6 @@ msgid "Large"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Density plots"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Separate densities:"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Display density plots"
-msgstr ""
-
-msgctxt "Descriptives|"
 msgid "Transparency"
 msgstr ""
 
@@ -492,4 +476,32 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "T model"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Frequency plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Separate frequencies:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Type:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "How to combine separate frequencies"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Stack"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Identity"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Dodge"
 msgstr ""

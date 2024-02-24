@@ -365,10 +365,6 @@ msgid "Width to height ratio of tiles"
 msgstr "热图区块的宽高比"
 
 msgctxt "Descriptives|"
-msgid "Statistic to plot"
-msgstr "绘图的统计量"
-
-msgctxt "Descriptives|"
 msgid "For scale variables"
 msgstr "对于定距变量"
 
@@ -437,18 +433,6 @@ msgid "Large"
 msgstr "大"
 
 msgctxt "Descriptives|"
-msgid "Density plots"
-msgstr "密度图"
-
-msgctxt "Descriptives|"
-msgid "Separate densities:"
-msgstr "分离密度："
-
-msgctxt "Descriptives|"
-msgid "Display density plots"
-msgstr "显示密度图"
-
-msgctxt "Descriptives|"
 msgid "Transparency"
 msgstr "透明度"
 
@@ -495,3 +479,31 @@ msgstr "Bootstrap 抽样次数"
 msgctxt "Descriptives|"
 msgid "T model"
 msgstr "T 模型"
+
+msgctxt "Descriptives|"
+msgid "Frequency plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Separate frequencies:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Type:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "How to combine separate frequencies"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Stack"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Identity"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Dodge"
+msgstr ""

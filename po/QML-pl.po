@@ -427,18 +427,6 @@ msgid "Scatter plots"
 msgstr "Wykresy rozrzutu"
 
 msgctxt "Descriptives|"
-msgid "Density plots"
-msgstr "Wykresy gęstości"
-
-msgctxt "Descriptives|"
-msgid "Separate densities:"
-msgstr "Oddzielne gęstości dla:"
-
-msgctxt "Descriptives|"
-msgid "Display density plots"
-msgstr "Wyświetl wykresy gęstości"
-
-msgctxt "Descriptives|"
 msgid "Transparency"
 msgstr "Przezroczystość"
 
@@ -471,10 +459,6 @@ msgid "Width to height ratio of tiles"
 msgstr "Stosunek szerokości do wysokości kafelka"
 
 msgctxt "Descriptives|"
-msgid "Statistic to plot"
-msgstr "Statystyki na wykresie"
-
-msgctxt "Descriptives|"
 msgid "For scale variables"
 msgstr "Dla zmiennych ilościowych"
 
@@ -497,3 +481,31 @@ msgstr "Tabele"
 msgctxt "Descriptives|"
 msgid "T model"
 msgstr "Model T"
+
+msgctxt "Descriptives|"
+msgid "Frequency plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Separate frequencies:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Type:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "How to combine separate frequencies"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Stack"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Identity"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Dodge"
+msgstr ""
