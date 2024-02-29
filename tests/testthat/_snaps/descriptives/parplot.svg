@@ -18,7 +18,7 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
-<rect x='0.00' y='0.00' width='720.00' height='576.00' style='stroke-width: 10.67; stroke: none;' />
+<rect x='-0.000000000000064' y='0.00' width='720.00' height='576.00' style='stroke-width: 10.67; stroke: none;' />
 </g>
 <defs>
   <clipPath id='cpNjQuNTZ8NjYyLjk3fDI1LjY5fDUxMC4xNA=='>
@@ -56,12 +56,12 @@
 <polyline points='56.06,157.81 64.56,157.81 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
 <polyline points='56.06,47.71 64.56,47.71 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
 <polyline points='662.97,510.14 662.97,25.69 ' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt;' />
-<polyline points='662.97,488.12 671.47,488.12 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
-<polyline points='662.97,400.04 671.47,400.04 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
-<polyline points='662.97,311.96 671.47,311.96 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
-<polyline points='662.97,223.87 671.47,223.87 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
-<polyline points='662.97,135.79 671.47,135.79 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
-<polyline points='662.97,47.71 671.47,47.71 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='671.47,488.12 662.97,488.12 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='671.47,400.04 662.97,400.04 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='671.47,311.96 662.97,311.96 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='671.47,223.87 662.97,223.87 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='671.47,135.79 662.97,135.79 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
+<polyline points='671.47,47.71 662.97,47.71 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
 <text x='673.67' y='493.97' style='font-size: 17.00px; font-family: sans;' textLength='9.46px' lengthAdjust='spacingAndGlyphs'>0</text>
 <text x='673.67' y='405.89' style='font-size: 17.00px; font-family: sans;' textLength='18.91px' lengthAdjust='spacingAndGlyphs'>20</text>
 <text x='673.67' y='317.81' style='font-size: 17.00px; font-family: sans;' textLength='18.91px' lengthAdjust='spacingAndGlyphs'>40</text>
@@ -81,7 +81,7 @@
 <text x='593.92' y='537.32' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='9.46px' lengthAdjust='spacingAndGlyphs'>5</text>
 <text x='363.77' y='567.49' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='54.80px' lengthAdjust='spacingAndGlyphs'>facFive</text>
 <text transform='translate(16.68,267.91) rotate(-90)' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='53.88px' lengthAdjust='spacingAndGlyphs'>Counts</text>
-<text transform='translate(704.77,267.91) rotate(90)' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='118.13px' lengthAdjust='spacingAndGlyphs'>Percentage (%)</text>
+<text transform='translate(708.30,267.91) rotate(90)' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='118.13px' lengthAdjust='spacingAndGlyphs'>Percentage (%)</text>
 <text x='363.77' y='16.68' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='53.87px' lengthAdjust='spacingAndGlyphs'>parPlot</text>
 </g>
 </svg>
