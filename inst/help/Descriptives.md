@@ -111,14 +111,17 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
 #### Likert plots
 - Displays a horizontally stacked bar chart showing the contribution of levels within a variable in percent. Order of levels depends on defined order in the JASP data table. A legend below the graph provides an overview of levels and their respective colors in the graph.
   - The y-axis represents the variables used, the x-axis represents the percentages. Percentage contribution of all lower-order (below the middle level) and higher-order (above the middle level) levels are displayed on their respective side of the graph.
-  - The graph displays percentages on the x-axis as positive in both directions. Reason for the chosen display (in two directions) is the graphs usefulness in survey research where levels often follow a likert based order (e.g., high - low, likely - unlikely, agreement - disagreement). Therefore, the graph contains a split between levels at their median.
+  - The graph displays percentages on the x-axis as positive in both directions. Reason for the chosen display (in two directions) is the graphs usefulness in survey research where levels often follow a Likert based order (e.g., high - low, likely - unlikely, agreement - disagreement). Therefore, the graph contains a split between levels at their median.
   - The number of variable levels determines the number of layers displayed. Layers represent the percentage distribution of the levels of the variable under investigation.
   - If the variables contain an uneven amount of levels, the middle level is displayed as a grey block in the middle of the stacked bar with its percentage contribution on top.
 - Available font sizes: normal, small, medium, large.
 
-#### Density plots
-- Diplays the distribution of a numeric variable. If other nominal or ordinal variables are included, different distributions representing different values of the other variable are displayed in the same plot.
-- The y-axis represents the probability density for the kernel density estimation (probability per unit on the x-axis), the x-axis represents the variables used.
+#### Frequency plots
+- Displays the distribution of a numeric variable by either a density or histogram plot. 
+	- Density: The y-axis represents the probability density for the kernel density estimation (probability per unit on the x-axis).
+	- Histogram: The y-axis represents the frequency
+		- When separate frequencies are specified, the bars can be combined in various ways: Stack (stacked), Identify (behind each other), Dodge (next to each other). 
+- The x-axis represents the variables used.
 - Appearance can be manipulated by adjusting color palette and transparency.
 
 #### Frequency Tables (nominal and ordinal variables)

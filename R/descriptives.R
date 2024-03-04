@@ -2416,52 +2416,36 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesDensityPlotsFill <- function(container, data, plotName, axeName, position, options) {
-  data$split <- NULL
-
-  if (options[["densityPlotSeparate"]] != "") {
-    
-    trans <- 1 - (options[["densityPlotTransparency"]] / 100)
-    p <- ggplot2::ggplot(data, ggplot2::aes(x = variable, fill = separator))
-    scale_fill <- jaspGraphs::scale_JASPfill_discrete(
-      palette = options[["colorPalette"]],
-      name = options[["densityPlotSeparate"]])
-    if (options[["densityPlotType"]] == "histogram" && (options[["customHistogramPosition"]] != "identity")) {
-      trans <- 1
-    }
-    
-  } else {
-    p <- ggplot2::ggplot(data, ggplot2::aes(x = variable, fill = factor(1)))
-    scale_fill <- jaspGraphs::scale_JASPfill_discrete(palette = options[["colorPalette"]])
-    trans <- 1
-  }
-
+  jaspGraphs::graphOptions(palette = options[["colorPalette"]])
+  
   densPlot <- createJaspPlot(title = plotName, width = 480, height = 320, position = position)
   if (options[["densityPlotSeparate"]] != "" && any(table(data$separator) == 1)) {
     densPlot$setError(gettext("Levels within variable require at least two or more data points!"))
-  } else {
-    # p <- p + ggplot2::geom_histogram(position = "identity", alpha = trans)
-    if (options[["densityPlotType"]] == "density") {
-      p <- p + ggplot2::geom_density(alpha = trans)
-      thisYlab = "Density"
-    } else if (options[["densityPlotType"]] == "histogram") {
-      p <- p + ggplot2::geom_histogram(position = options[["customHistogramPosition"]], alpha = trans)
-      thisYlab = "Frequency"
-    }
+  } else if (options[["densityPlotType"]] == "density") {
+    
+    densPlot$plotObject <- jaspGraphs::jaspHistogram(x = data[["variable"]],
+                                                     histogram = FALSE,  
+                                                     density = TRUE,
+                                                     densityColor = TRUE,
+                                                     densityShade = TRUE,
+                                                     densityShadeAlpha = 1 - (options[["densityPlotTransparency"]]/100),
+                                                     xName = axeName,
+                                                     groupingVariableName = options[["densityPlotSeparate"]],
+                                                     groupingVariable = data[["separator"]],
+                                                     histogramPosition = options[["customHistogramPosition"]])
+    
+    
+  } else if (options[["densityPlotType"]] == "histogram") {
 
-    # Determine range of axes to generate pretty breaks
-    yRange <- ggplot2::ggplot_build(p)$layout$panel_scales_y[[1]]$range$range
-    xRange <- ggplot2::ggplot_build(p)$layout$panel_scales_x[[1]]$range$range
-    yBreaks <- jaspGraphs::getPrettyAxisBreaks(yRange)
-    xBreaks <- jaspGraphs::getPrettyAxisBreaks(xRange)
-    
-    p <- p + ggplot2::scale_y_continuous(name = thisYlab, breaks = yBreaks, limits = range(yBreaks)) +
-      ggplot2::scale_x_continuous(name = axeName, breaks = xBreaks, limits = range(xBreaks)) +
-      scale_fill +
-      jaspGraphs::geom_rangeframe() +
-      jaspGraphs::themeJaspRaw(legend.position = if (options[["densityPlotSeparate"]] != "") "right" else "none")
-    
-    densPlot$plotObject <- p
+    densPlot$plotObject <- jaspGraphs::jaspHistogram(x = data[["variable"]], 
+                                                     xName = axeName,
+                                                     groupingVariableName = options[["densityPlotSeparate"]],
+                                                     groupingVariable = data[["separator"]],
+                                                     histogramPosition = options[["customHistogramPosition"]])
+    if (options[["customHistogramPosition"]] == "identity")
+      densPlot$plotObject$layers[[1]]$aes_params$alpha <- 1 - (options[["densityPlotTransparency"]]/100)
   }
+  
   
   container[[plotName]] <- densPlot
 }
