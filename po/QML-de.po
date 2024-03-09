@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-02-25 12:02+0000\n"
+"PO-Revision-Date: 2024-03-03 11:01+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/de/>\n"
@@ -511,7 +511,7 @@ msgstr "Stapel"
 
 msgctxt "Descriptives|"
 msgid "Identity"
-msgstr ""
+msgstr "Identität"
 
 msgctxt "Descriptives|"
 msgid "Dodge"
