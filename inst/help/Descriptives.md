@@ -64,6 +64,14 @@ Descriptives allows the user to obtain basic descriptive statistics, histograms 
   - Confidence interval for the std. deviation: a confidence interval for the standard deviation based on bootstrap samples.
   - Confidence interval for the variance: a confidence interval for the variance based on bootstrap samples.
   - Bootstrap samples: the number of bootstrap samples to be used.
+- Association matrix:
+  - Covariance: Covariance value.
+  - Correlation: Pearson's correlation coefficient.
+  - Use: How to deal with missing values? 
+    - Everything: use all observations, resulting in NA when there are missing values.
+    - Complete observations: missing values are handled by casewise deletion (i.e., only use rows of the data set that are complete).
+    - Pairwise complete observations: use all complete pairs of observations on those variables. This can result in covariance or correlation matrices which are not positive semi-definite.
+
 
 ### Output
 -------

@@ -63,6 +63,13 @@ Met beschrijvende statistieken kunt u basis beschrijvende statistieken verkrijge
   - Betrouwbaarheidsinterval voor de standaarddeviatie: een betrouwbaarheidsinterval voor de standaarddeviatie gebaseerd op bootstrap samples.
   - Betrouwbaarheidsinterval voor de variantie: een betrouwbaarheidsinterval voor de variantie gebaseerd op bootstrap samples.
   - Bootstrap samples: het aantal bootstrap samples.
+- Associatie matrix:
+  - Covariantie: Covariantie waarde.
+  - Correlatie: Pearson's correlatie coefficient.
+  - Use: Hoe om te gaan met ontbrekende waarden? 
+    - Alles: gebruik alle observaties; dit kan leiden tot NA's als er data ontbreken.
+    - Complete observaties: enkel complete observaties (rijen) worden gebruikt.
+    - Paarsgewijze complete observaties: gebruik paarsgewijs complete observaties. Dit kan leiden tot matrices die niet positief semi-definiet zijn.
 
 
 ### Uitvoer
