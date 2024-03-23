@@ -103,6 +103,24 @@ test_that("Descriptive Statistics table results match", {
 
 })
 
+
+test_that("Association matrices match", {
+  options <- jaspTools::analysisOptions("Descriptives")
+  options$variables <- c("contNormal",  "contGamma", "debMiss1")
+  options$covariance <- TRUE
+  options$correlation <- TRUE
+  results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
+  table <- results[["results"]][["associationMatrix"]][["collection"]][["associationMatrix_Correlation"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list("contNormal", -0.0592003859505643, 1, "", "contGamma", 1, -0.0592003859505643,
+                                      "", "debMiss1", "", "", 1))
+  
+  table <- results[["results"]][["associationMatrix"]][["collection"]][["associationMatrix_Covariance"]][["data"]]
+  jaspTools::expect_equal_tables(table,
+                                 list("contNormal", -0.0960185736017089, 1.1202393681253, "", "contGamma",
+                                      2.34828385973354, -0.0960185736017089, "", "debMiss1", "", "", ""))
+})
+
 test_that("Frequencies table matches", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "facGender"

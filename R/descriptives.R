@@ -54,6 +54,27 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
   .descriptivesDescriptivesTable(dataset, options, jaspResults, numberMissingSplitBy = numberMissingSplitBy)
 
+  # Covariance matrix
+  if (options[["covariance"]] || options[["correlation"]]) {
+    if (is.null(jaspResults[["associationMatrix"]])) {
+      cName <- ifelse(options[["splitBy"]] != "", "Matrices", "Matrix")
+      jaspResults[["associationMatrix"]] <- createJaspContainer(gettextf("Association %s", cName))
+      jaspResults[["associationMatrix"]]$dependOn(c("splitBy", "covariance", "correlation", "variables", "associationMatrixUse"))
+      # jaspResults[["stemAndLeaf"]]$position <- 11
+    }
+    
+    numericOrFactorVariables <- Filter(function(var) .descriptivesIsNumericColumn(dataset.factors, var), variables)
+    
+    if (length(variables) > 0L) {
+      .descriptivesCovarianceTables(
+        container = jaspResults[["associationMatrix"]],
+        dataset   = if (makeSplit) splitDat.factors else dataset.factors,
+        variables = numericOrFactorVariables,
+        options   = options
+      )
+    }
+  }
+  
   # Frequency table
   if (options$frequencyTables) {
     if (is.null(jaspResults[["tables"]])) {
@@ -1692,6 +1713,62 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   ))
 }
 
+
+.descriptivesCovarianceTables <- function(container, dataset, variables, options) {
+  
+  # only make tables for which the checkbox is checked:
+  for (thisAss in  c("Covariance", "Correlation")[c(options[["covariance"]], options[["correlation"]])]) {
+    
+    container[[thisAss]] <- createJaspContainer(title = thisAss)
+    
+    if (!is.data.frame(dataset)) { # dataset is split
+      splitLevels <- names(dataset)
+      for (split in splitLevels) {
+        tableName <- paste0(thisAss, "_", split)
+        if (is.null(container[[thisAss]][[tableName]])) {
+          container[[thisAss]][[tableName]] <- .descriptivesCovarianceCreateSingleTable(dataset[[split]][variables], thisAss, options[["associationMatrixUse"]], split)
+        }
+      }
+    } else {
+      container[[thisAss]] <- .descriptivesCovarianceCreateSingleTable(dataset[variables], thisAss, options[["associationMatrixUse"]], thisAss)
+    }
+  }
+}
+
+.descriptivesCovarianceCreateSingleTable <- function(x, thisAss, useObs, title = "") {
+  tb <- createJaspTable(title = title)
+  
+  tb$addColumnInfo(name = "colnames(x)", title = "", type = "string") 
+  for (var in colnames(x)) {
+    tb$addColumnInfo(name = var, type = "number")
+  }
+
+  result <- try({ 
+    if (thisAss == "Covariance") {
+      cov(x, use = useObs)
+    } else if (thisAss == "Correlation") {
+      cor(x, use = useObs)
+    }
+  })
+
+  if (isTryError(result)) {
+    if (grepl(pattern = "missing observations", result[[1]])) {
+      tb$setError(gettext("Association cannot be computed due to missing values. Try a different 'Use' setting."))
+    } else {
+      tb$setError(result[[1]])
+    }
+  }
+  
+  if (anyNA(result)) {
+    tb$addFootnote(message = gettext("Some associations cannot be computed due to missing values. Try a different 'Use' setting."))
+  }
+
+  tb$setData(cbind(colnames(x), as.data.frame(result)))
+
+  return(tb)
+}
+
+
 .descriptivesQQPlot <- function(dataset, options, qqvar, levelName = NULL) {
   # to put a subtitle if there is a split
   title <- qqvar
@@ -1988,7 +2065,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
   return(tb)
 }
-
 
 .descriptivesHeatmaps <- function(container, dataset, variables, options) {
   axesNames <- c(options[["heatmapHorizontalAxis"]], options[["heatmapVerticalAxis"]])
