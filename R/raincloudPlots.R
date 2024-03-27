@@ -701,10 +701,10 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
     if (options$meanIntervalOption == "sd") {
       meanInterval <- gettextf("Interval around mean represents ± 1 standard deviation.")
     } else if (options$observationId == "" && options$meanIntervalOption == "ci" && options$meanCiAssumption) {
-      meanInterval <- paste0(
-        "Interval around mean represents ",
-        options$meanCiWidth * 100,
-        "% confidence interval;<br>confidence intervals were computed independently for each group.")
+      meanInterval <- gettextf(
+        "Interval around mean represents %d%% confidence interval;<br>confidence intervals were computed independently for each group.",
+        options$meanCiWidth * 100
+      )
     } else {
       meanInterval <- NULL
     }
@@ -873,8 +873,6 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   sampleSize <- gettextf("<i>N</i><sub>Total</sub> = %s.", dataInfo$sampleSize)
   exclusions <- if (dataInfo$numberOfExclusions > 0) {
     gettextf(" This excludes %s observations due to missing data.", dataInfo$numberOfExclusions)
-  } else {
-    NULL
   }
   meanInterval <- if (options$meanIntervalCustom) {
     gettextf(" Interval around mean is custom.")
@@ -883,8 +881,6 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
       " Interval around mean represents ",
       options$meanCiWidth * 100,
       "% confidence interval; confidence intervals were computed independently for each group.")
-  } else {
-    NULL
   }
 
   footnote <- paste0(sampleSize, exclusions, meanInterval)
