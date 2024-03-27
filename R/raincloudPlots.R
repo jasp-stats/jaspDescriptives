@@ -791,41 +791,41 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   tableInProgress <- inputTable
 
   # Add columns; names of boxplot statistics are like extracted from ggplot, see boxData and .rainFillTable
-  tableInProgress$addColumnInfo(name = "primaryFactor", title = "Primary Factor", type = "string")
+  tableInProgress$addColumnInfo(name = "primaryFactor", title = gettextf("Primary Factor"), type = "string")
 
   if (options$secondaryFactor != "") {
-    tableInProgress$addColumnInfo(name = "secondaryFactor", title = "Secondary Factor", type = "string")
+    tableInProgress$addColumnInfo(name = "secondaryFactor", title = gettextf("Secondary Factor"), type = "string")
   }
 
-  tableInProgress$addColumnInfo(name = "n", title = "<i>N</i>", type = "integer")
+  tableInProgress$addColumnInfo(name = "n", title = gettextf("<i>N</i>"), type = "integer")
 
   if (options$tableBoxStatistics) {
-    tableInProgress$addColumnInfo(name = "ymin",   title = "Lower Whisker",   type = "number", format = "dp:2")
-    tableInProgress$addColumnInfo(name = "lower",  title = "25th Percentile", type = "number", format = "dp:2")
-    tableInProgress$addColumnInfo(name = "middle", title = "Median",          type = "number", format = "dp:2")
-    tableInProgress$addColumnInfo(name = "upper",  title = "75th Percentile", type = "number", format = "dp:2")
-    tableInProgress$addColumnInfo(name = "ymax",   title = "Upper Whisker",   type = "number", format = "dp:2")
+    tableInProgress$addColumnInfo(name = "ymin",   title = gettextf("Lower Whisker"),   type = "number", format = "dp:2")
+    tableInProgress$addColumnInfo(name = "lower",  title = gettextf("25th Percentile"), type = "number", format = "dp:2")
+    tableInProgress$addColumnInfo(name = "middle", title = gettextf("Median"),          type = "number", format = "dp:2")
+    tableInProgress$addColumnInfo(name = "upper",  title = gettextf("75th Percentile"), type = "number", format = "dp:2")
+    tableInProgress$addColumnInfo(name = "ymax",   title = gettextf("Upper Whisker"),   type = "number", format = "dp:2")
   }
 
   meanInterval <- options$observationId == "" && options$meanInterval && options$meanIntervalOption == "ci" && options$meanCiAssumption
 
   if (options$mean && (meanInterval || options$meanIntervalCustom)) {
       tableInProgress$addColumnInfo(
-        name = "lowerBound", title = "Lower Interval Limit", type = "number", format = "dp:2"
+        name = "lowerBound", title = gettextf("Lower Interval Limit"), type = "number", format = "dp:2"
       )
   }
 
   if (options$mean) {
-    tableInProgress$addColumnInfo(name = "mean", title = "Mean", type = "number", format = "dp:2")
+    tableInProgress$addColumnInfo(name = "mean", title = gettextf("Mean"), type = "number", format = "dp:2")
   }
 
   if (options$mean && options$meanInterval && options$meanIntervalOption == "sd" && !options$meanIntervalCustom) {
-      tableInProgress$addColumnInfo(name = "sd", title = "Standard Deviation", type = "number", format = "dp:2")
+      tableInProgress$addColumnInfo(name = "sd", title = gettextf("Standard Deviation"), type = "number", format = "dp:2")
   }
 
   if (options$mean && (meanInterval || options$meanIntervalCustom)) {
     tableInProgress$addColumnInfo(
-      name = "upperBound", title = "Upper Interval Limit", type = "number", format = "dp:2"
+      name = "upperBound", title = gettextf("Upper Interval Limit"), type = "number", format = "dp:2"
     )
   }
 
