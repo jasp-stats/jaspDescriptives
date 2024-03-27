@@ -873,17 +873,18 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   # Footnote
   sampleSize <- gettextf("<i>N</i><sub>Total</sub> = %s.", dataInfo$sampleSize)
   exclusions <- if (dataInfo$numberOfExclusions > 0) {
-    gettextf(" This excludes %s observations due to missing data.", dataInfo$numberOfExclusions)
+    gettextf("This excludes %s observations due to missing data.", dataInfo$numberOfExclusions)
   }
+  sampleExclusionSpacer <- if (!is.null(exclusions)) " "
   meanInterval <- if (options$meanIntervalCustom) {
-    gettextf(" Interval around mean is custom.")
+    gettextf("<br>Interval around mean is custom.")
   } else if (options$observationId == "" && options$meanInterval && options$meanIntervalOption == "ci" && options$meanCiAssumption) {
     gettextf(
-      " Interval around mean represents %d%% confidence interval;<br>confidence intervals were computed independently for each group.",
+      "<br>Interval around mean represents %d%% confidence interval;<br>confidence intervals were computed independently for each group.",
       options$meanCiWidth * 100
     )
   }
 
-  footnote <- paste0(sampleSize, exclusions, meanInterval)
+  footnote <- paste0(sampleSize, sampleExclusionSpacer, exclusions, meanInterval)
   inputTable$addFootnote(footnote)
 }  # End .rainFillTable()
