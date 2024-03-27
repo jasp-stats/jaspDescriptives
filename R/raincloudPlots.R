@@ -612,8 +612,6 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
     } else {
       output <- rep("black", infoFactorCombinations$numberOfClouds)
     }
-  } else {
-    print("error with Outline")
   }
 
   return(output)
