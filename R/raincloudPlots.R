@@ -878,10 +878,10 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   meanInterval <- if (options$meanIntervalCustom) {
     gettextf(" Interval around mean is custom.")
   } else if (options$observationId == "" && options$meanInterval && options$meanIntervalOption == "ci" && options$meanCiAssumption) {
-    paste0(
-      " Interval around mean represents ",
-      options$meanCiWidth * 100,
-      "% confidence interval; confidence intervals were computed independently for each group.")
+    gettextf(
+      " Interval around mean represents %d%% confidence interval;<br>confidence intervals were computed independently for each group.",
+      options$meanCiWidth * 100
+    )
   }
 
   footnote <- paste0(sampleSize, exclusions, meanInterval)
