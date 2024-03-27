@@ -32,7 +32,11 @@ raincloudPlots <- function(
     covariatePalette = "viridis",
     customAxisLimits = FALSE,
     customSides = FALSE,
-    customizationTable = list(list(levels = list("species", "island", "bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g", "sex", "year"), name = "data 1", values = list("R", "R", "R", "R", "R", "R", "R", "R")), list(levels = list("species", "island", "bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g", "sex", "year"), name = "data 2", values = list(0, 0, 0, 0, 0, 0, 0, 0)), list(levels = list("species", "island", "bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g", "sex", "year"), name = "data 3", values = list(0, 0, 0, 0, 0, 0, 0, 0))),
+    customizationTable = list(
+      list(levels = list(""), name = "", values = list("R")),
+      list(levels = list(""), name = "", values = list(0)),
+      list(levels = list(""), name = "", values = list(0))
+    ),
     dependentVariables = list(),
     heightPlot = 550,
     horizontal = FALSE,

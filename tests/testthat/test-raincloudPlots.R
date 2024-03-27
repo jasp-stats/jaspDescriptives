@@ -98,9 +98,11 @@ test_that("horizontal plot with both factors and custom axis limits matches", {
   options$colorPalette <- "colorblind"
   options$covariatePalette <- "viridis"
   options$customAxisLimits <- TRUE
-  options$customizationTable <- list(list(levels = "species", name = "data 1", values = "R"),
-                                     list(levels = "species", name = "data 2", values = 0), list(
-                                       levels = "species", name = "data 3", values = 0))
+  options$customizationTable <- list(
+    list(levels = "", name = "", values = "R"),
+    list(levels = "", name = "", values = 0),
+    list(levels = "", name = "", values = 0)
+  )
   options$dependentVariables <- "body_mass_g"
   options$heightPlot <- 550
   options$horizontal <- TRUE
@@ -137,9 +139,11 @@ test_that("plot with both factors, no box, means, meanLines, and, bootstrapped c
   options$boxWidth <- 0.275
   options$colorPalette <- "ggplot2"
   options$covariatePalette <- "viridis"
-  options$customizationTable <- list(list(levels = "species", name = "data 1", values = "R"),
-                                     list(levels = "species", name = "data 2", values = 0), list(
-                                       levels = "species", name = "data 3", values = 0))
+  options$customizationTable <- list(
+    list(levels = "", name = "", values = "R"),
+    list(levels = "", name = "", values = 0),
+    list(levels = "", name = "", values = 0)
+  )
   options$dependentVariables <- "bill_length_mm"
   options$heightPlot <- 550
   options$mean <- TRUE
@@ -181,9 +185,11 @@ test_that("table results match for a plot with both factors, no box, means, mean
   options$boxWidth <- 0.275
   options$colorPalette <- "ggplot2"
   options$covariatePalette <- "viridis"
-  options$customizationTable <- list(list(levels = "species", name = "data 1", values = "R"),
-                                     list(levels = "species", name = "data 2", values = 0), list(
-                                       levels = "species", name = "data 3", values = 0))
+  options$customizationTable <- list(
+    list(levels = "", name = "", values = "R"),
+    list(levels = "", name = "", values = 0),
+    list(levels = "", name = "", values = 0)
+  )
   options$dependentVariables <- "bill_length_mm"
   options$heightPlot <- 550
   options$mean <- TRUE
@@ -236,9 +242,11 @@ test_that("plot with primary factor and continuous covariate matches", {
   options$colorPalette <- "grandBudapest"
   options$covariate <- "bill_depth_mm"
   options$covariatePalette <- "viridis"
-  options$customizationTable <- list(list(levels = "species", name = "data 1", values = "R"),
-                                     list(levels = "species", name = "data 2", values = 0), list(
-                                       levels = "species", name = "data 3", values = 0))
+  options$customizationTable <- list(
+    list(levels = "", name = "", values = "R"),
+    list(levels = "", name = "", values = 0),
+    list(levels = "", name = "", values = 0)
+  )
   options$dependentVariables <- "flipper_length_mm"
   options$heightPlot <- 550
   options$meanLines <- FALSE
@@ -274,9 +282,11 @@ test_that("plot with secondary factor, discrete covariate, and means matches", {
   options$colorPalette <- "colorblind"
   options$covariate <- "sex"
   options$covariatePalette <- "colorblind3"
-  options$customizationTable <- list(list(levels = "species", name = "data 1", values = "R"),
-                                     list(levels = "species", name = "data 2", values = 0), list(
-                                       levels = "species", name = "data 3", values = 0))
+  options$customizationTable <- list(
+    list(levels = "", name = "", values = "R"),
+    list(levels = "", name = "", values = 0),
+    list(levels = "", name = "", values = 0)
+  )
   options$dependentVariables <- "body_mass_g"
   options$heightPlot <- 550
   options$mean <- TRUE
@@ -314,9 +324,11 @@ test_that("plot for ID over time matches", {
   options$colorPalette <- "sportsTeamsNBA"
   options$covariatePalette <- "viridis"
   options$customSides <- TRUE
-  options$customizationTable <- list(list(levels = "species", name = "data 1", values = c("L",
-                                                                                          "L", "L", "R", "R", "R")), list(levels = "species", name = "data 2",
-                                                                                                                          values = 0), list(levels = "species", name = "data 3", values = 0))
+  options$customizationTable <- list(
+    list(levels = "", name = "", values = c("L","L", "L", "R", "R", "R")),
+    list(levels = "", name = "", values = 0),
+    list(levels = "", name = "", values = 0)
+  )
   options$dependentVariables <- "sepalWidth"
   options$heightPlot <- 500
   options$jitter <- TRUE
@@ -358,10 +370,11 @@ test_that("plot with custom mean interval matches", {
   options$boxWidth <- 0.1
   options$colorPalette <- "colorblind"
   options$covariatePalette <- "viridis"
-  options$customizationTable <- list(list(levels = "species", name = "data 1", values = "R"),
-                                     list(levels = "species", name = "data 2", values = c(2.6,
-                                                                                          2.9, 3, 2.53, 3.33, 2.44)), list(levels = "species", name = "data 3",
-                                                                                                                           values = c(2.85, 3.07, 3.45, 2.91, 3.86, 2.66)))
+  options$customizationTable <- list(
+    list(levels = "", name = "", values = "R"),
+    list(levels = "", name = "", values = c(2.6, 2.9, 3, 2.53, 3.33, 2.44)),
+    list(levels = "", name = "", values = c(2.85, 3.07, 3.45, 2.91, 3.86, 2.66))
+  )
   options$dependentVariables <- "sepalWidth"
   options$heightPlot <- 550
   options$mean <- TRUE
@@ -400,9 +413,11 @@ test_that("plot with flanking clouds and vioSmoothing matches", {
   options$colorPalette <- "colorblind"
   options$covariatePalette <- "viridis"
   options$customSides <- TRUE
-  options$customizationTable <- list(list(levels = "species", name = "data 1", values = c("L",
-                                                                                          "L", "R", "R")), list(levels = "species", name = "data 2", values = 0),
-                                     list(levels = "species", name = "data 3", values = 0))
+  options$customizationTable <- list(
+    list(levels = "", name = "", values = c("L","L", "R", "R")),
+    list(levels = "", name = "", values = 0),
+    list(levels = "", name = "", values = 0)
+  )
   options$dependentVariables <- "sepalWidth"
   options$heightPlot <- 550
   options$jitter <- TRUE
