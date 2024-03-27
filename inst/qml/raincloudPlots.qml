@@ -188,12 +188,7 @@ Form
 			name: 		"showBox"
 			id:   		showBox
 			text: 		qsTr("Show box")
-			checked: 	if ( meanInterval.checked || meanIntervalCustom.checked )
-						{
-							false
-						} else {
-							true
-						}
+			checked: 	!(meanInterval.checked || meanIntervalCustom.checked)
 			info: 		qsTr(
 							"Whether or not the box should be shown. If un-checked, opacity is set to 0 and outline to 'none'."
 						)
