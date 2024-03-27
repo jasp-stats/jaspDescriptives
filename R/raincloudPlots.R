@@ -689,8 +689,6 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 
   exclusions <- if (dataInfo$numberOfExclusions > 0) {
     gettextf("Not shown are %s observations due to missing data.", dataInfo$numberOfExclusions)
-  } else {
-    NULL
   }
 
   if (options$meanIntervalCustom) {
@@ -714,22 +712,14 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
     meanInterval <- NULL
   }
 
-  jitter <- if (options$jitter) {
-    gettextf("Points are slightly jittered from their true values.")
-  } else {
-    NULL
-  }
+  jitter <- if (options$jitter) gettextf("Points are slightly jittered from their true values.")
 
   warningAxisLimits <- if (warningAxisLimits) {
     gettextf("<span style = 'color: darkorange'> Warning! Some data is not shown<br>because it lies outside of the interval set by the custom axis limits.</span>")
-  } else {
-    NULL
   }
 
   errorVioSides <- if (errorVioSides && options$customSides) {
     gettextf("<span style = 'color: darkorange'> Error with custom orientation: Specified number of clouds does not match clouds in plot.<br>Reverted to default all 'R'. Point nudge set to 0.</span>")
-  } else {
-    NULL
   }
 
   output <- paste0(exclusions, "\n\n", meanInterval, "\n\n", jitter, "\n\n", warningAxisLimits, "\n\n", errorVioSides)
