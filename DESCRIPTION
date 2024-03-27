@@ -20,7 +20,6 @@ Imports:
   ggrain,
   ggpp,
   ggtext
-
 Remotes:
   jasp-stats/jaspBase,
   jasp-stats/jaspGraphs,

@@ -468,7 +468,10 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   observedCombis <- observedCombis[order(observedCombis$rowId), ] # Re-order rows according to id
   observedCombis <- observedCombis[ , c("primaryFactor", "secondaryFactor", "color", "rowId")]  # Re-order columns
 
-  uniqueCombis   <- dplyr::count(observedCombis, pick(everything()))
+  counts       <- table(do.call(paste, observedCombis))
+  combinations <- strsplit(names(counts), " ")  # Splitting combined string into individual columns
+  uniqueCombis <- data.frame(do.call(rbind, combinations), count = as.numeric(counts))
+  colnames(uniqueCombis) <- c("primaryFactor", "secondaryFactor", "color", "rowId", "n")  # Re-instate previous column names
 
   numberOfClouds <- nrow(uniqueCombis)
 
