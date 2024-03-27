@@ -170,17 +170,11 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
         output$lowerBound[cloudNumber] <- CIs[1]
         output$upperBound[cloudNumber] <- CIs[2]
         output$successfulComputation <- TRUE
+      }
 
-      } else {
-        # successfulComputation remains FALSE
+    }
 
-      }  # End section confidence interval
-
-    } else {
-      # successfulComputation remains FALSE
-
-    }  # End lowerBound, upperBound calculation
-  }  # End for loop through cells of the design
+  }
 
   return(output)
 }  # End .rainMeanInterval()
