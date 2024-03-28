@@ -107,7 +107,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 # .rainMeanInterval() ----
 .rainMeanInterval <- function(dataset, options, inputVariable) {
 
-  infoFactorCombinations <- .rainInfoFactorCombinations(dataset, inputPlot = NULL, extractColor = FALSE)
+  infoFactorCombinations <- .rainInfoFactorCombinations(dataset, options)
   uniqueCombis           <- infoFactorCombinations$uniqueCombis
 
   output <- list(lowerBound = c(), upperBound = c(), successfulComputation = FALSE, sd = c())
@@ -260,7 +260,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   plotInProgress <- plotInProgress + palettes$fill + palettes$color
 
   # Preparation
-  infoFactorCombinations <- .rainInfoFactorCombinations(dataset, plotInProgress)  # Also has color info
+  infoFactorCombinations <- .rainInfoFactorCombinations(dataset, options)  # Also has color info
 
   getVioSides   <- .rainSetVioSides(options, dataset, infoFactorCombinations)  # Default "r" or custom orientation
   vioSides      <- getVioSides$sides
@@ -432,28 +432,8 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 
 # .rainInfoFactorCombinations() ----
 # Calculates info to determine colors & geom orientation
-.rainInfoFactorCombinations <- function(inputDataset, inputPlot, extractColor = TRUE) {
+.rainInfoFactorCombinations <- function(inputDataset, options) {
   onlyFactors    <- inputDataset[c("primaryFactor", "secondaryFactor")]
-  # Extract used Fill colors from plot
-  # https://stackoverflow.com/questions/11774262/how-to-extract-the-fill-colours-from-a-ggplot-object
-
-  if (extractColor) {  # So that we can re-use it in .rainFillTable()
-
-    onlyFactors$color <- tryCatch(
-      {
-        ggplot2::ggplot_build(inputPlot)$data[[1]]["fill"]$fill  # Requires secondaryFactor or colorAnyway
-      },
-      error = function(e) {                                      # Thus error handling, but not used further
-        return("black")
-      },
-      warning = function(w) {
-        return("black")
-      }
-    )
-
-  } else {
-    onlyFactors$color <- "black"
-  }
 
   # In the following possibleCombis <- expand.grid() secondaryFactor first because
   # then structure will match order in which ggplot accesses the clouds:
@@ -462,8 +442,24 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   possibleCombis <- expand.grid(
     secondaryFactor = levels(onlyFactors$secondaryFactor), primaryFactor = levels(onlyFactors$primaryFactor)
   )
+  possibleCombis$rowId <- 1:nrow(possibleCombis)  # Id is necessary as merge() scrambles order; see observedCombis
 
-  possibleCombis$rowId <- 1:nrow(possibleCombis)  # Id is necessary as merge will scramble order of possibleCombis
+  # Get colors for each possible combination
+  if (options$secondaryFactor != "") {
+    nSecondaryLevels     <- nlevels(onlyFactors$secondaryFactor)
+    levelColors          <- jaspGraphs::JASPcolors(palette = options$colorPalette, asFunction = TRUE)(nSecondaryLevels)
+    possibleCombis$color <- rep(levelColors, nlevels(onlyFactors$primaryFactor))
+
+  } else if (options$colorAnyway) {
+    nPrimaryLevels       <- nlevels(onlyFactors$primaryFactor)
+    levelColors          <- jaspGraphs::JASPcolors(palette = options$colorPalette, asFunction = TRUE)(nPrimaryLevels)
+    possibleCombis$color <- levelColors
+
+  } else {
+    possibleCombis$color <- "black"  # Is not used further
+  }
+
+  # Reduce possibleCombis to observedCombis
   observedCombis <- merge(possibleCombis, onlyFactors)
   observedCombis <- observedCombis[order(observedCombis$rowId), ] # Re-order rows according to id
   observedCombis <- observedCombis[ , c("primaryFactor", "secondaryFactor", "color", "rowId")]  # Re-order columns
@@ -476,11 +472,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   numberOfClouds <- nrow(uniqueCombis)
 
   return(
-    list(
-      numberOfClouds = numberOfClouds,
-      colors         = uniqueCombis$color,
-      uniqueCombis   = uniqueCombis
-    )
+    list(numberOfClouds = numberOfClouds, colors = uniqueCombis$color, uniqueCombis = uniqueCombis)
   )
 }  # End .rainInfoFactorCombinations()
 
@@ -836,7 +828,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   targetPlotObject <- targetJaspPlot[["plotObject"]]
 
   # Extract observed factor combinations and remove duplicate levels of primaryFactor for table
-  combinations <- .rainInfoFactorCombinations(dataInfo$dataset, targetPlotObject, extractColor = FALSE)$uniqueCombis
+  combinations <- .rainInfoFactorCombinations(dataInfo$dataset, options)$uniqueCombis
   primaryLevels <- as.character(combinations$primaryFactor)
   previousLevel <- primaryLevels[1]
   tidyLevels <- c(previousLevel)
