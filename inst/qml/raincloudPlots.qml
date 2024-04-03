@@ -75,7 +75,7 @@ Form
 			enabled:				primaryFactor.count === 1
 			info:					qsTr(
 										"Select a participant/observation ID in your dataset, " +
-										"to connect individual observations (points) accross the levels of the primary factor." +
+										"to connect individual observations (points) accross the levels of the primary factor. " +
 										"Otherwise, you do not need this."
 									)
 		}
