@@ -33,7 +33,7 @@ Form
 		{ 
 			name: 					"dependentVariables"
 			title: 					qsTr("Dependent Variables")
-			suggestedColumns: 		["scale"]
+			allowedColumns: 		["scale"]
 			info:					qsTr("Select all the variables that you want to plot.")
 		}
 		AssignedVariablesList
