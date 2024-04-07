@@ -446,14 +446,27 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 
   # Get colors for each possible combination
   if (options$secondaryFactor != "") {
-    nSecondaryLevels     <- nlevels(onlyFactors$secondaryFactor)
-    levelColors          <- jaspGraphs::JASPcolors(palette = options$colorPalette, asFunction = TRUE)(nSecondaryLevels)
-    possibleCombis$color <- rep(levelColors, nlevels(onlyFactors$primaryFactor))
+    nSecondaryLevels <- nlevels(onlyFactors$secondaryFactor)
+    levelColors      <- jaspGraphs::JASPcolors(palette = options$colorPalette, asFunction = TRUE)(nSecondaryLevels)
+
+    # levelColors are in alphabetical order of levels, not in input order with which JASP user enters them
+    # So, we have to rearrange them from alphabetical to input order
+    levelsActualOrder    <- levels(onlyFactors$secondaryFactor)
+    levelsAlphabetical   <- sort(levelsActualOrder)  # This is the order for levelColors
+    reorderedLevelColors <- levelColors[match(levelsActualOrder, levelsAlphabetical)]
+
+    possibleCombis$color <- rep(reorderedLevelColors, nlevels(onlyFactors$primaryFactor))
 
   } else if (options$colorAnyway) {
     nPrimaryLevels       <- nlevels(onlyFactors$primaryFactor)
     levelColors          <- jaspGraphs::JASPcolors(palette = options$colorPalette, asFunction = TRUE)(nPrimaryLevels)
-    possibleCombis$color <- levelColors
+
+    # See previous if-statement for explanation of following
+    levelsActualOrder    <- levels(onlyFactors$primaryFactor)
+    levelsAlphabetical   <- sort(levelsActualOrder)
+    reorderedLevelColors <- levelColors[match(levelsActualOrder, levelsAlphabetical)]
+
+    possibleCombis$color <- reorderedLevelColors
 
   } else {
     possibleCombis$color <- "black"  # Is not used further
