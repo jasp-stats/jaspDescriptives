@@ -460,8 +460,8 @@ Determines how thick the lines are."
 									"then go to the headers 'x-axis' or 'y-axis'."
 								)
 			
-			IntegerField{ name: "lowerAxisLimit"; label: qsTr("from"); negativeValues: true; defaultValue: 0	}
-			IntegerField{ name: "upperAxisLimit"; label: qsTr("to");   negativeValues: true; defaultValue: 1000 }
+			DoubleField{ name: "lowerAxisLimit"; label: qsTr("from"); negativeValues: true; defaultValue: 0	}
+			DoubleField{ name: "upperAxisLimit"; label: qsTr("to");   negativeValues: true; defaultValue: 1000 }
 		}  // End CheckBox customAxisLimits
 		HelpButton
 		{
