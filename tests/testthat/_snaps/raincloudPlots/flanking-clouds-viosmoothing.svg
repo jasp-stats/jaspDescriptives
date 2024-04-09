@@ -390,15 +390,15 @@
 <text x='462.70' y='519.65' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='14.18px' lengthAdjust='spacingAndGlyphs'>t3</text>
 <text x='337.10' y='549.83' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='32.12px' lengthAdjust='spacingAndGlyphs'>time</text>
 <text transform='translate(16.68,260.84) rotate(-90)' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='84.10px' lengthAdjust='spacingAndGlyphs'>sepalWidth</text>
-<rect x='613.42' y='20.71' width='106.58' height='77.40' style='stroke-width: 0.75; stroke: none;' />
-<rect x='613.42' y='20.71' width='106.58' height='77.40' style='stroke-width: 10.67; stroke: none;' />
+<rect x='613.42' y='20.71' width='106.58' height='86.87' style='stroke-width: 0.75; stroke: none;' />
+<rect x='613.42' y='20.71' width='106.58' height='86.87' style='stroke-width: 10.67; stroke: none;' />
 <text x='666.71' y='34.17' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='60.50px' lengthAdjust='spacingAndGlyphs'>Species</text>
-<rect x='613.42' y='41.42' width='28.35' height='28.35' style='stroke-width: 10.67; stroke: none;' />
-<rect x='614.83' y='42.83' width='25.51' height='25.51' style='stroke-width: 2.13; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #1B9E77; fill-opacity: 0.50;' />
-<rect x='613.42' y='69.76' width='28.35' height='28.35' style='stroke-width: 10.67; stroke: none;' />
-<rect x='614.83' y='71.18' width='25.51' height='25.51' style='stroke-width: 2.13; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #666666; fill-opacity: 0.50;' />
-<text x='647.24' y='61.44' style='font-size: 17.00px; font-family: sans;' textLength='72.76px' lengthAdjust='spacingAndGlyphs'>versicolor</text>
-<text x='647.24' y='89.79' style='font-size: 17.00px; font-family: sans;' textLength='62.36px' lengthAdjust='spacingAndGlyphs'>virginica</text>
+<rect x='613.42' y='50.88' width='28.35' height='28.35' style='stroke-width: 10.67; stroke: none;' />
+<rect x='614.83' y='52.30' width='25.51' height='25.51' style='stroke-width: 2.13; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #1B9E77; fill-opacity: 0.50;' />
+<rect x='613.42' y='79.23' width='28.35' height='28.35' style='stroke-width: 10.67; stroke: none;' />
+<rect x='614.83' y='80.64' width='25.51' height='25.51' style='stroke-width: 2.13; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #666666; fill-opacity: 0.50;' />
+<text x='647.24' y='70.90' style='font-size: 17.00px; font-family: sans;' textLength='72.76px' lengthAdjust='spacingAndGlyphs'>versicolor</text>
+<text x='647.24' y='99.25' style='font-size: 17.00px; font-family: sans;' textLength='62.36px' lengthAdjust='spacingAndGlyphs'>virginica</text>
 <text x='337.10' y='11.70' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='219.26px' lengthAdjust='spacingAndGlyphs'>flanking-clouds-viosmoothing</text>
 <text x='60.78' y='573.18' style='font-size: 13.60px; font-family: sans;' textLength='37.81px' lengthAdjust='spacingAndGlyphs'>Points</text>
 <text x='102.36' y='573.18' style='font-size: 13.60px; font-family: sans;' textLength='19.66px' lengthAdjust='spacingAndGlyphs'>are</text>

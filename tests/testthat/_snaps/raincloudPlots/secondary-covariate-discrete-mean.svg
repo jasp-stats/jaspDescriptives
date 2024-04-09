@@ -417,29 +417,29 @@
 <polyline points='74.97,523.18 613.41,523.18 ' style='stroke-width: 0.00; stroke: none; stroke-linecap: butt;' />
 <text x='344.19' y='549.83' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='37.79px' lengthAdjust='spacingAndGlyphs'>Total</text>
 <text transform='translate(16.68,271.95) rotate(-90)' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='105.88px' lengthAdjust='spacingAndGlyphs'>body_mass_g</text>
-<rect x='613.41' y='20.71' width='106.59' height='194.11' style='stroke-width: 0.75; stroke: none;' />
-<rect x='613.41' y='20.71' width='106.59' height='105.75' style='stroke-width: 10.67; stroke: none;' />
+<rect x='613.41' y='20.71' width='106.59' height='213.04' style='stroke-width: 0.75; stroke: none;' />
+<rect x='613.41' y='20.71' width='106.59' height='115.21' style='stroke-width: 10.67; stroke: none;' />
 <text x='666.70' y='34.17' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='57.66px' lengthAdjust='spacingAndGlyphs'>species</text>
-<rect x='613.41' y='41.42' width='28.35' height='28.35' style='stroke-width: 10.67; stroke: none;' />
-<rect x='614.82' y='42.83' width='25.51' height='25.51' style='stroke-width: 2.13; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #1B9E77; fill-opacity: 0.50;' />
-<circle cx='627.58' cy='55.59' r='3.02' style='stroke-width: 0.71; stroke: none;' />
-<rect x='613.41' y='69.76' width='28.35' height='28.35' style='stroke-width: 10.67; stroke: none;' />
-<rect x='614.82' y='71.18' width='25.51' height='25.51' style='stroke-width: 2.13; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #B27D5D; fill-opacity: 0.50;' />
-<circle cx='627.58' cy='83.94' r='3.02' style='stroke-width: 0.71; stroke: none;' />
-<rect x='613.41' y='98.11' width='28.35' height='28.35' style='stroke-width: 10.67; stroke: none;' />
-<rect x='614.82' y='99.53' width='25.51' height='25.51' style='stroke-width: 2.13; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #666666; fill-opacity: 0.50;' />
-<circle cx='627.58' cy='112.28' r='3.02' style='stroke-width: 0.71; stroke: none;' />
-<text x='647.23' y='61.44' style='font-size: 17.00px; font-family: sans;' textLength='47.26px' lengthAdjust='spacingAndGlyphs'>Adelie</text>
-<text x='647.23' y='89.79' style='font-size: 17.00px; font-family: sans;' textLength='72.77px' lengthAdjust='spacingAndGlyphs'>Chinstrap</text>
-<text x='647.23' y='118.13' style='font-size: 17.00px; font-family: sans;' textLength='55.77px' lengthAdjust='spacingAndGlyphs'>Gentoo</text>
-<rect x='613.41' y='137.41' width='84.86' height='77.40' style='stroke-width: 10.67; stroke: none;' />
-<text x='655.84' y='150.88' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='26.47px' lengthAdjust='spacingAndGlyphs'>sex</text>
-<rect x='613.41' y='158.12' width='28.35' height='28.35' style='stroke-width: 10.67; stroke: none;' />
-<circle cx='627.58' cy='172.30' r='7.29' style='stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.50; fill: #000000; fill-opacity: 0.50;' />
-<rect x='613.41' y='186.47' width='28.35' height='28.35' style='stroke-width: 10.67; stroke: none;' />
-<circle cx='627.58' cy='200.64' r='7.29' style='stroke-width: 0.71; stroke: #CC79A7; stroke-opacity: 0.50; fill: #CC79A7; fill-opacity: 0.50;' />
-<text x='647.23' y='178.15' style='font-size: 17.00px; font-family: sans;' textLength='51.03px' lengthAdjust='spacingAndGlyphs'>female</text>
-<text x='647.23' y='206.49' style='font-size: 17.00px; font-family: sans;' textLength='36.85px' lengthAdjust='spacingAndGlyphs'>male</text>
+<rect x='613.41' y='50.88' width='28.35' height='28.35' style='stroke-width: 10.67; stroke: none;' />
+<rect x='614.82' y='52.30' width='25.51' height='25.51' style='stroke-width: 2.13; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #1B9E77; fill-opacity: 0.50;' />
+<circle cx='627.58' cy='65.05' r='3.02' style='stroke-width: 0.71; stroke: none;' />
+<rect x='613.41' y='79.23' width='28.35' height='28.35' style='stroke-width: 10.67; stroke: none;' />
+<rect x='614.82' y='80.64' width='25.51' height='25.51' style='stroke-width: 2.13; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #B27D5D; fill-opacity: 0.50;' />
+<circle cx='627.58' cy='93.40' r='3.02' style='stroke-width: 0.71; stroke: none;' />
+<rect x='613.41' y='107.57' width='28.35' height='28.35' style='stroke-width: 10.67; stroke: none;' />
+<rect x='614.82' y='108.99' width='25.51' height='25.51' style='stroke-width: 2.13; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #666666; fill-opacity: 0.50;' />
+<circle cx='627.58' cy='121.75' r='3.02' style='stroke-width: 0.71; stroke: none;' />
+<text x='647.23' y='70.90' style='font-size: 17.00px; font-family: sans;' textLength='47.26px' lengthAdjust='spacingAndGlyphs'>Adelie</text>
+<text x='647.23' y='99.25' style='font-size: 17.00px; font-family: sans;' textLength='72.77px' lengthAdjust='spacingAndGlyphs'>Chinstrap</text>
+<text x='647.23' y='127.60' style='font-size: 17.00px; font-family: sans;' textLength='55.77px' lengthAdjust='spacingAndGlyphs'>Gentoo</text>
+<rect x='613.41' y='146.88' width='84.86' height='86.87' style='stroke-width: 10.67; stroke: none;' />
+<text x='655.84' y='160.34' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='26.47px' lengthAdjust='spacingAndGlyphs'>sex</text>
+<rect x='613.41' y='177.05' width='28.35' height='28.35' style='stroke-width: 10.67; stroke: none;' />
+<circle cx='627.58' cy='191.22' r='7.29' style='stroke-width: 0.71; stroke: #000000; stroke-opacity: 0.50; fill: #000000; fill-opacity: 0.50;' />
+<rect x='613.41' y='205.40' width='28.35' height='28.35' style='stroke-width: 10.67; stroke: none;' />
+<circle cx='627.58' cy='219.57' r='7.29' style='stroke-width: 0.71; stroke: #CC79A7; stroke-opacity: 0.50; fill: #CC79A7; fill-opacity: 0.50;' />
+<text x='647.23' y='197.07' style='font-size: 17.00px; font-family: sans;' textLength='51.03px' lengthAdjust='spacingAndGlyphs'>female</text>
+<text x='647.23' y='225.42' style='font-size: 17.00px; font-family: sans;' textLength='36.85px' lengthAdjust='spacingAndGlyphs'>male</text>
 <text x='344.19' y='11.70' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='266.51px' lengthAdjust='spacingAndGlyphs'>secondary-covariate-discrete-mean</text>
 <text x='74.97' y='573.18' style='font-size: 13.60px; font-family: sans;' textLength='21.17px' lengthAdjust='spacingAndGlyphs'>Not</text>
 <text x='99.91' y='573.18' style='font-size: 13.60px; font-family: sans;' textLength='39.32px' lengthAdjust='spacingAndGlyphs'>shown</text>

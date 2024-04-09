@@ -385,7 +385,9 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 
   legendCloser <- ggplot2::theme(legend.box.spacing = ggplot2::unit(0, "pt"), legend.margin = ggplot2::margin(0, 0, 0, 0))
 
-  plotInProgress <- plotInProgress + guide + legendCloser
+  legendTitleMargin <- ggplot2::theme(legend.title = ggplot2::element_text(margin = ggplot2::margin(b = 15)))
+
+  plotInProgress <- plotInProgress + guide + legendCloser + legendTitleMargin
 
   # Caption
   if (options$showCaption) {
