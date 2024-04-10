@@ -19,4 +19,10 @@ Description
 		title:	qsTr("Descriptive Statistics")
 		func:	"Descriptives"
 	}
+
+	Analysis
+	{
+		title:	qsTr("Time Series Descriptives")
+		func:	"DescriptivesTimeSeries"
+	}
 }
