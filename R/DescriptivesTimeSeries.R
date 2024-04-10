@@ -16,6 +16,11 @@
 #
 
 DescriptivesTimeSeriesInternal <- function(jaspResults, dataset, options) {
+    .DescriptivesTimeSeries(jaspResults, dataset, options)
+}
+
+.DescriptivesTimeSeries <- function(jaspResults, dataset, options) {
+
   ready <- options$dependent != ""
 
   datasetRaw <- .tsReadData(jaspResults, dataset, options, ready)
