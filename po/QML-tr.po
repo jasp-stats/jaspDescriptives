@@ -681,3 +681,79 @@ msgstr ""
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the partial autocorrelation for a specified number of lags."
 msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Dependent Variable"
+msgstr "Bağımlı değişken"
+
+msgctxt "Flexplot|"
+msgid "Independent Variable(s)"
+msgstr "Bağımsız değişkenler"
+
+msgctxt "Flexplot|"
+msgid "Paneled Variable(s)"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Options"
+msgstr "Seçenekler"
+
+msgctxt "Flexplot|"
+msgid "<br><strong>Point controls</br></strong>"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Point transparency"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Jitter in X"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Jitter in Y"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "<strong>Visual Statistics</strong>"
+msgstr "<güçlü>Görsel İstatistikler</strong>"
+
+msgctxt "Flexplot|"
+msgid "Plot confidence bands"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Fitted line (scatterplots)"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Intervals (categorical predictors)"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "<br><strong>Other Plot Controls</strong>"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "GGplot theme"
+msgstr "GGplot teması"
+
+msgctxt "Flexplot|"
+msgid "Color Palette"
+msgstr "Destek Vektörleri"
+
+msgctxt "Flexplot|"
+msgid "Convert to grayscale"
+msgstr "Gri tonlamaya dönüştür"
+
+msgctxt "Flexplot|"
+msgid "Ghost lines"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Plot Labels"
+msgstr "Grafik Etiketleri"
+
+msgctxt "Flexplot|"
+msgid "<br><strong>Plot Labels</strong>"
+msgstr ""

@@ -692,3 +692,172 @@ msgstr ""
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the partial autocorrelation for a specified number of lags."
 msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Dependent Variable"
+msgstr "Zmienna zależna"
+
+msgctxt "Flexplot|"
+msgid "Independent Variable(s)"
+msgstr "Zmienna(e) niezależna(e)"
+
+msgctxt "Flexplot|"
+msgid "Paneled Variable(s)"
+msgstr "Zmienne grupujące"
+
+msgctxt "Flexplot|"
+msgid "Options"
+msgstr "Opcje"
+
+msgctxt "Flexplot|"
+msgid "<br><strong>Point controls</br></strong>"
+msgstr "<br><strong>Ustawienia punktów</br></strong>"
+
+msgctxt "Flexplot|"
+msgid "Point transparency"
+msgstr "Przejrzystość punktów"
+
+msgctxt "Flexplot|"
+msgid "Jitter in X"
+msgstr "Losowy szum w X"
+
+msgctxt "Flexplot|"
+msgid "Jitter in Y"
+msgstr "Losowy szum w Y"
+
+msgctxt "Flexplot|"
+msgid "<strong>Visual Statistics</strong>"
+msgstr "<strong>Statystyki wizualne</strong>"
+
+msgctxt "Flexplot|"
+msgid "Plot confidence bands"
+msgstr "Nanieś przedziały ufności"
+
+msgctxt "Flexplot|"
+msgid "Loess"
+msgstr "LOESS"
+
+msgctxt "Flexplot|"
+msgid "Regression"
+msgstr "Regresja"
+
+msgctxt "Flexplot|"
+msgid "Quadratic"
+msgstr "Kwadratowa"
+
+msgctxt "Flexplot|"
+msgid "Cubic"
+msgstr "Sześcienna"
+
+msgctxt "Flexplot|"
+msgid "None"
+msgstr "Brak"
+
+msgctxt "Flexplot|"
+msgid "Fitted line (scatterplots)"
+msgstr "Linia dopasowania"
+
+msgctxt "Flexplot|"
+msgid "Quartiles"
+msgstr "Kwartyle"
+
+msgctxt "Flexplot|"
+msgid "Standard errors"
+msgstr "Błędy standardowe"
+
+msgctxt "Flexplot|"
+msgid "Standard deviations"
+msgstr "Odchylenie standardowe"
+
+msgctxt "Flexplot|"
+msgid "Intervals (categorical predictors)"
+msgstr "Przedziały"
+
+msgctxt "Flexplot|"
+msgid "<br><strong>Other Plot Controls</strong>"
+msgstr "Inne ustawienia"
+
+msgctxt "Flexplot|"
+msgid "JASP"
+msgstr "JASP"
+
+msgctxt "Flexplot|"
+msgid "Black and white"
+msgstr "Czerń i biel"
+
+msgctxt "Flexplot|"
+msgid "Minimal"
+msgstr "Minimalistyczny"
+
+msgctxt "Flexplot|"
+msgid "Classic"
+msgstr "Klasyczny"
+
+msgctxt "Flexplot|"
+msgid "Dark"
+msgstr "Ciemny"
+
+msgctxt "Flexplot|"
+msgid "GGplot theme"
+msgstr "Motyw"
+
+msgctxt "Flexplot|"
+msgid "GGplot Default"
+msgstr "Domyślny"
+
+msgctxt "Flexplot|"
+msgid "Nature"
+msgstr "Nature"
+
+msgctxt "Flexplot|"
+msgid "AAAS"
+msgstr "AAAS"
+
+msgctxt "Flexplot|"
+msgid "Lancet"
+msgstr "Lancet"
+
+msgctxt "Flexplot|"
+msgid "JCO"
+msgstr "JCO"
+
+msgctxt "Flexplot|"
+msgid "Color Palette"
+msgstr "Paleta kolorów"
+
+msgctxt "Flexplot|"
+msgid "Convert to grayscale"
+msgstr "Konwertuj na skalę szarości"
+
+msgctxt "Flexplot|"
+msgid "Ghost lines"
+msgstr "Linie siatki"
+
+msgctxt "Flexplot|"
+msgid "Plot Labels"
+msgstr "Etykiety"
+
+msgctxt "Flexplot|"
+msgid "<br><strong>Plot Labels</strong>"
+msgstr "<br><strong>Etykiety</strong>"
+
+msgctxt "Flexplot|"
+msgid "X Axis Label"
+msgstr "Etykieta osi X"
+
+msgctxt "Flexplot|"
+msgid "Y Axis Label"
+msgstr "Etykieta osi Y"
+
+msgctxt "Flexplot|"
+msgid "Legend Label"
+msgstr "Etykieta legendy"
+
+msgctxt "Flexplot|"
+msgid "Column Panel Label"
+msgstr "Etykieta kolumny"
+
+msgctxt "Flexplot|"
+msgid "Row Panel Label"
+msgstr "Etykieta wiersza"
+

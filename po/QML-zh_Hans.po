@@ -692,3 +692,171 @@ msgstr ""
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the partial autocorrelation for a specified number of lags."
 msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Dependent Variable"
+msgstr "因变量"
+
+msgctxt "Flexplot|"
+msgid "Independent Variable(s)"
+msgstr "自变量"
+
+msgctxt "Flexplot|"
+msgid "Paneled Variable(s)"
+msgstr "分组变量"
+
+msgctxt "Flexplot|"
+msgid "Options"
+msgstr "选项"
+
+msgctxt "Flexplot|"
+msgid "<br><strong>Point controls</br></strong>"
+msgstr "<br><strong>点控制</br></strong>"
+
+msgctxt "Flexplot|"
+msgid "Point transparency"
+msgstr "点的透明度"
+
+msgctxt "Flexplot|"
+msgid "Jitter in X"
+msgstr "X 中的抖动"
+
+msgctxt "Flexplot|"
+msgid "Jitter in Y"
+msgstr "Y 中的抖动"
+
+msgctxt "Flexplot|"
+msgid "<strong>Visual Statistics</strong>"
+msgstr "<strong>可视化统计</strong>"
+
+msgctxt "Flexplot|"
+msgid "Plot confidence bands"
+msgstr "绘制置信带"
+
+msgctxt "Flexplot|"
+msgid "Fitted line (scatterplots)"
+msgstr "拟合线（散点图）"
+
+msgctxt "Flexplot|"
+msgid "Intervals (categorical predictors)"
+msgstr "区间（分类预测变量）"
+
+msgctxt "Flexplot|"
+msgid "<br><strong>Other Plot Controls</strong>"
+msgstr "<br><strong>其他绘图控件</strong>"
+
+msgctxt "Flexplot|"
+msgid "GGplot theme"
+msgstr "GGplot主题"
+
+msgctxt "Flexplot|"
+msgid "Color Palette"
+msgstr "调色板"
+
+msgctxt "Flexplot|"
+msgid "Convert to grayscale"
+msgstr "转换为灰度"
+
+msgctxt "Flexplot|"
+msgid "Ghost lines"
+msgstr "幽灵线"
+
+msgctxt "Flexplot|"
+msgid "Plot Labels"
+msgstr "绘图标签"
+
+msgctxt "Flexplot|"
+msgid "<br><strong>Plot Labels</strong>"
+msgstr "<br><strong>绘图标签</strong>"
+
+msgctxt "Flexplot|"
+msgid "Loess"
+msgstr "局部加权回归（LOESS）"
+
+msgctxt "Flexplot|"
+msgid "Regression"
+msgstr "回归"
+
+msgctxt "Flexplot|"
+msgid "Quadratic"
+msgstr "二次函数"
+
+msgctxt "Flexplot|"
+msgid "Cubic"
+msgstr "三次函数"
+
+msgctxt "Flexplot|"
+msgid "None"
+msgstr "无"
+
+msgctxt "Flexplot|"
+msgid "Quartiles"
+msgstr "四分位数"
+
+msgctxt "Flexplot|"
+msgid "Standard errors"
+msgstr "标准误差"
+
+msgctxt "Flexplot|"
+msgid "Standard deviations"
+msgstr "标准偏差"
+
+msgctxt "Flexplot|"
+msgid "JASP"
+msgstr "JASP 风格"
+
+msgctxt "Flexplot|"
+msgid "Black and white"
+msgstr "黑白"
+
+msgctxt "Flexplot|"
+msgid "Minimal"
+msgstr "Minimal 风格"
+
+msgctxt "Flexplot|"
+msgid "Classic"
+msgstr "经典"
+
+msgctxt "Flexplot|"
+msgid "Dark"
+msgstr "暗黑"
+
+msgctxt "Flexplot|"
+msgid "GGplot Default"
+msgstr "GGplot 默认"
+
+msgctxt "Flexplot|"
+msgid "Nature"
+msgstr "Nature 风格"
+
+msgctxt "Flexplot|"
+msgid "AAAS"
+msgstr "AAAS 风格"
+
+msgctxt "Flexplot|"
+msgid "Lancet"
+msgstr "柳叶刀"
+
+msgctxt "Flexplot|"
+msgid "JCO"
+msgstr "JCO 风格"
+
+msgctxt "Flexplot|"
+msgid "X Axis Label"
+msgstr "X 轴标签"
+
+msgctxt "Flexplot|"
+msgid "Y Axis Label"
+msgstr "Y 轴标签"
+
+msgctxt "Flexplot|"
+msgid "Legend Label"
+msgstr "图例标签"
+
+msgctxt "Flexplot|"
+msgid "Column Panel Label"
+msgstr "列面板标签"
+
+msgctxt "Flexplot|"
+msgid "Row Panel Label"
+msgstr "行面板标签"

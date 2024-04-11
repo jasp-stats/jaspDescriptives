@@ -14,7 +14,9 @@ Imports:
   ggrepel,
   jaspBase,
   jaspGraphs,
-  forecast
+  forecast,
+  flexplot
 Remotes:
   jasp-stats/jaspBase,
-  jasp-stats/jaspGraphs
+  jasp-stats/jaspGraphs,
+  dustinfife/flexplot

@@ -690,3 +690,171 @@ msgstr ""
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the partial autocorrelation for a specified number of lags."
 msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Dependent Variable"
+msgstr "従属変数"
+
+msgctxt "Flexplot|"
+msgid "Independent Variable(s)"
+msgstr "独立変数"
+
+msgctxt "Flexplot|"
+msgid "Paneled Variable(s)"
+msgstr "パネル変数"
+
+msgctxt "Flexplot|"
+msgid "Options"
+msgstr "オプション"
+
+msgctxt "Flexplot|"
+msgid "<br><strong>Point controls</br></strong>"
+msgstr "<br><strong>点調整</br></strong>"
+
+msgctxt "Flexplot|"
+msgid "Point transparency"
+msgstr "ポイントの透過性"
+
+msgctxt "Flexplot|"
+msgid "Jitter in X"
+msgstr "Xのジッター"
+
+msgctxt "Flexplot|"
+msgid "Jitter in Y"
+msgstr "Yのジッター"
+
+msgctxt "Flexplot|"
+msgid "<strong>Visual Statistics</strong>"
+msgstr "<strong>統計量の視覚化</strong>"
+
+msgctxt "Flexplot|"
+msgid "Plot confidence bands"
+msgstr "信頼帯をプロットする"
+
+msgctxt "Flexplot|"
+msgid "Fitted line (scatterplots)"
+msgstr "適合線(散布図)"
+
+msgctxt "Flexplot|"
+msgid "Intervals (categorical predictors)"
+msgstr "間隔（カテゴリ予測子）"
+
+msgctxt "Flexplot|"
+msgid "<br><strong>Other Plot Controls</strong>"
+msgstr "<br><strong>その他のプロット調整</strong>"
+
+msgctxt "Flexplot|"
+msgid "GGplot theme"
+msgstr "GGplotテーマ"
+
+msgctxt "Flexplot|"
+msgid "Color Palette"
+msgstr "カラーパレット"
+
+msgctxt "Flexplot|"
+msgid "Convert to grayscale"
+msgstr "グレースケールに変換"
+
+msgctxt "Flexplot|"
+msgid "Ghost lines"
+msgstr "ゴーストライン"
+
+msgctxt "Flexplot|"
+msgid "Plot Labels"
+msgstr "プロットラベル"
+
+msgctxt "Flexplot|"
+msgid "<br><strong>Plot Labels</strong>"
+msgstr "<br> <strong>プロットラベル</strong>"
+
+msgctxt "Flexplot|"
+msgid "Loess"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Regression"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Quadratic"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Cubic"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "None"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Quartiles"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Standard errors"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Standard deviations"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "JASP"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Black and white"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Minimal"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Classic"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Dark"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "GGplot Default"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Nature"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "AAAS"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Lancet"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "JCO"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "X Axis Label"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Y Axis Label"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Legend Label"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Column Panel Label"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Row Panel Label"
+msgstr ""

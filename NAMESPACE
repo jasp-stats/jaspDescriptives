@@ -14,4 +14,5 @@ export(.tsFillTimeSeriesPlot)
 export(.tsFillACF)
 export(DescriptivesTimeSeries)
 export(DescriptivesTimeSeriesInternal)
-
+export(flexplot)
+export(flexplotInternal)
