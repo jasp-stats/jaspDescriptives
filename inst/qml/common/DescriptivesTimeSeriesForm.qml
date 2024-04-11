@@ -4,14 +4,16 @@ import JASP.Controls
 
 Form
 {
-    info: qsTr("Descriptives allows the user to obtain descriptive statistics and descriptive plots for univariate time-series.")
-    VariablesForm
+	columns: 1
+	info: qsTr("Time Series Descriptives allows the user to obtain descriptive statistics and descriptive plots for univariate time-series.")
+	VariablesForm
     {
-        AvailableVariablesList { name: "variables" }
+		preferredHeight: 150 * preferencesModel.uiScale
+		AvailableVariablesList { name: "variables" }
         AssignedVariablesList
         {
             name: "dependent"
-            label: qsTr("Variable")
+			label: qsTr("Variable")
             allowedColumns: ["ordinal", "scale"]
             singleVariable: true
             info: qsTr("A variable that is measured repeatedly over time.")
@@ -80,6 +82,7 @@ Form
                     enabled: time.count != 0
                     Group
                     {
+						columns: 2
                         TextField
                         {
                             name: "dateStart"
@@ -100,7 +103,7 @@ Form
         }
     }
 
-	Section
+	Group
     {
         title: qsTr("Plots")
         columns: 2
