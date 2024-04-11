@@ -810,7 +810,7 @@ Form
 				function getRowHeaderText(headerText, rowIndex)	 { return String.fromCharCode(65 + rowIndex);	}
 				function getDefaultValue(columnIndex, rowIndex) {
             		if      (columnIndex === 0) return "R";
-            		else if (columnIndex === 3) return "#F8766D";
+            		else if (columnIndex === 3) return "#00A9E6";
             		else           				return 0;
         		}
 

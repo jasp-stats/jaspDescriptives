@@ -102,7 +102,7 @@ test_that("horizontal plot with both factors and custom axis limits matches", {
     list(levels = "", name = "", values = "R"),
     list(levels = "", name = "", values = 0),
     list(levels = "", name = "", values = 0),
-    list(levels = list(""), name = "", values = list("'F8766D"))
+    list(levels = list(""), name = "", values = list("#00A9E6"))
   )
   options$dependentVariables <- "body_mass_g"
   options$heightPlot <- 550
@@ -144,7 +144,7 @@ test_that("plot with both factors, no box, means, meanLines, and, bootstrapped c
     list(levels = "", name = "", values = "R"),
     list(levels = "", name = "", values = 0),
     list(levels = "", name = "", values = 0),
-    list(levels = list(""), name = "", values = list("'F8766D"))
+    list(levels = list(""), name = "", values = list("#00A9E6"))
   )
   options$dependentVariables <- "bill_length_mm"
   options$heightPlot <- 550
@@ -191,7 +191,7 @@ test_that("table results match for a plot with both factors, no box, means, mean
     list(levels = "", name = "", values = "R"),
     list(levels = "", name = "", values = 0),
     list(levels = "", name = "", values = 0),
-    list(levels = list(""), name = "", values = list("'F8766D"))
+    list(levels = list(""), name = "", values = list("#00A9E6"))
   )
   options$dependentVariables <- "bill_length_mm"
   options$heightPlot <- 550
@@ -249,7 +249,7 @@ test_that("plot with primary factor and continuous covariate matches", {
     list(levels = "", name = "", values = "R"),
     list(levels = "", name = "", values = 0),
     list(levels = "", name = "", values = 0),
-    list(levels = list(""), name = "", values = list("'F8766D"))
+    list(levels = list(""), name = "", values = list("#00A9E6"))
   )
   options$dependentVariables <- "flipper_length_mm"
   options$heightPlot <- 550
@@ -290,7 +290,7 @@ test_that("plot with secondary factor, discrete covariate, and means matches", {
     list(levels = "", name = "", values = "R"),
     list(levels = "", name = "", values = 0),
     list(levels = "", name = "", values = 0),
-    list(levels = list(""), name = "", values = list("'F8766D"))
+    list(levels = list(""), name = "", values = list("#00A9E6"))
   )
   options$dependentVariables <- "body_mass_g"
   options$heightPlot <- 550
@@ -333,7 +333,7 @@ test_that("plot for ID over time matches", {
     list(levels = "", name = "", values = c("L","L", "L", "R", "R", "R")),
     list(levels = "", name = "", values = 0),
     list(levels = "", name = "", values = 0),
-    list(levels = list(""), name = "", values = list("'F8766D"))
+    list(levels = list(""), name = "", values = list("#00A9E6"))
   )
   options$dependentVariables <- "sepalWidth"
   options$heightPlot <- 500
@@ -380,7 +380,7 @@ test_that("plot with custom mean interval matches", {
     list(levels = "", name = "", values = "R"),
     list(levels = "", name = "", values = c(2.6, 2.9, 3, 2.53, 3.33, 2.44)),
     list(levels = "", name = "", values = c(2.85, 3.07, 3.45, 2.91, 3.86, 2.66)),
-    list(levels = list(""), name = "", values = list("'F8766D"))
+    list(levels = list(""), name = "", values = list("#00A9E6"))
   )
   options$dependentVariables <- "sepalWidth"
   options$heightPlot <- 550
@@ -424,7 +424,7 @@ test_that("plot with flanking clouds and vioSmoothing matches", {
     list(levels = "", name = "", values = c("L","L", "R", "R")),
     list(levels = "", name = "", values = 0),
     list(levels = "", name = "", values = 0),
-    list(levels = list(""), name = "", values = list("'F8766D"))
+    list(levels = list(""), name = "", values = list("#00A9E6"))
   )
   options$dependentVariables <- "sepalWidth"
   options$heightPlot <- 550

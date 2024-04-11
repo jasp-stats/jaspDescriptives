@@ -36,7 +36,7 @@ raincloudPlots <- function(
       list(levels = list(""), name = "", values = list("R")),
       list(levels = list(""), name = "", values = list(0)),
       list(levels = list(""), name = "", values = list(0)),
-      list(levels = list(""), name = "", values = list("'F8766D"))
+      list(levels = list(""), name = "", values = list("#00A9E6"))
     ),
     dependentVariables = list(),
     heightPlot = 550,
