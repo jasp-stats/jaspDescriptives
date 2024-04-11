@@ -505,3 +505,178 @@ msgstr ""
 msgctxt "Descriptives|"
 msgid "Dodge"
 msgstr ""
+
+msgctxt "Description|"
+msgid "Time Series Descriptives"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid ""
+"Time Series Descriptives allows the user to obtain descriptive statistics "
+"and descriptive plots for univariate time-series."
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Variable"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "A variable that is measured repeatedly over time."
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Time"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid ""
+"Optional. Can either be an ordinal variable indicating the order of the "
+"observations, or a text variable indicating the date/time stamp of the "
+"observations. Combined date and time values should be in the standard format "
+"'YYYY-MM-DD HH:MM:SS', where seconds (':SS') can also be omitted. Date-only "
+"values should be in the format 'YYYY-MM-DD'. If a time variable is not "
+"supplied, the row order of the data is used."
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Transpose descriptives table"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Filter by"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid ""
+"Filters the time series so only a specific range will be used for further "
+"analyses. Row number refers to the row number in the spreadsheet. If a "
+"'Time' variable is supplied it is also possible to filter by time index or "
+"date, depending on the format of the 'Time' variable."
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Row number"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Start"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "End"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Time index"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Date"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Plots"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Time series plot"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Plots the dependent variable (y-axis) over time (x-axis)."
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Points"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Line"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Both"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Distribution"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Density"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Histogram"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "None"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Lag plot"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid ""
+"Plots the dependent variable (y-axis) against a lagged version of itself (x-"
+"axis). The lag stands for the amount of observations in between the "
+"dependent variable and the lagged version of itself. The regression line is "
+"the autoregression at the specified lag."
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Lag"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Add regression line"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Smooth"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Linear"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Confidence interval"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Autocorrelation function"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Maximum lag"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Zero lag"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid ""
+"Plots the autocorrelation for a specified number of lags. The confidence "
+"interval may be given assuming either a white noise process, or assuming for "
+"a lag q a moving average process of order q - 1."
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Based on white noise"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Based on moving average"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Partial autocorrelation function"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Plots the partial autocorrelation for a specified number of lags."
+msgstr ""

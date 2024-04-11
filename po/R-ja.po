@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.11.0\n"
-"POT-Creation-Date: 2024-02-17 03:23\n"
+"POT-Creation-Date: 2024-04-11 15:12\n"
 "PO-Revision-Date: 2023-12-02 03:17+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -12,6 +12,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.3-dev\n"
+
+msgid "Time Series Plot"
+msgstr ""
+
+#, fuzzy
+msgid "Lag Plot"
+msgstr "Q-Qプロット"
+
+#, fuzzy
+msgid "Autocorrelation Function"
+msgstr "相関のプロット"
+
+msgid "Partial Autocorrelation Function"
+msgstr ""
+
+msgid "Descriptive Statistics"
+msgstr "記述統計"
+
+msgid "Valid"
+msgstr "妥当"
+
+msgid "Missing"
+msgstr "欠損値"
+
+msgid "Mean"
+msgstr "平均値"
+
+msgid "Std. Deviation"
+msgstr "標準偏差"
+
+msgid "Variance"
+msgstr "分散"
+
+msgid "Range"
+msgstr "範囲"
+
+msgid "Minimum"
+msgstr "最小値"
+
+msgid "Maximum"
+msgstr "最大値"
+
+msgid "Start"
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Lag 1 Autocorrelation"
+msgstr ""
+
+msgid "The time series data should be equally-spaced."
+msgstr ""
+
+msgid "The time variable should have unique values only."
+msgstr ""
+
+msgid ""
+"The 'Time' variable has a date-like format, please filter by date instead."
+msgstr ""
+
+msgid ""
+"The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:"
+"ss). Try to filter by time index instead."
+msgstr ""
+
+msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
+msgstr ""
+
+msgid "The 'Start' value of the filter should be before last observation."
+msgstr ""
+
+msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
+msgstr ""
+
+msgid ""
+"The 'End' value of the filter should be larger/later than the 'Start' value."
+msgstr ""
+
+msgid "Lag"
+msgstr ""
 
 msgid "Frequency Tables"
 msgstr "度数分布表"
@@ -64,9 +145,6 @@ msgstr "密度プロット"
 msgid "Likert Plots"
 msgstr "リッカートプロット"
 
-msgid "Descriptive Statistics"
-msgstr "記述統計"
-
 msgid ""
 "Excluded %1$i rows from the analysis that correspond to the missing values "
 "of the split-by variable %2$s"
@@ -105,26 +183,14 @@ msgstr "%s%% 信頼区間 分散 上限"
 msgid "%s%% CI Variance Lower"
 msgstr "%s%% 信頼区間 分散 下限"
 
-msgid "Valid"
-msgstr "妥当"
-
-msgid "Missing"
-msgstr "欠損値"
-
 msgid "Mode"
 msgstr "最頻値"
 
 msgid "Median"
 msgstr "中央値"
 
-msgid "Mean"
-msgstr "平均値"
-
 msgid "Std. Error of Mean"
 msgstr "平均の標準誤差"
-
-msgid "Std. Deviation"
-msgstr "標準偏差"
 
 msgid "Coefficient of variation"
 msgstr "変動係数"
@@ -137,9 +203,6 @@ msgstr "ロバスト中央値絶対偏差"
 
 msgid "IQR"
 msgstr "四分位範囲"
-
-msgid "Variance"
-msgstr "分散"
 
 msgid "Skewness"
 msgstr "歪度"
@@ -158,15 +221,6 @@ msgstr "シャピロ-ウィルク"
 
 msgid "P-value of Shapiro-Wilk"
 msgstr "シャピロ-ウィルクのP値"
-
-msgid "Range"
-msgstr "範囲"
-
-msgid "Minimum"
-msgstr "最小値"
-
-msgid "Maximum"
-msgstr "最大値"
 
 msgid "25th percentile"
 msgstr "25パーセンタイル"

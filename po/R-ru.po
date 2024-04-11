@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2024-02-17 03:23\n"
+"POT-Creation-Date: 2024-04-11 15:12\n"
 "PO-Revision-Date: 2023-07-19 09:21+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
@@ -13,6 +13,87 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 5.0-dev\n"
+
+msgid "Time Series Plot"
+msgstr ""
+
+#, fuzzy
+msgid "Lag Plot"
+msgstr "График Q-Q"
+
+#, fuzzy
+msgid "Autocorrelation Function"
+msgstr "Корреляционный график"
+
+msgid "Partial Autocorrelation Function"
+msgstr ""
+
+msgid "Descriptive Statistics"
+msgstr "Описательные статистики"
+
+msgid "Valid"
+msgstr "Существующие"
+
+msgid "Missing"
+msgstr "Пропущенные"
+
+msgid "Mean"
+msgstr "Среднее"
+
+msgid "Std. Deviation"
+msgstr "Стандартное отклонение"
+
+msgid "Variance"
+msgstr "Дисперсия"
+
+msgid "Range"
+msgstr "Размах"
+
+msgid "Minimum"
+msgstr "Минимум"
+
+msgid "Maximum"
+msgstr "Максимум"
+
+msgid "Start"
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Lag 1 Autocorrelation"
+msgstr ""
+
+msgid "The time series data should be equally-spaced."
+msgstr ""
+
+msgid "The time variable should have unique values only."
+msgstr ""
+
+msgid ""
+"The 'Time' variable has a date-like format, please filter by date instead."
+msgstr ""
+
+msgid ""
+"The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:"
+"ss). Try to filter by time index instead."
+msgstr ""
+
+msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
+msgstr ""
+
+msgid "The 'Start' value of the filter should be before last observation."
+msgstr ""
+
+msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
+msgstr ""
+
+msgid ""
+"The 'End' value of the filter should be larger/later than the 'Start' value."
+msgstr ""
+
+msgid "Lag"
+msgstr ""
 
 msgid "Frequency Tables"
 msgstr "Частотные таблицы"
@@ -65,9 +146,6 @@ msgstr "Графики плотности"
 msgid "Likert Plots"
 msgstr "Графики Ликерта"
 
-msgid "Descriptive Statistics"
-msgstr "Описательные статистики"
-
 msgid ""
 "Excluded %1$i rows from the analysis that correspond to the missing values "
 "of the split-by variable %2$s"
@@ -108,26 +186,14 @@ msgstr "%s%% ДИ Дисперсии (верхняя граница)"
 msgid "%s%% CI Variance Lower"
 msgstr "%s%% ДИ Дисперсии (нижняя граница)"
 
-msgid "Valid"
-msgstr "Существующие"
-
-msgid "Missing"
-msgstr "Пропущенные"
-
 msgid "Mode"
 msgstr "Мода"
 
 msgid "Median"
 msgstr "Медиана"
 
-msgid "Mean"
-msgstr "Среднее"
-
 msgid "Std. Error of Mean"
 msgstr "Стандартная ошибка среднего"
-
-msgid "Std. Deviation"
-msgstr "Стандартное отклонение"
 
 msgid "Coefficient of variation"
 msgstr "Коэффициент вариации"
@@ -140,9 +206,6 @@ msgstr "Робастное медианное абсолютное отклон�
 
 msgid "IQR"
 msgstr "Межквартильный размах (IQR)"
-
-msgid "Variance"
-msgstr "Дисперсия"
 
 msgid "Skewness"
 msgstr "Асимметрия"
@@ -161,15 +224,6 @@ msgstr "Критерий Шапиро-Уилка"
 
 msgid "P-value of Shapiro-Wilk"
 msgstr "P-значение коэффициента Шапиро-Уилка"
-
-msgid "Range"
-msgstr "Размах"
-
-msgid "Minimum"
-msgstr "Минимум"
-
-msgid "Maximum"
-msgstr "Максимум"
 
 msgid "25th percentile"
 msgstr "25-й процентиль"

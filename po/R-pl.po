@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2024-02-17 03:23\n"
+"POT-Creation-Date: 2024-04-11 15:12\n"
 "PO-Revision-Date: 2024-03-30 03:17+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
@@ -13,6 +13,87 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 "X-Generator: Weblate 5.5-dev\n"
+
+msgid "Time Series Plot"
+msgstr ""
+
+#, fuzzy
+msgid "Lag Plot"
+msgstr "Wykres K-K"
+
+#, fuzzy
+msgid "Autocorrelation Function"
+msgstr "Wykres korelacji"
+
+msgid "Partial Autocorrelation Function"
+msgstr ""
+
+msgid "Descriptive Statistics"
+msgstr "Statystyki opisowe"
+
+msgid "Valid"
+msgstr "Ważne"
+
+msgid "Missing"
+msgstr "Braki danych"
+
+msgid "Mean"
+msgstr "Średnia"
+
+msgid "Std. Deviation"
+msgstr "Odch. stand."
+
+msgid "Variance"
+msgstr "Wariancja"
+
+msgid "Range"
+msgstr "Rozstęp"
+
+msgid "Minimum"
+msgstr "Minimum"
+
+msgid "Maximum"
+msgstr "Maksimum"
+
+msgid "Start"
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Lag 1 Autocorrelation"
+msgstr ""
+
+msgid "The time series data should be equally-spaced."
+msgstr ""
+
+msgid "The time variable should have unique values only."
+msgstr ""
+
+msgid ""
+"The 'Time' variable has a date-like format, please filter by date instead."
+msgstr ""
+
+msgid ""
+"The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:"
+"ss). Try to filter by time index instead."
+msgstr ""
+
+msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
+msgstr ""
+
+msgid "The 'Start' value of the filter should be before last observation."
+msgstr ""
+
+msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
+msgstr ""
+
+msgid ""
+"The 'End' value of the filter should be larger/later than the 'Start' value."
+msgstr ""
+
+msgid "Lag"
+msgstr ""
 
 msgid "Frequency Tables"
 msgstr "Tabela częstości"
@@ -65,9 +146,6 @@ msgstr "Wykresy gęstości"
 msgid "Likert Plots"
 msgstr "Wykresy Likerta"
 
-msgid "Descriptive Statistics"
-msgstr "Statystyki opisowe"
-
 msgid ""
 "Excluded %1$i rows from the analysis that correspond to the missing values "
 "of the split-by variable %2$s"
@@ -108,26 +186,14 @@ msgstr "górna granica %s%% PU wariancji"
 msgid "%s%% CI Variance Lower"
 msgstr "dolna granica %s%% PU wariancji"
 
-msgid "Valid"
-msgstr "Ważne"
-
-msgid "Missing"
-msgstr "Braki danych"
-
 msgid "Mode"
 msgstr "Modalna"
 
 msgid "Median"
 msgstr "Mediana"
 
-msgid "Mean"
-msgstr "Średnia"
-
 msgid "Std. Error of Mean"
 msgstr "Błąd stand. średniej"
-
-msgid "Std. Deviation"
-msgstr "Odch. stand."
 
 msgid "Coefficient of variation"
 msgstr "Współczynnik zmienności"
@@ -140,9 +206,6 @@ msgstr "MAD (wersja odporna)"
 
 msgid "IQR"
 msgstr "IQR"
-
-msgid "Variance"
-msgstr "Wariancja"
 
 msgid "Skewness"
 msgstr "Skośność"
@@ -161,15 +224,6 @@ msgstr "Shapiro-Wilk"
 
 msgid "P-value of Shapiro-Wilk"
 msgstr "Wartość p testu Shapiro-Wilka"
-
-msgid "Range"
-msgstr "Rozstęp"
-
-msgid "Minimum"
-msgstr "Minimum"
-
-msgid "Maximum"
-msgstr "Maksimum"
 
 msgid "25th percentile"
 msgstr "25-ty percentyl"

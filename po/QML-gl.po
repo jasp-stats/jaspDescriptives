@@ -518,8 +518,9 @@ msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Time Series Descriptives allows the user to obtain descriptive statistics "
 "and descriptive plots for univariate time-series."
-msgstr "Series Temporais Descritivos permite ao usuario obter estatísticos descritivos e gráficas "
-"descritivas para series temporais univariantes"
+msgstr ""
+"Series Temporais Descritivos permite ao usuario obter estatísticos "
+"descritivos e gráficas descritivas para series temporais univariantes"
 
 #, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"

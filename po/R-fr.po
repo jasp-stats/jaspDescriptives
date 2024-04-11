@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2024-02-17 03:23\n"
+"POT-Creation-Date: 2024-04-11 15:12\n"
 "PO-Revision-Date: 2024-01-25 02:01+0000\n"
 "Last-Translator: Michael Cantinotti <michael.cantinotti@uqtr.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/jasp/"
@@ -12,6 +12,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 5.4-dev\n"
+
+msgid "Time Series Plot"
+msgstr ""
+
+#, fuzzy
+msgid "Lag Plot"
+msgstr "Diagramme Q-Q"
+
+#, fuzzy
+msgid "Autocorrelation Function"
+msgstr "Graphique de corrélation"
+
+msgid "Partial Autocorrelation Function"
+msgstr ""
+
+msgid "Descriptive Statistics"
+msgstr "Statistiques descriptives"
+
+msgid "Valid"
+msgstr "Valide"
+
+msgid "Missing"
+msgstr "Manquant"
+
+msgid "Mean"
+msgstr "Moyenne"
+
+msgid "Std. Deviation"
+msgstr "Écart type"
+
+msgid "Variance"
+msgstr "Variance"
+
+msgid "Range"
+msgstr "Étendue"
+
+msgid "Minimum"
+msgstr "Minimum"
+
+msgid "Maximum"
+msgstr "Maximum"
+
+msgid "Start"
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Lag 1 Autocorrelation"
+msgstr ""
+
+msgid "The time series data should be equally-spaced."
+msgstr ""
+
+msgid "The time variable should have unique values only."
+msgstr ""
+
+msgid ""
+"The 'Time' variable has a date-like format, please filter by date instead."
+msgstr ""
+
+msgid ""
+"The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:"
+"ss). Try to filter by time index instead."
+msgstr ""
+
+msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
+msgstr ""
+
+msgid "The 'Start' value of the filter should be before last observation."
+msgstr ""
+
+msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
+msgstr ""
+
+msgid ""
+"The 'End' value of the filter should be larger/later than the 'Start' value."
+msgstr ""
+
+msgid "Lag"
+msgstr ""
 
 msgid "Frequency Tables"
 msgstr "Tableaux de Fréquence"
@@ -65,9 +146,6 @@ msgstr "Diagramme à points"
 msgid "Likert Plots"
 msgstr "Graphiques Likert"
 
-msgid "Descriptive Statistics"
-msgstr "Statistiques descriptives"
-
 msgid ""
 "Excluded %1$i rows from the analysis that correspond to the missing values "
 "of the split-by variable %2$s"
@@ -108,26 +186,14 @@ msgstr "IC supérieur de la Variance %s%%"
 msgid "%s%% CI Variance Lower"
 msgstr "IC inférieur de la Variance %s%%"
 
-msgid "Valid"
-msgstr "Valide"
-
-msgid "Missing"
-msgstr "Manquant"
-
 msgid "Mode"
 msgstr "Mode"
 
 msgid "Median"
 msgstr "Médiane"
 
-msgid "Mean"
-msgstr "Moyenne"
-
 msgid "Std. Error of Mean"
 msgstr "Erreur Type de la Moyenne"
-
-msgid "Std. Deviation"
-msgstr "Écart type"
 
 msgid "Coefficient of variation"
 msgstr "Coefficient de variation"
@@ -140,9 +206,6 @@ msgstr "Écart Médian Absolu Robuste"
 
 msgid "IQR"
 msgstr "Écart interquartile"
-
-msgid "Variance"
-msgstr "Variance"
 
 msgid "Skewness"
 msgstr "Asymétrie"
@@ -162,15 +225,6 @@ msgstr "Shapiro-Wilk"
 
 msgid "P-value of Shapiro-Wilk"
 msgstr "Valeur p de Shapiro-Wilk"
-
-msgid "Range"
-msgstr "Étendue"
-
-msgid "Minimum"
-msgstr "Minimum"
-
-msgid "Maximum"
-msgstr "Maximum"
 
 msgid "25th percentile"
 msgstr "25ième centile"

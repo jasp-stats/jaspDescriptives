@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2024-02-17 03:23\n"
+"POT-Creation-Date: 2024-04-11 15:12\n"
 "PO-Revision-Date: 2024-03-11 14:01+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -12,6 +12,87 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.5-dev\n"
+
+msgid "Time Series Plot"
+msgstr ""
+
+#, fuzzy
+msgid "Lag Plot"
+msgstr "Q-Q 图"
+
+#, fuzzy
+msgid "Autocorrelation Function"
+msgstr "相关图"
+
+msgid "Partial Autocorrelation Function"
+msgstr ""
+
+msgid "Descriptive Statistics"
+msgstr "描述性统计"
+
+msgid "Valid"
+msgstr "有效"
+
+msgid "Missing"
+msgstr "缺失"
+
+msgid "Mean"
+msgstr "均值"
+
+msgid "Std. Deviation"
+msgstr "标准差"
+
+msgid "Variance"
+msgstr "方差"
+
+msgid "Range"
+msgstr "极差"
+
+msgid "Minimum"
+msgstr "最小值"
+
+msgid "Maximum"
+msgstr "最大值"
+
+msgid "Start"
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Lag 1 Autocorrelation"
+msgstr ""
+
+msgid "The time series data should be equally-spaced."
+msgstr ""
+
+msgid "The time variable should have unique values only."
+msgstr ""
+
+msgid ""
+"The 'Time' variable has a date-like format, please filter by date instead."
+msgstr ""
+
+msgid ""
+"The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:"
+"ss). Try to filter by time index instead."
+msgstr ""
+
+msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
+msgstr ""
+
+msgid "The 'Start' value of the filter should be before last observation."
+msgstr ""
+
+msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
+msgstr ""
+
+msgid ""
+"The 'End' value of the filter should be larger/later than the 'Start' value."
+msgstr ""
+
+msgid "Lag"
+msgstr ""
 
 msgid "Frequency Tables"
 msgstr "频率表"
@@ -64,9 +145,6 @@ msgstr "密度图"
 msgid "Likert Plots"
 msgstr "李克特图"
 
-msgid "Descriptive Statistics"
-msgstr "描述性统计"
-
 msgid ""
 "Excluded %1$i rows from the analysis that correspond to the missing values "
 "of the split-by variable %2$s"
@@ -105,26 +183,14 @@ msgstr "%s%% CI 方差上界"
 msgid "%s%% CI Variance Lower"
 msgstr "%s%% CI 方差下界"
 
-msgid "Valid"
-msgstr "有效"
-
-msgid "Missing"
-msgstr "缺失"
-
 msgid "Mode"
 msgstr "众数"
 
 msgid "Median"
 msgstr "中位数"
 
-msgid "Mean"
-msgstr "均值"
-
 msgid "Std. Error of Mean"
 msgstr "均值的标准误差"
-
-msgid "Std. Deviation"
-msgstr "标准差"
 
 msgid "Coefficient of variation"
 msgstr "变异系数"
@@ -137,9 +203,6 @@ msgstr "MAD 稳健性"
 
 msgid "IQR"
 msgstr "IQR"
-
-msgid "Variance"
-msgstr "方差"
 
 msgid "Skewness"
 msgstr "偏度"
@@ -158,15 +221,6 @@ msgstr "Shapiro-Wilk"
 
 msgid "P-value of Shapiro-Wilk"
 msgstr "Shapiro-Wilk 的p值"
-
-msgid "Range"
-msgstr "极差"
-
-msgid "Minimum"
-msgstr "最小值"
-
-msgid "Maximum"
-msgstr "最大值"
 
 msgid "25th percentile"
 msgstr "第 25 百分位"
