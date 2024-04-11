@@ -262,6 +262,13 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   # Preparation
   infoFactorCombinations <- .rainInfoFactorCombinations(dataset, options)  # Also has color info
 
+  if (options$numberOfClouds == .rainInfoFactorCombinations(dataset, options)$numberOfClouds &&  # Add customColors
+      options$customColors &&
+      options$secondaryFactor == ""  # Currently not possible with secondaryFactor because of meanLines and stuff
+  ) {
+    infoFactorCombinations$color <- options$customizationTable[[4]]$values
+  }
+
   getVioSides   <- .rainSetVioSides(options, dataset, infoFactorCombinations)  # Default "r" or custom orientation
   vioSides      <- getVioSides$sides
   errorVioSides <- getVioSides$error
@@ -391,7 +398,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 
   # Caption
   if (options$showCaption) {
-    caption         <- .rainCaption(options, dataInfo, dataInfo$intervalBounds[[inputVariable]], warningAxisLimits, errorVioSides)
+    caption         <- .rainCaption(options, dataInfo, dataInfo$intervalBounds[[inputVariable]], warningAxisLimits, errorVioSides, infoFactorCombinations)
     addCaption      <- ggplot2::labs(caption = caption)
     captionPosition <- ggplot2::theme(plot.caption = ggtext::element_markdown(hjust = 0))  # Bottom left position
     plotInProgress  <- plotInProgress + addCaption + captionPosition
@@ -408,7 +415,16 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 
   fillTitle <- if (options$secondaryFactor == "") options$primaryFactor else options$secondaryFactor
   paletteFill <- if (options$secondaryFactor != "" || options$colorAnyway) {
-    jaspGraphs::scale_JASPfill_discrete(options$colorPalette, name = fillTitle)
+
+    if (options$numberOfClouds == .rainInfoFactorCombinations(dataset, options)$numberOfClouds &&
+        options$customColors &&
+        options$secondaryFactor == ""  # Currently not possible with secondaryFactor because of meanLines and stuff
+    ) {
+      ggplot2::scale_fill_manual(values = options$customizationTable[[4]]$values)
+    } else {
+      jaspGraphs::scale_JASPfill_discrete(options$colorPalette, name = fillTitle)
+    }
+
   } else {
     NULL
   }
@@ -421,7 +437,16 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
     }
   } else {
     if (options$secondaryFactor != "" || options$colorAnyway) {
-      jaspGraphs::scale_JASPcolor_discrete(  options$colorPalette,     name = options$secondaryFactor)
+
+      if (options$numberOfClouds == .rainInfoFactorCombinations(dataset, options)$numberOfClouds &&
+          options$customColors &&
+          options$secondaryFactor == ""  # Currently not possible with secondaryFactor because of meanLines and stuff
+      ) {
+        ggplot2::scale_colour_manual(values = options$customizationTable[[4]]$values)
+      } else {
+        jaspGraphs::scale_JASPcolor_discrete(  options$colorPalette,     name = options$secondaryFactor)
+      }
+
     } else {
       NULL
     }
@@ -536,10 +561,12 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   showVioGuide    <- if (options$secondaryFactor == "") TRUE else FALSE
   vioArgs         <- list(alpha = options$vioOpacity, adjust = options$vioSmoothing, lwd = options$vioOutlineWidth)
   vioOutlineColor <- .rainOutlineColor(options, options$vioOutline, infoFactorCombinations)
+
   perCloud512     <- rep(512, infoFactorCombinations$numberOfClouds)  # Each violin consists of 512 points by default
   vioArgs$color   <- rep(vioOutlineColor, perCloud512)
 
   boxArgs       <- list(outlier.shape = NA, alpha = options$boxOpacity, show.legend = FALSE, lwd = options$boxOutlineWidth)
+  boxArgs$color <- .rainOutlineColor(options, options$boxOutline, infoFactorCombinations)
   boxArgs$color <- .rainOutlineColor(options, options$boxOutline, infoFactorCombinations)
 
   showPointGuide <- if (options$covariate == "") FALSE else TRUE
@@ -616,6 +643,11 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
     output <- rep("black", infoFactorCombinations$numberOfClouds)
   } else if (inputOutline == "none") {
     output <- rep(NA, infoFactorCombinations$numberOfClouds)
+  } else if (options$numberOfClouds == infoFactorCombinations$numberOfClouds &&
+                     options$customColors &&
+                     options$secondaryFactor == ""  # Currently not possible with secondaryFactor because of meanLines and stuff
+  ) {
+    output <- infoFactorCombinations$color
   } else if (inputOutline == "colorPalette") {
     if (options$secondaryFactor != "" || options$colorAnyway) {
       output <- infoFactorCombinations$colors
@@ -693,7 +725,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 
 # .rainCaption() ----
 # CSS formatting works through ggtext::element_markdown(); see .rainFillPlot()
-.rainCaption <- function(options, dataInfo, intervalBounds, warningAxisLimits, errorVioSides) {
+.rainCaption <- function(options, dataInfo, intervalBounds, warningAxisLimits, errorVioSides, infoFactorCombinations) {
 
   exclusions <- if (dataInfo$numberOfExclusions > 0) {
     gettextf("Not shown are %s observations due to missing data.", dataInfo$numberOfExclusions)
@@ -730,7 +762,14 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
     gettextf("<span style = 'color: darkorange'> Error with custom orientation: Specified number of clouds does not match clouds in plot.<br>Reverted to default all 'R'. Point nudge set to 0.</span>")
   }
 
-  output <- paste0(exclusions, "\n\n", meanInterval, "\n\n", jitter, "\n\n", warningAxisLimits, "\n\n", errorVioSides)
+  errorCustomColors <- if (options$numberOfClouds != infoFactorCombinations$numberOfClouds &&
+                           options$customColors &&
+                           options$secondaryFactor == ""  # Currently not possible with secondaryFactor because of meanLines and stuff
+  ) {
+    gettextf("<span style = 'color: darkorange'> Error with custom color: Specified number of clouds does not match clouds in plot.<br>Ignoring custom color input.</span>")
+  }
+
+  output <- paste0(exclusions, "\n\n", meanInterval, "\n\n", jitter, "\n\n", warningAxisLimits, "\n\n", errorVioSides, "\n\n", errorCustomColors)
   return(output)
 }  # End .rainCaption()
 

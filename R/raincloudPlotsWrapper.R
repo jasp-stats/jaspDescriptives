@@ -35,7 +35,8 @@ raincloudPlots <- function(
     customizationTable = list(
       list(levels = list(""), name = "", values = list("R")),
       list(levels = list(""), name = "", values = list(0)),
-      list(levels = list(""), name = "", values = list(0))
+      list(levels = list(""), name = "", values = list(0)),
+      list(levels = list(""), name = "", values = list("'F8766D"))
     ),
     dependentVariables = list(),
     heightPlot = 550,

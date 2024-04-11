@@ -101,7 +101,8 @@ test_that("horizontal plot with both factors and custom axis limits matches", {
   options$customizationTable <- list(
     list(levels = "", name = "", values = "R"),
     list(levels = "", name = "", values = 0),
-    list(levels = "", name = "", values = 0)
+    list(levels = "", name = "", values = 0),
+    list(levels = list(""), name = "", values = list("'F8766D"))
   )
   options$dependentVariables <- "body_mass_g"
   options$heightPlot <- 550
@@ -142,7 +143,8 @@ test_that("plot with both factors, no box, means, meanLines, and, bootstrapped c
   options$customizationTable <- list(
     list(levels = "", name = "", values = "R"),
     list(levels = "", name = "", values = 0),
-    list(levels = "", name = "", values = 0)
+    list(levels = "", name = "", values = 0),
+    list(levels = list(""), name = "", values = list("'F8766D"))
   )
   options$dependentVariables <- "bill_length_mm"
   options$heightPlot <- 550
@@ -188,7 +190,8 @@ test_that("table results match for a plot with both factors, no box, means, mean
   options$customizationTable <- list(
     list(levels = "", name = "", values = "R"),
     list(levels = "", name = "", values = 0),
-    list(levels = "", name = "", values = 0)
+    list(levels = "", name = "", values = 0),
+    list(levels = list(""), name = "", values = list("'F8766D"))
   )
   options$dependentVariables <- "bill_length_mm"
   options$heightPlot <- 550
@@ -245,7 +248,8 @@ test_that("plot with primary factor and continuous covariate matches", {
   options$customizationTable <- list(
     list(levels = "", name = "", values = "R"),
     list(levels = "", name = "", values = 0),
-    list(levels = "", name = "", values = 0)
+    list(levels = "", name = "", values = 0),
+    list(levels = list(""), name = "", values = list("'F8766D"))
   )
   options$dependentVariables <- "flipper_length_mm"
   options$heightPlot <- 550
@@ -285,7 +289,8 @@ test_that("plot with secondary factor, discrete covariate, and means matches", {
   options$customizationTable <- list(
     list(levels = "", name = "", values = "R"),
     list(levels = "", name = "", values = 0),
-    list(levels = "", name = "", values = 0)
+    list(levels = "", name = "", values = 0),
+    list(levels = list(""), name = "", values = list("'F8766D"))
   )
   options$dependentVariables <- "body_mass_g"
   options$heightPlot <- 550
@@ -327,7 +332,8 @@ test_that("plot for ID over time matches", {
   options$customizationTable <- list(
     list(levels = "", name = "", values = c("L","L", "L", "R", "R", "R")),
     list(levels = "", name = "", values = 0),
-    list(levels = "", name = "", values = 0)
+    list(levels = "", name = "", values = 0),
+    list(levels = list(""), name = "", values = list("'F8766D"))
   )
   options$dependentVariables <- "sepalWidth"
   options$heightPlot <- 500
@@ -373,7 +379,8 @@ test_that("plot with custom mean interval matches", {
   options$customizationTable <- list(
     list(levels = "", name = "", values = "R"),
     list(levels = "", name = "", values = c(2.6, 2.9, 3, 2.53, 3.33, 2.44)),
-    list(levels = "", name = "", values = c(2.85, 3.07, 3.45, 2.91, 3.86, 2.66))
+    list(levels = "", name = "", values = c(2.85, 3.07, 3.45, 2.91, 3.86, 2.66)),
+    list(levels = list(""), name = "", values = list("'F8766D"))
   )
   options$dependentVariables <- "sepalWidth"
   options$heightPlot <- 550
@@ -416,7 +423,8 @@ test_that("plot with flanking clouds and vioSmoothing matches", {
   options$customizationTable <- list(
     list(levels = "", name = "", values = c("L","L", "R", "R")),
     list(levels = "", name = "", values = 0),
-    list(levels = "", name = "", values = 0)
+    list(levels = "", name = "", values = 0),
+    list(levels = list(""), name = "", values = list("'F8766D"))
   )
   options$dependentVariables <- "sepalWidth"
   options$heightPlot <- 550
@@ -442,4 +450,56 @@ test_that("plot with flanking clouds and vioSmoothing matches", {
   plotName <- results[["results"]][["containerRaincloudPlots"]][["collection"]][["containerRaincloudPlots_sepalWidth"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "flanking-clouds-viosmoothing")
+})
+
+
+
+# 9: Custom Color ----
+test_that("plot with custom cloud color matches", {
+  options <- jaspTools::analysisOptions("raincloudPlots")
+  options$.meta <- list(covariate = list(shouldEncode = TRUE), customizationTable = list(
+    shouldEncode = TRUE), dependentVariables = list(shouldEncode = TRUE),
+    observationId = list(shouldEncode = TRUE), primaryFactor = list(
+      shouldEncode = TRUE), secondaryFactor = list(shouldEncode = TRUE))
+  options$boxNudge <- 0
+  options$boxOutline <- "none"
+  options$boxPadding <- 0.1
+  options$boxWidth <- 0.275
+  options$colorPalette <- "ggplot2"
+  options$covariatePalette <- "viridis"
+  options$colorAnyway <- TRUE
+  options$customColors <- TRUE
+  options$numberOfClouds <- 3
+  options$customizationTable <- list(
+    list(levels = "", name = "", values = "R"),
+    list(levels = "", name = "", values = 0),
+    list(levels = "", name = "", values = 0),
+    list(levels = list(""), name = "", values = list("#8B93FF", "#5755FE", "#FF71CD"))
+  )
+  options$dependentVariables <- "bill_length_mm"
+  options$heightPlot <- 550
+  options$mean <- TRUE
+  options$meanCiAssumption <- TRUE
+  options$meanCiBootstrapSamples <- 1001
+  options$meanCiMethod <- "bootstrap"
+  options$meanCiWidth <- 0.99
+  options$meanInterval <- TRUE
+  options$meanIntervalOption <- "ci"
+  options$meanSize <- 4.5
+  options$pointNudge <- 0.25
+  options$pointOpacity <- 0.25
+  options$primaryFactor <- "island"
+  options$seed <- 42
+  options$setSeed <- TRUE
+  options$showBox <- TRUE
+  options$table <- TRUE
+  options$tableBoxStatistics <- FALSE
+  options$vioNudge <- 0.2
+  options$vioOpacity <- 0.5
+  options$widthPlot <- 675
+  set.seed(1)
+  results <- jaspTools::runAnalysis("raincloudPlots", "palmerPenguins.csv", options)
+  plotName <- results[["results"]][["containerRaincloudPlots"]][["collection"]][["containerRaincloudPlots_bill_length_mm"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "custom-cloud-color")
 })

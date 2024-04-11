@@ -726,7 +726,7 @@ Form
 
 		Group
 		{
-			title:				qsTr("Custom Cloud Orientation and Mean Interval Limits")
+			title:				qsTr("Custom Cloud Orientation, Mean Interval Limits, and Cloud Color")
 			Layout.columnSpan:  2
 
 			IntegerField
@@ -771,7 +771,10 @@ Form
 										"Any custom orientation or mean intervals will be applied to the plot of every dependent variable.<br>" +
 										"How can you specify different custom mean intervals for two dependent variables?<br>" +
 										"For this, you can duplicate the analysis (see symbol: white plus on green background),<br>" +
-										"only select one dependent variable in each version, and specify the custom intervals separately."
+										"only select one dependent variable in each version, and specify the custom intervals separately." +
+
+										"<br><br>" +
+										"For custom cloud colors, just enter the hexcode you want. This features only works when there is no Secondary Factor."
 				)
 			}
 
@@ -779,39 +782,48 @@ Form
 
 			CheckBox{ id: meanIntervalCustom; name: "meanIntervalCustom"; enabled: mean.checked; label: qsTr("Apply custom mean interval limits") }
 
+			CheckBox{ id: customColors; name: "customColors"; label: qsTr("Apply custom colors"); enabled: secondaryFactor.count === 0 }
+
 			TableView
 			{
 
 				id: customizationTable
 				modelType			: JASP.Simple
 
-				implicitWidth		: 350 //  form.implicitWidth
+				implicitWidth		: 450 //  form.implicitWidth
 				implicitHeight		: 240 * preferencesModel.uiScale // about 6 rows
 
 				initialRowCount		: numberOfClouds.value
 				rowCount			: numberOfClouds.value
-				initialColumnCount	: 3
-				columnCount			: 3
+				initialColumnCount	: 4
+				columnCount			: 4
 
 				name				: "customizationTable"
 				cornerText			: qsTr("Cloud")
-				columnNames			: [qsTr("Orientation"), qsTr("Lower Limit"), qsTr("Upper Limit")]
+				columnNames			: [qsTr("Orientation"), qsTr("Lower Limit"), qsTr("Upper Limit"), qsTr("Color")]
 
 				// isFirstColEditable	: false
 
 				itemType			: JASP.Double
-				itemTypePerColumn	: [JASP.String, JASP.Double, JASP.Double] // first column is string, all others are double
+				itemTypePerColumn	: [JASP.String, JASP.Double, JASP.Double, JASP.string]
 
 				function getRowHeaderText(headerText, rowIndex)	 { return String.fromCharCode(65 + rowIndex);	}
-				// function getDefaultValue(columnIndex, rowIndex)	 { return columnIndex === 0 ? String.fromCharCode(65 + rowIndex) : 2 * columnIndex - 3;	}
+				function getDefaultValue(columnIndex, rowIndex) {
+            		if      (columnIndex === 0) return "R";
+            		else if (columnIndex === 3) return "#F8766D";
+            		else           				return 0;
+        		}
 
-				function getDefaultValue(columnIndex, rowIndex)	 { return columnIndex === 0 ? "R" : 0	}
-				// function getDefaultValue(columnIndex, rowIndex)	 { return columnIndex === 0 ? String.fromCharCode(65 + rowIndex) : 0	}
+				JASPDoubleValidator	       { id: doubleValidator; decimals: 3	                      }
+				RegularExpressionValidator { id: stringValidator; regularExpression: /^[LR]$/         }
+				RegularExpressionValidator { id: hexValidator; regularExpression: /^#[0-9A-Fa-f]{6}$/ }
 
-				JASPDoubleValidator			{ id: doubleValidator; decimals: 3	}
-				RegularExpressionValidator  { id: stringValidator; regularExpression: /^[LR]$/ }
+				function getValidator(columnIndex, rowIndex) {
+        		    if      (columnIndex === 0) return stringValidator;
+        		    else if (columnIndex === 3) return hexValidator;
+        		    else 						return doubleValidator;
+        		}
 
-				function getValidator(columnIndex, rowIndex) 	 { return columnIndex === 0 ? stringValidator : doubleValidator	}
 			}
 
 		}  // End group custom orientation and table
@@ -829,7 +841,10 @@ Form
 							"Custom orientation:\n" +
 							"Per default, all violins are right of the boxes.\n" +
 							"To customize this, specify 'L' or 'R' for each cloud.\n" +
-							"Applying the custom orientation sets Point Nudge to 0."
+							"Applying the custom orientation sets Point Nudge to 0.\n\n" +
+
+							"Custom Color:\n" +
+							"Specify a hexcode. Only works when there is no Secondary Factor."
 						)
 		}
 
