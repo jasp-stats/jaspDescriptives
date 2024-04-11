@@ -692,3 +692,79 @@ msgstr ""
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the partial autocorrelation for a specified number of lags."
 msgstr ""
+
+msgctxt "Flexplot|"
+msgid "Dependent Variable"
+msgstr "Variável Dependente"
+
+msgctxt "Flexplot|"
+msgid "Independent Variable(s)"
+msgstr "Variável independente(s)"
+
+msgctxt "Flexplot|"
+msgid "Options"
+msgstr "Opções"
+
+msgctxt "Flexplot|"
+msgid "Point transparency"
+msgstr "Transparência dos pontos"
+
+msgctxt "Flexplot|"
+msgid "Jitter in X"
+msgstr "Jitter em X"
+
+msgctxt "Flexplot|"
+msgid "Jitter in Y"
+msgstr "Jitter em Y"
+
+msgctxt "Flexplot|"
+msgid "Plot confidence bands"
+msgstr "Traçar faixas de confiança"
+
+msgctxt "Flexplot|"
+msgid "Fitted line (scatterplots)"
+msgstr "Linha de ajuste (gráfico de dispersão)"
+
+msgctxt "Flexplot|"
+msgid "Intervals (categorical predictors)"
+msgstr "Intervalos (preditores categóricos)"
+
+msgctxt "Flexplot|"
+msgid "GGplot theme"
+msgstr "Tema do GGplot"
+
+msgctxt "Flexplot|"
+msgid "Ghost lines"
+msgstr "Linhas fantasmas"
+
+msgctxt "Flexplot|"
+msgid "Paneled Variable(s)"
+msgstr "Variáveis em painel"
+
+msgctxt "Flexplot|"
+msgid "<br><strong>Point controls</br></strong>"
+msgstr "<br><strong>Controles dos pontos</br></strong>"
+
+msgctxt "Flexplot|"
+msgid "<strong>Visual Statistics</strong>"
+msgstr ""
+
+msgctxt "Flexplot|"
+msgid "<br><strong>Other Plot Controls</strong>"
+msgstr "<br><strong>Mais controles de gráficos</strong>"
+
+msgctxt "Flexplot|"
+msgid "Color Palette"
+msgstr "Paleta de cores"
+
+msgctxt "Flexplot|"
+msgid "Convert to grayscale"
+msgstr "Converter para escala de cinza"
+
+msgctxt "Flexplot|"
+msgid "Plot Labels"
+msgstr "Legendas do gráfico"
+
+msgctxt "Flexplot|"
+msgid "<br><strong>Plot Labels</strong>"
+msgstr "<br><strong>Rótulos do gráfico</strong>"

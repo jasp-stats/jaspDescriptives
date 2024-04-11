@@ -745,3 +745,171 @@ msgid "Plots the partial autocorrelation for a specified number of lags."
 msgstr ""
 "Representa la función de autocorrelación parcial para un número indicado de "
 "retardos."
+
+msgctxt "Flexplot|"
+msgid "Dependent Variable"
+msgstr "Variable Dependiente"
+
+msgctxt "Flexplot|"
+msgid "Independent Variable(s)"
+msgstr "Variable(s) independiente(s)"
+
+msgctxt "Flexplot|"
+msgid "Paneled Variable(s)"
+msgstr "Variable(s) en panel"
+
+msgctxt "Flexplot|"
+msgid "Options"
+msgstr "Opciones"
+
+msgctxt "Flexplot|"
+msgid "<br><strong>Point controls</br></strong>"
+msgstr "<br><strong>Controles de Puntos</br></strong>"
+
+msgctxt "Flexplot|"
+msgid "Point transparency"
+msgstr "Transparencia de puntos"
+
+msgctxt "Flexplot|"
+msgid "Jitter in X"
+msgstr "Jitter en X"
+
+msgctxt "Flexplot|"
+msgid "Jitter in Y"
+msgstr "Jitter en Y"
+
+msgctxt "Flexplot|"
+msgid "<strong>Visual Statistics</strong>"
+msgstr "<strong>Estadísticas visuales</strong>"
+
+msgctxt "Flexplot|"
+msgid "Plot confidence bands"
+msgstr "Graficar bandas de confianza"
+
+msgctxt "Flexplot|"
+msgid "Fitted line (scatterplots)"
+msgstr "Línea ajustada (diagramas de dispersión)"
+
+msgctxt "Flexplot|"
+msgid "Intervals (categorical predictors)"
+msgstr "Intervalos (predictores con categorías)"
+
+msgctxt "Flexplot|"
+msgid "<br><strong>Other Plot Controls</strong>"
+msgstr "<br><strong>Otros controles de gráfico</strong>"
+
+msgctxt "Flexplot|"
+msgid "GGplot theme"
+msgstr "Tema de GGplot"
+
+msgctxt "Flexplot|"
+msgid "Color Palette"
+msgstr "Paleta de colores"
+
+msgctxt "Flexplot|"
+msgid "Convert to grayscale"
+msgstr "Convertir a escala de grises"
+
+msgctxt "Flexplot|"
+msgid "Ghost lines"
+msgstr "Líneas fantasma"
+
+msgctxt "Flexplot|"
+msgid "Plot Labels"
+msgstr "Etiquetas de gráficos"
+
+msgctxt "Flexplot|"
+msgid "<br><strong>Plot Labels</strong>"
+msgstr "<br><strong>Etiquetas de gráficos </strong>"
+
+msgctxt "Flexplot|"
+msgid "Loess"
+msgstr "Loess"
+
+msgctxt "Flexplot|"
+msgid "Regression"
+msgstr "Regresión"
+
+msgctxt "Flexplot|"
+msgid "Quadratic"
+msgstr "Cuadrática"
+
+msgctxt "Flexplot|"
+msgid "Cubic"
+msgstr "Cúbica"
+
+msgctxt "Flexplot|"
+msgid "None"
+msgstr "Ninguna"
+
+msgctxt "Flexplot|"
+msgid "Quartiles"
+msgstr "Cuartiles"
+
+msgctxt "Flexplot|"
+msgid "Standard errors"
+msgstr "Errores típicos"
+
+msgctxt "Flexplot|"
+msgid "Standard deviations"
+msgstr "Desviaciones típicas"
+
+msgctxt "Flexplot|"
+msgid "JASP"
+msgstr "JASP"
+
+msgctxt "Flexplot|"
+msgid "Black and white"
+msgstr "Blanco y negro"
+
+msgctxt "Flexplot|"
+msgid "Minimal"
+msgstr "Mínimo"
+
+msgctxt "Flexplot|"
+msgid "Classic"
+msgstr "Clásico"
+
+msgctxt "Flexplot|"
+msgid "Dark"
+msgstr "Oscuro"
+
+msgctxt "Flexplot|"
+msgid "GGplot Default"
+msgstr "Gráfico GG Predeterminado"
+
+msgctxt "Flexplot|"
+msgid "Nature"
+msgstr "Naturaleza"
+
+msgctxt "Flexplot|"
+msgid "AAAS"
+msgstr "AAAS"
+
+msgctxt "Flexplot|"
+msgid "Lancet"
+msgstr "Lancet"
+
+msgctxt "Flexplot|"
+msgid "JCO"
+msgstr "JCO"
+
+msgctxt "Flexplot|"
+msgid "X Axis Label"
+msgstr "Etiqueta del Eje X"
+
+msgctxt "Flexplot|"
+msgid "Y Axis Label"
+msgstr "Etiqueta del Eje Y"
+
+msgctxt "Flexplot|"
+msgid "Legend Label"
+msgstr "Etiqueta de la Leyenda"
+
+msgctxt "Flexplot|"
+msgid "Column Panel Label"
+msgstr "Etiqueta de la Columna del Panel"
+
+msgctxt "Flexplot|"
+msgid "Row Panel Label"
+msgstr "Etiqueta de la Fila del Panel"
