@@ -200,55 +200,55 @@ Form
 			text: 		qsTr("Show point")
 			checked: 	true
 			info: 		qsTr(
-							"Whether or not the points of a cloud should be shown. If un-checked, opacity is set to 0.<br>
-If you have many, many points, it can be helpful to hide them.
+							"Whether or not the points of a cloud should be shown. If un-checked, opacity is set to 0.<br>" +
+							"If you have many, many points, it can be helpful to hide them." +
 
-<br><br>
+							"<br><br>" +
 
-<h3>Element Settings</h3>  // All of this here, because infoLabel{} for DoubleField{} does not work.
+							"<h3>Element Settings</h3>" +  // All of this here, because infoLabel{} for DoubleField{} does not work.
 
-<h4>Nudge</h4>
-The nudge for violin, box, and point determines how far the elements are nudged from the center (axis tick).<br>
-By default, the box is in the center (nudge = 0) and the violin is nudged to the right. 
-The points are nudged to the left of the box.<br>
-With a custom orientation (see Advanced section), the points get centered (nudge fixed to 0). Violin and box are nudged depending on orientation: left or right.
+							"<h4>Nudge</h4>" +
+							"The nudge for violin, box, and point determines how far the elements are nudged from the center (axis tick).<br>" +
+							"By default, the box is in the center (nudge = 0) and the violin is nudged to the right. " +
+							"The points are nudged to the left of the box.<br>" +
+							"With a custom orientation (see Advanced section), the points get centered (nudge fixed to 0). Violin and box are nudged depending on orientation: left or right." +
 
-<h4>Height, Width, and Spread</h4>
-These settings determine the respective properties of the elements:<br><br>
-How high should the violin peak? (Does not change the proportions of the probability density.)<br>
-With a custom orientation to the left (see Advanced Section), it can be 
-helpful to decrease the height if the violin overlaps with axis ticks.<br><br>
-How wide should the box be?<br><br>
-How wide should the points spread? I.e., how jittered should they be along the x-axis (y-axis if horizontal plot?.<br>
-Note, that this still correctly shows the values of the points on the dependent variable axis.<br>
-(If you would also like y-jitter see the 'Jitter' option for points.)
+							"<h4>Height, Width, and Spread</h4>" +
+							"These settings determine the respective properties of the elements:<br><br>" +
+							"How high should the violin peak? (Does not change the proportions of the probability density.)<br>" +
+							"With a custom orientation to the left (see Advanced Section), it can be " +
+							"helpful to decrease the height if the violin overlaps with axis ticks.<br><br>" +
+							"How wide should the box be?<br><br>" +
+							"How wide should the points spread? I.e., how jittered should they be along the x-axis (y-axis if horizontal plot?.<br>" +
+							"Note, that this still correctly shows the values of the points on the dependent variable axis.<br>" +
+							"(If you would also like y-jitter see the 'Jitter' option for points.)" +
 
-<h4>Box Padding</h4>
-With a secondary factor, there will be a box for each factor level. With the padding, you can change the spacing between theses boxes.<br>
-Increasing the padding will - visually - decrease the box width. If you want to keep box width constant, also increase the box width.
+							"<h4>Box Padding</h4>" +
+							"With a secondary factor, there will be a box for each factor level. With the padding, you can change the spacing between theses boxes.<br>" +
+							"Increasing the padding will - visually - decrease the box width. If you want to keep box width constant, also increase the box width." +
 
-<h4>Point Size</h4>
-We recommend a greater size, the fewer points you have.
+							"<h4>Point Size</h4>" +
+							"We recommend a greater size, the fewer points you have." +
 
-<h4>Opacity</h4>
-Increase this to _decrease_ the transparency of the respective element.
+							"<h4>Opacity</h4>" +
+							"Increase this to _decrease_ the transparency of the respective element." +
 
-<h4>Outline and Outline Width</h4>
-Would you like the outline to match the 'Color palette', be 'black', or have 'none' at all?<br>
-The width determines how thick the outline is.
+							"<h4>Outline and Outline Width</h4>" +
+							"Would you like the outline to match the 'Color palette', be 'black', or have 'none' at all?<br>" +
+							"The width determines how thick the outline is." +
 
-<h4>Violin Smoothing</h4>
-This percentage determines the smoothness of the probability density.<br>
-The lower, the stronger it is influenced by the presence/absence of individual points.
+							"<h4>Violin Smoothing</h4>" +
+							"This percentage determines the smoothness of the probability density.<br>" +
+							"The lower, the stronger it is influenced by the presence/absence of individual points." +
 
-<h4>Point Jitter</h4>
-Use this with care!<br>
-It slightly jitters the points along the dependent variable axis. This means that the position of the points no longer matches the values of the observations.<br>
-If you want to have less overlap between the points while keeping an accurate visualization, increases the point spread.<br>
-Using point jitter can be useful in some cases. For example, if you are working with likert data.
+							"<h4>Point Jitter</h4>" +
+							"Use this with care!<br>" +
+							"It slightly jitters the points along the dependent variable axis. This means that the position of the points no longer matches the values of the observations.<br>" +
+							"If you want to have less overlap between the points while keeping an accurate visualization, increases the point spread.<br>" +
+							"Using point jitter can be useful in some cases. For example, if you are working with likert data." +
 
-<h4>ID Lines Width</h4>
-Determines how thick the lines are."
+							"<h4>ID Lines Width</h4>" +
+							"Determines how thick the lines are."
 						)
 		}
 
