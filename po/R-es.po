@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
 "POT-Creation-Date: 2024-04-11 15:12\n"
-"PO-Revision-Date: 2024-03-03 11:01+0000\n"
+"PO-Revision-Date: 2024-04-11 15:17+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/es/>\n"
@@ -14,18 +14,16 @@ msgstr ""
 "X-Generator: Weblate 5.5-dev\n"
 
 msgid "Time Series Plot"
-msgstr ""
+msgstr "Gráfico de Serie temporal"
 
-#, fuzzy
 msgid "Lag Plot"
-msgstr "Gráfico Q-Q"
+msgstr "Gráfico de retardos"
 
-#, fuzzy
 msgid "Autocorrelation Function"
-msgstr "Gráfico de correlación"
+msgstr "Función de Autocorrelación"
 
 msgid "Partial Autocorrelation Function"
-msgstr ""
+msgstr "Función de Autocorrelación Parcial"
 
 msgid "Descriptive Statistics"
 msgstr "Estadísticos Descriptivos"
@@ -55,44 +53,54 @@ msgid "Maximum"
 msgstr "Máximo"
 
 msgid "Start"
-msgstr ""
+msgstr "Inicio"
 
 msgid "End"
-msgstr ""
+msgstr "Fin"
 
 msgid "Lag 1 Autocorrelation"
-msgstr ""
+msgstr "Autocorrelación de orden 1"
 
 msgid "The time series data should be equally-spaced."
-msgstr ""
+msgstr "Los datos de series temporales deben estar equidistantes."
 
 msgid "The time variable should have unique values only."
-msgstr ""
+msgstr "La variable de tiempo debe tener solo valores que no se repitan."
 
 msgid ""
 "The 'Time' variable has a date-like format, please filter by date instead."
 msgstr ""
+"La variable 'Tiempo' tiene un formato semejante al de fechas; por favor, "
+"mejor filtre por fecha."
 
 msgid ""
 "The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:"
 "ss). Try to filter by time index instead."
 msgstr ""
+"La variable 'Tiempo' no tiene un formato semejante al de fechas (p.e. aaaa-"
+"mm-dd hh:mm:ss). Mejor intente filtrar mediante un índice temporal."
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
 msgstr ""
+"'Inicio' debe estar en formato semejante al de fechas (p.e. aaaa-mm-dd "
+"hh:mm:ss)."
 
 msgid "The 'Start' value of the filter should be before last observation."
 msgstr ""
+"El valor de 'Inicio' del filtro debe ser anterior a la última observación."
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
 msgstr ""
+"'Fin' debe estar en formato semejante al de fechas (p.e. aaaa-mm-dd "
+"hh:mm:ss)."
 
 msgid ""
 "The 'End' value of the filter should be larger/later than the 'Start' value."
 msgstr ""
+"El valor de 'Fin' del filtro debe ser mayor/posterior al valor de 'Inicio'."
 
 msgid "Lag"
-msgstr ""
+msgstr "Retardo"
 
 msgid "Frequency Tables"
 msgstr "Tablas de Frecuencias"
