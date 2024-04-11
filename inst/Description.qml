@@ -25,4 +25,11 @@ Description
 		title:	qsTr("Time Series Descriptives")
 		func:	"DescriptivesTimeSeries"
 	}
+
+	Analysis
+	{
+		title:  qsTr("Flexplot")
+		qml:   	"Flexplot.qml"
+		func:	"flexplot"
+	}
 }

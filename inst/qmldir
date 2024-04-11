@@ -1,2 +1,3 @@
 module <jaspDescriptives>
 DescriptivesTimeSeriesForm		1.0		qml/common/DescriptivesTimeSeriesForm.qml
+FlexplotForm                            1.0             qml/common/FlexplotForm.qml
