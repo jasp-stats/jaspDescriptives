@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2024-04-11 15:17+0000\n"
+"Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
+"Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/gl/>\n"
+"Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.5-dev\n"
 "X-Language: gl_ES\n"
 "X-Source-Language: C\n"
 "X-Qt-Contexts: true\n"
@@ -519,25 +525,21 @@ msgid ""
 "Time Series Descriptives allows the user to obtain descriptive statistics "
 "and descriptive plots for univariate time-series."
 msgstr ""
-"Series Temporais Descritivos permite ao usuario obter estatísticos "
-"descritivos e gráficas descritivas para series temporais univariantes"
+"Descritivos Series Temporais permite ao usuario obter estatísticos "
+"descritivos e gráficas descritivas para series temporais univariantes."
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Variable"
 msgstr "Variable"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "A variable that is measured repeatedly over time."
 msgstr "Unha variable que se mide repetidamente ao longo do tempo."
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time"
 msgstr "Tempo"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Optional. Can either be an ordinal variable indicating the order of the "
@@ -550,21 +552,18 @@ msgstr ""
 "Opcional. Pode ser ben unha variable ordinal que indique a orde das "
 "observacións, ou unha variable de texto que indique unha marca de tempo/data "
 "das observacións. Valores combinados de data e tempo deben estar no formato "
-"estándar 'AAAA-MM-DD HH:MM:SS', no que tamén poden omitirse os segundos (':"
-"SS'). Os valores só de datas deben estar no formato 'AAAA-MM-DD'. Se non se "
-"indica unha variable de tempo, utilízase a ordenación das filas de datos."
+"estándar 'AAAA-MM-DD HH:MM:SS', no que tamén poden omitirse os segundos "
+"(':SS'). Os valores só de datas deben estar no formato 'AAAA-MM-DD'. Se non "
+"se indica unha variable de tempo, utilízase a ordenación das filas de datos."
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Transpose descriptives table"
 msgstr "Traspoñer a táboa de descritivos"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Filter by"
 msgstr "Filtro consonte"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Filters the time series so only a specific range will be used for further "
@@ -578,87 +577,70 @@ msgstr ""
 "consonte ao índice temporal ou á data, dependendo do formato da variable "
 "'Tempo'."
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Row number"
 msgstr "Número de fila"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Start"
 msgstr "Inicio"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "End"
 msgstr "Final"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time index"
 msgstr "Índice temporal"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Date"
 msgstr "Data"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots"
 msgstr "Gráficas"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time series plot"
 msgstr "Gráfica de Serie temporal"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the dependent variable (y-axis) over time (x-axis)."
 msgstr "Representa a variable dependente (eixe y) co tempo (eixe x)."
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Points"
 msgstr "Puntos"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Line"
 msgstr "Liña"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Both"
 msgstr "Ambos"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Distribution"
 msgstr "Distribución"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Density"
 msgstr "Densidade"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Histogram"
 msgstr "Histograma"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "None"
 msgstr "Ningún"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Lag plot"
 msgstr "Gráfica de retardos"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Plots the dependent variable (y-axis) against a lagged version of itself (x-"
@@ -671,78 +653,65 @@ msgstr ""
 "variable dependente e a versión retardada da mesma. A liña de regresión é a "
 "da autorregresión no retardo indicado."
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Lag"
 msgstr "Retardo"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Add regression line"
 msgstr "Engadir liña de regresión"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Smooth"
 msgstr "Suavizado"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Linear"
 msgstr "Linear"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Confidence interval"
 msgstr "Intervalo de confianza"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Autocorrelation function"
-msgstr "Función de autocorrelación"
+msgstr "Función de Autocorrelación"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Maximum lag"
 msgstr "Retardo máximo"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Zero lag"
 msgstr "Retardo cero"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Plots the autocorrelation for a specified number of lags. The confidence "
 "interval may be given assuming either a white noise process, or assuming for "
 "a lag q a moving average process of order q - 1."
 msgstr ""
-"Representa a función de autocorrelación para un número indicado de retardos. "
+"Representa a función de Autocorrelación para un número indicado de retardos. "
 "O intervalo de confianza pode indicarse asumindo un proceso de tipo ruído "
 "branco, ou asumindo un proceso de media móbil de nivel q - 1 para o retardo "
 "q."
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Based on white noise"
-msgstr "Basado nun ruído branco"
+msgstr "Baseado nun ruído branco"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Based on moving average"
-msgstr "Basado nunha media móbil"
+msgstr "Baseado nunha media móbil"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Partial autocorrelation function"
-msgstr "Función de autocorrelación parcial"
+msgstr "Función de Autocorrelación Parcial"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the partial autocorrelation for a specified number of lags."
 msgstr ""
-"Representa a función de autocorrelación parcial para un número indicado de "
+"Representa a función de Autocorrelación Parcial para un número indicado de "
 "retardos."
 
 msgctxt "Flexplot|"
