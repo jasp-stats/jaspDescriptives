@@ -127,7 +127,8 @@ Form
 			CheckBox { name: "maximum";						label: qsTr("Maximum");				checked: true	}
 		}
 
-				Group
+
+		Group
 		{
 			title:		qsTr("Inference")
 			
@@ -197,7 +198,29 @@ Form
 				}
 			}
 		}
+		Group
+		{
+			title:	qsTr("Association matrix")
 
+			CheckBox { name: "covariance";		label: qsTr("Covariance"); id:covariance}
+			CheckBox { name: "correlation";		label: qsTr("Correlation"); id:correlation}
+
+			DropDown 
+			{
+				name: "associationMatrixUse"
+				id : associationMatrixUse
+				label: qsTr("Use")
+				enabled:  covariance.checked || correlation.checked
+				indexDefaultValue: 0
+				values:
+				[
+					{label: qsTr("Everything"),							value: "everything"},
+					{label: qsTr("Complete observations"),				value: "complete.obs"},
+					{label: qsTr("Pairwise compelete observations"),	value: "pairwise.complete.obs"}
+				]
+			}
+		}
+		
 		CheckBox { name: "statisticsValuesAreGroupMidpoints"; label: qsTr("Values are group midpoints"); debug: true }
 	}
 
