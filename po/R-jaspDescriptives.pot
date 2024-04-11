@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.18.3\n"
-"POT-Creation-Date: 2024-02-17 03:23\n"
+"POT-Creation-Date: 2024-04-11 15:12\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -10,6 +10,81 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+msgid "Time Series Plot"
+msgstr ""
+
+msgid "Lag Plot"
+msgstr ""
+
+msgid "Autocorrelation Function"
+msgstr ""
+
+msgid "Partial Autocorrelation Function"
+msgstr ""
+
+msgid "Descriptive Statistics"
+msgstr ""
+
+msgid "Valid"
+msgstr ""
+
+msgid "Missing"
+msgstr ""
+
+msgid "Mean"
+msgstr ""
+
+msgid "Std. Deviation"
+msgstr ""
+
+msgid "Variance"
+msgstr ""
+
+msgid "Range"
+msgstr ""
+
+msgid "Minimum"
+msgstr ""
+
+msgid "Maximum"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Lag 1 Autocorrelation"
+msgstr ""
+
+msgid "The time series data should be equally-spaced."
+msgstr ""
+
+msgid "The time variable should have unique values only."
+msgstr ""
+
+msgid "The 'Time' variable has a date-like format, please filter by date instead."
+msgstr ""
+
+msgid "The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:ss). Try to filter by time index instead."
+msgstr ""
+
+msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
+msgstr ""
+
+msgid "The 'Start' value of the filter should be before last observation."
+msgstr ""
+
+msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
+msgstr ""
+
+msgid "The 'End' value of the filter should be larger/later than the 'Start' value."
+msgstr ""
+
+msgid "Lag"
+msgstr ""
 
 msgid "Frequency Tables"
 msgstr ""
@@ -62,9 +137,6 @@ msgstr ""
 msgid "Likert Plots"
 msgstr ""
 
-msgid "Descriptive Statistics"
-msgstr ""
-
 msgid "Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s"
 msgstr ""
 
@@ -101,25 +173,13 @@ msgstr ""
 msgid "%s%% CI Variance Lower"
 msgstr ""
 
-msgid "Valid"
-msgstr ""
-
-msgid "Missing"
-msgstr ""
-
 msgid "Mode"
 msgstr ""
 
 msgid "Median"
 msgstr ""
 
-msgid "Mean"
-msgstr ""
-
 msgid "Std. Error of Mean"
-msgstr ""
-
-msgid "Std. Deviation"
 msgstr ""
 
 msgid "Coefficient of variation"
@@ -132,9 +192,6 @@ msgid "MAD robust"
 msgstr ""
 
 msgid "IQR"
-msgstr ""
-
-msgid "Variance"
 msgstr ""
 
 msgid "Skewness"
@@ -153,15 +210,6 @@ msgid "Shapiro-Wilk"
 msgstr ""
 
 msgid "P-value of Shapiro-Wilk"
-msgstr ""
-
-msgid "Range"
-msgstr ""
-
-msgid "Minimum"
-msgstr ""
-
-msgid "Maximum"
 msgstr ""
 
 msgid "25th percentile"

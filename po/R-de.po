@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2024-02-17 03:23\n"
+"POT-Creation-Date: 2024-04-11 15:12\n"
 "PO-Revision-Date: 2024-03-03 11:01+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
@@ -13,6 +13,96 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
 "X-Generator: Weblate 5.5-dev\n"
+
+msgid "Time Series Plot"
+msgstr "Zeitreihendiagramm"
+
+msgid "Lag Plot"
+msgstr "Verzögerungsdiagramm"
+
+msgid "Autocorrelation Function"
+msgstr "Autokorrelationsfunktion"
+
+msgid "Partial Autocorrelation Function"
+msgstr "Partielle Autokorrelationsfunktion"
+
+msgid "Descriptive Statistics"
+msgstr "Deskriptive Statistik"
+
+msgid "Valid"
+msgstr "Gültig"
+
+msgid "Missing"
+msgstr "Fehlend"
+
+msgid "Mean"
+msgstr "Mittelwert"
+
+msgid "Std. Deviation"
+msgstr "Standardabweichung"
+
+msgid "Variance"
+msgstr "Varianz"
+
+msgid "Range"
+msgstr "Wertebereich"
+
+msgid "Minimum"
+msgstr "Minimum"
+
+msgid "Maximum"
+msgstr "Maximum"
+
+msgid "Start"
+msgstr "Start"
+
+msgid "End"
+msgstr "Ende"
+
+#, fuzzy
+msgid "Lag 1 Autocorrelation"
+msgstr "Verzögerung-1-Autokorrelation"
+
+msgid "The time series data should be equally-spaced."
+msgstr "Die Zeitreihendaten sollten gleichmäßige Abstände aufweisen."
+
+msgid "The time variable should have unique values only."
+msgstr "Die Zeitvariable sollte nur einzigartige Werte haben."
+
+msgid ""
+"The 'Time' variable has a date-like format, please filter by date instead."
+msgstr ""
+"Die Variable 'Zeit' hat ein datumsähnliches Format, bitte filtern Sie "
+"stattdessen nach dem Datum."
+
+msgid ""
+"The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:"
+"ss). Try to filter by time index instead."
+msgstr ""
+"Die Variable 'Zeit' hat kein datumsähnliches Format (z. B. jjjj-mm-tt hh:mm:"
+"ss). Versuchen Sie stattdessen, nach dem Zeitindex zu filtern."
+
+msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
+msgstr ""
+"'Start' muss in einem datumsähnlichen Format angegeben werden (z. B. jjjj-mm-"
+"tt hh:mm:ss)."
+
+msgid "The 'Start' value of the filter should be before last observation."
+msgstr ""
+"Der 'Start'-Wert des Filters sollte vor der letzten Beobachtung liegen."
+
+msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
+msgstr ""
+"'Ende' muss in einem datumsähnlichen Format angegeben werden (z. B. jjjj-mm-"
+"tt hh:mm:ss)."
+
+msgid ""
+"The 'End' value of the filter should be larger/later than the 'Start' value."
+msgstr ""
+"Der 'Ende'-Wert des Filters sollte größer/später sein als der 'Start'-Wert."
+
+msgid "Lag"
+msgstr "Verzögerung"
 
 msgid "Frequency Tables"
 msgstr "Häufigkeitstabellen"
@@ -65,9 +155,6 @@ msgstr "Dichtediagramme"
 msgid "Likert Plots"
 msgstr "Likert-Diagramme"
 
-msgid "Descriptive Statistics"
-msgstr "Deskriptive Statistik"
-
 msgid ""
 "Excluded %1$i rows from the analysis that correspond to the missing values "
 "of the split-by variable %2$s"
@@ -108,26 +195,14 @@ msgstr "%s%% KI Varianz Obergrenze"
 msgid "%s%% CI Variance Lower"
 msgstr "%s%% KI Varianz Untergrenze"
 
-msgid "Valid"
-msgstr "Gültig"
-
-msgid "Missing"
-msgstr "Fehlend"
-
 msgid "Mode"
 msgstr "Modus"
 
 msgid "Median"
 msgstr "Median"
 
-msgid "Mean"
-msgstr "Mittelwert"
-
 msgid "Std. Error of Mean"
 msgstr "Std.-Fehler Mittelwert"
-
-msgid "Std. Deviation"
-msgstr "Standardabweichung"
 
 msgid "Coefficient of variation"
 msgstr "Variationskoeffizient"
@@ -140,9 +215,6 @@ msgstr "MAD robust"
 
 msgid "IQR"
 msgstr "IQR"
-
-msgid "Variance"
-msgstr "Varianz"
 
 msgid "Skewness"
 msgstr "Schiefe"
@@ -161,15 +233,6 @@ msgstr "Shapiro-Wilk"
 
 msgid "P-value of Shapiro-Wilk"
 msgstr "P-Wert Shapiro-Wilk"
-
-msgid "Range"
-msgstr "Wertebereich"
-
-msgid "Minimum"
-msgstr "Minimum"
-
-msgid "Maximum"
-msgstr "Maximum"
 
 msgid "25th percentile"
 msgstr "25. Perzentil"
@@ -215,7 +278,8 @@ msgstr ""
 "Der Modus wird unter der Annahme berechnet, dass Variablen diskret sind."
 
 msgid "The mode is computed assuming that variables are discreet."
-msgstr "Der Modus ist unter der Annahme berechnet, dass Variablen diskret sind."
+msgstr ""
+"Der Modus ist unter der Annahme berechnet, dass Variablen diskret sind."
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
 msgstr "Nicht alle Maße sind verfügbar bei <i>nominalen Text</i>-Variablen"
@@ -318,6 +382,180 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "Der Dezimalpunkt ist %s Stelle von links von dem |"
 msgstr[1] "Der Dezimalpunkt ist %s Stellen von links von dem |"
+
+#~ msgid "The ARIMA model could not be fit."
+#~ msgstr "Das ARIMA-Modell konnte nicht angepasst werden."
+
+#~ msgid "No parameters are estimated."
+#~ msgstr "Es werden keine Parameter geschätzt."
+
+#~ msgid "Model Summary"
+#~ msgstr "Modellzusammenfassung"
+
+#~ msgid "Log-Likelihood"
+#~ msgstr "Log-Likelihood"
+
+#~ msgid "AICc"
+#~ msgstr "AICc"
+
+#~ msgid "AIC"
+#~ msgstr "AIC"
+
+#~ msgid "BIC"
+#~ msgstr "BIC"
+
+#~ msgid "Coefficients"
+#~ msgstr "Koeffizienten"
+
+#~ msgid "Estimate"
+#~ msgstr "Schätzung"
+
+#~ msgid "Standard Error"
+#~ msgstr "Standardfehler"
+
+#~ msgid "t"
+#~ msgstr "t"
+
+#~ msgid "p"
+#~ msgstr "p"
+
+#, fuzzy
+#~ msgid "%s%% CI"
+#~ msgstr "%s%% KI"
+
+#~ msgid "Intercept"
+#~ msgstr "Konstante"
+
+#~ msgid "AR(%1$i)"
+#~ msgstr "AR(%1$i)"
+
+#~ msgid "MA(%1$i)"
+#~ msgstr "MA(%1$i)"
+
+#~ msgid "seasonal AR(%1$i)"
+#~ msgstr "saisonale AR(%1$i)"
+
+#~ msgid "seasonal MA(%1$i)"
+#~ msgstr "saisonaler MA(%1$i)"
+
+#~ msgid "An ARIMA(%1$s, %2$s, %3$s)(%4$s, %5$s, %6$s)[%7$s] model was fitted."
+#~ msgstr ""
+#~ "Ein ARIMA(%1$s, %2$s, %3$s)(%4$s, %5$s, %6$s)[%7$s]-Modell wurde "
+#~ "angepasst."
+
+#~ msgid "An ARIMA(%1$s, %2$s, %3$s) model was fitted."
+#~ msgstr "Ein ARIMA(%1$s, %2$s, %3$s)-Modell wurde angepasst."
+
+#~ msgid "Residual Diagnostics Plots"
+#~ msgstr "Diagramme Residuendiagnose"
+
+#~ msgid "Autocorrelation Function Plot"
+#~ msgstr "Diagramm Autokorrelationsfunktion"
+
+#~ msgid "Ljung-Box Plot"
+#~ msgstr "Ljung-Box-Diagramm"
+
+#~ msgid "p-value"
+#~ msgstr "p-Wert"
+
+#~ msgid ""
+#~ "When 'Covariates' are used in the model, predictions cannot be carried "
+#~ "out unless the covariates are also observed for the predicted period."
+#~ msgstr ""
+#~ "Wenn 'Kovariaten' im Modell verwendet werden, können die Vorhersagen nur "
+#~ "dann durchgeführt werden, wenn die Kovariaten auch für den vorhergesagten "
+#~ "Zeitraum beobachtet werden."
+
+#~ msgid ""
+#~ "Not enough observations in the covariate%1$s. The maximum number of "
+#~ "forecasts is %2$s."
+#~ msgstr ""
+#~ "Nicht genügend Beobachtungen in der Kovariate%1$s. Die maximale Anzahl "
+#~ "von Prognosen ist %2$s."
+
+#~ msgid "Forecasting failed."
+#~ msgstr "Prognose fehlgeschlagen."
+
+#~ msgid "Forecast Time Series Plot"
+#~ msgstr "Prognose-Zeitreihen-Diagramm"
+
+#~ msgid "Forecasts"
+#~ msgstr "Prognosen"
+
+#~ msgid "The spectral analysis failed."
+#~ msgstr "Die Spektralanalyse ist fehlgeschlagen."
+
+#~ msgid "Power Spectral Density Plot"
+#~ msgstr "Diagramm Spektrale Leistungsdichte"
+
+#~ msgid "Spectral Density"
+#~ msgstr "Spektrale Leistungsdichte"
+
+#~ msgid "Bandwidth"
+#~ msgstr "Bandbreite"
+
+#~ msgid "Data cannot be zero or negative for log transformation."
+#~ msgstr ""
+#~ "Für Log-Transformation dürfen die Daten nicht null oder negativ sein."
+
+#~ msgid "Data cannot be negative for root transformation."
+#~ msgstr "Die Daten dürfen für die Wurzeltransformation nicht negativ sein."
+
+#~ msgid "Detrend using linear regression"
+#~ msgstr "Trendbereinigung mit linearer Regression"
+
+#~ msgid "Degree"
+#~ msgstr "Grad"
+
+#~ msgid "A polynomial regression with a degree of %s was fitted."
+#~ msgstr ""
+#~ "Es wurde eine polynomiale Regression mit einem Grad von %s angepasst."
+
+#~ msgid "Stationarity Tests"
+#~ msgstr "Stationaritätstests"
+
+#~ msgid "Test"
+#~ msgstr "Test"
+
+#~ msgid "Statistic"
+#~ msgstr "Statistik"
+
+#~ msgid "H₀"
+#~ msgstr "H₀"
+
+#~ msgid "Level"
+#~ msgstr "Stufe"
+
+#~ msgid "Trend"
+#~ msgstr "Trend"
+
+#~ msgid "Non-stationary"
+#~ msgstr "Nichtstationär"
+
+#~ msgid "Trend stationary"
+#~ msgstr "Trend-stationär"
+
+#~ msgid "The ADF test failed."
+#~ msgstr "Der ADF-Test ist fehlgeschlagen."
+
+#~ msgid "The PP regression coefficient test failed."
+#~ msgstr "Der PP-Regressionskoeffiziententest ist fehlgeschlagen."
+
+#~ msgid "The PP studentized test failed."
+#~ msgstr "Der PP-studentisierte Test ist fehlgeschlagen."
+
+#~ msgid "The KPSS test for trend stationarity failed."
+#~ msgstr "Der KPSS-Test auf Trend-Stationarität ist fehlgeschlagen."
+
+#~ msgid "The p-value is actually less than p-value shown (see Help file)."
+#~ msgstr ""
+#~ "Der p-Wert ist tatsächlich kleiner als der angezeigte p-Wert (siehe "
+#~ "Hilfedatei)."
+
+#~ msgid "The p-value is actually greater than p-value shown (see Help file)."
+#~ msgstr ""
+#~ "Der p-Wert ist tatsächlich größer als der angezeigte p-Wert (siehe "
+#~ "Hilfedatei)."
 
 #~ msgid "More than one mode exists, only the first is reported"
 #~ msgstr "Es gibt mehr als einen Modus, nur der erste ist berichtet"
