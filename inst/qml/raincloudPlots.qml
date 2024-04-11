@@ -565,6 +565,7 @@ Form
 							id:		        meanNudge
 							defaultValue:   boxNudge.value
 							onValueChanged: if (initialized) boxNudge.value = meanNudge.value
+							negativeValues:	true
 						}
 
 						DoubleField
