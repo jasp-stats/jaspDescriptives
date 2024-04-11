@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2024-02-17 03:23\n"
+"POT-Creation-Date: 2024-04-11 15:12\n"
 "PO-Revision-Date: 2021-04-19 01:26+0000\n"
 "Last-Translator: phlostically <phlostically@mailinator.com>\n"
 "Language-Team: Esperanto <https://hosted.weblate.org/projects/jasp/"
@@ -12,6 +12,86 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.6-dev\n"
+
+msgid "Time Series Plot"
+msgstr ""
+
+#, fuzzy
+msgid "Lag Plot"
+msgstr "Q-Q-Diagramo"
+
+msgid "Autocorrelation Function"
+msgstr ""
+
+msgid "Partial Autocorrelation Function"
+msgstr ""
+
+msgid "Descriptive Statistics"
+msgstr ""
+
+msgid "Valid"
+msgstr "Valida"
+
+msgid "Missing"
+msgstr "Mankanta"
+
+msgid "Mean"
+msgstr "Aritmetika meznombro"
+
+msgid "Std. Deviation"
+msgstr "Norma Devio"
+
+msgid "Variance"
+msgstr "Varianco"
+
+msgid "Range"
+msgstr ""
+
+msgid "Minimum"
+msgstr "Minimumo"
+
+msgid "Maximum"
+msgstr "Maksimumo"
+
+msgid "Start"
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Lag 1 Autocorrelation"
+msgstr ""
+
+msgid "The time series data should be equally-spaced."
+msgstr ""
+
+msgid "The time variable should have unique values only."
+msgstr ""
+
+msgid ""
+"The 'Time' variable has a date-like format, please filter by date instead."
+msgstr ""
+
+msgid ""
+"The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:"
+"ss). Try to filter by time index instead."
+msgstr ""
+
+msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
+msgstr ""
+
+msgid "The 'Start' value of the filter should be before last observation."
+msgstr ""
+
+msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
+msgstr ""
+
+msgid ""
+"The 'End' value of the filter should be larger/later than the 'Start' value."
+msgstr ""
+
+msgid "Lag"
+msgstr ""
 
 msgid "Frequency Tables"
 msgstr "Tabelo de Oftecoj"
@@ -68,9 +148,6 @@ msgstr "Q-Q-Diagramoj"
 msgid "Likert Plots"
 msgstr "Q-Q-Diagramoj"
 
-msgid "Descriptive Statistics"
-msgstr ""
-
 msgid ""
 "Excluded %1$i rows from the analysis that correspond to the missing values "
 "of the split-by variable %2$s"
@@ -109,26 +186,14 @@ msgstr ""
 msgid "%s%% CI Variance Lower"
 msgstr ""
 
-msgid "Valid"
-msgstr "Valida"
-
-msgid "Missing"
-msgstr "Mankanta"
-
 msgid "Mode"
 msgstr "Plejoftanto"
 
 msgid "Median"
 msgstr "Mediano"
 
-msgid "Mean"
-msgstr "Aritmetika meznombro"
-
 msgid "Std. Error of Mean"
 msgstr "Norma Eraro de Aritmetika Meznombro"
-
-msgid "Std. Deviation"
-msgstr "Norma Devio"
 
 msgid "Coefficient of variation"
 msgstr ""
@@ -141,9 +206,6 @@ msgstr ""
 
 msgid "IQR"
 msgstr ""
-
-msgid "Variance"
-msgstr "Varianco"
 
 msgid "Skewness"
 msgstr ""
@@ -162,15 +224,6 @@ msgstr "Shapiro-Wilk"
 
 msgid "P-value of Shapiro-Wilk"
 msgstr "P-valoro de Shapiro-Wilk"
-
-msgid "Range"
-msgstr ""
-
-msgid "Minimum"
-msgstr "Minimumo"
-
-msgid "Maximum"
-msgstr "Maksimumo"
 
 msgid "25th percentile"
 msgstr ""
