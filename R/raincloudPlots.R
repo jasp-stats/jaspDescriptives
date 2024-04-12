@@ -420,7 +420,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
         options$customColors &&
         options$secondaryFactor == ""  # Currently not possible with secondaryFactor because of meanLines and stuff
     ) {
-      ggplot2::scale_fill_manual(values = options$customizationTable[[4]]$values)
+      ggplot2::scale_fill_manual(values = options$customizationTable[[4]]$values, name = fillTitle)
     } else {
       jaspGraphs::scale_JASPfill_discrete(options$colorPalette, name = fillTitle)
     }
