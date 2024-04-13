@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2024-04-14 10:38+0000\n"
+"Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/de/>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.5-dev\n"
 "X-Language: de\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -520,22 +526,21 @@ msgid ""
 "Time Series Descriptives allows the user to obtain descriptive statistics "
 "and descriptive plots for univariate time-series."
 msgstr ""
+"Deskriptive Zeitreihen ermöglichen es dem Benutzer, deskriptive Statistiken "
+"und deskriptive Diagramme für univariate Zeitreihen zu erhalten."
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Variable"
 msgstr "Variable"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "A variable that is measured repeatedly over time."
-msgstr ""
+msgstr "Eine Variable, die über die Zeit wiederholt gemessen wird."
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time"
 msgstr "Zeit"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Optional. Can either be an ordinal variable indicating the order of the "
@@ -553,12 +558,10 @@ msgstr ""
 "Format 'JJJJ-MM-TT' sein. Wenn keine Zeitvariable angegeben wird, wird die "
 "Zeilenreihenfolge der Daten genutzt."
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Transpose descriptives table"
 msgstr "Deskriptive Tabelle transponieren"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Filter by"
 msgstr "Filtern nach"
@@ -570,88 +573,75 @@ msgid ""
 "'Time' variable is supplied it is also possible to filter by time index or "
 "date, depending on the format of the 'Time' variable."
 msgstr ""
+"Filtert die Zeitreihe, so dass nur ein bestimmter Bereich für weitere "
+"Analysen verwendet wird. Zeilennummer bezieht sich auf die Zeilennummer in "
+"der Datentabelle. Wenn eine 'Zeit'-Variable angegeben wird, kann auch nach "
+"Zeitindex oder Datum gefiltert werden, je nach Format der 'Zeit'-Variable."
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Row number"
 msgstr "Zeilennummer"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Start"
 msgstr "Start"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "End"
 msgstr "Ende"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time index"
 msgstr "Zeitindex"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Date"
 msgstr "Datum"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots"
 msgstr "Diagramme"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time series plot"
 msgstr "Zeitreihendiagramm"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the dependent variable (y-axis) over time (x-axis)."
-msgstr "Zeichnet die abhängige Variable (y-Achse) über die Zeit (x-Achse)."
+msgstr "Zeigt die abhängige Variable (y-Achse) über die Zeit (x-Achse)."
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Points"
 msgstr "Punkte"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Line"
 msgstr "Linie"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Both"
 msgstr "Beide"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Distribution"
 msgstr "Verteilung"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Density"
 msgstr "Dichte"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Histogram"
 msgstr "Histogramm"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "None"
 msgstr "Keine"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Lag plot"
 msgstr "Verzögerungsdiagramm"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Plots the dependent variable (y-axis) against a lagged version of itself (x-"
@@ -665,47 +655,38 @@ msgstr ""
 "von sich selbst. Die Regressionslinie ist die Autoregression bei der "
 "angegebenen Verzögerung."
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Lag"
 msgstr "Verzögerung"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Add regression line"
 msgstr "Regressionsgerade hinzufügen"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Smooth"
 msgstr "Glättung"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Linear"
 msgstr "Linear"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Confidence interval"
 msgstr "Konfidenzintervall"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Autocorrelation function"
 msgstr "Autokorrelationsfunktion"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Maximum lag"
 msgstr "Maximale Verzögerung"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Zero lag"
 msgstr "Null Verzögerung"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Plots the autocorrelation for a specified number of lags. The confidence "
@@ -717,22 +698,18 @@ msgstr ""
 "mit weißem Rauschen, oder der Annahme eines gleitenden Mittelwertsprozesses "
 "der Ordnung q - 1 für eine Verzögerung q."
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Based on white noise"
 msgstr "Basierend auf weißem Rauschen"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Based on moving average"
 msgstr "Basierend auf gleitendem Mittelwert"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Partial autocorrelation function"
 msgstr "Partielle Autokorrelationsfunktion"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the partial autocorrelation for a specified number of lags."
 msgstr ""
@@ -741,242 +718,203 @@ msgstr ""
 
 msgctxt "Description|"
 msgid "Flexplot"
-msgstr ""
+msgstr "Flexplot"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Dependent Variable"
 msgstr "Abhängige Variable"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Independent Variable(s)"
 msgstr "Unabhängige Variable(n)"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Paneled Variable(s)"
-msgstr "Panel-Variablen"
+msgstr "Panel-Variable(n)"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Options"
 msgstr "Optionen"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "<br><strong>Point controls</br></strong>"
 msgstr "<br><strong>Punktkontrollen</br></strong>"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Point transparency"
 msgstr "Punkttransparenz"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Jitter in X"
 msgstr "Streuung in X"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Jitter in Y"
 msgstr "Streuung in Y"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "<strong>Visual Statistics</strong>"
 msgstr "<strong>Visuelle Statistiken</strong>"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Plot confidence bands"
-msgstr "Konfidenzintervall anzeigen"
+msgstr "Konfidenzbänder anzeigen"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Loess"
 msgstr "Loess"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Regression"
 msgstr "Regression"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Quadratic"
 msgstr "Quadratisch"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Cubic"
 msgstr "Kubisch"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "None"
 msgstr "Keine"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Fitted line (scatterplots)"
 msgstr "Angepasste Gerade (Streudiagramme)"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Quartiles"
 msgstr "Quartile"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Standard errors"
 msgstr "Standardfehler"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Standard deviations"
 msgstr "Standardabweichungen"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Intervals (categorical predictors)"
 msgstr "Intervalle (kategorische Prädiktoren)"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "<br><strong>Other Plot Controls</strong>"
 msgstr "<br><strong>Weitere Plotkontrollen</strong>"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "JASP"
 msgstr "JASP"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Black and white"
 msgstr "Schwarz und Weiß"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Minimal"
 msgstr "Minimal"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Classic"
 msgstr "Klassisch"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Dark"
 msgstr "Dunkel"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "GGplot theme"
 msgstr "GGplot Farbschema"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "GGplot Default"
 msgstr "GGplot-Standard"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Nature"
 msgstr "Natur"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "AAAS"
 msgstr "AAAS"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Lancet"
 msgstr "Lancet"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "JCO"
 msgstr "JCO"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Color Palette"
 msgstr "Farbpalette"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Convert to grayscale"
 msgstr "In Graustufen umwandeln"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Ghost lines"
 msgstr "Referenzlinien"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Plot Labels"
 msgstr "Diagrammbeschriftungen"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "<br><strong>Plot Labels</strong>"
 msgstr "<br><strong>Diagrammbeschriftungen</strong>"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "X Axis Label"
 msgstr "Beschriftung X-Achse"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Y Axis Label"
 msgstr "Beschriftung Y-Achse"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Legend Label"
 msgstr "Beschriftung Legende"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Column Panel Label"
 msgstr "Panel-Spaltenbeschriftung"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Row Panel Label"
 msgstr "Panel-Zeilenbeschriftung"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Association matrix"
-msgstr ""
+msgstr "Assoziationsmatrix"
 
 msgctxt "Descriptives|"
 msgid "Covariance"
-msgstr ""
+msgstr "Kovarianz"
 
 msgctxt "Descriptives|"
 msgid "Correlation"
-msgstr ""
+msgstr "Korrelation"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Use"
-msgstr ""
+msgstr "Verwenden"
 
 msgctxt "Descriptives|"
 msgid "Everything"
-msgstr ""
+msgstr "Alles"
 
 msgctxt "Descriptives|"
 msgid "Complete observations"
-msgstr ""
+msgstr "Vollständige Beobachtungen"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Pairwise compelete observations"
-msgstr ""
+msgstr "Paarweise vollständige Beobachtungen"
