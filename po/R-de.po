@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2024-04-11 15:12\n"
+"POT-Creation-Date: 2024-04-13 03:17\n"
 "PO-Revision-Date: 2024-03-03 11:01+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
@@ -103,6 +103,9 @@ msgstr ""
 
 msgid "Lag"
 msgstr "Verzögerung"
+
+msgid "Association %s"
+msgstr ""
 
 msgid "Frequency Tables"
 msgstr "Häufigkeitstabellen"
@@ -322,6 +325,16 @@ msgstr "Anzahlen"
 
 msgid "No non-missing values!"
 msgstr "Keine nicht-fehlenden Werte!"
+
+msgid ""
+"Association cannot be computed due to missing values. Try a different 'Use' "
+"setting."
+msgstr ""
+
+msgid ""
+"Some associations cannot be computed due to missing values. Try a different "
+"'Use' setting."
+msgstr ""
 
 msgid "Theoretical Quantiles"
 msgstr "Theoretische Quantile"

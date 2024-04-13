@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2024-04-11 15:12\n"
+"POT-Creation-Date: 2024-04-13 03:17\n"
 "PO-Revision-Date: 2024-01-25 02:01+0000\n"
 "Last-Translator: Michael Cantinotti <michael.cantinotti@uqtr.ca>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/jasp/"
@@ -92,6 +92,9 @@ msgid ""
 msgstr ""
 
 msgid "Lag"
+msgstr ""
+
+msgid "Association %s"
 msgstr ""
 
 msgid "Frequency Tables"
@@ -315,6 +318,16 @@ msgstr "Comptes"
 
 msgid "No non-missing values!"
 msgstr "Aucune valeur non-manquante !"
+
+msgid ""
+"Association cannot be computed due to missing values. Try a different 'Use' "
+"setting."
+msgstr ""
+
+msgid ""
+"Some associations cannot be computed due to missing values. Try a different "
+"'Use' setting."
+msgstr ""
 
 msgid "Theoretical Quantiles"
 msgstr "Quantiles Théoriques"

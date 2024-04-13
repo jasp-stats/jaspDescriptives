@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.18.3\n"
-"POT-Creation-Date: 2024-02-17 03:23\n"
+"POT-Creation-Date: 2024-04-13 03:17\n"
 "PO-Revision-Date: 2024-04-11 13:27+0000\n"
 "Last-Translator: federicapicogna <picognafederica@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/jasp/"
@@ -12,6 +12,91 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.5-dev\n"
+
+msgid "Time Series Plot"
+msgstr ""
+
+#, fuzzy
+msgid "Lag Plot"
+msgstr "Q-Q Plot"
+
+#, fuzzy
+msgid "Autocorrelation Function"
+msgstr "Grafico di correlazione"
+
+msgid "Partial Autocorrelation Function"
+msgstr ""
+
+#, fuzzy
+msgid "Descriptive Statistics"
+msgstr "Statistica descrittiva"
+
+msgid "Valid"
+msgstr "Valido"
+
+msgid "Missing"
+msgstr "Mancante"
+
+msgid "Mean"
+msgstr "Media"
+
+msgid "Std. Deviation"
+msgstr "Deviazione standard"
+
+msgid "Variance"
+msgstr "Varianza"
+
+msgid "Range"
+msgstr "Campo di variazione"
+
+msgid "Minimum"
+msgstr "Minimo"
+
+msgid "Maximum"
+msgstr "Massimo"
+
+msgid "Start"
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Lag 1 Autocorrelation"
+msgstr ""
+
+msgid "The time series data should be equally-spaced."
+msgstr ""
+
+msgid "The time variable should have unique values only."
+msgstr ""
+
+msgid ""
+"The 'Time' variable has a date-like format, please filter by date instead."
+msgstr ""
+
+msgid ""
+"The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:"
+"ss). Try to filter by time index instead."
+msgstr ""
+
+msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
+msgstr ""
+
+msgid "The 'Start' value of the filter should be before last observation."
+msgstr ""
+
+msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
+msgstr ""
+
+msgid ""
+"The 'End' value of the filter should be larger/later than the 'Start' value."
+msgstr ""
+
+msgid "Lag"
+msgstr ""
+
+msgid "Association %s"
+msgstr ""
 
 msgid "Frequency Tables"
 msgstr "Tabelle di frequenza"
@@ -67,11 +152,9 @@ msgstr "Grafici di densità"
 msgid "Likert Plots"
 msgstr ""
 
-#, fuzzy
-msgid "Descriptive Statistics"
-msgstr "Statistica descrittiva"
-
-msgid "Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s"
+msgid ""
+"Excluded %1$i rows from the analysis that correspond to the missing values "
+"of the split-by variable %2$s"
 msgstr ""
 
 msgid "%s%% Confidence Interval Mean"
@@ -107,26 +190,14 @@ msgstr ""
 msgid "%s%% CI Variance Lower"
 msgstr ""
 
-msgid "Valid"
-msgstr "Valido"
-
-msgid "Missing"
-msgstr "Mancante"
-
 msgid "Mode"
 msgstr "Moda"
 
 msgid "Median"
 msgstr "Mediana"
 
-msgid "Mean"
-msgstr "Media"
-
 msgid "Std. Error of Mean"
 msgstr "Errore std. della media"
-
-msgid "Std. Deviation"
-msgstr "Deviazione standard"
 
 msgid "Coefficient of variation"
 msgstr ""
@@ -139,9 +210,6 @@ msgstr ""
 
 msgid "IQR"
 msgstr ""
-
-msgid "Variance"
-msgstr "Varianza"
 
 msgid "Skewness"
 msgstr "Asimmetria"
@@ -160,15 +228,6 @@ msgstr "Shapiro-Wilk"
 
 msgid "P-value of Shapiro-Wilk"
 msgstr "P-value del test Shapiro-Wilk"
-
-msgid "Range"
-msgstr "Campo di variazione"
-
-msgid "Minimum"
-msgstr "Minimo"
-
-msgid "Maximum"
-msgstr "Massimo"
 
 msgid "25th percentile"
 msgstr "25-esimo percentile"
@@ -191,10 +250,16 @@ msgstr "Somma"
 msgid "All values are identical"
 msgstr "Tutti i valori sono uguali"
 
-msgid "Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty set is %2$s."
+msgid ""
+"Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty "
+"set is %2$s."
 msgstr ""
 
-msgid "More than one mode exists. For nominal and ordinal data, the first mode is reported. For continuous data, the mode with the highest density estimate is reported but multiple modes may exist. We recommend visualizing the data to check for multimodality."
+msgid ""
+"More than one mode exists. For nominal and ordinal data, the first mode is "
+"reported. For continuous data, the mode with the highest density estimate is "
+"reported but multiple modes may exist. We recommend visualizing the data to "
+"check for multimodality."
 msgstr ""
 
 msgid "The mode is computed assuming that variables are discrete."
@@ -246,6 +311,16 @@ msgstr "Conteggio"
 msgid "No non-missing values!"
 msgstr ""
 
+msgid ""
+"Association cannot be computed due to missing values. Try a different 'Use' "
+"setting."
+msgstr ""
+
+msgid ""
+"Some associations cannot be computed due to missing values. Try a different "
+"'Use' setting."
+msgstr ""
+
 msgid "Theoretical Quantiles"
 msgstr "Quantili teorici"
 
@@ -258,13 +333,17 @@ msgstr ""
 msgid "Leaf"
 msgstr ""
 
-msgid "A stem and leaf table could not be made because there are fewer than 2 non-missing observations"
+msgid ""
+"A stem and leaf table could not be made because there are fewer than 2 non-"
+"missing observations"
 msgstr ""
 
 msgid "The decimal point is at the |"
 msgstr ""
 
-msgid "There must be a unique value per combination of levels of horizontal and vertical axis!"
+msgid ""
+"There must be a unique value per combination of levels of horizontal and "
+"vertical axis!"
 msgstr ""
 
 msgid "All categorical variables must have the same number of levels!"
@@ -281,7 +360,9 @@ msgstr ""
 "statistiche!"
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
-msgid_plural "The following variables have more than %1$s distinct values and are omitted: %2$s."
+msgid_plural ""
+"The following variables have more than %1$s distinct values and are omitted: "
+"%2$s."
 msgstr[0] ""
 msgstr[1] ""
 

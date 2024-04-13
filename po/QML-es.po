@@ -1,15 +1,9 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-04-11 15:17+0000\n"
-"Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
-"Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
-"jaspdescriptives-qml/es/>\n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Language: es\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -715,170 +709,244 @@ msgstr ""
 "Representa la función de Autocorrelación Parcial para un número indicado de "
 "retardos."
 
-msgctxt "Flexplot|"
+msgctxt "Description|"
+msgid "Flexplot"
+msgstr ""
+
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Dependent Variable"
 msgstr "Variable Dependiente"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Independent Variable(s)"
 msgstr "Variable(s) independiente(s)"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Paneled Variable(s)"
 msgstr "Variable(s) en panel"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Options"
 msgstr "Opciones"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "<br><strong>Point controls</br></strong>"
 msgstr "<br><strong>Controles de Puntos</br></strong>"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Point transparency"
 msgstr "Transparencia de puntos"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Jitter in X"
 msgstr "Jitter en X"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Jitter in Y"
 msgstr "Jitter en Y"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "<strong>Visual Statistics</strong>"
 msgstr "<strong>Estadísticas visuales</strong>"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Plot confidence bands"
 msgstr "Graficar bandas de confianza"
 
-msgctxt "Flexplot|"
-msgid "Fitted line (scatterplots)"
-msgstr "Línea ajustada (diagramas de dispersión)"
-
-msgctxt "Flexplot|"
-msgid "Intervals (categorical predictors)"
-msgstr "Intervalos (predictores con categorías)"
-
-msgctxt "Flexplot|"
-msgid "<br><strong>Other Plot Controls</strong>"
-msgstr "<br><strong>Otros controles de gráfico</strong>"
-
-msgctxt "Flexplot|"
-msgid "GGplot theme"
-msgstr "Tema de GGplot"
-
-msgctxt "Flexplot|"
-msgid "Color Palette"
-msgstr "Paleta de colores"
-
-msgctxt "Flexplot|"
-msgid "Convert to grayscale"
-msgstr "Convertir a escala de grises"
-
-msgctxt "Flexplot|"
-msgid "Ghost lines"
-msgstr "Líneas fantasma"
-
-msgctxt "Flexplot|"
-msgid "Plot Labels"
-msgstr "Etiquetas de gráficos"
-
-msgctxt "Flexplot|"
-msgid "<br><strong>Plot Labels</strong>"
-msgstr "<br><strong>Etiquetas de gráficos </strong>"
-
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Loess"
 msgstr "Loess"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Regression"
 msgstr "Regresión"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Quadratic"
 msgstr "Cuadrática"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Cubic"
 msgstr "Cúbica"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "None"
 msgstr "Ninguna"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "Fitted line (scatterplots)"
+msgstr "Línea ajustada (diagramas de dispersión)"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Quartiles"
 msgstr "Cuartiles"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Standard errors"
 msgstr "Errores típicos"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Standard deviations"
 msgstr "Desviaciones típicas"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "Intervals (categorical predictors)"
+msgstr "Intervalos (predictores con categorías)"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "<br><strong>Other Plot Controls</strong>"
+msgstr "<br><strong>Otros controles de gráfico</strong>"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "JASP"
 msgstr "JASP"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Black and white"
 msgstr "Blanco y negro"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Minimal"
 msgstr "Mínimo"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Classic"
 msgstr "Clásico"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Dark"
 msgstr "Oscuro"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "GGplot theme"
+msgstr "Tema de GGplot"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "GGplot Default"
 msgstr "Gráfico GG Predeterminado"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Nature"
 msgstr "Naturaleza"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "AAAS"
 msgstr "AAAS"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Lancet"
 msgstr "Lancet"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "JCO"
 msgstr "JCO"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "Color Palette"
+msgstr "Paleta de colores"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "Convert to grayscale"
+msgstr "Convertir a escala de grises"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "Ghost lines"
+msgstr "Líneas fantasma"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "Plot Labels"
+msgstr "Etiquetas de gráficos"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "<br><strong>Plot Labels</strong>"
+msgstr "<br><strong>Etiquetas de gráficos </strong>"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "X Axis Label"
 msgstr "Etiqueta del Eje X"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Y Axis Label"
 msgstr "Etiqueta del Eje Y"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Legend Label"
 msgstr "Etiqueta de la Leyenda"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Column Panel Label"
 msgstr "Etiqueta de la Columna del Panel"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Row Panel Label"
 msgstr "Etiqueta de la Fila del Panel"
+
+msgctxt "Descriptives|"
+msgid "Association matrix"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Covariance"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Correlation"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Use"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Everything"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Complete observations"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Pairwise compelete observations"
+msgstr ""

@@ -692,3 +692,205 @@ msgstr ""
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the partial autocorrelation for a specified number of lags."
 msgstr ""
+
+msgctxt "Description|"
+msgid "Flexplot"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Dependent Variable"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Independent Variable(s)"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Paneled Variable(s)"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Options"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "<br><strong>Point controls</br></strong>"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Point transparency"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Jitter in X"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Jitter in Y"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "<strong>Visual Statistics</strong>"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Plot confidence bands"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Loess"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Regression"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Quadratic"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Cubic"
+msgstr ""
+
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "None"
+msgstr "Нет"
+
+msgctxt "FlexplotForm|"
+msgid "Fitted line (scatterplots)"
+msgstr ""
+
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "Quartiles"
+msgstr "Квартили"
+
+msgctxt "FlexplotForm|"
+msgid "Standard errors"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Standard deviations"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Intervals (categorical predictors)"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "<br><strong>Other Plot Controls</strong>"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "JASP"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Black and white"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Minimal"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Classic"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Dark"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "GGplot theme"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "GGplot Default"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Nature"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "AAAS"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Lancet"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "JCO"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Color Palette"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Convert to grayscale"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Ghost lines"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Plot Labels"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "<br><strong>Plot Labels</strong>"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "X Axis Label"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Y Axis Label"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Legend Label"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Column Panel Label"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Row Panel Label"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Association matrix"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Covariance"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Correlation"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Use"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Everything"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Complete observations"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Pairwise compelete observations"
+msgstr ""

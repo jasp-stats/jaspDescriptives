@@ -692,170 +692,244 @@ msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the partial autocorrelation for a specified number of lags."
 msgstr ""
 
-msgctxt "Flexplot|"
+msgctxt "Description|"
+msgid "Flexplot"
+msgstr ""
+
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Dependent Variable"
 msgstr "Afhankelijke variabele"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Independent Variable(s)"
 msgstr "Onafhankelijke variabele(n)"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Paneled Variable(s)"
 msgstr "Paneel variabele(n)"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Options"
 msgstr "Opties"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "<br><strong>Point controls</br></strong>"
 msgstr "<br><strong>Puntbediening</br></strong></strong>"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Point transparency"
 msgstr "Punt transparantie"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Jitter in X"
 msgstr "Jitter in X"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Jitter in Y"
 msgstr "Jitter in Y"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "<strong>Visual Statistics</strong>"
 msgstr "<strong>Visuele Statistieken</strong>"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Plot confidence bands"
 msgstr "Toon betrouwbaarheidslint"
 
-msgctxt "Flexplot|"
-msgid "Fitted line (scatterplots)"
-msgstr "Passende lijn (puntdiagrammen)"
-
-msgctxt "Flexplot|"
-msgid "Intervals (categorical predictors)"
-msgstr "Intervallen (categorische voorspellers)"
-
-msgctxt "Flexplot|"
-msgid "<br><strong>Other Plot Controls</strong>"
-msgstr "<br><strong>Andere plot opties</strong>"
-
-msgctxt "Flexplot|"
-msgid "GGplot theme"
-msgstr "GGplot thema"
-
-msgctxt "Flexplot|"
-msgid "Color Palette"
-msgstr "Kleurenpalet"
-
-msgctxt "Flexplot|"
-msgid "Convert to grayscale"
-msgstr "Converteren naar grijswaarden"
-
-msgctxt "Flexplot|"
-msgid "Ghost lines"
-msgstr "Spooklijnen"
-
-msgctxt "Flexplot|"
-msgid "Plot Labels"
-msgstr "Grafiek Labels"
-
-msgctxt "Flexplot|"
-msgid "<br><strong>Plot Labels</strong>"
-msgstr "<br> <strong>Grafiek Labels</strong>"
-
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Loess"
 msgstr "Loess"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Regression"
 msgstr "Regressie"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Quadratic"
 msgstr "Kwadratisch"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Cubic"
 msgstr "Kubisch"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "None"
 msgstr "Geen"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "Fitted line (scatterplots)"
+msgstr "Passende lijn (puntdiagrammen)"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Quartiles"
 msgstr "Kwartielen"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Standard errors"
 msgstr "Standaardfouten"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Standard deviations"
 msgstr "Standaardafwijkingen"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "Intervals (categorical predictors)"
+msgstr "Intervallen (categorische voorspellers)"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "<br><strong>Other Plot Controls</strong>"
+msgstr "<br><strong>Andere plot opties</strong>"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "JASP"
 msgstr "JASP"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Black and white"
 msgstr "Zwart-wit"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Minimal"
 msgstr "Minimaal"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Classic"
 msgstr "Klassiek"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Dark"
 msgstr "Donker"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "GGplot theme"
+msgstr "GGplot thema"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "GGplot Default"
 msgstr "GGplot Standaard"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Nature"
 msgstr "Natuur"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "AAAS"
 msgstr "AAAS"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Lancet"
 msgstr "Lancet"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "JCO"
 msgstr "JCO"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "Color Palette"
+msgstr "Kleurenpalet"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "Convert to grayscale"
+msgstr "Converteren naar grijswaarden"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "Ghost lines"
+msgstr "Spooklijnen"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "Plot Labels"
+msgstr "Grafiek Labels"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "<br><strong>Plot Labels</strong>"
+msgstr "<br> <strong>Grafiek Labels</strong>"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "X Axis Label"
 msgstr "X-as Label"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Y Axis Label"
 msgstr "Y-as Label"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Legend Label"
 msgstr "Legenda Label"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Column Panel Label"
 msgstr "Kolom Paneel Label"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Row Panel Label"
 msgstr "Rij Paneel Label"
+
+msgctxt "Descriptives|"
+msgid "Association matrix"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Covariance"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Correlation"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Use"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Everything"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Complete observations"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Pairwise compelete observations"
+msgstr ""

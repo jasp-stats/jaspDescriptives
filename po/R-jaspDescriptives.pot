@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.18.3\n"
-"POT-Creation-Date: 2024-04-11 15:12\n"
+"POT-Creation-Date: 2024-04-13 03:17\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,6 +84,9 @@ msgid "The 'End' value of the filter should be larger/later than the 'Start' val
 msgstr ""
 
 msgid "Lag"
+msgstr ""
+
+msgid "Association %s"
 msgstr ""
 
 msgid "Frequency Tables"
@@ -285,6 +288,12 @@ msgid "Counts"
 msgstr ""
 
 msgid "No non-missing values!"
+msgstr ""
+
+msgid "Association cannot be computed due to missing values. Try a different 'Use' setting."
+msgstr ""
+
+msgid "Some associations cannot be computed due to missing values. Try a different 'Use' setting."
 msgstr ""
 
 msgid "Theoretical Quantiles"

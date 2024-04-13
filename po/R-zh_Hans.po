@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2024-04-11 15:12\n"
+"POT-Creation-Date: 2024-04-13 03:17\n"
 "PO-Revision-Date: 2024-03-11 14:01+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -92,6 +92,9 @@ msgid ""
 msgstr ""
 
 msgid "Lag"
+msgstr ""
+
+msgid "Association %s"
 msgstr ""
 
 msgid "Frequency Tables"
@@ -305,6 +308,16 @@ msgstr "计数"
 
 msgid "No non-missing values!"
 msgstr "没有非缺失值！"
+
+msgid ""
+"Association cannot be computed due to missing values. Try a different 'Use' "
+"setting."
+msgstr ""
+
+msgid ""
+"Some associations cannot be computed due to missing values. Try a different "
+"'Use' setting."
+msgstr ""
 
 msgid "Theoretical Quantiles"
 msgstr "理论分位数( Theoretical Quantile)"

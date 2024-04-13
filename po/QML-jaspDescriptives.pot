@@ -5,47 +5,38 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Qt-Contexts: true\n"
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/Description.qml:7
 msgctxt "Description|"
 msgid "Descriptives"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/Description.qml:19
 msgctxt "Description|"
 msgid "Descriptive Statistics"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:37
 msgctxt "Descriptives|"
 msgid "Variables"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:38
 msgctxt "Descriptives|"
 msgid "Split"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:514
 msgctxt "Descriptives|"
 msgid "Frequency tables"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:518
 msgctxt "Descriptives|"
 msgid "Maximum distinct values"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:528
 msgctxt "Descriptives|"
 msgid "Stem and leaf tables"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:531
 msgctxt "Descriptives|"
 msgid "scale"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:532
 msgctxt "Descriptives|"
 msgid ""
 "The scale parameter controls how much the table is expanded. For example, "
@@ -53,623 +44,488 @@ msgid ""
 "(scale = 1)."
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:534
 msgctxt "Descriptives|"
 msgid "Create a Stem and leaf table."
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:319
 msgctxt "Descriptives|"
 msgid "Boxplots"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:323
 msgctxt "Descriptives|"
 msgid "Boxplot element"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:324
 msgctxt "Descriptives|"
 msgid "Violin element"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:325
 msgctxt "Descriptives|"
 msgid "Jitter element"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:328
 msgctxt "Descriptives|"
 msgid "Use color palette"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:329
 msgctxt "Descriptives|"
 msgid "Label outliers"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:342
 msgctxt "Descriptives|"
 msgid "Graph above scatter plot"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:343
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:351
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:417
 msgctxt "Descriptives|"
 msgid "Density"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:344
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:352
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:421
 msgctxt "Descriptives|"
 msgid "Histogram"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:345
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:353
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:548
 msgctxt "Descriptives|"
 msgid "None"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:350
 msgctxt "Descriptives|"
 msgid "Graph right of scatter plot"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:358
 msgctxt "Descriptives|"
 msgid "Add regression line"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:363
 msgctxt "Descriptives|"
 msgid "Smooth"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:364
 msgctxt "Descriptives|"
 msgid "Linear"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:370
 msgctxt "Descriptives|"
 msgid "Show confidence interval"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:380
 msgctxt "Descriptives|"
 msgid "Show legend"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:206
 msgctxt "Descriptives|"
 msgid "Basic plots"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:214
 msgctxt "Descriptives|"
 msgid "Distribution plots"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:223
 msgctxt "Descriptives|"
 msgid "Display density"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:215
 msgctxt "Descriptives|"
 msgid "Correlation plots"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:254
 msgctxt "Descriptives|"
 msgid "Q-Q plots"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:255
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:550
 msgctxt "Descriptives|"
 msgid "Pie charts"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:50
 msgctxt "Descriptives|"
 msgid "Statistics"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:63
 msgctxt "Descriptives|"
 msgid "Quartiles"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:66
 msgctxt "Descriptives|"
 msgid "Cut points for: "
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:75
 msgctxt "Descriptives|"
 msgid " equal groups"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:82
 msgctxt "Descriptives|"
 msgid "Percentiles:"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:96
 msgctxt "Descriptives|"
 msgid "Central tendency"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:100
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:485
 msgctxt "Descriptives|"
 msgid "Mean"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:99
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:486
 msgctxt "Descriptives|"
 msgid "Median"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:98
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:495
 msgctxt "Descriptives|"
 msgid "Mode"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:110
 msgctxt "Descriptives|"
 msgid "Sum"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:115
 msgctxt "Descriptives|"
 msgid "Dispersion"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:134
 msgctxt "Descriptives|"
 msgid "S.E. mean"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:119
 msgctxt "Descriptives|"
 msgid "Std. deviation"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:121
 msgctxt "Descriptives|"
 msgid "MAD"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:122
 msgctxt "Descriptives|"
 msgid "MAD robust"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:123
 msgctxt "Descriptives|"
 msgid "IQR"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:124
 msgctxt "Descriptives|"
 msgid "Variance"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:125
 msgctxt "Descriptives|"
 msgid "Range"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:126
 msgctxt "Descriptives|"
 msgid "Minimum"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:127
 msgctxt "Descriptives|"
 msgid "Maximum"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:105
 msgctxt "Descriptives|"
 msgid "Distribution"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:107
 msgctxt "Descriptives|"
 msgid "Skewness"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:108
 msgctxt "Descriptives|"
 msgid "Kurtosis"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:109
 msgctxt "Descriptives|"
 msgid "Shapiro-Wilk test"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:201
 msgctxt "Descriptives|"
 msgid "Values are group midpoints"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:540
 msgctxt "Descriptives|"
 msgid "Charts"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:546
 msgctxt "Descriptives|"
 msgid "Chart Type"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:549
 msgctxt "Descriptives|"
 msgid "Bar charts"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:551
 msgctxt "Descriptives|"
 msgid "Histograms"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:557
 msgctxt "Descriptives|"
 msgid "Chart Values"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:559
 msgctxt "Descriptives|"
 msgid "Frequencies"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:560
 msgctxt "Descriptives|"
 msgid "Percentages"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:224
 msgctxt "Descriptives|"
 msgid "Display rug marks"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:227
 msgctxt "Descriptives|"
 msgid "Bin width type"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:231
 msgctxt "Descriptives|"
 msgid "Sturges"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:232
 msgctxt "Descriptives|"
 msgid "Scott"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:233
 msgctxt "Descriptives|"
 msgid "Doane"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:234
 msgctxt "Descriptives|"
 msgid "Freedman-Diaconis"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:235
 msgctxt "Descriptives|"
 msgid "Manual"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:242
 msgctxt "Descriptives|"
 msgid "Number of bins"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:253
 msgctxt "Descriptives|"
 msgid "Interval plots"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:120
 msgctxt "Descriptives|"
 msgid "Coefficient of variation"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/Description.qml:8
 msgctxt "Description|"
 msgid "Explore the data with tables and plots"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:44
 msgctxt "Descriptives|"
 msgid "Transpose descriptives table"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:311
 msgctxt "Descriptives|"
 msgid "Customizable plots"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:256
 msgctxt "Descriptives|"
 msgid "Dot plots"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:61
 msgctxt "Descriptives|"
 msgid "Quantiles"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:54
 msgctxt "Descriptives|"
 msgid "Sample size"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:55
 msgctxt "Descriptives|"
 msgid "Valid"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:56
 msgctxt "Descriptives|"
 msgid "Missing"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:463
 msgctxt "Descriptives|"
 msgid "Horizontal axis:"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:469
 msgctxt "Descriptives|"
 msgid "Vertical axis:"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:502
 msgctxt "Descriptives|"
 msgid "Display legend"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:480
 msgctxt "Descriptives|"
 msgid "Display value"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:499
 msgctxt "Descriptives|"
 msgid "Relative text size"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:474
 msgctxt "Descriptives|"
 msgid "Width to height ratio of tiles"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:484
 msgctxt "Descriptives|"
 msgid "For scale variables"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:487
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:496
 msgctxt "Descriptives|"
 msgid "Value itself"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:488
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:497
 msgctxt "Descriptives|"
 msgid "Number of observations"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:494
 msgctxt "Descriptives|"
 msgid "For nominal and ordinal variables"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:337
 msgctxt "Descriptives|"
 msgid "Scatter plots"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:449
 msgctxt "Descriptives|"
 msgid "Tile heatmaps for selected variables"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:509
 msgctxt "Descriptives|"
 msgid "Tables"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:261
 msgctxt "Descriptives|"
 msgid "Categorical plots"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:266
 msgctxt "Descriptives|"
 msgid "Pareto plots"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:271
 msgctxt "Descriptives|"
 msgid "Pareto rule"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:281
 msgctxt "Descriptives|"
 msgid "Likert plots"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:286
 msgctxt "Descriptives|"
 msgid "Assume all variables share the same levels"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:294
 msgctxt "Descriptives|"
 msgid "Adjustable font size for vertical axis"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:298
 msgctxt "Descriptives|"
 msgid "Normal"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:299
 msgctxt "Descriptives|"
 msgid "Small"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:300
 msgctxt "Descriptives|"
 msgid "Medium"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:301
 msgctxt "Descriptives|"
 msgid "Large"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:437
 msgctxt "Descriptives|"
 msgid "Transparency"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:132
 msgctxt "Descriptives|"
 msgid "Inference"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:139
 msgctxt "Descriptives|"
 msgid "Confidence interval for mean"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:144
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:170
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:182
 msgctxt "Descriptives|"
 msgid "Width"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:150
 msgctxt "Descriptives|"
 msgid "Method"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:156
 msgctxt "Descriptives|"
 msgid "Normal model"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:157
 msgctxt "Descriptives|"
 msgid "Bootstrap"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:165
 msgctxt "Descriptives|"
 msgid "Confidence interval for std. deviation"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:177
 msgctxt "Descriptives|"
 msgid "Confidence interval for variance"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:188
 msgctxt "Descriptives|"
 msgid "Bootstrap confidence interval options"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:193
 msgctxt "Descriptives|"
 msgid "Bootstrap samples"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:155
 msgctxt "Descriptives|"
 msgid "T model"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:389
 msgctxt "Descriptives|"
 msgid "Frequency plots"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:407
 msgctxt "Descriptives|"
 msgid "Separate frequencies:"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:416
 msgctxt "Descriptives|"
 msgid "Type:"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:426
 msgctxt "Descriptives|"
 msgid "How to combine separate frequencies"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:427
 msgctxt "Descriptives|"
 msgid "Stack"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:428
 msgctxt "Descriptives|"
 msgid "Identity"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/Descriptives.qml:429
 msgctxt "Descriptives|"
 msgid "Dodge"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/Description.qml:25
 msgctxt "Description|"
 msgid "Time Series Descriptives"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:8
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Time Series Descriptives allows the user to obtain descriptive statistics "
 "and descriptive plots for univariate time-series."
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:16
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Variable"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:19
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "A variable that is measured repeatedly over time."
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:25
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:28
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Optional. Can either be an ordinal variable indicating the order of the "
@@ -680,17 +536,14 @@ msgid ""
 "supplied, the row order of the data is used."
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:37
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Transpose descriptives table"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:46
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Filter by"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:47
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Filters the time series so only a specific range will be used for further "
@@ -699,143 +552,110 @@ msgid ""
 "date, depending on the format of the 'Time' variable."
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:55
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Row number"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:60
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:73
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:89
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Start"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:61
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:74
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:96
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "End"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:68
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time index"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:81
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Date"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:108
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:114
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time series plot"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:116
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the dependent variable (y-axis) over time (x-axis)."
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:121
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Points"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:122
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Line"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:123
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Both"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:128
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Distribution"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:129
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Density"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:130
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Histogram"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:131
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "None"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:138
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Lag plot"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:139
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
-"Plots the dependent variable (y-axis) against a lagged version of itself "
-"(x-axis). The lag stands for the amount of observations in between the "
+"Plots the dependent variable (y-axis) against a lagged version of itself (x-"
+"axis). The lag stands for the amount of observations in between the "
 "dependent variable and the lagged version of itself. The regression line is "
 "the autoregression at the specified lag."
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:145
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Lag"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:153
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Add regression line"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:159
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Smooth"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:160
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Linear"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:166
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:186
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:220
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Confidence interval"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:178
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Autocorrelation function"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:179
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:216
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Maximum lag"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:180
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Zero lag"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:181
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Plots the autocorrelation for a specified number of lags. The confidence "
@@ -843,238 +663,218 @@ msgid ""
 "a lag q a moving average process of order q - 1."
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:200
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Based on white noise"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:206
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Based on moving average"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:214
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Partial autocorrelation function"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/DescriptivesTimeSeriesForm.qml:215
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the partial autocorrelation for a specified number of lags."
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/Description.qml:31
 msgctxt "Description|"
 msgid "Flexplot"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:18
 msgctxt "FlexplotForm|"
 msgid "Dependent Variable"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:24
 msgctxt "FlexplotForm|"
 msgid "Independent Variable(s)"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:34
 msgctxt "FlexplotForm|"
 msgid "Paneled Variable(s)"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:46
 msgctxt "FlexplotForm|"
 msgid "Options"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:50
 msgctxt "FlexplotForm|"
 msgid "<br><strong>Point controls</br></strong>"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:55
 msgctxt "FlexplotForm|"
 msgid "Point transparency"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:63
 msgctxt "FlexplotForm|"
 msgid "Jitter in X"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:73
 msgctxt "FlexplotForm|"
 msgid "Jitter in Y"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:85
 msgctxt "FlexplotForm|"
 msgid "<strong>Visual Statistics</strong>"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:89
 msgctxt "FlexplotForm|"
 msgid "Plot confidence bands"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:97
 msgctxt "FlexplotForm|"
 msgid "Loess"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:98
 msgctxt "FlexplotForm|"
 msgid "Regression"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:99
 msgctxt "FlexplotForm|"
 msgid "Quadratic"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:100
 msgctxt "FlexplotForm|"
 msgid "Cubic"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:101
 msgctxt "FlexplotForm|"
 msgid "None"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:103
 msgctxt "FlexplotForm|"
 msgid "Fitted line (scatterplots)"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:111
 msgctxt "FlexplotForm|"
 msgid "Quartiles"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:112
 msgctxt "FlexplotForm|"
 msgid "Standard errors"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:113
 msgctxt "FlexplotForm|"
 msgid "Standard deviations"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:115
 msgctxt "FlexplotForm|"
 msgid "Intervals (categorical predictors)"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:122
 msgctxt "FlexplotForm|"
 msgid "<br><strong>Other Plot Controls</strong>"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:128
 msgctxt "FlexplotForm|"
 msgid "JASP"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:129
 msgctxt "FlexplotForm|"
 msgid "Black and white"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:130
 msgctxt "FlexplotForm|"
 msgid "Minimal"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:131
 msgctxt "FlexplotForm|"
 msgid "Classic"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:132
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:146
 msgctxt "FlexplotForm|"
 msgid "Dark"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:134
 msgctxt "FlexplotForm|"
 msgid "GGplot theme"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:141
 msgctxt "FlexplotForm|"
 msgid "GGplot Default"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:142
 msgctxt "FlexplotForm|"
 msgid "Nature"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:143
 msgctxt "FlexplotForm|"
 msgid "AAAS"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:144
 msgctxt "FlexplotForm|"
 msgid "Lancet"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:145
 msgctxt "FlexplotForm|"
 msgid "JCO"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:148
 msgctxt "FlexplotForm|"
 msgid "Color Palette"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:153
 msgctxt "FlexplotForm|"
 msgid "Convert to grayscale"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:160
 msgctxt "FlexplotForm|"
 msgid "Ghost lines"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:170
 msgctxt "FlexplotForm|"
 msgid "Plot Labels"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:173
 msgctxt "FlexplotForm|"
 msgid "<br><strong>Plot Labels</strong>"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:177
 msgctxt "FlexplotForm|"
 msgid "X Axis Label"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:183
 msgctxt "FlexplotForm|"
 msgid "Y Axis Label"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:190
 msgctxt "FlexplotForm|"
 msgid "Legend Label"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:197
 msgctxt "FlexplotForm|"
 msgid "Column Panel Label"
 msgstr ""
 
-#: /Users/brunoboutin/JASP/source/jasp-desktop2/Modules/jaspDescriptives/inst/qml/common/FlexplotForm.qml:204
 msgctxt "FlexplotForm|"
 msgid "Row Panel Label"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Association matrix"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Covariance"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Correlation"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Use"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Everything"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Complete observations"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Pairwise compelete observations"
 msgstr ""

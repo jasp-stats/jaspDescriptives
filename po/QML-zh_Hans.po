@@ -693,170 +693,244 @@ msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the partial autocorrelation for a specified number of lags."
 msgstr ""
 
-msgctxt "Flexplot|"
+msgctxt "Description|"
+msgid "Flexplot"
+msgstr ""
+
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Dependent Variable"
 msgstr "因变量"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Independent Variable(s)"
 msgstr "自变量"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Paneled Variable(s)"
 msgstr "分组变量"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Options"
 msgstr "选项"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "<br><strong>Point controls</br></strong>"
 msgstr "<br><strong>点控制</br></strong>"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Point transparency"
 msgstr "点的透明度"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Jitter in X"
 msgstr "X 中的抖动"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Jitter in Y"
 msgstr "Y 中的抖动"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "<strong>Visual Statistics</strong>"
 msgstr "<strong>可视化统计</strong>"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Plot confidence bands"
 msgstr "绘制置信带"
 
-msgctxt "Flexplot|"
-msgid "Fitted line (scatterplots)"
-msgstr "拟合线（散点图）"
-
-msgctxt "Flexplot|"
-msgid "Intervals (categorical predictors)"
-msgstr "区间（分类预测变量）"
-
-msgctxt "Flexplot|"
-msgid "<br><strong>Other Plot Controls</strong>"
-msgstr "<br><strong>其他绘图控件</strong>"
-
-msgctxt "Flexplot|"
-msgid "GGplot theme"
-msgstr "GGplot主题"
-
-msgctxt "Flexplot|"
-msgid "Color Palette"
-msgstr "调色板"
-
-msgctxt "Flexplot|"
-msgid "Convert to grayscale"
-msgstr "转换为灰度"
-
-msgctxt "Flexplot|"
-msgid "Ghost lines"
-msgstr "幽灵线"
-
-msgctxt "Flexplot|"
-msgid "Plot Labels"
-msgstr "绘图标签"
-
-msgctxt "Flexplot|"
-msgid "<br><strong>Plot Labels</strong>"
-msgstr "<br><strong>绘图标签</strong>"
-
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Loess"
 msgstr "局部加权回归（LOESS）"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Regression"
 msgstr "回归"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Quadratic"
 msgstr "二次函数"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Cubic"
 msgstr "三次函数"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "None"
 msgstr "无"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "Fitted line (scatterplots)"
+msgstr "拟合线（散点图）"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Quartiles"
 msgstr "四分位数"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Standard errors"
 msgstr "标准误差"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Standard deviations"
 msgstr "标准偏差"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "Intervals (categorical predictors)"
+msgstr "区间（分类预测变量）"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "<br><strong>Other Plot Controls</strong>"
+msgstr "<br><strong>其他绘图控件</strong>"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "JASP"
 msgstr "JASP 风格"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Black and white"
 msgstr "黑白"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Minimal"
 msgstr "Minimal 风格"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Classic"
 msgstr "经典"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Dark"
 msgstr "暗黑"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "GGplot theme"
+msgstr "GGplot主题"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "GGplot Default"
 msgstr "GGplot 默认"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Nature"
 msgstr "Nature 风格"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "AAAS"
 msgstr "AAAS 风格"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Lancet"
 msgstr "柳叶刀"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "JCO"
 msgstr "JCO 风格"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "Color Palette"
+msgstr "调色板"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "Convert to grayscale"
+msgstr "转换为灰度"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "Ghost lines"
+msgstr "幽灵线"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "Plot Labels"
+msgstr "绘图标签"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
+msgid "<br><strong>Plot Labels</strong>"
+msgstr "<br><strong>绘图标签</strong>"
+
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "X Axis Label"
 msgstr "X 轴标签"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Y Axis Label"
 msgstr "Y 轴标签"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Legend Label"
 msgstr "图例标签"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Column Panel Label"
 msgstr "列面板标签"
 
-msgctxt "Flexplot|"
+#, fuzzy
+msgctxt "FlexplotForm|"
 msgid "Row Panel Label"
 msgstr "行面板标签"
+
+msgctxt "Descriptives|"
+msgid "Association matrix"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Covariance"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Correlation"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Use"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Everything"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Complete observations"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Pairwise compelete observations"
+msgstr ""
