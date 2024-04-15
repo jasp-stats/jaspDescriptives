@@ -344,13 +344,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   } else {
     yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(options$lowerAxisLimit, options$upperAxisLimit))
     yLimits <- range(yBreaks)
-    warningAxisLimits <- if (
-      min(yBreaks) > min(dataset[[inputVariable]]) || max(yBreaks) < max(dataset[[inputVariable]])
-    ) {
-      TRUE
-    } else {
-      FALSE
-    }
+    warningAxisLimits <- min(yBreaks) > min(dataset[[inputVariable]]) || max(yBreaks) < max(dataset[[inputVariable]])
   }
   yAxis   <- ggplot2::scale_y_continuous(breaks = yBreaks, limits = yLimits)
 
@@ -377,9 +371,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
       order = 1, reverse = options$horizontal, override.aes = list(alpha = 0.5, color = NA)  # NA removes points in boxes
     )
   }
-  guideColor <- if (options$covariate == "") {
-    NULL
-  } else {
+  guideColor <- if (options$covariate != "") {
     if (is.factor(dataset$covariate)) {
       ggplot2::guide_legend(override.aes = list(size = 6.5))
     } else {
@@ -550,7 +542,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 .rainGeomRain <- function(dataset, options, infoFactorCombinations, vioSides, boxPosition, plotInProgress) {
 
   # Arguments for the cloud elements: Violin, Box, Point, observationId lines
-  showVioGuide    <- if (options$secondaryFactor == "") TRUE else FALSE
+  showVioGuide    <- options$secondaryFactor == ""
   vioArgs         <- list(alpha = options$vioOpacity, adjust = options$vioSmoothing, lwd = options$vioOutlineWidth)
   vioOutlineColor <- .rainOutlineColor(options, options$vioOutline, infoFactorCombinations)
 
@@ -561,7 +553,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   boxArgs$color <- .rainOutlineColor(options, options$boxOutline, infoFactorCombinations)
   boxArgs$color <- .rainOutlineColor(options, options$boxOutline, infoFactorCombinations)
 
-  showPointGuide <- if (options$covariate == "") FALSE else TRUE
+  showPointGuide <- options$covariate != ""
   pointArgs      <- list(alpha = options$pointOpacity, show.legend = showPointGuide, size = options$pointSize)
 
   lineArgs <- list(alpha = options$observationIdLineOpacity, show.legend = FALSE, lwd = options$observationIdLineWidth)
