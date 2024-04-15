@@ -365,8 +365,6 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
     } else {
       ggplot2::theme(axis.text.y = ggplot2::element_blank(), axis.ticks.y = ggplot2::element_blank())
     }
-  } else {
-    NULL
   }
 
   plotInProgress <- plotInProgress + yAxis + inwardTicks + axisTitles + noFactorBlankAxis
@@ -424,9 +422,6 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
     } else {
       jaspGraphs::scale_JASPfill_discrete(options$colorPalette, name = fillTitle)
     }
-
-  } else {
-    NULL
   }
 
   paletteColor <- if (options$covariate != "") {
@@ -446,9 +441,6 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
       } else {
         jaspGraphs::scale_JASPcolor_discrete(  options$colorPalette,     name = options$secondaryFactor)
       }
-
-    } else {
-      NULL
     }
   }
 
@@ -594,7 +586,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   } else {
     0                        # CustomSides fixes points to Axis ticks (see HelpButton in .qml)
   }
-  jitter <- if (!options$jitter) 0 else NULL
+  jitter <- if (!options$jitter) 0
   pointArgsPos   <- list(
     position = ggpp::position_jitternudge(
       nudge.from = "jittered",
@@ -606,7 +598,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   )
 
   # Cov and id
-  covArg <- if (options$covariate == "")                                 NULL else "covariate"  # Must be string
+  covArg <- if (options$covariate == "")                                       NULL else "covariate"  # Must be string
   idArg  <- if (options$observationId   == "" || options$primaryFactor == "")  NULL else "observationId"
             # primaryFactor condition necessary because if user input primaryFactor, then adds observationId input,
             # and then removes primaryFactor again, JASP/GUI/qml will not remove observationId input
@@ -704,18 +696,21 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
       color = .rainOutlineColor(options, "colorPalette", infoFactorCombinations),  # Instead like Outlines
       shape = 18, size = options$meanSize, alpha = 1, show.legend = FALSE, position = meanPosition
     )
-  } else {
-    NULL
   }
+
   meanLinesGroupMapping <- if (options$secondaryFactor == "") 1 else aesFill
-  meanLinesColor <- if (options$secondaryFactor == "") "black" else .rainOutlineColor(options, "colorPalette", infoFactorCombinations)
+
+  meanLinesColor <- if (options$secondaryFactor == "") {
+    "black"
+  } else {
+    .rainOutlineColor(options, "colorPalette", infoFactorCombinations)
+  }
+
   meanLines <- if (options$mean && options$meanLines) {  # Needs options$mean as qml wont uncheck options$meanLines
-    ggplot2::stat_summary(                                # if options$mean is unchecked again
+    ggplot2::stat_summary(                               # if options$mean is unchecked again
       fun = mean, geom = "line", mapping = ggplot2::aes(group = meanLinesGroupMapping),
       color = meanLinesColor, alpha = options$meanLinesOpacity, position = meanPosition, lwd = options$meanLinesWidth
     )
-  } else {
-    NULL
   }
 
   return(list(means = means, meanLines = meanLines))
