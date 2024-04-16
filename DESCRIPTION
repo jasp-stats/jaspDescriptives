@@ -15,8 +15,7 @@ Imports:
   jaspBase,
   jaspGraphs,
   forecast,
-  flexplot
-  dplyr,
+  flexplot,
   ggrain,
   ggpp,
   ggtext
