@@ -419,7 +419,7 @@ Form
 				AvailableVariablesList 
 				{ 
 					name: 				"densityPlotVariables"
-					source: 			[{ name: "allVariablesList", discard: ["variables", "splitBy"], use: "type=ordinal|nominal|nominalText"}]
+					source: 			[{ name: "allVariablesList", discard: ["variables", "splitBy"], use: "type=ordinal|nominal"}]
 				}
 				
 				AssignedVariablesList 
@@ -478,7 +478,7 @@ Form
 				AvailableVariablesList
 				{
 					name: "heatmapVariables"
-					source: [{ name: "allVariablesList", discard: ["variables", "splitBy"], use: "type=ordinal|nominal|nominalText"}]
+					source: [{ name: "allVariablesList", discard: ["variables", "splitBy"], use: "type=ordinal|nominal"}]
 				}
 				AssignedVariablesList
 				{
