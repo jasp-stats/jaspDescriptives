@@ -189,8 +189,10 @@ Form
 			id:   		showBox
 			text: 		qsTr("Show box")
 			checked: 	!(meanInterval.checked || meanIntervalCustom.checked)
+			enabled:	!(meanInterval.checked || meanIntervalCustom.checked)
 			info: 		qsTr(
-							"Whether or not the box should be shown. If un-checked, opacity is set to 0 and outline to 'none'."
+							"Whether or not the box should be shown. If un-checked, opacity is set to 0 and outline to 'none'.<br>" +
+							"An interval around the mean disables the box altogether."
 						)
 		}
 		CheckBox
@@ -319,7 +321,7 @@ Form
 		{
 			title:   qsTr("Box")
 			columns: 2
-			enabled: showBox.checked
+			enabled: showBox.checked && !(meanInterval.checked || meanIntervalCustom.checked)
 
 			Label{ text: qsTr("Nudge") }
 			DoubleField
@@ -606,7 +608,7 @@ Form
 			Layout.columnSpan: 	3
 			info:				qsTr(
 									"Whether to also show an interval around the mean.<br>" +
-									"This hides the box, but if you really want, you can go up and check 'Show box' again." +
+									"This hides and disables the box." +
 
 									"<br><br>" +
 
