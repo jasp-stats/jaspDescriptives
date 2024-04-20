@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2024-04-13 03:17\n"
-"PO-Revision-Date: 2024-03-11 14:01+0000\n"
+"PO-Revision-Date: 2024-04-20 14:01+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "jasp/jaspdescriptives-r/zh_Hans/>\n"
@@ -14,18 +14,16 @@ msgstr ""
 "X-Generator: Weblate 5.5-dev\n"
 
 msgid "Time Series Plot"
-msgstr ""
+msgstr "时间序列图"
 
-#, fuzzy
 msgid "Lag Plot"
-msgstr "Q-Q 图"
+msgstr "滞后图"
 
-#, fuzzy
 msgid "Autocorrelation Function"
-msgstr "相关图"
+msgstr "自相关函数"
 
 msgid "Partial Autocorrelation Function"
-msgstr ""
+msgstr "偏自相关函数"
 
 msgid "Descriptive Statistics"
 msgstr "描述性统计"
@@ -55,10 +53,10 @@ msgid "Maximum"
 msgstr "最大值"
 
 msgid "Start"
-msgstr ""
+msgstr "起始"
 
 msgid "End"
-msgstr ""
+msgstr "结束"
 
 msgid "Lag 1 Autocorrelation"
 msgstr ""
