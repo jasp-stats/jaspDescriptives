@@ -281,7 +281,7 @@ msgid "Frequencies"
 msgstr "Frequenze"
 
 msgid "Frequencies for %s"
-msgstr "Frequenze per %"
+msgstr "Frequenze per %s"
 
 msgid "Frequency"
 msgstr "Frequenza"
