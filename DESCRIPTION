@@ -18,7 +18,8 @@ Imports:
   flexplot,
   ggrain,
   ggpp,
-  ggtext
+  ggtext,
+  dplyr
 Remotes:
   jasp-stats/jaspBase,
   jasp-stats/jaspGraphs,
