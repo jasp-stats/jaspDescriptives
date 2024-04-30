@@ -4,6 +4,17 @@ import JASP
 
 Form
 {
+	info:
+	{
+		"top": qsTr("Flexplot allows the user to create graphical displays of data, using barcharts and histograms for univariate data, and various different types of scatterplots for bivariate and multivariate data."),
+		"references":
+				[
+					"Fife, D.A., (in press). The Eight Steps of Data Analysis: A Graphical Framework to Promote Sound Statistical Analysis. *Perspectives on Psychological Science.* doi: 10.31234/osf.io/r8g7c",
+					"Fife, D.A., (2020). Flexplot: graphically-based data analysis. https://doi.org/10.31234/osf.io/kh9c3"
+				],
+		"RPackages": ["ggplot2", "flexplot", "cowplot", "ggplot2", "MASS", "tibble", "withr", "dplyr", "magrittr", "forcats", "purrr", "plyr", "R6"],
+		"examples": [qsTr("For more details about flexplot in JASP, watch this %1videa%2").arg("<a href=\"https://www.youtube.com/watch?v=N2vM74rw6-Q&list=PL8F480DgtpW8pF6MmNaEUR95n1RmIgasP&feature=youtu.be\">").arg("</a>")]
+	}
 	Formula
 	{
 		lhs: "dependent"
@@ -12,10 +23,12 @@ Form
 
 	VariablesForm
 	{
+		infoLabel: qsTr("Input")
 		AvailableVariablesList	{ name: "allVariables" }
 		AssignedVariablesList	{
 			name: "dependent"		;
-			title: qsTr("Dependent Variable")	;
+			title: qsTr("Dependent Variable");
+			info: qsTr("The variable of interest. This is also called the outcome variable. If only an outcome variable is specified, Flexplot will produce a histogram for numeric data and a barchart for categorical data. If independent variable(s) and/or panelled variable(s) are specified, this variable will be displayed on the Y axis.")
 			singleVariable: true
 			onCountChanged:  nameY.value = count > 0 ? model.data(model.index(0,0)) : ""
 		}
@@ -23,6 +36,7 @@ Form
 			name: "variables"		;
 			title: qsTr("Independent Variable(s)") ;
 			id: varlist
+			info: qsTr("The variable(s) for which we wish to visually assess relationships with the DV. The first variable chosen shows up on the X axis, either as a scatterplot (for numeric predictors) or as a beeswarm plot (for categorical variables). The second variable chosen will show up as different colors/lines/symbols. If the second varaible chosen is numeric, it will be binned first.")
 			onCountChanged: {
 				nameLegend.value = count > 1 ? model.data(model.index(1,0)) : "";
 				nameX.value = count > 0 ? model.data(model.index(0,0)) : "";
@@ -32,6 +46,7 @@ Form
 		AssignedVariablesList	{
 			name: "paneledVars"	;
 			title: qsTr("Paneled Variable(s)");
+			info: qsTr("Variables specified in these boxes will be binned (if numeric) then displayed as different subplots. The first variable specified as a panelled variable will form the column plots, while the second will form the row plots.")
 			id: paneledVars
 			onCountChanged: {
 				nameCols.value = count > 0 ? model.data(model.index(0,0)) : "";
@@ -47,12 +62,13 @@ Form
 
 		Group
 		{
-			title: qsTr("<br><strong>Point controls</br></strong>")
+			title: qsTr("Point controls")
 			columns: 4
 			Slider
 			{
 				name: "alpha"
 				label: qsTr("Point transparency")
+				info: qsTr("The degree of transparency of the dots in the graphics")
 				value: 0.4
 				vertical: true
 				enabled: varlist.count > 0
@@ -61,6 +77,7 @@ Form
 			{
 				name: "jitx"
 				label: qsTr("Jitter in X")
+				info: qsTr("The maximal amount of \"jittering\" used on the X axis to remove overlap between datapoints. The maximal amount of jittering is proportional to the density of the data. In other words, the maximum jittering will occur at the mode of the dataset, and little to no jittering will occur in locations where there is no overlap.")
 				value: .1
 				min: 0
 				max: .5
@@ -71,6 +88,7 @@ Form
 			{
 				name: "jity"
 				label: qsTr("Jitter in Y")
+				info: qsTr("The maximal amount of \"jittering\" used on the Y axis to remove overlap between datapoints. The maximal amount of jittering is proportional to the density of the data. In other words, the maximum jittering will occur at the mode of the dataset, and little to no jittering will occur in locations where there is no overlap.")
 				value: 0
 				min: 0
 				max: .5
@@ -82,11 +100,12 @@ Form
 		{
 			Group
 			{
-				title: qsTr("<strong>Visual Statistics</strong>")
+				title: qsTr("Visual Statistics")
 				CheckBox
 				{
 					name:"confidence";
 					label: qsTr("Plot confidence bands")
+					info: qsTr("Should 95% confidence intervals be displayed?")
 					enabled: varlist.count > 0
 				}
 				DropDown
@@ -94,13 +113,14 @@ Form
 					name: "type"
 					values:
 						[
-						{label: qsTr("Loess"),					value: "Loess"},
-						{label: qsTr("Regression"),				value: "Regression"},
-						{label: qsTr("Quadratic"),				value: "Quadratic"},
-						{label: qsTr("Cubic"),					value: "Cubic"},
-						{label: qsTr("None"),					value: "None"}
+						{label: qsTr("Loess"),					value: "Loess",			info: qsTr("A non-parametric loess line") },
+						{label: qsTr("Regression"),				value: "Regression",	info: qsTr("A straight (regression) line") },
+						{label: qsTr("Quadratic"),				value: "Quadratic",		info: qsTr("A line that includes both a linear effect and a quadratic (squared) term") },
+						{label: qsTr("Cubic"),					value: "Cubic",			info: qsTr("A line that includes a linear, squared, and cubed term") },
+						{label: qsTr("None"),					value: "None",			info: qsTr("No line") }
 					]
 					label: qsTr("Fitted line (scatterplots)")
+					info: qsTr("The type of fitted line displayed when the x axis is a numeric variable. These can be one of the following:")
 					enabled: varlist.count > 0
 				}
 				DropDown
@@ -108,9 +128,9 @@ Form
 					name: "intervals"
 					values:
 						[
-						{label: qsTr("Quartiles"),				value: "Quartiles"},
-						{label: qsTr("Standard errors"),		value: "Standard errors"},
-						{label: qsTr("Standard deviations"),	value: "Standard deviations"}
+						{label: qsTr("Quartiles"),				value: "Quartiles",				info: qsTr("Horizontal lines are displayed at the 25/75th percentiles, with a dot for the median") },
+						{label: qsTr("Standard errors"),		value: "Standard errors",		info: qsTr("Horizontal lines are displayed at +1/-1 standard errors from the mean, with a dot for the mean") },
+						{label: qsTr("Standard deviations"),	value: "Standard deviations",	info: qsTr("Horizontal lines are displayed at +1/-1 standard deviations from the mean, with a dot for the mean") }
 					]
 					label: qsTr("Intervals (categorical predictors)")
 					enabled: varlist.count > 0
@@ -119,10 +139,12 @@ Form
 
 			Group
 			{
-				title: qsTr("<br><strong>Other Plot Controls</strong>")
+				title: qsTr("Other Plot Controls")
 				DropDown
 				{
 					name: "theme"
+					label: qsTr("GGplot theme")
+					info: qsTr("the type of GGplot theme to use when displaying the data. Can be one of the following:")
 					values:
 						[
 						{label: qsTr("JASP"),					value: "JASP"},
@@ -131,11 +153,11 @@ Form
 						{label: qsTr("Classic"),				value: "Classic"},
 						{label: qsTr("Dark"),					value: "Dark"}
 					]
-					label: qsTr("GGplot theme")
 				}
 				DropDown
 				{
 					name: "palette"
+					label: qsTr("Color Palette")
 					values:
 						[
 						{label: qsTr("GGplot Default"),			value: "GGplot Default"},
@@ -145,7 +167,6 @@ Form
 						{label: qsTr("JCO"),					value: "JCO"},
 						{label: qsTr("Dark"),					value: "Dark"}
 					]
-					label: qsTr("Color Palette")
 				}
 				CheckBox
 				{
@@ -158,6 +179,7 @@ Form
 				{
 					name:"ghost";
 					label: qsTr("Ghost lines");
+					info: qsTr("Ghost lines are a visual aid that can be used when doing panelled plots. Ghost lines simply repeat the fitted line from one panel across the other panels to make it easier to make comparisons across panels.")
 					checked: true
 					enabled: paneledVars.count > 0
 				}
@@ -170,7 +192,7 @@ Form
 		title: qsTr("Plot Labels")
 		Group
 		{
-			title: qsTr("<br><strong>Plot Labels</strong>")
+			title: qsTr("Plot Labels")
 			TextField
 			{
 				id: nameX;
@@ -182,28 +204,24 @@ Form
 				id: nameY
 				label: qsTr("Y Axis Label")
 				name: "nameY";
-				value: xAxis.value
 			}
 			TextField
 			{
 				id: nameLegend
 				label: qsTr("Legend Label")
 				name: "nameLegend";
-				value: legend.value
 			}
 			TextField
 			{
 				id: nameCols
 				label: qsTr("Column Panel Label")
 				name: "nameCols";
-				value: cols.value
 			}
 			TextField
 			{
 				id: nameRows
 				label: qsTr("Row Panel Label")
 				name: "nameRows";
-				value: rows.value
 			}
 		}
 	}
