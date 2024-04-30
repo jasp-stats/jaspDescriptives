@@ -719,7 +719,6 @@ Form
 								id: setSeed
 								enabled: ciMethod.value == "bootstrap"
 								label: qsTr("Seed for reproducibility")
-								info: qsTr("Hi Joris, I think this works.")
 							}
 							IntegerField
 							{
