@@ -25,9 +25,7 @@ Form
 {
 	columns: 1
 
-	info:
-	{
-		"bottom": qsTr("The output is a raincloud plot for each dependent variable. Optionally, there is a table with statistics for each plot.") + "<br><br><br>" +
+	infoBottom: qsTr("The output is a raincloud plot for each dependent variable. Optionally, there is a table with statistics for each plot.") + "<br><br><br>" +
 			"<h1>" + qsTr("How can I re-use my elaborate, customized plot settings for a different dataset?") + "</h1><br>" +
 
 			qsTr("Suppose that you have two datasets A and B (in separate JASP files) for which you want to create the same raincloud plot.<br>" +
@@ -47,21 +45,18 @@ Form
 			"Third, go to the Edit Data header menu and _delete the entire dataset A_.<br>" +
 			"Fourth, go to the JASP file for dataset B and copy-paste its data to the target file.<br>" +
 			"Fifth, choose the dependent variables, primary and secondary factor, covariate, and ID for the raincloud plot.<br>" +
-			"Importantly, though, all the other specifications like point spread or custom interval limits should still be present from the raincloud plot for dataset A."),
-
-		"references": [
-			"Allen, M., Poggiali, D., Whitaker, K., Marshall, T. R., van Langen, J., & Kievit, R. A. (2021). " +
+			"Importantly, though, all the other specifications like point spread or custom interval limits should still be present from the raincloud plot for dataset A.") +
+		"\n\n----\n\n" +
+		"## " + qsTr("References") + "\n" +
+		"- Allen, M., Poggiali, D., Whitaker, K., Marshall, T. R., van Langen, J., & Kievit, R. A. (2021). " +
 				"Raincloud plots: a multi-platform tool for robust data visualization. [version 2; peer review: 2 approved]. " +
-				"Wellcome Open Res 2021, 4:63. https://doi.org/10.12688/wellcomeopenres.15191.2.",
-			"Aphalo, P. (2024). _ggpp: Grammar Extensions to 'ggplot2'_. R package version 0.5.6, <https://CRAN.R-project.org/package=ggpp>.",
-			"JASP Team (2024). For this module especially: Ott, V. L., van den Bergh, D., Boutin, B., Goosen, J., Judd, N., Bartoš, F., & Wagenmakers, E. J.",
-			"Judd, N., van Langen, J., Allen, M., & Kievit, R. A. (2024). _ggrain: A Rainclouds Geom for 'ggplot2'_. R package version 0.0.4, <https://CRAN.R-project.org/package=ggrain>.",
-			"Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York.",
-			"Wickham, H., François, R., Henry, L., Müller, K., & Vaughan, D. (2023). _dplyr: A Grammar of Data Manipulation_. R package version 1.1.4, <https://CRAN.R-project.org/package=dplyr>.",
-			"Wilke C. & Wiernik, B. (2022). _ggtext: Improved Text Rendering Support for 'ggplot2'_. R package version 0.1.2, <https://wilkelab.org/ggtext/>."
-				]
-	}
-
+				"Wellcome Open Res 2021, 4:63. https://doi.org/10.12688/wellcomeopenres.15191.2.\n" +
+		"- Aphalo, P. (2024). _ggpp: Grammar Extensions to 'ggplot2'_. R package version 0.5.6, <https://CRAN.R-project.org/package=ggpp>.\n" +
+		"- JASP Team (2024). For this module especially: Ott, V. L., van den Bergh, D., Boutin, B., Goosen, J., Judd, N., Bartoš, F., & Wagenmakers, E. J.\n" +
+		"- Judd, N., van Langen, J., Allen, M., & Kievit, R. A. (2024). _ggrain: A Rainclouds Geom for 'ggplot2'_. R package version 0.0.4, <https://CRAN.R-project.org/package=ggrain>.\n" +
+		"- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York.\n" +
+		"- Wickham, H., François, R., Henry, L., Müller, K., & Vaughan, D. (2023). _dplyr: A Grammar of Data Manipulation_. R package version 1.1.4, <https://CRAN.R-project.org/package=dplyr>.\n" +
+		"- Wilke C. & Wiernik, B. (2022). _ggtext: Improved Text Rendering Support for 'ggplot2'_. R package version 0.1.2, <https://wilkelab.org/ggtext/>.\n"
 
 	VariablesForm
 	{
