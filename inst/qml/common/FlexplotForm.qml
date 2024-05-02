@@ -4,17 +4,12 @@ import JASP
 
 Form
 {
-	info:
-	{
-		"top": qsTr("Flexplot allows the user to create graphical displays of data, using barcharts and histograms for univariate data, and various different types of scatterplots for bivariate and multivariate data."),
-		"references":
-				[
-					"Fife, D.A., (in press). The Eight Steps of Data Analysis: A Graphical Framework to Promote Sound Statistical Analysis. *Perspectives on Psychological Science.* doi: 10.31234/osf.io/r8g7c",
-					"Fife, D.A., (2020). Flexplot: graphically-based data analysis. https://doi.org/10.31234/osf.io/kh9c3"
-				],
-		"RPackages": ["ggplot2", "flexplot", "cowplot", "ggplot2", "MASS", "tibble", "withr", "dplyr", "magrittr", "forcats", "purrr", "plyr", "R6"],
-		"examples": [qsTr("For more details about flexplot in JASP, watch this %1videa%2").arg("<a href=\"https://www.youtube.com/watch?v=N2vM74rw6-Q&list=PL8F480DgtpW8pF6MmNaEUR95n1RmIgasP&feature=youtu.be\">").arg("</a>")]
-	}
+	info: qsTr("Flexplot allows the user to create graphical displays of data, using barcharts and histograms for univariate data, and various different types of scatterplots for bivariate and multivariate data.")
+	infoBottom: "## " + qsTr("References") + "\n" +
+				"- Fife, D.A., (in press). The Eight Steps of Data Analysis: A Graphical Framework to Promote Sound Statistical Analysis. *Perspectives on Psychological Science.* doi: 10.31234/osf.io/r8g7c\n" +
+				"- Fife, D.A., (2020). Flexplot: graphically-based data analysis. https://doi.org/10.31234/osf.io/kh9c3\n" +
+				"## " + qsTr("Example") + "\n" +
+				qsTr("For more details about flexplot in JASP, watch this %1videa%2").arg("<a href=\"https://www.youtube.com/watch?v=N2vM74rw6-Q&list=PL8F480DgtpW8pF6MmNaEUR95n1RmIgasP&feature=youtu.be\">").arg("</a>")
 	Formula
 	{
 		lhs: "dependent"
