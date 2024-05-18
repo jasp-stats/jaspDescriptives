@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2024-04-13 03:17\n"
+"POT-Creation-Date: 2024-05-18 03:18\n"
 "PO-Revision-Date: 2024-04-30 07:07+0000\n"
 "Last-Translator: Cochrane <cunyikang@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -350,6 +350,100 @@ msgstr "项必须有 2 个或更多水平数！"
 
 msgid "Levels within variable require at least two or more data points!"
 msgstr "变量内的水平至少需要两个或更多数据点！"
+
+msgid "Raincloud Plots"
+msgstr ""
+
+msgid "Not shown are %s observations due to missing data."
+msgstr ""
+
+msgid "Interval around mean is custom."
+msgstr ""
+
+msgid ""
+"<span style = 'color: darkorange'>Error with custom interval: Specified "
+"number of clouds does not match clouds in plot.</span>"
+msgstr ""
+
+msgid "Interval around mean represents ± 1 standard deviation."
+msgstr ""
+
+msgid ""
+"Interval around mean represents %d%% confidence interval;<br>confidence "
+"intervals were computed independently for each group."
+msgstr ""
+
+msgid "Points are slightly jittered from their true values."
+msgstr ""
+
+msgid ""
+"<span style = 'color: darkorange'> Warning! Some data is not "
+"shown<br>because it lies outside of the interval set by the custom axis "
+"limits.</span>"
+msgstr ""
+
+msgid ""
+"<span style = 'color: darkorange'> Error with custom orientation: Specified "
+"number of clouds does not match clouds in plot.<br>Reverted to default all "
+"'R'. Point nudge set to 0.</span>"
+msgstr ""
+
+msgid ""
+"<span style = 'color: darkorange'> Error with custom color: Specified number "
+"of clouds does not match clouds in plot.<br>Ignoring custom color input.</"
+"span>"
+msgstr ""
+
+#, fuzzy
+msgid "Statistics"
+msgstr "描述性统计"
+
+msgid "Primary Factor"
+msgstr ""
+
+msgid "Secondary Factor"
+msgstr ""
+
+msgid "<i>N</i>"
+msgstr ""
+
+msgid "Lower Whisker"
+msgstr ""
+
+#, fuzzy
+msgid "25th Percentile"
+msgstr "第 25 百分位"
+
+#, fuzzy
+msgid "75th Percentile"
+msgstr "第 75 百分位"
+
+msgid "Upper Whisker"
+msgstr ""
+
+msgid "Lower Interval Limit"
+msgstr ""
+
+#, fuzzy
+msgid "Standard Deviation"
+msgstr "标准差"
+
+msgid "Upper Interval Limit"
+msgstr ""
+
+msgid "<i>N</i><sub>Total</sub> = %s."
+msgstr ""
+
+msgid "This excludes %s observations due to missing data."
+msgstr ""
+
+msgid "<br>Interval around mean is custom."
+msgstr ""
+
+msgid ""
+"<br>Interval around mean represents %d%% confidence interval;<br>confidence "
+"intervals were computed independently for each group."
+msgstr ""
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
