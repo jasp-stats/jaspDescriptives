@@ -171,7 +171,7 @@ Form
 					label: qsTr("Method")
 					id: ciMethod
 					indexDefaultValue: 0
-					info: qsTr("How should the confidence interval be computed? By default, we use a `T model`, which yields results identical to a one-sample t-test. Alternative options are a normal model (\\\\(\\bar{x} \\pm z_{95}\\times SE\\\\)), or `Bootstrap`.")
+					info: qsTr("How should the confidence interval be computed? By default, we use a `T model`, which yields results identical to a one-sample t-test. Alternative options are a normal model (%1), or `Bootstrap`.").arg("\\\\\\\\(\\\\bar{x} \\\\pm z_{95} \\\\times SE \\\\\\\\)")
 					values:
 					[
 						{label: qsTr("T model"),	value: "oneSampleTTest"},
@@ -256,9 +256,9 @@ Form
 
 		Group
 		{
-			Group
+			Row
 			{
-				columns: 2
+				spacing: jaspTheme.columnGroupSpacing
 				CheckBox
 				{
 					name: "distributionPlots";	label: qsTr("Distribution plots");	id:	distributionPlots
