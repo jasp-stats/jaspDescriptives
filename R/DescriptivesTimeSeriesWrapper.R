@@ -19,7 +19,7 @@
 
 DescriptivesTimeSeries <- function(
           data = NULL,
-          version = "0.18.3",
+          version = "0.19",
           acf = FALSE,
           acfCi = TRUE,
           acfCiLevel = 0.95,
