@@ -19,7 +19,7 @@
 
 flexplot <- function(
           data = NULL,
-          version = "0.18.3",
+          version = "0.19",
           formula = NULL,
           alpha = 0.4,
           bw = FALSE,
