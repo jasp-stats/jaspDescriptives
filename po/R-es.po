@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
 "POT-Creation-Date: 2024-05-18 03:18\n"
-"PO-Revision-Date: 2024-04-20 14:01+0000\n"
-"Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
+"PO-Revision-Date: 2024-05-21 16:24+0000\n"
+"Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/es/>\n"
 "Language: es\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 msgid "Time Series Plot"
 msgstr "Gráfico de Serie temporal"
@@ -378,98 +378,112 @@ msgstr ""
 "¡Los niveles en una variable requieren dos o más puntos de datos, al menos!"
 
 msgid "Raincloud Plots"
-msgstr ""
+msgstr "Gráficos de tipo nube con lluvia"
 
 msgid "Not shown are %s observations due to missing data."
-msgstr ""
+msgstr "Hay %s observaciones que no se muestran debido a datos ausentes."
 
 msgid "Interval around mean is custom."
-msgstr ""
+msgstr "El intervalo en torno a la media es personalizado."
 
 msgid ""
 "<span style = 'color: darkorange'>Error with custom interval: Specified "
 "number of clouds does not match clouds in plot.</span>"
 msgstr ""
+"<span style = 'color: darkorange'>Fallo en el intervalo personalizado: El "
+"número indicado de nubes no coincide con las nubes del gráfico.</span>"
 
 msgid "Interval around mean represents ± 1 standard deviation."
-msgstr ""
+msgstr "El intervalo en torno a la media representa ± 1 desviación típica."
 
 msgid ""
 "Interval around mean represents %d%% confidence interval;<br>confidence "
 "intervals were computed independently for each group."
 msgstr ""
+"El intervalo en torno a la media representa el intervalo de confianza del "
+"%d%%;<br>los intervalos de confianza se calcularon independientemente para "
+"cada grupo."
 
 msgid "Points are slightly jittered from their true values."
-msgstr ""
+msgstr "Los puntos oscilan ligeramente respecto de sus valores verdaderos."
 
 msgid ""
 "<span style = 'color: darkorange'> Warning! Some data is not "
 "shown<br>because it lies outside of the interval set by the custom axis "
 "limits.</span>"
 msgstr ""
+"<span style = 'color: darkorange'> ¡Advertencia! Algunos datos no se "
+"muestran<br>porque caen fuera del intervalo marcado por los límites "
+"personalizados de los ejes.</span>"
 
 msgid ""
 "<span style = 'color: darkorange'> Error with custom orientation: Specified "
 "number of clouds does not match clouds in plot.<br>Reverted to default all "
 "'R'. Point nudge set to 0.</span>"
 msgstr ""
+"<span style = 'color: darkorange'> Fallo en la orientación personalizada: El "
+"número indicado de nubes no coincide con las nubes del gráfico.<br>Retorno "
+"de todo 'R' a lo predeterminado. Empujón a los puntos establecido en "
+"0.</span>"
 
 msgid ""
 "<span style = 'color: darkorange'> Error with custom color: Specified number "
 "of clouds does not match clouds in plot.<br>Ignoring custom color input.</"
 "span>"
 msgstr ""
+"<span style = 'color: darkorange'> Fallo en el color personalizado: El "
+"número indicado de nubes no coincide con las nubes del gráfico.<br>Ignorando "
+"la entrada personalizada de color.</span>"
 
-#, fuzzy
 msgid "Statistics"
-msgstr "Estadísticos Descriptivos"
+msgstr "Estadísticos"
 
 msgid "Primary Factor"
-msgstr ""
+msgstr "Factor primario"
 
 msgid "Secondary Factor"
-msgstr ""
+msgstr "Factor secundario"
 
 msgid "<i>N</i>"
-msgstr ""
+msgstr "<i>N</i>"
 
 msgid "Lower Whisker"
-msgstr ""
+msgstr "Bigote inferior"
 
-#, fuzzy
 msgid "25th Percentile"
 msgstr "Primer cuartil"
 
-#, fuzzy
 msgid "75th Percentile"
 msgstr "Tercer cuartil"
 
 msgid "Upper Whisker"
-msgstr ""
+msgstr "Bigote superior"
 
 msgid "Lower Interval Limit"
-msgstr ""
+msgstr "Límite inferior del intervalo"
 
-#, fuzzy
 msgid "Standard Deviation"
 msgstr "Desviación Típica"
 
 msgid "Upper Interval Limit"
-msgstr ""
+msgstr "Límite superior del intervalo"
 
 msgid "<i>N</i><sub>Total</sub> = %s."
-msgstr ""
+msgstr "<i>N</i><sub>Total</sub> = %s."
 
 msgid "This excludes %s observations due to missing data."
-msgstr ""
+msgstr "Esto excluye %s observaciones debido a datos ausentes."
 
 msgid "<br>Interval around mean is custom."
-msgstr ""
+msgstr "<br>El intervalo en torno a la media es personalizado."
 
 msgid ""
 "<br>Interval around mean represents %d%% confidence interval;<br>confidence "
 "intervals were computed independently for each group."
 msgstr ""
+"<br>El intervalo en torno a la media representa el intervalo de confianza "
+"del %d%%;<br>los intervalos de confianza se calculan independientemente para "
+"cada grupo."
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
