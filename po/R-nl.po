@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2024-05-18 03:18\n"
-"PO-Revision-Date: 2023-04-20 12:51+0000\n"
-"Last-Translator: Don van den Bergh <donvdbergh@hotmail.com>\n"
+"PO-Revision-Date: 2024-05-23 21:56+0000\n"
+"Last-Translator: Koen Derks <koen-derks@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/nl/>\n"
 "Language: nl\n"
@@ -12,21 +12,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
-"X-Generator: Weblate 4.18-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 msgid "Time Series Plot"
-msgstr ""
+msgstr "Tijdreeksfiguur"
 
-#, fuzzy
 msgid "Lag Plot"
-msgstr "Q-Q plot"
+msgstr "Vertragingsfiguur"
 
-#, fuzzy
 msgid "Autocorrelation Function"
-msgstr "Correlatiediagram"
+msgstr "Autocorrelatiefunctie"
 
 msgid "Partial Autocorrelation Function"
-msgstr ""
+msgstr "Partiële Autocorrelatiefunctie"
 
 msgid "Descriptive Statistics"
 msgstr "Beschrijvende Statistiek"
@@ -56,47 +54,53 @@ msgid "Maximum"
 msgstr "Maximum"
 
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
 msgid "End"
-msgstr ""
+msgstr "Einde"
 
 msgid "Lag 1 Autocorrelation"
-msgstr ""
+msgstr "Vertraging 1 Autocorrelatie"
 
 msgid "The time series data should be equally-spaced."
-msgstr ""
+msgstr "De tijdreeksgegevens moeten gelijk verdeeld zijn."
 
 msgid "The time variable should have unique values only."
-msgstr ""
+msgstr "De tijdvariabele mag alleen unieke waarden hebben."
 
 msgid ""
 "The 'Time' variable has a date-like format, please filter by date instead."
-msgstr ""
+msgstr "De variabele 'Tijd' heeft een datumnotatie, filter op datum."
 
 msgid ""
 "The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:"
 "ss). Try to filter by time index instead."
 msgstr ""
+"De variabele 'Tijd' heeft geen datumnotatie (bijvoorbeeld jjjj-mm-dd "
+"hh:mm:ss). Probeer te filteren op tijdsindex."
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
 msgstr ""
+"'Start' moet een datumnotatie hebben (bijvoorbeeld jjjj-mm-dd hh:mm:ss)."
 
 msgid "The 'Start' value of the filter should be before last observation."
 msgstr ""
+"De 'Start'-waarde van het filter moet voor de laatste waarneming liggen."
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
-msgstr ""
+msgstr "'Einde' moet een datumnotatie hebben (bijv. jjjj-mm-dd hh:mm:ss)."
 
 msgid ""
 "The 'End' value of the filter should be larger/later than the 'Start' value."
 msgstr ""
+"De 'Einde'-waarde van het filter moet groter/later zijn dan de "
+"'Start'-waarde."
 
 msgid "Lag"
-msgstr ""
+msgstr "Vertraging"
 
 msgid "Association %s"
-msgstr ""
+msgstr "Associatie %s"
 
 msgid "Frequency Tables"
 msgstr "Frequentietabellen"
@@ -114,7 +118,7 @@ msgid "Boxplots"
 msgstr "Boxplots"
 
 msgid "Q-Q Plots"
-msgstr "Q-Q plots"
+msgstr "Q-Q Figuren"
 
 msgid "Q-Q Plot"
 msgstr "Q-Q plot"
@@ -262,12 +266,16 @@ msgid ""
 "reported but multiple modes may exist. We recommend visualizing the data to "
 "check for multimodality."
 msgstr ""
+"Er is meer dan één modus. Voor nominale en ordinale gegevens wordt de eerste "
+"modus gerapporteerd. Voor continue gegevens wordt de modus met de hoogste "
+"dichtheidsschatting gerapporteerd, maar er kunnen meerdere modi bestaan. We "
+"raden aan de gegevens te visualiseren om te controleren op multimodaliteit."
 
 msgid "The mode is computed assuming that variables are discrete."
-msgstr ""
+msgstr "De modus wordt berekend ervan uitgaande dat variabelen discreet zijn."
 
 msgid "The mode is computed assuming that variables are discreet."
-msgstr ""
+msgstr "De modus wordt berekend ervan uitgaande dat variabelen discreet zijn."
 
 msgid "Not all values are available for <i>Nominal Text</i> variables"
 msgstr ""
@@ -316,11 +324,15 @@ msgid ""
 "Association cannot be computed due to missing values. Try a different 'Use' "
 "setting."
 msgstr ""
+"Associatie kan niet worden berekend vanwege ontbrekende waarden. Probeer een "
+"andere instelling voor 'Gebruiken'."
 
 msgid ""
 "Some associations cannot be computed due to missing values. Try a different "
 "'Use' setting."
 msgstr ""
+"Sommige associaties kunnen niet worden berekend omdat er waarden ontbreken. "
+"Probeer een andere instelling voor 'Gebruiken'."
 
 msgid "Theoretical Quantiles"
 msgstr "Theoretische Kwantielen"
@@ -361,98 +373,113 @@ msgid "Levels within variable require at least two or more data points!"
 msgstr "Niveaus binnen variabele vereist minstens 2 datapunten!"
 
 msgid "Raincloud Plots"
-msgstr ""
+msgstr "Regenwolkfiguren"
 
 msgid "Not shown are %s observations due to missing data."
-msgstr ""
+msgstr "Niet weergegeven zijn %s waarnemingen vanwege ontbrekende gegevens."
 
 msgid "Interval around mean is custom."
-msgstr ""
+msgstr "Interval rond gemiddelde is aangepast."
 
 msgid ""
 "<span style = 'color: darkorange'>Error with custom interval: Specified "
 "number of clouds does not match clouds in plot.</span>"
 msgstr ""
+"<span style = 'color: darkorange'>Fout met aangepast interval: Het opgegeven "
+"aantal wolken komt niet overeen met de wolken in de figuur.</span>"
 
 msgid "Interval around mean represents ± 1 standard deviation."
-msgstr ""
+msgstr "Interval rond gemiddelde staat voor ± 1 standaarddeviatie."
 
 msgid ""
 "Interval around mean represents %d%% confidence interval;<br>confidence "
 "intervals were computed independently for each group."
 msgstr ""
+"Interval rond gemiddelde vertegenwoordigt %d%% betrouwbaarheidsinterval;"
+"<br>betrouwbaarheidsintervallen werden onafhankelijk berekend voor elke "
+"groep."
 
 msgid "Points are slightly jittered from their true values."
 msgstr ""
+"Punten zijn enigszins verschoven ten opzichte van hun werkelijke waarden."
 
 msgid ""
 "<span style = 'color: darkorange'> Warning! Some data is not "
 "shown<br>because it lies outside of the interval set by the custom axis "
 "limits.</span>"
 msgstr ""
+"<span style = 'color: darkorange'> Waarschuwing! Sommige gegevens worden "
+"niet weergegeven<br>omdat deze buiten het interval liggen dat is ingesteld "
+"door de aangepaste aslimieten.</span>"
 
 msgid ""
 "<span style = 'color: darkorange'> Error with custom orientation: Specified "
 "number of clouds does not match clouds in plot.<br>Reverted to default all "
 "'R'. Point nudge set to 0.</span>"
 msgstr ""
+"<span style = 'color: darkorange'> Fout met aangepaste oriëntatie: het "
+"opgegeven aantal wolken komt niet overeen met de wolken in de "
+"figuur.<br>Teruggezet naar de standaardwaarde 'R'. Puntverplaatsing "
+"ingesteld op 0.</span>"
 
 msgid ""
 "<span style = 'color: darkorange'> Error with custom color: Specified number "
 "of clouds does not match clouds in plot.<br>Ignoring custom color input.</"
 "span>"
 msgstr ""
+"<span style = 'color: darkorange'> Fout met aangepaste kleur: het opgegeven "
+"aantal wolken komt niet overeen met de wolken in de figuur.<br>Aangepaste "
+"kleurinvoer wordt genegeerd.</span>"
 
-#, fuzzy
 msgid "Statistics"
-msgstr "Beschrijvende Statistiek"
+msgstr "Statistieken"
 
 msgid "Primary Factor"
-msgstr ""
+msgstr "Primaire Factor"
 
 msgid "Secondary Factor"
-msgstr ""
+msgstr "Secundaire Factor"
 
 msgid "<i>N</i>"
-msgstr ""
+msgstr "<i>N</i>"
 
 msgid "Lower Whisker"
-msgstr ""
+msgstr "Onderste Snorhaar"
 
-#, fuzzy
 msgid "25th Percentile"
-msgstr "25ste percentiel"
+msgstr "25ste Percentiel"
 
-#, fuzzy
 msgid "75th Percentile"
-msgstr "75ste percentiel"
+msgstr "75ste Percentiel"
 
 msgid "Upper Whisker"
-msgstr ""
+msgstr "Bovenste Snorhaar"
 
 msgid "Lower Interval Limit"
-msgstr ""
+msgstr "Ondergrens van Interval"
 
-#, fuzzy
 msgid "Standard Deviation"
-msgstr "Standaardafwijking"
+msgstr "Standaarddeviatie"
 
 msgid "Upper Interval Limit"
-msgstr ""
+msgstr "Bovengrens van Interval"
 
 msgid "<i>N</i><sub>Total</sub> = %s."
-msgstr ""
+msgstr "<i>N</i><sub>Totaal</sub> = %s."
 
 msgid "This excludes %s observations due to missing data."
-msgstr ""
+msgstr "Dit sluit %s waarnemingen uit vanwege ontbrekende gegevens."
 
 msgid "<br>Interval around mean is custom."
-msgstr ""
+msgstr "<br>Interval rond gemiddelde is aangepast."
 
 msgid ""
 "<br>Interval around mean represents %d%% confidence interval;<br>confidence "
 "intervals were computed independently for each group."
 msgstr ""
+"<br>Interval rond gemiddelde vertegenwoordigt %d%% betrouwbaarheidsinterval;"
+"<br>betrouwbaarheidsintervallen werden onafhankelijk berekend voor elke "
+"groep."
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
