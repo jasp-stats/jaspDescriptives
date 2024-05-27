@@ -1165,14 +1165,6 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid ""
-"How should the confidence interval be computed? By default, we use a `T "
-"model`, which yields results identical to a one-sample t-test. Alternative "
-"options are a normal model (\\(\bar{x} pm z_{95}\times SE\\)), or "
-"`Bootstrap`."
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid ""
 "a confidence interval for the standard deviation based on bootstrap samples."
 msgstr ""
 
@@ -2000,4 +1992,12 @@ msgid ""
 "\n"
 "Custom Color:\n"
 "Specify a hexcode. Only works when there is no Secondary Factor."
+msgstr ""
+
+#, qt-format
+msgctxt "Descriptives|"
+msgid ""
+"How should the confidence interval be computed? By default, we use a `T "
+"model`, which yields results identical to a one-sample t-test. Alternative "
+"options are a normal model (%1), or `Bootstrap`."
 msgstr ""
