@@ -1273,8 +1273,9 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
         ggplot2::stat_boxplot(geom = "errorbar", size = 0.75, width = boxWidth / 2) +
         ggplot2::geom_boxplot(size = 0.75, width = boxWidth, outlier.shape = NA) +
         ggplot2::geom_violin(trim = FALSE, size = 0.75, width = vioWidth, fill = "transparent", scale = "width") +
-        ggplot2::geom_jitter(size = 2.5, shape = 1, stroke = 1, position = ggplot2::position_jitter(width = 0.05, height = 0), fill = "transparent")
-    } else if (options$boxPlotBoxPlot && options$boxPlotViolin) {
+        ggplot2::geom_jitter(ggplot2::aes(fill = group), size = 2.5, shape = 21, stroke = 1, position = ggplot2::position_jitter(width = 0.05, height = 0)) +
+        jaspGraphs::scale_JASPfill_discrete(palette)
+      } else if (options$boxPlotBoxPlot && options$boxPlotViolin) {
       p <- p +
         ggplot2::geom_violin(trim = FALSE, size = 0.75, width = vioWidth, scale = "width") +
         ggplot2::stat_boxplot(geom = "errorbar", size = 0.75, width = boxWidth / 2) +
@@ -1284,12 +1285,14 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       p <- p +
         ggplot2::stat_boxplot(geom = "errorbar", size = 0.75, width = boxWidth / 2) +
         ggplot2::geom_boxplot(size = 0.75, outlier.shape = NA, width = boxWidth) +
-        ggplot2::geom_jitter(size = 2.5, shape = 1, stroke = 1, position = ggplot2::position_jitter(width = 0.05, height = 0), fill = "transparent")
-    } else if (options$boxPlotViolin && options$boxPlotJitter) {
+        ggplot2::geom_jitter(ggplot2::aes(fill = group), size = 2.5, shape = 21, stroke = 1, position = ggplot2::position_jitter(width = 0.05, height = 0)) +
+        jaspGraphs::scale_JASPfill_discrete(palette)
+      } else if (options$boxPlotViolin && options$boxPlotJitter) {
       p <- p +
         ggplot2::geom_violin(trim = FALSE, size = 0.75, width = 0.75 * boxWidth, scale = "width") +
-        ggplot2::geom_jitter(size = 2.5, shape = 1, stroke = 1, position = ggplot2::position_jitter(width = 0.05, height = 0), fill = "transparent")
-    } else if (options$boxPlotViolin) {
+        ggplot2::geom_jitter(ggplot2::aes(fill = group, color = "white"), size = 2.5, shape = 21, stroke = 1, position = ggplot2::position_jitter(width = 0.05, height = 0)) +
+        jaspGraphs::scale_JASPfill_discrete(palette)
+      } else if (options$boxPlotViolin) {
       p <- p + ggplot2::geom_violin(trim = FALSE, size = 0.75, scale = "width", width = 0.75 * boxWidth)
     } else if (options$boxPlotBoxPlot) {
       p <- p +
