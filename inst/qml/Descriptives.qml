@@ -608,30 +608,4 @@ Form
 			}
 		}
 	}
-
-	Section
-	{
-		title: qsTr("Charts")
-		debug: true
-
-		RadioButtonGroup
-		{
-			name:	"chartType";
-			title:	qsTr("Chart Type")
-
-			RadioButton { value: "_1noCharts";		label: qsTr("None")			}
-			RadioButton { value: "_2barCharts";		label: qsTr("Bar charts")	}
-			RadioButton { value: "_3pieCharts";		label: qsTr("Pie charts")	}
-			RadioButton { value: "_4histograms";	label: qsTr("Histograms")	}
-		}
-
-		RadioButtonGroup
-		{
-			name:	"chartValues"
-			title:	qsTr("Chart Values")
-
-			RadioButton { value: "_1frequencies";	label: qsTr("Frequencies")	}
-			RadioButton { value: "_2percentages";	label: qsTr("Percentages")	}
-		}
-	}
 }

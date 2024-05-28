@@ -28,8 +28,6 @@ Descriptives <- function(
           boxPlotJitter = FALSE,
           boxPlotOutlierLabel = FALSE,
           boxPlotViolin = FALSE,
-          chartType = "_2barCharts",
-          chartValues = "_2percentages",
           ciBootstrapSamples = 1000,
           coefficientOfVariation = FALSE,
           colorPalette = "colorblind",
