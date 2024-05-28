@@ -2517,6 +2517,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
                                                      xName = axeName,
                                                      groupingVariableName = options[["densityPlotSeparate"]],
                                                      groupingVariable = data[["separator"]],
+                                                     binWidthType = "sturges",
                                                      histogramPosition = options[["customHistogramPosition"]])
     if (options[["customHistogramPosition"]] == "identity")
       densPlot$plotObject$layers[[1]]$aes_params$alpha <- 1 - (options[["densityPlotTransparency"]]/100)
