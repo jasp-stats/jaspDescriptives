@@ -106,6 +106,7 @@ test_that("Descriptive Statistics table results match", {
 
 test_that("Association matrices match", {
   options <- jaspTools::analysisOptions("Descriptives")
+  options$associationMatrixUse <- "everything"
   options$variables <- c("contNormal",  "contGamma", "debMiss1")
   options$covariance <- TRUE
   options$correlation <- TRUE
