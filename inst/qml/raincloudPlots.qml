@@ -296,7 +296,7 @@ Form
 				DoubleField
 				{
 					name:				"vioNudge"
-					defaultValue:		(!customSides.checked) ? 0.09 : 0.24
+					defaultValue:		(!customSides.checked) ? 0.15 : 0.30
 					negativeValues:		true
 				}
 
