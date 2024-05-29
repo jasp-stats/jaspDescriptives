@@ -1255,7 +1255,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
     plotDat$label <- ifelse(plotDat$outlier, row.names(plotDat), "")
 
-    if (options$boxPlotColourPalette) {
+    if (options[["boxPlotColourPalette"]]) {
       thePlot$dependOn("colorPalette") # only add color as dependency if the user wants it
       palette <- options[["colorPalette"]]
       p <- ggplot2::ggplot(plotDat, ggplot2::aes(x = group, y, fill = group)) +
@@ -1267,43 +1267,28 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
         ggplot2::scale_colour_manual(values = rep("grey", nlevels(group)))
     }
 
-    if (options$boxPlotViolin && options$boxPlotBoxPlot && options$boxPlotJitter) {
-      p <- p +
-        ggplot2::geom_violin(trim = FALSE, size = 0.75, width = vioWidth, scale = "width") +
-        ggplot2::stat_boxplot(geom = "errorbar", size = 0.75, width = boxWidth / 2) +
-        ggplot2::geom_boxplot(size = 0.75, width = boxWidth, outlier.shape = NA) +
-        ggplot2::geom_violin(trim = FALSE, size = 0.75, width = vioWidth, fill = "transparent", scale = "width") +
-        ggplot2::geom_jitter(ggplot2::aes(fill = group), size = 2.5, shape = 21, stroke = 1, position = ggplot2::position_jitter(width = 0.05, height = 0)) +
-        jaspGraphs::scale_JASPfill_discrete(palette)
-      } else if (options$boxPlotBoxPlot && options$boxPlotViolin) {
-      p <- p +
-        ggplot2::geom_violin(trim = FALSE, size = 0.75, width = vioWidth, scale = "width") +
-        ggplot2::stat_boxplot(geom = "errorbar", size = 0.75, width = boxWidth / 2) +
-        ggplot2::geom_boxplot(size = 0.75, outlier.size = 1.5, width = boxWidth) +
-        ggplot2::geom_violin(trim = FALSE, size = 0.75, width = vioWidth, fill = "transparent", scale = "width")
-    } else if (options$boxPlotBoxPlot && options$boxPlotJitter) {
+    if (options[["boxPlotViolin"]]) {
+      p <- p + ggplot2::geom_violin(trim = FALSE, size = 0.75, scale = "width", width = vioWidth)
+    } 
+    
+    if (options[["boxPlotBoxPlot"]]) {
+      # if we add jittered data points, don't show outlier dots
+      outlierShape <- if (options[["boxPlotJitter"]]) NA else 19
       p <- p +
         ggplot2::stat_boxplot(geom = "errorbar", size = 0.75, width = boxWidth / 2) +
-        ggplot2::geom_boxplot(size = 0.75, outlier.shape = NA, width = boxWidth) +
-        ggplot2::geom_jitter(ggplot2::aes(fill = group), size = 2.5, shape = 21, stroke = 1, position = ggplot2::position_jitter(width = 0.05, height = 0)) +
-        jaspGraphs::scale_JASPfill_discrete(palette)
-      } else if (options$boxPlotViolin && options$boxPlotJitter) {
-      p <- p +
-        ggplot2::geom_violin(trim = FALSE, size = 0.75, width = 0.75 * boxWidth, scale = "width") +
-        ggplot2::geom_jitter(ggplot2::aes(fill = group, color = "white"), size = 2.5, shape = 21, stroke = 1, position = ggplot2::position_jitter(width = 0.05, height = 0)) +
-        jaspGraphs::scale_JASPfill_discrete(palette)
-      } else if (options$boxPlotViolin) {
-      p <- p + ggplot2::geom_violin(trim = FALSE, size = 0.75, scale = "width", width = 0.75 * boxWidth)
-    } else if (options$boxPlotBoxPlot) {
-      p <- p +
-        ggplot2::stat_boxplot(geom = "errorbar", size = 0.75, width = boxWidth / 2) +
-        ggplot2::geom_boxplot(size = 0.75, outlier.size = 1.5, width = boxWidth)
-    } else if (options$boxPlotJitter) {
-      p <- p + ggplot2::geom_jitter(size = 2.5, ggplot2::aes(colour = group), position = ggplot2::position_jitter(width = 0.1, height = 0))
+        ggplot2::geom_boxplot(size = 0.75, outlier.size = 2, width = boxWidth, outlier.shape = outlierShape)
+    } 
+    
+    if (options[["boxPlotJitter"]]) {
+      p <- p + ggplot2::geom_jitter(ggplot2::aes(fill = group, alpha = 0.3), size = 2.5, shape = 21, stroke = 1, position = ggplot2::position_jitter(width = 0.05, height = 0))
+      if (options[["boxPlotColourPalette"]])
+        p <- p + jaspGraphs::scale_JASPfill_discrete(palette)
+      else
+        p <- p + ggplot2::scale_fill_manual(values = rep("grey", nlevels(group)))
     }
 
-    if (options$boxPlotOutlierLabel && (options$boxPlotBoxPlot || options$boxPlotJitter)) {
-      p <- p + ggrepel::geom_text_repel(ggplot2::aes(label = label), hjust = -0.3)
+    if (options[["boxPlotOutlierLabel"]]) {
+      p <- p + ggrepel::geom_text_repel(ggplot2::aes(label = label), hjust = -0.5)
     }
 
     ### Theming & Cleaning
