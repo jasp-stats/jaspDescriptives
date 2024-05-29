@@ -1280,15 +1280,15 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     } 
     
     if (options[["boxPlotJitter"]]) {
-      p <- p + ggplot2::geom_jitter(ggplot2::aes(fill = group, alpha = 0.3), size = 2.5, shape = 21, stroke = 1, position = ggplot2::position_jitter(width = 0.05, height = 0))
+      p <- p + ggplot2::geom_jitter(ggplot2::aes(fill = group, alpha = 0.5), size = 3, shape = 21, stroke = 1, position = ggplot2::position_jitter(width = 0.05, height = 0))
       if (options[["boxPlotColourPalette"]])
-        p <- p + jaspGraphs::scale_JASPfill_discrete(palette)
+        p <- p + jaspGraphs::scale_JASPfill_discrete(palette) 
       else
         p <- p + ggplot2::scale_fill_manual(values = rep("grey", nlevels(group)))
     }
 
     if (options[["boxPlotOutlierLabel"]]) {
-      p <- p + ggrepel::geom_text_repel(ggplot2::aes(label = label), hjust = -0.5)
+      p <- p + ggrepel::geom_text_repel(ggplot2::aes(label = label), hjust = -1, min.segment.length = 99)
     }
 
     ### Theming & Cleaning
