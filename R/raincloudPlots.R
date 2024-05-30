@@ -102,7 +102,12 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   return(output)
 }  # End .rainDataInfo()
 
-
+.determineFactorType <- function(dataset, thisPredictor) {
+  # Function to determine if a factor is between or within subjects
+  # Get unique values of the factor within each ID
+  uniqueIDs <- tapply(dataset[[thisPredictor]], dataset[["observationId"]], function(x) length(unique(x)))
+  return(any(uniqueIDs > 1))
+}
 
 # .rainMeanInterval() ----
 .rainMeanInterval <- function(dataset, options, inputVariable) {
@@ -130,6 +135,13 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
     secondaryLevel <- as.character(uniqueCombis$secondaryFactor[cloudNumber])  # for numeric factor levels
     currentCell    <- dataset[dataset$primaryFactor == primaryLevel & dataset$secondaryFactor == secondaryLevel, ][[inputVariable]]
 
+    if (options[["observationId"]] != "") {
+      isWithinPredictor <- sapply(predictors, function(predictor) {.determineFactorType(dataset, predictor)})
+    } else {
+      isWithinPredictor <- FALSE
+    }
+      
+    
     # ...and calculate lowerBound, upperBound accordingly
     if (options[["meanIntervalOption"]] == "sd") {
       xBar <- mean(currentCell)
@@ -140,8 +152,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
       output$successfulComputation <- TRUE
 
     } else if (options[["meanIntervalOption"]] == "ci") {
-      
-      if (options[["observationId"]] == "") {
+      if (sum(isWithinPredictor) == 0) {
         summaryStat <- jaspTTests::.summarySE(as.data.frame(dataset), 
                                               measurevar = inputVariable, 
                                               groupvars = predictors,
@@ -151,14 +162,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
                                               errorBarType = "ci", 
                                               dependentName = inputVariable,
                                               subjectName = NULL)
-      } else if (options[["observationId"]] != "") {
-        # Function to determine if a factor is between or within subjects
-        determineFactorType <- function(data, thisPredictor) {
-          # Get unique values of the factor within each ID
-          uniqueIDs <- tapply(data[[thisPredictor]], data[[options[["observationId"]]]], function(x) length(unique(x)))
-          return(any(uniqueIDs > 1))
-        }
-        isWithinPredictor <- sapply(predictors, function(predictor) {determineFactorType(dataset, predictor)})  
+      } else if (sum(isWithinPredictor) > 0) {
         summaryStat <- jaspTTests::.summarySEwithin(as.data.frame(dataset), measurevar = inputVariable,
                                                     betweenvars = predictors[!isWithinPredictor],
                                                     withinvars = predictors[isWithinPredictor],
