@@ -638,8 +638,8 @@ Form
 
 									"<br><br>" +
 
-									qsTr("You can choose between ±1 standard deviation or a confidence interval.<br>" +
-									"For the computation of the confidence interval, within and between factors are determined based on the specifciation of the ID variable" +
+									qsTr("You can choose between a confidence interval or ±1 standard error.<br>" +
+									"For the computation of the confidence interval and standard error, within and between factors are determined based on the specifciation of the ID variable" +
 
 									"<br>" +
 
@@ -648,17 +648,17 @@ Form
 			RadioButtonGroup
 			{
 				name:    "meanIntervalOption"
-				enabled: meanInterval.checked
-
-				RadioButton { label: qsTr("± 1 standard deviation"); value: "sd"; checked: true }
-
 				RadioButton  // Start RadioButtion Confidence interval
 				{
 					label: qsTr("Confidence interval")
 					value: "ci"
+					checked: 			true
 					childrenOnSameRow: true
 					CIField { name: "meanCiWidth" }
-				}  // End ciAssumption CheckBox
+				}  
+				
+				RadioButton { value: 	"se"; 	label: qsTr("Standard error") }
+
 			}  // End RadioButtonGroup meanIntervalOption
 		}  // End CheckBox meanInterval
 
