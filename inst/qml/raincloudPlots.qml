@@ -296,7 +296,7 @@ Form
 				DoubleField
 				{
 					name:				"vioNudge"
-					defaultValue:		(!customSides.checked) ? 0.09 : 0.24
+					defaultValue:		(!customSides.checked) ? 0.15 : 0.30
 					negativeValues:		true
 				}
 
@@ -419,7 +419,7 @@ Form
 			DoubleField
 			{
 				name:				"pointNudge"
-				defaultValue:		(!customSides.checked) ? 0.15 : 0 // Is multiplied by -1 in the R script
+				defaultValue:		(!customSides.checked) ? 0.19 : 0 // Is multiplied by -1 in the R script
 				enabled:			(!customSides.checked) ? true : false
 				negativeValues:		true
 			}
@@ -639,22 +639,11 @@ Form
 									"<br><br>" +
 
 									qsTr("You can choose between ±1 standard deviation or a confidence interval.<br>" +
-									"The confidence interval is computed independently for each group. For this, the corresponding checkbox needs to be checked, to acknowledge that.<br>" +
-									"This computation means that any factors are treated as between-factors.<br>" +
-									"If your data does not meet this assumption, but you still want to show intervals around the means, you can specify custom intervals (see below).<br>" +
-									"One example where this assumption does not hold is with ID input. This is why ID input disables the computation of confidence intervals.") +
+									"For the computation of the confidence interval, within and between factors are determined based on the specifciation of the ID variable" +
 
 									"<br>" +
 
-									"<h4>" + qsTr("Method") + "</h4>" +
-									qsTr("How should the confidence interval be computed?<br>" +
-
-									"'Normal model' uses a standard error defined as: " +
-									"_SD_<sub>group</sub> / square root of _N_<sub>group</sub><br>" +
-
-									"'T model' yields results identical to a one-sample t-test.<br>" +
-
-									"For 'Bootstrap' you can further specify the number of samples and set a seed for reproducible results.")
+									"<h4>" )
 
 			RadioButtonGroup
 			{
@@ -667,68 +656,9 @@ Form
 				{
 					label: qsTr("Confidence interval")
 					value: "ci"
-					enabled: observationId.count === 0
-
-					CheckBox
-					{
-						name: "meanCiAssumption"
-						label: qsTr("Compute confidence interval independently for each group.")
-
-						Group    // Start group ci settings
-						{
-							columns: 2
-
-							Label   { text: qsTr("Width") }
-							CIField { name: "meanCiWidth" }
-
-							Label{ text: qsTr("Method") }
-							DropDown
-							{
-								name: 	"meanCiMethod"
-								id: ciMethod
-								values:	[
-										{ label: qsTr("Normal model"), value: "normalModel"    },
-										{ label: qsTr("T model"),      value: "oneSampleTTest" },
-										{ label: qsTr("Bootstrap"),    value: "bootstrap"      },
-										]
-							}
-						}  // End group ci settings
-
-						Group  // Start group bootstrap settings
-						{
-							columns: 2
-
-							Label { text: qsTr("Bootstrap samples"); enabled: ciMethod.value == "bootstrap" }
-							IntegerField
-							{
-								name: "meanCiBootstrapSamples"
-								enabled: ciMethod.value == "bootstrap"
-								defaultValue: 1000
-								min: 1
-								max: 50000
-							}
-
-							CheckBox
-							{
-								name: "setSeed"
-								id: setSeed
-								enabled: ciMethod.value == "bootstrap"
-								label: qsTr("Seed for reproducibility")
-							}
-							IntegerField
-							{
-								name: "seed"
-								enabled: setSeed.checked
-								defaultValue: 1
-								negativeValues: true
-							}
-
-						}    // End group bootstrap settings
-
-
-					}  // End ciAssumption CheckBox
-				}  // End RadioButton Confidence interval
-
+					childrenOnSameRow: true
+					CIField { name: "meanCiWidth" }
+				}  // End ciAssumption CheckBox
 			}  // End RadioButtonGroup meanIntervalOption
 		}  // End CheckBox meanInterval
 

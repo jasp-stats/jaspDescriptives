@@ -102,14 +102,20 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   return(output)
 }  # End .rainDataInfo()
 
-
+.determineFactorType <- function(dataset, thisPredictor) {
+  # Function to determine if a factor is between or within subjects
+  # Get unique values of the factor within each ID
+  uniqueIDs <- tapply(dataset[[thisPredictor]], dataset[["observationId"]], function(x) length(unique(x)))
+  return(any(uniqueIDs > 1))
+}
 
 # .rainMeanInterval() ----
 .rainMeanInterval <- function(dataset, options, inputVariable) {
 
   infoFactorCombinations <- .rainInfoFactorCombinations(dataset, options)
   uniqueCombis           <- infoFactorCombinations$uniqueCombis
-
+  predictors <- if (options[["secondaryFactor"]] != "") c("primaryFactor", "secondaryFactor") else "primaryFactor"
+  
   output <- list(lowerBound = c(), upperBound = c(), successfulComputation = FALSE, sd = c())
 
   if (options[["meanIntervalCustom"]]) {
@@ -129,6 +135,13 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
     secondaryLevel <- as.character(uniqueCombis$secondaryFactor[cloudNumber])  # for numeric factor levels
     currentCell    <- dataset[dataset$primaryFactor == primaryLevel & dataset$secondaryFactor == secondaryLevel, ][[inputVariable]]
 
+    if (options[["observationId"]] != "") {
+      isWithinPredictor <- sapply(predictors, function(predictor) {.determineFactorType(dataset, predictor)})
+    } else {
+      isWithinPredictor <- FALSE
+    }
+      
+    
     # ...and calculate lowerBound, upperBound accordingly
     if (options[["meanIntervalOption"]] == "sd") {
       xBar <- mean(currentCell)
@@ -138,44 +151,42 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
       output$upperBound[cloudNumber] <- xBar + sd
       output$successfulComputation <- TRUE
 
-    } else if (options[["observationId"]] == "" && options[["meanIntervalOption"]] == "ci" && options[["meanCiAssumption"]]) {
-      # The following is adapted from .descriptivesMeanCI() in jaspDescriptives
-
-      if (options[["meanCiMethod"]] == "normalModel") {
-        xBar <- mean(currentCell)
-        se <- sd(currentCell) / sqrt(length(currentCell))
-        z <- qnorm((1 - options[["meanCiWidth"]]) / 2, lower.tail = FALSE)
-        output$lowerBound[cloudNumber] <- xBar - z * se
-        output$upperBound[cloudNumber] <- xBar + z * se
-        output$successfulComputation <- TRUE
-
-      } else if (options[["meanCiMethod"]] == "oneSampleTTest") {
-        ttestResult <- stats::t.test(x = currentCell, conf.level = options[["meanCiWidth"]])
-        CIs <- ttestResult[["conf.int"]]
-        output$lowerBound[cloudNumber] <- CIs[1]
-        output$upperBound[cloudNumber] <- CIs[2]
-        output$successfulComputation <- TRUE
-
-      } else if (options[["meanCiMethod"]] == "bootstrap") {
-        k <- options[["meanCiBootstrapSamples"]]
-        means <- numeric(k)
-        n <- length(currentCell)
-        jaspBase::.setSeedJASP(options)
-        for (i in seq_len(k)) {
-          bootData <- sample(currentCell, size = n, replace = TRUE)
-          means[i] <- mean(bootData)
-        }
-        percentiles <- (1 + c(-options[["meanCiWidth"]], options[["meanCiWidth"]])) / 2
-        CIs <- quantile(means, probs = percentiles)
-        output$lowerBound[cloudNumber] <- CIs[1]
-        output$upperBound[cloudNumber] <- CIs[2]
-        output$successfulComputation <- TRUE
+    } else if (options[["meanIntervalOption"]] == "ci") {
+      if (sum(isWithinPredictor) == 0) {
+        summaryStat <- jaspTTests::.summarySE(as.data.frame(dataset), 
+                                              measurevar = inputVariable, 
+                                              groupvars = predictors,
+                                              conf.interval = options[["meanCiWidth"]],
+                                              na.rm = TRUE, 
+                                              .drop = FALSE,
+                                              errorBarType = "ci", 
+                                              dependentName = inputVariable,
+                                              subjectName = NULL)
+      } else if (sum(isWithinPredictor) > 0) {
+        summaryStat <- jaspTTests::.summarySEwithin(as.data.frame(dataset), measurevar = inputVariable,
+                                                    betweenvars = predictors[!isWithinPredictor],
+                                                    withinvars = predictors[isWithinPredictor],
+                                                    idvar = "observationId",
+                                                    conf.interval = options[["meanCiWidth"]],
+                                                    na.rm=TRUE, .drop = FALSE, errorBarType = "ci",
+                                                    usePooledSE = TRUE,
+                                                    useMoreyCorrection = TRUE,
+                                                    dependentName = "observationId",
+                                                    subjectName = inputVariable)
       }
-
+      
+      if (options[["secondaryFactor"]] == "") {
+        selectRow <- summaryStat[["primaryFactor"]] == primaryLevel
+      } else {
+        selectRow <- ((summaryStat[["primaryFactor"]] == primaryLevel) & (summaryStat[["secondaryFactor"]] == secondaryLevel))
+      }
+      
+      output$lowerBound[cloudNumber] <- summaryStat[["ciLower"]][selectRow]
+      output$upperBound[cloudNumber] <- summaryStat[["ciUpper"]][selectRow]
+      output$successfulComputation <- TRUE
     }
-
+    
   }
-
   return(output)
 }  # End .rainMeanInterval()
 
@@ -710,11 +721,9 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   } else if (options[["meanInterval"]]) {
     if (options[["meanIntervalOption"]] == "sd") {
       meanInterval <- gettextf("Interval around mean represents ± 1 standard deviation.")
-    } else if (options[["observationId"]] == "" && options[["meanIntervalOption"]] == "ci" && options[["meanCiAssumption"]]) {
+    } else if (options[["meanIntervalOption"]] == "ci") {
       meanInterval <- gettextf(
-        "Interval around mean represents %d%% confidence interval;<br>confidence intervals were computed independently for each group.",
-        options[["meanCiWidth"]] * 100
-      )
+        "Interval around mean represents %d%% confidence interval.", options[["meanCiWidth"]] * 100)
     } else {
       meanInterval <- NULL
     }
@@ -814,26 +823,21 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
     tableInProgress$addColumnInfo(name = "ymax",   title = gettextf("Upper Whisker"),   type = "number", format = "dp:2")
   }
 
-  meanInterval <- options[["observationId"]] == "" && options[["meanInterval"]] && options[["meanIntervalOption"]] == "ci" && options[["meanCiAssumption"]]
-
-  if (options[["mean"]] && (meanInterval || options[["meanIntervalCustom"]])) {
-      tableInProgress$addColumnInfo(
-        name = "lowerBound", title = gettextf("Lower Interval Limit"), type = "number", format = "dp:2"
-      )
-  }
-
   if (options[["mean"]]) {
     tableInProgress$addColumnInfo(name = "mean", title = gettextf("Mean"), type = "number", format = "dp:2")
+  }
+  
+  meanInterval <- options[["meanInterval"]] && options[["meanIntervalOption"]] == "ci"
+  
+  if (options[["mean"]] && (meanInterval || options[["meanIntervalCustom"]])) {
+    thisOverTitle <- gettextf("%s%% CI for Mean Difference", options[["meanCiWidth"]] * 100)
+    tableInProgress$addColumnInfo(name="lowerBound", type = "number", title = gettext("Lower"), overtitle = thisOverTitle)
+    tableInProgress$addColumnInfo(name="upperBound", type = "number", title = gettext("Upper"), overtitle = thisOverTitle)
+    
   }
 
   if (options[["mean"]] && options[["meanInterval"]] && options[["meanIntervalOption"]] == "sd" && !options[["meanIntervalCustom"]]) {
       tableInProgress$addColumnInfo(name = "sd", title = gettextf("Standard Deviation"), type = "number", format = "dp:2")
-  }
-
-  if (options[["mean"]] && (meanInterval || options[["meanIntervalCustom"]])) {
-    tableInProgress$addColumnInfo(
-      name = "upperBound", title = gettextf("Upper Interval Limit"), type = "number", format = "dp:2"
-    )
   }
 
   tableInProgress$showSpecifiedColumnsOnly <- TRUE  # Only show columns that were added
@@ -894,9 +898,9 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   sampleExclusionSpacer <- if (!is.null(exclusions)) " "
   meanInterval <- if (options[["meanIntervalCustom"]]) {
     gettextf("<br>Interval around mean is custom.")
-  } else if (options[["observationId"]] == "" && options[["meanInterval"]] && options[["meanIntervalOption"]] == "ci" && options[["meanCiAssumption"]]) {
+  } else if (options[["meanInterval"]] && options[["meanIntervalOption"]] == "ci") {
     gettextf(
-      "<br>Interval around mean represents %d%% confidence interval;<br>confidence intervals were computed independently for each group.",
+      "<br>Interval around mean represents %d%% confidence interval.",
       options[["meanCiWidth"]] * 100
     )
   }

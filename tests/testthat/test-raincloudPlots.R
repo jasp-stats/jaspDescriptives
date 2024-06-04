@@ -175,7 +175,7 @@ test_that("plot with both factors, no box, means, meanLines, and, bootstrapped c
   jaspTools::expect_equal_plots(testPlot, "both-factors-boxless-means-meanlines-bootstrapped-ci")
 })
 
-test_that("table results match for a plot with both factors, no box, means, meanLines, and bootstrapped ci", {
+test_that("table results match for a plot with both factors, no box, means, meanLines, and ci", {
   options <- jaspTools::analysisOptions("raincloudPlots")
   options$.meta <- list(covariate = list(shouldEncode = TRUE), customizationTable = list(
     shouldEncode = TRUE), dependentVariables = list(shouldEncode = TRUE),
@@ -196,9 +196,6 @@ test_that("table results match for a plot with both factors, no box, means, mean
   options$dependentVariables <- "bill_length_mm"
   options$heightPlot <- 550
   options$mean <- TRUE
-  options$meanCiAssumption <- TRUE
-  options$meanCiBootstrapSamples <- 1001
-  options$meanCiMethod <- "bootstrap"
   options$meanCiWidth <- 0.99
   options$meanInterval <- TRUE
   options$meanIntervalOption <- "ci"
@@ -219,12 +216,12 @@ test_that("table results match for a plot with both factors, no box, means, mean
   results <- jaspTools::runAnalysis("raincloudPlots", "palmerPenguins.csv", options)
   table <- results[["results"]][["containerTables"]][["collection"]][["containerTables_bill_length_mm"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(37.9772727272727, 38.975, 44, "Adelie", "Biscoe", 39.9204545454545,
-                                      37.7125, 38.5017857142857, 56, "", "Dream", 39.3267857142857,
-                                      37.9117647058824, 38.9509803921569, 51, "", "Torgersen", 40.021568627451,
-                                      47.8, 48.8338235294118, 68, "Chinstrap", "Dream", 49.8808823529412,
-                                      46.8463414634146, 47.5048780487805, 123, "Gentoo", "Biscoe",
-                                      48.2170731707317))
+                                 list(37.9669992428727, 38.975, 44, "Adelie", "Biscoe", 39.9830007571273,
+                                      37.6227486231599, 38.5017857142857, 56, "", "Dream", 39.3808228054115,
+                                      37.8165888244058, 38.9509803921569, 51, "", "Torgersen", 40.0853719599079,
+                                      47.760227341363, 48.8338235294118, 68, "Chinstrap", "Dream",
+                                      49.9074197174605, 46.7777368375394, 47.5048780487805, 123, "Gentoo",
+                                      "Biscoe", 48.2320192600216))
 })
 
 
