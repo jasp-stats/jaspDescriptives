@@ -133,7 +133,7 @@ Form
 			title:				qsTr("Dispersion")
 			infoLabel:			qsTr("Dispersion (only for continuous variables)")
 			columns:			2
-			Layout.columnSpan:	2
+			Layout.columnSpan:	parent.columns
 
 			CheckBox { name: "sd";							label: qsTr("Std. deviation");				info: qsTr("Standard deviation of the data points."); checked: true	}
 			CheckBox { name: "coefficientOfVariation";		label: qsTr("Coefficient of variation");	info: qsTr("The Coefficient of variation gives us the relative dispersion of the data, in contrast to the standard deviation, which gives the absolute dispersion. For this purpose, the standard deviation is divided by the mean value, so that the unit is truncated away.") }
