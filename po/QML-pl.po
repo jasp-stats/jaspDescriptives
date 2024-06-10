@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-06-10 10:24+0000\n"
+"PO-Revision-Date: 2024-06-11 12:09+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/pl/>\n"
@@ -784,10 +784,9 @@ msgctxt "FlexplotForm|"
 msgid "Standard deviations"
 msgstr "Odchylenie standardowe"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Intervals (categorical predictors)"
-msgstr "Przedziały"
+msgstr "Przedziały (predyktory kategorialne)"
 
 #, fuzzy
 msgctxt "FlexplotForm|"
@@ -889,31 +888,31 @@ msgstr "Etykieta wiersza"
 
 msgctxt "Descriptives|"
 msgid "Association matrix"
-msgstr ""
+msgstr "Macierz zależności"
 
 msgctxt "Descriptives|"
 msgid "Covariance"
-msgstr ""
+msgstr "Kowariancja"
 
 msgctxt "Descriptives|"
 msgid "Correlation"
-msgstr ""
+msgstr "Korelacja"
 
 msgctxt "Descriptives|"
 msgid "Use"
-msgstr ""
+msgstr "Użyj"
 
 msgctxt "Descriptives|"
 msgid "Everything"
-msgstr ""
+msgstr "Wszystko"
 
 msgctxt "Descriptives|"
 msgid "Complete observations"
-msgstr ""
+msgstr "Kompletne obserwacje"
 
 msgctxt "Descriptives|"
 msgid "Pairwise compelete observations"
-msgstr ""
+msgstr "Pary kompletnych obserwacji"
 
 msgctxt "Description|"
 msgid "Raincloud Plots"
@@ -1002,7 +1001,7 @@ msgstr ""
 
 msgctxt "FlexplotForm|"
 msgid "Should 95% confidence intervals be displayed?"
-msgstr ""
+msgstr "Czy chcesz wyświetlić 95% przedziały ufności?"
 
 msgctxt "FlexplotForm|"
 msgid "A non-parametric loess line"
@@ -1906,7 +1905,6 @@ msgctxt "raincloudPlots|"
 msgid "T model"
 msgstr "Model T"
 
-#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Bootstrap"
 msgstr "Bootstrap"
