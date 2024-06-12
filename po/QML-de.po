@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-06-12 10:36+0000\n"
+"PO-Revision-Date: 2024-06-12 18:18+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/de/>\n"
@@ -1989,7 +1989,7 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Mean Lines: Width"
-msgstr ""
+msgstr "Mittelwertlinien: Breite"
 
 msgctxt "raincloudPlots|"
 msgid "See outline width of box and violin as well as ID lines width."
@@ -1997,11 +1997,11 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Custom"
-msgstr ""
+msgstr "Benutzerdefiniert"
 
 msgctxt "raincloudPlots|"
 msgid "Distance"
-msgstr ""
+msgstr "Distanz"
 
 msgctxt "raincloudPlots|"
 msgid "On axis ticks"
@@ -2033,7 +2033,6 @@ msgid ""
 "is why ID input disables the computation of confidence intervals."
 msgstr ""
 
-#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Method"
 msgstr "Methode"
@@ -2049,16 +2048,15 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "± 1 standard deviation"
-msgstr ""
+msgstr "± 1 Standardabweichung"
 
-#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Confidence interval"
 msgstr "Konfidenzintervall"
 
 msgctxt "raincloudPlots|"
 msgid "Compute confidence interval independently for each group."
-msgstr ""
+msgstr "Konfidenzintervall unabhängig für jede Gruppe berechnen."
 
 #, fuzzy
 msgctxt "raincloudPlots|"
@@ -2074,10 +2072,9 @@ msgctxt "raincloudPlots|"
 msgid "Bootstrap"
 msgstr "Bootstrap"
 
-#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Bootstrap samples"
-msgstr "Bootstrap Stichprobenanzahl"
+msgstr "Bootstrap-Stichprobe"
 
 msgctxt "raincloudPlots|"
 msgid "Seed for reproducibility"
@@ -2085,11 +2082,11 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Interval line width"
-msgstr ""
+msgstr "Intervallliniendicke"
 
 msgctxt "raincloudPlots|"
 msgid "Determines the thickness of the interval lines."
-msgstr ""
+msgstr "Gibt die Dicke der Intervall-Linien an."
 
 msgctxt "raincloudPlots|"
 msgid "Width of interval whiskers depends on mean distance."
@@ -2101,7 +2098,7 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "How many clouds are currently shown?"
-msgstr ""
+msgstr "Wieviele Wolken werden gerade angezeigt?"
 
 msgctxt "raincloudPlots|"
 msgid ""
@@ -2174,7 +2171,7 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Cloud"
-msgstr ""
+msgstr "Wolke"
 
 msgctxt "raincloudPlots|"
 msgid "Orientation"
@@ -2182,15 +2179,15 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Lower Limit"
-msgstr ""
+msgstr "Untere Grenze"
 
 msgctxt "raincloudPlots|"
 msgid "Upper Limit"
-msgstr ""
+msgstr "Obere Grenze"
 
 msgctxt "raincloudPlots|"
 msgid "Color"
-msgstr ""
+msgstr "Farbe"
 
 msgctxt "raincloudPlots|"
 msgid ""
