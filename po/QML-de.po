@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-06-10 10:24+0000\n"
+"PO-Revision-Date: 2024-06-12 10:36+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/de/>\n"
@@ -1798,7 +1798,7 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Violin Smoothing"
-msgstr ""
+msgstr "Violinen-Glättung"
 
 msgctxt "raincloudPlots|"
 msgid ""
@@ -1806,6 +1806,9 @@ msgid ""
 "lower, the stronger it is influenced by the presence/absence of individual "
 "points."
 msgstr ""
+"Dieser Prozentsatz bestimmt die Glättung der "
+"Wahrscheinlichkeitsdichte.<br>Je niedriger, desto stärker wird sie durch die "
+"An-/Abwesenheit einzelner Punkte beeinflusst."
 
 msgctxt "raincloudPlots|"
 msgid "Point Jitter"
@@ -1889,13 +1892,14 @@ msgctxt "raincloudPlots|"
 msgid "ID lines"
 msgstr "ID-Linien"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Axes, Caption, and Plot Size"
-msgstr ""
+msgstr "Achsen, Bildunterschrift, und Diagrammgröße"
 
 msgctxt "raincloudPlots|"
 msgid "Custom limits for dependent variable axis:"
-msgstr ""
+msgstr "Benutzerdefinierte Grenzen für Achse der abhängigen Variable:"
 
 msgctxt "raincloudPlots|"
 msgid ""
@@ -1909,11 +1913,11 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "from"
-msgstr ""
+msgstr "von"
 
 msgctxt "raincloudPlots|"
 msgid "to"
-msgstr ""
+msgstr "bis"
 
 msgctxt "raincloudPlots|"
 msgid ""
@@ -1938,7 +1942,7 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Plot Size: Width and Height"
-msgstr ""
+msgstr "Diagrammgröße: Breite und Höhe"
 
 msgctxt "raincloudPlots|"
 msgid ""
@@ -1950,24 +1954,23 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Plot Size"
-msgstr ""
+msgstr "Diagrammgröße"
 
 msgctxt "raincloudPlots|"
 msgid "Advanced"
-msgstr ""
+msgstr "Weiteres"
 
-#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Mean"
 msgstr "Mittelwert"
 
 msgctxt "raincloudPlots|"
 msgid "Whether to also show a mean for each cloud."
-msgstr ""
+msgstr "Ob auch ein Mittelwert für jede Wolke gezeigt wird."
 
 msgctxt "raincloudPlots|"
 msgid "Position"
-msgstr ""
+msgstr "Position"
 
 msgctxt "raincloudPlots|"
 msgid ""
