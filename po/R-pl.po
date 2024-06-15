@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2024-05-18 03:18\n"
-"PO-Revision-Date: 2024-03-30 03:17+0000\n"
+"PO-Revision-Date: 2024-06-11 11:09+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/pl/>\n"
@@ -12,18 +12,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 msgid "Time Series Plot"
+msgstr "Wykres szeregu czasowego"
+
+msgid "Lag Plot"
 msgstr ""
 
-#, fuzzy
-msgid "Lag Plot"
-msgstr "Wykres K-K"
-
-#, fuzzy
 msgid "Autocorrelation Function"
-msgstr "Wykres korelacji"
+msgstr ""
 
 msgid "Partial Autocorrelation Function"
 msgstr ""
@@ -56,47 +54,54 @@ msgid "Maximum"
 msgstr "Maksimum"
 
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
 msgid "End"
-msgstr ""
+msgstr "Koniec"
 
 msgid "Lag 1 Autocorrelation"
 msgstr ""
 
 msgid "The time series data should be equally-spaced."
-msgstr ""
+msgstr "Dane szeregów czasowych powinny być równomiernie rozmieszczone."
 
 msgid "The time variable should have unique values only."
-msgstr ""
+msgstr "Zmienna czasu powinna mieć wyłącznie unikalne wartości."
 
 msgid ""
 "The 'Time' variable has a date-like format, please filter by date instead."
 msgstr ""
+"Zmienna 'Czas' ma format podobny do daty. Należy wykonać filtrowanie według "
+"daty."
 
 msgid ""
 "The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:"
 "ss). Try to filter by time index instead."
 msgstr ""
+"Zmienna 'Czas' nie ma formatu daty (np. rrrr-mm-dd gg:mm:ss). Należy wykonać "
+"filtrowanie według indeksu czasu."
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
-msgstr ""
+msgstr "'Początek' musi mieć format daty (np. rrrr-mm-dd gg:mm:ss)."
 
 msgid "The 'Start' value of the filter should be before last observation."
 msgstr ""
+"Wartość 'Początek' filtra powinna znajdować się przed ostatnią obserwacją."
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
-msgstr ""
+msgstr "Wartość 'Koniec' musi mieć format daty (np. rrrr-mm-dd gg:mm:ss)."
 
 msgid ""
 "The 'End' value of the filter should be larger/later than the 'Start' value."
 msgstr ""
+"Wartość 'Koniec' filtra powinna być większa/późniejsza niż wartość "
+"'Początek'."
 
 msgid "Lag"
 msgstr ""
 
 msgid "Association %s"
-msgstr ""
+msgstr "Zależność %s"
 
 msgid "Frequency Tables"
 msgstr "Tabela częstości"
@@ -320,11 +325,15 @@ msgid ""
 "Association cannot be computed due to missing values. Try a different 'Use' "
 "setting."
 msgstr ""
+"Zależność nie mogła zostać obliczona ze względu na braki danych. Należy "
+"zmienić ustawienia opcji \"Użyj\"."
 
 msgid ""
 "Some associations cannot be computed due to missing values. Try a different "
 "'Use' setting."
 msgstr ""
+"Niektóre zależności nie mogły zostać obliczone ze względu na braki danych. "
+"Należy zmienić ustawienia opcji \"Użyj\"."
 
 msgid "Theoretical Quantiles"
 msgstr "Kwantyle teoretyczne"
@@ -365,7 +374,7 @@ msgstr ""
 "Poziomy w ramach zmiennej wymagają co najmniej dwóch lub więcej wartości!"
 
 msgid "Raincloud Plots"
-msgstr ""
+msgstr "Wykresy chmury deszczowej"
 
 msgid "Not shown are %s observations due to missing data."
 msgstr ""
@@ -407,27 +416,24 @@ msgid ""
 "span>"
 msgstr ""
 
-#, fuzzy
 msgid "Statistics"
-msgstr "Statystyki opisowe"
+msgstr "Statystyki"
 
 msgid "Primary Factor"
-msgstr ""
+msgstr "Czynnik pierwszego rzędu"
 
 msgid "Secondary Factor"
-msgstr ""
+msgstr "Czynnik drugiego rzędu"
 
 msgid "<i>N</i>"
-msgstr ""
+msgstr "<i>N</i>"
 
 msgid "Lower Whisker"
 msgstr ""
 
-#, fuzzy
 msgid "25th Percentile"
 msgstr "25-ty percentyl"
 
-#, fuzzy
 msgid "75th Percentile"
 msgstr "75-ty percentyl"
 
@@ -437,7 +443,6 @@ msgstr ""
 msgid "Lower Interval Limit"
 msgstr ""
 
-#, fuzzy
 msgid "Standard Deviation"
 msgstr "Odch. stand."
 
@@ -445,10 +450,10 @@ msgid "Upper Interval Limit"
 msgstr ""
 
 msgid "<i>N</i><sub>Total</sub> = %s."
-msgstr ""
+msgstr "<i>N</i><sub>Całość</sub> = %s."
 
 msgid "This excludes %s observations due to missing data."
-msgstr ""
+msgstr "Usuwa %s obserwacji ze względu na braki danych."
 
 msgid "<br>Interval around mean is custom."
 msgstr ""
