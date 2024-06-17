@@ -354,9 +354,9 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   xTitle        <- if (options[["primaryFactor"]] == "") "Total" else options[["primaryFactor"]]
   axisTitles    <- ggplot2::labs(x = xTitle, y = inputVariable)
   axisFontSize <- ggplot2::theme(
-    axis.title   = ggplot2::element_text(size = 27.5),
-    axis.text.x  = ggplot2::element_text(size = 29),  # For some reason, axis.text does not work; separate x & y needed
-    axis.text.y  = ggplot2::element_text(size = 29)
+    axis.title   = ggplot2::element_text(size = 20),
+    axis.text.x  = ggplot2::element_text(size = 21.5),  # For some reason, axis.text does not work; separate x & y needed
+    axis.text.y  = ggplot2::element_text(size = 21.5)
   )
 
   noFactorBlankAxis <- if (options[["primaryFactor"]] == "") {
@@ -393,10 +393,10 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 
   legendFontSize <- ggplot2::theme(
     legend.title = ggplot2::element_text(
-      size = 27.5,
+      size = 20,
       margin = ggplot2::margin(b = 15)  # For descenders: https://en.wikipedia.org/wiki/Descender
       ),
-    legend.text = ggplot2::element_text(size = 29)
+    legend.text = ggplot2::element_text(size = 21.5)
   )
 
   plotInProgress <- plotInProgress + guide + legendCloser + legendFontSize
