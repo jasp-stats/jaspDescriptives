@@ -536,7 +536,7 @@ Form
 					(colorAnyway.checked && primaryFactor.count === 1) ||
 					showCaption.checked
 					) {
-						675
+						850
 					} else {
 						550
 					}
