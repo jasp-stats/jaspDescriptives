@@ -351,8 +351,13 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   }
   yAxis   <- ggplot2::scale_y_continuous(breaks = yBreaks, limits = yLimits)
 
-  xTitle     <- if (options[["primaryFactor"]] == "") "Total" else options[["primaryFactor"]]
-  axisTitles <- ggplot2::labs(x = xTitle, y = inputVariable)
+  xTitle        <- if (options[["primaryFactor"]] == "") "Total" else options[["primaryFactor"]]
+  axisTitles    <- ggplot2::labs(x = xTitle, y = inputVariable)
+  axisFontSize <- ggplot2::theme(
+    axis.title   = ggplot2::element_text(size = 27.5),
+    axis.text.x  = ggplot2::element_text(size = 29),  # For some reason, axis.text does not work; separate x & y needed
+    axis.text.y  = ggplot2::element_text(size = 29)
+  )
 
   noFactorBlankAxis <- if (options[["primaryFactor"]] == "") {
     if (!options[["horizontal"]]) {
@@ -362,7 +367,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
     }
   }
 
-  plotInProgress <- plotInProgress + yAxis + axisTitles + noFactorBlankAxis
+  plotInProgress <- plotInProgress + yAxis + axisTitles + axisFontSize + noFactorBlankAxis
 
   # Legend
   guideFill <- if (options[["primaryFactor"]] == ""  && options[["secondaryFactor"]] == "") {
@@ -381,11 +386,20 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   }
   guide <- ggplot2::guides(fill = guideFill, color = guideColor)
 
-  legendCloser <- ggplot2::theme(legend.box.spacing = ggplot2::unit(0, "pt"), legend.margin = ggplot2::margin(0, 0, 0, 0))
+  legendCloser <- ggplot2::theme(
+    legend.box.spacing = ggplot2::unit(0, "pt"),
+    legend.margin = ggplot2::margin(t = 0, r = 0, b = 0, l = 0)
+  )
 
-  legendTitleMargin <- ggplot2::theme(legend.title = ggplot2::element_text(margin = ggplot2::margin(b = 15)))
+  legendFontSize <- ggplot2::theme(
+    legend.title = ggplot2::element_text(
+      size = 27.5,
+      margin = ggplot2::margin(b = 15)  # For descenders: https://en.wikipedia.org/wiki/Descender
+      ),
+    legend.text = ggplot2::element_text(size = 29)
+  )
 
-  plotInProgress <- plotInProgress + guide + legendCloser + legendTitleMargin
+  plotInProgress <- plotInProgress + guide + legendCloser + legendFontSize
 
   # Caption
   if (options[["showCaption"]]) {
