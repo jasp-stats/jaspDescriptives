@@ -351,8 +351,8 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   }
   yAxis   <- ggplot2::scale_y_continuous(breaks = yBreaks, limits = yLimits)
 
-  xTitle        <- if (options[["primaryFactor"]] == "") "Total" else options[["primaryFactor"]]
-  axisTitles    <- ggplot2::labs(x = xTitle, y = inputVariable)
+  xTitle       <- if (options[["primaryFactor"]] == "") "Total" else options[["primaryFactor"]]
+  axisTitles   <- ggplot2::labs(x = xTitle, y = inputVariable)
   axisFontSize <- ggplot2::theme(
     axis.title   = ggplot2::element_text(size = 20),
     axis.text.x  = ggplot2::element_text(size = 21.5),  # For some reason, axis.text does not work; separate x & y needed
