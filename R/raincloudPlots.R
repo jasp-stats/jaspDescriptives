@@ -370,7 +370,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   plotInProgress <- plotInProgress + yAxis + axisTitles + axisFontSize + noFactorBlankAxis
 
   # Legend
-  guideFill <- if (options[["primaryFactor"]] == ""  && options[["secondaryFactor"]] == "") {
+  guideFill <- if (options[["secondaryFactor"]] == "") {
     "none"  # If there is just a single cloud and colorAnyway, we do not need a legend
   } else {
     ggplot2::guide_legend(
