@@ -148,22 +148,38 @@ Form
 				info:  				qsTr("How to color code the covariate. 'Viridis' works good for both discrete and continuous covariates.")
 			}
 		}
-
-		CheckBox
+		Group
 		{
-			name: 					"colorAnyway"
-			label:					qsTr("Apply color palette to primary factor")
-			id: 					colorAnyway
-			enabled: 				secondaryFactor.count === 0
-			checked:				secondaryFactor.count === 0
-			Layout.columnSpan: 		2
-			info:					qsTr(
-										"Applies the color palette to the levels of the primary factor. " +
-										"Otherwise, the plot stays black and white.<br>" +
-										"This option is superseeded by a secondary factor; then color coding is according to that."
-									)
-		}
+			columns: 2
+			CheckBox
+			{
+				name: 					"colorAnyway"
+				label:					qsTr("Apply color palette to primary factor")
+				id: 					colorAnyway
+				enabled: 				secondaryFactor.count === 0
+				checked:				secondaryFactor.count === 0
+				Layout.columnSpan: 		2
+				info:					qsTr(
+											"Applies the color palette to the levels of the primary factor. " +
+											"Otherwise, the plot stays black and white.<br>" +
+											"This option is superseeded by a secondary factor; then color coding is according to that."
+										)
+			}
 
+			CheckBox
+			{
+				name: 					"showLegend"
+				label:					qsTr("Show legend")
+				id: 					showLegend
+				enabled: 				colorAnyway.checked 
+				checked:				secondaryFactor.count === 1
+				Layout.columnSpan: 		2
+				info:					qsTr(
+											"Shows the legend for the color-coding of the primary factor.<br>" +
+											"This option is superseeded by a secondary factor; then the legend is always added."
+										)
+			}
+		}
 		// End top 2 rows
 
 		CheckBox
