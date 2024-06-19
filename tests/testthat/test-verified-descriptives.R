@@ -4,6 +4,7 @@ context("Descriptives -- Verification project")
 test_that("Main table results match R, SPSS, SAS and MiniTab", {
   options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "Data"
+  options$variables.types <- "scale"
   options$mean <- TRUE
   options$median <- TRUE
   options$variance <- TRUE

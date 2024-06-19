@@ -461,6 +461,7 @@ test_that("plot with flanking clouds and vioSmoothing matches", {
   options$pointNudge <- 0.15
   options$pointOpacity <- 0.75
   options$primaryFactor <- "time"
+  options$primaryFactor.types <- "nominal"
   options$secondaryFactor <- "Species"
   options$secondaryFactor.types <- "nominal"
   options$showBox <- TRUE
