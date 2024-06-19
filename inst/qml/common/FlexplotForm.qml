@@ -25,7 +25,6 @@ Form
 			title: qsTr("Dependent Variable");
 			info: qsTr("The variable of interest. This is also called the outcome variable. If only an outcome variable is specified, Flexplot will produce a histogram for numeric data and a barchart for categorical data. If independent variable(s) and/or panelled variable(s) are specified, this variable will be displayed on the Y axis.")
 			singleVariable: true
-			height: 40
 			onCountChanged:  nameY.value = count > 0 ? model.data(model.index(0,0)) : ""
 		}
 		AssignedVariablesList	{
