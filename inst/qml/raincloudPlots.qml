@@ -232,7 +232,7 @@ Form
 		{
 			name: 		"showPoint"
 			id: 		showPoint
-			text: 		qsTr("Show point")
+			text: 		qsTr("Show points")
 			checked: 	true
 			info: 		qsTr("Whether or not the points of a cloud should be shown. If un-checked, opacity is set to 0.<br>" +
 							"If you have many, many points, it can be helpful to hide them.") +
