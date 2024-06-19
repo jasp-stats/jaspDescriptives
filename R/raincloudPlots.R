@@ -354,9 +354,9 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   xTitle       <- if (options[["primaryFactor"]] == "") "Total" else options[["primaryFactor"]]
   axisTitles   <- ggplot2::labs(x = xTitle, y = inputVariable)
   axisFontSize <- ggplot2::theme(
-    axis.title   = ggplot2::element_text(size = 20),
-    axis.text.x  = ggplot2::element_text(size = 21.5),  # For some reason, axis.text does not work; separate x & y needed
-    axis.text.y  = ggplot2::element_text(size = 21.5)
+    axis.title   = ggplot2::element_text(size = 19),
+    axis.text.x  = ggplot2::element_text(size = 20),  # For some reason, axis.text does not work; separate x & y needed
+    axis.text.y  = ggplot2::element_text(size = 20)
   )
 
   noFactorBlankAxis <- if (options[["primaryFactor"]] == "") {
