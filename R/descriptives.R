@@ -385,7 +385,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if (makeSplit)
     dataset.factors[[splitName]] <- dataset[[splitName]]
 
-  allMissing <- \(x) sum(is.na(x)) == length(x)
+  allMissing <- \(x) all(is.na(x))
   missingAllAsNumeric <- vapply(dataset,         allMissing, FUN.VALUE = logical(1L))
   missingAllAsIs      <- vapply(dataset.factors, allMissing, FUN.VALUE = logical(1L))
   isNominalText       <- missingAllAsNumeric & !missingAllAsIs[names(missingAllAsNumeric)]
