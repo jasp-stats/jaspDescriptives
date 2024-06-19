@@ -29,9 +29,9 @@
     if (options$time == "") {
       t <- 1:nrow(yDataset)
     } else {
-      tDataset <- .readDataSetToEnd(columns = options$time)
+      tDataset <- .readDataSetToEnd(columns.as.factor = options$time)
       tName <- options$time[1]
-      t <- tDataset[, tName]
+      t <- as.character(tDataset[, tName])
     }
     dat <- cbind(dat, t)
 

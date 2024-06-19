@@ -14,7 +14,7 @@ Form
         {
             name: "dependent"
 			label: qsTr("Variable")
-            allowedColumns: ["ordinal", "scale"]
+			allowedColumns: ["scale"]
             singleVariable: true
             info: qsTr("A variable that is measured repeatedly over time.")
         }
@@ -23,7 +23,7 @@ Form
 			id:		time
 			name:	"time"
 			label:	qsTr("Time")
-			allowedColumns: ["ordinal", "nominal"]
+			allowedColumns: ["nominal"]
             singleVariable: true
 			info:	qsTr("Optional. Can either be an ordinal variable indicating the order of the observations, or a text variable indicating the date/time stamp of the observations. Combined date and time values should be in the standard format 'YYYY-MM-DD HH:MM:SS', where seconds (':SS') can also be omitted. Date-only values should be in the format 'YYYY-MM-DD'. If a time variable is not supplied, the row order of the data is used.")
         }

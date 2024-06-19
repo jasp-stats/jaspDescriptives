@@ -85,7 +85,7 @@ Form
 			name: 					"secondaryFactor"
 			title:					qsTr("Secondary Factor")
 			id: 					secondaryFactor
-			suggestedColumns: 		["nominal"]
+			allowedColumns: 		["nominal"]
 			minLevels:				2
 			singleVariable: 		true
 			info:					qsTr("Its levels are color coded.")
@@ -96,7 +96,7 @@ Form
 			name: 					"covariate"
 			title:					qsTr("Covariate")
 			id: 					covariate
-			suggestedColumns: 		["nominal", "ordinal", "scale"]
+			allowedColumns: 		["nominal", "scale"]
 			singleVariable: 		true
 			info:					qsTr("Points are color coded according to this.")
 		}
@@ -106,7 +106,7 @@ Form
 			name: 					"observationId"
 			title:					qsTr("ID")
 			id: 					observationId
-			suggestedColumns: 		["nominal", "ordinal", "scale"]
+			allowedColumns:  		["nominal"]
 			singleVariable: 		true
 			enabled:				primaryFactor.count === 1
 			info:					qsTr(
