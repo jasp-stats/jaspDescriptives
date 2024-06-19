@@ -31,6 +31,8 @@ Form
 			name: "variables"		;
 			title: qsTr("Independent Variable(s)") ;
 			id: varlist
+			maxRows: 2
+			height: 60
 			info: qsTr("The variable(s) for which we wish to visually assess relationships with the DV. The first variable chosen shows up on the X axis, either as a scatterplot (for numeric predictors) or as a beeswarm plot (for categorical variables). The second variable chosen will show up as different colors/lines/symbols. If the second varaible chosen is numeric, it will be binned first.")
 			onCountChanged: {
 				nameLegend.value = count > 1 ? model.data(model.index(1,0)) : "";
@@ -43,6 +45,8 @@ Form
 			title: qsTr("Paneled Variable(s)");
 			info: qsTr("Variables specified in these boxes will be binned (if numeric) then displayed as different subplots. The first variable specified as a panelled variable will form the column plots, while the second will form the row plots.")
 			id: paneledVars
+			maxRows: 2
+			height: 60
 			onCountChanged: {
 				nameCols.value = count > 0 ? model.data(model.index(0,0)) : "";
 				nameRows.value = count > 1 ? model.data(model.index(1,0)) : "";
