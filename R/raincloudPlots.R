@@ -393,10 +393,10 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 
   legendFontSize <- ggplot2::theme(
     legend.title = ggplot2::element_text(
-      size = 20,
+      size = 19,
       margin = ggplot2::margin(b = 15)  # For descenders: https://en.wikipedia.org/wiki/Descender
       ),
-    legend.text = ggplot2::element_text(size = 21.5)
+    legend.text = ggplot2::element_text(size = 20)
   )
 
   plotInProgress <- plotInProgress + guide + legendCloser + legendFontSize
