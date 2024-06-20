@@ -28,13 +28,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   numberMissingSplitBy <- 0
 
   if (is.null(dataset)) {
-    if (makeSplit) {
-      dataset         <- .readDataSetToEnd(columns.as.numeric = variables, columns.as.factor = splitName)
-      dataset.factors <- .readDataSetToEnd(columns = variables, columns.as.factor = splitName)
-    } else {
-      dataset         <- .readDataSetToEnd(columns.as.numeric = variables)
-      dataset.factors <- .readDataSetToEnd(columns = variables)
-    }
+    temp <- .descriptivesReadData(options, variables, splitName)
+    dataset         <- temp[["dataset"]]
+    dataset.factors <- temp[["dataset.factors"]]
+    isNominalText   <- temp[["isNominalText"]]
   }
 
   if (makeSplit && length(variables) > 0) {
@@ -52,7 +49,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     splitDat.factors <- split(dataset.factors[variables], splitFactor)
   }
 
-  .descriptivesDescriptivesTable(dataset, options, jaspResults, numberMissingSplitBy = numberMissingSplitBy)
+  .descriptivesDescriptivesTable(dataset, dataset.factors, isNominalText, options, jaspResults, numberMissingSplitBy = numberMissingSplitBy)
 
   # Covariance matrix
   if (options[["covariance"]] || options[["correlation"]]) {
@@ -62,9 +59,9 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       jaspResults[["associationMatrix"]]$dependOn(c("splitBy", "covariance", "correlation", "variables", "associationMatrixUse"))
       # jaspResults[["stemAndLeaf"]]$position <- 11
     }
-    
+
     numericOrFactorVariables <- Filter(function(var) .descriptivesIsNumericColumn(dataset.factors, var), variables)
-    
+
     if (length(variables) > 0L) {
       .descriptivesCovarianceTables(
         container = jaspResults[["associationMatrix"]],
@@ -74,7 +71,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       )
     }
   }
-  
+
   # Frequency table
   if (options$frequencyTables) {
     if (is.null(jaspResults[["tables"]])) {
@@ -329,7 +326,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       }
     }
   }
-  
+
   # Density plots
   if (options[["densityPlot"]]) {
     if (is.null(jaspResults[["densityPlot"]])) {
@@ -340,10 +337,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       ))
       jaspResults[["densityPlot"]]$position <- 17
     }
-    
+
     .descriptivesDensityPlots(jaspResults[["densityPlot"]], dataset.factors, variables, options)
   }
-  
+
   # Likert plots
   if (options[["likertPlot"]] && !all(lapply(dataset.factors[variables], is.double))) {
     if (is.null(jaspResults[["likertPlot"]])) {
@@ -380,7 +377,23 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   return()
 }
 
-.descriptivesDescriptivesTable <- function(dataset, options, jaspResults, numberMissingSplitBy = 0) {
+.descriptivesReadData <- function(options, variables, splitName) {
+
+  makeSplit <- splitName != ""
+  dataset <- .readDataSetToEnd(columns.as.numeric = variables, columns.as.factor = if (makeSplit) splitName)
+  dataset.factors <- jaspBase::readDataSetByVariableTypes(options, "variables")
+  if (makeSplit)
+    dataset.factors[[splitName]] <- dataset[[splitName]]
+
+  allMissing <- \(x) all(is.na(x))
+  missingAllAsNumeric <- vapply(dataset,         allMissing, FUN.VALUE = logical(1L))
+  missingAllAsIs      <- vapply(dataset.factors, allMissing, FUN.VALUE = logical(1L))
+  isNominalText       <- missingAllAsNumeric & !missingAllAsIs[names(missingAllAsNumeric)]
+
+  return(list(dataset = dataset, dataset.factors = dataset.factors, isNominalText = isNominalText))
+}
+
+.descriptivesDescriptivesTable <- function(dataset, dataset.factors, isNominalText, options, jaspResults, numberMissingSplitBy = 0) {
   if (!is.null(jaspResults[["stats"]])) {
     return()
   } # The options for this table didn't change so we don't need to rebuild it
@@ -508,7 +521,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
     for (variable in variables) {
       for (l in seq_len(nLevels)) {
-        column <- dataset[[variable]][split == splitLevels[l]]
+        column <- (if (isNominalText[variable]) dataset.factors else dataset)[[variable]][split == splitLevels[l]]
         subReturn <- .descriptivesDescriptivesTable_subFunction(column, list(Variable = variable, Level = splitLevels[l]), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, shouldAddModeContinuousTreatedAsDiscreteFootnote, jaspResults)
 
         shouldAddNominalTextFootnote                     <- subReturn$shouldAddNominalTextFootnote
@@ -546,7 +559,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     }
   } else { # we dont want to split
     for (variable in variables) {
-      column <- dataset[[variable]]
+      column <- (if (isNominalText[variable]) dataset.factors else dataset)[[variable]]
       subReturn <- .descriptivesDescriptivesTable_subFunction(column, list(Variable = variable), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, shouldAddModeContinuousTreatedAsDiscreteFootnote, jaspResults)
 
       shouldAddNominalTextFootnote                     <- subReturn$shouldAddNominalTextFootnote
@@ -579,9 +592,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
                           rowNames = variable)
     }
   }
-
-  if (shouldAddNominalTextFootnote)
-    stats$addFootnote(message = gettext("Not all values are available for <i>Nominal Text</i> variables"))
 
   return(stats)
 }
@@ -1269,20 +1279,20 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
     if (options[["boxPlotViolin"]]) {
       p <- p + ggplot2::geom_violin(trim = FALSE, size = 0.75, scale = "width", width = vioWidth)
-    } 
-    
+    }
+
     if (options[["boxPlotBoxPlot"]]) {
       # if we add jittered data points, don't show outlier dots
       outlierShape <- if (options[["boxPlotJitter"]]) NA else 19
       p <- p +
         ggplot2::stat_boxplot(geom = "errorbar", size = 0.75, width = boxWidth / 2) +
         ggplot2::geom_boxplot(size = 0.75, outlier.size = 2, width = boxWidth, outlier.shape = outlierShape)
-    } 
-    
+    }
+
     if (options[["boxPlotJitter"]]) {
       p <- p + ggplot2::geom_jitter(ggplot2::aes(fill = group, alpha = 0.5), size = 3, shape = 21, stroke = 1, position = ggplot2::position_jitter(width = 0.05, height = 0))
       if (options[["boxPlotColourPalette"]])
-        p <- p + jaspGraphs::scale_JASPfill_discrete(palette) 
+        p <- p + jaspGraphs::scale_JASPfill_discrete(palette)
       else
         p <- p + ggplot2::scale_fill_manual(values = rep("grey", nlevels(group)))
     }
@@ -1703,12 +1713,12 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
 
 .descriptivesCovarianceTables <- function(container, dataset, variables, options) {
-  
+
   # only make tables for which the checkbox is checked:
   for (thisAss in  c("Covariance", "Correlation")[c(options[["covariance"]], options[["correlation"]])]) {
-    
+
     container[[thisAss]] <- createJaspContainer(title = thisAss)
-    
+
     if (!is.data.frame(dataset)) { # dataset is split
       splitLevels <- names(dataset)
       for (split in splitLevels) {
@@ -1725,13 +1735,13 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
 .descriptivesCovarianceCreateSingleTable <- function(x, thisAss, useObs, title = "") {
   tb <- createJaspTable(title = title)
-  
-  tb$addColumnInfo(name = "colnames(x)", title = "", type = "string") 
+
+  tb$addColumnInfo(name = "colnames(x)", title = "", type = "string")
   for (var in colnames(x)) {
     tb$addColumnInfo(name = var, type = "number")
   }
 
-  result <- try({ 
+  result <- try({
     if (thisAss == "Covariance") {
       cov(x, use = useObs)
     } else if (thisAss == "Correlation") {
@@ -1746,7 +1756,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       tb$setError(result[[1]])
     }
   }
-  
+
   if (anyNA(result)) {
     tb$addFootnote(message = gettext("Some associations cannot be computed due to missing values. Try a different 'Use' setting."))
   }
@@ -1869,7 +1879,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   jaspGraphs::setGraphOption("palette", options[["colorPalette"]])
   # omit NAs here so it also affects the split variable
   dataset <- na.omit(dataset)
-  
+
   if (!is.null(split) && split != "") {
     group <- dataset[, split]
     legendTitle <- split
@@ -1913,7 +1923,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
         errorMessage <- .descriptivesCheckPlotErrors(dataset, c(v1, v2, split), obsAmount = "< 2")
         if (is.null(errorMessage)) {
-          
+
           scatterData <- apply(dataset[, c(v1, v2)], 2, as.numeric) # ensure nominal ints are numeric
 
           p <- try(jaspGraphs::JASPScatterPlot(
@@ -2481,14 +2491,14 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
 .descriptivesDensityPlotsFill <- function(container, data, plotName, axeName, position, options) {
   jaspGraphs::graphOptions(palette = options[["colorPalette"]])
-  
+
   densPlot <- createJaspPlot(title = plotName, width = 480, height = 320, position = position)
   if (options[["densityPlotSeparate"]] != "" && any(table(data$separator) == 1)) {
     densPlot$setError(gettext("Levels within variable require at least two or more data points!"))
   } else if (options[["densityPlotType"]] == "density") {
-    
+
     densPlot$plotObject <- jaspGraphs::jaspHistogram(x = data[["variable"]],
-                                                     histogram = FALSE,  
+                                                     histogram = FALSE,
                                                      density = TRUE,
                                                      densityColor = TRUE,
                                                      densityShade = TRUE,
@@ -2497,11 +2507,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
                                                      groupingVariableName = options[["densityPlotSeparate"]],
                                                      groupingVariable = data[["separator"]],
                                                      histogramPosition = options[["customHistogramPosition"]])
-    
-    
+
+
   } else if (options[["densityPlotType"]] == "histogram") {
 
-    densPlot$plotObject <- jaspGraphs::jaspHistogram(x = data[["variable"]], 
+    densPlot$plotObject <- jaspGraphs::jaspHistogram(x = data[["variable"]],
                                                      xName = axeName,
                                                      groupingVariableName = options[["densityPlotSeparate"]],
                                                      groupingVariable = data[["separator"]],
@@ -2510,7 +2520,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     if (options[["customHistogramPosition"]] == "identity")
       densPlot$plotObject$layers[[1]]$aes_params$alpha <- 1 - (options[["densityPlotTransparency"]]/100)
   }
-  
-  
+
+
   container[[plotName]] <- densPlot
 }

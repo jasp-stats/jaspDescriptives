@@ -32,6 +32,7 @@ test_that("plot with primary factor and no color matches", {
   options$colorPalette <- "colorblind"
   options$covariatePalette <- "viridis"
   options$dependentVariables <- "bill_length_mm"
+  options$dependentVariables.types <- "scale"
   options$heightPlot <- 550
   options$meanLines <- FALSE
   options$pointNudge <- 0.19
@@ -39,6 +40,7 @@ test_that("plot with primary factor and no color matches", {
   options$pointSize <- 3
   options$pointSpread <- 0.1
   options$primaryFactor <- "island"
+  options$primaryFactor.types <- "nominal"
   options$showBox <- TRUE
   options$table <- TRUE
   options$vioNudge <- 0.09
@@ -61,6 +63,7 @@ test_that("table results match for a plot with primary factor", {
   options$colorPalette <- "colorblind"
   options$covariatePalette <- "viridis"
   options$dependentVariables <- "bill_length_mm"
+  options$dependentVariables.types <- "scale"
   options$heightPlot <- 550
   options$meanLines <- FALSE
   options$pointNudge <- 0.19
@@ -68,6 +71,7 @@ test_that("table results match for a plot with primary factor", {
   options$pointSize <- 3
   options$pointSpread <- 0.1
   options$primaryFactor <- "island"
+  options$primaryFactor.types <- "nominal"
   options$showBox <- TRUE
   options$table <- TRUE
   options$vioNudge <- 0.09
@@ -105,6 +109,7 @@ test_that("horizontal plot with both factors and custom axis limits matches", {
     list(levels = list(""), name = "", values = list("#00A9E6"))
   )
   options$dependentVariables <- "body_mass_g"
+  options$dependentVariables.types <- "scale"
   options$heightPlot <- 550
   options$horizontal <- TRUE
   options$meanLines <- FALSE
@@ -112,7 +117,9 @@ test_that("horizontal plot with both factors and custom axis limits matches", {
   options$pointOpacity <- 0.5
   options$pointSpread <- 0.1
   options$primaryFactor <- "species"
+  options$primaryFactor.types <- "nominal"
   options$secondaryFactor <- "sex"
+  options$secondaryFactor.types <- "nominal"
   options$showBox <- TRUE
   options$upperAxisLimit <- 6500
   options$vioNudge <- 0.15
@@ -147,6 +154,7 @@ test_that("plot with both factors, no box, means, meanLines, and, bootstrapped c
     list(levels = list(""), name = "", values = list("#00A9E6"))
   )
   options$dependentVariables <- "bill_length_mm"
+  options$dependentVariables.types <- "scale"
   options$heightPlot <- 550
   options$mean <- TRUE
   options$meanCiAssumption <- TRUE
@@ -159,7 +167,9 @@ test_that("plot with both factors, no box, means, meanLines, and, bootstrapped c
   options$pointNudge <- 0.25
   options$pointOpacity <- 0.25
   options$primaryFactor <- "species"
+  options$primaryFactor.types <- "nominal"
   options$secondaryFactor <- "island"
+  options$secondaryFactor.types <- "nominal"
   options$seed <- 42
   options$setSeed <- TRUE
   options$showBox <- TRUE
@@ -194,6 +204,7 @@ test_that("table results match for a plot with both factors, no box, means, mean
     list(levels = list(""), name = "", values = list("#00A9E6"))
   )
   options$dependentVariables <- "bill_length_mm"
+  options$dependentVariables.types <- "scale"
   options$heightPlot <- 550
   options$mean <- TRUE
   options$meanCiWidth <- 0.99
@@ -203,7 +214,9 @@ test_that("table results match for a plot with both factors, no box, means, mean
   options$pointNudge <- 0.25
   options$pointOpacity <- 0.25
   options$primaryFactor <- "species"
+  options$primaryFactor.types <- "nominal"
   options$secondaryFactor <- "island"
+  options$secondaryFactor.types <- "nominal"
   options$seed <- 42
   options$setSeed <- TRUE
   options$showBox <- TRUE
@@ -241,6 +254,7 @@ test_that("plot with primary factor and continuous covariate matches", {
   options$colorAnyway <- TRUE
   options$colorPalette <- "grandBudapest"
   options$covariate <- "bill_depth_mm"
+  options$covariate.types <- "scale"
   options$covariatePalette <- "viridis"
   options$customizationTable <- list(
     list(levels = "", name = "", values = "R"),
@@ -249,12 +263,14 @@ test_that("plot with primary factor and continuous covariate matches", {
     list(levels = list(""), name = "", values = list("#00A9E6"))
   )
   options$dependentVariables <- "flipper_length_mm"
+  options$dependentVariables.types <- "scale"
   options$heightPlot <- 550
   options$meanLines <- FALSE
   options$pointNudge <- 0.175
   options$pointOpacity <- 0.66
   options$pointSize <- 1.5
   options$primaryFactor <- "species"
+  options$primaryFactor.types <- "nominal"
   options$showBox <- TRUE
   options$vioNudge <- 0.09
   options$vioOpacity <- 0.75
@@ -282,6 +298,7 @@ test_that("plot with secondary factor, discrete covariate, and means matches", {
   options$boxWidth <- 0.25
   options$colorPalette <- "colorblind"
   options$covariate <- "sex"
+  options$covariate.types <- "nominal"
   options$covariatePalette <- "colorblind3"
   options$customizationTable <- list(
     list(levels = "", name = "", values = "R"),
@@ -290,6 +307,7 @@ test_that("plot with secondary factor, discrete covariate, and means matches", {
     list(levels = list(""), name = "", values = list("#00A9E6"))
   )
   options$dependentVariables <- "body_mass_g"
+  options$dependentVariables.types <- "scale"
   options$heightPlot <- 550
   options$mean <- TRUE
   options$meanLines <- FALSE
@@ -297,6 +315,7 @@ test_that("plot with secondary factor, discrete covariate, and means matches", {
   options$pointOpacity <- 0.5
   options$pointSpread <- 0.15
   options$secondaryFactor <- "species"
+  options$secondaryFactor.types <- "nominal"
   options$showBox <- TRUE
   options$vioHeight <- 0.6
   options$vioNudge <- 0.15
@@ -333,17 +352,21 @@ test_that("plot for ID over time matches", {
     list(levels = list(""), name = "", values = list("#00A9E6"))
   )
   options$dependentVariables <- "sepalWidth"
+  options$dependentVariables.types <- "scale"
   options$heightPlot <- 500
   options$jitter <- TRUE
   options$meanLines <- FALSE
   options$numberOfClouds <- 6
   options$observationId <- "id"
+  options$observationId.types <- "scale"
   options$observationIdLineOpacity <- 0.1
   options$observationIdLineWidth <- 0.75
   options$pointNudge <- 0.15
   options$pointOpacity <- 0.5
   options$primaryFactor <- "time"
+  options$primaryFactor.types <- "nominal"
   options$secondaryFactor <- "Species"
+  options$secondaryFactor.types <- "nominal"
   options$showBox <- TRUE
   options$showCaption <- FALSE
   options$vioHeight <- 0.4
@@ -380,6 +403,7 @@ test_that("plot with custom mean interval matches", {
     list(levels = list(""), name = "", values = list("#00A9E6"))
   )
   options$dependentVariables <- "sepalWidth"
+  options$dependentVariables.types <- "scale"
   options$heightPlot <- 550
   options$mean <- TRUE
   options$meanIntervalCustom <- TRUE
@@ -390,7 +414,9 @@ test_that("plot with custom mean interval matches", {
   options$numberOfClouds <- 6
   options$pointOpacity <- 0.25
   options$primaryFactor <- "time"
+  options$primaryFactor.types <- "nominal"
   options$secondaryFactor <- "Species"
+  options$secondaryFactor.types <- "nominal"
   options$showBox <- TRUE
   options$vioNudge <- 0.09
   options$vioOutline <- "none"
@@ -424,16 +450,20 @@ test_that("plot with flanking clouds and vioSmoothing matches", {
     list(levels = list(""), name = "", values = list("#00A9E6"))
   )
   options$dependentVariables <- "sepalWidth"
+  options$dependentVariables.types <- "scale"
   options$heightPlot <- 550
   options$jitter <- TRUE
   options$meanLines <- FALSE
   options$numberOfClouds <- 4
   options$observationId <- "id"
+  options$observationId.types <- "scale"
   options$observationIdLineOpacity <- 0.15
   options$pointNudge <- 0.15
   options$pointOpacity <- 0.75
   options$primaryFactor <- "time"
+  options$primaryFactor.types <- "nominal"
   options$secondaryFactor <- "Species"
+  options$secondaryFactor.types <- "nominal"
   options$showBox <- TRUE
   options$vioHeight <- 0.6
   options$vioNudge <- 0.225
@@ -474,6 +504,7 @@ test_that("plot with custom cloud color matches", {
     list(levels = list(""), name = "", values = list("#8B93FF", "#5755FE", "#FF71CD"))
   )
   options$dependentVariables <- "bill_length_mm"
+  options$dependentVariables.types <- "scale"
   options$heightPlot <- 550
   options$mean <- TRUE
   options$meanCiAssumption <- TRUE
@@ -486,6 +517,7 @@ test_that("plot with custom cloud color matches", {
   options$pointNudge <- 0.25
   options$pointOpacity <- 0.25
   options$primaryFactor <- "island"
+  options$primaryFactor.types <- "nominal"
   options$seed <- 42
   options$setSeed <- TRUE
   options$showBox <- TRUE

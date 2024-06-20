@@ -67,6 +67,7 @@ Form
 			name: 					"dependentVariables"
 			title: 					qsTr("Dependent Variables")
 			allowedColumns: 		["scale"]
+			minNumericLevels:		2
 			info:					qsTr("Select all the variables that you want to plot.")
 		}
 		AssignedVariablesList
@@ -74,7 +75,8 @@ Form
 			name: 					"primaryFactor"
 			title:					qsTr("Primary Factor")
 			id: 					primaryFactor;
-			suggestedColumns: 		["nominal", "ordinal"]
+			allowedColumns: 		["nominal"]
+			minLevels:				2
 			singleVariable: 		true
 			info:					qsTr("Its levels are shown on the x-axis (y-axis for horizontal plot).")
 		}
@@ -83,7 +85,8 @@ Form
 			name: 					"secondaryFactor"
 			title:					qsTr("Secondary Factor")
 			id: 					secondaryFactor
-			suggestedColumns: 		["nominal", "ordinal"]
+			allowedColumns: 		["nominal"]
+			minLevels:				2
 			singleVariable: 		true
 			info:					qsTr("Its levels are color coded.")
 		}
@@ -93,7 +96,7 @@ Form
 			name: 					"covariate"
 			title:					qsTr("Covariate")
 			id: 					covariate
-			suggestedColumns: 		["nominal", "ordinal", "scale"]
+			allowedColumns: 		["nominal", "scale"]
 			singleVariable: 		true
 			info:					qsTr("Points are color coded according to this.")
 		}
@@ -103,7 +106,7 @@ Form
 			name: 					"observationId"
 			title:					qsTr("ID")
 			id: 					observationId
-			suggestedColumns: 		["nominal", "ordinal", "scale"]
+			allowedColumns:  		["nominal"]
 			singleVariable: 		true
 			enabled:				primaryFactor.count === 1
 			info:					qsTr(

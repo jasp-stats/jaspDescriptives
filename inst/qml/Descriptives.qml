@@ -47,7 +47,7 @@ Form
 		infoLabel: qsTr("Input")
 		AvailableVariablesList	{ name: "allVariablesList"								}
 		AssignedVariablesList	{ name: "variables";		title: qsTr("Variables");	info: qsTr("All variables of interest.") }
-		AssignedVariablesList	{ name: "splitBy";			title: qsTr("Split");		info: qsTr("Can be split by a categorical variable such as experimental condition.") ; singleVariable: true; suggestedColumns: ["ordinal", "nominal"];	id: splitBy }
+		AssignedVariablesList	{ name: "splitBy";			title: qsTr("Split");		info: qsTr("Can be split by a categorical variable such as experimental condition.") ; singleVariable: true; allowedColumns: ["nominal"];	id: splitBy; minLevels: 2; maxLevels: 256 } // without maxLevels entering a continuous variable can freeze/ crash jasp, so we need an arbitrary maximum
 	}
 
 	CheckBox
@@ -472,7 +472,7 @@ Form
 					id: 				densityPlotSeparate
 					singleVariable: 	true
 					title: 				qsTr("Separate frequencies:")
-					suggestedColumns: 	["ordinal", "nominal"]
+					allowedColumns: 	["nominal"]
 				}
 			}
 
@@ -529,12 +529,16 @@ Form
 					name: "heatmapHorizontalAxis"
 					label: qsTr("Horizontal axis:")
 					singleVariable: true
+					allowedColumns: ["nominal"]
+					minLevels: 2
 				}
 				AssignedVariablesList
 				{
 					name: "heatmapVerticalAxis"
 					label: qsTr("Vertical axis:")
 					singleVariable: true
+					allowedColumns: ["nominal"]
+					minLevels: 2
 				}
 			}
 

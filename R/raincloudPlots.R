@@ -31,30 +31,21 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 # .rainReadData() ----
 .rainReadData <- function(dataset, options) {
 
-  if(!is.null(dataset)) {
+  if (!is.null(dataset)) {
     output <- dataset
   } else {
 
     # Step 1: Read in all variables that are given by JASP; if no input, then nothing is read in
-    columnsVector <- c(options[["dependentVariables"]])
-    optionsVector <- c(options[["primaryFactor"]], options[["secondaryFactor"]], options[["covariate"]], options[["observationId"]])
-    for (option in optionsVector) {
-      if (option != "") columnsVector <- c(columnsVector, option)
-    }
-    datasetInProgress <- .readDataSetToEnd(columns = columnsVector)
+    datasetInProgress <- jaspBase::readDataSetByVariableTypes(options, c("dependentVariables", "primaryFactor", "secondaryFactor", "covariate", "observationId"))
 
     # Step 2: Create columns with consistent names; if no input then assign default
-    datasetInProgress$primaryFactor   <- .rainDataColumn(datasetInProgress,  options[["primaryFactor"]])
-    datasetInProgress$secondaryFactor <- .rainDataColumn(datasetInProgress,  options[["secondaryFactor"]])
-    datasetInProgress$covariate       <- .rainDataColumn(datasetInProgress,  options[["covariate"]])
-    datasetInProgress$observationId   <- .rainDataColumn(datasetInProgress,  options[["observationId"]])
-
-    # Step 3: Make sure, that factors are factors
-    datasetInProgress$primaryFactor   <- as.factor(datasetInProgress$primaryFactor)
-    datasetInProgress$secondaryFactor <- as.factor(datasetInProgress$secondaryFactor)
-
+    datasetInProgress[["primaryFactor"]]   <- .rainDataColumn(datasetInProgress,  options[["primaryFactor"]])
+    datasetInProgress[["secondaryFactor"]] <- .rainDataColumn(datasetInProgress,  options[["secondaryFactor"]])
+    datasetInProgress[["covariate"]]       <- .rainDataColumn(datasetInProgress,  options[["covariate"]])
+    datasetInProgress[["observationId"]]   <- .rainDataColumn(datasetInProgress,  options[["observationId"]])
 
     output <- datasetInProgress
+
   }
 
   return(output)
