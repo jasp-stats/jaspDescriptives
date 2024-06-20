@@ -33,6 +33,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     dataset.factors <- temp[["dataset.factors"]]
     isNominalText   <- temp[["isNominalText"]]
   }
+  else
+  {
+    dataset.factors <- .readDataSetToEnd(columns.as.factor = c(variables, splitName))
+  }
 
   if (makeSplit && length(variables) > 0) {
     splitFactor <- dataset[[splitName]]
