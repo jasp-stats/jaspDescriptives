@@ -107,7 +107,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     if (is.null(jaspResults[["distributionPlots"]])) {
       jaspResults[["distributionPlots"]] <- createJaspContainer(gettext("Distribution Plots"))
       jaspResults[["distributionPlots"]]$dependOn(c(
-        "distributionPlots", "splitBy", "distributionAndCorrelationPlotHistogramBinWidthType", "distributionAndCorrelationPlotDensity",
+        "variables", "distributionPlots", "splitBy", "distributionAndCorrelationPlotHistogramBinWidthType", "distributionAndCorrelationPlotDensity",
         "distributionAndCorrelationPlotRugMarks", "distributionAndCorrelationPlotHistogramManualNumberOfBins"
       ))
       jaspResults[["distributionPlots"]]$position <- 5
