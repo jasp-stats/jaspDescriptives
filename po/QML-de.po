@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-06-22 03:17+0000\n"
+"PO-Revision-Date: 2024-06-24 08:09+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/de/>\n"
@@ -1460,10 +1460,9 @@ msgctxt "Descriptives|"
 msgid "Displays a frequency table for each variable."
 msgstr "Zeigt eine Häufigkeitstabelle für jede Variable."
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Displays the spread of a variable."
-msgstr "Zeigt die Spanne einer Variablen an."
+msgstr "Zeigt die Spannweite einer Variablen an."
 
 msgctxt "Descriptives|"
 msgid "Stem: the first digit(s)."
@@ -1762,10 +1761,9 @@ msgstr ""
 "Punkte zentriert (Verschub auf 0 festgelegt). Violine und Box werden je nach "
 "Ausrichtung verschoben: nach links oder nach rechts."
 
-#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Height, Width, and Spread"
-msgstr "Höhe, Breite, und Spanne"
+msgstr "Höhe, Breite, und Spannweite"
 
 msgctxt "raincloudPlots|"
 msgid ""
@@ -2164,12 +2162,10 @@ msgctxt "raincloudPlots|"
 msgid "Compute confidence interval independently for each group."
 msgstr "Konfidenzintervall unabhängig für jede Gruppe berechnen."
 
-#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Normal model"
-msgstr "Modell der Normalverteilung"
+msgstr "Normal-Modell"
 
-#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "T model"
 msgstr "T-Modell"
@@ -2280,26 +2276,30 @@ msgid ""
 "For custom cloud colors, just enter the hexcode you want. This features only "
 "works when there is no Secondary Factor."
 msgstr ""
+"Geben Sie für benutzerdefinierte Wolkenfarben einfach den gewünschten "
+"Hexcode ein. Dies funktioniert nur, wenn es keinen sekundären Faktor gibt."
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Apply custom orientation"
-msgstr ""
+msgstr "Benutzerdefinierte Ausrichtung anwenden"
 
 msgctxt "raincloudPlots|"
 msgid "Apply custom mean interval limits"
-msgstr ""
+msgstr "Benutzerdefinierte mittlere Intervallgrenzen anwenden"
 
 msgctxt "raincloudPlots|"
 msgid "Apply custom colors"
-msgstr ""
+msgstr "Benutzerdefinierte Farben anwenden"
 
 msgctxt "raincloudPlots|"
 msgid "Cloud"
 msgstr "Wolke"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Orientation"
-msgstr ""
+msgstr "Ausrichtung"
 
 msgctxt "raincloudPlots|"
 msgid "Lower Limit"
