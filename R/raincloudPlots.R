@@ -19,7 +19,9 @@
 
 # Main function: raincloudPlots() ----
 raincloudPlotsInternal <- function(jaspResults, dataset, options) {
-  ready    <- (length(options[["dependentVariables"]]) > 0)
+  ready    <- (length(options[["dependentVariables"]]) > 0) && 
+    if (options[["observationId"]] != "") (options[["primaryFactor"]] != "") else TRUE
+  
   dataset  <- .rainReadData(dataset, options)
   dataInfo <- .rainDataInfo(dataset, options)
   .rainCreatePlots( jaspResults, dataInfo, options, ready)
@@ -547,6 +549,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 
   lineArgs <- list(alpha = options[["observationIdLineOpacity"]], show.legend = FALSE, lwd = options[["observationIdLineWidth"]])
   if (options[["secondaryFactor"]] == "") lineArgs$color <- "black"
+  if (isFALSE(options[["showPoint"]])) lineArgs$alpha <- 0
 
   # Violin positioning
   vioNudgeForEachCloud <- .rainNudgeForEachCloud(options[["vioNudge"]], vioSides)  # Based on default/custom orientation
