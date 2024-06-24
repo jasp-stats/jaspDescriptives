@@ -20,8 +20,8 @@
 # Main function: raincloudPlots() ----
 raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   ready    <- (length(options[["dependentVariables"]]) > 0) && 
-    if (options[["observationId"]] != "") (options[["primaryFactor"]] != "") else TRUE
-  
+    (options[["observationId"]] == "" || 
+       (options[["observationId"]] != "" && options[["primaryFactor"]] != ""))  
   dataset  <- .rainReadData(dataset, options)
   dataInfo <- .rainDataInfo(dataset, options)
   .rainCreatePlots( jaspResults, dataInfo, options, ready)
