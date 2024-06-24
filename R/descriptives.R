@@ -382,7 +382,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   makeSplit <- splitName != ""
   dataset <- .readDataSetToEnd(columns.as.numeric = variables, columns.as.factor = if (makeSplit) splitName)
   dataset.factors <- jaspBase::readDataSetByVariableTypes(options, "variables")
-  if (makeSplit)
+  if (makeSplit && length(variables) > 0)
     dataset.factors[[splitName]] <- dataset[[splitName]]
 
   allMissing <- \(x) all(is.na(x))
