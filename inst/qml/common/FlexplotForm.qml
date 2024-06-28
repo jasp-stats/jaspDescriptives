@@ -128,7 +128,7 @@ Form
 					values:
 						[
 						{label: qsTr("Quartiles"),				value: "Quartiles",				info: qsTr("Horizontal lines are displayed at the 25/75th percentiles, with a dot for the median") },
-						{label: qsTr("Standard errors"),		value: "Standard errors",		info: qsTr("Horizontal lines are displayed at +1/-1 standard errors from the mean, with a dot for the mean") },
+						{label: qsTr("95% confidende intervals"),		value: "Standard errors",		info: qsTr("Horizontal lines are displayed marking 95% confidence intervals for the mean") },
 						{label: qsTr("Standard deviations"),	value: "Standard deviations",	info: qsTr("Horizontal lines are displayed at +1/-1 standard deviations from the mean, with a dot for the mean") }
 					]
 					label: qsTr("Intervals (categorical predictors)")
