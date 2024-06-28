@@ -60,13 +60,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       # jaspResults[["stemAndLeaf"]]$position <- 11
     }
 
-    numericOrFactorVariables <- Filter(function(var) .descriptivesIsNumericColumn(dataset.factors, var), variables)
-
     if (length(variables) > 0L) {
       .descriptivesCovarianceTables(
         container = jaspResults[["associationMatrix"]],
         dataset   = if (makeSplit) splitDat.factors else dataset.factors,
-        variables = numericOrFactorVariables,
+        variables = options[["variables"]][options[["variables.types"]] == "scale"],
         options   = options
       )
     }
