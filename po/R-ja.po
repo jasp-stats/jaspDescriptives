@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.11.0\n"
 "POT-Creation-Date: 2024-05-18 03:18\n"
-"PO-Revision-Date: 2024-06-18 14:09+0000\n"
+"PO-Revision-Date: 2024-07-02 17:09+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/ja/>\n"
@@ -11,21 +11,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 msgid "Time Series Plot"
-msgstr ""
+msgstr "時系列プロット"
 
-#, fuzzy
 msgid "Lag Plot"
-msgstr "Q-Qプロット"
+msgstr "ラグプロット"
 
-#, fuzzy
 msgid "Autocorrelation Function"
-msgstr "相関のプロット"
+msgstr "自己相関関数"
 
 msgid "Partial Autocorrelation Function"
-msgstr ""
+msgstr "偏自己相関関数"
 
 msgid "Descriptive Statistics"
 msgstr "記述統計"
@@ -55,47 +53,50 @@ msgid "Maximum"
 msgstr "最大値"
 
 msgid "Start"
-msgstr ""
+msgstr "開始"
 
 msgid "End"
-msgstr ""
+msgstr "終了"
 
 msgid "Lag 1 Autocorrelation"
-msgstr ""
+msgstr "ラグ1自己相関"
 
 msgid "The time series data should be equally-spaced."
-msgstr ""
+msgstr "時系列データは等間隔でなければならない."
 
 msgid "The time variable should have unique values only."
-msgstr ""
+msgstr "時間変数は一意の値を持つべき."
 
 msgid ""
 "The 'Time' variable has a date-like format, please filter by date instead."
-msgstr ""
+msgstr "'Time' "
+"変数には日付のような形式であり、代わりに日付でフィルタリングしてください."
 
 msgid ""
 "The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:"
 "ss). Try to filter by time index instead."
 msgstr ""
+"'Time' 変数が、日付型フォーマット (例えば、yyyy-mm-dd hh:mm:ss) "
+"ではありません。 代わりにタイムインデックスでフィルタリングしてみてください."
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
-msgstr ""
+msgstr "'Start'は日付型形式（例：yyyy-mm-dd hh:mm:ss）でなければいけません."
 
 msgid "The 'Start' value of the filter should be before last observation."
-msgstr ""
+msgstr "フィルタの'Start'値は、最後の観測値の前にする必要があります."
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
-msgstr ""
+msgstr "'End'は、日付型形式（例：yyyy-mm-dd hh:mm:ss）でなければなりません."
 
 msgid ""
 "The 'End' value of the filter should be larger/later than the 'Start' value."
-msgstr ""
+msgstr "フィルターの 'End' 値が 'Start' 値よりも大きい/遅い値である必要があります."
 
 msgid "Lag"
-msgstr ""
+msgstr "ラグ"
 
 msgid "Association %s"
-msgstr ""
+msgstr "連関 %s"
 
 msgid "Frequency Tables"
 msgstr "度数分布表"
@@ -263,7 +264,7 @@ msgstr ""
 "推奨します。"
 
 msgid "The mode is computed assuming that variables are discrete."
-msgstr ""
+msgstr "モードは変数が離散と仮定して算出されます."
 
 msgid "The mode is computed assuming that variables are discreet."
 msgstr ""
