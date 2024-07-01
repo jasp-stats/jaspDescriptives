@@ -299,7 +299,8 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   }
   getMeansAndLines <- .rainMeansAndLines(options, boxPosVec, aesX, aesFill, infoFactorCombinations, meanPosition)
   plotInProgress <- plotInProgress + getMeansAndLines$meanLines + getMeansAndLines$means  # Lines first so means cover
-
+  intervalBounds <- NULL 
+  
   # Interval around mean
   intervalPosition <- if (options[["meanPosition"]] == "likeBox") meanPosition else "identity"
   if (options[["meanInterval"]] || options[["meanIntervalCustom"]]) {
@@ -335,7 +336,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   # Axes
   if (!options[["customAxisLimits"]]) {
     yBreaks <- jaspGraphs::getPrettyAxisBreaks(dataset[[inputVariable]])
-    yLimits <- range(c(yBreaks, dataset[[inputVariable]]))
+    yLimits <- range(c(yBreaks, dataset[[inputVariable]], unlist(intervalBounds)))
     warningAxisLimits <- FALSE
   } else {
     yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(options[["lowerAxisLimit"]], options[["upperAxisLimit"]]))

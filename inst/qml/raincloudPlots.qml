@@ -555,12 +555,12 @@ Form
 					(colorAnyway.checked && primaryFactor.count === 1) ||
 					showCaption.checked
 					) {
-						850
+						600
 					} else {
-						550
+						500
 					}
 			}
-			IntegerField{ name: "heightPlot"; label: qsTr("Height"); defaultValue: (showCaption.checked) ? 550 : 450 }
+			IntegerField{ name: "heightPlot"; label: qsTr("Height"); defaultValue: (showCaption.checked) ? 350 : 300 }
 		}
 	}  // End section Axes, Caption, and Plot Size
 
