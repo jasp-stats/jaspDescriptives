@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2024-07-02 16:09+0000\n"
+"Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
+"Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/ja/>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.7-dev\n"
 "X-Language: ja\n"
 "X-Qt-Contexts: true\n"
 
@@ -378,153 +384,154 @@ msgstr "名義・順序変数の場合"
 
 msgctxt "Descriptives|"
 msgid "Scatter plots"
-msgstr ""
+msgstr "散布図"
 
 msgctxt "Descriptives|"
 msgid "Tile heatmaps for selected variables"
-msgstr ""
+msgstr "選択された変数のヒートマップタイル"
 
 msgctxt "Descriptives|"
 msgid "Tables"
-msgstr ""
+msgstr "表"
 
 msgctxt "Descriptives|"
 msgid "Categorical plots"
-msgstr ""
+msgstr "カテゴリカルプロット"
 
 msgctxt "Descriptives|"
 msgid "Pareto plots"
-msgstr ""
+msgstr "パレートプロット"
 
 msgctxt "Descriptives|"
 msgid "Pareto rule"
-msgstr ""
+msgstr "パレートルール"
 
 msgctxt "Descriptives|"
 msgid "Likert plots"
-msgstr ""
+msgstr "リッカートプロット"
 
 msgctxt "Descriptives|"
 msgid "Assume all variables share the same levels"
-msgstr ""
+msgstr "すべての変数は同じ水準を共有していると仮定"
 
 msgctxt "Descriptives|"
 msgid "Adjustable font size for vertical axis"
-msgstr ""
+msgstr "縦軸用の調節可能なフォントサイズ"
 
 msgctxt "Descriptives|"
 msgid "Normal"
-msgstr ""
+msgstr "正規"
 
 msgctxt "Descriptives|"
 msgid "Small"
-msgstr ""
+msgstr "小さい"
 
 msgctxt "Descriptives|"
 msgid "Medium"
-msgstr ""
+msgstr "中程度"
 
 msgctxt "Descriptives|"
 msgid "Large"
-msgstr ""
+msgstr "大きい"
 
 msgctxt "Descriptives|"
 msgid "Transparency"
-msgstr ""
+msgstr "透過度"
 
 msgctxt "Descriptives|"
 msgid "Inference"
-msgstr ""
+msgstr "推論"
 
 msgctxt "Descriptives|"
 msgid "Confidence interval for mean"
-msgstr ""
+msgstr "平均値の信頼区間"
 
 msgctxt "Descriptives|"
 msgid "Width"
-msgstr ""
+msgstr "幅"
 
 msgctxt "Descriptives|"
 msgid "Method"
-msgstr ""
+msgstr "方法"
 
 msgctxt "Descriptives|"
 msgid "Normal model"
-msgstr ""
+msgstr "正規モデル"
 
 msgctxt "Descriptives|"
 msgid "Bootstrap"
-msgstr ""
+msgstr "ブートストラップ"
 
 msgctxt "Descriptives|"
 msgid "Confidence interval for std. deviation"
-msgstr ""
+msgstr "標準偏差の信頼区間"
 
 msgctxt "Descriptives|"
 msgid "Confidence interval for variance"
-msgstr ""
+msgstr "分散の信頼区間"
 
 msgctxt "Descriptives|"
 msgid "Bootstrap confidence interval options"
-msgstr ""
+msgstr "ブートストラップ信頼区間オプション"
 
 msgctxt "Descriptives|"
 msgid "Bootstrap samples"
-msgstr ""
+msgstr "ブートストラップサンプル"
 
 msgctxt "Descriptives|"
 msgid "T model"
-msgstr ""
+msgstr "T model"
 
 msgctxt "Descriptives|"
 msgid "Frequency plots"
-msgstr ""
+msgstr "度数図"
 
 msgctxt "Descriptives|"
 msgid "Separate frequencies:"
-msgstr ""
+msgstr "度数を分離:"
 
 msgctxt "Descriptives|"
 msgid "Type:"
-msgstr ""
+msgstr "タイプ:"
 
 msgctxt "Descriptives|"
 msgid "How to combine separate frequencies"
-msgstr ""
+msgstr "分離度数を結合する方法"
 
 msgctxt "Descriptives|"
 msgid "Stack"
-msgstr ""
+msgstr "Stack"
 
 msgctxt "Descriptives|"
 msgid "Identity"
-msgstr ""
+msgstr "Identity"
 
 msgctxt "Descriptives|"
 msgid "Dodge"
-msgstr ""
+msgstr "Dodge"
 
 msgctxt "Description|"
 msgid "Time Series Descriptives"
-msgstr ""
+msgstr "時系列記述統計"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Time Series Descriptives allows the user to obtain descriptive statistics "
 "and descriptive plots for univariate time-series."
-msgstr ""
+msgstr "時系列記述統計は、単一の時系列データにおける記述統計図と記述統計をユーザーに"
+"与える."
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Variable"
-msgstr ""
+msgstr "変数"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "A variable that is measured repeatedly over time."
-msgstr ""
+msgstr "時間経過とともに反復測定される変数."
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time"
-msgstr ""
+msgstr "時間"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
@@ -536,14 +543,13 @@ msgid ""
 "supplied, the row order of the data is used."
 msgstr ""
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Transpose descriptives table"
 msgstr "記述表を転置する"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Filter by"
-msgstr ""
+msgstr "次でフィルター"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
@@ -555,71 +561,67 @@ msgstr ""
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Row number"
-msgstr ""
+msgstr "行番号"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Start"
-msgstr ""
+msgstr "開始"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "End"
-msgstr ""
+msgstr "終了"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time index"
-msgstr ""
+msgstr "時間インデックス"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Date"
-msgstr ""
+msgstr "日付"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots"
-msgstr ""
+msgstr "プロット"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time series plot"
-msgstr ""
+msgstr "時系列プロット"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the dependent variable (y-axis) over time (x-axis)."
-msgstr ""
+msgstr "従属変数 (y軸) を時間 (x軸) の上にプロット."
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Points"
-msgstr ""
+msgstr "点"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Line"
-msgstr ""
+msgstr "線"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Both"
-msgstr ""
+msgstr "両方"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Distribution"
 msgstr "分布"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Density"
 msgstr "密度"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Histogram"
 msgstr "ヒストグラム"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "None"
 msgstr "なし"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Lag plot"
-msgstr ""
+msgstr "ラグプロット"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
@@ -631,266 +633,247 @@ msgstr ""
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Lag"
-msgstr ""
+msgstr "ラグ"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Add regression line"
 msgstr "回帰直線の追加"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Smooth"
 msgstr "平滑化"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Linear"
 msgstr "線形"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Confidence interval"
-msgstr ""
+msgstr "信頼区間"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Autocorrelation function"
-msgstr ""
+msgstr "自己相関関数"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Maximum lag"
-msgstr ""
+msgstr "最大ラグ"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Zero lag"
-msgstr ""
+msgstr "ゼロラグ"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Plots the autocorrelation for a specified number of lags. The confidence "
 "interval may be given assuming either a white noise process, or assuming for "
 "a lag q a moving average process of order q - 1."
-msgstr ""
+msgstr "指定したラグ数の自己相関をプロットする. 信頼区間はホワイトノイズ過程もしくは"
+"、オーダーq-1の移動平均過程のラグqを仮定して与えられる."
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Based on white noise"
-msgstr ""
+msgstr "ホワイトノイズに基づく"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Based on moving average"
-msgstr ""
+msgstr "移動平均に基づく"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Partial autocorrelation function"
-msgstr ""
+msgstr "偏自己相関関数"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the partial autocorrelation for a specified number of lags."
-msgstr ""
+msgstr "指定したラグ数の偏自己相関を表示する."
 
 msgctxt "Description|"
 msgid "Flexplot"
-msgstr ""
+msgstr "フレックスプロット"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Dependent Variable"
 msgstr "従属変数"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Independent Variable(s)"
 msgstr "独立変数"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Paneled Variable(s)"
 msgstr "パネル変数"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Options"
 msgstr "オプション"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Point transparency"
 msgstr "ポイントの透過性"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Jitter in X"
 msgstr "Xのジッター"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Jitter in Y"
 msgstr "Yのジッター"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Plot confidence bands"
 msgstr "信頼帯をプロットする"
 
 msgctxt "FlexplotForm|"
 msgid "Loess"
-msgstr ""
+msgstr "Loess"
 
 msgctxt "FlexplotForm|"
 msgid "Regression"
-msgstr ""
+msgstr "回帰"
 
 msgctxt "FlexplotForm|"
 msgid "Quadratic"
-msgstr ""
+msgstr "二次関数"
 
 msgctxt "FlexplotForm|"
 msgid "Cubic"
-msgstr ""
+msgstr "立方"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "None"
 msgstr "なし"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Fitted line (scatterplots)"
 msgstr "適合線(散布図)"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Quartiles"
 msgstr "四分位数"
 
 msgctxt "FlexplotForm|"
 msgid "Standard errors"
-msgstr ""
+msgstr "標準誤差"
 
 msgctxt "FlexplotForm|"
 msgid "Standard deviations"
-msgstr ""
+msgstr "標準偏差"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Intervals (categorical predictors)"
 msgstr "間隔（カテゴリ予測子）"
 
 msgctxt "FlexplotForm|"
 msgid "JASP"
-msgstr ""
+msgstr "JASP"
 
 msgctxt "FlexplotForm|"
 msgid "Black and white"
-msgstr ""
+msgstr "Black and white"
 
 msgctxt "FlexplotForm|"
 msgid "Minimal"
-msgstr ""
+msgstr "Minimal"
 
 msgctxt "FlexplotForm|"
 msgid "Classic"
-msgstr ""
+msgstr "Classic"
 
 msgctxt "FlexplotForm|"
 msgid "Dark"
-msgstr ""
+msgstr "Dark"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "GGplot theme"
 msgstr "GGplotテーマ"
 
 msgctxt "FlexplotForm|"
 msgid "GGplot Default"
-msgstr ""
+msgstr "GGplot デフォルト"
 
 msgctxt "FlexplotForm|"
 msgid "Nature"
-msgstr ""
+msgstr "Nature"
 
 msgctxt "FlexplotForm|"
 msgid "AAAS"
-msgstr ""
+msgstr "AAAS"
 
 msgctxt "FlexplotForm|"
 msgid "Lancet"
-msgstr ""
+msgstr "Lancet"
 
 msgctxt "FlexplotForm|"
 msgid "JCO"
-msgstr ""
+msgstr "JCO"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Color Palette"
 msgstr "カラーパレット"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Convert to grayscale"
 msgstr "グレースケールに変換"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Ghost lines"
 msgstr "ゴーストライン"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Plot Labels"
 msgstr "プロットラベル"
 
 msgctxt "FlexplotForm|"
 msgid "X Axis Label"
-msgstr ""
+msgstr "X軸ラベル"
 
 msgctxt "FlexplotForm|"
 msgid "Y Axis Label"
-msgstr ""
+msgstr "Y軸ラベル"
 
 msgctxt "FlexplotForm|"
 msgid "Legend Label"
-msgstr ""
+msgstr "凡例ラベル"
 
 msgctxt "FlexplotForm|"
 msgid "Column Panel Label"
-msgstr ""
+msgstr "列パネルラベル"
 
 msgctxt "FlexplotForm|"
 msgid "Row Panel Label"
-msgstr ""
+msgstr "行パネルラベル"
 
 msgctxt "Descriptives|"
 msgid "Association matrix"
-msgstr ""
+msgstr "連関行列"
 
 msgctxt "Descriptives|"
 msgid "Covariance"
-msgstr ""
+msgstr "共分散"
 
 msgctxt "Descriptives|"
 msgid "Correlation"
-msgstr ""
+msgstr "相関"
 
 msgctxt "Descriptives|"
 msgid "Use"
-msgstr ""
+msgstr "使用"
 
 msgctxt "Descriptives|"
 msgid "Everything"
-msgstr ""
+msgstr "全て"
 
 msgctxt "Descriptives|"
 msgid "Complete observations"
-msgstr ""
+msgstr "完全観測値（完全データ）"
 
 msgctxt "Descriptives|"
 msgid "Pairwise compelete observations"
-msgstr ""
+msgstr "ペアワイズ完全観測値"
 
 msgctxt "Description|"
 msgid "Raincloud Plots"
-msgstr ""
+msgstr "雨雲プロット"
 
 msgctxt "FlexplotForm|"
 msgid ""
@@ -901,20 +884,20 @@ msgstr ""
 
 msgctxt "FlexplotForm|"
 msgid "References"
-msgstr ""
+msgstr "文献"
 
 msgctxt "FlexplotForm|"
 msgid "Example"
-msgstr ""
+msgstr "例"
 
 #, qt-format
 msgctxt "FlexplotForm|"
 msgid "For more details about flexplot in JASP, watch this %1videa%2"
-msgstr ""
+msgstr "JASPのフレックスプロットの詳細については、この %1videa%2 を参照してください"
 
 msgctxt "FlexplotForm|"
 msgid "Input"
-msgstr ""
+msgstr "入力"
 
 msgctxt "FlexplotForm|"
 msgid ""
@@ -945,11 +928,11 @@ msgstr ""
 
 msgctxt "FlexplotForm|"
 msgid "Point controls"
-msgstr ""
+msgstr "点調整"
 
 msgctxt "FlexplotForm|"
 msgid "The degree of transparency of the dots in the graphics"
-msgstr ""
+msgstr "グラフィックのドットの透過度"
 
 msgctxt "FlexplotForm|"
 msgid ""
@@ -971,66 +954,67 @@ msgstr ""
 
 msgctxt "FlexplotForm|"
 msgid "Visual Statistics"
-msgstr ""
+msgstr "ビジュアル統計"
 
 msgctxt "FlexplotForm|"
 msgid "Should 95% confidence intervals be displayed?"
-msgstr ""
+msgstr "95％信頼区間は表示されるべきか?"
 
 msgctxt "FlexplotForm|"
 msgid "A non-parametric loess line"
-msgstr ""
+msgstr "ノンパラメトリックloess直線"
 
 msgctxt "FlexplotForm|"
 msgid "A straight (regression) line"
-msgstr ""
+msgstr "(回帰)直線"
 
 msgctxt "FlexplotForm|"
 msgid ""
 "A line that includes both a linear effect and a quadratic (squared) term"
-msgstr ""
+msgstr "線形効果と二次（二乗）項の両方を含む直線"
 
 msgctxt "FlexplotForm|"
 msgid "A line that includes a linear, squared, and cubed term"
-msgstr ""
+msgstr "線形、二乗、立方項を含んだ直線"
 
 msgctxt "FlexplotForm|"
 msgid "No line"
-msgstr ""
+msgstr "直線なし"
 
 msgctxt "FlexplotForm|"
 msgid ""
 "The type of fitted line displayed when the x axis is a numeric variable. "
 "These can be one of the following:"
-msgstr ""
+msgstr "x軸が数値変数のときに表示される当てはめた直線の種類. "
+"これらは以下のいずれかである:"
 
 msgctxt "FlexplotForm|"
 msgid ""
 "Horizontal lines are displayed at the 25/75th percentiles, with a dot for "
 "the median"
-msgstr ""
+msgstr "水平線25/75パーセンタイルを表し、点は中央値を表す"
 
 msgctxt "FlexplotForm|"
 msgid ""
 "Horizontal lines are displayed at +1/-1 standard errors from the mean, with "
 "a dot for the mean"
-msgstr ""
+msgstr "水平線は平均から+1/-1標準誤差を表し、点は平均を表す"
 
 msgctxt "FlexplotForm|"
 msgid ""
 "Horizontal lines are displayed at +1/-1 standard deviations from the mean, "
 "with a dot for the mean"
-msgstr ""
+msgstr "水平線は平均から+1/-1標準偏差を表し、点は平均を表す"
 
 msgctxt "FlexplotForm|"
 msgid "Other Plot Controls"
-msgstr ""
+msgstr "他のプロット制御"
 
 msgctxt "FlexplotForm|"
 msgid ""
 "the type of GGplot theme to use when displaying the data. Can be one of the "
 "following:"
-msgstr ""
+msgstr "データを表示する際に使用する GGplot テーマの種類. 以下のいずれかになります:"
 
 msgctxt "FlexplotForm|"
 msgid ""
@@ -1044,58 +1028,60 @@ msgid ""
 "Descriptives allows the user to obtain basic descriptive statistics, "
 "histograms and density plots, correlation plots, boxplots, and frequency "
 "tables."
-msgstr ""
+msgstr "記述統計機能では、ユーザーが基本的な記述統計、ヒストグラムおよび密度プロット"
+"、相関プロット、箱ひげ図および度数表を得ることができます."
 
 msgctxt "Descriptives|"
 msgid "References"
-msgstr ""
+msgstr "文献"
 
 msgctxt "Descriptives|"
 msgid "R Packages"
-msgstr ""
+msgstr "Rパッケージ"
 
 msgctxt "Descriptives|"
 msgid "Input"
-msgstr ""
+msgstr "入力"
 
 msgctxt "Descriptives|"
 msgid "All variables of interest."
-msgstr ""
+msgstr "関心のある全ての変数."
 
 msgctxt "Descriptives|"
 msgid "Can be split by a categorical variable such as experimental condition."
-msgstr ""
+msgstr "実験条件のようなカテゴリカル変数によって分割可能です."
 
 msgctxt "Descriptives|"
 msgid "Tranposes the main table"
-msgstr ""
+msgstr "メインテーブルを転置"
 
 msgctxt "Descriptives|"
 msgid "Percentile Values"
-msgstr ""
+msgstr "パーセンタイル値"
 
 msgctxt "Descriptives|"
 msgid "Displays the 25th, 50th, and 75th percentiles of the data points."
-msgstr ""
+msgstr "データポイントの25、50、75パーセンタイルを表示します."
 
 msgctxt "Descriptives|"
 msgid "Cut points for x equal groups"
-msgstr ""
+msgstr "x個の等しいグループのカットポイント"
 
 msgctxt "Descriptives|"
 msgid ""
 "Displays the cut points that divide the data into x equal groups; default is "
 "4 equal groups."
-msgstr ""
+msgstr "データをx個の等しいグループに分割するカットポイントを表示. "
+"デフォルトは4個の等しいグループ."
 
 msgctxt "Descriptives|"
 msgid ""
 "Displays the xth percentile; percentile values must be separated by comma."
-msgstr ""
+msgstr "xパーセンタイルを表示; パーセンタイル値はカンマ区切りである必要がある."
 
 msgctxt "Descriptives|"
 msgid "Central Tendency (only for continuous variables)"
-msgstr ""
+msgstr "代表値(連続変数のみ)"
 
 msgctxt "Descriptives|"
 msgid ""
@@ -1109,31 +1095,31 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Median of the data points."
-msgstr ""
+msgstr "データポイントの中央値."
 
 msgctxt "Descriptives|"
 msgid "Arithmetic mean of the data points"
-msgstr ""
+msgstr "データポイントの算術平均"
 
 msgctxt "Descriptives|"
 msgid "Skewness of the distribution of the data points."
-msgstr ""
+msgstr "データポイントの分布の歪度."
 
 msgctxt "Descriptives|"
 msgid "Kurtosis of the distribution of the data points."
-msgstr ""
+msgstr "データポイントの分布の尖度."
 
 msgctxt "Descriptives|"
 msgid "Sum of the data points."
-msgstr ""
+msgstr "データポイントの合計."
 
 msgctxt "Descriptives|"
 msgid "Dispersion (only for continuous variables)"
-msgstr ""
+msgstr "分散(連続変数のみ)"
 
 msgctxt "Descriptives|"
 msgid "Standard deviation of the data points."
-msgstr ""
+msgstr "データポイントの標準偏差."
 
 msgctxt "Descriptives|"
 msgid ""
@@ -1145,67 +1131,67 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Median absolute deviation of the data points."
-msgstr ""
+msgstr "データポイントの中央絶対偏差."
 
 msgctxt "Descriptives|"
 msgid ""
 "Median absolute deviation of the data points, adjusted by a factor for "
 "asymptotically normal consistency."
-msgstr ""
+msgstr "データポイントの中央絶対偏差、一致漸近正規のための要因によって調整されている."
 
 msgctxt "Descriptives|"
 msgid ""
 "Interquartile range of the data points; 75th percentile - 25th percentile."
-msgstr ""
+msgstr "データポイントの四分位範囲; 75パーセンタイル-25パーセンタイル."
 
 msgctxt "Descriptives|"
 msgid "Variance of the data points."
-msgstr ""
+msgstr "データポイントの分散."
 
 msgctxt "Descriptives|"
 msgid "Range of the data points; maximum - minimum."
-msgstr ""
+msgstr "データポイントの範囲; 最大-最小."
 
 msgctxt "Descriptives|"
 msgid "Minimum value of the data points."
-msgstr ""
+msgstr "データポイントの最小値."
 
 msgctxt "Descriptives|"
 msgid "Maximum value of the data points."
-msgstr ""
+msgstr "データポイントの最大値."
 
 msgctxt "Descriptives|"
 msgid "Standard error of the mean."
-msgstr ""
+msgstr "平均の標準誤差."
 
 msgctxt "Descriptives|"
 msgid "width of the confidence interval."
-msgstr ""
+msgstr "信頼区間の幅."
 
 msgctxt "Descriptives|"
 msgid ""
 "a confidence interval for the standard deviation based on bootstrap samples."
-msgstr ""
+msgstr "ブートストラップサンプルに基づく標準偏差の信頼区間."
 
 msgctxt "Descriptives|"
 msgid "a confidence interval for the variance based on bootstrap samples."
-msgstr ""
+msgstr "ブートストラップサンプルに基づく分散の信頼区間."
 
 msgctxt "Descriptives|"
 msgid "the number of bootstrap samples to be used."
-msgstr ""
+msgstr "使用するブートストラップサンプル数."
 
 msgctxt "Descriptives|"
 msgid "Covariance value."
-msgstr ""
+msgstr "共分散値."
 
 msgctxt "Descriptives|"
 msgid "Pearson's correlation coefficient."
-msgstr ""
+msgstr "ピアソンの相関係数."
 
 msgctxt "Descriptives|"
 msgid "How to deal with missing values?"
-msgstr ""
+msgstr "欠測値にどのように対処するか?"
 
 msgctxt "Descriptives|"
 msgid "use all observations, resulting in NA when there are missing values."
@@ -1768,7 +1754,6 @@ msgctxt "raincloudPlots|"
 msgid "Advanced"
 msgstr ""
 
-#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Mean"
 msgstr "平均値"
@@ -1881,7 +1866,7 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Bootstrap samples"
-msgstr ""
+msgstr "ブートストラップサンプル"
 
 msgctxt "raincloudPlots|"
 msgid "Seed for reproducibility"
@@ -2021,3 +2006,6 @@ msgid ""
 "model`, which yields results identical to a one-sample t-test. Alternative "
 "options are a normal model (%1), or `Bootstrap`."
 msgstr ""
+"どのように信頼区間を算出したか？デフォルトでは「T "
+"model」で、これは一標本のt検定と同一の結果になります."
+"代替オプションは、正規モデル(%1)もしくは`ブートストラップ`です."
