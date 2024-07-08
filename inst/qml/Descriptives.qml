@@ -427,8 +427,8 @@ Form
 				RadioButtonGroup
 				{
 					name:	"scatterPlotRegressionLineType";
-					RadioButton { value: "smooth";	label: qsTr("Smooth");	checked: true	}
-					RadioButton { value: "linear";	label: qsTr("Linear")					}
+					RadioButton { value: "linear";	label: qsTr("Linear");	checked: true}
+					RadioButton { value: "smooth";	label: qsTr("Smooth")}
 				}
 
 				CheckBox
