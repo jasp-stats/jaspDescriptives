@@ -229,6 +229,7 @@ test_that("Scatter plot matches", {
   options$correlationPlots <- FALSE
   options$scatterPlot <- TRUE
   options$colorPalette <- "ggplot2"
+  options$scatterPlotRegressionLineType <- "smooth"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
 
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
