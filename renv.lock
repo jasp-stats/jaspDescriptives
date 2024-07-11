@@ -466,7 +466,7 @@
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspTTests",
       "RemoteRef": "HEAD",
-      "RemoteSha": "3c60e478508aaa50147895bf7c189c34f9a05c4c"
+      "RemoteSha": "ac388c2cf6fc23a1af6b8c60ce01c7e665f72591"
     },
     "jpeg": {
       "Package": "jpeg",
