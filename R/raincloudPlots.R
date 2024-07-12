@@ -336,7 +336,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   # Axes
   if (!options[["customAxisLimits"]]) {
     yBreaks <- jaspGraphs::getPrettyAxisBreaks(dataset[[inputVariable]])
-    yLimits <- range(c(yBreaks, dataset[[inputVariable]], unlist(intervalBounds)))
+    yLimits <- range(c(yBreaks, dataset[[inputVariable]], intervalBounds[["lowerBound"]], intervalBounds[["upperBound"]]))
     warningAxisLimits <- FALSE
   } else {
     yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(options[["lowerAxisLimit"]], options[["upperAxisLimit"]]))
