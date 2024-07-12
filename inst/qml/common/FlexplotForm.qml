@@ -25,6 +25,7 @@ Form
 			title: qsTr("Dependent Variable");
 			info: qsTr("The variable of interest. This is also called the outcome variable. If only an outcome variable is specified, Flexplot will produce a histogram for numeric data and a barchart for categorical data. If independent variable(s) and/or panelled variable(s) are specified, this variable will be displayed on the Y axis.")
 			singleVariable: true
+			allowTypeChange: true
 			onCountChanged:  nameY.value = count > 0 ? model.data(model.index(0,0)) : ""
 		}
 		AssignedVariablesList	{
@@ -32,6 +33,7 @@ Form
 			title: qsTr("Independent Variable(s)") ;
 			id: varlist
 			maxRows: 2
+			allowTypeChange: true
 			height: 70 * jaspTheme.uiScale
 			info: qsTr("The variable(s) for which we wish to visually assess relationships with the DV. The first variable chosen shows up on the X axis, either as a scatterplot (for numeric predictors) or as a beeswarm plot (for categorical variables). The second variable chosen will show up as different colors/lines/symbols. If the second varaible chosen is numeric, it will be binned first.")
 			onCountChanged: {
@@ -46,6 +48,7 @@ Form
 			info: qsTr("Variables specified in these boxes will be binned (if numeric) then displayed as different subplots. The first variable specified as a panelled variable will form the column plots, while the second will form the row plots.")
 			id: paneledVars
 			maxRows: 2
+			allowTypeChange: true
 			height: 70 * jaspTheme.uiScale
 			onCountChanged: {
 				nameCols.value = count > 0 ? model.data(model.index(0,0)) : "";
