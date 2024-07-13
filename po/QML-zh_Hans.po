@@ -293,34 +293,6 @@ msgid "Values are group midpoints"
 msgstr "组中值"
 
 msgctxt "Descriptives|"
-msgid "Charts"
-msgstr "图表"
-
-msgctxt "Descriptives|"
-msgid "Chart Type"
-msgstr "图表类型"
-
-msgctxt "Descriptives|"
-msgid "Bar charts"
-msgstr "柱状图"
-
-msgctxt "Descriptives|"
-msgid "Histograms"
-msgstr "直方图"
-
-msgctxt "Descriptives|"
-msgid "Chart Values"
-msgstr "图表值"
-
-msgctxt "Descriptives|"
-msgid "Frequencies"
-msgstr "频率"
-
-msgctxt "Descriptives|"
-msgid "Percentages"
-msgstr "百分比"
-
-msgctxt "Descriptives|"
 msgid "Quantiles"
 msgstr "分位数"
 
@@ -761,10 +733,6 @@ msgid "Quartiles"
 msgstr "四分位数"
 
 msgctxt "FlexplotForm|"
-msgid "Standard errors"
-msgstr "标准误差"
-
-msgctxt "FlexplotForm|"
 msgid "Standard deviations"
 msgstr "标准偏差"
 
@@ -1010,12 +978,6 @@ msgctxt "FlexplotForm|"
 msgid ""
 "Horizontal lines are displayed at the 25/75th percentiles, with a dot for "
 "the median"
-msgstr ""
-
-msgctxt "FlexplotForm|"
-msgid ""
-"Horizontal lines are displayed at +1/-1 standard errors from the mean, with "
-"a dot for the mean"
 msgstr ""
 
 msgctxt "FlexplotForm|"
@@ -1531,10 +1493,6 @@ msgid ""
 msgstr ""
 
 msgctxt "raincloudPlots|"
-msgid "Show point"
-msgstr ""
-
-msgctxt "raincloudPlots|"
 msgid ""
 "Whether or not the points of a cloud should be shown. If un-checked, opacity "
 "is set to 0.<br>If you have many, many points, it can be helpful to hide "
@@ -1838,65 +1796,7 @@ msgid ""
 msgstr ""
 
 msgctxt "raincloudPlots|"
-msgid ""
-"You can choose between ±1 standard deviation or a confidence interval."
-"<br>The confidence interval is computed independently for each group. For "
-"this, the corresponding checkbox needs to be checked, to acknowledge that."
-"<br>This computation means that any factors are treated as between-factors."
-"<br>If your data does not meet this assumption, but you still want to show "
-"intervals around the means, you can specify custom intervals (see below)."
-"<br>One example where this assumption does not hold is with ID input. This "
-"is why ID input disables the computation of confidence intervals."
-msgstr ""
-
-#, fuzzy
-msgctxt "raincloudPlots|"
-msgid "Method"
-msgstr "方法"
-
-msgctxt "raincloudPlots|"
-msgid ""
-"How should the confidence interval be computed?<br>'Normal model' uses a "
-"standard error defined as: _SD_<sub>group</sub> / square root of "
-"_N_<sub>group</sub><br>'T model' yields results identical to a one-sample t-"
-"test.<br>For 'Bootstrap' you can further specify the number of samples and "
-"set a seed for reproducible results."
-msgstr ""
-
-msgctxt "raincloudPlots|"
-msgid "± 1 standard deviation"
-msgstr ""
-
-msgctxt "raincloudPlots|"
 msgid "Confidence interval"
-msgstr ""
-
-msgctxt "raincloudPlots|"
-msgid "Compute confidence interval independently for each group."
-msgstr ""
-
-#, fuzzy
-msgctxt "raincloudPlots|"
-msgid "Normal model"
-msgstr "正态模型"
-
-#, fuzzy
-msgctxt "raincloudPlots|"
-msgid "T model"
-msgstr "T 模型"
-
-#, fuzzy
-msgctxt "raincloudPlots|"
-msgid "Bootstrap"
-msgstr "Bootstrap 方法"
-
-#, fuzzy
-msgctxt "raincloudPlots|"
-msgid "Bootstrap samples"
-msgstr "Bootstrap 抽样次数"
-
-msgctxt "raincloudPlots|"
-msgid "Seed for reproducibility"
 msgstr ""
 
 msgctxt "raincloudPlots|"
@@ -2032,4 +1932,40 @@ msgid ""
 "How should the confidence interval be computed? By default, we use a `T "
 "model`, which yields results identical to a one-sample t-test. Alternative "
 "options are a normal model (%1), or `Bootstrap`."
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "95% confidende intervals"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid ""
+"Horizontal lines are displayed marking 95% confidence intervals for the mean"
+msgstr ""
+
+#, fuzzy
+msgctxt "raincloudPlots|"
+msgid "Show legend"
+msgstr "显示图例"
+
+msgctxt "raincloudPlots|"
+msgid ""
+"Shows the legend for the color-coding of the primary factor.<br>This option "
+"is superseeded by a secondary factor; then the legend is always added."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Show points"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"You can choose between a confidence interval or ±1 standard error.<br>For "
+"the computation of the confidence interval and standard error, within and "
+"between factors are determined based on the specifciation of the ID "
+"variable<br><h4>"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Standard error"
 msgstr ""

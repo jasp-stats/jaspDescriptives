@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2024-05-18 03:18\n"
+"POT-Creation-Date: 2024-07-13 03:18\n"
 "PO-Revision-Date: 2024-05-19 20:45+0000\n"
 "Last-Translator: robachowyk <kaya.robach@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/jasp/"
@@ -277,11 +277,6 @@ msgstr ""
 msgid "The mode is computed assuming that variables are discreet."
 msgstr ""
 
-msgid "Not all values are available for <i>Nominal Text</i> variables"
-msgstr ""
-"Toutes les valeurs ne sont pas disponibles pour les variables <i>Texte "
-"nominal</i>"
-
 msgid "Total"
 msgstr "Total"
 
@@ -388,12 +383,10 @@ msgid ""
 "number of clouds does not match clouds in plot.</span>"
 msgstr ""
 
-msgid "Interval around mean represents ± 1 standard deviation."
+msgid "Interval around mean represents ± 1 standard error"
 msgstr ""
 
-msgid ""
-"Interval around mean represents %d%% confidence interval;<br>confidence "
-"intervals were computed independently for each group."
+msgid "Interval around mean represents %d%% confidence interval."
 msgstr ""
 
 msgid "Points are slightly jittered from their true values."
@@ -444,15 +437,13 @@ msgstr "75ième centile"
 msgid "Upper Whisker"
 msgstr ""
 
-msgid "Lower Interval Limit"
-msgstr ""
+#, fuzzy
+msgid "%s%% CI for Mean Difference"
+msgstr "IC supérieur de la moyenne %s%%"
 
 #, fuzzy
-msgid "Standard Deviation"
+msgid "Standard Error"
 msgstr "Écart type"
-
-msgid "Upper Interval Limit"
-msgstr ""
 
 msgid "<i>N</i><sub>Total</sub> = %s."
 msgstr ""
@@ -463,9 +454,7 @@ msgstr ""
 msgid "<br>Interval around mean is custom."
 msgstr ""
 
-msgid ""
-"<br>Interval around mean represents %d%% confidence interval;<br>confidence "
-"intervals were computed independently for each group."
+msgid "<br>Interval around mean represents %d%% confidence interval."
 msgstr ""
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
@@ -486,6 +475,11 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "La virgule décimale se trouve à %s chiffre à gauche du |"
 msgstr[1] "La virgule décimale se trouve à %s chiffres à gauche du |"
+
+#~ msgid "Not all values are available for <i>Nominal Text</i> variables"
+#~ msgstr ""
+#~ "Toutes les valeurs ne sont pas disponibles pour les variables <i>Texte "
+#~ "nominal</i>"
 
 #~ msgid "More than one mode exists, only the first is reported"
 #~ msgstr "Il existe plus d’un mode, seul le premier est rapporté"

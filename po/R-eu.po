@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2024-05-18 03:18\n"
+"POT-Creation-Date: 2024-07-13 03:18\n"
 "PO-Revision-Date: 2022-06-29 08:59+0000\n"
 "Last-Translator: José Ramón Rueda <joseramon.rueda@ehu.es>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/jasp/"
@@ -267,9 +267,6 @@ msgstr ""
 msgid "The mode is computed assuming that variables are discreet."
 msgstr ""
 
-msgid "Not all values are available for <i>Nominal Text</i> variables"
-msgstr ""
-
 msgid "Total"
 msgstr "Guztira"
 
@@ -368,12 +365,10 @@ msgid ""
 "number of clouds does not match clouds in plot.</span>"
 msgstr ""
 
-msgid "Interval around mean represents ± 1 standard deviation."
+msgid "Interval around mean represents ± 1 standard error"
 msgstr ""
 
-msgid ""
-"Interval around mean represents %d%% confidence interval;<br>confidence "
-"intervals were computed independently for each group."
+msgid "Interval around mean represents %d%% confidence interval."
 msgstr ""
 
 msgid "Points are slightly jittered from their true values."
@@ -421,13 +416,10 @@ msgstr ""
 msgid "Upper Whisker"
 msgstr ""
 
-msgid "Lower Interval Limit"
+msgid "%s%% CI for Mean Difference"
 msgstr ""
 
-msgid "Standard Deviation"
-msgstr ""
-
-msgid "Upper Interval Limit"
+msgid "Standard Error"
 msgstr ""
 
 msgid "<i>N</i><sub>Total</sub> = %s."
@@ -439,9 +431,7 @@ msgstr ""
 msgid "<br>Interval around mean is custom."
 msgstr ""
 
-msgid ""
-"<br>Interval around mean represents %d%% confidence interval;<br>confidence "
-"intervals were computed independently for each group."
+msgid "<br>Interval around mean represents %d%% confidence interval."
 msgstr ""
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
