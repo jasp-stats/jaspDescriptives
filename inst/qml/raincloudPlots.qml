@@ -97,6 +97,7 @@ Form
 			title:					qsTr("Covariate")
 			id: 					covariate
 			allowedColumns: 		["nominal", "scale"]
+			allowTypeChange:		true
 			singleVariable: 		true
 			info:					qsTr("Points are color coded according to this.")
 		}
