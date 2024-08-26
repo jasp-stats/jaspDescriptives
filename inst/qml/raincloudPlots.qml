@@ -147,7 +147,7 @@ Form
 				name:       		"covariatePalette"
 				label:      		""
 				enabled: 			covariate.count === 1
-				indexDefaultValue:  3
+				startValue:  		"viridis"
 				infoLabel:			qsTr("Covariate palette")
 				info:  				qsTr("How to color code the covariate. 'Viridis' works good for both discrete and continuous covariates.")
 			}
