@@ -246,7 +246,7 @@
     },
     "evaluate": {
       "Package": "evaluate",
-      "Version": "0.24.0",
+      "Version": "1.0.0",
       "Source": "Repository"
     },
     "fansi": {
@@ -271,13 +271,13 @@
     },
     "flexplot": {
       "Package": "flexplot",
-      "Version": "0.21.1",
+      "Version": "0.21.2",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "dustinfife",
       "RemoteRepo": "flexplot",
-      "RemoteSha": "303a03968f677e71c99a5e22f6352c0811b7b2fb"
+      "RemoteSha": "f76af6d1fdc30e0873cf051019eb3fb972d5a611"
     },
     "fontBitstreamVera": {
       "Package": "fontBitstreamVera",
@@ -457,7 +457,7 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspGraphs",
-      "RemoteSha": "17b7eeaf2e0c589aa182f0db807054ca37cc2d51"
+      "RemoteSha": "b2e1799265a0741b49a1ca356f96448091dd8db0"
     },
     "jaspTTests": {
       "Package": "jaspTTests",
@@ -467,7 +467,7 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspTTests",
-      "RemoteSha": "72eb59cfe91ae7c74c6351aa4c5b80d9a9e9c30f"
+      "RemoteSha": "75bbf17fcf8c2453ee15a4ae52d86888191613d3"
     },
     "jpeg": {
       "Package": "jpeg",
@@ -646,7 +646,7 @@
     },
     "patchwork": {
       "Package": "patchwork",
-      "Version": "1.2.0",
+      "Version": "1.3.0",
       "Source": "Repository"
     },
     "pbapply": {
@@ -761,7 +761,7 @@
     },
     "rjson": {
       "Package": "rjson",
-      "Version": "0.2.22",
+      "Version": "0.2.23",
       "Source": "Repository"
     },
     "rlang": {
