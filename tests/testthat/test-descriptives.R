@@ -56,8 +56,9 @@ test_that("Descriptive Statistics table results match", {
   options$meanCi <- TRUE
   options$sdCi <- TRUE
   options$varianceCi <- TRUE
-  options$sdCi <- TRUE
   options$meanCiMethod <- "normalModel"
+  options$sdCiMethod <- "boostrap"
+  options$varianceCiMethod <- "boostrap"
   set.seed(1)
   results <- runAnalysis("Descriptives", "test.csv", options)
   table <- results[["results"]][["stats"]][["data"]]
