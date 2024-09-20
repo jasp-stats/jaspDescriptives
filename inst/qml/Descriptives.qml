@@ -169,7 +169,7 @@ Form
 				{
 					name: "meanCiMethod"
 					label: qsTr("Method")
-					id: ciMethod
+					id: meanCiMethod
 					indexDefaultValue: 0
 					info: qsTr("How should the confidence interval be computed? By default, we use a `T model`, which yields results identical to a one-sample t-test. Alternative options are a normal model (%1), or `Bootstrap`.").arg("$\\bar{x} \\pm z_{95} \\times SE$")
 					values:
@@ -192,6 +192,20 @@ Form
 					name: "sdCiLevel"
 					label: qsTr("Width")
 				}
+
+				DropDown
+				{
+					name: "sdCiMethod"
+					label: qsTr("Method")
+					id: sdCiMethod
+					indexDefaultValue: 0
+					info: qsTr("How should the confidence interval be computed? By default, we use a chi-sqaured model. The alternative option is `Bootstrap`")
+					values:
+					[
+						{label: qsTr("Chi-squared model"),	value: "chiSquaredModel"},
+						{label: qsTr("Bootstrap"),		value: "bootstrap"}
+					]
+				}
 			}
 
 			CheckBox
@@ -205,17 +219,32 @@ Form
 					name: "varianceCiLevel"
 					label: qsTr("Width")
 				}
+
+				DropDown
+				{
+					name: "varianceCiMethod"
+					label: qsTr("Method")
+					id: varianceCiMethod
+					indexDefaultValue: 0
+					info: qsTr("How should the confidence interval be computed? By default, we use a chi-sqaured model. The alternative option is `Bootstrap`")
+					values:
+					[
+						{label: qsTr("Chi-squared model"),	value: "chiSquaredModel"},
+						{label: qsTr("Bootstrap"),		value: "bootstrap"}
+					]
+				}
 			}
 
 			Group
 			{
 				title: qsTr("Bootstrap confidence interval options")
+				visible:		meanCiMethod.currentValue == "bootstrap" | sdCiMethod.currentValue == "bootstrap" | varianceCiMethod.currentValue == "bootstrap"
 
 				IntegerField
 				{
 					name:			"ciBootstrapSamples"
 					label:			qsTr("Bootstrap samples")
-					info: qsTr("the number of bootstrap samples to be used.")
+					info: 			qsTr("the number of bootstrap samples to be used.")
 					defaultValue:	1000
 					min:			1;
 					max:			50000;
