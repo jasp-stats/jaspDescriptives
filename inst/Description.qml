@@ -13,11 +13,13 @@ Description
 	license		: "GPL (>= 2)"
 	icon		: "analysis-descriptives.svg"
 	hasWrappers	: true
+	preloadData	: false
 
 	Analysis
 	{
-		title:	qsTr("Descriptive Statistics")
-		func:	"Descriptives"
+		title:			qsTr("Descriptive Statistics")
+		func:			"Descriptives"
+		preloadData	: 	true
 	}
 
 	Analysis
