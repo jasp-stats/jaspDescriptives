@@ -199,10 +199,10 @@ Form
 					label: qsTr("Method")
 					id: sdCiMethod
 					indexDefaultValue: 0
-					info: qsTr("How should the confidence interval be computed? By default, we use a chi-sqaured model. The alternative option is `Bootstrap`")
+					info: qsTr("How should the confidence interval be computed? By default, we use an analytical approach (chi-square). The alternative option is `Bootstrap`")
 					values:
 					[
-						{label: qsTr("Chi-squared model"),	value: "chiSquaredModel"},
+						{label: qsTr("Analytical (chi-square)"),	value: "chiSquaredModel"},
 						{label: qsTr("Bootstrap"),		value: "bootstrap"}
 					]
 				}
@@ -226,10 +226,10 @@ Form
 					label: qsTr("Method")
 					id: varianceCiMethod
 					indexDefaultValue: 0
-					info: qsTr("How should the confidence interval be computed? By default, we use a chi-sqaured model. The alternative option is `Bootstrap`")
+					info: qsTr("How should the confidence interval be computed? By default, we use a analytical approach (chi-square). The alternative option is `Bootstrap`")
 					values:
 					[
-						{label: qsTr("Chi-squared model"),	value: "chiSquaredModel"},
+						{label: qsTr("Analytical (chi-square)"),	value: "chiSquaredModel"},
 						{label: qsTr("Bootstrap"),		value: "bootstrap"}
 					]
 				}
