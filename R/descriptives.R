@@ -1662,15 +1662,15 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     stateContainerName <- paste0("bootstrapSamples", variableName)
     variances <- .bootstrapStats(data, options, jaspResults, stateContainerName)$variances
     percentiles <- (1 + c(-ciWidth, ciWidth)) / 2
-    CIs <- quantile(variances, probs = percentiles)
+    CIs <- stats::quantile(variances, probs = percentiles)
     lowerBound <- CIs[1]
     upperBound <- CIs[2]
   } else if (options[["varianceCiMethod"]] == "chiSquaredModel") {
-    sigma <- sd(data)
+    sigma <- stats::sd(data)
     n <- length(data)
     alpha <- 1 - ciWidth
-    chiSqLower <- qchisq(alpha / 2, df = n - 1)
-    chiSqUpper <- qchisq(1 - alpha / 2, df = n - 1)
+    chiSqLower <- stats::qchisq(alpha / 2, df = n - 1)
+    chiSqUpper <- stats::qchisq(1 - alpha / 2, df = n - 1)
     lowerBound <- (n - 1) * sigma^2 / chiSqUpper
     upperBound <- (n - 1) * sigma^2 / chiSqLower
   }
