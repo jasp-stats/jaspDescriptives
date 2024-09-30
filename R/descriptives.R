@@ -15,12 +15,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-# This is a temporary fix
-# TODO: remove it when R will solve this problem!
-gettextf <- function(fmt, ..., domain = NULL) {
-  return(sprintf(gettext(fmt, domain = domain), ...))
-}
-
 DescriptivesInternal <- function(jaspResults, dataset, options) {
   variables <- unlist(options$variables)
   splitName <- options$splitBy
@@ -31,8 +25,16 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     temp <- .descriptivesReadData(options, variables, splitName)
     dataset         <- temp[["dataset"]]
     dataset.factors <- temp[["dataset.factors"]]
-    isNominalText   <- temp[["isNominalText"]]
   }
+  else
+  {
+    dataset.factors <- .readDataSetToEnd(columns.as.factor = c(variables, splitName))
+  }
+  
+  allMissing <- \(x) all(is.na(x))
+  missingAllAsNumeric <- vapply(dataset,         allMissing, FUN.VALUE = logical(1L))
+  missingAllAsIs      <- vapply(dataset.factors, allMissing, FUN.VALUE = logical(1L))
+  isNominalText       <- missingAllAsNumeric & !missingAllAsIs[names(missingAllAsNumeric)]
 
   if (makeSplit && length(variables) > 0) {
     splitFactor <- dataset[[splitName]]
@@ -387,11 +389,8 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       dataset.factors <- dataset
 
   allMissing <- \(x) all(is.na(x))
-  missingAllAsNumeric <- vapply(dataset,         allMissing, FUN.VALUE = logical(1L))
-  missingAllAsIs      <- vapply(dataset.factors, allMissing, FUN.VALUE = logical(1L))
-  isNominalText       <- missingAllAsNumeric & !missingAllAsIs[names(missingAllAsNumeric)]
 
-  return(list(dataset = dataset, dataset.factors = dataset.factors, isNominalText = isNominalText))
+  return(list(dataset = dataset, dataset.factors = dataset.factors))
 }
 
 .descriptivesDescriptivesTable <- function(dataset, dataset.factors, isNominalText, options, jaspResults, numberMissingSplitBy = 0) {
