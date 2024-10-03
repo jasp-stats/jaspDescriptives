@@ -414,7 +414,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     "seMean", "sd", "coefficientOfVariation", "variance", "skewness", "kurtosis", "shapiroWilkTest",
     "range", "iqr", "mad", "madRobust", "minimum", "maximum", "sum", "quartiles", "quantilesForEqualGroups",
     "percentiles", "descriptivesTableTransposed", "valid", "missing", "meanCi", "meanCiLevel", "meanCiMethod",
-    "sdCi", "sdCiLevel", "varianceCi", "varianceCiLevel", "ciBootstrapSamples"
+    "sdCi", "sdCiLevel", "sdCiMethod", "varianceCiMethod", "varianceCi", "varianceCiLevel", "ciBootstrapSamples"
   ))
 
   if (wantsSplit) {
@@ -1631,14 +1631,25 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   ))
 }
 
+# Formula for chi-square confidence intervals for std. dev. and variance found here: https://en.wikipedia.org/wiki/Standard_deviation#Confidence_interval_of_a_sampled_standard_deviation
 .descriptivesSdCI <- function(data, options, jaspResults, variableName) {
   ciWidth <- options[["sdCiLevel"]]
-  stateContainerName <- paste0("bootstrapSamples", variableName)
-  sds <- .bootstrapStats(data, options, jaspResults, stateContainerName)$sds
-  percentiles <- (1 + c(-ciWidth, ciWidth)) / 2
-  CIs <- quantile(sds, probs = percentiles)
-  lowerBound <- CIs[1]
-  upperBound <- CIs[2]
+  if (options[["sdCiMethod"]] == "bootstrap") {
+    stateContainerName <- paste0("bootstrapSamples", variableName)
+    sds <- .bootstrapStats(data, options, jaspResults, stateContainerName)$sds
+    percentiles <- (1 + c(-ciWidth, ciWidth)) / 2
+    CIs <- stats::quantile(sds, probs = percentiles)
+    lowerBound <- CIs[1]
+    upperBound <- CIs[2]
+  } else if (options[["sdCiMethod"]] == "chiSquaredModel") {
+    sigma <- stats::sd(data)
+    n <- length(data)
+    alpha <- 1 - ciWidth
+    chiSqLower <- stats::qchisq(alpha / 2, df = n - 1)
+    chiSqUpper <- stats::qchisq(1 - alpha / 2, df = n - 1)
+    lowerBound <- sqrt((n - 1) * sigma^2 / chiSqUpper)
+    upperBound <- sqrt((n - 1) * sigma^2 / chiSqLower)
+  }
   return(list(
     "upper" = upperBound,
     "lower" = lowerBound
@@ -1647,12 +1658,22 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
 .descriptivesVarianceCI <- function(data, options, jaspResults, variableName) {
   ciWidth <- options[["varianceCiLevel"]]
-  stateContainerName <- paste0("bootstrapSamples", variableName)
-  variances <- .bootstrapStats(data, options, jaspResults, stateContainerName)$variances
-  percentiles <- (1 + c(-ciWidth, ciWidth)) / 2
-  CIs <- quantile(variances, probs = percentiles)
-  lowerBound <- CIs[1]
-  upperBound <- CIs[2]
+  if (options[["varianceCiMethod"]] == "bootstrap") {
+    stateContainerName <- paste0("bootstrapSamples", variableName)
+    variances <- .bootstrapStats(data, options, jaspResults, stateContainerName)$variances
+    percentiles <- (1 + c(-ciWidth, ciWidth)) / 2
+    CIs <- stats::quantile(variances, probs = percentiles)
+    lowerBound <- CIs[1]
+    upperBound <- CIs[2]
+  } else if (options[["varianceCiMethod"]] == "chiSquaredModel") {
+    sigma <- stats::sd(data)
+    n <- length(data)
+    alpha <- 1 - ciWidth
+    chiSqLower <- stats::qchisq(alpha / 2, df = n - 1)
+    chiSqUpper <- stats::qchisq(1 - alpha / 2, df = n - 1)
+    lowerBound <- (n - 1) * sigma^2 / chiSqUpper
+    upperBound <- (n - 1) * sigma^2 / chiSqLower
+  }
   return(list(
     "upper" = upperBound,
     "lower" = lowerBound
