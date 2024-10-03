@@ -1632,7 +1632,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   ))
 }
 
-# Formula for chi-square confidence intervals for std. dev. and variance found here: https://www.itl.nist.gov/div898/handbook/prc/section2/prc231.htm
+# Formula for chi-square confidence intervals for std. dev. and variance found here: https://en.wikipedia.org/wiki/Standard_deviation#Confidence_interval_of_a_sampled_standard_deviation
 .descriptivesSdCI <- function(data, options, jaspResults, variableName) {
   ciWidth <- options[["sdCiLevel"]]
   if (options[["sdCiMethod"]] == "bootstrap") {
