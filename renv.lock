@@ -96,7 +96,7 @@
     },
     "askpass": {
       "Package": "askpass",
-      "Version": "1.2.0",
+      "Version": "1.2.1",
       "Source": "Repository"
     },
     "backports": {
@@ -116,7 +116,7 @@
     },
     "broom": {
       "Package": "broom",
-      "Version": "1.0.6",
+      "Version": "1.0.7",
       "Source": "Repository"
     },
     "bslib": {
@@ -136,7 +136,7 @@
     },
     "car": {
       "Package": "car",
-      "Version": "3.1-2",
+      "Version": "3.1-3",
       "Source": "Repository"
     },
     "carData": {
@@ -181,7 +181,7 @@
     },
     "commonmark": {
       "Package": "commonmark",
-      "Version": "1.9.1",
+      "Version": "1.9.2",
       "Source": "Repository"
     },
     "contfrac": {
@@ -206,7 +206,7 @@
     },
     "curl": {
       "Package": "curl",
-      "Version": "5.2.2",
+      "Version": "5.2.3",
       "Source": "Repository"
     },
     "data.table": {
@@ -231,7 +231,7 @@
     },
     "doBy": {
       "Package": "doBy",
-      "Version": "4.6.22",
+      "Version": "4.6.24",
       "Source": "Repository"
     },
     "dplyr": {
@@ -376,7 +376,7 @@
     },
     "glue": {
       "Package": "glue",
-      "Version": "1.7.0",
+      "Version": "1.8.0",
       "Source": "Repository"
     },
     "gridExtra": {
@@ -447,7 +447,7 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspBase",
-      "RemoteSha": "24d4ae8eb2efcaae974b6c900ebf1c64020bb90e"
+      "RemoteSha": "79632a237c7bf6bb9b6c8fdf30cc59abccb923d1"
     },
     "jaspGraphs": {
       "Package": "jaspGraphs",
@@ -467,7 +467,7 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspTTests",
-      "RemoteSha": "c3c2f40db75637bc3dd82d69fce0684a08c9d2a2"
+      "RemoteSha": "5f1fc0c08770db5e5c01ac83f6ca8325eb376bbc"
     },
     "jpeg": {
       "Package": "jpeg",
@@ -481,7 +481,7 @@
     },
     "jsonlite": {
       "Package": "jsonlite",
-      "Version": "1.8.8",
+      "Version": "1.8.9",
       "Source": "Repository"
     },
     "knitr": {
@@ -501,7 +501,7 @@
     },
     "lavaan": {
       "Package": "lavaan",
-      "Version": "0.6-18",
+      "Version": "0.6-19",
       "Source": "Repository"
     },
     "libcoin": {
@@ -631,12 +631,12 @@
     },
     "officer": {
       "Package": "officer",
-      "Version": "0.6.6",
+      "Version": "0.6.7",
       "Source": "Repository"
     },
     "openssl": {
       "Package": "openssl",
-      "Version": "2.2.1",
+      "Version": "2.2.2",
       "Source": "Repository"
     },
     "party": {
@@ -831,7 +831,7 @@
     },
     "sys": {
       "Package": "sys",
-      "Version": "3.4.2",
+      "Version": "3.4.3",
       "Source": "Repository"
     },
     "systemfonts": {
@@ -861,7 +861,7 @@
     },
     "timeDate": {
       "Package": "timeDate",
-      "Version": "4032.109",
+      "Version": "4041.110",
       "Source": "Repository"
     },
     "timechange": {
@@ -876,7 +876,7 @@
     },
     "tseries": {
       "Package": "tseries",
-      "Version": "0.10-57",
+      "Version": "0.10-58",
       "Source": "Repository"
     },
     "urca": {
@@ -916,7 +916,7 @@
     },
     "xfun": {
       "Package": "xfun",
-      "Version": "0.47",
+      "Version": "0.48",
       "Source": "Repository"
     },
     "xml2": {
