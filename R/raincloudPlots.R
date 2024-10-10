@@ -19,9 +19,9 @@
 
 # Main function: raincloudPlots() ----
 raincloudPlotsInternal <- function(jaspResults, dataset, options) {
-  ready    <- (length(options[["dependentVariables"]]) > 0) && 
-    (options[["observationId"]] == "" || 
-       (options[["observationId"]] != "" && options[["primaryFactor"]] != ""))  
+  ready    <- (length(options[["dependentVariables"]]) > 0) &&
+    (options[["observationId"]] == "" ||
+       (options[["observationId"]] != "" && options[["primaryFactor"]] != ""))
   dataset  <- .rainReadData(dataset, options)
   dataInfo <- .rainDataInfo(dataset, options)
   .rainCreatePlots( jaspResults, dataInfo, options, ready)
@@ -34,7 +34,18 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 .rainReadData <- function(dataset, options) {
 
   if (!is.null(dataset)) {
-    output <- dataset
+
+    datasetInProgress <- dataset
+
+    # Step 2: Create columns with consistent names; if no input then assign default
+    # this is only safe with column encoding enabled
+    datasetInProgress[["primaryFactor"]]   <- .rainDataColumn(datasetInProgress,  options[["primaryFactor"]])
+    datasetInProgress[["secondaryFactor"]] <- .rainDataColumn(datasetInProgress,  options[["secondaryFactor"]])
+    datasetInProgress[["covariate"]]       <- .rainDataColumn(datasetInProgress,  options[["covariate"]])
+    datasetInProgress[["observationId"]]   <- .rainDataColumn(datasetInProgress,  options[["observationId"]])
+
+    output <- datasetInProgress
+
   } else {
 
     # Step 1: Read in all variables that are given by JASP; if no input, then nothing is read in
@@ -299,8 +310,8 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   }
   getMeansAndLines <- .rainMeansAndLines(options, boxPosVec, aesX, aesFill, infoFactorCombinations, meanPosition)
   plotInProgress <- plotInProgress + getMeansAndLines$meanLines + getMeansAndLines$means  # Lines first so means cover
-  intervalBounds <- NULL 
-  
+  intervalBounds <- NULL
+
   # Interval around mean
   intervalPosition <- if (options[["meanPosition"]] == "likeBox") meanPosition else "identity"
   if (options[["meanInterval"]] || options[["meanIntervalCustom"]]) {
