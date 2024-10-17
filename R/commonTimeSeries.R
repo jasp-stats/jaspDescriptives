@@ -15,38 +15,34 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-.tsReadData <- function(jaspResults, dataset, options, ready, covariates = FALSE) {
-  if (!is.null(dataset)) {
-    return(dataset)
-  }
 
-  if (ready) {
-    yDataset <- .readDataSetToEnd(columns.as.numeric = options$dependent)
-    yName <- options$dependent[1]
-    y <- yDataset[, yName]
-    dat <- data.frame(y)
+.tsReadData <- function(jaspResults, dataset, options, ready, covariates = FALSE) {
+
+    ydat <- data.frame(y = dataset[, options$dependent[1]])
 
     if (options$time == "") {
-      t <- 1:nrow(yDataset)
+      tdat <- data.frame(t = 1:nrow(ydat))
     } else {
-      tDataset <- .readDataSetToEnd(columns.as.factor = options$time)
-      tName <- options$time[1]
-      t <- as.character(tDataset[, tName])
+      tdat <- data.frame(t = as.character(dataset[, options$time[1]]))
     }
-    dat <- cbind(dat, t)
 
-    if (covariates) {
-      if (length(options[["covariates"]]) > 0) {
-        cDataset <- .readDataSetToEnd(columns.as.numeric = options$covariates)
-        covariateNames <- options$covariates
-        covariates <- as.data.frame(cDataset[, covariateNames])
-        names(covariates) <- paste0("xreg", 1:length(covariateNames))
-        dat <- cbind(dat, covariates)
-      }
+    if (length(options[["covariates"]]) > 0) {
+
+      cdat <- data.frame(dataset[, options$covariates])
+      names(cdat) <- paste0("xreg", 1:length(options$covariates))
+
+      dat <- cbind(ydat, tdat, cdat)
+
+    } else {
+
+      dat <- cbind(ydat, tdat)
+
     }
+
     return(dat)
-  }
 }
+
+
 
 .tsErrorHandler <- function(dataset, ready) {
   if (!ready) {

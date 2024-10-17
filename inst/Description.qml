@@ -32,6 +32,7 @@ Description
 	{
 		title:	qsTr("Time Series Descriptives")
 		func:	"DescriptivesTimeSeries"
+		preloadData	: false
 	}
 
 	Analysis
