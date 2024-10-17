@@ -26,6 +26,7 @@ Description
 	{
 		title:	qsTr("Raincloud Plots")
 		func:	"raincloudPlots"
+		preloadData	: true
 	}
 
 	Analysis
