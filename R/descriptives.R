@@ -22,15 +22,19 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   numberMissingSplitBy <- 0
 
   if (is.null(dataset)) {
+
     temp <- .descriptivesReadData(options, variables, splitName)
     dataset         <- temp[["dataset"]]
     dataset.factors <- temp[["dataset.factors"]]
+
+  } else {
+
+    dataset.factors <- dataset
+    for (var in variables)
+      dataset[[var]] <- as.numeric(dataset[[var]])
+
   }
-  else
-  {
-    dataset.factors <- .readDataSetToEnd(columns.as.factor = c(variables, splitName))
-  }
-  
+
   allMissing <- \(x) all(is.na(x))
   missingAllAsNumeric <- vapply(dataset,         allMissing, FUN.VALUE = logical(1L))
   missingAllAsIs      <- vapply(dataset.factors, allMissing, FUN.VALUE = logical(1L))
@@ -387,8 +391,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       dataset.factors[[splitName]] <- dataset[[splitName]]
     else
       dataset.factors <- dataset
-
-  allMissing <- \(x) all(is.na(x))
 
   return(list(dataset = dataset, dataset.factors = dataset.factors))
 }

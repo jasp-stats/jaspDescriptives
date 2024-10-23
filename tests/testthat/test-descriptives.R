@@ -300,7 +300,7 @@ test_that("Density plot matches", {
 test_that("Analysis handles identical variables", {
   # catches this: https://github.com/jasp-stats/jasp-issues/issues/553
   options <- jaspTools::analysisOptions("Descriptives")
-  options$variables <- list("contNormal", "debSame")
+  options$variables <- c("contNormal", "debSame")
   options$variables.types <- c("scale", "scale")
   options$splitBy <- "facFive"
   options$splitBy.types <- "nominal"
