@@ -167,7 +167,7 @@ Form
 						{label: qsTr("AAAS"),					value: "AAAS"},
 						{label: qsTr("Lancet"),					value: "Lancet"},
 						{label: qsTr("JCO"),					value: "JCO"},
-						{label: qsTr("Dark"),					value: "Dark"}
+						{label: qsTr("Tron"),					value: "Tron"}
 					]
 				}
 				CheckBox
