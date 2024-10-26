@@ -2283,3 +2283,7 @@ msgstr ""
 "Hoe moet het betrouwbaarheidsinterval worden berekend? Standaard gebruiken "
 "we een analytische benadering (chi-kwadraat). De alternatieve optie is "
 "`Bootstrap`"
+
+msgctxt "FlexplotForm|"
+msgid "Tron"
+msgstr ""

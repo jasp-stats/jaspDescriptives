@@ -2286,3 +2286,7 @@ msgid ""
 msgstr ""
 "Como debería calcularse o intervalo de confianza? Por defecto, utilízase "
 "unha aproximación analítica (Khi-cadrado). A opción alternativa é `Bootstrap`"
+
+msgctxt "FlexplotForm|"
+msgid "Tron"
+msgstr ""

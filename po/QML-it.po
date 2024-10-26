@@ -1947,3 +1947,7 @@ msgid ""
 "How should the confidence interval be computed? By default, we use a "
 "analytical approach (chi-square). The alternative option is `Bootstrap`"
 msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Tron"
+msgstr ""

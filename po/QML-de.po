@@ -2322,3 +2322,7 @@ msgstr ""
 "Wie sollte das Konfidenzintervall berechnet werden? Standardmäßig verwenden "
 "wir einen analytischen Ansatz (Chi-Quadrat). Die alternative Option ist "
 "`Bootstrap`"
+
+msgctxt "FlexplotForm|"
+msgid "Tron"
+msgstr ""
