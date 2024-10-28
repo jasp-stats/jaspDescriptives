@@ -1,6 +1,12 @@
 context("Descriptives Time Series")
 
-options <- jaspTools::analysisOptions("DescriptivesTimeSeries")
+qmlFile <- if (endsWith(getwd(), "testthat")) {
+  "../../inst/qml/common/DescriptivesTimeSeriesForm.qml"
+} else {
+  "inst/qml/common/DescriptivesTimeSeriesForm.qml"
+}
+
+options <- jaspTools:::readQML(qmlFile)
 options$dependent <- "visits"
 options$time <- "date"
 options$lagPlot <- TRUE

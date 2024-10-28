@@ -13,7 +13,7 @@ Description
 	license		: "GPL (>= 2)"
 	icon		: "analysis-descriptives.svg"
 	hasWrappers	: true
-	preloadData	: false
+	preloadData	: true
 
 	Analysis
 	{
