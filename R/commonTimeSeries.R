@@ -18,22 +18,21 @@
 
 .tsReadData <- function(jaspResults, dataset, options, ready, covariates = FALSE) {
 
-    ydat <- data.frame(y = dataset[, options$dependent[1]])
+    ydat <- data.frame(y = dataset[[options[["dependent"]]]])
 
     if (options$time == "") {
       tdat <- data.frame(t = 1:nrow(ydat))
     } else {
 
-      tName <- options$time[1]
-      t <- as.character(tDataset[, tName])
+      t <- as.character(dataset[[options[["time"]]]])
       t <- as.POSIXct(t, tz = "UTC")
       tdat <- data.frame(t = t)
     }
 
     if (length(options[["covariates"]]) > 0) {
 
-      cdat <- data.frame(dataset[, options$covariates])
       names(cdat) <- paste0("xreg", 1:length(options$covariates))
+      cdat <- data.frame(dataset[, options[["covariates"]]])
 
       dat <- cbind(ydat, tdat, cdat)
 

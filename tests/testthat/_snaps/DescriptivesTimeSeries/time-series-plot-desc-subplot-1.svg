@@ -329,11 +329,11 @@
 <polyline points='400.15,518.64 400.15,510.14 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
 <polyline points='545.61,518.64 545.61,510.14 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
 <polyline points='691.07,518.64 691.07,510.14 ' style='stroke-width: 0.64; stroke-linecap: butt;' />
-<text x='112.41' y='537.32' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='27.42px' lengthAdjust='spacingAndGlyphs'>Jan</text>
-<text x='256.28' y='537.32' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='26.46px' lengthAdjust='spacingAndGlyphs'>Apr</text>
-<text x='400.15' y='537.32' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='21.74px' lengthAdjust='spacingAndGlyphs'>Jul</text>
-<text x='545.61' y='537.32' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='26.46px' lengthAdjust='spacingAndGlyphs'>Oct</text>
-<text x='691.07' y='537.32' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='27.42px' lengthAdjust='spacingAndGlyphs'>Jan</text>
+<text x='112.41' y='537.32' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='22.68px' lengthAdjust='spacingAndGlyphs'>jan</text>
+<text x='256.28' y='537.32' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='24.57px' lengthAdjust='spacingAndGlyphs'>apr</text>
+<text x='400.15' y='537.32' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='17.00px' lengthAdjust='spacingAndGlyphs'>jul</text>
+<text x='545.61' y='537.32' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='22.68px' lengthAdjust='spacingAndGlyphs'>okt</text>
+<text x='691.07' y='537.32' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='22.68px' lengthAdjust='spacingAndGlyphs'>jan</text>
 <text x='401.74' y='567.49' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='4.72px' lengthAdjust='spacingAndGlyphs'>t</text>
 <text transform='translate(16.68,265.42) rotate(-90)' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='37.79px' lengthAdjust='spacingAndGlyphs'>visits</text>
 <text x='401.74' y='11.70' text-anchor='middle' style='font-size: 17.00px; font-family: sans;' textLength='233.40px' lengthAdjust='spacingAndGlyphs'>time-series-plot-desc-subplot-1</text>
