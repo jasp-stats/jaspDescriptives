@@ -2477,7 +2477,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     return()
 
   if (options[["densityPlotSeparate"]] != "") {
-    separator <- dataset[[options[["densityPlotSeparate"]]]]
+    separator <- as.factor(dataset[[options[["densityPlotSeparate"]]]])
   }
 
   for (i in seq_along(variables)) {
