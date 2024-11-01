@@ -2514,19 +2514,22 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 .descriptivesDensityPlotsFill <- function(container, data, plotName, axeName, position, options, variableType) {
   jaspGraphs::graphOptions(palette = options[["colorPalette"]])
   densPlot <- createJaspPlot(title = plotName, width = 480, height = 320, position = position)
+
   if (options[["densityPlotSeparate"]] != "" && any(table(data$separator) == 1)) {
+
     densPlot$setError(gettext("Levels within variable require at least two or more data points!"))
+
   } else if (variableType == "nominal" || variableType == "ordinal")  {
 
-    if (options[["densityPlotCategoricalType"]] == "prop") {
-      tb <- as.data.frame(table(data) / sum(table(data)))
-      yAxeName <- "Proportion"
+    if (options[["densityPlotCategoricalType"]] == "condProp" && options[["densityPlotSeparate"]] != "") {
+      tb <- as.data.frame(table(data) / rowSums(table(data), na.rm = TRUE))
+      yAxeName <- "Conditional proportion"
     } else if (options[["densityPlotCategoricalType"]] == "count") {
       tb <- as.data.frame(table(data))
       yAxeName <- "Counts"
-    } else if (options[["densityPlotCategoricalType"]] == "condProp") {
-      tb <- as.data.frame(table(data) / rowSums(table(data)))
-      yAxeName <- "Conditional proportion"
+    } else { # if no separator but request cond prop, then give proportions
+      tb <- as.data.frame(table(data) / sum(table(data), na.rm = TRUE))
+      yAxeName <- "Proportion"
     }
 
     p <- if (options[["densityPlotSeparate"]] != "") {
@@ -2535,7 +2538,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       ggplot2::ggplot(data = tb, ggplot2::aes(x = variable, y = Freq))
     }
 
-    # Plot with color based on the separator variable
     densPlot$plotObject <- p +
       ggplot2::geom_bar(stat = "identity", col = "black", width = 0.7, size = .3, position = ggplot2::position_dodge(width = 0.7)) +
       ggplot2::xlab(axeName) +
