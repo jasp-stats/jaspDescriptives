@@ -286,8 +286,8 @@ test_that("Likert plot matches", {
 
 test_that("Density plot matches", {
   options <- jaspTools::analysisOptions("Descriptives")
-  options$variables <- "contNormal"
-  options$variables.types <- "scale"
+  options$variables <- c("contNormal", "facGender")
+  options$variables.types <- c("scale", "nominal")
   options$densityPlot <- TRUE
   options$densityPlotSeparate <- "facFive"
   # https://github.com/jasp-stats/jaspDescriptives/pull/216 added a reuseable QML element for colorPalette, but jaspTools doesn't understand that so we have to add the default value manually
@@ -295,6 +295,9 @@ test_that("Density plot matches", {
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "densPlot")
+
+  testPlot <- results[["state"]][["figures"]][[3]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "countPlot")
 })
 
 test_that("Analysis handles identical variables", {
