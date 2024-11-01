@@ -2518,14 +2518,21 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     densPlot$setError(gettext("Levels within variable require at least two or more data points!"))
   } else if (variableType == "nominal" || variableType == "ordinal")  {
 
-    if (options[["densityPlotSeparate"]] != "") {
-      tb <- as.data.frame(table(data) / rowSums(table(data)))
-      p <- ggplot2::ggplot(data = tb, ggplot2::aes(x = variable, y = Freq, fill = separator))
-      yAxeName <- "Conditional proportion"
-    } else {
+    if (options[["densityPlotCategoricalType"]] == "prop") {
       tb <- as.data.frame(table(data) / sum(table(data)))
-      p <- ggplot2::ggplot(data = tb, ggplot2::aes(x = variable, y = Freq))
       yAxeName <- "Proportion"
+    } else if (options[["densityPlotCategoricalType"]] == "count") {
+      tb <- as.data.frame(table(data))
+      yAxeName <- "Counts"
+    } else if (options[["densityPlotCategoricalType"]] == "condProp") {
+      tb <- as.data.frame(table(data) / rowSums(table(data)))
+      yAxeName <- "Conditional proportion"
+    }
+
+    p <- if (options[["densityPlotSeparate"]] != "") {
+      ggplot2::ggplot(data = tb, ggplot2::aes(x = variable, y = Freq, fill = separator))
+    } else {
+      ggplot2::ggplot(data = tb, ggplot2::aes(x = variable, y = Freq))
     }
 
     # Plot with color based on the separator variable

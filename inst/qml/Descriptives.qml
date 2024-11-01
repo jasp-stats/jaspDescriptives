@@ -509,7 +509,7 @@ Form
 			{
 				name:	"densityPlotType"
 				id: 	densityPlotType
-				title:	qsTr("Type:")
+				title:	qsTr("Type for scale variables:")
 				RadioButton { value: "density";		label: qsTr("Density");		checked: true	}
 				RadioButton
 				{
@@ -526,7 +526,15 @@ Form
 					}
 				}
 			}
-
+			RadioButtonGroup
+			{
+				name:	"densityPlotCategoricalType";
+				id: 	densityPlotCategoricalType
+				title:	qsTr("Type for categorical variables:")
+				RadioButton { value: "count";		label: qsTr("Counts");		checked: true	}
+				RadioButton { value: "prop";		label: qsTr("Proportions")					}
+				RadioButton { value: "condProp";	label: qsTr("Conditional proportions")							}
+			}
 			DoubleField
 			{
 				name:			"densityPlotTransparency"
@@ -537,6 +545,7 @@ Form
 				max:			100
 				enabled: densityPlotSeparate.count > 0 && ((densityPlotType.value === "density") || (densityPlotType.value === "histogram" && customHistogramPosition.value === "identity"))
 			}
+
 		}
 		CheckBox
 		{
