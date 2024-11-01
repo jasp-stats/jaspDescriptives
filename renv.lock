@@ -1123,7 +1123,7 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspTTests",
-      "RemoteSha": "5d5819c70a9afbd8b0f7a8f54e88b68d6101dd9e"
+      "RemoteSha": "427880f04c0afdfab8498be21e73e9eb3564b708"
     },
     "jpeg": {
       "Package": "jpeg",
@@ -2156,7 +2156,7 @@
     },
     "xfun": {
       "Package": "xfun",
-      "Version": "0.48",
+      "Version": "0.49",
       "Source": "Repository",
       "Requirements": [
         "R",
