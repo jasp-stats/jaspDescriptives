@@ -2541,7 +2541,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     densPlot$plotObject <- p +
       ggplot2::geom_bar(stat = "identity", col = "black", width = 0.7, size = .3, position = ggplot2::position_dodge(width = 0.7)) +
       ggplot2::xlab(axeName) +
-      ggplot2::scale_fill_manual(values = jaspGraphs::JASPcolors("colorblind"), name = options[["densityPlotSeparate"]]) +
+      ggplot2::scale_fill_manual(values = jaspGraphs::JASPcolors(options[["colorPalette"]]), name = options[["densityPlotSeparate"]]) +
       ggplot2::ylab(yAxeName) +
       jaspGraphs::geom_rangeframe() +
       jaspGraphs::themeJaspRaw() +
