@@ -296,7 +296,7 @@ test_that("Density plot matches", {
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "densPlot")
 
-  testPlot <- results[["state"]][["figures"]][[3]][["obj"]]
+  testPlot <- results[["state"]][["figures"]][[2]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "countPlot")
 })
 
