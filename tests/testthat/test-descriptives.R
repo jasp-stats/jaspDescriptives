@@ -289,12 +289,28 @@ test_that("Density plot matches", {
   options$variables <- "contNormal"
   options$variables.types <- "scale"
   options$densityPlot <- TRUE
+  options$correlationPlots <- FALSE
   options$densityPlotSeparate <- "facFive"
   # https://github.com/jasp-stats/jaspDescriptives/pull/216 added a reuseable QML element for colorPalette, but jaspTools doesn't understand that so we have to add the default value manually
   options$colorPalette <- "colorblind"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "densPlot")
+})
+
+
+test_that("Count plot matches", {
+  options <- jaspTools::analysisOptions("Descriptives")
+  options$variables <- "facGender"
+  options$variables.types <- "nominal"
+  options$densityPlot <- TRUE
+  options$correlationPlots <- FALSE
+  options$densityPlotSeparate <- "facFive"
+  # https://github.com/jasp-stats/jaspDescriptives/pull/216 added a reuseable QML element for colorPalette, but jaspTools doesn't understand that so we have to add the default value manually
+  options$colorPalette <- "colorblind"
+  results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
+  testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "countPlot")
 })
 
 test_that("Analysis handles identical variables", {

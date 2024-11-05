@@ -2477,17 +2477,17 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     return()
 
   if (options[["densityPlotSeparate"]] != "") {
-    separator <- .readDataSetToEnd(columns.as.factor = options[["densityPlotSeparate"]])
-    separator <- separator[, , drop = TRUE]
+    separator <- as.factor(dataset[[options[["densityPlotSeparate"]]]])
   }
 
   for (i in seq_along(variables)) {
-    if (!is.double(dataset[[i]])) next
+    # if (!is.double(dataset[[i]])) next
 
     variableName <- variables[[i]]
-    variable <- .readDataSetToEnd(columns.as.numeric = variableName)
-    variable <- variable[, , drop = TRUE]
-
+    # variable <- .readDataSetToEnd(columns = variableName)
+    # variable <- variable[, , drop = TRUE]
+    variable <- dataset[[variableName]]
+    variableType <- options[["variables.types"]][[i]]
     data <- if (options[["densityPlotSeparate"]] != "") {
       data.frame(variable, separator)
     } else {
@@ -2496,28 +2496,57 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
     if (options[["splitBy"]] != "") {
       container[[variableName]] <- createJaspContainer(variableName)
-      splitBy <- .readDataSetToEnd(columns.as.factor = options[["splitBy"]])
-      data$split <- splitBy[, , drop = TRUE]
+      data$split <-  dataset[[options[["splitBy"]]]]
       data <- na.omit(data)
       groups <- levels(data$split)
 
       for (g in seq_along(groups)) {
         active <- groups[g] == data$split
-        .descriptivesDensityPlotsFill(container[[variableName]], data[active, ], groups[g], variableName, g, options)
+        .descriptivesDensityPlotsFill(container[[variableName]], data[active, ], groups[g], variableName, g, options, variableType)
       }
     } else {
       data <- na.omit(data)
-      .descriptivesDensityPlotsFill(container, data, variableName, variableName, i, options)
+      .descriptivesDensityPlotsFill(container, data, variableName, variableName, i, options, variableType)
     }
   }
 }
 
-.descriptivesDensityPlotsFill <- function(container, data, plotName, axeName, position, options) {
+.descriptivesDensityPlotsFill <- function(container, data, plotName, axeName, position, options, variableType) {
   jaspGraphs::graphOptions(palette = options[["colorPalette"]])
-
   densPlot <- createJaspPlot(title = plotName, width = 480, height = 320, position = position)
+
   if (options[["densityPlotSeparate"]] != "" && any(table(data$separator) == 1)) {
+
     densPlot$setError(gettext("Levels within variable require at least two or more data points!"))
+
+  } else if (variableType == "nominal" || variableType == "ordinal")  {
+
+    if (options[["densityPlotCategoricalType"]] == "condProp" && options[["densityPlotSeparate"]] != "") {
+      tb <- as.data.frame(table(data) / rowSums(table(data), na.rm = TRUE))
+      yAxeName <- "Conditional proportion"
+    } else if (options[["densityPlotCategoricalType"]] == "count") {
+      tb <- as.data.frame(table(data))
+      yAxeName <- "Counts"
+    } else { # if no separator but request cond prop, then give proportions
+      tb <- as.data.frame(table(data) / sum(table(data), na.rm = TRUE))
+      yAxeName <- "Proportion"
+    }
+
+    p <- if (options[["densityPlotSeparate"]] != "") {
+      ggplot2::ggplot(data = tb, ggplot2::aes(x = variable, y = Freq, fill = separator))
+    } else {
+      ggplot2::ggplot(data = tb, ggplot2::aes(x = variable, y = Freq))
+    }
+
+    densPlot$plotObject <- p +
+      ggplot2::geom_bar(stat = "identity", col = "black", width = 0.7, size = .3, position = ggplot2::position_dodge(width = 0.7)) +
+      ggplot2::xlab(axeName) +
+      ggplot2::scale_fill_manual(values = jaspGraphs::JASPcolors(options[["colorPalette"]]), name = options[["densityPlotSeparate"]]) +
+      ggplot2::ylab(yAxeName) +
+      jaspGraphs::geom_rangeframe() +
+      jaspGraphs::themeJaspRaw() +
+      ggplot2::theme(plot.margin =  ggplot2::margin(5), legend.position = "right")
+
   } else if (options[["densityPlotType"]] == "density") {
 
     densPlot$plotObject <- jaspGraphs::jaspHistogram(x = data[["variable"]],
