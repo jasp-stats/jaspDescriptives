@@ -13,7 +13,7 @@ Description
 	license		: "GPL (>= 2)"
 	icon		: "analysis-descriptives.svg"
 	hasWrappers	: true
-	preloadData	: false
+	preloadData	: true
 
 	Analysis
 	{
@@ -33,6 +33,7 @@ Description
 	{
 		title:	qsTr("Time Series Descriptives")
 		func:	"DescriptivesTimeSeries"
+		preloadData	: true
 	}
 
 	Analysis

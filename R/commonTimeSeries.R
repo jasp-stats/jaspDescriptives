@@ -15,38 +15,37 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-.tsReadData <- function(jaspResults, dataset, options, ready, covariates = FALSE) {
-  if (!is.null(dataset)) {
-    return(dataset)
-  }
 
-  if (ready) {
-    yDataset <- .readDataSetToEnd(columns.as.numeric = options$dependent)
-    yName <- options$dependent[1]
-    y <- yDataset[, yName]
-    dat <- data.frame(y)
+.tsReadData <- function(jaspResults, dataset, options, ready, covariates = FALSE) {
+
+    ydat <- data.frame(y = dataset[[options[["dependent"]]]])
 
     if (options$time == "") {
-      t <- 1:nrow(yDataset)
+      tdat <- data.frame(t = 1:nrow(ydat))
     } else {
-      tDataset <- .readDataSetToEnd(columns.as.factor = options$time)
-      tName <- options$time[1]
-      t <- as.character(tDataset[, tName])
-    }
-    dat <- cbind(dat, t)
 
-    if (covariates) {
-      if (length(options[["covariates"]]) > 0) {
-        cDataset <- .readDataSetToEnd(columns.as.numeric = options$covariates)
-        covariateNames <- options$covariates
-        covariates <- as.data.frame(cDataset[, covariateNames])
-        names(covariates) <- paste0("xreg", 1:length(covariateNames))
-        dat <- cbind(dat, covariates)
-      }
+      t <- as.character(dataset[[options[["time"]]]])
+      t <- as.POSIXct(t, tz = "UTC")
+      tdat <- data.frame(t = t)
     }
+
+    if (covariates && length(options[["covariates"]]) > 0) {
+
+      cdat <- dataset[options[["covariates"]]]
+      names(cdat) <- paste0("xreg", seq_along(options[["covariates"]]))
+
+      dat <- cbind(ydat, tdat, cdat)
+
+    } else {
+
+      dat <- cbind(ydat, tdat)
+
+    }
+
     return(dat)
-  }
 }
+
+
 
 .tsErrorHandler <- function(dataset, ready) {
   if (!ready) {
@@ -88,9 +87,9 @@
       if (options$rowStart != "") start <- options$rowStart
       if (options$rowEnd != "") end <- options$rowEnd
     }
-    tryDate <- try(as.POSIXct(dataset$t, tz = "UTC"))
+    tryDate <- lubridate::is.POSIXt(dataset$t)
     if (options$filterBy == "time") {
-      if (!jaspBase::isTryError(tryDate)) {
+      if (tryDate) {
         .quitAnalysis(gettext("The 'Time' variable has a date-like format, please filter by date instead."))
       }
       start <- min(dataset$t, na.rm = TRUE)
@@ -99,11 +98,11 @@
       if (options$timeEnd != "") end <- options$timeEnd
     }
     if (options$filterBy == "date") {
-      if (jaspBase::isTryError(tryDate)) {
+      if (!tryDate) {
         .quitAnalysis(gettext("The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:ss). Try to filter by time index instead."))
       }
-      first <- min(tryDate, na.rm = TRUE)
-      last <- max(tryDate, na.rm = TRUE)
+      first <- min(dataset$t, na.rm = TRUE)
+      last <- max(dataset$t, na.rm = TRUE)
       if (options$dateStart != "") {
         start <- try(as.POSIXct(options$dateStart, tz = "UTC"))
         if (jaspBase::isTryError(start)) {
@@ -115,7 +114,7 @@
         if (start < first) {
           start <- 1
         } else {
-          start <- min(which(tryDate >= start))
+          start <- min(which(dataset$t >= start))
         }
       }
       if (options$dateEnd != "") {
@@ -129,7 +128,7 @@
         if (end > last) {
           end <- nrow(dataset)
         } else {
-          end <- max(which(tryDate <= end))
+          end <- max(which(dataset$t <= end))
         }
       }
     }
@@ -154,14 +153,13 @@
   }
 
   if (ready) {
-    tryDate <- try(as.POSIXct(dataset$t, tz = "UTC"))
+    tryDate <- lubridate::is.POSIXt(dataset$t)
 
-    if (jaspBase::isTryError(tryDate)) {
+    if (!tryDate) {
       minT <- min(dataset$t, na.rm = TRUE)
       maxT <- max(dataset$t, na.rm = TRUE)
       newT <- minT:maxT
     } else {
-      dataset$t <- as.POSIXct(dataset$t, tz = "UTC")
       increment <- .tsGuessInterval(dataset)
       newT <- seq.POSIXt(min(dataset$t, na.rm = TRUE), max(dataset$t, na.rm = TRUE), by = increment)
     }
@@ -286,14 +284,13 @@
   )
   plotRight <- match.arg(plotRight)
 
-  tryDate <- try(as.POSIXct(x, tz = "UTC"))
+  tryDate <- lubridate::is.POSIXt(x)
 
-  if (jaspBase::isTryError(tryDate)) {
+  if (!tryDate) {
     x <- as.numeric(x)
     xBreaks <- jaspGraphs::getPrettyAxisBreaks(x)
     xScale <- ggplot2::scale_x_continuous(breaks = xBreaks, limits = range(xBreaks))
   } else {
-    x <- as.POSIXct(x, tz = "UTC")
     xBreaks <- pretty(x)
     xLabels <- attr(xBreaks, "labels")
     xScale <- ggplot2::scale_x_datetime(breaks = xBreaks, labels = xLabels, limits = range(xBreaks))
