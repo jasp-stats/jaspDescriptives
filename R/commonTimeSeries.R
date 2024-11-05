@@ -29,10 +29,10 @@
       tdat <- data.frame(t = t)
     }
 
-    if (length(options[["covariates"]]) > 0) {
+    if (covariates && length(options[["covariates"]]) > 0) {
 
-      names(cdat) <- paste0("xreg", 1:length(options$covariates))
-      cdat <- data.frame(dataset[, options[["covariates"]]])
+      cdat <- dataset[options[["covariates"]]]
+      names(cdat) <- paste0("xreg", seq_along(options[["covariates"]]))
 
       dat <- cbind(ydat, tdat, cdat)
 
