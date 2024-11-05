@@ -19,12 +19,12 @@
 
 flexplot <- function(
           data = NULL,
-          version = "0.19",
+          version = "0.19.2",
           formula = NULL,
           alpha = 0.4,
           bw = FALSE,
           confidence = FALSE,
-          dependent = "",
+          dependent = list(types = "", value = ""),
           ghost = TRUE,
           intervals = "Quartiles",
           jitx = 0.1,
@@ -35,12 +35,12 @@ flexplot <- function(
           nameX = "",
           nameY = "",
           palette = "GGplot Default",
-          paneledVars = list(),
+          paneledVars = list(types = list(), value = list()),
           plotHeight = 320,
           plotWidth = 480,
           theme = "JASP",
           type = "Loess",
-          variables = list()) {
+          variables = list(types = list(), value = list())) {
 
    defaultArgCalls <- formals(jaspDescriptives::flexplot)
    defaultArgs <- lapply(defaultArgCalls, eval)

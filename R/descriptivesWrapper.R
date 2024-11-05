@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2013-2022 University of Amsterdam
+# Copyright (C) 2013-2024 University of Amsterdam
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 
 Descriptives <- function(
           data = NULL,
-          version = "0.19",
+          version = "0.19.2",
           formula = NULL,
           associationMatrixUse = "everything",
           boxPlot = FALSE,
@@ -36,7 +36,7 @@ Descriptives <- function(
           covariance = FALSE,
           customHistogramPosition = "stack",
           densityPlot = FALSE,
-          densityPlotSeparate = "",
+          densityPlotSeparate = list(types = "", value = ""),
           densityPlotTransparency = 20,
           densityPlotType = "density",
           descriptivesTableTransposed = FALSE,
@@ -50,13 +50,13 @@ Descriptives <- function(
           frequencyTablesMaximumDistinctValues = 10,
           heatmapDisplayValue = FALSE,
           heatmapDisplayValueRelativeTextSize = 1,
-          heatmapHorizontalAxis = "",
+          heatmapHorizontalAxis = list(types = "", value = ""),
           heatmapLegend = FALSE,
           heatmapPlot = FALSE,
           heatmapStatisticContinuous = "mean",
           heatmapStatisticDiscrete = "mode",
           heatmapTileWidthHeightRatio = 1,
-          heatmapVerticalAxis = "",
+          heatmapVerticalAxis = list(types = "", value = ""),
           intervalPlot = FALSE,
           iqr = FALSE,
           kurtosis = FALSE,
@@ -94,23 +94,25 @@ Descriptives <- function(
           scatterPlotRegressionLine = TRUE,
           scatterPlotRegressionLineCi = TRUE,
           scatterPlotRegressionLineCiLevel = 0.95,
-          scatterPlotRegressionLineType = "smooth",
+          scatterPlotRegressionLineType = "linear",
           sd = TRUE,
           sdCi = FALSE,
           sdCiLevel = 0.95,
+          sdCiMethod = "chiSquaredModel",
           seMean = FALSE,
           shapiroWilkTest = FALSE,
           skewness = FALSE,
-          splitBy = "",
+          splitBy = list(types = "", value = ""),
           statisticsValuesAreGroupMidpoints = FALSE,
           stemAndLeaf = FALSE,
           stemAndLeafScale = 1,
           sum = FALSE,
           valid = TRUE,
-          variables = list(),
+          variables = list(types = list(), value = list()),
           variance = FALSE,
           varianceCi = FALSE,
-          varianceCiLevel = 0.95) {
+          varianceCiLevel = 0.95,
+          varianceCiMethod = "chiSquaredModel") {
 
    defaultArgCalls <- formals(jaspDescriptives::Descriptives)
    defaultArgs <- lapply(defaultArgCalls, eval)
@@ -128,7 +130,7 @@ Descriptives <- function(
       options$formula <- jaspBase::jaspFormula(formula, data)
    }
 
-   optionsWithFormula <- c("associationMatrixUse", "colorPalette", "densityPlotSeparate", "distributionAndCorrelationPlotHistogramBinWidthType", "heatmapHorizontalAxis", "heatmapVerticalAxis", "likertPlotAdjustableFontSize", "meanCiMethod", "splitBy", "variables")
+   optionsWithFormula <- c("associationMatrixUse", "colorPalette", "densityPlotSeparate", "distributionAndCorrelationPlotHistogramBinWidthType", "heatmapHorizontalAxis", "heatmapVerticalAxis", "likertPlotAdjustableFontSize", "meanCiMethod", "sdCiMethod", "splitBy", "variables", "varianceCiMethod")
    for (name in optionsWithFormula) {
       if ((name %in% optionsWithFormula) && inherits(options[[name]], "formula")) options[[name]] = jaspBase::jaspFormula(options[[name]], data)   }
 

@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2013-2022 University of Amsterdam
+# Copyright (C) 2013-2024 University of Amsterdam
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 
 DescriptivesTimeSeries <- function(
           data = NULL,
-          version = "0.19",
+          version = "0.19.2",
           acf = FALSE,
           acfCi = TRUE,
           acfCiLevel = 0.95,
@@ -28,7 +28,7 @@ DescriptivesTimeSeries <- function(
           acfZeroLag = FALSE,
           dateEnd = "",
           dateStart = "",
-          dependent = "",
+          dependent = list(types = "", value = ""),
           descriptivesTableTransposed = FALSE,
           filter = FALSE,
           filterBy = "row",
@@ -46,7 +46,7 @@ DescriptivesTimeSeries <- function(
           plotWidth = 480,
           rowEnd = 100,
           rowStart = 1,
-          time = "",
+          time = list(types = "", value = ""),
           timeEnd = 100,
           timeSeriesPlot = TRUE,
           timeSeriesPlotDistribution = "none",

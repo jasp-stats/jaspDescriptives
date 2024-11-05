@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2013-2022 University of Amsterdam
+# Copyright (C) 2013-2024 University of Amsterdam
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 
 raincloudPlots <- function(
           data = NULL,
-          version = "0.19",
+          version = "0.19.2",
           boxNudge = 0,
           boxOpacity = 0.5,
           boxOutline = "colorPalette",
@@ -28,32 +28,29 @@ raincloudPlots <- function(
           boxWidth = 0.1,
           colorAnyway = TRUE,
           colorPalette = "colorblind",
-          covariate = "",
+          covariate = list(types = "", value = ""),
           covariatePalette = "viridis",
           customAxisLimits = FALSE,
           customColors = FALSE,
           customSides = FALSE,
-          customizationTable = list(list(levels = list("Cat", "Training", "Dance"), name = "data 1", values = list("R", "R", "R")), list(levels = list("Cat", "Training", "Dance"), name = "data 2", values = list(0, 0, 0)), list(levels = list("Cat", "Training", "Dance"), name = "data 3", values = list(0, 0, 0)), list(levels = list("Cat", "Training", "Dance"), name = "data 4", values = list("#00A9E6", "#00A9E6", "#00A9E6"))),
-          dependentVariables = list(),
-          heightPlot = 550,
+          customizationTable = list(),
+          dependentVariables = list(types = list(), value = list()),
+          heightPlot = 350,
           horizontal = FALSE,
           jitter = FALSE,
           lowerAxisLimit = 0,
           mean = FALSE,
-          meanCiAssumption = FALSE,
-          meanCiBootstrapSamples = 1000,
-          meanCiMethod = "normalModel",
           meanCiWidth = 0.95,
           meanInterval = FALSE,
           meanIntervalCustom = FALSE,
-          meanIntervalOption = "sd",
+          meanIntervalOption = "ci",
           meanLines = FALSE,
           meanLinesOpacity = 0.5,
           meanLinesWidth = 1,
           meanPosition = "likeBox",
           meanSize = 6,
           numberOfClouds = 1,
-          observationId = "",
+          observationId = list(types = "", value = ""),
           observationIdLineOpacity = 0.25,
           observationIdLineWidth = 1,
           placeholder1 = 0,
@@ -66,28 +63,27 @@ raincloudPlots <- function(
           placeholder8 = 0,
           plotHeight = 320,
           plotWidth = 480,
-          pointNudge = 0.15,
+          pointNudge = 0.19,
           pointOpacity = 0.5,
           pointSize = 2.5,
           pointSpread = 0.065,
-          primaryFactor = "",
-          secondaryFactor = "",
-          seed = 1,
-          setSeed = FALSE,
+          primaryFactor = list(types = "", value = ""),
+          secondaryFactor = list(types = "", value = ""),
           showBox = TRUE,
           showCaption = TRUE,
+          showLegend = FALSE,
           showPoint = TRUE,
           showVio = TRUE,
           table = FALSE,
           tableBoxStatistics = TRUE,
           upperAxisLimit = 1000,
           vioHeight = 0.7,
-          vioNudge = 0.09,
+          vioNudge = 0.15,
           vioOpacity = 0.5,
           vioOutline = "colorPalette",
           vioOutlineWidth = 1,
           vioSmoothing = 1,
-          widthPlot = 675) {
+          widthPlot = 600) {
 
    defaultArgCalls <- formals(jaspDescriptives::raincloudPlots)
    defaultArgs <- lapply(defaultArgCalls, eval)
@@ -98,7 +94,7 @@ raincloudPlots <- function(
    options[["data"]] <- NULL
    options[["version"]] <- NULL
 
-   optionsWithFormula <- c("boxOutline", "colorPalette", "covariate", "covariatePalette", "customizationTable", "dependentVariables", "meanCiMethod", "observationId", "primaryFactor", "secondaryFactor", "vioOutline")
+   optionsWithFormula <- c("boxOutline", "colorPalette", "covariate", "covariatePalette", "customizationTable", "dependentVariables", "observationId", "primaryFactor", "secondaryFactor", "vioOutline")
    for (name in optionsWithFormula) {
       if ((name %in% optionsWithFormula) && inherits(options[[name]], "formula")) options[[name]] = jaspBase::jaspFormula(options[[name]], data)   }
 
