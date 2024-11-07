@@ -25,6 +25,8 @@ Form
 {
 	columns: 1
 
+	info: qsTr("This module has a <a href='https://www.youtube.com/watch?v=AAdXUAl_w6E'>youtube tutorial</a>.")
+
 	infoBottom: qsTr("The output is a raincloud plot for each dependent variable. Optionally, there is a table with statistics for each plot.") + "<br><br><br>" +
 			"<h1>" + qsTr("How can I re-use my elaborate, customized plot settings for a different dataset?") + "</h1><br>" +
 
@@ -119,7 +121,11 @@ Form
 
 	}  // End variables form
 
-	Label{ text: qsTr("Note: Data must be in long format.") }
+	Label
+	{
+		text: qsTr("Note: This module has a <a href='https://www.youtube.com/watch?v=AAdXUAl_w6E'>youtube tutorial</a> & requires data in long format.")
+		onLinkActivated: { Qt.openUrlExternally("https://www.youtube.com/watch?v=AAdXUAl_w6E") }
+	}
 
 	Section
 	{
