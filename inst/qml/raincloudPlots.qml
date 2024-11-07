@@ -124,7 +124,7 @@ Form
 	Label
 	{
 		text: qsTr("Note: This module has a <a href='https://www.youtube.com/watch?v=AAdXUAl_w6E'>youtube tutorial</a> & requires data in long format.")
-		onLinkActivated: { Qt.openUrlExternally("https://www.youtube.com/watch?v=AAdXUAl_w6E") }
+		onLinkActivated: (link)=>{ Qt.openUrlExternally(link) }
 	}
 
 	Section
