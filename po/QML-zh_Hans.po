@@ -457,10 +457,6 @@ msgid "Separate frequencies:"
 msgstr "单个频率："
 
 msgctxt "Descriptives|"
-msgid "Type:"
-msgstr "类型："
-
-msgctxt "Descriptives|"
 msgid "How to combine separate frequencies"
 msgstr "如何合并单个频率"
 
@@ -1397,10 +1393,6 @@ msgid ""
 msgstr ""
 
 msgctxt "raincloudPlots|"
-msgid "Note: Data must be in long format."
-msgstr ""
-
-msgctxt "raincloudPlots|"
 msgid "General"
 msgstr ""
 
@@ -1988,4 +1980,76 @@ msgstr ""
 
 msgctxt "FlexplotForm|"
 msgid "Tron"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"visualizes data distributions, adapting to the type of variable selected. "
+"For scale variables, it generates histograms or density plots to show "
+"continuous data distributions. For categorical variables, it creates bar "
+"plots displaying counts or proportions of each category."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Type for scale variables:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Whether to display a density plot or histogram."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Options for separate bins of the histogram"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Stack: Bars are stacked vertically, combining counts across categories "
+"within each bin."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Identity: Bars are layered on top of each other, with transparency often "
+"used to distinguish overlapping data."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Dodge: Bars are placed side-by-side, allowing for easy comparison of "
+"different categories within each bin."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Type for categorical variables:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Counts"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Proportions"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Conditional proportions"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Display counts, proportions, or conditional proportions (conditional for "
+"each category on the x-axis)."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"This module has a <a href='https://www.youtube.com/watch?"
+"v=AAdXUAl_w6E'>youtube tutorial</a>."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"Note: This module has a <a href='https://www.youtube.com/watch?"
+"v=AAdXUAl_w6E'>youtube tutorial</a> & requires data in long format."
 msgstr ""
