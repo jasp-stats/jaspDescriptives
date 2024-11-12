@@ -19,21 +19,18 @@ Description
 	{
 		title:			qsTr("Descriptive Statistics")
 		func:			"Descriptives"
-		preloadData	: 	true
 	}
 
 	Analysis
 	{
 		title:	qsTr("Raincloud Plots")
 		func:	"raincloudPlots"
-		preloadData	: true
 	}
 
 	Analysis
 	{
 		title:	qsTr("Time Series Descriptives")
 		func:	"DescriptivesTimeSeries"
-		preloadData	: true
 	}
 
 	Analysis
@@ -41,5 +38,7 @@ Description
 		title:  qsTr("Flexplot")
 		qml:   	"Flexplot.qml"
 		func:	"flexplot"
+		preloadData	: false
+
 	}
 }
