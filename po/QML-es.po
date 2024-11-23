@@ -2387,3 +2387,7 @@ msgid ""
 msgstr ""
 "Nota: Este módulo tiene un <a href='https://www.youtube.com/watch?"
 "v=AAdXUAl_w6E'>Tutorial de Youtube</a> y requiere datos en formato largo."
+
+msgctxt "Descriptives|"
+msgid "Number of valid observations"
+msgstr ""
