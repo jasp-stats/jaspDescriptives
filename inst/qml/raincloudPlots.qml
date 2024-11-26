@@ -25,7 +25,9 @@ Form
 {
 	columns: 1
 
-	info: qsTr("This module has a <a href='https://www.youtube.com/watch?v=AAdXUAl_w6E'>youtube tutorial</a>.")
+	info: qsTr("This module has a <a href='https://www.youtube.com/watch?v=AAdXUAl_w6E'>youtube tutorial</a>") + "<br><br>" +
+		qsTr("If you use this module, please cite it as:") +
+		  "<br>Ott, V. L, van den Bergh, D., Boutin, B., van Doorn, J., Bartoš, F., Judd, N., Luke, K., Kievit, R. A., Groot, L., and Wagenmakers, E.-J. (2024). Informative Data Visualization with Raincloud Plots in JASP. OSF Preprint. <a href=\"https://doi.org/10.31219/osf.io/gv3ph\">https://doi.org/10.31219/osf.io/gv3ph</a>"
 
 	infoBottom: qsTr("The output is a raincloud plot for each dependent variable. Optionally, there is a table with statistics for each plot.") + "<br><br><br>" +
 			"<h1>" + qsTr("How can I re-use my elaborate, customized plot settings for a different dataset?") + "</h1><br>" +
