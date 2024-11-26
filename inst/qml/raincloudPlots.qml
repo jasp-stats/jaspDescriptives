@@ -55,7 +55,7 @@ Form
 				"Wellcome Open Res 2021, 4:63. https://doi.org/10.12688/wellcomeopenres.15191.2.\n" +
 		"- Aphalo, P. (2024). _ggpp: Grammar Extensions to 'ggplot2'_. R package version 0.5.6, <https://CRAN.R-project.org/package=ggpp>.\n" +
 		"- JASP Team (2024). For this module especially: Ott, V. L., van den Bergh, D., Boutin, B., Goosen, J., Judd, N., Bartoš, F., & Wagenmakers, E. J.\n" +
-		"- Judd, N., van Langen, J., Allen, M., & Kievit, R. A. (2024). _ggrain: A Rainclouds Geom for 'ggplot2'_. R package version 0.0.4, <https://CRAN.R-project.org/package=ggrain>.\n" +
+		"- Judd, N., van Langen, J., Allen, M., & Kievit, R. A. (2024). _ggrain: A Rainclouds Geom for 'ggplot2'_. R package version 0.0.4, https://doi.org/10.32614/CRAN.package.ggrain.\n" +
 		"- Wickham, H. (2016). ggplot2: Elegant Graphics for Data Analysis. Springer-Verlag New York.\n" +
 		"- Wickham, H., François, R., Henry, L., Müller, K., & Vaughan, D. (2023). _dplyr: A Grammar of Data Manipulation_. R package version 1.1.4, <https://CRAN.R-project.org/package=dplyr>.\n" +
 		"- Wilke C. & Wiernik, B. (2022). _ggtext: Improved Text Rendering Support for 'ggplot2'_. R package version 0.1.2, <https://wilkelab.org/ggtext/>.\n"
