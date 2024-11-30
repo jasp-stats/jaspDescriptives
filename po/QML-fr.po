@@ -2026,16 +2026,20 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid ""
-"This module has a <a href='https://www.youtube.com/watch?"
-"v=AAdXUAl_w6E'>youtube tutorial</a>."
-msgstr ""
-
-msgctxt "raincloudPlots|"
-msgid ""
 "Note: This module has a <a href='https://www.youtube.com/watch?"
 "v=AAdXUAl_w6E'>youtube tutorial</a> & requires data in long format."
 msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Number of valid observations"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"This module has a <a href='https://www.youtube.com/watch?"
+"v=AAdXUAl_w6E'>youtube tutorial</a>"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "If you use this module, please cite it as:"
 msgstr ""
