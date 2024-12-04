@@ -18,33 +18,53 @@
 
 .tsReadData <- function(jaspResults, dataset, options, ready, covariates = FALSE) {
 
-    ydat <- data.frame(y = dataset[[options[["dependent"]]]])
+  # Check if dependent variable is specified
+  if (is.null(options[["dependent"]]) || options[["dependent"]] == "") {
+    return(data.frame())
+  }
 
-    if (options$time == "") {
-      tdat <- data.frame(t = 1:nrow(ydat))
-    } else {
+  ydat <- data.frame(y = dataset[[options[["dependent"]]]])
 
-      t <- as.character(dataset[[options[["time"]]]])
-      t <- as.POSIXct(t, tz = "UTC")
-      tdat <- data.frame(t = t)
+  if (nrow(ydat) == 0) {
+    return(data.frame())
+  }
+
+  # Handle time variable
+  if (options$time == "") {
+    tdat <- data.frame(t = 1:nrow(ydat))
+  } else {
+
+    t <- as.character(dataset[[options[["time"]]]])
+
+
+    # Try to parse dates with the most common formats (in priority order)
+    tTryConvert <- lubridate::parse_date_time(t, orders = c(
+      "Ymd HMS", "Ymd HM", "Ymd",            # Year-Month-Day with or without time
+      "dmy HMS", "dmy HM", "dmy",            # Day-Month-Year with or without time
+      "mdy HMS", "mdy HM", "mdy"             # Month-Day-Year with or without time
+    ))
+
+    # If `tTryConvert` is still NA, fallback to row numbers
+    if (all(is.na(tTryConvert))) {
+      tTryConvert <- 1:length(t)
     }
 
-    if (covariates && length(options[["covariates"]]) > 0) {
+    # Assign the result to `t` (whether it's the converted dates or fallback row numbers)
+    t <- tTryConvert
 
-      cdat <- dataset[options[["covariates"]]]
-      names(cdat) <- paste0("xreg", seq_along(options[["covariates"]]))
+    tdat <- data.frame(t = t)
+  }
 
-      dat <- cbind(ydat, tdat, cdat)
+  if (covariates && length(options[["covariates"]]) > 0) {
+    cdat <- dataset[options[["covariates"]]]
+    names(cdat) <- paste0("xreg", seq_along(options[["covariates"]]))
+    dat <- cbind(ydat, tdat, cdat)
+  } else {
+    dat <- cbind(ydat, tdat)
+  }
 
-    } else {
-
-      dat <- cbind(ydat, tdat)
-
-    }
-
-    return(dat)
+  return(dat)
 }
-
 
 
 .tsErrorHandler <- function(dataset, ready) {
@@ -141,6 +161,7 @@
   }
   return(dataset)
 }
+
 
 .tsDataWithMissingRowsHandler <- function(dataset, options, ready) {
   # Sometimes time series data sets do not have NA's for missing data,
