@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-12-05 02:01+0000\n"
+"PO-Revision-Date: 2024-12-06 09:00+0000\n"
 "Last-Translator: tao guo <guotao3s@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
 "projects/jasp/jaspdescriptives-qml/zh_Hans/>\n"
@@ -47,7 +47,7 @@ msgstr "最大唯一值"
 
 msgctxt "Descriptives|"
 msgid "Stem and leaf tables"
-msgstr "茎叶表"
+msgstr "茎叶图"
 
 msgctxt "Descriptives|"
 msgid "scale"
