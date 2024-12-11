@@ -57,7 +57,7 @@
     },
     "Hmisc": {
       "Package": "Hmisc",
-      "Version": "5.2-0",
+      "Version": "5.2-1",
       "Source": "Repository",
       "Requirements": [
         "R",
@@ -147,7 +147,7 @@
     },
     "RcppArmadillo": {
       "Package": "RcppArmadillo",
-      "Version": "14.2.0-1",
+      "Version": "14.2.2-1",
       "Source": "Repository",
       "Requirements": [
         "R",
@@ -450,7 +450,7 @@
     },
     "cpp11": {
       "Package": "cpp11",
-      "Version": "0.5.0",
+      "Version": "0.5.1",
       "Source": "Repository",
       "Requirements": [
         "R"
@@ -466,7 +466,7 @@
     },
     "data.table": {
       "Package": "data.table",
-      "Version": "1.16.2",
+      "Version": "1.16.4",
       "Source": "Repository",
       "Requirements": [
         "R",
@@ -600,7 +600,7 @@
     },
     "flexplot": {
       "Package": "flexplot",
-      "Version": "0.21.4",
+      "Version": "0.22.1.2",
       "Source": "GitHub",
       "Requirements": [
         "R",
@@ -634,7 +634,7 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "dustinfife",
       "RemoteRepo": "flexplot",
-      "RemoteSha": "d28b0828aa7fa18167d708230b056ecadf541557"
+      "RemoteSha": "aaf2261e9ac03261a0c843034b64fec87037d071"
     },
     "fontBitstreamVera": {
       "Package": "fontBitstreamVera",
@@ -1019,7 +1019,7 @@
     },
     "igraph": {
       "Package": "igraph",
-      "Version": "2.1.1",
+      "Version": "2.1.2",
       "Source": "Repository",
       "Requirements": [
         "methods",
@@ -1080,7 +1080,7 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspBase",
-      "RemoteSha": "67652e03f135b8d9b7c42e353a0fe02b9fea0929"
+      "RemoteSha": "e1c6dab867c820187bec60b941b1e3c6dc2834d9"
     },
     "jaspGraphs": {
       "Package": "jaspGraphs",
@@ -1103,7 +1103,7 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspGraphs",
-      "RemoteSha": "797e38a84746e9aa0f456439b8f00f756164d82c"
+      "RemoteSha": "c73a76cd55a7f15ccbace1f7eb3b04a5209197ee"
     },
     "jaspTTests": {
       "Package": "jaspTTests",
@@ -1123,7 +1123,7 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspTTests",
-      "RemoteSha": "980bdd6e099ca5fb981975660758b1a0a7c09af4"
+      "RemoteSha": "9fcc81dde7777933f96ebb32ca54e5dc7e423b5c"
     },
     "jpeg": {
       "Package": "jpeg",
@@ -1270,7 +1270,7 @@
     },
     "lubridate": {
       "Package": "lubridate",
-      "Version": "1.9.3",
+      "Version": "1.9.4",
       "Source": "Repository",
       "Requirements": [
         "methods",
@@ -1735,7 +1735,7 @@
     },
     "quantreg": {
       "Package": "quantreg",
-      "Version": "5.99",
+      "Version": "5.99.1",
       "Source": "Repository",
       "Requirements": [
         "R",
@@ -1980,7 +1980,7 @@
     },
     "textshaping": {
       "Package": "textshaping",
-      "Version": "0.4.0",
+      "Version": "0.4.1",
       "Source": "Repository",
       "Requirements": [
         "R",
