@@ -19,6 +19,7 @@ Description
 	{
 		title:			qsTr("Descriptive Statistics")
 		func:			"Descriptives"
+		preloadData	: false
 	}
 
 	Analysis
