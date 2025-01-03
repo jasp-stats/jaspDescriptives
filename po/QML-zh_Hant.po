@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-12-29 13:00+0000\n"
+"PO-Revision-Date: 2025-01-04 03:17+0000\n"
 "Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/jasp/jaspdescriptives-qml/zh_Hant/>\n"
@@ -471,7 +471,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Separate frequencies:"
-msgstr ""
+msgstr "單獨顯示頻率"
 
 msgctxt "Descriptives|"
 msgid "How to combine separate frequencies"
