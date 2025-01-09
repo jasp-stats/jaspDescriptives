@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-01-08 16:49+0000\n"
+"PO-Revision-Date: 2025-01-11 00:00+0000\n"
 "Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/jasp/jaspdescriptives-qml/zh_Hant/>\n"
@@ -852,7 +852,7 @@ msgstr ""
 
 msgctxt "Description|"
 msgid "Raincloud Plots"
-msgstr ""
+msgstr "雨雲圖"
 
 msgctxt "FlexplotForm|"
 msgid ""
