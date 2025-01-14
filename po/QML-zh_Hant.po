@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-01-12 14:00+0000\n"
+"PO-Revision-Date: 2025-01-15 01:01+0000\n"
 "Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/jasp/jaspdescriptives-qml/zh_Hant/>\n"
@@ -158,7 +158,7 @@ msgstr " 個等分群組"
 
 msgctxt "Descriptives|"
 msgid "Percentiles:"
-msgstr "百分位數"
+msgstr "百分位數："
 
 msgctxt "Descriptives|"
 msgid "Central tendency"
@@ -330,7 +330,7 @@ msgstr "方法"
 
 msgctxt "Descriptives|"
 msgid "Normal model"
-msgstr "常態模型"
+msgstr "普通模型"
 
 msgctxt "Descriptives|"
 msgid "Bootstrap"
@@ -364,7 +364,6 @@ msgctxt "Descriptives|"
 msgid "Pareto rule"
 msgstr "帕累托法則"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Likert plots"
 msgstr "李克特圖"
@@ -381,7 +380,6 @@ msgctxt "Descriptives|"
 msgid "Normal"
 msgstr "一般"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Small"
 msgstr "小"
@@ -390,17 +388,14 @@ msgctxt "Descriptives|"
 msgid "Medium"
 msgstr "中"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Large"
 msgstr "大"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Scatter plots"
 msgstr "散佈圖"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Transparency"
 msgstr "透明度"
@@ -409,16 +404,14 @@ msgctxt "Descriptives|"
 msgid "Tile heatmaps for selected variables"
 msgstr "製作選擇變數之熱圖"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Horizontal axis:"
 msgstr "橫軸："
 
 msgctxt "Descriptives|"
 msgid "Vertical axis:"
-msgstr "縱軸"
+msgstr "縱軸："
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Display legend"
 msgstr "顯示圖例"
@@ -427,7 +420,6 @@ msgctxt "Descriptives|"
 msgid "Display value"
 msgstr "顯示數值"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Relative text size"
 msgstr "相對文字大小"
@@ -452,7 +444,6 @@ msgctxt "Descriptives|"
 msgid "For nominal and ordinal variables"
 msgstr "名義變數和次序變數"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Tables"
 msgstr "表"
@@ -467,7 +458,7 @@ msgstr "繪製頻率(次數)圖"
 
 msgctxt "Descriptives|"
 msgid "Separate frequencies:"
-msgstr "單獨顯示頻率"
+msgstr "個別顯示頻率："
 
 msgctxt "Descriptives|"
 msgid "How to combine separate frequencies"
@@ -493,19 +484,20 @@ msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Time Series Descriptives allows the user to obtain descriptive statistics "
 "and descriptive plots for univariate time-series."
-msgstr ""
+msgstr "時間序列描述性統計功能允許使用者為單變量時間序列獲取描述性統計數據和描述性圖"
+"表。"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Variable"
-msgstr ""
+msgstr "變量"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "A variable that is measured repeatedly over time."
-msgstr ""
+msgstr "一個隨時間重複測量的變量。"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time"
-msgstr ""
+msgstr "時間"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
@@ -577,22 +569,18 @@ msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Both"
 msgstr ""
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Distribution"
 msgstr "分配"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Density"
 msgstr "密度"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Histogram"
 msgstr "直方圖"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "None"
 msgstr "不顯示統計圖"
@@ -613,17 +601,14 @@ msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Lag"
 msgstr ""
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Add regression line"
 msgstr "顯示(簡單)迴歸線"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Smooth"
 msgstr "平滑線"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Linear"
 msgstr "直線"
@@ -719,7 +704,6 @@ msgctxt "FlexplotForm|"
 msgid "Cubic"
 msgstr ""
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "None"
 msgstr "不顯示統計圖"
@@ -728,7 +712,6 @@ msgctxt "FlexplotForm|"
 msgid "Fitted line (scatterplots)"
 msgstr ""
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Quartiles"
 msgstr "四分位數"
@@ -1011,19 +994,19 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Input"
-msgstr ""
+msgstr "輸入"
 
 msgctxt "Descriptives|"
 msgid "All variables of interest."
-msgstr ""
+msgstr "所有感興趣的變量。"
 
 msgctxt "Descriptives|"
 msgid "Can be split by a categorical variable such as experimental condition."
-msgstr ""
+msgstr "可以按照實驗條件等類別變數進行劃分。"
 
 msgctxt "Descriptives|"
 msgid "Tranposes the main table"
-msgstr ""
+msgstr "表格轉置"
 
 msgctxt "Descriptives|"
 msgid "Percentile Values"
@@ -1035,22 +1018,22 @@ msgstr "顯示資料集的第25、第50與第75百分位數。"
 
 msgctxt "Descriptives|"
 msgid "Cut points for x equal groups"
-msgstr ""
+msgstr "將 x 等分組的切分點"
 
 msgctxt "Descriptives|"
 msgid ""
 "Displays the cut points that divide the data into x equal groups; default is "
 "4 equal groups."
-msgstr ""
+msgstr "顯示將數據分為 x 等分組的切分點；預設為 4 等分組。"
 
 msgctxt "Descriptives|"
 msgid ""
 "Displays the xth percentile; percentile values must be separated by comma."
-msgstr ""
+msgstr "顯示第 x 個百分位數；百分位數值需以逗號分隔。"
 
 msgctxt "Descriptives|"
 msgid "Central Tendency (only for continuous variables)"
-msgstr ""
+msgstr "集中趨勢（僅適用於連續變數）"
 
 msgctxt "Descriptives|"
 msgid ""
@@ -1061,6 +1044,10 @@ msgid ""
 "footnote about multimodality for continuous variables is reported, we "
 "recommend visualizing the data to check for multimodality."
 msgstr ""
+"資料點的眾數；若存在多個眾數，則報告第一個就可以了。對於名義變數和次序變數，"
+"眾數是出現頻率最高的觀察值。對於連續變數，眾數是密度估計值最高的數值（參見「"
+"分布圖」->「顯示密度」）。如果報表中提到連續變數的多峰性相關註解，我們建議視"
+"覺化數據以檢查是否存在多峰性。"
 
 msgctxt "Descriptives|"
 msgid "Median of the data points."
@@ -1068,11 +1055,11 @@ msgstr "描述資料集中各數據點的中位數。"
 
 msgctxt "Descriptives|"
 msgid "Arithmetic mean of the data points"
-msgstr ""
+msgstr "資料點的算術平均數"
 
 msgctxt "Descriptives|"
 msgid "Skewness of the distribution of the data points."
-msgstr "描述資料集中各數據點分佈曲線的偏斜程度"
+msgstr "描述資料集中各數據點分佈曲線的偏斜程度。"
 
 msgctxt "Descriptives|"
 msgid "Kurtosis of the distribution of the data points."
@@ -1084,7 +1071,7 @@ msgstr "描述資料集中各數據點的總和。"
 
 msgctxt "Descriptives|"
 msgid "Dispersion (only for continuous variables)"
-msgstr ""
+msgstr "離散程度（僅適用於連續變數）"
 
 msgctxt "Descriptives|"
 msgid "Standard deviation of the data points."
@@ -1152,7 +1139,7 @@ msgstr "基於拔靴樣本之變異數的信賴區間。"
 
 msgctxt "Descriptives|"
 msgid "the number of bootstrap samples to be used."
-msgstr ""
+msgstr "將使用之拔靴樣本的樣本數。"
 
 msgctxt "Descriptives|"
 msgid "Covariance value."
@@ -1168,19 +1155,20 @@ msgstr "如何處理遺漏值？"
 
 msgctxt "Descriptives|"
 msgid "use all observations, resulting in NA when there are missing values."
-msgstr ""
+msgstr "使用所有觀察值，當存在遺漏值時，將其設定為 NA。"
 
 msgctxt "Descriptives|"
 msgid ""
 "missing values are handled by casewise deletion (i.e., only use rows of the "
 "data set that are complete)."
-msgstr ""
+msgstr "遺漏值透過逐案刪除法處理（即僅使用資料集中，無遺漏值的個案）。"
 
 msgctxt "Descriptives|"
 msgid ""
 "use all complete pairs of observations on those variables. This can result "
 "in covariance or correlation matrices which are not positive semi-definite."
-msgstr ""
+msgstr "使用這些變量的所有完整配對觀察值。這可能導致共變數或相關矩陣不是正半定("
+"positive semi-definite)的。"
 
 msgctxt "Descriptives|"
 msgid ""
@@ -1732,7 +1720,6 @@ msgctxt "raincloudPlots|"
 msgid "Advanced"
 msgstr "進階設定"
 
-#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Mean"
 msgstr "平均數"
@@ -1948,10 +1935,9 @@ msgid ""
 "Horizontal lines are displayed marking 95% confidence intervals for the mean"
 msgstr ""
 
-#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Show legend"
-msgstr "顯示註釋"
+msgstr "顯示圖例"
 
 msgctxt "raincloudPlots|"
 msgid ""
