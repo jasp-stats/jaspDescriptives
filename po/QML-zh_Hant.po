@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-01-20 01:53+0000\n"
+"PO-Revision-Date: 2025-01-22 11:01+0000\n"
 "Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/jasp/jaspdescriptives-qml/zh_Hant/>\n"
@@ -1342,7 +1342,7 @@ msgstr "輸入"
 
 msgctxt "raincloudPlots|"
 msgid "Dependent Variables"
-msgstr "依變量"
+msgstr "依變項"
 
 msgctxt "raincloudPlots|"
 msgid "Select all the variables that you want to plot."
