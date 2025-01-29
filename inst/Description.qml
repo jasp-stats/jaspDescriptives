@@ -42,4 +42,12 @@ Description
 		preloadData	: false
 
 	}
+	Analysis
+	{
+		title:  qsTr("Plot Builder")
+		qml:   	"jaspPlotBuilder.qml"
+		func:	"jaspPlotBuilder"
+		preloadData	: false
+
+	}
 }
