@@ -16,7 +16,7 @@
 #
 
 # Main function ----
-jaspPlotBuilder <- function(jaspResults, dataset, options) {
+jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
   # Load libraries (repeated in subfunctions to ensure each has what it needs)
 
