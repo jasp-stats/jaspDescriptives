@@ -1,3 +1,4 @@
+
 #
 # Copyright (C) 2018 University of Amsterdam
 #
@@ -15,10 +16,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+
 # Main function ----
 jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
-  # Load libraries (repeated in subfunctions to ensure each has what it needs)
 
 
   # Set title
@@ -80,19 +81,19 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
   dataset <- .readDataSetToEnd(columns = allColumns)
 
   # Add row_id
-  dataset <- dataset %>%
-    mutate(row_id = dplyr::row_number())
+  dataset <- dplyr::mutate(dataset, row_id = dplyr::row_number())
 
   # Initialize a list to store RM datasets per plot
   datasetRMList <- list()
-  datasetNonRM <- dataset
+  datasetNonRM  <- dataset
 
   # Process each RM plot separately
   for (tab in options$PlotBuilderTab) {
+
     if (identical(tab[["isRM"]], "RM")) {
       repeatedMeasuresCols <- tab[["variableRepeatedMeasures"]]
-      pivotedXName <- tab[["rmFactorText"]]
-      pivotedYName <- tab[["dimensionText"]]
+      pivotedXName         <- tab[["rmFactorText"]]
+      pivotedYName         <- tab[["dimensionText"]]
 
       # Validate parameters
       if (!is.null(repeatedMeasuresCols) &&
@@ -102,27 +103,29 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
           !is.null(pivotedYName) &&
           nzchar(pivotedYName)) {
 
-        tempRM <- dataset %>%
-          mutate(ID = row_number()) %>%
-          pivot_longer(
-            cols = all_of(repeatedMeasuresCols),
-            names_to = pivotedXName,
+        tempRM <- dataset |>
+          dplyr::mutate(ID = dplyr::row_number()) |>
+          tidyr::pivot_longer(
+            cols      = dplyr::all_of(repeatedMeasuresCols),
+            names_to  = pivotedXName,
             values_to = pivotedYName
-          ) %>%
-          mutate(!!pivotedXName := decodeColNames(!!sym(pivotedXName)))
+          ) |>
+          dplyr::mutate(!!rlang::sym(pivotedXName) := decodeColNames(!!rlang::sym(pivotedXName)))
 
         # Handle missing columns
         originalCols <- names(dataset)
         pivotedCols  <- names(tempRM)
         missingCols  <- setdiff(originalCols, pivotedCols)
-        missingCols <- setdiff(missingCols, "row_id")
+        missingCols  <- setdiff(missingCols, "row_id")
 
         if (length(missingCols) > 0) {
-          additionalData <- dataset %>%
-            select(row_id, all_of(missingCols))
+          additionalData <- dplyr::select(dataset, row_id, dplyr::all_of(missingCols))
 
-          tempRM <- tempRM %>%
-            left_join(additionalData, by = "row_id")
+          tempRM <- dplyr::left_join(
+            x  = tempRM,
+            y  = additionalData,
+            by = "row_id"
+          )
         }
 
         # Store RM dataset separately using plotId as key
@@ -193,22 +196,16 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
 .plotBuilderPlots <- function(dataset, options) {
 
-  datasetRMList    <- dataset$datasetRMList
-  datasetNonRM <- dataset$datasetNonRM
-
-
-
+  datasetRMList <- dataset$datasetRMList
+  datasetNonRM  <- dataset$datasetNonRM
 
   # Initialize the list to store plots
   updatedPlots <- list()
 
-
   # Creating plots -----
   for (tab in options[["PlotBuilderTab"]]) {
 
-
-
-    plotId <- as.character(tab[["plotId"]])
+    plotId    <- as.character(tab[["plotId"]])
     localData <- if (identical(tab[["isRM"]], "RM")) {
       # Use the specific RM dataset for this plot
       datasetRMList[[plotId]]
@@ -216,26 +213,15 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       datasetNonRM
     }
 
-    #old but gold
-    #   # Set xVar and yVar according to isRM
-    #   if (identical(tab[["isRM"]], "RM")) {
-    #     colorVar <- if (tab[["useRMFactorAsFill"]]) tab[["rmFactorText"]] else tab[["variableColorPlotBuilder"]]
-    #     xVar <- if (tab[["useRMFactorAsFill"]]) "variableXPlotBuilder" else tab[["xVar"]]
-    #     yVar <- tab[["dimensionText"]]
-    #   }
-    #   else {
-    #   xVar <- tab[["variableXPlotBuilder"]]
-    #   yVar <- tab[["variableYPlotBuilder"]]
-    # }
-    #
-    # colorVar   <- tab[["variableColorPlotBuilder"]]
-    #
+    # Remove error placeholder plot if present
+    if (!is.null(updatedPlots[["scatterPlotError"]])) {
+      updatedPlots[["scatterPlotError"]] <- NULL
+    }
 
-    #for request:
     # Alapértelmezett beállítások
     colorVar <- tab[["variableColorPlotBuilder"]]
-    xVar <- tab[["variableXPlotBuilder"]]
-    yVar <- tab[["variableYPlotBuilder"]]
+    xVar     <- tab[["variableXPlotBuilder"]]
+    yVar     <- tab[["variableYPlotBuilder"]]
 
     # Ha RM van
     if (identical(tab[["isRM"]], "RM")) {
@@ -243,20 +229,15 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
       if (tab[["useRMFactorAsFill"]]) {
         colorVar <- tab[["rmFactorText"]]
-        xVar <- tab[["variableXPlotBuilder"]]
+        xVar     <- tab[["variableXPlotBuilder"]]
       } else {
         colorVar <- tab[["variableColorPlotBuilder"]]
-        xVar <- tab[["rmFactorText"]]
+        xVar     <- tab[["rmFactorText"]]
       }
     }
 
     plotId     <- as.character(tab[["plotId"]])
     pointShape <- as.numeric(tab[["pointShapePlotBuilder"]])
-
-    # Remove error placeholder plot if present
-    if (!is.null(updatedPlots[["scatterPlotError"]])) {
-      updatedPlots[["scatterPlotError"]] <- NULL
-    }
 
     # Convert px to mm
     plotWidthPx  <- tab[["widthPlotBuilder"]]
@@ -291,27 +272,26 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       legend_position <- "none"
     }
 
-    # Create the tidyplot object
-    tidyplot_obj <- do.call(tidyplot, tidyplot_args)
+    # Create the tidyplot object (tidyplots package)
+    tidyplot_obj <- do.call(
+      tidyplots::tidyplot,
+      tidyplot_args
+    )
 
-
-    # Adjust color labels ----
+    # Adjust color labels (tidyplots::rename_color_labels)----
     if (!is.null(tab[["colorLabelRenamer"]]) && length(tab[["colorLabelRenamer"]]) > 0) {
       label_map_color <- setNames(
         sapply(tab[["colorLabelRenamer"]], function(x) x$newColorLabel),
         sapply(tab[["colorLabelRenamer"]], function(x) x$originalColorLabel)
       )
       if (length(label_map_color) > 0) {
-        tidyplot_obj <- rename_color_labels(tidyplot_obj, new_names = label_map_color)
+        tidyplot_obj <- tidyplots::rename_color_labels(tidyplot_obj, new_names = label_map_color)
       }
     }
 
-
-
-    # Add data points ----
+    # Add data points (tidyplots::add_data_points_jitter)----
     if (tab[["addDataPoint"]]) {
 
-      # Default arguments
       argList <- list(
         dodge_width   = tab[["pointDodgePlotBuilder"]],
         jitter_height = tab[["jitterhPlotBuilder"]],
@@ -321,19 +301,17 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         shape         = 21
       )
 
-      # If black outline is requested for data points
       if (tab[["blackOutlineDataPoint"]]) {
         argList$color <- "black"
       }
 
-      # Call the function
       tidyplot_obj <- do.call(
-        add_data_points_jitter,
+        tidyplots::add_data_points_jitter,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add histogram ----
+    # Add histogram (tidyplots::add_histogram)----
     if (tab[["addHistogram"]]) {
 
       argList <- list(
@@ -342,12 +320,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       )
 
       tidyplot_obj <- do.call(
-        add_histogram,
+        tidyplots::add_histogram,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add boxplot ----
+    # Add boxplot (tidyplots::add_boxplot)----
     if (tab[["addBoxplot"]]) {
 
       argList <- list(
@@ -366,18 +344,24 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_boxplot,
+        tidyplots::add_boxplot,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add violin ----
+    # Add violin (tidyplots::add_violin)----
     if (tab[["addViolin"]]) {
 
-      draw_quantiles <- tryCatch(
-        eval(parse(text = tab[["drawQuantilesViolinPlotBuilder"]])),
-        error = function(e) NULL
-      )
+      # Beolvassuk a bemeneti szöveget
+      input_text <- tab[["drawQuantilesViolinPlotBuilder"]]
+
+      # Ha a szöveg nem tartalmazza a `c()` függvényt, akkor hozzáadjuk
+      if (!grepl("^c\\(", input_text)) {
+        input_text <- paste0("c(", input_text, ")")
+      }
+
+      # Értékeljük ki a kifejezést
+      draw_quantiles <- eval(parse(text = input_text))
 
       argList <- list(
         draw_quantiles = draw_quantiles,
@@ -393,12 +377,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_violin,
+        tidyplots::add_violin,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Count Bar ----
+    # Add Count Bar (tidyplots::add_count_bar)----
     if (tab[["addCountBar"]]) {
 
       argList <- list(
@@ -408,12 +392,29 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       )
 
       tidyplot_obj <- do.call(
-        add_count_bar,
+        tidyplots::add_count_bar,
         c(list(tidyplot_obj), argList)
       )
+
+      # the address of the axes is basically defined at the end of the script,
+      # but for some reason it has to be valid for count geoms...
+
+      titleValueY <- tab[["titleYPlotBuilder"]]
+      if (!is.null(titleValueY) && titleValueY != "") {
+        tidyplot_obj <- tidyplot_obj |>
+          tidyplots::adjust_y_axis_title(title = titleValueY)
+
+      }
+
+      titleValueX <- tab[["titleXPlotBuilder"]]
+      if (!is.null(titleValueX) && titleValueX != "") {
+        tidyplot_obj <- tidyplot_obj |>
+          tidyplots::adjust_x_axis_title(title = titleValueX)
+      }
+
     }
 
-    # Add Count Dash ----
+    # Add Count Dash (tidyplots::add_count_dash)----
     if (tab[["addCountDash"]]) {
 
       argList <- list(
@@ -429,13 +430,28 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_count_dash,
+        tidyplots::add_count_dash,
         c(list(tidyplot_obj), argList)
       )
+
+      # the address of the axes is basically defined at the end of the script,
+      # but for some reason it has to be valid for count geoms...
+
+      titleValueY <- tab[["titleYPlotBuilder"]]
+      if (!is.null(titleValueY) && titleValueY != "") {
+        tidyplot_obj <- tidyplot_obj |>
+          tidyplots::adjust_y_axis_title(title = titleValueY)
+
+      }
+
+      titleValueX <- tab[["titleXPlotBuilder"]]
+      if (!is.null(titleValueX) && titleValueX != "") {
+        tidyplot_obj <- tidyplot_obj |>
+          tidyplots::adjust_x_axis_title(title = titleValueX)
+      }
     }
 
-
-    # Add Count Line ----
+    # Add Count Line (tidyplots::add_count_line)----
     if (tab[["addCountLine"]]) {
 
       argList <- list(
@@ -450,12 +466,28 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_count_line,
+        tidyplots::add_count_line,
         c(list(tidyplot_obj), argList)
       )
+
+      # the address of the axes is basically defined at the end of the script,
+      # but for some reason it has to be valid for count geoms...
+
+      titleValueY <- tab[["titleYPlotBuilder"]]
+      if (!is.null(titleValueY) && titleValueY != "") {
+        tidyplot_obj <- tidyplot_obj |>
+          tidyplots::adjust_y_axis_title(title = titleValueY)
+
+      }
+
+      titleValueX <- tab[["titleXPlotBuilder"]]
+      if (!is.null(titleValueX) && titleValueX != "") {
+        tidyplot_obj <- tidyplot_obj |>
+          tidyplots::adjust_x_axis_title(title = titleValueX)
+      }
     }
 
-    # Add Count Area ----
+    # Add Count Area (tidyplots::add_count_area)----
     if (tab[["addCountArea"]]) {
 
       argList <- list(
@@ -464,12 +496,28 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       )
 
       tidyplot_obj <- do.call(
-        add_count_area,
+        tidyplots::add_count_area,
         c(list(tidyplot_obj), argList)
       )
+
+      # the address of the axes is basically defined at the end of the script,
+      # but for some reason it has to be valid for count geoms...
+
+      titleValueY <- tab[["titleYPlotBuilder"]]
+      if (!is.null(titleValueY) && titleValueY != "") {
+        tidyplot_obj <- tidyplot_obj |>
+          tidyplots::adjust_y_axis_title(title = titleValueY)
+
+      }
+
+      titleValueX <- tab[["titleXPlotBuilder"]]
+      if (!is.null(titleValueX) && titleValueX != "") {
+        tidyplot_obj <- tidyplot_obj |>
+          tidyplots::adjust_x_axis_title(title = titleValueX)
+      }
     }
 
-    # Add Count Value ----
+    # Add Count Value (tidyplots::add_count_value)----
     if (tab[["addCountValue"]]) {
 
       argList <- list(
@@ -486,12 +534,29 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_count_value,
+        tidyplots::add_count_value,
         c(list(tidyplot_obj), argList)
       )
+
+      # the address of the axes is basically defined at the end of the script,
+      # but for some reason it has to be valid for count geoms...
+
+      titleValueY <- tab[["titleYPlotBuilder"]]
+      if (!is.null(titleValueY) && titleValueY != "") {
+        tidyplot_obj <- tidyplot_obj |>
+          tidyplots::adjust_y_axis_title(title = titleValueY)
+
+      }
+
+      titleValueX <- tab[["titleXPlotBuilder"]]
+      if (!is.null(titleValueX) && titleValueX != "") {
+        tidyplot_obj <- tidyplot_obj |>
+          tidyplots::adjust_x_axis_title(title = titleValueX)
+      }
+
     }
 
-    # Add Sum Bar ----
+    # Add Sum Bar (tidyplots::add_sum_bar)----
     if (tab[["addSumBar"]]) {
 
       argList <- list(
@@ -501,12 +566,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       )
 
       tidyplot_obj <- do.call(
-        add_sum_bar,
+        tidyplots::add_sum_bar,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Sum Dash ----
+    # Add Sum Dash (tidyplots::add_sum_dash)----
     if (tab[["addSumDash"]]) {
 
       argList <- list(
@@ -522,12 +587,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_sum_dash,
+        tidyplots::add_sum_dash,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Sum Value ----
+    # Add Sum Value (tidyplots::add_sum_value)----
     if (tab[["addSumValue"]]) {
 
       argList <- list(
@@ -544,12 +609,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_sum_value,
+        tidyplots::add_sum_value,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Sum Line ----
+    # Add Sum Line (tidyplots::add_sum_line)----
     if (tab[["addSumLine"]]) {
 
       argList <- list(
@@ -564,12 +629,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_sum_line,
+        tidyplots::add_sum_line,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Sum Area ----
+    # Add Sum Area (tidyplots::add_sum_area)----
     if (tab[["addSumArea"]]) {
 
       argList <- list(
@@ -579,12 +644,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       )
 
       tidyplot_obj <- do.call(
-        add_sum_area,
+        tidyplots::add_sum_area,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Bar Stack Absolute ----
+    # Add Bar Stack Absolute (tidyplots::add_barstack_absolute)----
     if (tab[["addBarStackAbsolute"]]) {
 
       argList <- list(
@@ -593,12 +658,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       )
 
       tidyplot_obj <- do.call(
-        add_barstack_absolute,
+        tidyplots::add_barstack_absolute,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Bar Stack Relative ----
+    # Add Bar Stack Relative (tidyplots::add_barstack_relative)----
     if (tab[["addBarStackRelative"]]) {
 
       argList <- list(
@@ -606,14 +671,13 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         alpha   = tab[["alphaBarStackRelative"]]
       )
 
-
       tidyplot_obj <- do.call(
-        add_barstack_relative,
+        tidyplots::add_barstack_relative,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Area Stack Absolute ----
+    # Add Area Stack Absolute (tidyplots::add_areastack_absolute)----
     if (tab[["addAreaStackAbsolute"]]) {
 
       argList <- list(
@@ -623,14 +687,13 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         replace_na = tab[["replaceNaAreaStackAbsolute"]]
       )
 
-
       tidyplot_obj <- do.call(
-        add_areastack_absolute,
+        tidyplots::add_areastack_absolute,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Area Stack Relative ----
+    # Add Area Stack Relative (tidyplots::add_areastack_relative)----
     if (tab[["addAreaStackRelative"]]) {
 
       argList <- list(
@@ -640,29 +703,28 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         replace_na = tab[["replaceNaAreaStackRelative"]]
       )
 
-
       tidyplot_obj <- do.call(
-        add_areastack_relative,
+        tidyplots::add_areastack_relative,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Mean Bar ----
+    # Add Mean Bar (tidyplots::add_mean_bar)----
     if (tab[["addMeanBar"]]) {
 
       argList <- list(
         dodge_width = tab[["dodgeMeanBar"]],
         alpha       = tab[["alphaMeanBar"]],
-        saturation  = tab[["saturationMeanBar"]]
+        width       = tab[["widthMeanBar"]]
       )
 
       tidyplot_obj <- do.call(
-        add_mean_bar,
+        tidyplots::add_mean_bar,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Mean Dash ----
+    # Add Mean Dash (tidyplots::add_mean_dash)----
     if (tab[["addMeanDash"]]) {
 
       argList <- list(
@@ -678,12 +740,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_mean_dash,
+        tidyplots::add_mean_dash,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Mean Line ----
+    # Add Mean Line (tidyplots::add_mean_line)----
     if (tab[["addMeanLine"]]) {
 
       argList <- list(
@@ -698,12 +760,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_mean_line,
+        tidyplots::add_mean_line,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Mean Area ----
+    # Add Mean Area (tidyplots::add_mean_area)----
     if (tab[["addMeanArea"]]) {
 
       argList <- list(
@@ -714,12 +776,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       )
 
       tidyplot_obj <- do.call(
-        add_mean_area,
+        tidyplots::add_mean_area,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Mean Value ----
+    # Add Mean Value (tidyplots::add_mean_value)----
     if (tab[["addMeanValue"]]) {
 
       argList <- list(
@@ -737,29 +799,27 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_mean_value,
+        tidyplots::add_mean_value,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Median Bar ----
+    # Add Median Bar (tidyplots::add_median_bar)----
     if (tab[["addMedianBar"]]) {
 
       argList <- list(
         dodge_width = tab[["dodgeMedianBar"]],
         alpha       = tab[["alphaMedianBar"]],
-        saturation  = tab[["saturationMedianBar"]],
-        width       = 0.8  # fixed
+        width       = tab[["widthMedianBar"]],
       )
 
-
       tidyplot_obj <- do.call(
-        add_median_bar,
+        tidyplots::add_median_bar,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Median Dash ----
+    # Add Median Dash (tidyplots::add_median_dash)----
     if (tab[["addMedianDash"]]) {
 
       argList <- list(
@@ -775,12 +835,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_median_dash,
+        tidyplots::add_median_dash,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Median Line ----
+    # Add Median Line (tidyplots::add_median_line)----
     if (tab[["addMedianLine"]]) {
 
       argList <- list(
@@ -795,12 +855,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_median_line,
+        tidyplots::add_median_line,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Median Area ----
+    # Add Median Area (tidyplots::add_median_area)----
     if (tab[["addMedianArea"]]) {
 
       argList <- list(
@@ -815,12 +875,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_median_area,
+        tidyplots::add_median_area,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Median Value ----
+    # Add Median Value (tidyplots::add_median_value)----
     if (tab[["addMedianValue"]]) {
 
       argList <- list(
@@ -837,12 +897,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_median_value,
+        tidyplots::add_median_value,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add SEM Error Bar ----
+    # Add SEM Error Bar (tidyplots::add_sem_errorbar)----
     if (tab[["addSEMErrorBar"]]) {
 
       argList <- list(
@@ -858,12 +918,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_sem_errorbar,
+        tidyplots::add_sem_errorbar,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Range Error Bar ----
+    # Add Range Error Bar (tidyplots::add_range_errorbar)----
     if (tab[["addRangeErrorBar"]]) {
 
       argList <- list(
@@ -879,12 +939,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_range_errorbar,
+        tidyplots::add_range_errorbar,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add SD Error Bar ----
+    # Add SD Error Bar (tidyplots::add_sd_errorbar)----
     if (tab[["addSDErrorBar"]]) {
 
       argList <- list(
@@ -900,12 +960,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_sd_errorbar,
+        tidyplots::add_sd_errorbar,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add 95% CI Error Bar ----
+    # Add 95% CI Error Bar (tidyplots::add_ci95_errorbar)----
     if (tab[["addCI95ErrorBar"]]) {
 
       argList <- list(
@@ -921,16 +981,16 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_ci95_errorbar,
+        tidyplots::add_ci95_errorbar,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add SEM Ribbon ----
+    # Add SEM Ribbon (tidyplots::add_sem_ribbon)----
     if (tab[["addSemRibbon"]]) {
 
       argList <- list(
-        dodge_width = 0.8,  # fixed
+        dodge_width = 0.8,
         alpha       = tab[["alphaSemRibbon"]]
       )
 
@@ -940,16 +1000,16 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_sem_ribbon,
+        tidyplots::add_sem_ribbon,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Range Ribbon ----
+    # Add Range Ribbon (tidyplots::add_range_ribbon)----
     if (tab[["addRangeRibbon"]]) {
 
       argList <- list(
-        dodge_width = 0.8,  # fixed
+        dodge_width = 0.8,
         alpha       = tab[["alphaRangeRibbon"]]
       )
 
@@ -959,16 +1019,16 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_range_ribbon,
+        tidyplots::add_range_ribbon,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add SD Ribbon ----
+    # Add SD Ribbon (tidyplots::add_sd_ribbon)----
     if (tab[["addSdRibbon"]]) {
 
       argList <- list(
-        dodge_width = 0.8,  # fixed
+        dodge_width = 0.8,
         alpha       = tab[["alphaSdRibbon"]]
       )
 
@@ -978,16 +1038,16 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_sd_ribbon,
+        tidyplots::add_sd_ribbon,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add 95% CI Ribbon ----
+    # Add 95% CI Ribbon (tidyplots::add_ci95_ribbon)----
     if (tab[["addCi95Ribbon"]]) {
 
       argList <- list(
-        dodge_width = 0.8,  # fixed
+        dodge_width = 0.8,
         alpha       = tab[["alphaCi95Ribbon"]]
       )
 
@@ -997,19 +1057,19 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_ci95_ribbon,
+        tidyplots::add_ci95_ribbon,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Count Dot ----
+    # Add Count Dot (tidyplots::add_count_dot)----
     if (tab[["addCountDot"]]) {
 
       argList <- list(
         dodge_width = tab[["dodgeCountDot"]],
         size        = tab[["sizeCountDot"]],
         alpha       = tab[["alphaCountDot"]],
-        shape = 21
+        shape       = 21
       )
 
       if (tab[["blackOutlineCountDot"]]) {
@@ -1017,12 +1077,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_count_dot,
+        tidyplots::add_count_dot,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Sum Dot ----
+    # Add Sum Dot (tidyplots::add_sum_dot)----
     if (tab[["addSumDot"]]) {
 
       argList <- list(
@@ -1034,24 +1094,22 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
       if (tab[["blackOutlineSumDot"]]) {
         argList$color <- "black"
-
       }
 
       tidyplot_obj <- do.call(
-        add_sum_dot,
+        tidyplots::add_sum_dot,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Mean Dot ----
+    # Add Mean Dot (tidyplots::add_mean_dot)----
     if (tab[["addMeanDot"]]) {
 
       argList <- list(
         dodge_width = tab[["dodgeMeanDot"]],
         alpha       = tab[["alphaMeanDot"]],
         size        = tab[["sizeMeanDot"]],
-        shape = 21
-
+        shape       = 21
       )
 
       if (tab[["blackOutlineMeanDot"]]) {
@@ -1059,20 +1117,19 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_mean_dot,
+        tidyplots::add_mean_dot,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add Median Dot ----
+    # Add Median Dot (tidyplots::add_median_dot)----
     if (tab[["addMedianDot"]]) {
 
       argList <- list(
         dodge_width = tab[["dodgeMedianDot"]],
         size        = tab[["sizeMedianDot"]],
         alpha       = tab[["alphaMedianDot"]],
-        shape = 21
-
+        shape       = 21
       )
 
       if (tab[["blackOutlineMedianDot"]]) {
@@ -1080,12 +1137,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_median_dot,
+        tidyplots::add_median_dot,
         c(list(tidyplot_obj), argList)
       )
     }
 
-    # Add curve fit ----
+    # Add curve fit (tidyplots::add_curve_fit)----
     if (tab[["addCurveFitPlotBuilder"]]) {
 
       argList <- list(
@@ -1100,341 +1157,229 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyplot_obj <- do.call(
-        add_curve_fit,
+        tidyplots::add_curve_fit,
         c(list(tidyplot_obj), argList)
       )
     }
 
-
-
-    # Add reference fit ----
+    # Add reference line (tidyplots::add_reference_lines)----
     if (tab[["addReferenceLinePlotBuilder"]]) {
-      tidyplot_obj <- tidyplot_obj %>%
-        add_reference_lines(
-          x = eval(parse(text = paste0("c(", tab[["xReferenceLine"]], ")"))),
-          y = eval(parse(text = paste0("c(", tab[["yReferenceLine"]], ")"))),
-          linetype = "solid",
+      tidyplot_obj <- tidyplot_obj |>
+        tidyplots::add_reference_lines(
+          x         = eval(parse(text = paste0("c(", tab[["xReferenceLine"]], ")"))),
+          y         = eval(parse(text = paste0("c(", tab[["yReferenceLine"]], ")"))),
+          linetype  = "solid",
           linewidth = tab[["linewidhtReferenceLines"]],
-          color = eval(parse(text = paste0("\"", tab[["colorReferenceLine"]], "\"")))
+          color     = eval(parse(text = paste0("\"", tab[["colorReferenceLine"]], "\"")))
         )
     }
 
-    # # Add title  ----
+    # Add title (tidyplots::add_title) ----
     if (tab[["addTitlePlotBuilder"]]) {
-      tidyplot_obj <- tidyplot_obj %>%
-        add_title(title = tab[["titlePlotBuilder"]])
+      tidyplot_obj <- tidyplot_obj |>
+        tidyplots::add_title(title = tab[["titlePlotBuilder"]])
     }
-    #
-    # # Add caption  ----
+
+    # Add caption (tidyplots::add_caption) ----
     if (tab[["addCaptionPlotBuilder"]]) {
-      tidyplot_obj <- tidyplot_obj %>%
-        add_caption(caption = tab[["captionPlotBuilder"]])
+      tidyplot_obj <- tidyplot_obj |>
+        tidyplots::add_caption(caption = tab[["captionPlotBuilder"]])
     }
 
-    # # Add title  ----
+    # Possibly re-apply if user directly typed into titlePlotBuilder / captionPlotBuilder
     titleValue <- tab[["titlePlotBuilder"]]
-    #
-    # # Akkor adunk címet, ha a 'titleValue' nem NULL, és nem üres:
     if (!is.null(titleValue) && titleValue != "") {
-      tidyplot_obj <- tidyplot_obj %>%
-        add_title(title = titleValue)
+      tidyplot_obj <- tidyplot_obj |>
+        tidyplots::add_title(title = titleValue)
     }
 
-    # # Add caption  ----
     captionValue <- tab[["captionPlotBuilder"]]
-
     if (!is.null(captionValue) && captionValue != "") {
-      tidyplot_obj <- tidyplot_obj %>%
-        add_caption(caption = captionValue)
+      tidyplot_obj <- tidyplot_obj |>
+        tidyplots::add_caption(caption = captionValue)
     }
 
-
-    # Color palettes ----
+    # Color palettes (tidyplots::adjust_colors)----
     if (!is.null(tab[["colorsAll"]])) {
       colorOption    <- tab[["colorsAll"]]
       color_palettes <- list(
-        colors_discrete_friendly         = colors_discrete_friendly,
-        colors_discrete_seaside          = colors_discrete_seaside,
-        colors_discrete_apple            = colors_discrete_apple,
-        colors_discrete_friendly_long    = colors_discrete_friendly_long,
-        colors_discrete_okabeito         = colors_discrete_okabeito,
-        colors_discrete_ibm              = colors_discrete_ibm,
-        colors_discrete_metro            = colors_discrete_metro,
-        colors_discrete_candy            = colors_discrete_candy,
-        colors_continuous_viridis        = colors_continuous_viridis,
-        colors_continuous_magma          = colors_continuous_magma,
-        colors_continuous_inferno        = colors_continuous_inferno,
-        colors_continuous_plasma         = colors_continuous_plasma,
-        colors_continuous_cividis        = colors_continuous_cividis,
-        colors_continuous_rocket         = colors_continuous_rocket,
-        colors_continuous_mako           = colors_continuous_mako,
-        colors_continuous_turbo          = colors_continuous_turbo,
-        colors_continuous_bluepinkyellow = colors_continuous_bluepinkyellow,
-        colors_diverging_blue2red        = colors_diverging_blue2red,
-        colors_diverging_blue2brown      = colors_diverging_blue2brown,
-        colors_diverging_BuRd            = colors_diverging_BuRd,
-        colors_diverging_BuYlRd          = colors_diverging_BuYlRd,
-        colors_diverging_spectral        = colors_diverging_spectral,
-        colors_diverging_icefire         = colors_diverging_icefire
+        colors_JASP                      = jaspGraphs::JASPcolors(),
+        colors_discrete_friendly         = tidyplots::colors_discrete_friendly,
+        colors_discrete_seaside          = tidyplots::colors_discrete_seaside,
+        colors_discrete_apple            = tidyplots::colors_discrete_apple,
+        colors_discrete_friendly_long    = tidyplots::colors_discrete_friendly_long,
+        colors_discrete_okabeito         = tidyplots::colors_discrete_okabeito,
+        colors_discrete_ibm              = tidyplots::colors_discrete_ibm,
+        colors_discrete_metro            = tidyplots::colors_discrete_metro,
+        colors_discrete_candy            = tidyplots::colors_discrete_candy,
+        colors_continuous_viridis        = tidyplots::colors_continuous_viridis,
+        colors_continuous_magma          = tidyplots::colors_continuous_magma,
+        colors_continuous_inferno        = tidyplots::colors_continuous_inferno,
+        colors_continuous_plasma         = tidyplots::colors_continuous_plasma,
+        colors_continuous_cividis        = tidyplots::colors_continuous_cividis,
+        colors_continuous_rocket         = tidyplots::colors_continuous_rocket,
+        colors_continuous_mako           = tidyplots::colors_continuous_mako,
+        colors_continuous_turbo          = tidyplots::colors_continuous_turbo,
+        colors_continuous_bluepinkyellow = tidyplots::colors_continuous_bluepinkyellow,
+        colors_diverging_blue2red        = tidyplots::colors_diverging_blue2red,
+        colors_diverging_blue2brown      = tidyplots::colors_diverging_blue2brown,
+        colors_diverging_BuRd            = tidyplots::colors_diverging_BuRd,
+        colors_diverging_BuYlRd          = tidyplots::colors_diverging_BuYlRd,
+        colors_diverging_spectral        = tidyplots::colors_diverging_spectral,
+        colors_diverging_icefire         = tidyplots::colors_diverging_icefire
       )
 
       if (colorOption %in% names(color_palettes)) {
-        tidyplot_obj <- tidyplot_obj %>%
-          adjust_colors(color_palettes[[colorOption]])
+        tidyplot_obj <- tidyplot_obj |>
+          tidyplots::adjust_colors(color_palettes[[colorOption]])
       }
     }
 
-    # Add custom colors ----
+    # Add custom colors (tidyplots::adjust_colors)----
     if (!is.null(tab[["customColors"]]) && nchar(trimws(tab[["customColors"]])) > 0) {
-
-      # Split the customColors string by commas
       custom_colors <- strsplit(tab[["customColors"]], ",")[[1]]
-
-      # Trim whitespace from each color
       custom_colors <- trimws(custom_colors)
 
-      # Apply the custom colors
-      tidyplot_obj <- tidyplot_obj %>%
-        adjust_colors(new_colors = c(custom_colors))
+      tidyplot_obj <- tidyplot_obj |>
+        tidyplots::adjust_colors(new_colors = c(custom_colors))
     }
 
-
-    # Theme settings ----
-    # The setting of Themes must be before Axis alignment, otherwise Axis
-    # alignment will not work.
-
-
+    # The setting of Themes / legend position----
     if (legend_position == "none") {
       # Remove the legend entirely
-      tidyplot_obj <- tidyplot_obj %>%
-        add(guides(color = "none", fill = "none", shape = "none", linetype = "none"))
+      tidyplot_obj <- tidyplot_obj |>
+        tidyplots::add(ggplot2::guides(color = "none", fill = "none", shape = "none", linetype = "none"))
     } else {
       # Respect user setting
-      tidyplot_obj <- tidyplot_obj %>%
-        add(theme(
-          legend.position   = legend_position
+      tidyplot_obj <- tidyplot_obj |>
+        tidyplots::add(ggplot2::theme(
+          legend.position = legend_position
         ))
     }
 
-
-    # Read style choice and base font size from 'tab'
-    plotStyle     <- tab[["plotStyle"]]      # e.g. "ggplot gray"
-    baseFontSize  <- tab[["baseFontSize"]]   # e.g. 12
-
-    # Apply theme based on user's selection
-    if (plotStyle == "JASP") {
-
-      # If you have a custom JASP theme, e.g. themeJaspRaw:
-      tidyplot_obj <- tidyplot_obj +
-        themeJaspRaw(fontsize = baseFontSize, legend.position = legend_position) +
-        geom_blank() +
-        geom_rangeframe() +
-        theme(
-          strip.text = element_text(size = baseFontSize), # Facet címkék szövegmérete
-        )
-
-    } else if (plotStyle == "ggplotgray") {
-
-      # The standard ggplot2 gray theme:
-      tidyplot_obj <- tidyplot_obj + theme_gray(base_size = baseFontSize) +
-        theme(legend.position = legend_position)
-
-    } else if (plotStyle == "tidyplot") {
-
-      # If you have a "theme_tidyplot" function (for example):
-      # (Sometimes it's theme_minimal, theme_light, or a custom function.)
-      tidyplot_obj <- tidyplot_obj + theme_tidyplot(fontsize = baseFontSize) +
-        theme(legend.position = legend_position)
-
-    } else if (plotStyle == "ggpubr") {
+    # Read style choice
+    plotStyle    <- tab[["plotStyle"]]
+    baseFontSize <- tab[["baseFontSize"]]
 
 
-      tidyplot_obj <- tidyplot_obj + theme_pubr(base_size = baseFontSize) +
-        theme(legend.position = legend_position)
 
-    } else if (plotStyle == "PlotBuilder") {
-
-      tidyplot_obj <- tidyplot_obj +
-        theme_bw(base_size = baseFontSize) +
-        theme(
-          strip.background = element_rect(fill = "#f3f3f3"),
-          panel.grid.major = element_blank(), # remove the smajor lines
-          panel.grid.minor = element_blank(),
-          legend.position = legend_position# remove the minor lines
-        )
-
-    }
+    # # Remove legend title if requested (tidyplots::remove_legend_title)
+    # if (tab[["removeLegendTitle"]]) {
+    #   tidyplot_obj <- tidyplot_obj |>
+    #     tidyplots::remove_legend_title()
+    # }
 
 
-    if (tab[["removeLegendTitle"]]) {
-      tidyplot_obj <- tidyplot_obj %>%
-        remove_legend_title()
-    }
-
-    t <- tab[["topMargin"]]
-    r <- tab[["rightMargin"]]
-    b <- tab[["bottomMargin"]]
-    l <- tab[["leftMargin"]]
-
-    tidyplot_obj <- tidyplot_obj +
-      theme(
-        # Your existing legend/theme settings
-        legend.title = element_text(
-          hjust = 0,
-          margin = margin(10, 10, 10, 10)
-        ),
-        legend.text = element_text(
-          margin = margin(10, 10, 10, 10)
-        ),
-        legend.margin = margin(10, 10, 10, 10),
-        plot.margin = margin(t = t, r = r, b = b, l = l)
-      )
-
-
-    # ---- Adjust X axis title, breaks, limits, rotate labels, and cut short scale ----
-
-    # Initialize the list of arguments for adjust_x_axis()
+    # Adjust X axis (tidyplots::adjust_x_axis)----
     adjust_args_xaxis <- list()
 
-    # ---- Adjust X axis title ----
-    titleValue <- tab[["titleXPlotBuilder"]]
-
-    if (!is.null(titleValue) && titleValue != "") {
-      adjust_args_xaxis$title <- titleValue
+    titleValueX <- tab[["titleXPlotBuilder"]]
+    if (!is.null(titleValueX) && titleValueX != "") {
+      adjust_args_xaxis$title <- titleValueX
     }
 
-    # ---- Adjust X axis breaks ----
-    fromValue <- tab[["breakFromX"]]
-    toValue   <- tab[["breakToX"]]
-    byValue   <- tab[["breakByX"]]
+    fromValueX <- tab[["breakFromX"]]
+    toValueX   <- tab[["breakToX"]]
+    byValueX   <- tab[["breakByX"]]
 
-    if (!is.null(fromValue) && fromValue != "" &&
-        !is.null(toValue) && toValue != "" &&
-        !is.null(byValue) && byValue != "") {
+    if (!is.null(fromValueX) && fromValueX != "" &&
+        !is.null(toValueX) && toValueX != "" &&
+        !is.null(byValueX) && byValueX != "") {
 
-      # Attempt to convert inputs to numeric
-      fromNumeric <- suppressWarnings(as.numeric(fromValue))
-      toNumeric   <- suppressWarnings(as.numeric(toValue))
-      byNumeric   <- suppressWarnings(as.numeric(byValue))
+      fromNumeric <- suppressWarnings(as.numeric(fromValueX))
+      toNumeric   <- suppressWarnings(as.numeric(toValueX))
+      byNumeric   <- suppressWarnings(as.numeric(byValueX))
 
-      # Add breaks to the argument list if conversion is successful
       if (!is.na(fromNumeric) && !is.na(toNumeric) && !is.na(byNumeric)) {
-        adjust_args_xaxis$breaks <- seq(fromNumeric, toNumeric, by = byNumeric)
+        adjust_args_xaxis$breaks <- seq(fromNumeric, toNumeric, byNumeric)
       }
     }
 
-    # ---- Adjust X axis limits ----
     limitFromX <- tab[["limitFromX"]]
-    limitToX <- tab[["limitToX"]]
+    limitToX   <- tab[["limitToX"]]
 
     if (!is.null(limitFromX) && limitFromX != "" &&
-        !is.null(limitToX) && limitToX != "") {
+        !is.null(limitToX)   && limitToX   != "") {
 
-      # Attempt to convert inputs to numeric
-      limitFromNumeric <- suppressWarnings(as.numeric(limitFromX))
-      limitToNumeric   <- suppressWarnings(as.numeric(limitToX))
+      limitFromNumericX <- suppressWarnings(as.numeric(limitFromX))
+      limitToNumericX   <- suppressWarnings(as.numeric(limitToX))
 
-      # Add limits to the argument list if conversion is successful
-      if (!is.na(limitFromNumeric) && !is.na(limitToNumeric)) {
-        adjust_args_xaxis$limits <- c(limitFromNumeric, limitToNumeric)
+      if (!is.na(limitFromNumericX) && !is.na(limitToNumericX)) {
+        adjust_args_xaxis$limits <- c(limitFromNumericX, limitToNumericX)
       }
     }
 
-    # ---- Rotate X labels ----
-    # Assuming rotate_labels expects a boolean (TRUE/FALSE)
     rotateLabels <- tab[["rotateXLabel"]]
-    if (!is.null(rotateLabels) && rotateLabels) {
-      adjust_args_xaxis$rotate_labels <- TRUE
-    } else {
-      adjust_args_xaxis$rotate_labels <- FALSE
-    }
+    adjust_args_xaxis$rotate_labels <- isTRUE(rotateLabels)
 
-    # ---- Shorten X labels ----
-    # Assuming cut_short_scale expects a boolean (TRUE/FALSE)
     cutShortScale <- tab[["cutShortScale"]]
-    if (!is.null(cutShortScale) && cutShortScale) {
-      adjust_args_xaxis$cut_short_scale <- TRUE
-    } else {
-      adjust_args_xaxis$cut_short_scale <- FALSE
-    }
+    adjust_args_xaxis$cut_short_scale <- isTRUE(cutShortScale)
 
-    # ---- Apply adjust_x_axis Using do.call() ----
     if (length(adjust_args_xaxis) > 0) {
       tidyplot_obj <- do.call(
-        adjust_x_axis,
+        tidyplots::adjust_x_axis,
         c(list(tidyplot_obj), adjust_args_xaxis)
       )
     }
 
-    # Adjust X axis labels ----
+    # Adjust X axis labels (tidyplots::rename_x_axis_labels)----
     if (!is.null(tab[["xAxisLabelRenamer"]]) && length(tab[["xAxisLabelRenamer"]]) > 0) {
       label_map_x <- setNames(
         sapply(tab[["xAxisLabelRenamer"]], function(x) x$newXLabel),
         sapply(tab[["xAxisLabelRenamer"]], function(x) x$originalXLabel)
       )
       if (length(label_map_x) > 0) {
-        tidyplot_obj <- rename_x_axis_labels(tidyplot_obj, new_names = label_map_x)
+        tidyplot_obj <- tidyplots::rename_x_axis_labels(tidyplot_obj, new_names = label_map_x)
       }
     }
 
-
-    # ---- Sort X axis labels ----
+    # Sort X axis labels (tidyplots::sort_x_axis_labels)----
     enableSort <- tab[["enableSort"]]
-
     if (!is.null(enableSort) && enableSort) {
       sortOrder <- tab[["sortXLabelsOrder"]]
-
       if (!is.null(sortOrder) && sortOrder %in% c("Increasing", "Decreasing")) {
-        if (sortOrder == "Decreasing") {
-          reverse_order <- TRUE
-        } else {
-          reverse_order <- FALSE
-        }
-
-        aggFun <- tab[["aggregationFun"]]
-
+        reverse_order <- (sortOrder == "Decreasing")
+        aggFun        <- tab[["aggregationFun"]]
         if (!is.null(aggFun) && aggFun %in% c("mean", "median")) {
-          tidyplot_obj <- sort_x_axis_labels(tidyplot_obj, .reverse = reverse_order, .fun = aggFun)
+          tidyplot_obj <- tidyplots::sort_x_axis_labels(
+            tidyplot_obj,
+            .reverse = reverse_order,
+            .fun     = aggFun
+          )
         }
       }
     }
 
-    # ---- Adjust Y axis title, breaks, limits, rotate labels, and cut short scale ----
-
-    # Initialize arguments for adjust_y_axis()
+    # Adjust Y axis (tidyplots::adjust_y_axis)----
     adjust_args_yaxis <- list()
 
-    # 1) Y axis title
     titleValueY <- tab[["titleYPlotBuilder"]]
     if (!is.null(titleValueY) && titleValueY != "") {
-      # We'll assume 'title' is the correct argument name in your adjust_y_axis() function
       adjust_args_yaxis$title <- titleValueY
     }
 
-    # 2) Y axis breaks
     fromValueY <- tab[["breakFromY"]]
     toValueY   <- tab[["breakToY"]]
     byValueY   <- tab[["breakByY"]]
 
     if (!is.null(fromValueY) && fromValueY != "" &&
-        !is.null(toValueY) && toValueY != "" &&
-        !is.null(byValueY) && byValueY != "") {
+        !is.null(toValueY)   && toValueY   != "" &&
+        !is.null(byValueY)   && byValueY   != "") {
 
       fromNumericY <- suppressWarnings(as.numeric(fromValueY))
       toNumericY   <- suppressWarnings(as.numeric(toValueY))
       byNumericY   <- suppressWarnings(as.numeric(byValueY))
 
       if (!is.na(fromNumericY) && !is.na(toNumericY) && !is.na(byNumericY)) {
-        adjust_args_yaxis$breaks <- seq(fromNumericY, toNumericY, by = byNumericY)
+        adjust_args_yaxis$breaks <- seq(fromNumericY, toNumericY, byNumericY)
       }
     }
 
-    # 3) Y axis limits
     limitFromY <- tab[["limitFromY"]]
     limitToY   <- tab[["limitToY"]]
 
     if (!is.null(limitFromY) && limitFromY != "" &&
-        !is.null(limitToY) && limitToY != "") {
+        !is.null(limitToY)   && limitToY   != "") {
 
       limitFromNumericY <- suppressWarnings(as.numeric(limitFromY))
       limitToNumericY   <- suppressWarnings(as.numeric(limitToY))
@@ -1444,120 +1389,160 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
     }
 
-    # 4) Rotate Y labels
     rotateLabelsY <- tab[["rotateYLabel"]]
-    if (isTRUE(rotateLabelsY)) {
-      adjust_args_yaxis$rotate_labels <- TRUE
-    } else {
-      adjust_args_yaxis$rotate_labels <- FALSE
-    }
+    adjust_args_yaxis$rotate_labels <- isTRUE(rotateLabelsY)
 
-    # 5) Shorten Y labels
     cutShortScaleY <- tab[["cutShortScaleY"]]
-    if (isTRUE(cutShortScaleY)) {
-      adjust_args_yaxis$cut_short_scale <- TRUE
-    } else {
-      adjust_args_yaxis$cut_short_scale <- FALSE
-    }
+    adjust_args_yaxis$cut_short_scale <- isTRUE(cutShortScaleY)
 
-    # ---- Apply adjust_y_axis Using do.call() ----
     if (length(adjust_args_yaxis) > 0) {
       tidyplot_obj <- do.call(
-        adjust_y_axis,
+        tidyplots::adjust_y_axis,
         c(list(tidyplot_obj), adjust_args_yaxis)
       )
     }
 
-    # 7) (Optional) Sorting Y labels (similar to X)
     enableSortY <- tab[["enableSortY"]]
     if (isTRUE(enableSortY)) {
       sortOrderY <- tab[["sortYLabelsOrder"]]
       if (!is.null(sortOrderY) && sortOrderY %in% c("Increasing", "Decreasing")) {
         reverse_orderY <- (sortOrderY == "Decreasing")
-        aggFunY <- tab[["aggregationFunY"]]
-
+        aggFunY        <- tab[["aggregationFunY"]]
         if (!is.null(aggFunY) && aggFunY %in% c("mean", "median")) {
-          # This assumes you have a function sort_y_axis_labels() similar to sort_x_axis_labels().
-          tidyplot_obj <- sort_y_axis_labels(
-            tidyplot_obj, .reverse = reverse_orderY, .fun = aggFunY
+          tidyplot_obj <- tidyplots::sort_y_axis_labels(
+            tidyplot_obj,
+            .reverse = reverse_orderY,
+            .fun     = aggFunY
           )
         }
       }
     }
 
-    # Adjust y-axis labels ----
+    # Adjust Y axis labels (tidyplots::rename_y_axis_labels)----
     if (!is.null(tab[["yAxisLabelRenamer"]]) && length(tab[["yAxisLabelRenamer"]]) > 0) {
       label_map_y <- setNames(
         sapply(tab[["yAxisLabelRenamer"]], function(x) x$newYLabel),
         sapply(tab[["yAxisLabelRenamer"]], function(x) x$originalYLabel)
       )
       if (length(label_map_y) > 0) {
-        tidyplot_obj <- rename_y_axis_labels(tidyplot_obj, new_names = label_map_y)
+        tidyplot_obj <- tidyplots::rename_y_axis_labels(tidyplot_obj, new_names = label_map_y)
       }
     }
 
-
-    # Extract the  ggplot object from tidyplot-----
+    # Extract the ggplot object from tidyplot-----
     tidyplot_obj <- tidyplot_obj[[1]]
 
 
-    # 1) Extract user-selected row/column variables
+    # Apply theme
+    if (plotStyle == "JASP") {
+      # Custom JASP theme (assuming themeJaspRaw is from a JASP-specific pkg)
+      tidyplot_obj <- tidyplot_obj +
+        jaspGraphs::themeJaspRaw(fontsize = baseFontSize, legend.position = legend_position) +
+        ggplot2::geom_blank() +
+        jaspGraphs::geom_rangeframe() +
+        ggplot2::theme(
+          strip.text = ggplot2::element_text(size = baseFontSize)
+        )
+
+    } else if (plotStyle == "ggplotgray") {
+      tidyplot_obj <- tidyplot_obj +
+        ggplot2::theme_gray(base_size = baseFontSize) +
+        ggplot2::theme(legend.position = legend_position)
+
+    } else if (plotStyle == "tidyplot") {
+      tidyplot_obj <- tidyplot_obj +
+        theme_tidyplot(fontsize = baseFontSize) +
+        ggplot2::theme(legend.position = legend_position)
+
+    } else if (plotStyle == "ggpubr") {
+      tidyplot_obj <- tidyplot_obj +
+        ggpubr::theme_pubr(base_size = baseFontSize) +
+        ggplot2::theme(legend.position = legend_position)
+
+    } else if (plotStyle == "PlotBuilder") {
+      tidyplot_obj <- tidyplot_obj +
+        ggplot2::theme_bw(base_size = baseFontSize) +
+        ggplot2::theme(
+          strip.background = ggplot2::element_rect(fill = "#f3f3f3"),
+          panel.grid.major = ggplot2::element_blank(),
+          panel.grid.minor = ggplot2::element_blank(),
+          legend.position  = legend_position
+        )
+    }
+
+    # Margins
+    t <- tab[["topMargin"]]
+    r <- tab[["rightMargin"]]
+    b <- tab[["bottomMargin"]]
+    l <- tab[["leftMargin"]]
+
+    tidyplot_obj <- tidyplot_obj +
+      ggplot2::theme(
+        legend.title  = ggplot2::element_text(
+          hjust  = 0,
+          margin = ggplot2::margin(10, 10, 10, 10)
+        ),
+        legend.text   = ggplot2::element_text(
+          margin = ggplot2::margin(10, 10, 10, 10)
+        ),
+        legend.margin = ggplot2::margin(10, 10, 10, 10),
+        plot.margin   = ggplot2::margin(t = t, r = r, b = b, l = l)
+      )
+
+    # Remove legend title if requested (tidyplots::remove_legend_title)
+    if (tab[["removeLegendTitle"]]) {
+      tidyplot_obj <- tidyplot_obj +
+        ggplot2::theme(legend.title = ggplot2:::element_blank())
+    }
+
+
+
+    # 1) Facet logic for row / column
     rowsVar <- tab[["rowsvariableSplitPlotBuilder"]]
     colsVar <- tab[["columnsvariableSplitPlotBuilder"]]
 
-    # 2) Check if they're actually set (non-NULL, non-empty string)
-    hasRows <- !is.null(rowsVar) && rowsVar != ""
-    hasCols <- !is.null(colsVar) && colsVar != ""
+    hasRows <- (!is.null(rowsVar) && rowsVar != "")
+    hasCols <- (!is.null(colsVar) && colsVar != "")
 
-    # 3) If we have a row variable, assign a secondary Y-axis label
     if (hasRows) {
-      # This puts e.g. "Age (binned)" on the right axis
       tidyplot_obj <- tidyplot_obj +
-        scale_y_continuous(sec.axis = sec_axis(~ .,
-                                               name   = paste0(rowsVar, " (binned)"),
-                                               breaks = NULL,
-                                               labels = NULL
-        ))
+        ggplot2::scale_y_continuous(
+          sec.axis = ggplot2::sec_axis(~ .,
+                                       name   = paste0(rowsVar, " (binned)"),
+                                       breaks = NULL,
+                                       labels = NULL
+          )
+        )
     }
 
-    # 4) If we have a column variable, add a label at the top center
-    #    You can do this by just setting the plot title, or an annotation, etc.
     if (hasCols) {
       tidyplot_obj <- tidyplot_obj +
-        ggtitle(colsVar) +
-        theme(plot.title = element_text(hjust = 0.5)) # center
+        ggplot2::ggtitle(colsVar) +
+        ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))
     }
-
-    # 5) Finally, apply facet_grid if either variable is used
-    #    - If both rows & cols, do rowsVar ~ colsVar
-    #    - If only cols, do . ~ colsVar
-    #    - If only rows, do rowsVar ~ .
-
 
     if (hasRows && hasCols) {
       tidyplot_obj <- tidyplot_obj +
-        facet_grid(as.formula(paste(rowsVar, "~", colsVar)))
+        ggplot2::facet_grid(stats::as.formula(paste(rowsVar, "~", colsVar)))
     } else if (hasCols) {
       tidyplot_obj <- tidyplot_obj +
-        facet_grid(as.formula(paste(". ~", colsVar)))
+        ggplot2::facet_grid(stats::as.formula(paste(". ~", colsVar)))
     } else if (hasRows) {
       tidyplot_obj <- tidyplot_obj +
-        facet_grid(as.formula(paste(rowsVar, "~ .")))
+        ggplot2::facet_grid(stats::as.formula(paste(rowsVar, "~ .")))
     }
 
-
-
+    # Annotation (base R annotate from ggplot2 or tidyplots might differ, but here it's ggplot2::annotate)
     if (!is.null(tab[["annotationPlotBuilder"]]) && length(tab[["annotationPlotBuilder"]]) > 0) {
       for (i in seq_along(tab[["annotationPlotBuilder"]])) {
-        rowData <- tab[["annotationPlotBuilder"]][[i]]
-
-        plotText <- rowData$annotationText
-        plotX    <- rowData$annotationX
-        plotY    <- rowData$annotationY
-        plotSize <- if (!is.null(rowData$annotationSize)) rowData$annotationSize else 5 # Alapértelmezett méret, ha nincs megadva
+        rowData   <- tab[["annotationPlotBuilder"]][[i]]
+        plotText  <- rowData$annotationText
+        plotX     <- rowData$annotationX
+        plotY     <- rowData$annotationY
+        plotSize  <- if (!is.null(rowData$annotationSize)) rowData$annotationSize else 5
 
         tidyplot_obj <- tidyplot_obj +
-          annotate(
+          ggplot2::annotate(
             "text",
             x     = plotX,
             y     = plotY,
@@ -1569,91 +1554,89 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
     }
 
-    # Connect points with lines if needed (RM)
+    # Connect points with lines if needed (for RM)----
     if (tab[["connectRMPlotBuilder"]]) {
-      gg        <- tidyplot_obj
-      built     <- ggplot_build(gg)
-      points_data <- built$data[[1]] %>%
-        mutate(ID = localData$ID)
-      lines_data <- points_data %>%
-        arrange(ID, x) %>%
-        group_by(ID) %>%
-        mutate(order = row_number()) %>%
-        ungroup()
+      gg    <- tidyplot_obj
+      built <- ggplot2::ggplot_build(gg)
+
+      points_data <- built$data[[1]] |>
+        dplyr::mutate(ID = localData$ID)
+
+      lines_data <- points_data |>
+        dplyr::arrange(ID, x) |>
+        dplyr::group_by(ID) |>
+        dplyr::mutate(order = dplyr::row_number()) |>
+        dplyr::ungroup()
 
       gg2 <- gg +
-        geom_line(
-          data     = lines_data,
-          aes(x = x, y = y, group = ID),
-          inherit.aes = FALSE,
-          color    = lines_data$colour,
-          alpha    = tab[["lineRMtransparency"]],
-          size     = tab[["lineRMsize"]]
+        ggplot2::geom_line(
+          data          = lines_data,
+          ggplot2::aes(x = x, y = y, group = ID),
+          inherit.aes   = FALSE,
+          color         = lines_data$colour,
+          alpha         = tab[["lineRMtransparency"]],
+          size          = tab[["lineRMsize"]]
         )
       tidyplot_obj <- gg2
     }
 
-    #P value ----
+    # P value from ggpubr::stat_pvalue_manual----
     if (!is.null(tab[["pairwiseComparisons"]]) && length(tab[["pairwiseComparisons"]]) > 0) {
 
       dfComparisons <- data.frame(
         group1     = as.character(sapply(tab[["pairwiseComparisons"]], function(x) x$group1)),
         group2     = as.character(sapply(tab[["pairwiseComparisons"]], function(x) x$group2)),
-        p.adj      = as.character(sapply(tab[["pairwiseComparisons"]], function(x) x$pAdj)),
+        p          = as.character(sapply(tab[["pairwiseComparisons"]], function(x) x$pAdj)),
         y.position = as.numeric(sapply(tab[["pairwiseComparisons"]], function(x) x$yPositionPValue)),
         stringsAsFactors = FALSE
       )
 
-      # Színváltozó kezelése (NULL vagy üres string esetén kihagyás)
       colorVar <- tab[["variableColorPlotBuilder"]]
-      if (!is.null(colorVar) && nchar(colorVar) > 0) {  # ← Üres string ellenőrzése
-        dfComparisons$color <- as.character(sapply(tab[["pairwiseComparisons"]], function(x) x$GroupPValue))
-        # colnames(dfComparisons)[colnames(dfComparisons) == "color"] <- colorVar
+      if (!is.null(colorVar) && nchar(colorVar) > 0) {
+        dfComparisons$color <- as.character(
+          sapply(tab[["pairwiseComparisons"]], function(x) x$GroupPValue)
+        )
       }
 
-      # Sor- és oszlopváltozók kezelése (Typo javítva)
       rowsVar <- tab[["rowsvariableSplitPlotBuilder"]]
       if (!is.null(rowsVar)) {
-        dfComparisons$row <- as.character(sapply(tab[["pairwiseComparisons"]], function(x) x$RowPValue))
-        colnames(dfComparisons)[colnames(dfComparisons) == "row"] <- rowsVar
+        dfComparisons[[rowsVar]] <- as.character(
+          sapply(tab[["pairwiseComparisons"]], function(x) x$RowPValue)
+        )
       }
 
       colsVar <- tab[["columnsvariableSplitPlotBuilder"]]
       if (!is.null(colsVar)) {
-        dfComparisons$column <- as.character(sapply(tab[["pairwiseComparisons"]], function(x) x$ColumnPValue))  # ← "column" javítva
-        colnames(dfComparisons)[colnames(dfComparisons) == "column"] <- colsVar
+        dfComparisons[[colsVar]] <- as.character(
+          sapply(tab[["pairwiseComparisons"]], function(x) x$ColumnPValue)
+        )
       }
 
-      # Label és tip paraméterek
-      label.size <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$labelSizePValue))
-      tip.length <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$tipLengthPValue))
+      label_size <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$labelSizePValue))
+      bracket.size <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$bracketSizePValue))
+      tip_length <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$tipLengthPValue))
+      labelcolor <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$labelcolor))
 
 
-      # P-érték hozzáadása dinamikus színnel vagy alapértelmezettel
-      if (is.null(colorVar) || nchar(colorVar) == 0) {
-        tidyplot_obj <- tidyplot_obj +
-          add_pvalue(
-            data         = dfComparisons,
-            label.size   = label.size,
-            tip.length   = tip.length,
-            colour       = I("black"),  # ← I() használata statikus színhez
-            inherit.aes  = FALSE
-          )
-      } else {
-        tidyplot_obj <- tidyplot_obj +
-          add_pvalue(
-            data         = dfComparisons,
-            label.size   = label.size,
-            tip.length   = tip.length,
-            colour       = "color",  # Dinamikus oszlopnév
-            inherit.aes  = FALSE
-          )
-      }
+      tidyplot_obj <- tidyplot_obj +
+        ggpubr::stat_pvalue_manual(
+          data          = dfComparisons,
+          label         = "p",
+          xmin          = "group1",
+          xmax          = "group2",
+          y.position    = "y.position",
+          size          = label_size,
+          bracket.size  = bracket.size,
+          tip.length    = tip_length,
+          color = if (!is.null(colorVar) && nchar(colorVar) > 0) "color" else as.character(labelcolor),
+          inherit.aes   = FALSE,
+          step.increase = 0.15
+        )
     }
 
     # Save the plot in our results list
     updatedPlots[[plotId]] <- tidyplot_obj
-  }  # End of loop over PlotBuilderTabs
+  }
 
   return(list(updatedPlots = updatedPlots))
 }
@@ -1713,11 +1696,9 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
   }
 }
 
-
 .plotBuilderOutputAvailablePlotIDs <- function(jaspResults, plotResults) {
   updatedPlots <- plotResults$updatedPlots
 
-  # Create or retrieve container
   if (!is.null(jaspResults[["availablePlotIDs"]])) {
     availablePlotIDsContainer <- jaspResults[["availablePlotIDs"]]
   } else {
@@ -1725,16 +1706,17 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     jaspResults[["availablePlotIDs"]] <- availablePlotIDsContainer
   }
 
-  # Generate text
   availablePlotIDsDisplay <- names(updatedPlots)
-  availablePlotIDsText    <- paste0("Available Plot IDs: ",
-                                    paste(availablePlotIDsDisplay, collapse = ", "))
+  availablePlotIDsText    <- paste0(
+    "Available Plot IDs: ",
+    paste(availablePlotIDsDisplay, collapse = ", ")
+  )
   availablePlotIDsHtml <- createJaspHtml(availablePlotIDsText)
   availablePlotIDsContainer[["availablePlotIDsText"]] <- availablePlotIDsHtml
 }
 
 
-#plot builder ----
+# plot builder ----
 .plotBuilderOutputPlotGrid <- function(jaspResults, options, plotResults, dataset) {
   updatedPlots <- plotResults$updatedPlots
 
@@ -1756,6 +1738,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
     rowSpecifications <- options[["rowSpecifications"]]
     if (!is.null(rowSpecifications) && length(rowSpecifications) > 0) {
+
       ncol <- length(rowSpecifications)
 
       columnsWidth <- options[["columnWidthInput"]]
@@ -1778,10 +1761,11 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
       labelSize <- 5
       if (!is.null(options[["labelSize"]])) {
-        labelSize <- as.numeric(options[["labelSize"]])
-        if (is.na(labelSize)) {
-          labelSize <- 5
+        labelSizeParsed <- as.numeric(options[["labelSize"]])
+        if (is.na(labelSizeParsed)) {
+          labelSizeParsed <- 5
         }
+        labelSize <- labelSizeParsed
       }
 
       relativeHeight <- options[["relativeHeight"]]
@@ -1805,11 +1789,11 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       columnPlots <- lapply(seq_len(ncol), function(colIdx) {
         columnSpec <- rowSpecifications[[colIdx]]
         if (is.null(columnSpec)) {
-          return(ggplot() + theme_void())
+          return(ggplot2::ggplot() + ggplot2::theme_void())
         }
 
-        plotIDsStr <- columnSpec[["plotIDs"]]
-        labelsStr  <- columnSpec[["labelsColumn"]]
+        plotIDsStr    <- columnSpec[["plotIDs"]]
+        labelsStr     <- columnSpec[["labelsColumn"]]
         rowHeightsStr <- columnSpec[["rowHeightsColumn"]]
 
         getCommonLegendColumn <- FALSE
@@ -1821,7 +1805,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
         plotIDs <- strsplit(plotIDsStr, ",")[[1]]
         plotIDs <- trimws(plotIDs)
-        nRows <- length(plotIDs)
+        nRows   <- length(plotIDs)
 
         rowHeights <- rep(1, nRows)
         if (!is.null(rowHeightsStr) && rowHeightsStr != "") {
@@ -1836,8 +1820,6 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
           )
           if (length(rowHeightsParsed) == nRows) {
             rowHeights <- rowHeightsParsed
-          } else {
-            rowHeights <- rep(1, nRows)
           }
         }
 
@@ -1854,7 +1836,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         for (rowIdx in seq_len(nRows)) {
           plotID <- plotIDs[rowIdx]
           if (is.na(plotID) || plotID == "") {
-            plotsInColumn[[rowIdx]] <- ggplot() + theme_void()
+            plotsInColumn[[rowIdx]] <- ggplot2::ggplot() + ggplot2::theme_void()
             next
           }
 
@@ -1862,30 +1844,30 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
           if (!is.null(matchedPlot)) {
             if (!is.null(labels) && labels[rowIdx] != "") {
               matchedPlot <- matchedPlot +
-                labs(tag = labels[rowIdx]) +
-                theme(
-                  plot.tag.position = "topleft",  # Helyes paraméter és érték
-                  plot.tag = element_text(size = labelSize, face = "bold")
+                ggplot2::labs(tag = labels[rowIdx]) +
+                ggplot2::theme(
+                  plot.tag.position = "topleft",
+                  plot.tag          = ggplot2::element_text(size = labelSize, face = "bold")
                 )
             }
             if (getCommonLegendGlobal) {
-              matchedPlot <- matchedPlot + theme(legend.position = "none")
+              matchedPlot <- matchedPlot + ggplot2::theme(legend.position = "none")
             }
             plotsInColumn[[rowIdx]] <- matchedPlot
           } else {
-            plotsInColumn[[rowIdx]] <- ggplot() + theme_void()
+            plotsInColumn[[rowIdx]] <- ggplot2::ggplot() + ggplot2::theme_void()
           }
         }
 
         collectLegends <- if (getCommonLegendGlobal) FALSE else getCommonLegendColumn
         layoutGuides   <- if (collectLegends) "collect" else "auto"
 
-        columnPatchwork <- wrap_plots(plotsInColumn, ncol = 1, heights = rowHeights) +
-          plot_layout(guides = layoutGuides)
+        columnPatchwork <- patchwork::wrap_plots(plotsInColumn, ncol = 1, heights = rowHeights) +
+          patchwork::plot_layout(guides = layoutGuides)
 
         if (collectLegends) {
           columnPatchwork <- columnPatchwork &
-            theme(legend.position = "right")
+            ggplot2::theme(legend.position = "right")
         }
 
         return(columnPatchwork)
@@ -1893,26 +1875,29 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
       if (length(columnPlots) > 0) {
         layoutGuides <- if (getCommonLegendGlobal) "auto" else "auto"
-        columnGrid <- wrap_plots(columnPlots, ncol = ncol, widths = columnsWidth) +
-          plot_layout(guides = layoutGuides)
+        columnGrid <- patchwork::wrap_plots(columnPlots, ncol = ncol, widths = columnsWidth) +
+          patchwork::plot_layout(guides = layoutGuides)
       }
 
       fullRowSpecifications <- options[["fullRowSpecifications"]]
       if (!is.null(fullRowSpecifications) && length(fullRowSpecifications) > 0) {
         fullRowPlots <- list()
+
         labelSize <- 5
         if (!is.null(options[["labelSize"]])) {
-          labelSize <- as.numeric(options[["labelSize"]])
-          if (is.na(labelSize)) {
-            labelSize <- 5
+          labelSizeParsed <- as.numeric(options[["labelSize"]])
+          if (is.na(labelSizeParsed)) {
+            labelSizeParsed <- 5
           }
+          labelSize <- labelSizeParsed
         }
 
         for (rowIdx in seq_along(fullRowSpecifications)) {
           rowSpec <- fullRowSpecifications[[rowIdx]]
-          plotIDsStr <- rowSpec[["plotIDsFullRow"]]
-          labelsStr  <- rowSpec[["labelsFullRow"]]
-          relWidthsStr <- rowSpec[["relWidthsFullRow"]]
+
+          plotIDsStr     <- rowSpec[["plotIDsFullRow"]]
+          labelsStr      <- rowSpec[["labelsFullRow"]]
+          relWidthsStr   <- rowSpec[["relWidthsFullRow"]]
 
           getCommonLegendRow <- FALSE
           if (!getCommonLegendGlobal && !is.null(rowSpec[["getCommonLegendRows"]])) {
@@ -1938,8 +1923,6 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
             )
             if (length(relWidthsParsed) == nPlots) {
               relWidths <- relWidthsParsed
-            } else {
-              relWidths <- rep(1, nPlots)
             }
           }
 
@@ -1956,7 +1939,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
           for (idx in seq_len(nPlots)) {
             plotID <- plotIDs[idx]
             if (is.na(plotID) || plotID == "") {
-              plotsInFullRow[[idx]] <- ggplot() + theme_void()
+              plotsInFullRow[[idx]] <- ggplot2::ggplot() + ggplot2::theme_void()
               next
             }
 
@@ -1964,30 +1947,30 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
             if (!is.null(matchedPlot)) {
               if (!is.null(labels) && labels[idx] != "") {
                 matchedPlot <- matchedPlot +
-                  labs(tag = labels[idx]) +
-                  theme(
-                    plot.tag.position = "topleft",  # Helyes paraméter és érték
-                    plot.tag = element_text(size = labelSize, face = "bold")
+                  ggplot2::labs(tag = labels[idx]) +
+                  ggplot2::theme(
+                    plot.tag.position = "topleft",
+                    plot.tag          = ggplot2::element_text(size = labelSize, face = "bold")
                   )
               }
               if (getCommonLegendGlobal) {
-                matchedPlot <- matchedPlot + theme(legend.position = "none")
+                matchedPlot <- matchedPlot + ggplot2::theme(legend.position = "none")
               }
               plotsInFullRow[[idx]] <- matchedPlot
             } else {
-              plotsInFullRow[[idx]] <- ggplot() + theme_void()
+              plotsInFullRow[[idx]] <- ggplot2::ggplot() + ggplot2::theme_void()
             }
           }
 
-          collectLegends <- if (getCommonLegendGlobal) FALSE else getCommonLegendRow
-          layoutGuides   <- if (collectLegends) "collect" else "auto"
+          collectLegends   <- if (getCommonLegendGlobal) FALSE else getCommonLegendRow
+          layoutGuidesFull <- if (collectLegends) "collect" else "auto"
 
-          fullRowPatchwork <- wrap_plots(plotsInFullRow, ncol = nPlots, widths = relWidths) +
-            plot_layout(guides = layoutGuides)
+          fullRowPatchwork <- patchwork::wrap_plots(plotsInFullRow, ncol = nPlots, widths = relWidths) +
+            patchwork::plot_layout(guides = layoutGuidesFull)
 
           if (collectLegends) {
             fullRowPatchwork <- fullRowPatchwork &
-              theme(legend.position = "right")
+              ggplot2::theme(legend.position = "right")
           }
 
           fullRowPlots <- append(fullRowPlots, list(fullRowPatchwork))
@@ -2012,8 +1995,8 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         }
 
         if (length(fullRowPlots) > 0) {
-          fullRowGrid <- wrap_plots(fullRowPlots, ncol = 1, heights = relheightWithinRowLayout) +
-            plot_layout(guides = "auto")
+          fullRowGrid <- patchwork::wrap_plots(fullRowPlots, ncol = 1, heights = relheightWithinRowLayout) +
+            patchwork::plot_layout(guides = "auto")
         }
       }
 
@@ -2025,7 +2008,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         relativeHeight <- tryCatch(
           eval(parse(text = relativeHeightStr)),
           error = function(e) {
-            c(1, 1) # Alapértelmezett magasságok, ha a parse hibás
+            c(1, 1)
           }
         )
         if (!is.null(columnGrid) && !is.null(fullRowGrid)) {
@@ -2046,28 +2029,30 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       if (!is.null(columnGrid) && !is.null(fullRowGrid)) {
         if (getCommonLegendGlobal) {
           finalGrid <- (columnGrid / fullRowGrid) +
-            plot_layout(heights = relativeHeight, guides = "collect") &
-            theme(legend.position = "right")
+            patchwork::plot_layout(heights = relativeHeight, guides = "collect") &
+            ggplot2::theme(legend.position = "right")
         } else {
           finalGrid <- (columnGrid / fullRowGrid) +
-            plot_layout(heights = relativeHeight, guides = "auto")
+            patchwork::plot_layout(heights = relativeHeight, guides = "auto")
         }
       } else if (!is.null(columnGrid)) {
         if (getCommonLegendGlobal) {
-          finalGrid <- columnGrid + plot_layout(guides = "collect") &
-            theme(legend.position = "right")
+          finalGrid <- columnGrid + patchwork::plot_layout(guides = "collect") &
+            ggplot2::theme(legend.position = "right")
         } else {
-          finalGrid <- columnGrid + plot_layout(guides = "auto")
+          finalGrid <- columnGrid + patchwork::plot_layout(guides = "auto")
         }
       } else if (!is.null(fullRowGrid)) {
         if (getCommonLegendGlobal) {
-          finalGrid <- fullRowGrid + plot_layout(guides = "collect") &
-            theme(legend.position = "right")
+          finalGrid <- fullRowGrid + patchwork::plot_layout(guides = "collect") &
+            ggplot2::theme(legend.position = "right")
         } else {
-          finalGrid <- fullRowGrid + plot_layout(guides = "auto")
+          finalGrid <- fullRowGrid + patchwork::plot_layout(guides = "auto")
         }
       } else {
-        finalGrid <- ggplot() + ggtitle("No plots available") + theme_void()
+        finalGrid <- ggplot2::ggplot() +
+          ggplot2::ggtitle("No plots available") +
+          ggplot2::theme_void()
       }
 
       if (!is(plotGridContainer[["plotGrid"]], "JaspPlot")) {
