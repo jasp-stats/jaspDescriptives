@@ -1095,7 +1095,7 @@ Form {
                         label: qsTr("Bar stack (absolute)")
                         info: qsTr("Add an absolute bar stack to the plot.")
                         enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0)) ||
-                                  (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
+                                  (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || useRMFactorAsFill.checked)))
                             onEnabledChanged: {
                                 if (!enabled) {
                                     checked = false;
