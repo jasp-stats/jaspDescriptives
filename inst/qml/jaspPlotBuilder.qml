@@ -1094,8 +1094,8 @@ Form {
                         name: "addBarStackAbsolute"
                         label: qsTr("Bar stack (absolute)")
                         info: qsTr("Add an absolute bar stack to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0)) ||
-                                  (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || useRMFactorAsFill.checked)))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
                             onEnabledChanged: {
                                 if (!enabled) {
                                     checked = false;
@@ -1122,8 +1122,8 @@ Form {
                         name: "addBarStackRelative"
                         label: qsTr("Bar stack (relative)")
                         info: qsTr("Add a relative bar stack to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0)) ||
-                                  (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
                             onEnabledChanged: {
                                 if (!enabled) {
                                     checked = false;
@@ -1150,8 +1150,8 @@ Form {
                         name: "addAreaStackAbsolute"
                         label: qsTr("Area stack (absolute)")
                         info: qsTr("Add an absolute area stack to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0)) ||
-                                  (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
                             onEnabledChanged: {
                                 if (!enabled) {
                                     checked = false;
@@ -1188,10 +1188,10 @@ Form {
                     // Area Stack Relative
                     CheckBox {
                         name: "addAreaStackRelative"
-                        label: qsTr("Area Stack (Relative)")
+                        label: qsTr("Area stack (relative)")
                         info: qsTr("Add a relative area stack to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0)) ||
-                                  (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
                             onEnabledChanged: {
                                 if (!enabled) {
                                     checked = false;
@@ -1207,13 +1207,13 @@ Form {
                         }
                         DoubleField {
                             name: "linewidthAreaStackRelative"
-                            label: qsTr("Line Width")
+                            label: qsTr("Line width")
                             defaultValue: 0.25
                             min: 0
                         }
                         CheckBox {
                             name: "reverseAreaStackRelative"
-                            label: qsTr("Reverse Order")
+                            label: qsTr("Reverse order")
                             checked: false
                         }
                         CheckBox {
