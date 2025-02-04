@@ -97,7 +97,7 @@ Form {
 
                     AssignedVariablesList {
                         name: "variableRepeatedMeasures"
-                        title: "Repeated measures variables"
+                        title: qsTr("Repeated measures variables")
                         visible: yesRM.checked
                         property bool active: yesRM.checked
                         onActiveChanged: if (!active && count > 0) itemDoubleClicked(0)
