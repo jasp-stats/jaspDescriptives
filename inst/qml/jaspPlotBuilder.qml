@@ -2402,7 +2402,7 @@ Form {
                 Group {
                     CheckBox {
                         name: "addTitlePlotBuilder"
-                        label: "Add title"
+                        label: qsTr("Add title")
 
                         TextField {
                             name: "titlePlotBuilder"
