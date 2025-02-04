@@ -106,7 +106,7 @@ Form {
                     TextField {
                         name: "rmFactorText"
                         id: rmFactorText
-                        placeholderText: "Repeated-measures factor (e.g., Time, Dose, Concentration)"
+                        placeholderText: qsTr("Repeated-measures factor (e.g., Time, Dose, Concentration)")
                         visible: yesRM.checked
                         property bool active: yesRM.checked
                         onActiveChanged: if (!active && count > 0) itemDoubleClicked(0)
