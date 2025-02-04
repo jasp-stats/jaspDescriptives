@@ -128,7 +128,7 @@ Form {
                     CheckBox {
                     name:"useRMFactorAsFill"
                     id:useRMFactorAsFill
-                    label: "Use RM factor as a group/color variable"
+                    label: qsTr("Use RM factor as a group/color variable")
                     visible: yesRM.checked
                     }
 
