@@ -2482,7 +2482,7 @@ Form {
                     }
                     DoubleField {
                         name: "baseFontSize"
-                        label: "Font base size"
+                        label: qsTr("Font base size")
                         value: 18
                     }
 
