@@ -2535,7 +2535,7 @@ Form {
 
 
                     Label {
-                        text: qsTr("Note: For available colors, see <a href='https://r-charts.com/colors/' style='color: blue; text-decoration: underline;'>this page</a>.")
+                        text: qsTr("Note: For available colors, see %1 this page %2").arg("<a href='https://r-charts.com/colors/' style='color: blue; text-decoration: underline;'>").arg("</a>.")
                         wrapMode: TextBrowser.Wrap
                         textFormat: TextBrowser.RichText
 
