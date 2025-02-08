@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2024-07-13 03:18\n"
-"PO-Revision-Date: 2025-02-01 03:18+0000\n"
+"PO-Revision-Date: 2025-02-07 00:02+0000\n"
 "Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/jasp/jaspdescriptives-r/zh_Hant/>\n"
@@ -16,13 +16,11 @@ msgstr ""
 msgid "Time Series Plot"
 msgstr ""
 
-#, fuzzy
 msgid "Lag Plot"
-msgstr "Q-Q 圖"
+msgstr "滯後圖"
 
-#, fuzzy
 msgid "Autocorrelation Function"
-msgstr "相關圖"
+msgstr "自我相關函數"
 
 msgid "Partial Autocorrelation Function"
 msgstr ""
@@ -160,7 +158,7 @@ msgid "%s%% Confidence Interval Std. Dev."
 msgstr "%s%% 信賴區間標準差。"
 
 msgid "%s%% Confidence Interval Variance"
-msgstr "%s%% 信賴區間變異數"
+msgstr "%s%% 變異數信賴區間"
 
 msgid "Upper"
 msgstr "上界"
@@ -181,10 +179,10 @@ msgid "%s%% CI Std. Dev. Lower"
 msgstr "%s%% 信賴區間標準差下界"
 
 msgid "%s%% CI Variance Upper"
-msgstr "%s%% 信賴區間變異數上界"
+msgstr "%s%% 變異數信賴區間上界"
 
 msgid "%s%% CI Variance Lower"
-msgstr "%s%% 信賴區間變異數下界"
+msgstr "%s%% 變異數信賴區間下界"
 
 msgid "Mode"
 msgstr "眾數"
@@ -220,7 +218,7 @@ msgid "Std. Error of Kurtosis"
 msgstr "峰度標準誤"
 
 msgid "Shapiro-Wilk"
-msgstr "Shapiro-Wilk"
+msgstr "Shapiro-Wilk值"
 
 msgid "P-value of Shapiro-Wilk"
 msgstr "Shapiro-Wilk 檢定之p值"
@@ -264,7 +262,6 @@ msgstr ""
 msgid "The mode is computed assuming that variables are discrete."
 msgstr "計算眾數時假設變數為間斷型。"
 
-#, fuzzy
 msgid "The mode is computed assuming that variables are discreet."
 msgstr "計算眾數時假設變數為間斷型。"
 
@@ -352,7 +349,7 @@ msgid "Levels within variable require at least two or more data points!"
 msgstr "變數的個別水準中需要至少兩個資料點！"
 
 msgid "Raincloud Plots"
-msgstr ""
+msgstr "雨雲圖"
 
 msgid "Not shown are %s observations due to missing data."
 msgstr ""
@@ -407,24 +404,20 @@ msgstr ""
 msgid "Lower Whisker"
 msgstr ""
 
-#, fuzzy
 msgid "25th Percentile"
 msgstr "第25百分位數"
 
-#, fuzzy
 msgid "75th Percentile"
 msgstr "第75百分位數"
 
 msgid "Upper Whisker"
 msgstr ""
 
-#, fuzzy
 msgid "%s%% CI for Mean Difference"
-msgstr "%s%% 平均數信賴區間上界"
+msgstr "平均數差異之%s%%信賴區間上界"
 
-#, fuzzy
 msgid "Standard Error"
-msgstr "標準差"
+msgstr "標準誤"
 
 msgid "<i>N</i><sub>Total</sub> = %s."
 msgstr ""
@@ -442,7 +435,7 @@ msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
 "The following variables have more than %1$s distinct values and are omitted: "
 "%2$s."
-msgstr[0] "下列變數包含 %1$s 個以上的不同數值, 故略過: %2$s"
+msgstr[0] "下列變數包含 %1$s 個以上的不同數值, 故略過: %2$s。"
 
 msgid "The decimal point is %s digit to the right of the |"
 msgid_plural "The decimal point is %s digits to the right of the |"
