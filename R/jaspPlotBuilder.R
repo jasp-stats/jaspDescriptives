@@ -110,7 +110,9 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
             names_to  = pivotedXName,
             values_to = pivotedYName
           ) |>
-          dplyr::mutate(!!rlang::sym(pivotedXName) := decodeColNames(!!rlang::sym(pivotedXName)))
+          dplyr::mutate(
+            !!rlang::sym(pivotedXName) := factor(decodeColNames(!!rlang::sym(pivotedXName))) # Faktorrá konvertálás
+          )
 
         # Handle missing columns
         originalCols <- names(dataset)
@@ -129,7 +131,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         }
 
         # Store RM dataset separately using plotId as key
-        plotId <- as.character(tab$plotId)
+        plotId <- as.character(tab$value)
         datasetRMList[[plotId]] <- tempRM
       }
     }
@@ -141,37 +143,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 # Error handling function ----
 .plotBuilderErrorHandling <- function(dataset, options) {
 
-  .hasErrors(
-    dataset = dataset,
-    custom  = list(
-      # Existing Check: Ensure all PlotBuilderTab have a plotId
-      plotId_present = function() {
-        # Extract plotIds from PlotBuilderTab
-        plotIds <- sapply(options$PlotBuilderTab, function(tab) tab$plotId)
-        # Identify missing plotIds
-        missingPlotIds <- is.na(plotIds) | plotIds == ""
-        if (any(missingPlotIds)) {
-          return("PlotID is missing for one or more plots. Please enter a unique plotID for each plot to continue.")
-        }
-        return(NULL)  # No error
-      },
-
-      # Existing Check: Ensure all plotIds are unique
-      plotId_unique = function() {
-        # Extract plotIds from PlotBuilderTab
-        plotIds <- sapply(options$PlotBuilderTab, function(tab) tab$plotId)
-        # Check for duplicates
-        duplicatedPlotIds <- any(duplicated(plotIds))
-        if (duplicatedPlotIds) {
-          return("Some plotID is duplicated. Please enter a unique plotID for each plot.")
-        }
-        return(NULL)  # No error
-      }
-
-    ),
-    message              = "default",
-    exitAnalysisIfErrors = TRUE
-  )
+  .hasErrors()
 }
 
 
@@ -205,7 +177,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
   # Creating plots -----
   for (tab in options[["PlotBuilderTab"]]) {
 
-    plotId    <- as.character(tab[["plotId"]])
+    plotId <- as.character(tab$value)
     localData <- if (identical(tab[["isRM"]], "RM")) {
       # Use the specific RM dataset for this plot
       datasetRMList[[plotId]]
@@ -229,14 +201,19 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
       if (tab[["useRMFactorAsFill"]]) {
         colorVar <- tab[["rmFactorText"]]
-        xVar     <- tab[["variableXPlotBuilder"]]
+
+        # Ensure xVar is not NULL or empty
+        xVar <- tab[["variableXPlotBuilder"]]
+        if (is.null(xVar) || xVar == "") {
+          xVar <- tab[["rmFactorText"]]
+        }
       } else {
         colorVar <- tab[["variableColorPlotBuilder"]]
-        xVar     <- tab[["rmFactorText"]]
+        xVar <- tab[["rmFactorText"]]
       }
     }
 
-    plotId     <- as.character(tab[["plotId"]])
+    plotId <- as.character(tab$value)
     pointShape <- as.numeric(tab[["pointShapePlotBuilder"]])
 
     # Convert px to mm
@@ -769,7 +746,6 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     if (tab[["addMeanArea"]]) {
 
       argList <- list(
-        group       = tab[["groupMeanArea"]],
         dodge_width = tab[["dodgeMeanArea"]],
         alpha       = tab[["alphaMeanArea"]],
         linewidth   = tab[["linewidthMeanArea"]]
@@ -810,7 +786,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       argList <- list(
         dodge_width = tab[["dodgeMedianBar"]],
         alpha       = tab[["alphaMedianBar"]],
-        width       = tab[["widthMedianBar"]],
+        width       = tab[["widthMedianBar"]]
       )
 
       tidyplot_obj <- do.call(
@@ -868,11 +844,6 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         linewidth   = tab[["linewidthMedianArea"]],
         alpha       = tab[["alphaMedianArea"]]
       )
-
-      if (tab[["blackOutlineMedianArea"]]) {
-        argList$color <- "black"
-        argList$fill  <- "black"
-      }
 
       tidyplot_obj <- do.call(
         tidyplots::add_median_area,
@@ -1174,8 +1145,19 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         )
     }
 
-    # Add title (tidyplots::add_title) ----
-    if (tab[["addTitlePlotBuilder"]]) {
+    # Add annotation line (tidyplots::add_annotation_line)----
+    if (tab[["addAnnotationLinePlotBuilder"]]) {
+      tidyplot_obj <- tidyplot_obj |>
+        tidyplots::add_annotation_line(
+          x      = eval(parse(text = paste0("c(", tab[["xAnnotation"]], ")"))),
+          xend   = eval(parse(text = paste0("c(", tab[["xendAnnotation"]], ")"))),
+          y      = eval(parse(text = paste0("c(", tab[["yAnnotation"]], ")"))),
+          yend   = eval(parse(text = paste0("c(", tab[["yendAnnotation"]], ")"))),
+          color  = eval(parse(text = paste0("\"", tab[["colorAnnotationLine"]], "\"")))
+        )
+    }
+
+    if (length(tab[["titlePlotBuilder"]]) > 0) {
       tidyplot_obj <- tidyplot_obj |>
         tidyplots::add_title(title = tab[["titlePlotBuilder"]])
     }
@@ -1199,11 +1181,13 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         tidyplots::add_caption(caption = captionValue)
     }
 
-    # Color palettes (tidyplots::adjust_colors)----
+   #Color palette settings ----
     if (!is.null(tab[["colorsAll"]])) {
-      colorOption    <- tab[["colorsAll"]]
-      color_palettes <- list(
-        colors_JASP                      = jaspGraphs::JASPcolors(),
+
+      colorOption <- tab[["colorsAll"]]
+
+      # define tidy plot palette
+      tidy_colors <- list(
         colors_discrete_friendly         = tidyplots::colors_discrete_friendly,
         colors_discrete_seaside          = tidyplots::colors_discrete_seaside,
         colors_discrete_apple            = tidyplots::colors_discrete_apple,
@@ -1229,9 +1213,53 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         colors_diverging_icefire         = tidyplots::colors_diverging_icefire
       )
 
-      if (colorOption %in% names(color_palettes)) {
+      # define jasp palette
+      jasp_colors <- c("blue", "colorblind", "colorblind2",
+                       "colorblind3", "sportsTeamsNBA", "ggplot2",
+                       "grandBudapest", "jaspPalette", "gray")
+
+      # if tidy plot palette
+      if (colorOption %in% names(tidy_colors)) {
         tidyplot_obj <- tidyplot_obj |>
-          tidyplots::adjust_colors(color_palettes[[colorOption]])
+          tidyplots::adjust_colors(tidy_colors[[colorOption]])
+      }
+
+      # if jasp palette
+      if (colorOption %in% jasp_colors) {
+
+        # color var or color by x/y?
+        activeColorVar <- NULL
+
+        if (isTRUE(tab[["colorByVariableX"]]) && !is.null(xVar) && xVar != "") {
+          activeColorVar <- xVar
+        } else if (isTRUE(tab[["colorByVariableY"]]) && !is.null(yVar) && yVar != "") {
+          activeColorVar <- yVar
+        } else if (!is.null(colorVar) && colorVar != "") {
+          activeColorVar <- colorVar
+        }
+
+        # if color car
+        if (!is.null(activeColorVar) && activeColorVar %in% colnames(localData)) {
+
+          # if factor
+          if (is.factor(localData[[activeColorVar]])) {
+            tidyplot_obj <- tidyplot_obj |>
+              tidyplots::add(jaspGraphs::scale_JASPcolor_discrete(colorOption)) |>
+              tidyplots::add(jaspGraphs::scale_JASPfill_discrete(colorOption))
+
+            # if numeric
+          } else if (is.numeric(localData[[activeColorVar]])) {
+            tidyplot_obj <- tidyplot_obj |>
+              tidyplots::add(jaspGraphs::scale_JASPcolor_continuous(colorOption)) |>
+              tidyplots::add(jaspGraphs::scale_JASPfill_continuous(colorOption))
+          }
+
+        } else {
+
+          color <- jaspGraphs::JASPcolors(colorOption)
+          tidyplot_obj <- tidyplot_obj |>
+            tidyplots::adjust_colors(color)
+        }
       }
     }
 
@@ -1648,7 +1676,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
   # Create or retrieve individual tidy plots container
   if (!is(jaspResults[["tidyPlotsContainer"]], "JaspContainer")) {
-    tidyPlotsContainer <- createJaspContainer(title = "Individual Tidy Plots")
+    tidyPlotsContainer <- createJaspContainer(title = gettext("Individual Plots"))
     jaspResults[["tidyPlotsContainer"]] <- tidyPlotsContainer
   } else {
     tidyPlotsContainer <- jaspResults[["tidyPlotsContainer"]]
@@ -1665,7 +1693,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       # Retrieve plot dimensions from the corresponding tab
       tab <- NULL
       for (t in options$PlotBuilderTab) {
-        if (as.character(t$plotId) == plotId) {
+        if (as.character(t$value) == plotId) {
           tab <- t
           break
         }
@@ -1683,7 +1711,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
 
       tidyPlot <- createJaspPlot(
-        title  = paste("Tidy Plot", plotId),
+        title  = paste(plotId),
         width  = tab[["widthPlotBuilder"]],
         height = tab[["heightPlotBuilder"]]
       )
@@ -1702,7 +1730,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
   if (!is.null(jaspResults[["availablePlotIDs"]])) {
     availablePlotIDsContainer <- jaspResults[["availablePlotIDs"]]
   } else {
-    availablePlotIDsContainer <- createJaspContainer(title = "Available Plot IDs")
+    availablePlotIDsContainer <- createJaspContainer(title = gettext("Available Plot IDs"))
     jaspResults[["availablePlotIDs"]] <- availablePlotIDsContainer
   }
 
@@ -1721,7 +1749,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
   updatedPlots <- plotResults$updatedPlots
 
   if (!is(jaspResults[["plotGridContainer"]], "JaspContainer")) {
-    plotGridContainer <- createJaspContainer(title = "Plot Grid")
+    plotGridContainer <- createJaspContainer(gettext(title = "Plot Grid"))
     jaspResults[["plotGridContainer"]] <- plotGridContainer
   } else {
     plotGridContainer <- jaspResults[["plotGridContainer"]]

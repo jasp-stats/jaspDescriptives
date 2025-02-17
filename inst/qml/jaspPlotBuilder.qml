@@ -39,13 +39,11 @@ Form {
         "- Dunnington, D. (2023). _ggeasy: Easy Access to 'ggplot2' Commands_. R package version 0.1.4. Available at: <https://CRAN.R-project.org/package=ggeasy>.\n" +
         "- Wickham, H., & Henry, L. (2023). _forcats: Tools for Working with Categorical Variables (Factors)_. R package version 1.0.0. Available at: <https://CRAN.R-project.org/package=forcats>.\n"
 
-    /// Here begins the main plot control
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     TabView {
 
-
         name: "PlotBuilderTab"
+        newItemName: qsTr("Plot 1")
 
         rowComponent: Group {
 
@@ -53,13 +51,6 @@ Form {
 
             Group{
                 columns:2
-                TextField {
-                    name: "plotId"
-                    label: qsTr("Plot ID")
-                    fieldWidth: 200
-                    placeholderText: qsTr("Enter Plot ID")
-                }
-
                 RadioButtonGroup {
                     id:						isRM
                     Layout.columnSpan:		1
@@ -126,15 +117,15 @@ Form {
                     }
 
                     CheckBox {
-                    name:"useRMFactorAsFill"
-                    id:useRMFactorAsFill
-                    label: qsTr("Use RM factor as a group/color variable")
-                    visible: yesRM.checked
+                        name:"useRMFactorAsFill"
+                        id:useRMFactorAsFill
+                        label: qsTr("Use RM factor as a group/color variable")
+                        visible: yesRM.checked
                     }
 
                     AssignedVariablesList {
                         name: "variableYPlotBuilder"
-                        title: "Y axis"
+                        title: qsTr("Y axis")
                         allowedColumns: ["scale", "ordinal", "nominal"]
                         id: variableYPlotBuilder
                         singleVariable: true
@@ -142,32 +133,18 @@ Form {
                         property bool active: noRM.checked
                         onActiveChanged: if (!active && count > 0) itemDoubleClicked(0)
                         info: qsTr("Select the variable for the Y-axis.")
-                        // onCountChanged: {
-                        //     if (count === 0 && addBoxplot.checked) {
-                        //         addBoxplot.checked = false;
-                        //     }
-                        // }
                     }
 
                     AssignedVariablesList {
                         name: "variableXPlotBuilder"
-                        title: "X axis"
+                        title: qsTr("X axis")
                         id: variableXPlotBuilder
                         allowedColumns: ["scale", "ordinal", "nominal"]
                         minLevels: 2
                         singleVariable: true
                         info: qsTr("Select the variable for the X-axis.")
-                        // visible: noRM.checked
                         property bool active: noRM.checked
                         onActiveChanged: if (!active && count > 0) itemDoubleClicked(0)
-                        // onCountChanged: {
-                        //     if (count === 0 && addBoxplot.checked) {
-                        //         addBoxplot.checked = false;
-                        //     }
-                        //     // if (count === 0 && addHistogram.checked) {
-                        //     //     addHistogram.checked = false;
-                        //     // }
-                        // }
                     }
 
                     AssignedVariablesList {
@@ -279,14 +256,21 @@ Form {
                     id: addDataPoint
                     info: qsTr("Check this option to show individual data points on the plot.")
                     columns: 4
+                    enabled: ((variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0) ||
+                              (isRM.value === "RM"))
+                    onEnabledChanged: {
+                        if (!enabled) {
+                            checked = false;
+                        }
+                    }
 
 
-                       Group {
+                    Group {
                         DoubleField {
                             name: "pointsizePlotBuilder"
                             id: pointsizePlotBuilder
-                            label: "Point size"
-                            value: 5
+                            label: qsTr("Point size")
+                            value: 3
                             min: 0
                             max: 10
                         }
@@ -297,7 +281,7 @@ Form {
                         DoubleField {
                             name: "jitterhPlotBuilder"
                             id: jitterhPlotBuilder
-                            label: "Jitter height"
+                            label: qsTr("Jitter height")
                             value: 0.3
                             min: 0
                             max: 10
@@ -305,7 +289,7 @@ Form {
                         DoubleField {
                             name: "jitterwPlotBuilder"
                             id: jitterwPlotBuilder
-                            label: "Jitter width"
+                            label: qsTr("Jitter width")
                             value: 0.3
                             min: 0
                             max: 10
@@ -342,16 +326,21 @@ Form {
                     id: connectRMPlotBuilder
                     checked: false
                     enabled: isRM.value === "RM" & addDataPoint.checked
+                    onEnabledChanged: {
+                        if (!enabled) {
+                            checked = false;
+                        }
+                    }
 
                     DoubleField {
                         name: "lineRMtransparency"
-                        label: "Transparency"
+                        label: qsTr("Transparency")
                         value: 0.5
                     }
 
                     DoubleField {
                         name: "lineRMsize"
-                        label: "Line width"
+                        label: qsTr("Line width")
                         value: 0.5
                     }
 
@@ -385,6 +374,7 @@ Form {
                         info: qsTr("Check this option to create histogram for x or y variables.")
                         enabled: (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0)
                                  && !(variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -413,16 +403,16 @@ Form {
 
                     CheckBox {
                         name: "addBoxplot"
-                            id: addBoxplot
-                            label: qsTr("Add boxplot")
-                            info: qsTr("Check this option to create boxplot.")
-                            enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                          (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                                onEnabledChanged: {
-                                    if (!enabled) {
-                                        checked = false;
-                                    }
-                                }
+                        id: addBoxplot
+                        label: qsTr("Add boxplot")
+                        info: qsTr("Check this option to create boxplot.")
+                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
+                                  (isRM.value === "RM"))
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
+                            }
+                        }
 
                         DoubleField {
                             name: "dodgeBoxplotPlotBuilder"
@@ -435,7 +425,7 @@ Form {
                             name: "alphaBoxplotPlotBuilder"
                             label: qsTr("Transparency")
                             id: alphaBoxplotPlotBuilder
-                            defaultValue: 0.3
+                            defaultValue: 0.8
                             min: 0
                             max: 1
                         }
@@ -444,14 +434,16 @@ Form {
                             name: "widthLineBoxplotPlotBuilder"
                             label: qsTr("Line width")
                             id: widthLineBoxplotPlotBuilder
-                            defaultValue: 1
+                            defaultValue: 0.8
                         }
+
                         DoubleField {
                             name: "widthBoxplotPlotBuilder"
                             label: qsTr("Boxplot width")
                             id: widthBoxplotPlotBuilder
                             defaultValue: 0.6
                         }
+
                         DoubleField {
                             name: "widthWhiskersPlotBuilder"
                             label: qsTr("Whiskers width")
@@ -459,12 +451,11 @@ Form {
                             defaultValue: 0.3
                         }
 
-
                         CheckBox {
                             name: "outlierBoxplotPlotBuilder"
                             label: qsTr("Show outliers")
                             id: outlierBoxplotPlotBuilder
-                            checked: true
+                            checked: false
                         }
 
                         DoubleField {
@@ -497,36 +488,36 @@ Form {
                         id: addViolin
                         label: qsTr("Add violin plot")
                         info: qsTr("Check this option to add a violin plot to your visualization.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0) ||
+                                  (isRM.value === "RM"))
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeViolinPlotBuilder"
                             label: qsTr("Dodge")
                             defaultValue: 0.8
                         }
+
                         DoubleField {
                             name: "alphaViolinPlotBuilder"
                             label: qsTr("Transparency")
                             id: alphaViolinPlotBuilder
-                            defaultValue: 0.3
+                            defaultValue: 0.8
                             min: 0
                             max: 1
                         }
-
-
 
                         DoubleField {
                             name: "linewidthViolinPlotBuilder"
                             label: qsTr("Line width")
                             id: linewidthViolinPlotBuilder
-                            defaultValue: 1
+                            defaultValue: 0.8
                         }
+
                         DropDown {
                             name: "scaleViolinPlotBuilder"
                             label: qsTr("Scale method")
@@ -538,8 +529,6 @@ Form {
                             ]
                             indexDefaultValue: 2
                         }
-
-
 
                         FormulaField {
                             name: "drawQuantilesViolinPlotBuilder"
@@ -554,8 +543,6 @@ Form {
                             id: trimViolinPlotBuilder
                             checked: false
                         }
-
-
 
                         CheckBox {
                             name: "blackOutlineViolin"
@@ -596,16 +583,14 @@ Form {
                         name: "addCountBar"
                         label: qsTr("Count bar")
                         info: qsTr("Enable to add a count bar to the plot.")
-                        enabled: isRM.value === "noRM" &&
-                                     (
-                                        (variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
-                                        (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0)
-                                     )
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: isRM.value === "noRM" && // can't use if RM
+                                 ((variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
+                                  (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0))
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeCountBar"
@@ -632,16 +617,15 @@ Form {
                         name: "addCountDash"
                         label: qsTr("Count dash")
                         info: qsTr("Enable to add dashed lines to the plot.")
-                        enabled: isRM.value === "noRM" &&
-                                     (
-                                        (variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
-                                        (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0)
-                                     )
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: isRM.value === "noRM" && // can't use if RM
+                                 ((variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
+                                  (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0))
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
+
                         DoubleField {
                             name: "dodgeCountDash"
                             label: qsTr("Dodge")
@@ -677,16 +661,14 @@ Form {
                         name: "addCountDot"
                         label: qsTr("Count dot")
                         info: qsTr("Enable to add count dots to the plot.")
-                        enabled: isRM.value === "noRM" &&
-                                     (
-                                        (variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
-                                        (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0)
-                                     )
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: isRM.value === "noRM" && // can't use if RM
+                                 ((variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
+                                  (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0))
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeCountDot"
@@ -721,22 +703,21 @@ Form {
                         name: "addCountLine"
                         label: qsTr("Count line")
                         info: qsTr("Enable to add count lines to the plot.")
-                        enabled: isRM.value === "noRM" &&
-                                     (
-                                        (variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
-                                        (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0)
-                                     )
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: isRM.value === "noRM" && // can't use if RM
+                                 ((variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
+                                  (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0))
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeCountLine"
                             label: qsTr("Dodge")
                             defaultValue: 0.8
                         }
+
                         DoubleField {
                             name: "linewidthCountLine"
                             label: qsTr("Line width")
@@ -762,16 +743,15 @@ Form {
                         name: "addCountArea"
                         label: qsTr("Count area")
                         info: qsTr("Enable to add a count area to the plot.")
-                        enabled: isRM.value === "noRM" &&
-                                     (
-                                        (variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
-                                        (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0)
-                                     )
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: isRM.value === "noRM" && // can't use if RM
+                                 ((variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
+                                  (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0))
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
+
                         DoubleField {
                             name: "dodgeCountArea"
                             label: qsTr("Dodge")
@@ -784,8 +764,6 @@ Form {
                             min: 0
                             max: 1
                         }
-
-
                     }
 
                     // Count Value
@@ -793,18 +771,24 @@ Form {
                         name: "addCountValue"
                         label: qsTr("Count value")
                         info: qsTr("Enable to add count values to the plot.")
-                        enabled: variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0
+                        enabled: isRM.value === "noRM" &&
+                                 (
+                                     (variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
+                                     (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0)
+                                     )
 
                         DoubleField {
                             name: "fontsizeCountValue"
                             label: qsTr("Font size")
                             defaultValue: 14
                         }
+
                         FormulaField {
                             name: "accuracyCountValue"
                             label: qsTr("Accuracy")
                             defaultValue: "0.1"
                         }
+
                         DoubleField {
                             name: "alphaCountValue"
                             label: qsTr("Transparency")
@@ -812,12 +796,14 @@ Form {
                             min: 0
                             max: 1
                         }
+
                         DoubleField {
                             name: "hjustCountValue"
                             label: qsTr("Horizontal justification")
                             defaultValue: 0.5
                             min: -Infinity
                         }
+
                         DoubleField {
                             name: "vjustCountValue"
                             label: qsTr("Vertical justification")
@@ -851,12 +837,12 @@ Form {
                         label: qsTr("Sum bar")
                         info: qsTr("Enable to add a sum bar to the plot.")
                         enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                                  (isRM.value === "RM"))
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeSumBar"
@@ -882,13 +868,13 @@ Form {
                         name: "addSumDash"
                         label: qsTr("Sum dash")
                         info: qsTr("Enable to add dashed lines to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0) ||
+                                  (isRM.value === "RM"))
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeSumDash"
@@ -924,13 +910,13 @@ Form {
                         name: "addSumDot"
                         label: qsTr("Sum dot")
                         info: qsTr("Enable to add sum dots to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0) ||
+                                  (isRM.value === "RM"))
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeSumDot"
@@ -961,13 +947,13 @@ Form {
                         name: "addSumLine"
                         label: qsTr("Sum line")
                         info: qsTr("Enable to add a sum line to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0) ||
+                                  (isRM.value === "RM"))
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeSumLine"
@@ -998,13 +984,13 @@ Form {
                         name: "addSumArea"
                         label: qsTr("Sum area")
                         info: qsTr("Enable to add a sum area to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0) ||
+                                  (isRM.value === "RM"))
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeSumArea"
@@ -1026,13 +1012,13 @@ Form {
                         name: "addSumValue"
                         label: qsTr("Sum value")
                         info: qsTr("Enable to add sum values to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0) ||
+                                  (isRM.value === "RM"))
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "fontsizeSumValue"
@@ -1096,11 +1082,11 @@ Form {
                         info: qsTr("Add an absolute bar stack to the plot.")
                         enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "alphaBarStackAbsolute"
@@ -1124,11 +1110,11 @@ Form {
                         info: qsTr("Add a relative bar stack to the plot.")
                         enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "alphaBarStackRelative"
@@ -1152,11 +1138,11 @@ Form {
                         info: qsTr("Add an absolute area stack to the plot.")
                         enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "alphaAreaStackAbsolute"
@@ -1192,11 +1178,11 @@ Form {
                         info: qsTr("Add a relative area stack to the plot.")
                         enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "alphaAreaStackRelative"
@@ -1240,21 +1226,21 @@ Form {
 
                 GridLayout {
                     columns: 3
-                    rowSpacing: 40     // Sorok közötti távolság növelése
-                    columnSpacing: 40    // Oszlopok közötti távolság növelése
+                    rowSpacing: 40
+                    columnSpacing: 40
 
                     // Mean bar
                     CheckBox {
                         name: "addMeanBar"
                         label: qsTr("Mean bar")
                         info: qsTr("Enable to add a mean bar to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeMeanBar"
@@ -1280,13 +1266,13 @@ Form {
                         name: "addMeanDash"
                         label: qsTr("Mean dash")
                         info: qsTr("Enable to add dashed mean lines to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeMeanDash"
@@ -1322,13 +1308,13 @@ Form {
                         name: "addMeanDot"
                         label: qsTr("Mean dot")
                         info: qsTr("Enable to add mean dots to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeMeanDot"
@@ -1359,13 +1345,13 @@ Form {
                         name: "addMeanLine"
                         label: qsTr("Mean line")
                         info: qsTr("Enable to add mean lines to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeMeanLine"
@@ -1396,24 +1382,20 @@ Form {
                         name: "addMeanArea"
                         label: qsTr("Mean area")
                         info: qsTr("Enable to add mean areas to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeMeanArea"
                             label: qsTr("Dodge")
                             defaultValue: 0.8
                         }
-                        DoubleField {
-                            name: "linewidthMeanArea"
-                            label: qsTr("Line width")
-                            defaultValue: 1
-                        }
+
                         DoubleField {
                             name: "alphaMeanArea"
                             label: qsTr("Transparency")
@@ -1429,13 +1411,13 @@ Form {
                         name: "addMeanValue"
                         label: qsTr("Mean value")
                         info: qsTr("Enable to add mean values to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "fontsizeMeanValue"
@@ -1490,21 +1472,21 @@ Form {
 
                 GridLayout {
                     columns: 3
-                    rowSpacing: 40     // Sorok közötti távolság növelése
-                    columnSpacing: 40    // Oszlopok közötti távolság növelése
+                    rowSpacing: 40
+                    columnSpacing: 40
 
                     // Median bar
                     CheckBox {
                         name: "addMedianBar"
                         label: qsTr("Median bar")
                         info: qsTr("Enable to add a median bar to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeMedianBar"
@@ -1531,13 +1513,13 @@ Form {
                         name: "addMedianDash"
                         label: qsTr("Median dash")
                         info: qsTr("Enable to add dashed median lines to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeMedianDash"
@@ -1574,13 +1556,13 @@ Form {
                         name: "addMedianDot"
                         label: qsTr("Median dot")
                         info: qsTr("Enable to add median dots to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
                         DoubleField {
                             name: "dodgeMedianDot"
                             label: qsTr("Dodge")
@@ -1611,13 +1593,13 @@ Form {
                         name: "addMedianLine"
                         label: qsTr("Median line")
                         info: qsTr("Enable to add median lines to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeMedianLine"
@@ -1649,24 +1631,20 @@ Form {
                         name: "addMedianArea"
                         label: qsTr("Median area")
                         info: qsTr("Enable to add median areas to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeMedianArea"
                             label: qsTr("Dodge")
                             defaultValue: 0.8
                         }
-                        DoubleField {
-                            name: "linewidthMedianArea"
-                            label: qsTr("Line width")
-                            defaultValue: 1
-                        }
+
                         DoubleField {
                             name: "alphaMedianArea"
                             label: qsTr("Transparency")
@@ -1682,13 +1660,13 @@ Form {
                         name: "addMedianValue"
                         label: qsTr("Median value")
                         info: qsTr("Enable to add median values to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "fontsizeMedianValue"
@@ -1743,21 +1721,21 @@ Form {
                 GridLayout {
                     columns: 2
                     rows: 2
-                    rowSpacing: 40     // Sorok közötti távolság növelése
-                    columnSpacing: 70    // Oszlopok közötti távolság növelése
+                    rowSpacing: 40
+                    columnSpacing: 70
 
                     // Range Error Bar
                     CheckBox {
                         name: "addRangeErrorBar"
                         label: qsTr("Range error bar")
                         info: qsTr("Enable to add range error bars to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeRangeErrorBar"
@@ -1791,13 +1769,13 @@ Form {
                         name: "addSDErrorBar"
                         label: qsTr("SD error bar")
                         info: qsTr("Enable to add standard deviation error bars to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeSDErrorBar"
@@ -1832,13 +1810,13 @@ Form {
                         name: "addSEMErrorBar"
                         label: qsTr("SEM error bar")
                         info: qsTr("Enable to add SEM error bars to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeSEMErrorBar"
@@ -1873,13 +1851,13 @@ Form {
                         name: "addCI95ErrorBar"
                         label: qsTr("95% CI Error Bar")
                         info: qsTr("Enable to add 95% confidence interval error bars to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "dodgeCI95ErrorBar"
@@ -1917,21 +1895,21 @@ Form {
 
                 GridLayout {
                     columns: 2
-                    rowSpacing: 40     // Sorok közötti távolság növelése
-                    columnSpacing: 70    // Oszlopok közötti távolság növelése
+                    rowSpacing: 40
+                    columnSpacing: 70
 
                     // Range Ribbon
                     CheckBox {
                         name: "addRangeRibbon"
                         label: qsTr("Range ribbon")
                         info: qsTr("Enable to add a range ribbon to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "alphaRangeRibbon"
@@ -1953,13 +1931,13 @@ Form {
                         name: "addSdRibbon"
                         label: qsTr("SD ribbon")
                         info: qsTr("Enable to add an SD ribbon to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "alphaSdRibbon"
@@ -1981,13 +1959,13 @@ Form {
                         name: "addSemRibbon"
                         label: qsTr("SEM ribbon")
                         info: qsTr("Enable to add a SEM ribbon to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "alphaSemRibbon"
@@ -2008,13 +1986,13 @@ Form {
                         name: "addCi95Ribbon"
                         label: qsTr("95% CI ribbon")
                         info: qsTr("Enable to add a 95% confidence interval ribbon to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                      (isRM.value === "RM" && (variableXPlotBuilder.count > 0 || !useRMFactorAsFill.checked)))
-                            onEnabledChanged: {
-                                if (!enabled) {
-                                    checked = false;
-                                }
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false;
                             }
+                        }
 
                         DoubleField {
                             name: "alphaCi95Ribbon"
@@ -2157,6 +2135,59 @@ Form {
                         }
                     }
                 }
+
+                CheckBox {
+                    name: "addAnnotationLinePlotBuilder"
+                    label: qsTr("Add annotation line")
+                    info: qsTr("Add annotation lines.")
+                    columns: 2
+
+                    Group {
+                        TextField {
+                            name: "xAnnotation"
+                            label: qsTr("X start")
+                            placeholderText: qsTr("e.g. 0")
+                        }
+                        TextField {
+                            name: "xendAnnotation"
+                            label: qsTr("X end")
+                            placeholderText: qsTr("e.g. Inf")
+                        }
+                    }
+                    Group {
+                        TextField {
+                            name: "yAnnotation"
+                            label: qsTr("Y start")
+                            placeholderText: qsTr("e.g. 0")
+                        }
+                        TextField {
+                            name: "yendAnnotation"
+                            label: qsTr("Y end")
+                            placeholderText: qsTr("e.g. Inf")
+                        }
+                    }
+                    Group {
+                        TextField {
+                            name: "colorAnnotationLine"
+                            label: qsTr("Line color")
+                            placeholderText: qsTr("e.g. black, #ff5733")
+                            defaultValue: "lightgray"
+                        }
+
+                        Label {
+                            text: qsTr("Note: For available colors, see %1 this page %2").arg("<a href='https://r-charts.com/colors/' style='color: blue; text-decoration: underline;'>").arg("</a>.")
+                            wrapMode: TextBrowser.Wrap
+                            textFormat: TextBrowser.RichText
+
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: {
+                                    Qt.openUrlExternally("https://r-charts.com/colors/")
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
             Label {
@@ -2175,7 +2206,7 @@ Form {
 
 
                 TextField {
-                    label: "Title"
+                    label: qsTr("Title")
                     name: "titleXPlotBuilder"
                     placeholderText: qsTr("Enter X axis title")
                     fieldWidth: 300
@@ -2184,18 +2215,18 @@ Form {
                 }
 
                 Group {
-                    title:"Limits"
+                    title:qsTr("Limits")
                     columns:1
 
                     TextField {
                         name: "limitFromX"
-                        label: "from"
+                        label: qsTr("From")
                         fieldWidth: 40
                     }
 
                     TextField {
                         name: "limitToX"
-                        label: "to"
+                        label: qsTr("To")
                         fieldWidth: 40
                     }
                 }
@@ -2206,26 +2237,26 @@ Form {
 
                     TextField {
                         name: "breakFromX"
-                        label: "from"
+                        label: qsTr("From")
                         fieldWidth: 40
                     }
 
                     TextField {
                         name: "breakToX"
-                        label: "to"
+                        label: qsTr("To")
                         fieldWidth: 40
                     }
 
                     TextField {
                         name: "breakByX"
-                        label: "by"
+                        label: qsTr("by")
                         fieldWidth: 40
                     }
                 }
 
                 Group {
                     columns: 1
-                    title: "Labels"
+                    title: qsTr("Labels")
                     CheckBox {
                         name: "rotateXLabel"
                         label: "Rotate X label"
@@ -2233,29 +2264,29 @@ Form {
 
                     CheckBox {
                         name: "cutShortScale"
-                        label: "Shorten labels"
+                        label: qsTr("Shorten labels")
                         info: qsTr("Whether to shorten axis labels using K for thousand, M for million, and so on.")
                     }
 
 
                     CheckBox {
                         name: "enableSort"
-                        label: "Enable Sorting"
+                        label: qsTr("Enable Sorting")
                         checked: false  // Alapértelmezett állapot
 
 
                         DropDown {
                             name: "sortXLabelsOrder"
-                            label: "Sort X labels"
-                            values: ["Increasing", "Decreasing"]  // A legördülő menü opciói
+                            label: qsTr("Sort X labels")
+                            values: ["Increasing", "Decreasing"]
                             startValue: "Increasing"
                         }
 
 
                         DropDown {
                             name: "aggregationFun"
-                            label: "By"
-                            values: ["mean", "median"]  // A legördülő menü opciói
+                            label: qsTr("By")
+                            values: ["mean", "median"]
                             startValue: "Mean"
                         }
                     }
@@ -2288,7 +2319,7 @@ Form {
                 title: qsTr("Adjust Y axis")
 
                 TextField {
-                    label: "Title"
+                    label: qsTr("Title")
                     name: "titleYPlotBuilder"
                     placeholderText: qsTr("Enter Y axis title")
                     fieldWidth: 300
@@ -2297,76 +2328,76 @@ Form {
                 }
 
                 Group {
-                    title: "Limits"
+                    title: qsTr("Limits")
                     columns: 1
 
                     TextField {
                         name: "limitFromY"
-                        label: "from"
+                        label: qsTr("From")
                         fieldWidth: 40
                     }
 
                     TextField {
                         name: "limitToY"
-                        label: "to"
+                        label: qsTr("To")
                         fieldWidth: 40
                     }
                 }
 
                 Group {
-                    title: "Breaks"
+                    title: qsTr("Breaks")
                     columns: 1
 
                     TextField {
                         name: "breakFromY"
-                        label: "from"
+                        label: qsTr("From")
                         fieldWidth: 40
                     }
 
                     TextField {
                         name: "breakToY"
-                        label: "to"
+                        label: qsTr("To")
                         fieldWidth: 40
                     }
 
                     TextField {
                         name: "breakByY"
-                        label: "by"
+                        label: qsTr("by")
                         fieldWidth: 40
                     }
                 }
 
                 Group {
-                    title: "Labels"
+                    title: qsTr("Labels")
                     columns: 1
 
                     CheckBox {
                         name: "rotateYLabel"
-                        label: "Rotate Y label"
+                        label: qsTr("Rotate Y label")
                     }
 
                     CheckBox {
                         name: "cutShortScaleY"
-                        label: "Shorten labels"
+                        label: qsTr("Shorten labels")
                         info: qsTr("Whether to shorten axis labels using K for thousand, M for million, and so on.")
                     }
 
                     // If you want to enable sorting on the Y axis:
                     CheckBox {
                         name: "enableSortY"
-                        label: "Enable Sorting"
+                        label: qsTr("Enable Sorting")
                         checked: false
 
                         DropDown {
                             name: "sortYLabelsOrder"
-                            label: "Sort Y labels"
+                            label: qsTr("Sort Y labels")
                             values: ["Increasing", "Decreasing"]
                             startValue: "Increasing"
                         }
 
                         DropDown {
                             name: "aggregationFunY"
-                            label: "By"
+                            label: qsTr("By")
                             values: ["mean", "median"]
                             startValue: "mean"
                         }
@@ -2400,16 +2431,14 @@ Form {
                 columns:1
 
                 Group {
-                    CheckBox {
-                        name: "addTitlePlotBuilder"
-                        label: qsTr("Add title")
+
 
                         TextField {
                             name: "titlePlotBuilder"
                             label: qsTr("Title:")
                             placeholderText: qsTr("Enter the plot title here")
                             fieldWidth: 300
-                        }
+
                     }
                 }
 
@@ -2491,32 +2520,40 @@ Form {
                         label: qsTr("Color schemes")
                         indexDefaultValue: 0
                         values: [
-                            { label: "Default: JASP colors", value: "colors_JASP" },
-                            { label: "Discrete: Friendly", value: "colors_discrete_friendly" },
-                            { label: "Discrete: Seaside", value: "colors_discrete_seaside" },
-                            { label: "Discrete: Apple", value: "colors_discrete_apple" },
-                            { label: "Discrete: Friendly Long", value: "colors_discrete_friendly_long" },
-                            { label: "Discrete: Okabe Ito", value: "colors_discrete_okabeito" },
-                            { label: "Discrete: IBM", value: "colors_discrete_ibm" },
-                            { label: "Discrete: Metro", value: "colors_discrete_metro" },
-                            { label: "Discrete: Candy", value: "colors_discrete_candy" },
-                            { label: "Discrete: Alger", value: "colors_discrete_alger" },
-                            { label: "Discrete: Rainbow", value: "colors_discrete_rainbow" },
-                            { label: "Continuous: Viridis", value: "colors_continuous_viridis" },
-                            { label: "Continuous: Magma", value: "colors_continuous_magma" },
-                            { label: "Continuous: Inferno", value: "colors_continuous_inferno" },
-                            { label: "Continuous: Plasma", value: "colors_continuous_plasma" },
-                            { label: "Continuous: Cividis", value: "colors_continuous_cividis" },
-                            { label: "Continuous: Rocket", value: "colors_continuous_rocket" },
-                            { label: "Continuous: Mako", value: "colors_continuous_mako" },
-                            { label: "Continuous: Turbo", value: "colors_continuous_turbo" },
-                            { label: "Continuous: Blue Pink Yellow", value: "colors_continuous_bluepinkyellow" },
-                            { label: "Diverging: Blue to Red", value: "colors_diverging_blue2red" },
-                            { label: "Diverging: Blue to Brown", value: "colors_diverging_blue2brown" },
-                            { label: "Diverging: BuRd", value: "colors_diverging_BuRd" },
-                            { label: "Diverging: BuYlRd", value: "colors_diverging_BuYlRd" },
-                            { label: "Diverging: Spectral", value: "colors_diverging_spectral" },
-                            { label: "Diverging: Icefire", value: "colors_diverging_icefire" }
+                            { label: qsTr("JASP colors: jaspPalette"), value: "jaspPalette" },
+                            { label: qsTr("JASP colors: colorblind"), value: "colorblind" },
+                            { label: qsTr("JASP colors: colorblind2"), value: "colorblind2" },
+                            { label: qsTr("JASP colors: colorblind3"), value: "colorblind3" },
+                            { label: qsTr("JASP colors: sportsTeamsNBA"), value: "sportsTeamsNBA" },
+                            { label: qsTr("JASP colors: ggplot2"), value: "ggplot2" },
+                            { label: qsTr("JASP colors: grandBudapest"), value: "grandBudapest" },
+                            { label: qsTr("JASP colors: gray"), value: "gray" },
+                            { label: qsTr("JASP colors: blue"), value: "blue" },
+                            { label: qsTr("Discrete: Friendly"), value: "colors_discrete_friendly" },
+                            { label: qsTr("Discrete: Seaside"), value: "colors_discrete_seaside" },
+                            { label: qsTr("Discrete: Apple"), value: "colors_discrete_apple" },
+                            { label: qsTr("Discrete: Friendly Long"), value: "colors_discrete_friendly_long" },
+                            { label: qsTr("Discrete: Okabe Ito"), value: "colors_discrete_okabeito" },
+                            { label: qsTr("Discrete: IBM"), value: "colors_discrete_ibm" },
+                            { label: qsTr("Discrete: Metro"), value: "colors_discrete_metro" },
+                            { label: qsTr("Discrete: Candy"), value: "colors_discrete_candy" },
+                            { label: qsTr("Discrete: Alger"), value: "colors_discrete_alger" },
+                            { label: qsTr("Discrete: Rainbow"), value: "colors_discrete_rainbow" },
+                            { label: qsTr("Continuous: Viridis"), value: "colors_continuous_viridis" },
+                            { label: qsTr("Continuous: Magma"), value: "colors_continuous_magma" },
+                            { label: qsTr("Continuous: Inferno"), value: "colors_continuous_inferno" },
+                            { label: qsTr("Continuous: Plasma"), value: "colors_continuous_plasma" },
+                            { label: qsTr("Continuous: Cividis"), value: "colors_continuous_cividis" },
+                            { label: qsTr("Continuous: Rocket"), value: "colors_continuous_rocket" },
+                            { label: qsTr("Continuous: Mako"), value: "colors_continuous_mako" },
+                            { label: qsTr("Continuous: Turbo"), value: "colors_continuous_turbo" },
+                            { label: qsTr("Continuous: Blue Pink Yellow"), value: "colors_continuous_bluepinkyellow" },
+                            { label: qsTr("Diverging: Blue to Red"), value: "colors_diverging_blue2red" },
+                            { label: qsTr("Diverging: Blue to Brown"), value: "colors_diverging_blue2brown" },
+                            { label: qsTr("Diverging: BuRd"), value: "colors_diverging_BuRd" },
+                            { label: qsTr("Diverging: BuYlRd"), value: "colors_diverging_BuYlRd" },
+                            { label: qsTr("Diverging: Spectral"), value: "colors_diverging_spectral" },
+                            { label: qsTr("Diverging: Icefire"), value: "colors_diverging_icefire" }
                         ]
                     }
                 }
@@ -2534,18 +2571,18 @@ Form {
 
 
 
-                    Label {
-                        text: qsTr("Note: For available colors, see %1 this page %2").arg("<a href='https://r-charts.com/colors/' style='color: blue; text-decoration: underline;'>").arg("</a>.")
-                        wrapMode: TextBrowser.Wrap
-                        textFormat: TextBrowser.RichText
+                        Label {
+                            text: qsTr("Note: For available colors, see %1 this page %2").arg("<a href='https://r-charts.com/colors/' style='color: blue; text-decoration: underline;'>").arg("</a>.")
+                            wrapMode: TextBrowser.Wrap
+                            textFormat: TextBrowser.RichText
 
-                        MouseArea {
-                            anchors.fill: parent
-                            onClicked: {
-                                Qt.openUrlExternally("https://r-charts.com/colors/")
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: {
+                                    Qt.openUrlExternally("https://r-charts.com/colors/")
+                                }
                             }
                         }
-                     }
                     }
 
                     Group {
@@ -2553,29 +2590,26 @@ Form {
                         title: qsTr("Margins")
                         DoubleField {
                             name: "topMargin"
-                            label: "Top"
+                            label: qsTr("Top")
                             value: 10
                         }
                         DoubleField {
                             name: "bottomMargin"
-                            label: "Bottom"
+                            label: qsTr("Bottom")
                             value: 10
                         }
                         DoubleField {
                             name: "leftMargin"
-                            label: "Left"
+                            label: qsTr("Left")
                             value: 10
                         }
                         DoubleField {
                             name: "rightMargin"
-                            label: "Right"
+                            label: qsTr("Right")
                             value: 10
                         }
-                    }}
-
-
-
-
+                    }
+                }
 
             }
 
@@ -2649,9 +2683,7 @@ Form {
                     minimumItems: 0
                     maximumItems: -1
 
-
                     rowComponent: Row {
-
 
                         Group {
                             title: qsTr("Compared groups")
@@ -2660,7 +2692,6 @@ Form {
                                 label: qsTr("Group 1")
                                 fieldWidth: 60
                             }
-
 
                             TextField {
                                 name: "group2"
@@ -2786,7 +2817,7 @@ Form {
 
                         TextField {
                             name: "rowHeightsColumn"
-                            label: qsTr("Plot heights") // Javítottuk a "heigths" helyett
+                            label: qsTr("Plot heights")
                             placeholderText: qsTr("1,1")
                             fieldWidth: 120
                         }
