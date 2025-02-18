@@ -49,7 +49,6 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
   # Output plot grid
   .plotBuilderOutputPlotGrid(jaspResults, options, plotResults)
 
-  ## TRÁBLSÚTING_________________________________________________________
   return()
 }
 
@@ -111,7 +110,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
             values_to = pivotedYName
           ) |>
           dplyr::mutate(
-            !!rlang::sym(pivotedXName) := factor(decodeColNames(!!rlang::sym(pivotedXName))) # Faktorrá konvertálás
+            !!rlang::sym(pivotedXName) := factor(decodeColNames(!!rlang::sym(pivotedXName)))
           )
 
         # Handle missing columns
@@ -190,7 +189,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       updatedPlots[["scatterPlotError"]] <- NULL
     }
 
-    # Alapértelmezett beállítások
+    # Default
     colorVar <- tab[["variableColorPlotBuilder"]]
     xVar     <- tab[["variableXPlotBuilder"]]
     yVar     <- tab[["variableYPlotBuilder"]]
@@ -329,15 +328,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     # Add violin (tidyplots::add_violin)----
     if (tab[["addViolin"]]) {
 
-      # Beolvassuk a bemeneti szöveget
       input_text <- tab[["drawQuantilesViolinPlotBuilder"]]
 
-      # Ha a szöveg nem tartalmazza a `c()` függvényt, akkor hozzáadjuk
       if (!grepl("^c\\(", input_text)) {
         input_text <- paste0("c(", input_text, ")")
       }
 
-      # Értékeljük ki a kifejezést
       draw_quantiles <- eval(parse(text = input_text))
 
       argList <- list(
@@ -1288,14 +1284,6 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     # Read style choice
     plotStyle    <- tab[["plotStyle"]]
     baseFontSize <- tab[["baseFontSize"]]
-
-
-
-    # # Remove legend title if requested (tidyplots::remove_legend_title)
-    # if (tab[["removeLegendTitle"]]) {
-    #   tidyplot_obj <- tidyplot_obj |>
-    #     tidyplots::remove_legend_title()
-    # }
 
 
     # Adjust X axis (tidyplots::adjust_x_axis)----
