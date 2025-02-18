@@ -20,7 +20,11 @@ Imports:
   ggrain,
   ggpp,
   ggtext,
-  dplyr
+  dplyr,
+  tidyplots,
+  ggpubr,
+  forcats,
+  patchwork
 Remotes:
   jasp-stats/jaspBase,
   jasp-stats/jaspGraphs,
