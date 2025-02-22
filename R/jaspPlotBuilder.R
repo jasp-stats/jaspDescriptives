@@ -1142,7 +1142,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     }
 
     # Add annotation line (tidyplots::add_annotation_line)----
-    if (tab[["addAnnotationLinePlotBuilder"]]) {
+    if (tab[["addAnnotationLinePlotBuilder"]] &&
+        !is.null(tab[["xAnnotation"]]) && nzchar(tab[["xAnnotation"]]) &&
+        !is.null(tab[["xendAnnotation"]]) && nzchar(tab[["xendAnnotation"]]) &&
+        !is.null(tab[["yAnnotation"]]) && nzchar(tab[["yAnnotation"]]) &&
+        !is.null(tab[["yendAnnotation"]]) && nzchar(tab[["yendAnnotation"]])) {
+
       tidyplot_obj <- tidyplot_obj |>
         tidyplots::add_annotation_line(
           x      = eval(parse(text = paste0("c(", tab[["xAnnotation"]], ")"))),
@@ -1331,6 +1336,9 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     cutShortScale <- tab[["cutShortScale"]]
     adjust_args_xaxis$cut_short_scale <- isTRUE(cutShortScale)
 
+    # add padding
+    adjust_args_xaxis$padding <- c(0.1, 0.1)
+
     if (length(adjust_args_xaxis) > 0) {
       tidyplot_obj <- do.call(
         tidyplots::adjust_x_axis,
@@ -1410,6 +1418,9 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
     cutShortScaleY <- tab[["cutShortScaleY"]]
     adjust_args_yaxis$cut_short_scale <- isTRUE(cutShortScaleY)
+
+    # add padding
+    adjust_args_yaxis$padding <- c(0.1, 0.1)
 
     if (length(adjust_args_yaxis) > 0) {
       tidyplot_obj <- do.call(
@@ -1599,11 +1610,16 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     # P value from ggpubr::stat_pvalue_manual----
     if (!is.null(tab[["pairwiseComparisons"]]) && length(tab[["pairwiseComparisons"]]) > 0) {
 
+      #universal settings for the p value
+      label_size <- tab[["labelSizePValue"]]
+      labelcolor <- tab[["labelcolor"]]
+
+      #separate settings for each bracket
       dfComparisons <- data.frame(
         group1     = as.character(sapply(tab[["pairwiseComparisons"]], function(x) x$group1)),
         group2     = as.character(sapply(tab[["pairwiseComparisons"]], function(x) x$group2)),
         p          = as.character(sapply(tab[["pairwiseComparisons"]], function(x) x$pAdj)),
-        y.position = as.numeric(sapply(tab[["pairwiseComparisons"]], function(x) x$yPositionPValue)),
+        y.position =  tab[["yPositionPValue"]],
         stringsAsFactors = FALSE
       )
 
@@ -1628,10 +1644,8 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         )
       }
 
-      label_size <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$labelSizePValue))
       bracket.size <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$bracketSizePValue))
       tip_length <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$tipLengthPValue))
-      labelcolor <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$labelcolor))
 
 
       tidyplot_obj <- tidyplot_obj +

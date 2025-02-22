@@ -2672,8 +2672,39 @@ Form {
             }
 
 
+
+
             Section {
                 title: qsTr("P value brackets")
+                columns: 3
+
+                Label {
+                    text: qsTr("Available when the categorical variable is on the X axis")
+                    wrapMode: Text.Wrap
+                    color: "black"
+                    Layout.columnSpan: 3
+                }
+
+                TextField {
+                    name: "labelcolor"
+                    label: qsTr("P value color")
+                    fieldWidth: 70
+                    defaultValue: "black"
+                }
+
+                DoubleField {
+                    name: "labelSizePValue"
+                    label: qsTr("P value size")
+                    defaultValue: 4.5
+                }
+
+                DoubleField {
+                    name: "yPositionPValue"
+                    label: qsTr("Position on Y of the first p value")
+                    decimals: 2
+                    fieldWidth: 70
+                    value: 70
+                }
 
                 ComponentsList {
                     name: "pairwiseComparisons"
@@ -2709,30 +2740,10 @@ Form {
                                 defaultValue: "* or 0.49"
                             }
 
-                            TextField {
-                                name: "labelcolor"
-                                label: qsTr("Color")
-                                fieldWidth: 70
-                                defaultValue: "black"
-                            }
-
-                            DoubleField {
-                                name: "labelSizePValue"
-                                label: qsTr("Label size")
-                                defaultValue: 4.5
-                            }
-
                         }
 
                         Group {
                             title: qsTr("Brackets")
-                            DoubleField {
-                                name: "yPositionPValue"
-                                label: qsTr("Position on Y")
-                                decimals: 2
-                                fieldWidth: 70
-                                value: 70
-                            }
 
                             DoubleField {
                                 name: "tipLengthPValue"
