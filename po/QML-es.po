@@ -2372,26 +2372,22 @@ msgstr ""
 "Mostrar recuentos, proporciones o proporciones condicionadas (condicionadas "
 "a cada categoría del eje x)."
 
-msgctxt "raincloudPlots|"
-msgid ""
-"Note: This module has a <a href='https://www.youtube.com/watch?"
-"v=AAdXUAl_w6E'>youtube tutorial</a> & requires data in long format."
-msgstr ""
-"Nota: Este módulo tiene un <a href='https://www.youtube.com/watch?"
-"v=AAdXUAl_w6E'>Tutorial de Youtube</a> y requiere datos en formato largo."
-
 msgctxt "Descriptives|"
 msgid "Number of valid observations"
 msgstr "Número de observaciones válidas"
 
 msgctxt "raincloudPlots|"
-msgid ""
-"This module has a <a href='https://www.youtube.com/watch?"
-"v=AAdXUAl_w6E'>youtube tutorial</a>"
-msgstr ""
-"Este módulo tiene un <a href='https://www.youtube.com/watch?"
-"v=AAdXUAl_w6E'>tutorial en Youtube</a>"
-
-msgctxt "raincloudPlots|"
 msgid "If you use this module, please cite it as:"
 msgstr "Si utilizas este módulo, por favor, cítalo como:"
+
+#, qt-format
+msgctxt "raincloudPlots|"
+msgid "This module has a %1 youtube tutorial"
+msgstr ""
+
+#, qt-format
+msgctxt "raincloudPlots|"
+msgid ""
+"Note: This module has a %1 youtube tutorial %2 & requires data in long "
+"format."
+msgstr ""

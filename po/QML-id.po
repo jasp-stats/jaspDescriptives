@@ -2045,22 +2045,22 @@ msgid ""
 "each category on the x-axis)."
 msgstr ""
 
-msgctxt "raincloudPlots|"
-msgid ""
-"Note: This module has a <a href='https://www.youtube.com/watch?"
-"v=AAdXUAl_w6E'>youtube tutorial</a> & requires data in long format."
-msgstr ""
-
 msgctxt "Descriptives|"
 msgid "Number of valid observations"
 msgstr ""
 
 msgctxt "raincloudPlots|"
-msgid ""
-"This module has a <a href='https://www.youtube.com/watch?"
-"v=AAdXUAl_w6E'>youtube tutorial</a>"
+msgid "If you use this module, please cite it as:"
 msgstr ""
 
+#, qt-format
 msgctxt "raincloudPlots|"
-msgid "If you use this module, please cite it as:"
+msgid "This module has a %1 youtube tutorial"
+msgstr ""
+
+#, qt-format
+msgctxt "raincloudPlots|"
+msgid ""
+"Note: This module has a %1 youtube tutorial %2 & requires data in long "
+"format."
 msgstr ""

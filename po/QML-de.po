@@ -2393,26 +2393,22 @@ msgstr ""
 "Zeige Häufigkeiten, Anteile, oder bedingte Anteile (bedingt nach jeder "
 "Kategorie auf der X-Achse)."
 
-msgctxt "raincloudPlots|"
-msgid ""
-"Note: This module has a <a href='https://www.youtube.com/watch?"
-"v=AAdXUAl_w6E'>youtube tutorial</a> & requires data in long format."
-msgstr ""
-"Anmerkung: Dieses Modul hat ein <a href='https://www.youtube.com/watch?"
-"v=AAdXUAl_w6E'>Youtube-Tutorial</a> & erfordert Daten im Long-Format."
-
 msgctxt "Descriptives|"
 msgid "Number of valid observations"
 msgstr "Anzahl valider Beobachtungen"
 
 msgctxt "raincloudPlots|"
-msgid ""
-"This module has a <a href='https://www.youtube.com/watch?"
-"v=AAdXUAl_w6E'>youtube tutorial</a>"
-msgstr ""
-"Dieses Modul hat ein <a href='https://www.youtube.com/watch?"
-"v=AAdXUAl_w6E'>Youtube-Tutorium</a>"
-
-msgctxt "raincloudPlots|"
 msgid "If you use this module, please cite it as:"
 msgstr "Wenn Sie dieses Modul verwenden, bitte zitieren Sie es so:"
+
+#, qt-format
+msgctxt "raincloudPlots|"
+msgid "This module has a %1 youtube tutorial"
+msgstr ""
+
+#, qt-format
+msgctxt "raincloudPlots|"
+msgid ""
+"Note: This module has a %1 youtube tutorial %2 & requires data in long "
+"format."
+msgstr ""
