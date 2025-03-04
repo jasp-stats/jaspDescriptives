@@ -589,7 +589,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
                           rowNames = variable)
 
       if (subReturn$shouldAddModeContinuousTreatedAsDiscreteFootnote)
-        stats$addFootnote(message  = gettext("The mode is computed assuming that variables are discreet."),
+		stats$addFootnote(message  = gettext("The mode is computed assuming that variables are discrete."),
                           colNames = "Mode",
                           rowNames = variable)
     }
