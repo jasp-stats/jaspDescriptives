@@ -2700,7 +2700,7 @@ Form {
 
                 DoubleField {
                     name: "yPositionPValue"
-                    label: qsTr("Position on Y of the first p value")
+                    label: qsTr("Y-axis position of the first p value")
                     decimals: 2
                     fieldWidth: 70
                     value: 70
