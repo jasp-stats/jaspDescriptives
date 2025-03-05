@@ -149,7 +149,7 @@ Form {
 
                     AssignedVariablesList {
                         name: "variableColorPlotBuilder"
-                        title: qsTr("Group/Color by")
+                        title: qsTr("Group/Color By")
                         id: variableColorPlotBuilder
                         allowedColumns: ["scale", "ordinal", "nominal"]
                         minLevels: 2
