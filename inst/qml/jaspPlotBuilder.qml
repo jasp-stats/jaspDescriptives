@@ -137,7 +137,7 @@ Form {
 
                     AssignedVariablesList {
                         name: "variableXPlotBuilder"
-                        title: qsTr("X axis")
+                        title: qsTr("X Axis Variable")
                         id: variableXPlotBuilder
                         allowedColumns: ["scale", "ordinal", "nominal"]
                         minLevels: 2
