@@ -196,7 +196,7 @@ Form {
                     }
                     AssignedVariablesList {
                         name: "columnsvariableSplitPlotBuilder"
-                        title: qsTr("Split by (columns)")
+                        title: qsTr("Split (Columns)")
                         id: columnsvariableSplitPlotBuilder
                         allowedColumns: ["ordinal", "nominal"]
                         singleVariable: true
