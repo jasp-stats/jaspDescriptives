@@ -2390,7 +2390,7 @@ Form {
 
                         DropDown {
                             name: "sortYLabelsOrder"
-                            label: qsTr("Sort Y labels")
+                            label: qsTr("Sort y-axis labels")
                             values: ["Increasing", "Decreasing"]
                             startValue: "Increasing"
                         }
