@@ -2385,7 +2385,7 @@ Form {
                     // If you want to enable sorting on the Y axis:
                     CheckBox {
                         name: "enableSortY"
-                        label: qsTr("Enable Sorting")
+                        label: qsTr("Enable sorting")
                         checked: false
 
                         DropDown {
