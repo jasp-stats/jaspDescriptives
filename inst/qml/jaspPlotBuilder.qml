@@ -2405,7 +2405,7 @@ Form {
                 }
                 ComponentsList {
                     name: "yAxisLabelRenamer"
-                    title: qsTr("New Y-axis labels")
+                    title: qsTr("New y-axis labels")
                     addItemManually: true
                     minimumItems: 0
                     rowComponent: Row {
