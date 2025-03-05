@@ -125,7 +125,7 @@ Form {
 
                     AssignedVariablesList {
                         name: "variableYPlotBuilder"
-                        title: qsTr("Y axis")
+                        title: qsTr("Y Axis Variable")
                         allowedColumns: ["scale", "ordinal", "nominal"]
                         id: variableYPlotBuilder
                         singleVariable: true
