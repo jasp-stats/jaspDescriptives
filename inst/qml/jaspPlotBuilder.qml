@@ -2373,7 +2373,7 @@ Form {
 
                     CheckBox {
                         name: "rotateYLabel"
-                        label: qsTr("Rotate Y label")
+                        label: qsTr("Rotate y-axis label")
                     }
 
                     CheckBox {
