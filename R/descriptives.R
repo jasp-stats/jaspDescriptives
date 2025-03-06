@@ -23,12 +23,14 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
   if (is.null(dataset)) {
 
+    preloadData <- FALSE
     temp <- .descriptivesReadData(options, variables, splitName)
     dataset         <- temp[["dataset"]]
     dataset.factors <- temp[["dataset.factors"]]
 
   } else {
 
+    preloadData <- TRUE
     dataset.factors <- dataset
     for (var in variables)
       dataset[[var]] <- as.numeric(dataset[[var]])
@@ -342,7 +344,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       jaspResults[["densityPlot"]]$position <- 17
     }
 
-    .descriptivesDensityPlots(jaspResults[["densityPlot"]], dataset.factors, variables, options)
+    .descriptivesDensityPlots(jaspResults[["densityPlot"]], dataset.factors, variables, options, preloadData)
   }
 
   # Likert plots
@@ -2471,22 +2473,30 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     ggplot2::theme(plot.margin = ggplot2::margin(5))
 }
 
-.descriptivesDensityPlots <- function(container, dataset, variables, options) {
+.descriptivesDensityPlots <- function(container, dataset, variables, options,
+                                      preloadData) {
   # we are not ready to plot
   if (length(variables) == 0)
     return()
 
   if (options[["densityPlotSeparate"]] != "") {
-    separator <- as.factor(dataset[[options[["densityPlotSeparate"]]]])
+    if (preloadData)
+      separator <- as.factor(dataset[[options[["densityPlotSeparate"]]]])
+    else {
+      separator <- .readDataSetToEnd(columns.as.factor = options[["densityPlotSeparate"]])
+      separator <- separator[, , drop = TRUE]
+    }
   }
 
   for (i in seq_along(variables)) {
-    # if (!is.double(dataset[[i]])) next
 
     variableName <- variables[[i]]
-    # variable <- .readDataSetToEnd(columns = variableName)
-    # variable <- variable[, , drop = TRUE]
-    variable <- dataset[[variableName]]
+    if (preloadData) {
+      variable <- dataset[[variableName]]
+    } else {
+      variable <- .readDataSetToEnd(columns = variableName)
+      variable <- variable[, , drop = TRUE]
+    }
     variableType <- options[["variables.types"]][[i]]
     data <- if (options[["densityPlotSeparate"]] != "") {
       data.frame(variable, separator)
