@@ -2512,7 +2512,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
       for (g in seq_along(groups)) {
         active <- groups[g] == data$split
-        .descriptivesDensityPlotsFill(container[[variableName]], data[active, ], groups[g], variableName, g, options, variableType, preloadData)
+        .descriptivesDensityPlotsFill(container[[variableName]], data[active, ], groups[g], variableName, g, options, variableType)
       }
     } else {
       data <- na.omit(data)
