@@ -1146,7 +1146,8 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       argList <- list(
         method     = tab[["curvaFitMethod"]],
         linewidth  = tab[["linewidthCurveFit"]],
-        alpha      = tab[["transparencyCurveFit"]]
+        alpha      = tab[["transparencyCurveFit"]],
+        se         = tab[["seCurveFit"]]
       )
 
       if (tab[["blackOutlineCurveFit"]]) {
@@ -1171,7 +1172,6 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     if (tab[["addReferenceLinePlotBuilder"]]) {
       tidyplot_obj <- tidyplot_obj |>
         tidyplots::add_reference_lines(
-          x         = eval(parse(text = paste0("c(", tab[["xReferenceLine"]], ")"))),
           y         = eval(parse(text = paste0("c(", tab[["yReferenceLine"]], ")"))),
           linetype  = "solid",
           linewidth = tab[["linewidhtReferenceLines"]],
