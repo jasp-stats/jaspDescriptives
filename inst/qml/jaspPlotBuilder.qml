@@ -149,7 +149,7 @@ Form {
 
                     AssignedVariablesList {
                         name: "variableColorPlotBuilder"
-                        title: qsTr("Group/Color By")
+                        title: qsTr("Group Variable")
                         id: variableColorPlotBuilder
                         allowedColumns: ["scale", "ordinal", "nominal"]
                         minLevels: 2
@@ -162,38 +162,7 @@ Form {
                             }
                         }
                     }
-                    Group {
-                        title: qsTr("Or color by")
-                        columns: 2
-                        CheckBox {
-                            name: "colorByVariableX"
-                            label: qsTr("X variable")
-                            id: colorByVariableX
-                            enabled: variableXPlotBuilder.count > 0 && variableColorPlotBuilder.count === 0
-                            onCheckedChanged: {
-                                if (checked && variableColorPlotBuilder.count > 0) {
-                                    checked = false;
-                                }
-                                if (checked) {
-                                    colorByVariableY.checked = false;
-                                }
-                            }
-                        }
-                        CheckBox {
-                            name: "colorByVariableY"
-                            label: qsTr("Y variable")
-                            id: colorByVariableY
-                            enabled: variableYPlotBuilder.count > 0 && variableColorPlotBuilder.count === 0
-                            onCheckedChanged: {
-                                if (checked && variableColorPlotBuilder.count > 0) {
-                                    checked = false;
-                                }
-                                if (checked) {
-                                    colorByVariableX.checked = false;
-                                }
-                            }
-                        }
-                    }
+
                     AssignedVariablesList {
                         name: "columnsvariableSplitPlotBuilder"
                         title: qsTr("Split (Columns)")
@@ -205,7 +174,7 @@ Form {
 
                     AssignedVariablesList {
                         name: "rowsvariableSplitPlotBuilder"
-                        title: qsTr("Split by (rows)")
+                        title: qsTr("Split (Rows)")
                         id: rowsvariableSplitPlotBuilder
                         allowedColumns: ["ordinal", "nominal"]
                         singleVariable: true
@@ -1061,6 +1030,158 @@ Form {
             // -------------------------------------------------------------------
             // Proportions (bar/area stack)
             // -------------------------------------------------------------------
+            // Section {
+            //     title: qsTr("Proportions")
+
+            //     Label {
+            //         text: qsTr("Represent absolute or relative proportions (requires X or Y and Group/Color variables)")
+            //         wrapMode: Text.Wrap
+            //         color: "black"
+            //     }
+
+            //     GridLayout {
+            //         columns: 2
+            //         rowSpacing: 40
+            //         columnSpacing: 70
+
+            //         // Bar Stack Absolute
+            //         CheckBox {
+            //             name: "addBarStackAbsolute"
+            //             label: qsTr("Bar stack (absolute)")
+            //             info: qsTr("Add an absolute bar stack to the plot.")
+            //             enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0) && variableColorPlotBuilder.count > 0)
+            //                       && !(variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0))
+            //                       || isRM.value === "RM"
+            //             onEnabledChanged: {
+            //                 if (!enabled) {
+            //                     checked = false;
+            //                 }
+            //             }
+
+            //             DoubleField {
+            //                 name: "alphaBarStackAbsolute"
+            //                 label: qsTr("Transparency")
+            //                 defaultValue: 0.8
+            //                 min: 0
+            //                 max: 1
+            //             }
+            //             CheckBox {
+            //                 name: "reverseBarStackAbsolute"
+            //                 label: qsTr("Reverse order")
+            //                 checked: false
+            //             }
+
+            //         }
+
+            //         // Bar Stack Relative
+            //         CheckBox {
+            //             name: "addBarStackRelative"
+            //             label: qsTr("Bar stack (relative)")
+            //             info: qsTr("Add a relative bar stack to the plot.")
+            //             enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+            //                       || isRM.value === "RM")
+            //             onEnabledChanged: {
+            //                 if (!enabled) {
+            //                     checked = false;
+            //                 }
+            //             }
+
+            //             DoubleField {
+            //                 name: "alphaBarStackRelative"
+            //                 label: qsTr("Transparency")
+            //                 defaultValue: 0.8
+            //                 min: 0
+            //                 max: 1
+            //             }
+            //             CheckBox {
+            //                 name: "reverseBarStackRelative"
+            //                 label: qsTr("Reverse order")
+            //                 checked: false
+            //             }
+
+            //         }
+
+            //         // Area Stack Absolute
+            //         CheckBox {
+            //             name: "addAreaStackAbsolute"
+            //             label: qsTr("Area stack (absolute)")
+            //             info: qsTr("Add an absolute area stack to the plot.")
+            //             enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+            //                       || isRM.value === "RM")
+            //             onEnabledChanged: {
+            //                 if (!enabled) {
+            //                     checked = false;
+            //                 }
+            //             }
+
+            //             DoubleField {
+            //                 name: "alphaAreaStackAbsolute"
+            //                 label: qsTr("Transparency")
+            //                 defaultValue: 0.4
+            //                 min: 0
+            //                 max: 1
+            //             }
+            //             DoubleField {
+            //                 name: "linewidthAreaStackAbsolute"
+            //                 label: qsTr("Line width")
+            //                 defaultValue: 0.25
+            //                 min: 0
+            //             }
+            //             CheckBox {
+            //                 name: "reverseAreaStackAbsolute"
+            //                 label: qsTr("Reverse order")
+            //                 checked: false
+            //             }
+            //             CheckBox {
+            //                 name: "replaceNaAreaStackAbsolute"
+            //                 label: qsTr("Replace N/A")
+            //                 checked: false
+            //             }
+
+
+            //         }
+
+            //         // Area Stack Relative
+            //         CheckBox {
+            //             name: "addAreaStackRelative"
+            //             label: qsTr("Area stack (relative)")
+            //             info: qsTr("Add a relative area stack to the plot.")
+            //             enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+            //                       || isRM.value === "RM")
+            //             onEnabledChanged: {
+            //                 if (!enabled) {
+            //                     checked = false;
+            //                 }
+            //             }
+
+            //             DoubleField {
+            //                 name: "alphaAreaStackRelative"
+            //                 label: qsTr("Transparency")
+            //                 defaultValue: 0.4
+            //                 min: 0
+            //                 max: 1
+            //             }
+            //             DoubleField {
+            //                 name: "linewidthAreaStackRelative"
+            //                 label: qsTr("Line width")
+            //                 defaultValue: 0.25
+            //                 min: 0
+            //             }
+            //             CheckBox {
+            //                 name: "reverseAreaStackRelative"
+            //                 label: qsTr("Reverse order")
+            //                 checked: false
+            //             }
+            //             CheckBox {
+            //                 name: "replaceNaAreaStackRelative"
+            //                 label: qsTr("Replace N/A")
+            //                 checked: false
+            //             }
+
+            //         }
+            //     }
+            // }
+
             Section {
                 title: qsTr("Proportions")
 
@@ -1070,147 +1191,97 @@ Form {
                     color: "black"
                 }
 
+                RadioButtonGroup {
+                    id: propModeGroup
+                    name: "propMode"
+                    title: qsTr("Proportion mode")
+                    radioButtonsOnSameRow: true
+                    columns: 2
+                    RadioButton {
+                        value: "absolute"
+                        label: qsTr("Absolute")
+                        checked: true
+                    }
+                    RadioButton {
+                        value: "relative"
+                        label: qsTr("Relative")
+                    }
+                }
+
+                // Use a GridLayout to arrange the two checkboxes side-by-side
                 GridLayout {
                     columns: 2
-                    rowSpacing: 40
-                    columnSpacing: 70
+                    columnSpacing: 40
 
-                    // Bar Stack Absolute
                     CheckBox {
-                        name: "addBarStackAbsolute"
-                        label: qsTr("Bar stack (absolute)")
-                        info: qsTr("Add an absolute bar stack to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        name: "addBarStack"
+                        label: qsTr("Add Bar Stack")
+                        info: qsTr("Add a bar stack to the plot. The mode (absolute or relative) is set by the Proportion Mode above.")
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0)
+                                   && variableColorPlotBuilder.count > 0)
+                                  && !(variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM"
                         onEnabledChanged: {
                             if (!enabled) {
-                                checked = false;
+                                checked = false
                             }
                         }
-
+                        // Nested parameters
                         DoubleField {
-                            name: "alphaBarStackAbsolute"
+                            name: "alphaBarStack"
                             label: qsTr("Transparency")
                             defaultValue: 0.8
                             min: 0
                             max: 1
                         }
                         CheckBox {
-                            name: "reverseBarStackAbsolute"
+                            name: "reverseBarStack"
                             label: qsTr("Reverse order")
                             checked: false
                         }
-
                     }
 
-                    // Bar Stack Relative
                     CheckBox {
-                        name: "addBarStackRelative"
-                        label: qsTr("Bar stack (relative)")
-                        info: qsTr("Add a relative bar stack to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        name: "addAreaStack"
+                        label: qsTr("Add Area Stack")
+                        info: qsTr("Add an area stack to the plot. The mode (absolute or relative) is set by the Proportion Mode above.")
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0)
+                                   && variableColorPlotBuilder.count > 0)
+                                  && !(variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0))
+                                  || isRM.value === "RM"
                         onEnabledChanged: {
                             if (!enabled) {
-                                checked = false;
+                                checked = false
                             }
                         }
-
+                        // Nested parameters
                         DoubleField {
-                            name: "alphaBarStackRelative"
-                            label: qsTr("Transparency")
-                            defaultValue: 0.8
-                            min: 0
-                            max: 1
-                        }
-                        CheckBox {
-                            name: "reverseBarStackRelative"
-                            label: qsTr("Reverse order")
-                            checked: false
-                        }
-
-                    }
-
-                    // Area Stack Absolute
-                    CheckBox {
-                        name: "addAreaStackAbsolute"
-                        label: qsTr("Area stack (absolute)")
-                        info: qsTr("Add an absolute area stack to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
-                        onEnabledChanged: {
-                            if (!enabled) {
-                                checked = false;
-                            }
-                        }
-
-                        DoubleField {
-                            name: "alphaAreaStackAbsolute"
+                            name: "alphaAreaStack"
                             label: qsTr("Transparency")
                             defaultValue: 0.4
                             min: 0
                             max: 1
                         }
                         DoubleField {
-                            name: "linewidthAreaStackAbsolute"
+                            name: "linewidthAreaStack"
                             label: qsTr("Line width")
                             defaultValue: 0.25
                             min: 0
                         }
                         CheckBox {
-                            name: "reverseAreaStackAbsolute"
+                            name: "reverseAreaStack"
                             label: qsTr("Reverse order")
                             checked: false
                         }
                         CheckBox {
-                            name: "replaceNaAreaStackAbsolute"
+                            name: "replaceNaAreaStack"
                             label: qsTr("Replace N/A")
                             checked: false
                         }
-
-
-                    }
-
-                    // Area Stack Relative
-                    CheckBox {
-                        name: "addAreaStackRelative"
-                        label: qsTr("Area stack (relative)")
-                        info: qsTr("Add a relative area stack to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
-                        onEnabledChanged: {
-                            if (!enabled) {
-                                checked = false;
-                            }
-                        }
-
-                        DoubleField {
-                            name: "alphaAreaStackRelative"
-                            label: qsTr("Transparency")
-                            defaultValue: 0.4
-                            min: 0
-                            max: 1
-                        }
-                        DoubleField {
-                            name: "linewidthAreaStackRelative"
-                            label: qsTr("Line width")
-                            defaultValue: 0.25
-                            min: 0
-                        }
-                        CheckBox {
-                            name: "reverseAreaStackRelative"
-                            label: qsTr("Reverse order")
-                            checked: false
-                        }
-                        CheckBox {
-                            name: "replaceNaAreaStackRelative"
-                            label: qsTr("Replace N/A")
-                            checked: false
-                        }
-
                     }
                 }
             }
+
 
             // -------------------------------------------------------------------
             // Mean
@@ -1234,7 +1305,7 @@ Form {
                         name: "addMeanBar"
                         label: qsTr("Mean bar")
                         info: qsTr("Enable to add a mean bar to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
                         onEnabledChanged: {
                             if (!enabled) {
@@ -1266,7 +1337,7 @@ Form {
                         name: "addMeanDash"
                         label: qsTr("Mean dash")
                         info: qsTr("Enable to add dashed mean lines to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
                         onEnabledChanged: {
                             if (!enabled) {
@@ -1308,7 +1379,7 @@ Form {
                         name: "addMeanDot"
                         label: qsTr("Mean dot")
                         info: qsTr("Enable to add mean dots to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
                         onEnabledChanged: {
                             if (!enabled) {
@@ -1345,7 +1416,7 @@ Form {
                         name: "addMeanLine"
                         label: qsTr("Mean line")
                         info: qsTr("Enable to add mean lines to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
                         onEnabledChanged: {
                             if (!enabled) {
@@ -1382,7 +1453,7 @@ Form {
                         name: "addMeanArea"
                         label: qsTr("Mean area")
                         info: qsTr("Enable to add mean areas to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
                         onEnabledChanged: {
                             if (!enabled) {
@@ -1411,7 +1482,7 @@ Form {
                         name: "addMeanValue"
                         label: qsTr("Mean value")
                         info: qsTr("Enable to add mean values to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
                         onEnabledChanged: {
                             if (!enabled) {
@@ -1480,7 +1551,7 @@ Form {
                         name: "addMedianBar"
                         label: qsTr("Median bar")
                         info: qsTr("Enable to add a median bar to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
                         onEnabledChanged: {
                             if (!enabled) {
@@ -1513,7 +1584,7 @@ Form {
                         name: "addMedianDash"
                         label: qsTr("Median dash")
                         info: qsTr("Enable to add dashed median lines to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
                         onEnabledChanged: {
                             if (!enabled) {
@@ -1556,7 +1627,7 @@ Form {
                         name: "addMedianDot"
                         label: qsTr("Median dot")
                         info: qsTr("Enable to add median dots to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
                         onEnabledChanged: {
                             if (!enabled) {
@@ -1593,7 +1664,7 @@ Form {
                         name: "addMedianLine"
                         label: qsTr("Median line")
                         info: qsTr("Enable to add median lines to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
                         onEnabledChanged: {
                             if (!enabled) {
@@ -1631,7 +1702,7 @@ Form {
                         name: "addMedianArea"
                         label: qsTr("Median area")
                         info: qsTr("Enable to add median areas to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
                         onEnabledChanged: {
                             if (!enabled) {
@@ -1660,7 +1731,7 @@ Form {
                         name: "addMedianValue"
                         label: qsTr("Median value")
                         info: qsTr("Enable to add median values to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
                         onEnabledChanged: {
                             if (!enabled) {
@@ -2098,12 +2169,14 @@ Form {
                             name: "xReferenceLine"
                             label: qsTr("X Intersections")
                             placeholderText: qsTr("e.g. 0.5, 1, 3")
+                            fieldWidth: 100
                         }
 
                         TextField {
                             name: "yReferenceLine"
                             label: qsTr("Y Intersections")
                             placeholderText: qsTr("e.g. 0.5, 1, 3")
+                            fieldWidth: 100
                         }
                     }
 
@@ -2119,6 +2192,7 @@ Form {
                             label: qsTr("Line color")
                             placeholderText: qsTr("e.g. black, #ff5733")
                             defaultValue: "lightgray"
+                            fieldWidth: 100
                         }
 
                         Label {
@@ -2147,11 +2221,13 @@ Form {
                             name: "xAnnotation"
                             label: qsTr("X start")
                             placeholderText: qsTr("e.g. 0")
+                            fieldWidth:100
                         }
                         TextField {
                             name: "xendAnnotation"
                             label: qsTr("X end")
                             placeholderText: qsTr("e.g. Inf")
+                            fieldWidth: 100
                         }
                     }
                     Group {
@@ -2159,11 +2235,13 @@ Form {
                             name: "yAnnotation"
                             label: qsTr("Y start")
                             placeholderText: qsTr("e.g. 0")
+                            fieldWidth: 100
                         }
                         TextField {
                             name: "yendAnnotation"
                             label: qsTr("Y end")
                             placeholderText: qsTr("e.g. Inf")
+                            fieldWidth: 100
                         }
                     }
                     Group {
@@ -2172,6 +2250,7 @@ Form {
                             label: qsTr("Line color")
                             placeholderText: qsTr("e.g. black, #ff5733")
                             defaultValue: "lightgray"
+                            fieldWidth: 100
                         }
 
                         Label {
@@ -2491,18 +2570,19 @@ Form {
 
 
             Label {
-                text: qsTr("Style and legend")
+                text: qsTr("Style, colors and legend")
                 wrapMode: Text.Wrap
                 color: "black"
             }
 
 
-            Section{
-                title:qsTr("Plot style")
-                columns:3
+            Section {
+                title: qsTr("Plot style")
 
-                Group{
-                    columns:3
+                // Bal oszlop: Alap plot beállítások
+                Group {
+                    columns: 2
+
                     DropDown {
                         name: "plotStyle"
                         label: qsTr("Plot style")
@@ -2514,6 +2594,88 @@ Form {
                         label: qsTr("Font base size")
                         value: 18
                     }
+                }
+
+                // Jobb oszlop: Margók
+                Group {
+                    title: qsTr("Margins")
+                    columns: 4
+
+                    DoubleField {
+                        name: "topMargin"
+                        label: qsTr("Top")
+                        value: 10
+                    }
+                    DoubleField {
+                        name: "bottomMargin"
+                        label: qsTr("Bottom")
+                        value: 10
+                    }
+                    DoubleField {
+                        name: "leftMargin"
+                        label: qsTr("Left")
+                        value: 10
+                    }
+                    DoubleField {
+                        name: "rightMargin"
+                        label: qsTr("Right")
+                        value: 10
+                    }
+                }
+
+                // Középső oszlop: Színbeállítások (RadioButtonGroup használatával)
+                Group {
+                    title: qsTr("Color settings")
+                    columns: 1
+
+                    RadioButtonGroup {
+                        name: "colorByGroup"
+                        title: qsTr("Color by")
+                        radioButtonsOnSameRow: true
+                        columns: 5
+
+                        // "None" opció – ez jelzi, hogy nem akarunk semmi alapján színezni.
+                        RadioButton {
+                            value: "none"
+                            label: qsTr("None")
+                            enabled: true
+                            // Ha nincs elérhető csoportosító változó, ez legyen az alapértelmezett.
+                            checked: variableColorPlotBuilder.count === 0
+                            onEnabledChanged: { if (!enabled && checked) { checked = false; } }
+                        }
+                        RadioButton {
+                            value: "grouping"
+                            label: qsTr("Grouping variable")
+                            enabled: variableColorPlotBuilder.count > 0
+                            // Ha van csoportosító változó, akkor ez legyen alapértelmezett.
+                            checked: variableColorPlotBuilder.count > 0
+                            onEnabledChanged: { if (!enabled && checked) { checked = false; } }
+                        }
+                        RadioButton {
+                            value: "x"
+                            label: qsTr("X variable")
+                            enabled: variableXPlotBuilder.count > 0 && variableColorPlotBuilder.count === 0
+                            checked: false
+                            onEnabledChanged: { if (!enabled && checked) { checked = false; } }
+                        }
+                        RadioButton {
+                            value: "y"
+                            label: qsTr("Y variable")
+                            enabled: variableYPlotBuilder.count > 0 && variableColorPlotBuilder.count === 0
+                            checked: false
+                            onEnabledChanged: { if (!enabled && checked) { checked = false; } }
+                        }
+                        RadioButton {
+                            value: "rm"
+                            label: qsTr("Repeated measures")
+                            enabled: yesRM.checked
+                            checked: false
+                            onEnabledChanged: { if (!enabled && checked) { checked = false; } }
+                        }
+                    }
+
+
+
 
                     DropDown {
                         name: "colorsAll"
@@ -2556,62 +2718,33 @@ Form {
                             { label: qsTr("Diverging: Icefire"), value: "colors_diverging_icefire" }
                         ]
                     }
-                }
 
-                Group {
-                    columns:2
-                    Group {
-                        columns:1
-                        TextField {
-                            name: "customColors"
-                            label: qsTr("Custom colors")
-                            placeholderText: qsTr("e.g. red, blue, ##ff5733")
-                            fieldWidth: 150
-                        }
-
-
-
-                        Label {
-                            text: qsTr("Note: For available colors, see %1 this page %2").arg("<a href='https://r-charts.com/colors/' style='color: blue; text-decoration: underline;'>").arg("</a>.")
-                            wrapMode: TextBrowser.Wrap
-                            textFormat: TextBrowser.RichText
-
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: {
-                                    Qt.openUrlExternally("https://r-charts.com/colors/")
-                                }
-                            }
-                        }
+                    TextField {
+                        name: "customColors"
+                        label: qsTr("Custom colors")
+                        placeholderText: qsTr("e.g. red, blue, ##ff5733")
+                        fieldWidth: 150
                     }
-
-                    Group {
-                        columns:1
-                        title: qsTr("Margins")
-                        DoubleField {
-                            name: "topMargin"
-                            label: qsTr("Top")
-                            value: 10
-                        }
-                        DoubleField {
-                            name: "bottomMargin"
-                            label: qsTr("Bottom")
-                            value: 10
-                        }
-                        DoubleField {
-                            name: "leftMargin"
-                            label: qsTr("Left")
-                            value: 10
-                        }
-                        DoubleField {
-                            name: "rightMargin"
-                            label: qsTr("Right")
-                            value: 10
+                    Label {
+                        text: qsTr("Note: For available colors, see %1 this page %2")
+                                .arg("<a href='https://r-charts.com/colors/' style='color: blue; text-decoration: underline;'>")
+                                .arg("</a>.")
+                        wrapMode: TextBrowser.Wrap
+                        textFormat: TextBrowser.RichText
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                Qt.openUrlExternally("https://r-charts.com/colors/")
+                            }
                         }
                     }
                 }
 
             }
+
+
+
+
 
             // -------------------------------------------------------------------
             // Edit style and colors
@@ -2814,6 +2947,7 @@ Form {
                 name: "rowSpecifications"
                 title: qsTr("Specify layout")
                 addItemManually: true
+                newItemName: qsTr("Column 1")
 
                 rowComponent: Row {
                     Group {
@@ -2822,7 +2956,7 @@ Form {
                         TextField {
                             name: "plotIDs"
                             label: qsTr("Plot IDs")
-                            placeholderText: qsTr("PlotID1, PlotID2")
+                            placeholderText: qsTr("Plot 1, Plot 2 ...")
                             fieldWidth: 120
                         }
 
@@ -2878,14 +3012,14 @@ Form {
                         TextField {
                             name: "plotIDsFullRow"
                             label: qsTr("Plot IDs")
-                            placeholderText: qsTr("PlotID1, PlotID2")
+                            placeholderText: qsTr("Plot 1, Plot 2 ...")
                             fieldWidth: 120
                         }
 
                         TextField {
                             name: "relWidthsFullRow"
                             label: qsTr("Plot widths")
-                            placeholderText: qsTr("c(1,1)")
+                            placeholderText: qsTr("1,1")
                             fieldWidth: 120
                         }
                     }

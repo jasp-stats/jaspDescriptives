@@ -63,7 +63,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
 .plotBuilderReadData <- function(options) {
 
-  # Collect all required columns
+  # Gyűjtsük össze az összes szükséges változót
   allColumns <- unique(unlist(lapply(options$PlotBuilderTab, function(tab) {
     c(
       tab$variableXPlotBuilder,
@@ -76,31 +76,29 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     )
   })))
 
-  # Read the dataset
   dataset <- .readDataSetToEnd(columns = allColumns)
 
-  # Add row_id
   dataset <- dplyr::mutate(dataset, row_id = dplyr::row_number())
 
-  # Initialize a list to store RM datasets per plot
   datasetRMList <- list()
   datasetNonRM  <- dataset
 
-  # Process each RM plot separately
   for (tab in options$PlotBuilderTab) {
 
     if (identical(tab[["isRM"]], "RM")) {
       repeatedMeasuresCols <- tab[["variableRepeatedMeasures"]]
-      pivotedXName         <- tab[["rmFactorText"]]
-      pivotedYName         <- tab[["dimensionText"]]
+      pivotedXName <- "Repeated measures"
+      pivotedYName <- "Values"
 
-      # Validate parameters
-      if (!is.null(repeatedMeasuresCols) &&
-          length(repeatedMeasuresCols) > 0 &&
-          !is.null(pivotedXName) &&
-          nzchar(pivotedXName) &&
-          !is.null(pivotedYName) &&
-          nzchar(pivotedYName)) {
+      plotId <- as.character(tab$value)
+
+      if (is.null(repeatedMeasuresCols) || length(repeatedMeasuresCols) == 0) {
+        datasetRMList[[plotId]] <- dataset
+        next
+      }
+
+      if (!is.null(pivotedXName) && nzchar(pivotedXName) &&
+          !is.null(pivotedYName) && nzchar(pivotedYName)) {
 
         tempRM <- dataset |>
           dplyr::mutate(ID = dplyr::row_number()) |>
@@ -113,7 +111,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
             !!rlang::sym(pivotedXName) := factor(decodeColNames(!!rlang::sym(pivotedXName)))
           )
 
-        # Handle missing columns
+
         originalCols <- names(dataset)
         pivotedCols  <- names(tempRM)
         missingCols  <- setdiff(originalCols, pivotedCols)
@@ -129,8 +127,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
           )
         }
 
-        # Store RM dataset separately using plotId as key
-        plotId <- as.character(tab$value)
+
         datasetRMList[[plotId]] <- tempRM
       }
     }
@@ -184,33 +181,72 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       datasetNonRM
     }
 
+
     # Remove error placeholder plot if present
     if (!is.null(updatedPlots[["scatterPlotError"]])) {
       updatedPlots[["scatterPlotError"]] <- NULL
     }
 
-    # Default
-    colorVar <- tab[["variableColorPlotBuilder"]]
-    xVar     <- tab[["variableXPlotBuilder"]]
-    yVar     <- tab[["variableYPlotBuilder"]]
+    xVar <- tab[["variableXPlotBuilder"]]
+    yVar <- tab[["variableYPlotBuilder"]]
 
-    # Ha RM van
     if (identical(tab[["isRM"]], "RM")) {
-      yVar <- tab[["dimensionText"]]
-
-      if (tab[["useRMFactorAsFill"]]) {
-        colorVar <- tab[["rmFactorText"]]
-
-        # Ensure xVar is not NULL or empty
-        xVar <- tab[["variableXPlotBuilder"]]
-        if (is.null(xVar) || xVar == "") {
-          xVar <- tab[["rmFactorText"]]
-        }
-      } else {
-        colorVar <- tab[["variableColorPlotBuilder"]]
-        xVar <- tab[["rmFactorText"]]
+      yVar <- "Values"
+      if (is.null(xVar) || xVar == "") {
+        xVar <- "Repeated measures"
       }
     }
+
+    colorBy <- tab[["colorByGroup"]]
+
+    if (colorBy == "none") {
+      colorVar <- ""
+    } else if (colorBy == "grouping") {
+      colorVar <- tab[["variableColorPlotBuilder"]]
+    } else if (colorBy == "x") {
+      colorVar <- xVar
+    } else if (colorBy == "y") {
+      colorVar <- yVar
+    } else if (colorBy == "rm") {
+      colorVar <- "Repeated measures"
+      xVar <- "Repeated measures"
+    }
+
+    # The next section is necessary because some functions do not work if the
+    # variable is defined as ordinal within JASP.
+    # If xVar exists in localData and is non-numeric, convert it to a factor.
+    # If xVar is already a factor, preserve its current level order.
+    if (!is.null(xVar) && xVar %in% colnames(localData)) {
+      if (!is.numeric(localData[[xVar]])) {  # Only convert non-numeric variables
+        if (is.factor(localData[[xVar]])) {
+          # Save the existing order of levels.
+          # This preserves any specific ordering already defined (e.g., from JASP settings).
+          lvls <- levels(localData[[xVar]])
+          # Convert to a regular factor with the preserved level order.
+          localData[[xVar]] <- factor(as.character(localData[[xVar]]), levels = lvls)
+        } else {
+          # If xVar is not already a factor (e.g., a character vector),
+          # convert it to a factor using the order of first appearance.
+          # This creates a factor with levels in the order they appear in the data.
+          localData[[xVar]] <- factor(localData[[xVar]], levels = unique(localData[[xVar]]))
+        }
+      }
+    }
+
+    # For yVar:
+    # Repeat the same conversion for yVar, preserving level order if it already exists.
+    if (!is.null(yVar) && yVar %in% colnames(localData)) {
+      if (!is.numeric(localData[[yVar]])) {  # Only convert non-numeric variables
+        if (is.factor(localData[[yVar]])) {
+          # Preserve the current factor level order.
+          lvls <- levels(localData[[yVar]])
+          localData[[yVar]] <- factor(as.character(localData[[yVar]]), levels = lvls)
+        } else {
+          # Convert to a factor using the unique order from the data.
+          localData[[yVar]] <- factor(localData[[yVar]], levels = unique(localData[[yVar]]))
+        }
+      }
+    } # end of ordinal/nominal problem section
 
     plotId <- as.character(tab$value)
     pointShape <- as.numeric(tab[["pointShapePlotBuilder"]])
@@ -233,19 +269,9 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
     legend_position <- "none"
 
-    if (!is.null(colorVar) && colorVar %in% colnames(localData)) {
+    if (!is.na(colorVar) && colorVar %in% colnames(localData)) {
       tidyplot_args$color <- rlang::sym(colorVar)
       legend_position <- tab[["legendPosistionPlotBuilder"]]
-    }
-
-    if (!is.null(tab[["colorByVariableY"]]) && tab[["colorByVariableY"]]) {
-      tidyplot_args$color <- rlang::sym(yVar)
-      legend_position <- "none"
-    }
-
-    if (!is.null(tab[["colorByVariableX"]]) && tab[["colorByVariableX"]]) {
-      tidyplot_args$color <- rlang::sym(xVar)
-      legend_position <- "none"
     }
 
     # Create the tidyplot object (tidyplots package)
@@ -256,12 +282,21 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
     # Adjust color labels (tidyplots::rename_color_labels)----
     if (!is.null(tab[["colorLabelRenamer"]]) && length(tab[["colorLabelRenamer"]]) > 0) {
-      label_map_color <- setNames(
-        sapply(tab[["colorLabelRenamer"]], function(x) x$newColorLabel),
-        sapply(tab[["colorLabelRenamer"]], function(x) x$originalColorLabel)
-      )
-      if (length(label_map_color) > 0) {
-        tidyplot_obj <- tidyplots::rename_color_labels(tidyplot_obj, new_names = label_map_color)
+
+      # Ellenőrizd, hogy minden elem esetén meg vannak-e adva az új és régi címkék
+      valid_labels <- sapply(tab[["colorLabelRenamer"]], function(x) {
+        !is.null(x$newColorLabel) && nzchar(x$newColorLabel) &&
+          !is.null(x$originalColorLabel) && nzchar(x$originalColorLabel)
+      })
+
+      if (all(valid_labels)) {
+        label_map_color <- setNames(
+          sapply(tab[["colorLabelRenamer"]], function(x) x$newColorLabel),
+          sapply(tab[["colorLabelRenamer"]], function(x) x$originalColorLabel)
+        )
+        if (length(label_map_color) > 0) {
+          tidyplot_obj <- tidyplots::rename_color_labels(tidyplot_obj, new_names = label_map_color)
+        }
       }
     }
 
@@ -565,6 +600,8 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       )
     }
 
+
+
     # Add Sum Value (tidyplots::add_sum_value)----
     if (tab[["addSumValue"]]) {
 
@@ -622,64 +659,58 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       )
     }
 
-    # Add Bar Stack Absolute (tidyplots::add_barstack_absolute)----
-    if (tab[["addBarStackAbsolute"]]) {
+    # Add proportion bar and area ####
+    # For Bar Stack, use the single "addBarStack" option.
+    if (tab[["addBarStack"]]) {
+      # Retrieve the proportion mode from the radio button group:
+      # It should be "absolute" or "relative".
+      mode <- tab[["propMode"]]
 
+      # Create the common argument list for the bar stack.
       argList <- list(
-        reverse = tab[["reverseBarStackAbsolute"]],
-        alpha   = tab[["alphaBarStackAbsolute"]]
+        reverse = tab[["reverseBarStack"]],
+        alpha   = tab[["alphaBarStack"]]
       )
 
-      tidyplot_obj <- do.call(
-        tidyplots::add_barstack_absolute,
-        c(list(tidyplot_obj), argList)
-      )
+      # Depending on the selected mode, call the appropriate function.
+      if (mode == "absolute") {
+        tidyplot_obj <- do.call(
+          tidyplots::add_barstack_absolute,
+          c(list(tidyplot_obj), argList)
+        )
+      } else if (mode == "relative") {
+        tidyplot_obj <- do.call(
+          tidyplots::add_barstack_relative,
+          c(list(tidyplot_obj), argList)
+        )
+      }
     }
 
-    # Add Bar Stack Relative (tidyplots::add_barstack_relative)----
-    if (tab[["addBarStackRelative"]]) {
+    # For Area Stack, use the single "addAreaStack" option.
+    if (tab[["addAreaStack"]]) {
+      # Retrieve the proportion mode ("absolute" or "relative").
+      mode <- tab[["propMode"]]
 
+      # Create the common argument list for the area stack.
       argList <- list(
-        reverse = tab[["reverseBarStackRelative"]],
-        alpha   = tab[["alphaBarStackRelative"]]
+        reverse    = tab[["reverseAreaStack"]],
+        alpha      = tab[["alphaAreaStack"]],
+        linewidth  = tab[["linewidthAreaStack"]],
+        replace_na = tab[["replaceNaAreaStack"]]
       )
 
-      tidyplot_obj <- do.call(
-        tidyplots::add_barstack_relative,
-        c(list(tidyplot_obj), argList)
-      )
-    }
-
-    # Add Area Stack Absolute (tidyplots::add_areastack_absolute)----
-    if (tab[["addAreaStackAbsolute"]]) {
-
-      argList <- list(
-        reverse    = tab[["reverseAreaStackAbsolute"]],
-        alpha      = tab[["alphaAreaStackAbsolute"]],
-        linewidth  = tab[["linewidthAreaStackAbsolute"]],
-        replace_na = tab[["replaceNaAreaStackAbsolute"]]
-      )
-
-      tidyplot_obj <- do.call(
-        tidyplots::add_areastack_absolute,
-        c(list(tidyplot_obj), argList)
-      )
-    }
-
-    # Add Area Stack Relative (tidyplots::add_areastack_relative)----
-    if (tab[["addAreaStackRelative"]]) {
-
-      argList <- list(
-        reverse    = tab[["reverseAreaStackRelative"]],
-        alpha      = tab[["alphaAreaStackRelative"]],
-        linewidth  = tab[["linewidthAreaStackRelative"]],
-        replace_na = tab[["replaceNaAreaStackRelative"]]
-      )
-
-      tidyplot_obj <- do.call(
-        tidyplots::add_areastack_relative,
-        c(list(tidyplot_obj), argList)
-      )
+      # Depending on the selected mode, call the appropriate function.
+      if (mode == "absolute") {
+        tidyplot_obj <- do.call(
+          tidyplots::add_areastack_absolute,
+          c(list(tidyplot_obj), argList)
+        )
+      } else if (mode == "relative") {
+        tidyplot_obj <- do.call(
+          tidyplots::add_areastack_relative,
+          c(list(tidyplot_obj), argList)
+        )
+      }
     }
 
     # Add Mean Bar (tidyplots::add_mean_bar)----
@@ -1123,6 +1154,13 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         argList$fill  <- "black"
       }
 
+      # If the color is based on the X or Y variable,
+      # force a single group (group = 1) so that the curve fit is applied
+      # to the entire dataset instead of separately for each color.
+      if (colorBy %in% c("x", "y")) {
+        argList$group <- 1
+      }
+
       tidyplot_obj <- do.call(
         tidyplots::add_curve_fit,
         c(list(tidyplot_obj), argList)
@@ -1184,82 +1222,75 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
    #Color palette settings ----
     if (!is.null(tab[["colorsAll"]])) {
-
       colorOption <- tab[["colorsAll"]]
 
-      # define tidy plot palette
-      tidy_colors <- list(
-        colors_discrete_friendly         = tidyplots::colors_discrete_friendly,
-        colors_discrete_seaside          = tidyplots::colors_discrete_seaside,
-        colors_discrete_apple            = tidyplots::colors_discrete_apple,
-        colors_discrete_friendly_long    = tidyplots::colors_discrete_friendly_long,
-        colors_discrete_okabeito         = tidyplots::colors_discrete_okabeito,
-        colors_discrete_ibm              = tidyplots::colors_discrete_ibm,
-        colors_discrete_metro            = tidyplots::colors_discrete_metro,
-        colors_discrete_candy            = tidyplots::colors_discrete_candy,
-        colors_continuous_viridis        = tidyplots::colors_continuous_viridis,
-        colors_continuous_magma          = tidyplots::colors_continuous_magma,
-        colors_continuous_inferno        = tidyplots::colors_continuous_inferno,
-        colors_continuous_plasma         = tidyplots::colors_continuous_plasma,
-        colors_continuous_cividis        = tidyplots::colors_continuous_cividis,
-        colors_continuous_rocket         = tidyplots::colors_continuous_rocket,
-        colors_continuous_mako           = tidyplots::colors_continuous_mako,
-        colors_continuous_turbo          = tidyplots::colors_continuous_turbo,
-        colors_continuous_bluepinkyellow = tidyplots::colors_continuous_bluepinkyellow,
-        colors_diverging_blue2red        = tidyplots::colors_diverging_blue2red,
-        colors_diverging_blue2brown      = tidyplots::colors_diverging_blue2brown,
-        colors_diverging_BuRd            = tidyplots::colors_diverging_BuRd,
-        colors_diverging_BuYlRd          = tidyplots::colors_diverging_BuYlRd,
-        colors_diverging_spectral        = tidyplots::colors_diverging_spectral,
-        colors_diverging_icefire         = tidyplots::colors_diverging_icefire
-      )
 
-      # define jasp palette
-      jasp_colors <- c("blue", "colorblind", "colorblind2",
-                       "colorblind3", "sportsTeamsNBA", "ggplot2",
-                       "grandBudapest", "jaspPalette", "gray")
+      if (is.null(tab[["customColors"]]) || nchar(trimws(tab[["customColors"]])) == 0) {
+        # define tidy plot palette
+        tidy_colors <- list(
+          colors_discrete_friendly         = tidyplots::colors_discrete_friendly,
+          colors_discrete_seaside          = tidyplots::colors_discrete_seaside,
+          colors_discrete_apple            = tidyplots::colors_discrete_apple,
+          colors_discrete_friendly_long    = tidyplots::colors_discrete_friendly_long,
+          colors_discrete_okabeito         = tidyplots::colors_discrete_okabeito,
+          colors_discrete_ibm              = tidyplots::colors_discrete_ibm,
+          colors_discrete_metro            = tidyplots::colors_discrete_metro,
+          colors_discrete_candy            = tidyplots::colors_discrete_candy,
+          colors_continuous_viridis        = tidyplots::colors_continuous_viridis,
+          colors_continuous_magma          = tidyplots::colors_continuous_magma,
+          colors_continuous_inferno        = tidyplots::colors_continuous_inferno,
+          colors_continuous_plasma         = tidyplots::colors_continuous_plasma,
+          colors_continuous_cividis        = tidyplots::colors_continuous_cividis,
+          colors_continuous_rocket         = tidyplots::colors_continuous_rocket,
+          colors_continuous_mako           = tidyplots::colors_continuous_mako,
+          colors_continuous_turbo          = tidyplots::colors_continuous_turbo,
+          colors_continuous_bluepinkyellow = tidyplots::colors_continuous_bluepinkyellow,
+          colors_diverging_blue2red        = tidyplots::colors_diverging_blue2red,
+          colors_diverging_blue2brown      = tidyplots::colors_diverging_blue2brown,
+          colors_diverging_BuRd            = tidyplots::colors_diverging_BuRd,
+          colors_diverging_BuYlRd          = tidyplots::colors_diverging_BuYlRd,
+          colors_diverging_spectral        = tidyplots::colors_diverging_spectral,
+          colors_diverging_icefire         = tidyplots::colors_diverging_icefire
+        )
 
-      # if tidy plot palette
-      if (colorOption %in% names(tidy_colors)) {
-        tidyplot_obj <- tidyplot_obj |>
-          tidyplots::adjust_colors(tidy_colors[[colorOption]])
-      }
+        # define jasp palette
+        jasp_colors <- c("blue", "colorblind", "colorblind2",
+                         "colorblind3", "sportsTeamsNBA", "ggplot2",
+                         "grandBudapest", "jaspPalette", "gray")
 
-      # if jasp palette
-      if (colorOption %in% jasp_colors) {
-
-        # color var or color by x/y?
-        activeColorVar <- NULL
-
-        if (isTRUE(tab[["colorByVariableX"]]) && !is.null(xVar) && xVar != "") {
-          activeColorVar <- xVar
-        } else if (isTRUE(tab[["colorByVariableY"]]) && !is.null(yVar) && yVar != "") {
-          activeColorVar <- yVar
-        } else if (!is.null(colorVar) && colorVar != "") {
-          activeColorVar <- colorVar
+        # if tidy plot palette
+        if (colorOption %in% names(tidy_colors)) {
+          tidyplot_obj <- tidyplot_obj |>
+            tidyplots::adjust_colors(tidy_colors[[colorOption]])
         }
 
-        # if color car
-        if (!is.null(activeColorVar) && activeColorVar %in% colnames(localData)) {
+        # if jasp palette
+        if (colorOption %in% jasp_colors) {
 
-          # if factor
-          if (is.factor(localData[[activeColorVar]])) {
-            tidyplot_obj <- tidyplot_obj |>
-              tidyplots::add(jaspGraphs::scale_JASPcolor_discrete(colorOption)) |>
-              tidyplots::add(jaspGraphs::scale_JASPfill_discrete(colorOption))
-
-            # if numeric
-          } else if (is.numeric(localData[[activeColorVar]])) {
-            tidyplot_obj <- tidyplot_obj |>
-              tidyplots::add(jaspGraphs::scale_JASPcolor_continuous(colorOption)) |>
-              tidyplots::add(jaspGraphs::scale_JASPfill_continuous(colorOption))
+          activeColorVar <- NULL
+          if (isTRUE(tab[["colorByVariableX"]]) && !is.null(xVar) && xVar != "") {
+            activeColorVar <- xVar
+          } else if (isTRUE(tab[["colorByVariableY"]]) && !is.null(yVar) && yVar != "") {
+            activeColorVar <- yVar
+          } else if (!is.null(colorVar) && colorVar != "") {
+            activeColorVar <- colorVar
           }
 
-        } else {
-
-          color <- jaspGraphs::JASPcolors(colorOption)
-          tidyplot_obj <- tidyplot_obj |>
-            tidyplots::adjust_colors(color)
+          if (!is.null(activeColorVar) && activeColorVar %in% colnames(localData)) {
+            if (is.factor(localData[[activeColorVar]])) {
+              tidyplot_obj <- tidyplot_obj |>
+                tidyplots::add(jaspGraphs::scale_JASPcolor_discrete(colorOption)) |>
+                tidyplots::add(jaspGraphs::scale_JASPfill_discrete(colorOption))
+            } else if (is.numeric(localData[[activeColorVar]])) {
+              tidyplot_obj <- tidyplot_obj |>
+                tidyplots::add(jaspGraphs::scale_JASPcolor_continuous(colorOption)) |>
+                tidyplots::add(jaspGraphs::scale_JASPfill_continuous(colorOption))
+            }
+          } else {
+            color <- jaspGraphs::JASPcolors(colorOption)
+            tidyplot_obj <- tidyplot_obj |>
+              tidyplots::adjust_colors(color)
+          }
         }
       }
     }
@@ -1268,9 +1299,8 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     if (!is.null(tab[["customColors"]]) && nchar(trimws(tab[["customColors"]])) > 0) {
       custom_colors <- strsplit(tab[["customColors"]], ",")[[1]]
       custom_colors <- trimws(custom_colors)
-
       tidyplot_obj <- tidyplot_obj |>
-        tidyplots::adjust_colors(new_colors = c(custom_colors))
+        tidyplots::adjust_colors(new_colors = custom_colors)
     }
 
     # The setting of Themes / legend position----
@@ -1505,12 +1535,14 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
     tidyplot_obj <- tidyplot_obj +
       ggplot2::theme(
-        legend.title  = ggplot2::element_text(
+        legend.title = ggplot2::element_text(
+          size   = baseFontSize *0.8,
           hjust  = 0,
-          margin = ggplot2::margin(10, 10, 10, 10)
+          margin = ggplot2::margin(5, 5, 5, 5)
         ),
-        legend.text   = ggplot2::element_text(
-          margin = ggplot2::margin(10, 10, 10, 10)
+        legend.text = ggplot2::element_text(
+          size   = baseFontSize *0.8,
+          margin = ggplot2::margin(5, 5, 5, 5)
         ),
         legend.margin = ggplot2::margin(10, 10, 10, 10),
         plot.margin   = ggplot2::margin(t = t, r = r, b = b, l = l)
@@ -1524,7 +1556,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
 
 
-    # 1) Facet logic for row / column
+    # Facet logic for row / column
     rowsVar <- tab[["rowsvariableSplitPlotBuilder"]]
     colsVar <- tab[["columnsvariableSplitPlotBuilder"]]
 
@@ -1535,17 +1567,19 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       tidyplot_obj <- tidyplot_obj +
         ggplot2::scale_y_continuous(
           sec.axis = ggplot2::sec_axis(~ .,
-                                       name   = paste0(rowsVar, " (binned)"),
+                                       name   = paste0(rowsVar),
                                        breaks = NULL,
-                                       labels = NULL
-          )
+                                       labels = NULL)
         )
     }
 
     if (hasCols) {
       tidyplot_obj <- tidyplot_obj +
-        ggplot2::ggtitle(colsVar) +
-        ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))
+        ggplot2::labs(subtitle = colsVar) +
+        ggplot2::theme(
+          plot.subtitle = ggplot2::element_text(size = baseFontSize, hjust = 0.5),
+          strip.text    = ggplot2::element_blank()
+        )
     }
 
     if (hasRows && hasCols) {
@@ -1908,203 +1942,204 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         columnGrid <- patchwork::wrap_plots(columnPlots, ncol = ncol, widths = columnsWidth) +
           patchwork::plot_layout(guides = layoutGuides)
       }
+    }
 
-      fullRowSpecifications <- options[["fullRowSpecifications"]]
-      if (!is.null(fullRowSpecifications) && length(fullRowSpecifications) > 0) {
-        fullRowPlots <- list()
+    fullRowSpecifications <- options[["fullRowSpecifications"]]
+    if (!is.null(fullRowSpecifications) && length(fullRowSpecifications) > 0) {
+      fullRowPlots <- list()
 
-        labelSize <- 5
-        if (!is.null(options[["labelSize"]])) {
-          labelSizeParsed <- as.numeric(options[["labelSize"]])
-          if (is.na(labelSizeParsed)) {
-            labelSizeParsed <- 5
+      labelSize <- 5
+      if (!is.null(options[["labelSize"]])) {
+        labelSizeParsed <- as.numeric(options[["labelSize"]])
+        if (is.na(labelSizeParsed)) {
+          labelSizeParsed <- 5
+        }
+        labelSize <- labelSizeParsed
+      }
+
+      for (rowIdx in seq_along(fullRowSpecifications)) {
+        rowSpec <- fullRowSpecifications[[rowIdx]]
+
+        plotIDsStr     <- rowSpec[["plotIDsFullRow"]]
+        labelsStr      <- rowSpec[["labelsFullRow"]]
+        relWidthsStr   <- rowSpec[["relWidthsFullRow"]]
+
+        getCommonLegendRow <- FALSE
+        if (!getCommonLegendGlobal && !is.null(rowSpec[["getCommonLegendRows"]])) {
+          if (rowSpec[["getCommonLegendRows"]]) {
+            getCommonLegendRow <- TRUE
           }
-          labelSize <- labelSizeParsed
         }
 
-        for (rowIdx in seq_along(fullRowSpecifications)) {
-          rowSpec <- fullRowSpecifications[[rowIdx]]
+        plotIDs <- strsplit(plotIDsStr, ",")[[1]]
+        plotIDs <- trimws(plotIDs)
+        nPlots  <- length(plotIDs)
 
-          plotIDsStr     <- rowSpec[["plotIDsFullRow"]]
-          labelsStr      <- rowSpec[["labelsFullRow"]]
-          relWidthsStr   <- rowSpec[["relWidthsFullRow"]]
-
-          getCommonLegendRow <- FALSE
-          if (!getCommonLegendGlobal && !is.null(rowSpec[["getCommonLegendRows"]])) {
-            if (rowSpec[["getCommonLegendRows"]]) {
-              getCommonLegendRow <- TRUE
-            }
+        relWidths <- rep(1, nPlots)
+        if (!is.null(relWidthsStr) && relWidthsStr != "") {
+          if (!grepl("^c\\s*\\(", relWidthsStr)) {
+            relWidthsStr <- paste0("c(", relWidthsStr, ")")
           }
-
-          plotIDs <- strsplit(plotIDsStr, ",")[[1]]
-          plotIDs <- trimws(plotIDs)
-          nPlots  <- length(plotIDs)
-
-          relWidths <- rep(1, nPlots)
-          if (!is.null(relWidthsStr) && relWidthsStr != "") {
-            if (!grepl("^c\\s*\\(", relWidthsStr)) {
-              relWidthsStr <- paste0("c(", relWidthsStr, ")")
-            }
-            relWidthsParsed <- tryCatch(
-              eval(parse(text = relWidthsStr)),
-              error = function(e) {
-                rep(1, nPlots)
-              }
-            )
-            if (length(relWidthsParsed) == nPlots) {
-              relWidths <- relWidthsParsed
-            }
-          }
-
-          labels <- NULL
-          if (!is.null(labelsStr) && labelsStr != "") {
-            labels <- strsplit(labelsStr, ",")[[1]]
-            labels <- trimws(labels)
-            if (length(labels) != nPlots) {
-              labels <- NULL
-            }
-          }
-
-          plotsInFullRow <- vector("list", nPlots)
-          for (idx in seq_len(nPlots)) {
-            plotID <- plotIDs[idx]
-            if (is.na(plotID) || plotID == "") {
-              plotsInFullRow[[idx]] <- ggplot2::ggplot() + ggplot2::theme_void()
-              next
-            }
-
-            matchedPlot <- updatedPlots[[plotID]]
-            if (!is.null(matchedPlot)) {
-              if (!is.null(labels) && labels[idx] != "") {
-                matchedPlot <- matchedPlot +
-                  ggplot2::labs(tag = labels[idx]) +
-                  ggplot2::theme(
-                    plot.tag.position = "topleft",
-                    plot.tag          = ggplot2::element_text(size = labelSize, face = "bold")
-                  )
-              }
-              if (getCommonLegendGlobal) {
-                matchedPlot <- matchedPlot + ggplot2::theme(legend.position = "none")
-              }
-              plotsInFullRow[[idx]] <- matchedPlot
-            } else {
-              plotsInFullRow[[idx]] <- ggplot2::ggplot() + ggplot2::theme_void()
-            }
-          }
-
-          collectLegends   <- if (getCommonLegendGlobal) FALSE else getCommonLegendRow
-          layoutGuidesFull <- if (collectLegends) "collect" else "auto"
-
-          fullRowPatchwork <- patchwork::wrap_plots(plotsInFullRow, ncol = nPlots, widths = relWidths) +
-            patchwork::plot_layout(guides = layoutGuidesFull)
-
-          if (collectLegends) {
-            fullRowPatchwork <- fullRowPatchwork &
-              ggplot2::theme(legend.position = "right")
-          }
-
-          fullRowPlots <- append(fullRowPlots, list(fullRowPatchwork))
-        }
-
-        relheightWithinRowLayoutStr <- options[["relHeightWithinRowLayout"]]
-        if (!is.null(relheightWithinRowLayoutStr) && relheightWithinRowLayoutStr != "") {
-          if (!grepl("^c\\s*\\(", relheightWithinRowLayoutStr)) {
-            relheightWithinRowLayoutStr <- paste0("c(", relheightWithinRowLayoutStr, ")")
-          }
-          relheightWithinRowLayout <- tryCatch(
-            eval(parse(text = relheightWithinRowLayoutStr)),
+          relWidthsParsed <- tryCatch(
+            eval(parse(text = relWidthsStr)),
             error = function(e) {
-              rep(1, length(fullRowPlots))
+              rep(1, nPlots)
             }
           )
-          if (length(relheightWithinRowLayout) != length(fullRowPlots)) {
-            relheightWithinRowLayout <- rep(1, length(fullRowPlots))
+          if (length(relWidthsParsed) == nPlots) {
+            relWidths <- relWidthsParsed
           }
-        } else {
+        }
+
+        labels <- NULL
+        if (!is.null(labelsStr) && labelsStr != "") {
+          labels <- strsplit(labelsStr, ",")[[1]]
+          labels <- trimws(labels)
+          if (length(labels) != nPlots) {
+            labels <- NULL
+          }
+        }
+
+        plotsInFullRow <- vector("list", nPlots)
+        for (idx in seq_len(nPlots)) {
+          plotID <- plotIDs[idx]
+          if (is.na(plotID) || plotID == "") {
+            plotsInFullRow[[idx]] <- ggplot2::ggplot() + ggplot2::theme_void()
+            next
+          }
+
+          matchedPlot <- updatedPlots[[plotID]]
+          if (!is.null(matchedPlot)) {
+            if (!is.null(labels) && labels[idx] != "") {
+              matchedPlot <- matchedPlot +
+                ggplot2::labs(tag = labels[idx]) +
+                ggplot2::theme(
+                  plot.tag.position = "topleft",
+                  plot.tag          = ggplot2::element_text(size = labelSize, face = "bold")
+                )
+            }
+            if (getCommonLegendGlobal) {
+              matchedPlot <- matchedPlot + ggplot2::theme(legend.position = "none")
+            }
+            plotsInFullRow[[idx]] <- matchedPlot
+          } else {
+            plotsInFullRow[[idx]] <- ggplot2::ggplot() + ggplot2::theme_void()
+          }
+        }
+
+        collectLegends   <- if (getCommonLegendGlobal) FALSE else getCommonLegendRow
+        layoutGuidesFull <- if (collectLegends) "collect" else "auto"
+
+        fullRowPatchwork <- patchwork::wrap_plots(plotsInFullRow, ncol = nPlots, widths = relWidths) +
+          patchwork::plot_layout(guides = layoutGuidesFull)
+
+        if (collectLegends) {
+          fullRowPatchwork <- fullRowPatchwork &
+            ggplot2::theme(legend.position = "right")
+        }
+
+        fullRowPlots <- append(fullRowPlots, list(fullRowPatchwork))
+      }
+
+      relheightWithinRowLayoutStr <- options[["relHeightWithinRowLayout"]]
+      if (!is.null(relheightWithinRowLayoutStr) && relheightWithinRowLayoutStr != "") {
+        if (!grepl("^c\\s*\\(", relheightWithinRowLayoutStr)) {
+          relheightWithinRowLayoutStr <- paste0("c(", relheightWithinRowLayoutStr, ")")
+        }
+        relheightWithinRowLayout <- tryCatch(
+          eval(parse(text = relheightWithinRowLayoutStr)),
+          error = function(e) {
+            rep(1, length(fullRowPlots))
+          }
+        )
+        if (length(relheightWithinRowLayout) != length(fullRowPlots)) {
           relheightWithinRowLayout <- rep(1, length(fullRowPlots))
         }
-
-        if (length(fullRowPlots) > 0) {
-          fullRowGrid <- patchwork::wrap_plots(fullRowPlots, ncol = 1, heights = relheightWithinRowLayout) +
-            patchwork::plot_layout(guides = "auto")
-        }
-      }
-
-      relativeHeightStr <- options[["relativeHeight"]]
-      if (!is.null(relativeHeightStr) && relativeHeightStr != "") {
-        if (!grepl("^c\\s*\\(", relativeHeightStr)) {
-          relativeHeightStr <- paste0("c(", relativeHeightStr, ")")
-        }
-        relativeHeight <- tryCatch(
-          eval(parse(text = relativeHeightStr)),
-          error = function(e) {
-            c(1, 1)
-          }
-        )
-        if (!is.null(columnGrid) && !is.null(fullRowGrid)) {
-          if (length(relativeHeight) != 2) {
-            relativeHeight <- c(1, 1)
-          }
-        } else {
-          relativeHeight <- 1
-        }
       } else {
-        if (!is.null(columnGrid) && !is.null(fullRowGrid)) {
-          relativeHeight <- c(1, 1)
-        } else {
-          relativeHeight <- 1
-        }
+        relheightWithinRowLayout <- rep(1, length(fullRowPlots))
       }
 
+      if (length(fullRowPlots) > 0) {
+        fullRowGrid <- patchwork::wrap_plots(fullRowPlots, ncol = 1, heights = relheightWithinRowLayout) +
+          patchwork::plot_layout(guides = "auto")
+      }
+    }
+
+    relativeHeightStr <- options[["relativeHeight"]]
+    if (!is.null(relativeHeightStr) && relativeHeightStr != "") {
+      if (!grepl("^c\\s*\\(", relativeHeightStr)) {
+        relativeHeightStr <- paste0("c(", relativeHeightStr, ")")
+      }
+      relativeHeight <- tryCatch(
+        eval(parse(text = relativeHeightStr)),
+        error = function(e) {
+          c(1, 1)
+        }
+      )
       if (!is.null(columnGrid) && !is.null(fullRowGrid)) {
-        if (getCommonLegendGlobal) {
-          finalGrid <- (columnGrid / fullRowGrid) +
-            patchwork::plot_layout(heights = relativeHeight, guides = "collect") &
-            ggplot2::theme(legend.position = "right")
-        } else {
-          finalGrid <- (columnGrid / fullRowGrid) +
-            patchwork::plot_layout(heights = relativeHeight, guides = "auto")
-        }
-      } else if (!is.null(columnGrid)) {
-        if (getCommonLegendGlobal) {
-          finalGrid <- columnGrid + patchwork::plot_layout(guides = "collect") &
-            ggplot2::theme(legend.position = "right")
-        } else {
-          finalGrid <- columnGrid + patchwork::plot_layout(guides = "auto")
-        }
-      } else if (!is.null(fullRowGrid)) {
-        if (getCommonLegendGlobal) {
-          finalGrid <- fullRowGrid + patchwork::plot_layout(guides = "collect") &
-            ggplot2::theme(legend.position = "right")
-        } else {
-          finalGrid <- fullRowGrid + patchwork::plot_layout(guides = "auto")
+        if (length(relativeHeight) != 2) {
+          relativeHeight <- c(1, 1)
         }
       } else {
-        finalGrid <- ggplot2::ggplot() +
-          ggplot2::ggtitle("No plots available") +
-          ggplot2::theme_void()
+        relativeHeight <- 1
       }
+    } else {
+      if (!is.null(columnGrid) && !is.null(fullRowGrid)) {
+        relativeHeight <- c(1, 1)
+      } else {
+        relativeHeight <- 1
+      }
+    }
 
-      if (!is(plotGridContainer[["plotGrid"]], "JaspPlot")) {
-        gridPlot <- createJaspPlot(
-          title  = "Combined Plot Grid",
-          width  = options[["layoutWidth"]],
-          height = options[["layoutHeight"]]
-        )
-        gridPlot$plotObject <- finalGrid
-        gridPlot$dependOn(
-          c(
-            "compilePlotGrid", "rowSpecifications", "fullRowSpecifications",
-            "getCommonLegend", "relHeightWithinRowLayout", "relativeHeight",
-            "columnWidthInput", "labelSize",
-            "layoutWidth", "layoutHeight"
-          )
-        )
-        plotGridContainer[["plotGrid"]] <- gridPlot
+    if (!is.null(columnGrid) && !is.null(fullRowGrid)) {
+      if (getCommonLegendGlobal) {
+        finalGrid <- (columnGrid / fullRowGrid) +
+          patchwork::plot_layout(heights = relativeHeight, guides = "collect") &
+          ggplot2::theme(legend.position = "right")
       } else {
-        plotGridContainer[["plotGrid"]]$plotObject <- finalGrid
+        finalGrid <- (columnGrid / fullRowGrid) +
+          patchwork::plot_layout(heights = relativeHeight, guides = "auto")
       }
+    } else if (!is.null(columnGrid)) {
+      if (getCommonLegendGlobal) {
+        finalGrid <- columnGrid + patchwork::plot_layout(guides = "collect") &
+          ggplot2::theme(legend.position = "right")
+      } else {
+        finalGrid <- columnGrid + patchwork::plot_layout(guides = "auto")
+      }
+    } else if (!is.null(fullRowGrid)) {
+      if (getCommonLegendGlobal) {
+        finalGrid <- fullRowGrid + patchwork::plot_layout(guides = "collect") &
+          ggplot2::theme(legend.position = "right")
+      } else {
+        finalGrid <- fullRowGrid + patchwork::plot_layout(guides = "auto")
+      }
+    } else {
+      finalGrid <- ggplot2::ggplot() +
+        ggplot2::ggtitle("No plots available") +
+        ggplot2::theme_void()
+    }
+
+    if (!is(plotGridContainer[["plotGrid"]], "JaspPlot")) {
+      gridPlot <- createJaspPlot(
+        title  = "Combined Plot Grid",
+        width  = options[["layoutWidth"]],
+        height = options[["layoutHeight"]]
+      )
+      gridPlot$plotObject <- finalGrid
+      gridPlot$dependOn(
+        c(
+          "compilePlotGrid", "rowSpecifications", "fullRowSpecifications",
+          "getCommonLegend", "relHeightWithinRowLayout", "relativeHeight",
+          "columnWidthInput", "labelSize",
+          "layoutWidth", "layoutHeight"
+        )
+      )
+      plotGridContainer[["plotGrid"]] <- gridPlot
+    } else {
+      plotGridContainer[["plotGrid"]]$plotObject <- finalGrid
     }
   }
 }
+
 
