@@ -1800,7 +1800,7 @@ Form {
                         name: "addRangeErrorBar"
                         label: qsTr("Range error bar")
                         info: qsTr("Enable to add range error bars to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
                         onEnabledChanged: {
                             if (!enabled) {
@@ -1840,7 +1840,7 @@ Form {
                         name: "addSDErrorBar"
                         label: qsTr("SD error bar")
                         info: qsTr("Enable to add standard deviation error bars to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
                         onEnabledChanged: {
                             if (!enabled) {
@@ -1881,7 +1881,7 @@ Form {
                         name: "addSEMErrorBar"
                         label: qsTr("SEM error bar")
                         info: qsTr("Enable to add SEM error bars to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
                         onEnabledChanged: {
                             if (!enabled) {
@@ -1922,7 +1922,7 @@ Form {
                         name: "addCI95ErrorBar"
                         label: qsTr("95% CI Error Bar")
                         info: qsTr("Enable to add 95% confidence interval error bars to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
                         onEnabledChanged: {
                             if (!enabled) {
@@ -1974,7 +1974,7 @@ Form {
                         name: "addRangeRibbon"
                         label: qsTr("Range ribbon")
                         info: qsTr("Enable to add a range ribbon to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
                         onEnabledChanged: {
                             if (!enabled) {
@@ -2002,7 +2002,7 @@ Form {
                         name: "addSdRibbon"
                         label: qsTr("SD ribbon")
                         info: qsTr("Enable to add an SD ribbon to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
                         onEnabledChanged: {
                             if (!enabled) {
@@ -2030,7 +2030,7 @@ Form {
                         name: "addSemRibbon"
                         label: qsTr("SEM ribbon")
                         info: qsTr("Enable to add a SEM ribbon to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
                         onEnabledChanged: {
                             if (!enabled) {
@@ -2057,7 +2057,7 @@ Form {
                         name: "addCi95Ribbon"
                         label: qsTr("95% CI ribbon")
                         info: qsTr("Enable to add a 95% confidence interval ribbon to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
+                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
                                   || isRM.value === "RM")
                         onEnabledChanged: {
                             if (!enabled) {
