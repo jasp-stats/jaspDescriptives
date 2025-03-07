@@ -2873,7 +2873,7 @@ Form {
 
                 rowComponent: Row {
                     Group {
-                        title: qsTr("Plots")
+                        title: qsTr("Row ") + (rowIndex + 1)
 
                         TextField {
                             name: "plotIDsFullRow"
