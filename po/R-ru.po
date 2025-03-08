@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2024-07-13 03:18\n"
+"POT-Creation-Date: 2025-03-08 03:18\n"
 "PO-Revision-Date: 2024-10-06 18:00+0000\n"
 "Last-Translator: Valery Egorova <l.eremeyeva@yandex.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
@@ -81,8 +81,8 @@ msgstr ""
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
 msgstr ""
-"Графа \"начало\" должна быть заполнена в формате даты и времени (н., 0000-00-"
-"00 00:00:00)."
+"Графа \"начало\" должна быть заполнена в формате даты и времени (н., "
+"0000-00-00 00:00:00)."
 
 msgid "The 'Start' value of the filter should be before last observation."
 msgstr ""
@@ -90,8 +90,8 @@ msgstr ""
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
 msgstr ""
-"Графа \"конец\" должна быть заполнена в формате даты и времени (н., 0000-00-"
-"00 00:00:00)."
+"Графа \"конец\" должна быть заполнена в формате даты и времени (н., "
+"0000-00-00 00:00:00)."
 
 msgid ""
 "The 'End' value of the filter should be larger/later than the 'Start' value."
@@ -270,9 +270,6 @@ msgid ""
 msgstr ""
 
 msgid "The mode is computed assuming that variables are discrete."
-msgstr ""
-
-msgid "The mode is computed assuming that variables are discreet."
 msgstr ""
 
 msgid "Total"
