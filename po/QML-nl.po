@@ -2353,24 +2353,22 @@ msgstr ""
 "Geef aantallen, proporties of voorwaardelijke proporties weer "
 "(voorwaardelijk voor elke categorie op de x-as)."
 
-msgctxt "raincloudPlots|"
-msgid ""
-"Note: This module has a <a href='https://www.youtube.com/watch?"
-"v=AAdXUAl_w6E'>youtube tutorial</a> & requires data in long format."
-msgstr ""
-"Opmerking: Deze module heeft een <a href='https://www.youtube.com/watch?"
-"v=AAdXUAl_w6E'>youtube tutorial</a> en vereist gegevens in lang formaat."
-
 msgctxt "Descriptives|"
 msgid "Number of valid observations"
 msgstr "Aantal geldige waarnemingen"
 
 msgctxt "raincloudPlots|"
-msgid ""
-"This module has a <a href='https://www.youtube.com/watch?"
-"v=AAdXUAl_w6E'>youtube tutorial</a>"
+msgid "If you use this module, please cite it as:"
 msgstr ""
 
+#, qt-format
 msgctxt "raincloudPlots|"
-msgid "If you use this module, please cite it as:"
+msgid "This module has a %1 youtube tutorial"
+msgstr ""
+
+#, qt-format
+msgctxt "raincloudPlots|"
+msgid ""
+"Note: This module has a %1 youtube tutorial %2 & requires data in long "
+"format."
 msgstr ""

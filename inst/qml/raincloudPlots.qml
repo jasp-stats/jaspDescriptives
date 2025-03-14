@@ -25,7 +25,7 @@ Form
 {
 	columns: 1
 
-	info: qsTr("This module has a <a href='https://www.youtube.com/watch?v=AAdXUAl_w6E'>youtube tutorial</a>") + "<br><br>" +
+	info: qsTr("This module has a %1 youtube tutorial").arg("<a href='https://www.youtube.com/watch?v=AAdXUAl_w6E'>")+ "</a> <br><br>" +
 		qsTr("If you use this module, please cite it as:") +
 		  "<br>Ott, V. L, van den Bergh, D., Boutin, B., van Doorn, J., Bartoš, F., Judd, N., Luke, K., Kievit, R. A., Groot, L., and Wagenmakers, E.-J. (2024). Informative Data Visualization with Raincloud Plots in JASP. OSF Preprint. <a href=\"https://doi.org/10.31219/osf.io/gv3ph\">https://doi.org/10.31219/osf.io/gv3ph</a>"
 
@@ -125,7 +125,7 @@ Form
 
 	Label
 	{
-		text: qsTr("Note: This module has a <a href='https://www.youtube.com/watch?v=AAdXUAl_w6E'>youtube tutorial</a> & requires data in long format.")
+		text: qsTr("Note: This module has a %1 youtube tutorial %2 & requires data in long format.").arg("<a href='https://www.youtube.com/watch?v=AAdXUAl_w6E'>").arg("</a>")
 		onLinkActivated: (link)=>{ Qt.openUrlExternally(link) }
 	}
 

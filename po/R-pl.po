@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2024-07-13 03:18\n"
+"POT-Creation-Date: 2025-03-08 03:18\n"
 "PO-Revision-Date: 2024-09-05 15:09+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
@@ -276,9 +276,6 @@ msgstr ""
 msgid "The mode is computed assuming that variables are discrete."
 msgstr "Modalna została obliczona przy założeniu, że zmienne są dyskretne."
 
-msgid "The mode is computed assuming that variables are discreet."
-msgstr "Modalna została obliczona przy założeniu, że zmienne są dyskretne."
-
 msgid "Total"
 msgstr "Całość"
 
@@ -485,6 +482,9 @@ msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "Punkt dziesiętny znajduje się %s cyfrę na lewo od |"
 msgstr[1] "Punkt dziesiętny znajduje się %s cyfry na lewo od |"
 msgstr[2] "Punkt dziesiętny znajduje się %s cyfr na lewo od |"
+
+#~ msgid "The mode is computed assuming that variables are discreet."
+#~ msgstr "Modalna została obliczona przy założeniu, że zmienne są dyskretne."
 
 #~ msgid "Not all values are available for <i>Nominal Text</i> variables"
 #~ msgstr ""

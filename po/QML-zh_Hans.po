@@ -2192,24 +2192,22 @@ msgid ""
 "each category on the x-axis)."
 msgstr "显示计数、比例或条件比例（每个类别在 x 轴上的条件比例）。"
 
-msgctxt "raincloudPlots|"
-msgid ""
-"Note: This module has a <a href='https://www.youtube.com/watch?"
-"v=AAdXUAl_w6E'>youtube tutorial</a> & requires data in long format."
-msgstr ""
-"注意：此模块有一个YouTube教程：https://www.youtube.com/watch?v=AAdXUAl_w6E，"
-"并且需要数据采用长格式。"
-
 msgctxt "Descriptives|"
 msgid "Number of valid observations"
 msgstr "有效观察值的数量"
 
 msgctxt "raincloudPlots|"
-msgid ""
-"This module has a <a href='https://www.youtube.com/watch?"
-"v=AAdXUAl_w6E'>youtube tutorial</a>"
-msgstr "该模块有一个 YouTube教程：https://www.youtube.com/watch?v=AAdXUAl_w6E"
-
-msgctxt "raincloudPlots|"
 msgid "If you use this module, please cite it as:"
 msgstr "如果你使用此模块，请引用为："
+
+#, qt-format
+msgctxt "raincloudPlots|"
+msgid "This module has a %1 youtube tutorial"
+msgstr ""
+
+#, qt-format
+msgctxt "raincloudPlots|"
+msgid ""
+"Note: This module has a %1 youtube tutorial %2 & requires data in long "
+"format."
+msgstr ""

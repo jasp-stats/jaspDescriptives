@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.19.2\n"
-"POT-Creation-Date: 2024-10-19 03:19\n"
+"POT-Creation-Date: 2025-03-08 03:18\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -243,9 +243,6 @@ msgid "More than one mode exists. For nominal and ordinal data, the first mode i
 msgstr ""
 
 msgid "The mode is computed assuming that variables are discrete."
-msgstr ""
-
-msgid "The mode is computed assuming that variables are discreet."
 msgstr ""
 
 msgid "Total"

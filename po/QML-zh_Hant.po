@@ -276,7 +276,7 @@ msgstr "變異係數"
 
 msgctxt "Description|"
 msgid "Explore the data with tables and plots"
-msgstr "以統計圖表探索資料"
+msgstr "以統計量或圖表描述資料的特性"
 
 msgctxt "Descriptives|"
 msgid "Transpose descriptives table"
@@ -582,7 +582,7 @@ msgstr "不顯示統計圖"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Lag plot"
-msgstr ""
+msgstr "滯後圖"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
@@ -2044,24 +2044,22 @@ msgid ""
 "each category on the x-axis)."
 msgstr ""
 
-msgctxt "raincloudPlots|"
-msgid ""
-"Note: This module has a <a href='https://www.youtube.com/watch?"
-"v=AAdXUAl_w6E'>youtube tutorial</a> & requires data in long format."
-msgstr ""
-"注意：本模組提供<a href='https://www.youtube.com/watch?v=AAdXUAl_w6E'>Youtube"
-"影音教學</a> & 需要使用長格式的資料。"
-
 msgctxt "Descriptives|"
 msgid "Number of valid observations"
 msgstr "有效觀察值的數量"
 
 msgctxt "raincloudPlots|"
-msgid ""
-"This module has a <a href='https://www.youtube.com/watch?"
-"v=AAdXUAl_w6E'>youtube tutorial</a>"
+msgid "If you use this module, please cite it as:"
 msgstr ""
 
+#, qt-format
 msgctxt "raincloudPlots|"
-msgid "If you use this module, please cite it as:"
+msgid "This module has a %1 youtube tutorial"
+msgstr ""
+
+#, qt-format
+msgctxt "raincloudPlots|"
+msgid ""
+"Note: This module has a %1 youtube tutorial %2 & requires data in long "
+"format."
 msgstr ""
