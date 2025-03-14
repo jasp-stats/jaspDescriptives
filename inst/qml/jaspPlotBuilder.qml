@@ -2738,26 +2738,24 @@ Form {
                         name: "removeLegendTitle"
                         label: qsTr("Remove title")
                     }
-
-                    ComponentsList {
-                        name: "colorLabelRenamer"
-                        title: qsTr("Rename labels")
-                        addItemManually: true
-                        minimumItems: 0
-                        rowComponent: Row {
-                            TextField {
-                                name: "originalColorLabel"
-                                label: qsTr("Original label")
-                                fieldWidth: 100
-                            }
-                            TextField {
-                                name: "newColorLabel"
-                                label: qsTr("New label")
-                                fieldWidth: 100
-                            }
+                }
+                ComponentsList {
+                    name: "colorLabelRenamer"
+                    title: qsTr("Rename labels")
+                    addItemManually: true
+                    minimumItems: 0
+                    rowComponent: Row {
+                        TextField {
+                            name: "originalColorLabel"
+                            label: qsTr("Original label")
+                            fieldWidth: 100
+                        }
+                        TextField {
+                            name: "newColorLabel"
+                            label: qsTr("New label")
+                            fieldWidth: 100
                         }
                     }
-
                 }
             }
 
@@ -2891,17 +2889,16 @@ Form {
 
     Section {
         title: qsTr("Plot layout")
-        columns:4
+        columns: 1
 
         Group {
-            title: qsTr("Arrange the plots by column")
+            title: qsTr("Arrange plots by column")
 
             // Relative width of the columns
             TextField {
                 name: "columnWidthInput"
-                label: qsTr("Relative width of the columns")
+                label: qsTr("Relative column widths")
                 placeholderText: qsTr("1,1")
-                fieldWidth: 300
             }
 
             // Row Specifications ComponentsList
@@ -2911,6 +2908,7 @@ Form {
                 title: qsTr("Specify layout")
                 addItemManually: true
                 newItemName: qsTr("Column 1")
+                Layout.preferredWidth: form.width - 2 * jaspTheme.generalAnchorMargin
 
                 rowComponent: Row {
                     Group {
@@ -2919,26 +2917,24 @@ Form {
                         TextField {
                             name: "plotIDs"
                             label: qsTr("Plot IDs")
-                            placeholderText: qsTr("Plot 1, Plot 2 ...")
-                            fieldWidth: 120
+                            placeholderText: qsTr("Plot 1, Plot 2, ...")
                         }
 
                         TextField {
                             name: "rowHeightsColumn"
                             label: qsTr("Plot heights")
                             placeholderText: qsTr("1,1")
-                            fieldWidth: 120
                         }
                     }
 
                     Group {
-                        title: qsTr("Labels and legend")
+                        title: " "
 
                         TextField {
                             name: "labelsColumn"
                             label: qsTr("Labels")
-                            placeholderText: qsTr("A, B, C, etc...")
-                            fieldWidth: 90
+                            placeholderText: qsTr("A, B, C, ...")
+                            fieldWidth: 150
                         }
 
                         CheckBox {
@@ -2951,22 +2947,22 @@ Form {
         }
 
         Group {
-            title: qsTr("Arrange the plots by plot")
+            title: qsTr("Arrange plots by row")
 
             // Relative height within row layout
             TextField {
                 name: "relHeightWithinRowLayout"
-                label: qsTr("Relative height of the rows")
+                label: qsTr("Relative row heights")
                 placeholderText: qsTr("1,1")
-                fieldWidth: 300
             }
 
             // Full Row Specifications ComponentsList
             ComponentsList {
                 id: fullRowSpecifications
                 name: "fullRowSpecifications"
-                title: qsTr("Specify full row layout")
+                title: qsTr("Specify layout")
                 addItemManually: true
+                Layout.preferredWidth: form.width - 2 * jaspTheme.generalAnchorMargin
 
                 rowComponent: Row {
                     Group {
@@ -2975,31 +2971,29 @@ Form {
                         TextField {
                             name: "plotIDsFullRow"
                             label: qsTr("Plot IDs")
-                            placeholderText: qsTr("Plot 1, Plot 2 ...")
-                            fieldWidth: 120
+                            placeholderText: qsTr("Plot 1, Plot 2, ...")
                         }
 
                         TextField {
                             name: "relWidthsFullRow"
                             label: qsTr("Plot widths")
                             placeholderText: qsTr("1,1")
-                            fieldWidth: 120
                         }
                     }
 
                     Group {
-                        title: qsTr("Labels and legend")
+                        title: " "
 
                         TextField {
                             name: "labelsFullRow"
                             label: qsTr("Labels")
-                            placeholderText: qsTr("A, B, etc...")
-                            fieldWidth: 120
+                            placeholderText: qsTr("A, B, C, ...")
+                            fieldWidth: 150
                         }
 
                         CheckBox {
                             name: "getCommonLegendRows"
-                            label: qsTr("Legend")
+                            label: qsTr("Collect legend")
                         }
                     }
                 }
@@ -3008,9 +3002,7 @@ Form {
 
 
         Label {
-            text: qsTr("Note: If you have a column and row arrangement,
-the column will be the top part of the whole layout
-and the row will be the bottom part.")
+            text: qsTr("Note: If you have column and row arrangement," + "\n" + "the column will be the top part of the layout" + "\n" + "and the row will be the bottom part of the layout.")
             wrapMode: Text.Wrap
             color: "black"
         }
@@ -3051,14 +3043,7 @@ and the row will be the bottom part.")
 
                     CheckBox {
                         name: "getCommonLegend"
-                        label: qsTr("Common legend for the entire layout")
-                    }
-                }
-
-                Group {
-                    CheckBox {
-                        name: "compilePlotGrid"
-                        label: qsTr("Compile plot grid")
+                        label: qsTr("Collect legend across layout")
                     }
                 }
             }
