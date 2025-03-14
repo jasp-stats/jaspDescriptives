@@ -55,7 +55,7 @@ Form {
                     id:						isRM
                     Layout.columnSpan:		1
                     name:					"isRM"
-                    title:					qsTr("Repeated measurements?")
+                    title:					qsTr("Repeated measurements")
                     radioButtonsOnSameRow:	true
                     columns:				2
                     info: qsTr("Choose whether you want to make plots of repeated measurements from repeated measurements.")
@@ -80,64 +80,14 @@ Form {
 
                     removeInvisibles:	true
                     preferredWidth: jaspForm.width - 2 * jaspTheme.contentMargin
-                    preferredHeight: 500
+                    preferredHeight: yesRM.checked ? 500  * jaspTheme.uiScale : 250 * jaspTheme.uiScale
 
                     infoLabel: qsTr("Input")
                     AvailableVariablesList { name: "allVariablesList"}
 
-
-                    AssignedVariablesList {
-                        name: "variableRepeatedMeasures"
-                        title: qsTr("Repeated measures variables")
-                        visible: yesRM.checked
-                        property bool active: yesRM.checked
-                        onActiveChanged: if (!active && count > 0) itemDoubleClicked(0)
-                    }
-
-                    TextField {
-                        name: "rmFactorText"
-                        id: rmFactorText
-                        placeholderText: qsTr("Repeated-measures factor (e.g., Time, Dose, Concentration)")
-                        visible: yesRM.checked
-                        property bool active: yesRM.checked
-                        onActiveChanged: if (!active && count > 0) itemDoubleClicked(0)
-                        info: qsTr("Repeated-measures factor (e.g., Time, Dose, Concentration)")
-                        fieldWidth: 239
-                    }
-
-                    TextField {
-                        name: "dimensionText"
-                        id: dimensionText
-                        placeholderText: qsTr("Measurement dimension (e.g., cm, mg, minutes)")
-                        visible: yesRM.checked
-                        property bool active: yesRM.checked
-                        onActiveChanged: if (!active && count > 0) itemDoubleClicked(0)
-                        info: qsTr("Measurement dimension (e.g., cm, mg, minutes)")
-                        fieldWidth: 239
-                    }
-
-                    CheckBox {
-                        name:"useRMFactorAsFill"
-                        id:useRMFactorAsFill
-                        label: qsTr("Use RM factor as a group/color variable")
-                        visible: yesRM.checked
-                    }
-
-                    AssignedVariablesList {
-                        name: "variableYPlotBuilder"
-                        title: qsTr("Y Axis Variable")
-                        allowedColumns: ["scale", "ordinal", "nominal"]
-                        id: variableYPlotBuilder
-                        singleVariable: true
-                        visible: noRM.checked
-                        property bool active: noRM.checked
-                        onActiveChanged: if (!active && count > 0) itemDoubleClicked(0)
-                        info: qsTr("Select the variable for the Y-axis.")
-                    }
-
                     AssignedVariablesList {
                         name: "variableXPlotBuilder"
-                        title: qsTr("X Axis Variable")
+                        title: qsTr("X-Axis Variable")
                         id: variableXPlotBuilder
                         allowedColumns: ["scale", "ordinal", "nominal"]
                         minLevels: 2
@@ -145,6 +95,26 @@ Form {
                         info: qsTr("Select the variable for the X-axis.")
                         property bool active: noRM.checked
                         onActiveChanged: if (!active && count > 0) itemDoubleClicked(0)
+                    }
+
+                    AssignedVariablesList {
+                        name: "variableRepeatedMeasures"
+                        title: qsTr("Repeated Measures Variables")
+                        visible: yesRM.checked
+                        property bool active: yesRM.checked
+                        onActiveChanged: if (!active && count > 0) itemDoubleClicked(0)
+                    }
+
+                    AssignedVariablesList {
+                        name: "variableYPlotBuilder"
+                        title: qsTr("Y-Axis Variable")
+                        allowedColumns: ["scale", "ordinal", "nominal"]
+                        id: variableYPlotBuilder
+                        singleVariable: true
+                        visible: noRM.checked
+                        property bool active: noRM.checked
+                        onActiveChanged: if (!active && count > 0) itemDoubleClicked(0)
+                        info: qsTr("Select the variable for the Y-axis.")
                     }
 
                     AssignedVariablesList {
@@ -180,29 +150,6 @@ Form {
                         singleVariable: true
                         info: qsTr("You can choose a variable to split the plots into rows.")
                     }
-
-                    Group {
-                        title: qsTr("Plot size")
-                        columns: 2
-
-                        DoubleField {
-                            id: plotWidth
-                            name: "widthPlotBuilder"
-                            label: qsTr("Width (px)")
-                            defaultValue: 380
-                            fieldWidth: 50
-
-                        }
-
-                        DoubleField {
-                            id: plotHeight
-                            name: "heightPlotBuilder"
-                            label: qsTr("Height (px)")
-                            defaultValue: 300
-                            fieldWidth: 50
-                        }
-                    }
-
                 }
             } // End variables form
 
@@ -219,9 +166,14 @@ Form {
 
             Section {
                 title: qsTr("Individual data points")
+                Label {
+                    text: qsTr("Individual data points requires both x-axis and y-axis variables")
+                    wrapMode: Text.Wrap
+                    color: "black"
+                }
                 CheckBox {
                     name: "addDataPoint"
-                    label: qsTr("Add individual data points")
+                    label: qsTr("Individual data points")
                     id: addDataPoint
                     info: qsTr("Check this option to show individual data points on the plot.")
                     columns: 4
@@ -269,7 +221,7 @@ Form {
                         DoubleField {
                             name: "alphaPlotBuilder"
                             id: alphaPlotBuilder
-                            label: "Transparency"
+                            label: qsTr("Transparency")
                             value: 1
                             min: 0
                             max: 1
@@ -324,7 +276,8 @@ Form {
                 title: qsTr("Distributions (histogram, boxplot, violin)")
 
                 Label {
-                    text: qsTr("To create a histogram, please select only one variable (X or Y)")
+                    text: qsTr("Histogram requires either x-axis or y-axis variable, but not both" + "\n" +
+                               "Boxplot and violin plot require both x-axis and y-axis variables")
                     wrapMode: Text.Wrap
                     color: "black"
                 }
@@ -339,7 +292,7 @@ Form {
                     CheckBox {
                         name: "addHistogram"
                         id: addHistogram
-                        label: qsTr("Add histogram")
+                        label: qsTr("Histogram")
                         info: qsTr("Check this option to create histogram for x or y variables.")
                         enabled: (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0)
                                  && !(variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
@@ -373,7 +326,7 @@ Form {
                     CheckBox {
                         name: "addBoxplot"
                         id: addBoxplot
-                        label: qsTr("Add boxplot")
+                        label: qsTr("Boxplot")
                         info: qsTr("Check this option to create boxplot.")
                         enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
                                   (isRM.value === "RM"))
@@ -455,7 +408,7 @@ Form {
                     CheckBox {
                         name: "addViolin"
                         id: addViolin
-                        label: qsTr("Add violin plot")
+                        label: qsTr("Violin plot")
                         info: qsTr("Check this option to add a violin plot to your visualization.")
                         enabled: ((variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0) ||
                                   (isRM.value === "RM"))
@@ -534,7 +487,7 @@ Form {
                 title: qsTr("Amounts (count and sum)")
 
                 Label {
-                    text: qsTr("Represent counts (requires only X or Y variables)")
+                    text: qsTr("Counts requires either x-axis or y-axis variable, but not both")
                     wrapMode: Text.Wrap
                     color: "black"
                 }
@@ -789,7 +742,7 @@ Form {
 
 
                 Label {
-                    text: qsTr("Represent sums (requires X and Y variables)")
+                    text: qsTr("Sums require both x-axis and y-axis variables")
                     wrapMode: Text.Wrap
                     color: "black"
                 }
@@ -1186,7 +1139,7 @@ Form {
                 title: qsTr("Proportions")
 
                 Label {
-                    text: qsTr("Represent absolute or relative proportions (requires X or Y and Group/Color variables)")
+                    text: qsTr("Proportions require group variable and either x-axis or y-axis variable, but not both")
                     wrapMode: Text.Wrap
                     color: "black"
                 }
@@ -1215,7 +1168,7 @@ Form {
 
                     CheckBox {
                         name: "addBarStack"
-                        label: qsTr("Add Bar Stack")
+                        label: qsTr("Bar stack")
                         info: qsTr("Add a bar stack to the plot. The mode (absolute or relative) is set by the Proportion Mode above.")
                         enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0)
                                    && variableColorPlotBuilder.count > 0)
@@ -1243,7 +1196,7 @@ Form {
 
                     CheckBox {
                         name: "addAreaStack"
-                        label: qsTr("Add Area Stack")
+                        label: qsTr("Area stack")
                         info: qsTr("Add an area stack to the plot. The mode (absolute or relative) is set by the Proportion Mode above.")
                         enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0)
                                    && variableColorPlotBuilder.count > 0)
@@ -1290,7 +1243,7 @@ Form {
                 title: qsTr("Mean")
 
                 Label {
-                    text: qsTr("Represent mean (requires X and Y variables)")
+                    text: qsTr("Mean requires both x-axis and y-axis variables")
                     wrapMode: Text.Wrap
                     color: "black"
                 }
@@ -1536,7 +1489,7 @@ Form {
                 title: qsTr("Median")
 
                 Label {
-                    text: qsTr("Represent median (requires X and Y variables)")
+                    text: qsTr("Median requires both x-axis and y-axis variables")
                     wrapMode: Text.Wrap
                     color: "black"
                 }
@@ -1781,10 +1734,11 @@ Form {
             // Error bars and ribbons (range, sd, sem, 95% CI)
             // -------------------------------------------------------------------
             Section {
-                title: qsTr("Error bars and ribbons (Range, SD, SEM, 95%CI)")
+                title: qsTr("Error bars and ribbons (range, SD, SEM, 95% CI)")
 
                 Label {
-                    text: qsTr("Error bars (requires X and Y variables)")
+                    text: qsTr("Error bars and ribbons require both x-axis and y-axis variables" + "\n" +
+                               "The optimal dodge value is 0 if both x-axis and y-axis variables are continuous")	
                     wrapMode: Text.Wrap
                     color: "black"
                 }
@@ -1956,12 +1910,6 @@ Form {
                             label: qsTr("Black lines")
                         }
                     }
-                }
-
-                Label {
-                    text: qsTr("Error ribbons (requires X and Y variables) \n The optimal dodge value is 0 if both X and Y are continuous")
-                    wrapMode: Text.Wrap
-                    color: "black"
                 }
 
                 GridLayout {
@@ -2167,14 +2115,14 @@ Form {
                     Group {
                         TextField {
                             name: "xReferenceLine"
-                            label: qsTr("X Intersections")
+                            label: qsTr("X-axis intercept")
                             placeholderText: qsTr("e.g. 0.5, 1, 3")
                             fieldWidth: 100
                         }
 
                         TextField {
                             name: "yReferenceLine"
-                            label: qsTr("Y Intersections")
+                            label: qsTr("Y-axis intercept")
                             placeholderText: qsTr("e.g. 0.5, 1, 3")
                             fieldWidth: 100
                         }
@@ -2281,15 +2229,15 @@ Form {
             Section {
                 columns: 3
 
-                title: qsTr("Adjust X axis")
+                title: qsTr("X-axis")
 
 
                 TextField {
                     label: qsTr("Title")
                     name: "titleXPlotBuilder"
-                    placeholderText: qsTr("Enter X axis title")
+                    placeholderText: qsTr("Enter x-axis title")
                     fieldWidth: 300
-                    info: qsTr("Specify the title for the X-axis")
+                    info: qsTr("Specify the title for the x-axis")
                     Layout.columnSpan: 3
                 }
 
@@ -2328,7 +2276,7 @@ Form {
 
                     TextField {
                         name: "breakByX"
-                        label: qsTr("by")
+                        label: qsTr("By")
                         fieldWidth: 40
                     }
                 }
@@ -2338,25 +2286,25 @@ Form {
                     title: qsTr("Labels")
                     CheckBox {
                         name: "rotateXLabel"
-                        label: "Rotate X label"
+                        label: "Rotate"
                     }
 
                     CheckBox {
                         name: "cutShortScale"
-                        label: qsTr("Shorten labels")
+                        label: qsTr("Shorten")
                         info: qsTr("Whether to shorten axis labels using K for thousand, M for million, and so on.")
                     }
 
 
                     CheckBox {
                         name: "enableSort"
-                        label: qsTr("Enable Sorting")
+                        label: qsTr("Sort")
                         checked: false  // Alapértelmezett állapot
 
 
                         DropDown {
                             name: "sortXLabelsOrder"
-                            label: qsTr("Sort x-axis labels")
+                            label: qsTr("Order")
                             values: ["Increasing", "Decreasing"]
                             startValue: "Increasing"
                         }
@@ -2373,7 +2321,7 @@ Form {
 
                 ComponentsList {
                     name: "xAxisLabelRenamer"
-                    title: qsTr("New X-axis labels")
+                    title: qsTr("Rename labels")
                     addItemManually: true
                     minimumItems: 0
                     rowComponent: Row {
@@ -2395,12 +2343,12 @@ Form {
             Section {
                 columns: 3
 
-                title: qsTr("Adjust Y axis")
+                title: qsTr("Y-axis")
 
                 TextField {
                     label: qsTr("Title")
                     name: "titleYPlotBuilder"
-                    placeholderText: qsTr("Enter Y axis title")
+                    placeholderText: qsTr("Enter y-axis title")
                     fieldWidth: 300
                     info: qsTr("Specify the title for the Y-axis.")
                     Layout.columnSpan: 3
@@ -2441,7 +2389,7 @@ Form {
 
                     TextField {
                         name: "breakByY"
-                        label: qsTr("by")
+                        label: qsTr("By")
                         fieldWidth: 40
                     }
                 }
@@ -2452,12 +2400,12 @@ Form {
 
                     CheckBox {
                         name: "rotateYLabel"
-                        label: qsTr("Rotate y-axis label")
+                        label: qsTr("Rotate")
                     }
 
                     CheckBox {
                         name: "cutShortScaleY"
-                        label: qsTr("Shorten labels")
+                        label: qsTr("Shorten")
                         info: qsTr("Whether to shorten axis labels using K for thousand, M for million, and so on.")
                     }
 
@@ -2469,7 +2417,7 @@ Form {
 
                         DropDown {
                             name: "sortYLabelsOrder"
-                            label: qsTr("Sort y-axis labels")
+                            label: qsTr("Sort")
                             values: ["Increasing", "Decreasing"]
                             startValue: "Increasing"
                         }
@@ -2484,7 +2432,7 @@ Form {
                 }
                 ComponentsList {
                     name: "yAxisLabelRenamer"
-                    title: qsTr("New y-axis labels")
+                    title: qsTr("Rename labels")
                     addItemManually: true
                     minimumItems: 0
                     rowComponent: Row {
@@ -2514,7 +2462,7 @@ Form {
 
                         TextField {
                             name: "titlePlotBuilder"
-                            label: qsTr("Title:")
+                            label: qsTr("Title")
                             placeholderText: qsTr("Enter the plot title here")
                             fieldWidth: 300
 
@@ -2570,14 +2518,14 @@ Form {
 
 
             Label {
-                text: qsTr("Style, colors and legend")
+                text: qsTr("Theme, colors, size, and legend")
                 wrapMode: Text.Wrap
                 color: "black"
             }
 
 
             Section {
-                title: qsTr("Plot style")
+                title: qsTr("Theme and color")
 
                 // Bal oszlop: Alap plot beállítások
                 Group {
@@ -2585,7 +2533,7 @@ Form {
 
                     DropDown {
                         name: "plotStyle"
-                        label: qsTr("Plot style")
+                        label: qsTr("Theme")
                         values: ["JASP", "ggplotgray", "ggpubr", "PlotBuilder"]
                         indexDefaultValue: 0
                     }
@@ -2593,33 +2541,6 @@ Form {
                         name: "baseFontSize"
                         label: qsTr("Font base size")
                         value: 18
-                    }
-                }
-
-                // Jobb oszlop: Margók
-                Group {
-                    title: qsTr("Margins")
-                    columns: 4
-
-                    DoubleField {
-                        name: "topMargin"
-                        label: qsTr("Top")
-                        value: 10
-                    }
-                    DoubleField {
-                        name: "bottomMargin"
-                        label: qsTr("Bottom")
-                        value: 10
-                    }
-                    DoubleField {
-                        name: "leftMargin"
-                        label: qsTr("Left")
-                        value: 10
-                    }
-                    DoubleField {
-                        name: "rightMargin"
-                        label: qsTr("Right")
-                        value: 10
                     }
                 }
 
@@ -2645,7 +2566,7 @@ Form {
                         }
                         RadioButton {
                             value: "grouping"
-                            label: qsTr("Grouping variable")
+                            label: qsTr("Group variable")
                             enabled: variableColorPlotBuilder.count > 0
                             // Ha van csoportosító változó, akkor ez legyen alapértelmezett.
                             checked: variableColorPlotBuilder.count > 0
@@ -2742,23 +2663,71 @@ Form {
 
             }
 
+            Section {
+                title: qsTr("Size and margins")
+                columns: 1
 
+                Group {
+                    title: qsTr("Plot size")
+                    columns: 2
 
+                    DoubleField {
+                        id: plotWidth
+                        name: "widthPlotBuilder"
+                        label: qsTr("Width (px)")
+                        defaultValue: 380
+                        fieldWidth: 50
+                    }
 
+                    DoubleField {
+                        id: plotHeight
+                        name: "heightPlotBuilder"
+                        label: qsTr("Height (px)")
+                        defaultValue: 300
+                        fieldWidth: 50
+                    }
+                }
+
+                // Jobb oszlop: Margók
+                Group {
+                    title: qsTr("Margins")
+                    columns: 4
+
+                    DoubleField {
+                        name: "topMargin"
+                        label: qsTr("Top")
+                        value: 10
+                    }
+                    DoubleField {
+                        name: "bottomMargin"
+                        label: qsTr("Bottom")
+                        value: 10
+                    }
+                    DoubleField {
+                        name: "leftMargin"
+                        label: qsTr("Left")
+                        value: 10
+                    }
+                    DoubleField {
+                        name: "rightMargin"
+                        label: qsTr("Right")
+                        value: 10
+                    }
+                }
+            }
 
             // -------------------------------------------------------------------
             // Edit style and colors
             // -------------------------------------------------------------------
             Section {
-                title: qsTr("Adjust legend")
+                title: qsTr("Legend")
 
                 Group {
-                    title: "Legend settings"
                     columns:2
 
                     DropDown {
                         name: "legendPosistionPlotBuilder"
-                        label: qsTr("Legend position")
+                        label: qsTr("Position")
                         id: legendPosistionPlotBuilder
                         indexDefaultValue: 0
                         fieldWidth: 150
@@ -2773,12 +2742,12 @@ Form {
 
                     CheckBox {
                         name: "removeLegendTitle"
-                        label: qsTr("Remove legend title")
+                        label: qsTr("Remove title")
                     }
 
                     ComponentsList {
                         name: "colorLabelRenamer"
-                        title: qsTr("New color labels")
+                        title: qsTr("Rename labels")
                         addItemManually: true
                         minimumItems: 0
                         rowComponent: Row {
@@ -2812,7 +2781,7 @@ Form {
                 columns: 3
 
                 Label {
-                    text: qsTr("Available when the categorical variable is on the X axis")
+                    text: qsTr("P value brackets require categorical x-axis variable")
                     wrapMode: Text.Wrap
                     color: "black"
                     Layout.columnSpan: 3
