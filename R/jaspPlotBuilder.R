@@ -20,11 +20,6 @@
 # Main function ----
 jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
-
-
-  # Set title
-  jaspResults$title <- "Plot builder"
-
   # Initialize options
   options <- .plotBuilderInitOptions(jaspResults, options)
 
@@ -1201,23 +1196,9 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         tidyplots::add_title(title = tab[["titlePlotBuilder"]])
     }
 
-    # Add caption (tidyplots::add_caption) ----
-    if (tab[["addCaptionPlotBuilder"]]) {
+    if (!is.null(tab[["captionPlotBuilder"]]) && tab[["captionPlotBuilder"]] != "") {
       tidyplot_obj <- tidyplot_obj |>
         tidyplots::add_caption(caption = tab[["captionPlotBuilder"]])
-    }
-
-    # Possibly re-apply if user directly typed into titlePlotBuilder / captionPlotBuilder
-    titleValue <- tab[["titlePlotBuilder"]]
-    if (!is.null(titleValue) && titleValue != "") {
-      tidyplot_obj <- tidyplot_obj |>
-        tidyplots::add_title(title = titleValue)
-    }
-
-    captionValue <- tab[["captionPlotBuilder"]]
-    if (!is.null(captionValue) && captionValue != "") {
-      tidyplot_obj <- tidyplot_obj |>
-        tidyplots::add_caption(caption = captionValue)
     }
 
    #Color palette settings ----

@@ -2469,14 +2469,8 @@ Form {
                     }
                 }
 
-                Group {
-                    CheckBox {
-                        name: "addCaptionPlotBuilder"
-                        label: qsTr("Add caption")
-                    }
-                }
-
                 TextArea {
+                    title: qsTr("Caption")
                     name: "captionPlotBuilder"
                     height: 100
                 }
