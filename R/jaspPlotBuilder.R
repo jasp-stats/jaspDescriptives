@@ -1761,7 +1761,24 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 }
 
 
-# plot builder ----
+# plot layout  ----
+.validLayoutSpecified <- function(options) {
+  validRowSpecs <- FALSE
+  if (!is.null(options[["rowSpecifications"]]) && length(options[["rowSpecifications"]]) > 0) {
+    validRowSpecs <- any(sapply(options[["rowSpecifications"]], function(spec) {
+      !is.null(spec[["plotIDs"]]) && nchar(spec[["plotIDs"]]) > 0
+    }))
+  }
+
+  validFullRowSpecs <- FALSE
+  if (!is.null(options[["fullRowSpecifications"]]) && length(options[["fullRowSpecifications"]]) > 0) {
+    validFullRowSpecs <- any(sapply(options[["fullRowSpecifications"]], function(spec) {
+      !is.null(spec[["plotIDsFullRow"]]) && nchar(spec[["plotIDsFullRow"]]) > 0
+    }))
+  }
+  return(validRowSpecs || validFullRowSpecs)
+}
+
 .plotBuilderOutputPlotGrid <- function(jaspResults, options, plotResults, dataset) {
   updatedPlots <- plotResults$updatedPlots
 
@@ -1777,13 +1794,13 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     getCommonLegendGlobal <- TRUE
   }
 
-  if (!is.null(options[["compilePlotGrid"]]) && options[["compilePlotGrid"]]) {
+  # A grid-összeállítás elindul, ha a specifikációban van valamilyen karakter (akár vessző, akár szóköz)
+  if (.validLayoutSpecified(options)) {
     columnGrid  <- NULL
     fullRowGrid <- NULL
 
     rowSpecifications <- options[["rowSpecifications"]]
     if (!is.null(rowSpecifications) && length(rowSpecifications) > 0) {
-
       ncol <- length(rowSpecifications)
 
       columnsWidth <- options[["columnWidthInput"]]
@@ -1793,9 +1810,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         }
         columnsWidth <- tryCatch(
           eval(parse(text = columnsWidth)),
-          error = function(e) {
-            rep(1, ncol)
-          }
+          error = function(e) { rep(1, ncol) }
         )
         if (length(columnsWidth) != ncol) {
           columnsWidth <- rep(1, ncol)
@@ -1807,9 +1822,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       labelSize <- 5
       if (!is.null(options[["labelSize"]])) {
         labelSizeParsed <- as.numeric(options[["labelSize"]])
-        if (is.na(labelSizeParsed)) {
-          labelSizeParsed <- 5
-        }
+        if (is.na(labelSizeParsed)) { labelSizeParsed <- 5 }
         labelSize <- labelSizeParsed
       }
 
@@ -1820,9 +1833,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         }
         relativeHeight <- tryCatch(
           eval(parse(text = relativeHeight)),
-          error = function(e) {
-            rep(1, ncol)
-          }
+          error = function(e) { rep(1, ncol) }
         )
         if (length(relativeHeight) != ncol) {
           relativeHeight <- rep(1, ncol)
@@ -1848,9 +1859,16 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
           }
         }
 
-        plotIDs <- strsplit(plotIDsStr, ",")[[1]]
-        plotIDs <- trimws(plotIDs)
-        nRows   <- length(plotIDs)
+        # Daraboljuk a sort vessző mentén, de megtartjuk az üres elemeket:
+        plotIDs <- unlist(strsplit(plotIDsStr, ","))
+        if(length(plotIDs) == 0) {
+          plotIDs <- c("")
+        } else {
+          plotIDs <- sapply(plotIDs, function(x) {
+            if(nchar(trimws(x)) == 0) "" else trimws(x)
+          })
+        }
+        nRows <- length(plotIDs)
 
         rowHeights <- rep(1, nRows)
         if (!is.null(rowHeightsStr) && rowHeightsStr != "") {
@@ -1859,22 +1877,18 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
           }
           rowHeightsParsed <- tryCatch(
             eval(parse(text = rowHeightsStr)),
-            error = function(e) {
-              rep(1, nRows)
-            }
+            error = function(e) { rep(1, nRows) }
           )
-          if (length(rowHeightsParsed) == nRows) {
-            rowHeights <- rowHeightsParsed
-          }
+          if (length(rowHeightsParsed) == nRows) { rowHeights <- rowHeightsParsed }
         }
 
         labels <- NULL
         if (!is.null(labelsStr) && labelsStr != "") {
-          labels <- strsplit(labelsStr, ",")[[1]]
-          labels <- trimws(labels)
-          if (length(labels) != nRows) {
-            labels <- NULL
-          }
+          labels <- unlist(strsplit(labelsStr, ","))
+          labels <- sapply(labels, function(x) {
+            if(nchar(trimws(x)) == 0) "" else trimws(x)
+          })
+          if (length(labels) != nRows) { labels <- NULL }
         }
 
         plotsInColumn <- vector("list", nRows)
@@ -1914,12 +1928,11 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
           columnPatchwork <- columnPatchwork &
             ggplot2::theme(legend.position = "right")
         }
-
         return(columnPatchwork)
       })
 
       if (length(columnPlots) > 0) {
-        layoutGuides <- if (getCommonLegendGlobal) "auto" else "auto"
+        layoutGuides <- "auto"
         columnGrid <- patchwork::wrap_plots(columnPlots, ncol = ncol, widths = columnsWidth) +
           patchwork::plot_layout(guides = layoutGuides)
       }
@@ -1932,9 +1945,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       labelSize <- 5
       if (!is.null(options[["labelSize"]])) {
         labelSizeParsed <- as.numeric(options[["labelSize"]])
-        if (is.na(labelSizeParsed)) {
-          labelSizeParsed <- 5
-        }
+        if (is.na(labelSizeParsed)) { labelSizeParsed <- 5 }
         labelSize <- labelSizeParsed
       }
 
@@ -1952,9 +1963,15 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
           }
         }
 
-        plotIDs <- strsplit(plotIDsStr, ",")[[1]]
-        plotIDs <- trimws(plotIDs)
-        nPlots  <- length(plotIDs)
+        plotIDs <- unlist(strsplit(plotIDsStr, ","))
+        if(length(plotIDs) == 0) {
+          plotIDs <- c("")
+        } else {
+          plotIDs <- sapply(plotIDs, function(x) {
+            if(nchar(trimws(x)) == 0) "" else trimws(x)
+          })
+        }
+        nPlots <- length(plotIDs)
 
         relWidths <- rep(1, nPlots)
         if (!is.null(relWidthsStr) && relWidthsStr != "") {
@@ -1963,22 +1980,18 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
           }
           relWidthsParsed <- tryCatch(
             eval(parse(text = relWidthsStr)),
-            error = function(e) {
-              rep(1, nPlots)
-            }
+            error = function(e) { rep(1, nPlots) }
           )
-          if (length(relWidthsParsed) == nPlots) {
-            relWidths <- relWidthsParsed
-          }
+          if (length(relWidthsParsed) == nPlots) { relWidths <- relWidthsParsed }
         }
 
         labels <- NULL
         if (!is.null(labelsStr) && labelsStr != "") {
-          labels <- strsplit(labelsStr, ",")[[1]]
-          labels <- trimws(labels)
-          if (length(labels) != nPlots) {
-            labels <- NULL
-          }
+          labels <- unlist(strsplit(labelsStr, ","))
+          labels <- sapply(labels, function(x) {
+            if(nchar(trimws(x)) == 0) "" else trimws(x)
+          })
+          if (length(labels) != nPlots) { labels <- NULL }
         }
 
         plotsInFullRow <- vector("list", nPlots)
@@ -2008,7 +2021,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
           }
         }
 
-        collectLegends   <- if (getCommonLegendGlobal) FALSE else getCommonLegendRow
+        collectLegends <- if (getCommonLegendGlobal) FALSE else getCommonLegendRow
         layoutGuidesFull <- if (collectLegends) "collect" else "auto"
 
         fullRowPatchwork <- patchwork::wrap_plots(plotsInFullRow, ncol = nPlots, widths = relWidths) +
@@ -2029,9 +2042,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         }
         relheightWithinRowLayout <- tryCatch(
           eval(parse(text = relheightWithinRowLayoutStr)),
-          error = function(e) {
-            rep(1, length(fullRowPlots))
-          }
+          error = function(e) { rep(1, length(fullRowPlots)) }
         )
         if (length(relheightWithinRowLayout) != length(fullRowPlots)) {
           relheightWithinRowLayout <- rep(1, length(fullRowPlots))
@@ -2053,14 +2064,10 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
       relativeHeight <- tryCatch(
         eval(parse(text = relativeHeightStr)),
-        error = function(e) {
-          c(1, 1)
-        }
+        error = function(e) { c(1, 1) }
       )
       if (!is.null(columnGrid) && !is.null(fullRowGrid)) {
-        if (length(relativeHeight) != 2) {
-          relativeHeight <- c(1, 1)
-        }
+        if (length(relativeHeight) != 2) { relativeHeight <- c(1, 1) }
       } else {
         relativeHeight <- 1
       }
@@ -2110,7 +2117,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       gridPlot$plotObject <- finalGrid
       gridPlot$dependOn(
         c(
-          "compilePlotGrid", "rowSpecifications", "fullRowSpecifications",
+          "rowSpecifications", "fullRowSpecifications",
           "getCommonLegend", "relHeightWithinRowLayout", "relativeHeight",
           "columnWidthInput", "labelSize",
           "layoutWidth", "layoutHeight"
@@ -2122,5 +2129,3 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     }
   }
 }
-
-

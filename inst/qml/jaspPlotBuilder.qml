@@ -983,157 +983,6 @@ Form {
             // -------------------------------------------------------------------
             // Proportions (bar/area stack)
             // -------------------------------------------------------------------
-            // Section {
-            //     title: qsTr("Proportions")
-
-            //     Label {
-            //         text: qsTr("Represent absolute or relative proportions (requires X or Y and Group/Color variables)")
-            //         wrapMode: Text.Wrap
-            //         color: "black"
-            //     }
-
-            //     GridLayout {
-            //         columns: 2
-            //         rowSpacing: 40
-            //         columnSpacing: 70
-
-            //         // Bar Stack Absolute
-            //         CheckBox {
-            //             name: "addBarStackAbsolute"
-            //             label: qsTr("Bar stack (absolute)")
-            //             info: qsTr("Add an absolute bar stack to the plot.")
-            //             enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0) && variableColorPlotBuilder.count > 0)
-            //                       && !(variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0))
-            //                       || isRM.value === "RM"
-            //             onEnabledChanged: {
-            //                 if (!enabled) {
-            //                     checked = false;
-            //                 }
-            //             }
-
-            //             DoubleField {
-            //                 name: "alphaBarStackAbsolute"
-            //                 label: qsTr("Transparency")
-            //                 defaultValue: 0.8
-            //                 min: 0
-            //                 max: 1
-            //             }
-            //             CheckBox {
-            //                 name: "reverseBarStackAbsolute"
-            //                 label: qsTr("Reverse order")
-            //                 checked: false
-            //             }
-
-            //         }
-
-            //         // Bar Stack Relative
-            //         CheckBox {
-            //             name: "addBarStackRelative"
-            //             label: qsTr("Bar stack (relative)")
-            //             info: qsTr("Add a relative bar stack to the plot.")
-            //             enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
-            //                       || isRM.value === "RM")
-            //             onEnabledChanged: {
-            //                 if (!enabled) {
-            //                     checked = false;
-            //                 }
-            //             }
-
-            //             DoubleField {
-            //                 name: "alphaBarStackRelative"
-            //                 label: qsTr("Transparency")
-            //                 defaultValue: 0.8
-            //                 min: 0
-            //                 max: 1
-            //             }
-            //             CheckBox {
-            //                 name: "reverseBarStackRelative"
-            //                 label: qsTr("Reverse order")
-            //                 checked: false
-            //             }
-
-            //         }
-
-            //         // Area Stack Absolute
-            //         CheckBox {
-            //             name: "addAreaStackAbsolute"
-            //             label: qsTr("Area stack (absolute)")
-            //             info: qsTr("Add an absolute area stack to the plot.")
-            //             enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
-            //                       || isRM.value === "RM")
-            //             onEnabledChanged: {
-            //                 if (!enabled) {
-            //                     checked = false;
-            //                 }
-            //             }
-
-            //             DoubleField {
-            //                 name: "alphaAreaStackAbsolute"
-            //                 label: qsTr("Transparency")
-            //                 defaultValue: 0.4
-            //                 min: 0
-            //                 max: 1
-            //             }
-            //             DoubleField {
-            //                 name: "linewidthAreaStackAbsolute"
-            //                 label: qsTr("Line width")
-            //                 defaultValue: 0.25
-            //                 min: 0
-            //             }
-            //             CheckBox {
-            //                 name: "reverseAreaStackAbsolute"
-            //                 label: qsTr("Reverse order")
-            //                 checked: false
-            //             }
-            //             CheckBox {
-            //                 name: "replaceNaAreaStackAbsolute"
-            //                 label: qsTr("Replace N/A")
-            //                 checked: false
-            //             }
-
-
-            //         }
-
-            //         // Area Stack Relative
-            //         CheckBox {
-            //             name: "addAreaStackRelative"
-            //             label: qsTr("Area stack (relative)")
-            //             info: qsTr("Add a relative area stack to the plot.")
-            //             enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0))
-            //                       || isRM.value === "RM")
-            //             onEnabledChanged: {
-            //                 if (!enabled) {
-            //                     checked = false;
-            //                 }
-            //             }
-
-            //             DoubleField {
-            //                 name: "alphaAreaStackRelative"
-            //                 label: qsTr("Transparency")
-            //                 defaultValue: 0.4
-            //                 min: 0
-            //                 max: 1
-            //             }
-            //             DoubleField {
-            //                 name: "linewidthAreaStackRelative"
-            //                 label: qsTr("Line width")
-            //                 defaultValue: 0.25
-            //                 min: 0
-            //             }
-            //             CheckBox {
-            //                 name: "reverseAreaStackRelative"
-            //                 label: qsTr("Reverse order")
-            //                 checked: false
-            //             }
-            //             CheckBox {
-            //                 name: "replaceNaAreaStackRelative"
-            //                 label: qsTr("Replace N/A")
-            //                 checked: false
-            //             }
-
-            //         }
-            //     }
-            // }
 
             Section {
                 title: qsTr("Proportions")
@@ -2538,7 +2387,6 @@ Form {
                     }
                 }
 
-                // Középső oszlop: Színbeállítások (RadioButtonGroup használatával)
                 Group {
                     title: qsTr("Color settings")
                     columns: 1
@@ -2549,12 +2397,10 @@ Form {
                         radioButtonsOnSameRow: true
                         columns: 5
 
-                        // "None" opció – ez jelzi, hogy nem akarunk semmi alapján színezni.
                         RadioButton {
                             value: "none"
                             label: qsTr("None")
                             enabled: true
-                            // Ha nincs elérhető csoportosító változó, ez legyen az alapértelmezett.
                             checked: variableColorPlotBuilder.count === 0
                             onEnabledChanged: { if (!enabled && checked) { checked = false; } }
                         }
@@ -2588,9 +2434,6 @@ Form {
                             onEnabledChanged: { if (!enabled && checked) { checked = false; } }
                         }
                     }
-
-
-
 
                     DropDown {
                         name: "colorsAll"
@@ -3052,5 +2895,4 @@ Form {
 }
 
 // End Form
-
 
