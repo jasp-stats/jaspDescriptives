@@ -2766,6 +2766,7 @@ Form {
                         TextField {
                             name: "rowHeightsColumn"
                             label: qsTr("Plot heights")
+                            info: qsTr("Specify the relative heights of the plots in the specified column.")
                             placeholderText: qsTr("1,1")
                         }
                     }
@@ -2820,6 +2821,7 @@ Form {
                         TextField {
                             name: "relWidthsFullRow"
                             label: qsTr("Plot widths")
+                            info: qsTr("Specify the relative widths of the plots in the specified row.")
                             placeholderText: qsTr("1,1")
                         }
                     }
@@ -2861,8 +2863,9 @@ Form {
                 Group {
                     TextField {
                         name: "relativeHeight"
-                        label: qsTr("Relative height of column and row arrangement")
+                        label: qsTr("Column heights/row widths")
                         placeholderText: qsTr("1,1")
+                        info: qsTr("Specify the relative heights of the columns or widths of the rows in the plot layout.")
                         fieldWidth: 150
                     }
 
