@@ -2822,7 +2822,7 @@ Form {
                             name: "relWidthsFullRow"
                             label: qsTr("Plot widths")
                             info: qsTr("Specify the relative widths of the plots in the specified row.")
-                            placeholderText: qsTr("1,1")
+                            placeholderText: "1,1"
                         }
                     }
 
