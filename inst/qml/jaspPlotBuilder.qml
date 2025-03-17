@@ -2797,7 +2797,7 @@ Form {
             TextField {
                 name: "relHeightWithinRowLayout"
                 label: qsTr("Relative row heights")
-                placeholderText: qsTr("1,1")
+                placeholderText: "1,1"
             }
 
             // Full Row Specifications ComponentsList
