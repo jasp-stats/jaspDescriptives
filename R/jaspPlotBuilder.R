@@ -1559,7 +1559,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         ggplot2::labs(subtitle = colsVar) +
         ggplot2::theme(
           plot.subtitle = ggplot2::element_text(size = baseFontSize, hjust = 0.5),
-          strip.text    = ggplot2::element_blank()
+          strip.text = ggplot2::element_text(size = baseFontSize)
         )
     }
 
