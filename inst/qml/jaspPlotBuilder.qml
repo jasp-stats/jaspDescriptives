@@ -2864,7 +2864,7 @@ Form {
                     TextField {
                         name: "relativeHeight"
                         label: qsTr("Column heights/row widths")
-                        placeholderText: qsTr("1,1")
+                        placeholderText: "1,1"
                         info: qsTr("Specify the relative heights of the columns or widths of the rows in the plot layout.")
                         fieldWidth: 150
                     }
