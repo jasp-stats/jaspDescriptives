@@ -2370,7 +2370,6 @@ Form {
             Section {
                 title: qsTr("Theme and color")
 
-                // Bal oszlop: Alap plot beállítások
                 Group {
                     columns: 2
 
@@ -2408,7 +2407,6 @@ Form {
                             value: "grouping"
                             label: qsTr("Group variable")
                             enabled: variableColorPlotBuilder.count > 0
-                            // Ha van csoportosító változó, akkor ez legyen alapértelmezett.
                             checked: variableColorPlotBuilder.count > 0
                             onEnabledChanged: { if (!enabled && checked) { checked = false; } }
                         }
