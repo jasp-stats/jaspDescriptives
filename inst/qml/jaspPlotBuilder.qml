@@ -185,7 +185,6 @@ Form {
                         }
                     }
 
-
                     Group {
                         DoubleField {
                             name: "pointsizePlotBuilder"
@@ -195,7 +194,6 @@ Form {
                             min: 0
                             max: 10
                         }
-
                     }
 
                     Group {
@@ -222,7 +220,7 @@ Form {
                             name: "alphaPlotBuilder"
                             id: alphaPlotBuilder
                             label: qsTr("Transparency")
-                            value: 1
+                            value: 0.5
                             min: 0
                             max: 1
                         }
@@ -234,11 +232,20 @@ Form {
                         }
                     }
 
-                    CheckBox {
-                        name: "blackOutlineDataPoint"
-                        label: qsTr("Black outline")
-                        checked: true
+                    Group{
+                        CheckBox {
+                            name: "blackOutlineDataPoint"
+                            label: qsTr("Black outline")
+                            checked: false
+                        }
+
+                        CheckBox {
+                            name: "emptyCircles"
+                            label: qsTr("Empty circles")
+                            checked: false
+                        }
                     }
+
                 }
 
                 CheckBox {

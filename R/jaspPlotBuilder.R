@@ -303,7 +303,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         jitter_width  = tab[["jitterwPlotBuilder"]],
         size          = tab[["pointsizePlotBuilder"]],
         alpha         = tab[["alphaPlotBuilder"]],
-        shape         = 21
+        shape         = ifelse(tab[["emptyCircles"]], 1, 21)
       )
 
       if (tab[["blackOutlineDataPoint"]]) {
