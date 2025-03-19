@@ -64,7 +64,6 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       tab$variableXPlotBuilder,
       tab$variableYPlotBuilder,
       tab$variableColorPlotBuilder,
-      tab$idVariablePlotBuilder,
       tab$variableRepeatedMeasures,
       tab$columnsvariableSplitPlotBuilder,
       tab$rowsvariableSplitPlotBuilder
@@ -456,37 +455,26 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
     # Add Count Line (tidyplots::add_count_line)----
     if (tab[["addCountLine"]]) {
-
       argList <- list(
         dodge_width = tab[["dodgeCountLine"]],
         linewidth   = tab[["linewidthCountLine"]],
         alpha       = tab[["alphaCountLine"]]
       )
-
-      if (tab[["blackOutlineCountLine"]]) {
+      if ((exists("colorBy") && colorBy %in% c("x", "y")) || tab[["blackOutlineCountLine"]]) {
         argList$color <- "black"
         argList$fill  <- "black"
       }
-
-      tidyplot_obj <- do.call(
-        tidyplots::add_count_line,
-        c(list(tidyplot_obj), argList)
-      )
-
-      # the address of the axes is basically defined at the end of the script,
-      # but for some reason it has to be valid for count geoms...
-
+      if (exists("colorBy") && colorBy %in% c("x", "y")) {
+        argList$group <- 1
+      }
+      tidyplot_obj <- do.call(tidyplots::add_count_line, c(list(tidyplot_obj), argList))
       titleValueY <- tab[["titleYPlotBuilder"]]
       if (!is.null(titleValueY) && titleValueY != "") {
-        tidyplot_obj <- tidyplot_obj |>
-          tidyplots::adjust_y_axis_title(title = titleValueY)
-
+        tidyplot_obj <- tidyplot_obj |> tidyplots::adjust_y_axis_title(title = titleValueY)
       }
-
       titleValueX <- tab[["titleXPlotBuilder"]]
       if (!is.null(titleValueX) && titleValueX != "") {
-        tidyplot_obj <- tidyplot_obj |>
-          tidyplots::adjust_x_axis_title(title = titleValueX)
+        tidyplot_obj <- tidyplot_obj |> tidyplots::adjust_x_axis_title(title = titleValueX)
       }
     }
 
@@ -621,22 +609,19 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
     # Add Sum Line (tidyplots::add_sum_line)----
     if (tab[["addSumLine"]]) {
-
       argList <- list(
         dodge_width = tab[["dodgeSumLine"]],
         linewidth   = tab[["linewidthSumLine"]],
         alpha       = tab[["alphaSumLine"]]
       )
-
-      if (tab[["blackOutlineSumLine"]]) {
+      if ((exists("colorBy") && colorBy %in% c("x", "y")) || tab[["blackOutlineSumLine"]]) {
         argList$color <- "black"
         argList$fill  <- "black"
       }
-
-      tidyplot_obj <- do.call(
-        tidyplots::add_sum_line,
-        c(list(tidyplot_obj), argList)
-      )
+      if (exists("colorBy") && colorBy %in% c("x", "y")) {
+        argList$group <- 1
+      }
+      tidyplot_obj <- do.call(tidyplots::add_sum_line, c(list(tidyplot_obj), argList))
     }
 
     # Add Sum Area (tidyplots::add_sum_area)----
@@ -747,22 +732,27 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     # Add Mean Line (tidyplots::add_mean_line)----
     if (tab[["addMeanLine"]]) {
 
-      argList <- list(
-        dodge_width = tab[["dodgeMeanLine"]],
-        alpha       = tab[["alphaMeanLine"]],
-        linewidth   = tab[["linewidthMeanLine"]]
-      )
+    argList <- list(
+    dodge_width = tab[["dodgeMeanLine"]],
+    alpha       = tab[["alphaMeanLine"]],
+    linewidth   = tab[["linewidthMeanLine"]]
+  )
 
-      if (tab[["blackOutlineMeanLine"]]) {
-        argList$color <- "black"
-        argList$fill  <- "black"
-      }
+  if ((exists("colorBy") && colorBy %in% c("x", "y")) || tab[["blackOutlineMeanLine"]]) {
+    argList$color <- "black"
+    argList$fill  <- "black"
+  }
 
-      tidyplot_obj <- do.call(
-        tidyplots::add_mean_line,
-        c(list(tidyplot_obj), argList)
-      )
-    }
+  if (exists("colorBy") && colorBy %in% c("x", "y")) {
+    argList$group <- 1
+  }
+
+  tidyplot_obj <- do.call(
+    tidyplots::add_mean_line,
+    c(list(tidyplot_obj), argList)
+  )
+}
+
 
     # Add Mean Area (tidyplots::add_mean_area)----
     if (tab[["addMeanArea"]]) {
@@ -840,23 +830,21 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
     # Add Median Line (tidyplots::add_median_line)----
     if (tab[["addMedianLine"]]) {
-
       argList <- list(
         dodge_width = tab[["dodgeMedianLine"]],
         linewidth   = tab[["linewidthMedianLine"]],
         alpha       = tab[["alphaMedianLine"]]
       )
-
-      if (tab[["blackOutlineMedianLine"]]) {
+      if ((exists("colorBy") && colorBy %in% c("x", "y")) || tab[["blackOutlineMedianLine"]]) {
         argList$color <- "black"
         argList$fill  <- "black"
       }
-
-      tidyplot_obj <- do.call(
-        tidyplots::add_median_line,
-        c(list(tidyplot_obj), argList)
-      )
+      if (exists("colorBy") && colorBy %in% c("x", "y")) {
+        argList$group <- 1
+      }
+      tidyplot_obj <- do.call(tidyplots::add_median_line, c(list(tidyplot_obj), argList))
     }
+
 
     # Add Median Area (tidyplots::add_median_area)----
     if (tab[["addMedianArea"]]) {
@@ -1467,7 +1455,26 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
     }
 
-    # Extract the ggplot object from tidyplot-----
+    #Add annotation (tidyplot::add_annotation_text )----
+    if (!is.null(tab[["annotationPlotBuilder"]]) && length(tab[["annotationPlotBuilder"]]) > 0) {
+      for (i in seq_along(tab[["annotationPlotBuilder"]])) {
+        rowData   <- tab[["annotationPlotBuilder"]][[i]]
+        plotText  <- rowData$annotationText
+        plotX     <- rowData$annotationX
+        plotY     <- rowData$annotationY
+        fontSize  <- rowData$annotationSize
+
+        tidyplot_obj <- tidyplot_obj |>
+          tidyplots::add_annotation_text(
+          text     = plotText,
+          x        = plotX,
+          y        = plotY,
+          fontsize = fontSize
+        )
+      }
+    }
+
+    # Extract the ggplot object from tidyplot----
     tidyplot_obj <- tidyplot_obj[[1]]
 
 
@@ -1574,28 +1581,6 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         ggplot2::facet_grid(stats::as.formula(paste(rowsVar, "~ .")))
     }
 
-    # Annotation (base R annotate from ggplot2 or tidyplots might differ, but here it's ggplot2::annotate)
-    if (!is.null(tab[["annotationPlotBuilder"]]) && length(tab[["annotationPlotBuilder"]]) > 0) {
-      for (i in seq_along(tab[["annotationPlotBuilder"]])) {
-        rowData   <- tab[["annotationPlotBuilder"]][[i]]
-        plotText  <- rowData$annotationText
-        plotX     <- rowData$annotationX
-        plotY     <- rowData$annotationY
-        plotSize  <- if (!is.null(rowData$annotationSize)) rowData$annotationSize else 5
-
-        tidyplot_obj <- tidyplot_obj +
-          ggplot2::annotate(
-            "text",
-            x     = plotX,
-            y     = plotY,
-            label = gsub("\\$", "", plotText),
-            parse = TRUE,
-            size  = plotSize,
-            color = "black"
-          )
-      }
-    }
-
     # Connect points with lines if needed (for RM)----
     if (tab[["connectRMPlotBuilder"]]) {
       gg    <- tidyplot_obj
@@ -1661,7 +1646,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
       bracket.size <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$bracketSizePValue))
       tip_length <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$tipLengthPValue))
-
+      stepDistance <- tab[["stepDistance"]]
 
       tidyplot_obj <- tidyplot_obj +
         ggpubr::stat_pvalue_manual(
@@ -1675,7 +1660,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
           tip.length    = tip_length,
           color = if (!is.null(colorVar) && nchar(colorVar) > 0) "color" else as.character(labelcolor),
           inherit.aes   = FALSE,
-          step.increase = 0.15
+          step.increase = stepDistance
         )
     }
 
@@ -1779,6 +1764,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
   return(validRowSpecs || validFullRowSpecs)
 }
 
+
 .plotBuilderOutputPlotGrid <- function(jaspResults, options, plotResults, dataset) {
   updatedPlots <- plotResults$updatedPlots
 
@@ -1794,7 +1780,11 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     getCommonLegendGlobal <- TRUE
   }
 
-  # A grid-összeállítás elindul, ha a specifikációban van valamilyen karakter (akár vessző, akár szóköz)
+  # Based on the plotSpacing option, we set the gap size (in pt) and calculate the half value
+  desiredGap <- if (!is.null(options[["plotSpacing"]]) && options[["plotSpacing"]] != "")
+    as.numeric(options[["plotSpacing"]]) else 0
+  halfGap <- desiredGap / 2
+
   if (.validLayoutSpecified(options)) {
     columnGrid  <- NULL
     fullRowGrid <- NULL
@@ -1859,7 +1849,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
           }
         }
 
-        # Daraboljuk a sort vessző mentén, de megtartjuk az üres elemeket:
+        # Daraboljuk a plot azonosítókat vessző mentén, megtartva az üres elemeket
         plotIDs <- unlist(strsplit(plotIDsStr, ","))
         if(length(plotIDs) == 0) {
           plotIDs <- c("")
@@ -1895,27 +1885,33 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         for (rowIdx in seq_len(nRows)) {
           plotID <- plotIDs[rowIdx]
           if (is.na(plotID) || plotID == "") {
-            plotsInColumn[[rowIdx]] <- ggplot2::ggplot() + ggplot2::theme_void()
-            next
+            p <- ggplot2::ggplot() + ggplot2::theme_void()
+          } else {
+            p <- updatedPlots[[plotID]]
+            if (!is.null(p)) {
+              if (!is.null(labels) && labels[rowIdx] != "") {
+                p <- p +
+                  ggplot2::labs(tag = labels[rowIdx]) +
+                  ggplot2::theme(
+                    plot.tag.position = c(options[["labelDistance1"]], options[["labelDistance2"]]),
+                    plot.tag          = ggplot2::element_text(size = labelSize, face = "bold")
+                  )
+              }
+              if (getCommonLegendGlobal) {
+                p <- p + ggplot2::theme(legend.position = "none")
+              }
+            } else {
+              p <- ggplot2::ggplot() + ggplot2::theme_void()
+            }
           }
 
-          matchedPlot <- updatedPlots[[plotID]]
-          if (!is.null(matchedPlot)) {
-            if (!is.null(labels) && labels[rowIdx] != "") {
-              matchedPlot <- matchedPlot +
-                ggplot2::labs(tag = labels[rowIdx]) +
-                ggplot2::theme(
-                  plot.tag.position = "topleft",
-                  plot.tag          = ggplot2::element_text(size = labelSize, face = "bold")
-                )
-            }
-            if (getCommonLegendGlobal) {
-              matchedPlot <- matchedPlot + ggplot2::theme(legend.position = "none")
-            }
-            plotsInColumn[[rowIdx]] <- matchedPlot
-          } else {
-            plotsInColumn[[rowIdx]] <- ggplot2::ggplot() + ggplot2::theme_void()
-          }
+          topMargin    <- if (rowIdx == 1) 0 else halfGap
+          bottomMargin <- if (rowIdx == nRows && is.null(fullRowGrid)) 0 else halfGap
+          leftMargin   <- if (colIdx == 1) 0 else halfGap
+          rightMargin  <- if (colIdx == ncol) 0 else halfGap
+
+          p <- p + ggplot2::theme(plot.margin = grid::unit(c(topMargin, rightMargin, bottomMargin, leftMargin), "pt"))
+          plotsInColumn[[rowIdx]] <- p
         }
 
         collectLegends <- if (getCommonLegendGlobal) FALSE else getCommonLegendColumn
@@ -1998,27 +1994,33 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         for (idx in seq_len(nPlots)) {
           plotID <- plotIDs[idx]
           if (is.na(plotID) || plotID == "") {
-            plotsInFullRow[[idx]] <- ggplot2::ggplot() + ggplot2::theme_void()
-            next
+            p <- ggplot2::ggplot() + ggplot2::theme_void()
+          } else {
+            p <- updatedPlots[[plotID]]
+            if (!is.null(p)) {
+              if (!is.null(labels) && labels[idx] != "") {
+                p <- p +
+                  ggplot2::labs(tag = labels[idx]) +
+                  ggplot2::theme(
+                    plot.tag.position = c(options[["labelDistance1"]], options[["labelDistance2"]]),
+                    plot.tag          = ggplot2::element_text(size = labelSize, face = "bold")
+                  )
+              }
+              if (getCommonLegendGlobal) {
+                p <- p + ggplot2::theme(legend.position = "none")
+              }
+            } else {
+              p <- ggplot2::ggplot() + ggplot2::theme_void()
+            }
           }
 
-          matchedPlot <- updatedPlots[[plotID]]
-          if (!is.null(matchedPlot)) {
-            if (!is.null(labels) && labels[idx] != "") {
-              matchedPlot <- matchedPlot +
-                ggplot2::labs(tag = labels[idx]) +
-                ggplot2::theme(
-                  plot.tag.position = "topleft",
-                  plot.tag          = ggplot2::element_text(size = labelSize, face = "bold")
-                )
-            }
-            if (getCommonLegendGlobal) {
-              matchedPlot <- matchedPlot + ggplot2::theme(legend.position = "none")
-            }
-            plotsInFullRow[[idx]] <- matchedPlot
-          } else {
-            plotsInFullRow[[idx]] <- ggplot2::ggplot() + ggplot2::theme_void()
-          }
+          topMargin    <- if (rowIdx == 1 && is.null(columnGrid)) 0 else halfGap
+          bottomMargin <- if (rowIdx == length(fullRowSpecifications)) 0 else halfGap
+          leftMargin   <- if (idx == 1) 0 else halfGap
+          rightMargin  <- if (idx == nPlots) 0 else halfGap
+
+          p <- p + ggplot2::theme(plot.margin = grid::unit(c(topMargin, rightMargin, bottomMargin, leftMargin), "pt"))
+          plotsInFullRow[[idx]] <- p
         }
 
         collectLegends <- if (getCommonLegendGlobal) FALSE else getCommonLegendRow
@@ -2120,7 +2122,8 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
           "rowSpecifications", "fullRowSpecifications",
           "getCommonLegend", "relHeightWithinRowLayout", "relativeHeight",
           "columnWidthInput", "labelSize",
-          "layoutWidth", "layoutHeight"
+          "layoutWidth", "layoutHeight",
+          "plotSpacing"
         )
       )
       plotGridContainer[["plotGrid"]] <- gridPlot

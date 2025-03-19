@@ -2334,7 +2334,7 @@ Form {
                         TextField {
                             name: "annotationText"
                             label: qsTr("Text")
-                            placeholderText: qsTr("$italic(p)$")
+                            placeholderText: qsTr("p = 0.1, $italic(p)==0.1$")
                             fieldWidth: 150
                         }
                         DoubleField {
@@ -2613,7 +2613,7 @@ Form {
 
             Section {
                 title: qsTr("P value brackets")
-                columns: 3
+                columns: 4
 
                 Label {
                     text: qsTr("P value brackets require categorical x-axis variable")
@@ -2622,6 +2622,9 @@ Form {
                     Layout.columnSpan: 3
                 }
 
+
+                Group{
+                columns: 2
                 TextField {
                     name: "labelcolor"
                     label: qsTr("P value color")
@@ -2637,10 +2640,19 @@ Form {
 
                 DoubleField {
                     name: "yPositionPValue"
-                    label: qsTr("Y-axis position of the first p value")
+                    label: qsTr("Y-axis position of the first P value")
                     decimals: 2
                     fieldWidth: 70
                     value: 70
+                }
+
+                DoubleField {
+                    name: "stepDistance"
+                    label: qsTr("Step distance")
+                    decimals: 2
+                    fieldWidth: 70
+                    value: 0.15
+                }
                 }
 
                 ComponentsList {
@@ -2855,6 +2867,34 @@ Form {
 
 
         Group {
+            columns: 3
+            title: qsTr("Label settings")
+
+            DoubleField {
+                name: "labelSize"
+                label: qsTr("Label size")
+                value: 18
+            }
+
+            DoubleField {
+                name: "labelDistance1"
+                label: qsTr("Horizontal position")
+                value: 0.05
+                min: 0
+                max: 1
+            }
+
+
+            DoubleField {
+                name: "labelDistance2"
+                label: qsTr("Vertical position")
+                value: 0.95
+                min: 0
+                max: 1
+            }
+        }
+
+        Group {
             title: qsTr("Additional settings")
 
             Row {
@@ -2870,12 +2910,6 @@ Form {
                     }
 
                     DoubleField {
-                        name: "labelSize"
-                        label: qsTr("Label size")
-                        value: 18
-                    }
-
-                    DoubleField {
                         name: "layoutWidth"
                         label: qsTr("Width")
                         value: 500
@@ -2885,6 +2919,12 @@ Form {
                         name: "layoutHeight"
                         label: qsTr("Height")
                         value: 500
+                    }
+
+                    DoubleField {
+                        name: "plotSpacing"
+                        label: qsTr("Spacing")
+                        value: 10
                     }
 
                     CheckBox {
