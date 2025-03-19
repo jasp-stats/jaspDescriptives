@@ -2400,7 +2400,7 @@ Form {
                             value: "none"
                             label: qsTr("None")
                             enabled: true
-                            checked: variableColorPlotBuilder.count === 0
+                            checked: !colorXRadio.checked && !colorYRadio.checked
                             onEnabledChanged: { if (!enabled && checked) { checked = false; } }
                         }
                         RadioButton {
@@ -2411,6 +2411,7 @@ Form {
                             onEnabledChanged: { if (!enabled && checked) { checked = false; } }
                         }
                         RadioButton {
+                            id: colorXRadio
                             value: "x"
                             label: qsTr("X variable")
                             enabled: variableXPlotBuilder.count > 0 && variableColorPlotBuilder.count === 0
@@ -2418,6 +2419,7 @@ Form {
                             onEnabledChanged: { if (!enabled && checked) { checked = false; } }
                         }
                         RadioButton {
+                            id: colorYRadio
                             value: "y"
                             label: qsTr("Y variable")
                             enabled: variableYPlotBuilder.count > 0 && variableColorPlotBuilder.count === 0
@@ -2432,6 +2434,7 @@ Form {
                             onEnabledChanged: { if (!enabled && checked) { checked = false; } }
                         }
                     }
+
 
                     DropDown {
                         name: "colorsAll"
