@@ -176,34 +176,52 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     }
 
 
-    # Remove error placeholder plot if present
-    if (!is.null(updatedPlots[["scatterPlotError"]])) {
-      updatedPlots[["scatterPlotError"]] <- NULL
-    }
-
-    xVar <- tab[["variableXPlotBuilder"]]
-    yVar <- tab[["variableYPlotBuilder"]]
+    # read variables from the QML interface
+    xVar    <- tab[["variableXPlotBuilder"]]
+    yVar    <- tab[["variableYPlotBuilder"]]
+    rowsVar <- tab[["rowsvariableSplitPlotBuilder"]]
+    colsVar <- tab[["columnsvariableSplitPlotBuilder"]]
+    colorVar <- NULL
 
     if (identical(tab[["isRM"]], "RM")) {
-      yVar <- "Values"
-      if (is.null(xVar) || xVar == "") {
+
+      # Process the repeated measures factor option
+      rmFactorOption <- tab[["rmFactorOptions"]]
+      if (rmFactorOption == "rmFactorAsX") {
         xVar <- "Repeated measures"
+      } else if (rmFactorOption == "rmFactorAsY") {
+        yVar <- "Repeated measures"
+      } else if (rmFactorOption == "rmFactorAsGroup") {
+        colorVar <- "Repeated measures"
+      } else if (rmFactorOption == "rmFactorAsColumnSplit") {
+        colsVar <- "Repeated measures"
+      } else if (rmFactorOption == "rmFactorAsRownSplit") {
+        rowsVar <- "Repeated measures"
+      }
+
+      # Process the repeated measures value option
+      rmValueOption <- tab[["rmValueOptions"]]
+      if (rmValueOption == "rmValueAsX") {
+        xVar <- "Values"
+      } else if (rmValueOption == "rmValueAsY") {
+        yVar <- "Values"
       }
     }
 
-    colorBy <- tab[["colorByGroup"]]
-
-    if (colorBy == "none") {
-      colorVar <- ""
-    } else if (colorBy == "grouping") {
-      colorVar <- tab[["variableColorPlotBuilder"]]
-    } else if (colorBy == "x") {
-      colorVar <- xVar
-    } else if (colorBy == "y") {
-      colorVar <- yVar
-    } else if (colorBy == "rm") {
-      colorVar <- "Repeated measures"
-      xVar <- "Repeated measures"
+    # Process the colorBy option only if not already set by rmFactorAsGroup
+    if (is.null(colorVar)) {
+      colorBy <- tab[["colorByGroup"]]
+      if (colorBy == "none") {
+        colorVar <- ""
+      } else if (colorBy == "grouping") {
+        colorVar <- tab[["variableColorPlotBuilder"]]
+      } else if (colorBy == "x") {
+        colorVar <- xVar
+      } else if (colorBy == "y") {
+        colorVar <- yVar
+      } else if (colorBy == "rm") {
+        colorVar <- "Repeated measures"
+      }
     }
 
     # The next section is necessary because some functions do not work if the
@@ -243,7 +261,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     } # end of ordinal/nominal problem section
 
     plotId <- as.character(tab$value)
-    pointShape <- as.numeric(tab[["pointShapePlotBuilder"]])
+    # pointShape <- as.numeric(tab[["pointShapePlotBuilder"]]) # not defined in qml
 
     # Convert px to mm
     plotWidthPx  <- tab[["widthPlotBuilder"]]
@@ -1544,41 +1562,49 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
 
 
-    # Facet logic for row / column
-    rowsVar <- tab[["rowsvariableSplitPlotBuilder"]]
-    colsVar <- tab[["columnsvariableSplitPlotBuilder"]]
+    # Facet logic for row / column ----
 
     hasRows <- (!is.null(rowsVar) && rowsVar != "")
     hasCols <- (!is.null(colsVar) && colsVar != "")
 
     if (hasRows) {
+      # For the displayed label, we do NOT add backticks
       tidyplot_obj <- tidyplot_obj +
         ggplot2::scale_y_continuous(
           sec.axis = ggplot2::sec_axis(~ .,
-                                       name   = paste0(rowsVar),
+                                       name   = rowsVar,  # display "Repeated measures" without backticks
                                        breaks = NULL,
-                                       labels = NULL)
+                                       labels = NULL
+          )
         )
     }
 
     if (hasCols) {
+      # For the displayed label, we do NOT add backticks
       tidyplot_obj <- tidyplot_obj +
-        ggplot2::labs(subtitle = colsVar) +
+        ggplot2::labs(subtitle = colsVar) +  # display "Repeated measures" without backticks
         ggplot2::theme(
           plot.subtitle = ggplot2::element_text(size = baseFontSize, hjust = 0.5),
-          strip.text = ggplot2::element_text(size = baseFontSize)
+          strip.text    = ggplot2::element_text(size = baseFontSize)
         )
     }
 
+    # Use backticks ONLY inside the formula:
     if (hasRows && hasCols) {
       tidyplot_obj <- tidyplot_obj +
-        ggplot2::facet_grid(stats::as.formula(paste(rowsVar, "~", colsVar)))
+        ggplot2::facet_grid(
+          stats::as.formula(paste0("`", rowsVar, "` ~ `", colsVar, "`"))
+        )
     } else if (hasCols) {
       tidyplot_obj <- tidyplot_obj +
-        ggplot2::facet_grid(stats::as.formula(paste(". ~", colsVar)))
+        ggplot2::facet_grid(
+          stats::as.formula(paste0(". ~ `", colsVar, "`"))
+        )
     } else if (hasRows) {
       tidyplot_obj <- tidyplot_obj +
-        ggplot2::facet_grid(stats::as.formula(paste(rowsVar, "~ .")))
+        ggplot2::facet_grid(
+          stats::as.formula(paste0("`", rowsVar, "` ~ ."))
+        )
     }
 
     # Connect points with lines if needed (for RM)----
@@ -1686,9 +1712,6 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
   # Render individual tidy plots in their container
   for (plotId in names(updatedPlots)) {
-    # Skip error plot if exists
-    if (plotId == "scatterPlotError")
-      next
 
     plotKey <- paste0("tidyPlot_", plotId)
     if (!is(tidyPlotsContainer[[plotKey]], "JaspPlot")) {

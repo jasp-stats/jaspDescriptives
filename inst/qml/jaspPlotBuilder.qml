@@ -153,6 +153,72 @@ Form {
                 }
             } // End variables form
 
+            Section {
+            title:qsTr("Repeated measures options")
+            visible: yesRM.checked
+            columns:2
+
+            RadioButtonGroup {
+                id:						rmValueOptions
+                name:					"rmValueOptions"
+                title:					qsTr("Value of repeated measurements as")
+                radioButtonsOnSameRow:	false
+
+                RadioButton {
+                    label:		qsTr("Variable X")
+                    value:		"rmValueAsX"
+                    id:			rmValueAsX
+                }
+
+                RadioButton {
+                    label:		qsTr("Variable Y")
+                    value:		"rmValueAsY"
+                    id:         rmValueAsY
+                    checked:    true
+                }
+            }
+
+            RadioButtonGroup {
+                id:						rmFactorOptions
+                name:					"rmFactorOptions"
+                title:					qsTr("Factor of repeated measurements as")
+                radioButtonsOnSameRow:	false
+                columns:				1
+
+                RadioButton {
+                    label:		qsTr("Variable X")
+                    value:		"rmFactorAsX"
+                    id:			rmFactorAsX
+                    checked: true
+                }
+
+                RadioButton {
+                    label:		qsTr("Variable Y")
+                    value:		"rmFactorAsY"
+                    id:         rmFactorAsY
+                }
+
+                RadioButton {
+                    label:		qsTr("Grouping variable")
+                    value:		"rmFactorAsGroup"
+                    id:         rmFactorAsGroup
+                }
+
+                RadioButton {
+                    label:		qsTr("Column split variable")
+                    value:		"rmFactorAsColumnSplit"
+                    id:         rmFactorAsColumnSplit
+                }
+
+                RadioButton {
+                    label:		qsTr("Row split variable")
+                    value:		"rmFactorAsRownSplit"
+                    id:         rmFactorAsRownSplit
+                }
+            }
+
+            }
+
             Label {
                 text: qsTr("Data and geometries")
                 wrapMode: Text.Wrap
