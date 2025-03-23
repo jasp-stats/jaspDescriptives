@@ -58,7 +58,6 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
 .plotBuilderReadData <- function(options) {
 
-  # Gyűjtsük össze az összes szükséges változót
   allColumns <- unique(unlist(lapply(options$PlotBuilderTab, function(tab) {
     c(
       tab$variableXPlotBuilder,
@@ -105,7 +104,6 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
             !!rlang::sym(pivotedXName) := factor(decodeColNames(!!rlang::sym(pivotedXName)))
           )
 
-
         originalCols <- names(dataset)
         pivotedCols  <- names(tempRM)
         missingCols  <- setdiff(originalCols, pivotedCols)
@@ -138,7 +136,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
 
 
-# Results functions ----
+#Results functions ----
 .plotBuilderComputeResults <- function(jaspResults, dataset, options) {
 
   # If not computed yet, compute and store in state
@@ -260,14 +258,8 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
     } # end of ordinal/nominal problem section
 
+    # extract plot id
     plotId <- as.character(tab$value)
-    # pointShape <- as.numeric(tab[["pointShapePlotBuilder"]]) # not defined in qml
-
-    # Convert px to mm
-    plotWidthPx  <- tab[["widthPlotBuilder"]]
-    plotHeightPx <- tab[["heightPlotBuilder"]]
-    plotWidthMm  <- plotWidthPx  * 25.4 / 96
-    plotHeightMm <- plotHeightPx * 25.4 / 96
 
     # Build the base tidyplot call
     tidyplot_args <- list(data = localData)
@@ -1722,17 +1714,6 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
           tab <- t
           break
         }
-      }
-
-      # Default dimensions if tab not found
-      if (is.null(tab)) {
-        plotWidth  <- 400
-        plotHeight <- 300
-      } else {
-        plotWidthPx  <- tab[["widthPlotBuilder"]]
-        plotHeightPx <- tab[["heightPlotBuilder"]]
-        plotWidth    <- plotWidthPx  * 25.4 / 96
-        plotHeight   <- plotHeightPx * 25.4 / 96
       }
 
       tidyPlot <- createJaspPlot(
