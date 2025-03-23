@@ -60,12 +60,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
   allColumns <- unique(unlist(lapply(options$PlotBuilderTab, function(tab) {
     c(
-      tab$variableXPlotBuilder,
-      tab$variableYPlotBuilder,
-      tab$variableColorPlotBuilder,
-      tab$variableRepeatedMeasures,
-      tab$columnsvariableSplitPlotBuilder,
-      tab$rowsvariableSplitPlotBuilder
+      encodeColNames(tab$variableXPlotBuilder),
+      encodeColNames(tab$variableYPlotBuilder),
+      encodeColNames(tab$variableColorPlotBuilder),
+      encodeColNames(tab$variableRepeatedMeasures),
+      encodeColNames(tab$columnsvariableSplitPlotBuilder),
+      encodeColNames(tab$rowsvariableSplitPlotBuilder)
     )
   })))
 
@@ -175,10 +175,10 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
 
     # read variables from the QML interface
-    xVar    <- tab[["variableXPlotBuilder"]]
-    yVar    <- tab[["variableYPlotBuilder"]]
-    rowsVar <- tab[["rowsvariableSplitPlotBuilder"]]
-    colsVar <- tab[["columnsvariableSplitPlotBuilder"]]
+    xVar    <- encodeColNames(tab[["variableXPlotBuilder"]])
+    yVar    <- encodeColNames(tab[["variableYPlotBuilder"]])
+    rowsVar <- encodeColNames(tab[["rowsvariableSplitPlotBuilder"]])
+    colsVar <- encodeColNames(tab[["columnsvariableSplitPlotBuilder"]])
     colorVar <- NULL
 
     if (identical(tab[["isRM"]], "RM")) {
