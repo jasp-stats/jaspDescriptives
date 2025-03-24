@@ -80,7 +80,7 @@ Form {
 
                     removeInvisibles:	true
                     preferredWidth: jaspForm.width - 2 * jaspTheme.contentMargin
-                    preferredHeight: yesRM.checked ? 500  * jaspTheme.uiScale : 250 * jaspTheme.uiScale
+                    preferredHeight: yesRM.checked ? 500  * jaspTheme.uiScale : 300 * jaspTheme.uiScale
 
                     infoLabel: qsTr("Input")
                     AvailableVariablesList { name: "allVariablesList"}
@@ -150,6 +150,15 @@ Form {
                         singleVariable: true
                         info: qsTr("You can choose a variable to split the plots into rows.")
                     }
+
+                    AssignedVariablesList {
+                        name: "gridVariablePlotBuilder"
+                        title: qsTr("Grid")
+                        id: gridVariablePlotBuilder
+                        allowedColumns: ["ordinal", "nominal"]
+                        singleVariable: true
+                        info: qsTr("You can choose a variable to make a grid.")
+                    }
                 }
             } // End variables form
 
@@ -187,9 +196,9 @@ Form {
 
                 RadioButton {
                     label:		qsTr("Variable X")
-                    value:		"rmFactorAsX"
-                    id:			rmFactorAsX
-                    checked: true
+                    value:      "rmFactorAsX"
+                    id:         rmFactorAsX
+                    checked:    true
                 }
 
                 RadioButton {
@@ -212,8 +221,14 @@ Form {
 
                 RadioButton {
                     label:		qsTr("Row split variable")
-                    value:		"rmFactorAsRownSplit"
-                    id:         rmFactorAsRownSplit
+                    value:		"rmFactorAsRowSplit"
+                    id:         rmFactorAsRowSplit
+                }
+
+                RadioButton {
+                    label:		qsTr("Grid variable")
+                    value:		"rmFactorAsGrid"
+                    id:         rmFactorAsGrid
                 }
             }
 
@@ -2787,27 +2802,95 @@ Form {
                         }
 
 
+                        // Group {
+                        //     title: qsTr("Grouping")
+
+                        //     DropDown {
+                        //         name: "GroupPValue"
+                        //         label: qsTr("Group level")
+                        //         source: rmFactorAsGroup.checked ? [ { name: "variableRepeatedMeasures",} ] : [ { name: "variableColorPlotBuilder", use: "levels" } ]
+                        //     }
+
+
+                        //     DropDown {
+                        //         name: "ColumnPValue"
+                        //         label: qsTr("Column")
+                        //         source: rmFactorAsColumnSplit.checked ? [ { name: "variableRepeatedMeasures" } ] : [ { name: "columnsvariableSplitPlotBuilder", use: "levels" } ]
+                        //     }
+
+                        //     DropDown {
+                        //         name: "RowPValue"
+                        //         label: qsTr("Row")
+                        //         source: rmFactorAsRowSplit.checked ? [ { name: "variableRepeatedMeasures" } ] : [ { name: "rowsvariableSplitPlotBuilder", use: "levels" } ]
+                        //     }
+
+                        //     DropDown {
+                        //         name: "GridPValue"
+                        //         label: qsTr("Grid")
+                        //         source: rmFactorAsGrid.checked ? [ { name: "variableRepeatedMeasures" } ] : [ { name: "gridVariablePlotBuilder", use: "levels" } ]
+
+                        //     }
+
+                        // }
+
                         Group {
                             title: qsTr("Grouping")
+
+                            // Group level - separate RM and non-RM components with different names
                             DropDown {
-                                name: "GroupPValue"
+                                visible: !rmFactorAsGroup.checked
+                                name: "GroupPValue"  // Regular name for non-RM mode
                                 label: qsTr("Group level")
                                 source: [ { name: "variableColorPlotBuilder", use: "levels" } ]
                             }
-
-
                             DropDown {
-                                name: "ColumnPValue"
+                                visible: rmFactorAsGroup.checked
+                                name: "RMGroupPValue"  // Different name for RM mode
+                                label: qsTr("Group level")
+                                source: [ { name: "variableRepeatedMeasures", use: "list" } ]
+                            }
+
+                            // Column - separate RM and non-RM components with different names
+                            DropDown {
+                                visible: !rmFactorAsColumnSplit.checked
+                                name: "ColumnPValue"  // Regular name for non-RM mode
                                 label: qsTr("Column")
                                 source: [ { name: "columnsvariableSplitPlotBuilder", use: "levels" } ]
                             }
-
                             DropDown {
-                                name: "RowPValue"
+                                visible: rmFactorAsColumnSplit.checked
+                                name: "RMColumnPValue"  // Different name for RM mode
+                                label: qsTr("Column")
+                                source: [ { name: "variableRepeatedMeasures", use: "list" } ]
+                            }
+
+                            // Row - separate RM and non-RM components with different names
+                            DropDown {
+                                visible: !rmFactorAsRowSplit.checked
+                                name: "RowPValue"  // Regular name for non-RM mode
                                 label: qsTr("Row")
                                 source: [ { name: "rowsvariableSplitPlotBuilder", use: "levels" } ]
                             }
+                            DropDown {
+                                visible: rmFactorAsRowSplit.checked
+                                name: "RMRowPValue"  // Different name for RM mode
+                                label: qsTr("Row")
+                                source: [ { name: "variableRepeatedMeasures", use: "list" } ]
+                            }
 
+                            // Grid - separate RM and non-RM components with different names
+                            DropDown {
+                                visible: !rmFactorAsGrid.checked
+                                name: "GridPValue"  // Regular name for non-RM mode
+                                label: qsTr("Grid")
+                                source: [ { name: "gridVariablePlotBuilder", use: "levels" } ]
+                            }
+                            DropDown {
+                                visible: rmFactorAsGrid.checked
+                                name: "RMGridPValue"  // Different name for RM mode
+                                label: qsTr("Grid")
+                                source: [ { name: "variableRepeatedMeasures", use: "list" } ]
+                            }
                         }
 
                     }

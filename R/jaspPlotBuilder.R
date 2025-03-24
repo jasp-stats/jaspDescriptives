@@ -65,6 +65,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       encodeColNames(tab$variableColorPlotBuilder),
       encodeColNames(tab$variableRepeatedMeasures),
       encodeColNames(tab$columnsvariableSplitPlotBuilder),
+      encodeColNames(tab$gridVariablePlotBuilder),
       encodeColNames(tab$rowsvariableSplitPlotBuilder)
     )
   })))
@@ -128,6 +129,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
   return(list(datasetRMList = datasetRMList, datasetNonRM = datasetNonRM))
 }
 
+createJaspQmlSource(
+  sourceID = "plotBuilderDataSource",
+
+  value = .plotBuilderReadData
+)
+
 # Error handling function ----
 .plotBuilderErrorHandling <- function(dataset, options) {
 
@@ -180,6 +187,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     rowsVar <- encodeColNames(tab[["rowsvariableSplitPlotBuilder"]])
     colsVar <- encodeColNames(tab[["columnsvariableSplitPlotBuilder"]])
     colorVar <- NULL
+    gridVar <- encodeColNames(tab[["gridVariablePlotBuilder"]])
 
     if (identical(tab[["isRM"]], "RM")) {
 
@@ -193,7 +201,9 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         colorVar <- "Repeated measures"
       } else if (rmFactorOption == "rmFactorAsColumnSplit") {
         colsVar <- "Repeated measures"
-      } else if (rmFactorOption == "rmFactorAsRownSplit") {
+      } else if (rmFactorOption == "rmFactorAsGrid") {
+        gridVar <- "Repeated measures"
+      } else if (rmFactorOption == "rmFactorAsRowSplit") {
         rowsVar <- "Repeated measures"
       }
 
@@ -1599,6 +1609,18 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         )
     }
 
+    # Facet logic for facet_wrap using gridVariable ----
+    # Facet_wrap logic (feltételezve, hogy tab[["gridVariable"]] tartalmazza a változót)
+    hasGrid <- (!is.null(gridVar) && gridVar != "")
+
+    if (hasGrid) {
+      # A backtick-et CSAK a formulán belül használjuk:
+      tidyplot_obj <- tidyplot_obj +
+        ggplot2::facet_wrap(
+          stats::as.formula(paste0("~ `", gridVar, "`")),
+        )
+    }
+
     # Connect points with lines if needed (for RM)----
     if (tab[["connectRMPlotBuilder"]]) {
       gg    <- tidyplot_obj
@@ -1626,13 +1648,69 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     }
 
     # P value from ggpubr::stat_pvalue_manual----
+
+    # if (!is.null(tab[["pairwiseComparisons"]]) && length(tab[["pairwiseComparisons"]]) > 0) {
+    #
+    #   #universal settings for the p value
+    #   label_size <- tab[["labelSizePValue"]]
+    #   labelcolor <- tab[["labelcolor"]]
+    #
+    #   #separate settings for each bracket
+    #   dfComparisons <- data.frame(
+    #     group1     = as.character(sapply(tab[["pairwiseComparisons"]], function(x) x$group1)),
+    #     group2     = as.character(sapply(tab[["pairwiseComparisons"]], function(x) x$group2)),
+    #     p          = as.character(sapply(tab[["pairwiseComparisons"]], function(x) x$pAdj)),
+    #     y.position =  tab[["yPositionPValue"]],
+    #     stringsAsFactors = FALSE
+    #   )
+    #
+    #   # colorVar <- tab[["variableColorPlotBuilder"]]
+    #   if (!is.null(colorVar) && nchar(colorVar) > 0) {
+    #     dfComparisons$color <- as.character(
+    #       sapply(tab[["pairwiseComparisons"]], function(x) x$GroupPValue)
+    #     )
+    #   }
+    #
+    #   # rowsVar <- tab[["rowsvariableSplitPlotBuilder"]]
+    #   if (!is.null(rowsVar)) {
+    #     dfComparisons[[rowsVar]] <- as.character(
+    #       sapply(tab[["pairwiseComparisons"]], function(x) x$RowPValue)
+    #     )
+    #   }
+    #
+    #   if (!is.null(colsVar)) {
+    #     dfComparisons[[colsVar]] <- as.character(
+    #       sapply(tab[["pairwiseComparisons"]], function(x) x$ColumnPValue)
+    #     )
+    #   }
+    #
+    #   bracket.size <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$bracketSizePValue))
+    #   tip_length <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$tipLengthPValue))
+    #   stepDistance <- tab[["stepDistance"]]
+    #
+    #   tidyplot_obj <- tidyplot_obj +
+    #     ggpubr::stat_pvalue_manual(
+    #       data          = dfComparisons,
+    #       label         = "p",
+    #       xmin          = "group1",
+    #       xmax          = "group2",
+    #       y.position    = "y.position",
+    #       size          = label_size,
+    #       bracket.size  = bracket.size,
+    #       tip.length    = tip_length,
+    #       color = if (!is.null(colorVar) && nchar(colorVar) > 0) "color" else as.character(labelcolor),
+    #       inherit.aes   = FALSE,
+    #       step.increase = stepDistance
+    #     )
+    # }
+
     if (!is.null(tab[["pairwiseComparisons"]]) && length(tab[["pairwiseComparisons"]]) > 0) {
 
-      #universal settings for the p value
+      # universal settings for the p value
       label_size <- tab[["labelSizePValue"]]
       labelcolor <- tab[["labelcolor"]]
 
-      #separate settings for each bracket
+      # separate settings for each bracket
       dfComparisons <- data.frame(
         group1     = as.character(sapply(tab[["pairwiseComparisons"]], function(x) x$group1)),
         group2     = as.character(sapply(tab[["pairwiseComparisons"]], function(x) x$group2)),
@@ -1641,29 +1719,113 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         stringsAsFactors = FALSE
       )
 
-      colorVar <- tab[["variableColorPlotBuilder"]]
+      # # Color settings: if a color variable is provided,
+      # # decode GroupPValue if isRM equals "RM"
+      # if (!is.null(colorVar) && nchar(colorVar) > 0) {
+      #   dfComparisons$color <- as.character(
+      #     sapply(tab[["pairwiseComparisons"]], function(x) {
+      #       if (identical(tab[["isRM"]], "RM"))
+      #         decodeColNames(x$GroupPValue)
+      #       else
+      #         x$GroupPValue
+      #     })
+      #   )
+      # }
+      #
+      # # Rows grouping: decode RowPValue if isRM equals "RM"
+      # if (!is.null(rowsVar)) {
+      #   dfComparisons[[rowsVar]] <- as.character(
+      #     sapply(tab[["pairwiseComparisons"]], function(x) {
+      #       if (identical(tab[["isRM"]], "RM"))
+      #         decodeColNames(x$RowPValue)
+      #       else
+      #         x$RowPValue
+      #     })
+      #   )
+      # }
+      #
+      # # Columns grouping: decode ColumnPValue if isRM equals "RM"
+      # if (!is.null(colsVar)) {
+      #   dfComparisons[[colsVar]] <- as.character(
+      #     sapply(tab[["pairwiseComparisons"]], function(x) {
+      #       if (identical(tab[["isRM"]], "RM"))
+      #         decodeColNames(x$ColumnPValue)
+      #       else
+      #         x$ColumnPValue
+      #     })
+      #   )
+      # }
+      #
+      # # Grid: decode ColumnPValue if isRM equals "RM"
+      # if (!is.null(gridVar)) {
+      #   dfComparisons[[gridVar]] <- as.character(
+      #     sapply(tab[["pairwiseComparisons"]], function(x) {
+      #       if (identical(tab[["isRM"]], "RM"))
+      #         decodeColNames(x$GridPValue)
+      #       else
+      #         x$GridPValue
+      #     })
+      #   )
+      # }
+
+      # Color settings: check for both standard and RM-specific variable names
       if (!is.null(colorVar) && nchar(colorVar) > 0) {
         dfComparisons$color <- as.character(
-          sapply(tab[["pairwiseComparisons"]], function(x) x$GroupPValue)
+          sapply(tab[["pairwiseComparisons"]], function(x) {
+            # First check if we have the RM-specific value
+            if (!is.null(x$RMGroupPValue)) {
+              decodeColNames(x$RMGroupPValue)
+            } else {
+              x$GroupPValue  # Use standard value otherwise
+            }
+          })
         )
       }
 
-      rowsVar <- tab[["rowsvariableSplitPlotBuilder"]]
+      # Rows grouping: check for both standard and RM-specific variable names
       if (!is.null(rowsVar)) {
         dfComparisons[[rowsVar]] <- as.character(
-          sapply(tab[["pairwiseComparisons"]], function(x) x$RowPValue)
+          sapply(tab[["pairwiseComparisons"]], function(x) {
+            # First check if we have the RM-specific value
+            if (!is.null(x$RMRowPValue)) {
+              decodeColNames(x$RMRowPValue)
+            } else {
+              x$RowPValue  # Use standard value otherwise
+            }
+          })
         )
       }
 
-      colsVar <- tab[["columnsvariableSplitPlotBuilder"]]
+      # Columns grouping: check for both standard and RM-specific variable names
       if (!is.null(colsVar)) {
         dfComparisons[[colsVar]] <- as.character(
-          sapply(tab[["pairwiseComparisons"]], function(x) x$ColumnPValue)
+          sapply(tab[["pairwiseComparisons"]], function(x) {
+            # First check if we have the RM-specific value
+            if (!is.null(x$RMColumnPValue)) {
+              decodeColNames(x$RMColumnPValue)
+            } else {
+              x$ColumnPValue  # Use standard value otherwise
+            }
+          })
+        )
+      }
+
+      # Grid: check for both standard and RM-specific variable names
+      if (!is.null(gridVar)) {
+        dfComparisons[[gridVar]] <- as.character(
+          sapply(tab[["pairwiseComparisons"]], function(x) {
+            # First check if we have the RM-specific value
+            if (!is.null(x$RMGridPValue)) {
+              decodeColNames(x$RMGridPValue)
+            } else {
+              x$GridPValue  # Use standard value otherwise
+            }
+          })
         )
       }
 
       bracket.size <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$bracketSizePValue))
-      tip_length <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$tipLengthPValue))
+      tip_length   <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$tipLengthPValue))
       stepDistance <- tab[["stepDistance"]]
 
       tidyplot_obj <- tidyplot_obj +
@@ -1676,11 +1838,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
           size          = label_size,
           bracket.size  = bracket.size,
           tip.length    = tip_length,
-          color = if (!is.null(colorVar) && nchar(colorVar) > 0) "color" else as.character(labelcolor),
+          color         = if (!is.null(colorVar) && nchar(colorVar) > 0) "color" else as.character(labelcolor),
           inherit.aes   = FALSE,
           step.increase = stepDistance
         )
     }
+
 
     # Save the plot in our results list
     updatedPlots[[plotId]] <- tidyplot_obj
