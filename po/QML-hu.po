@@ -1,31 +1,36 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2025-03-28 12:20+0000\n"
+"Last-Translator: Georgina Csordás <csordas.georgina@gmail.com>\n"
+"Language-Team: Hungarian <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/hu/>\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Language: eo\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.11-dev\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
 msgid "Descriptives"
-msgstr ""
+msgstr "Leíró"
 
 msgctxt "Description|"
 msgid "Descriptive Statistics"
-msgstr ""
+msgstr "Leíró Statisztika"
 
 msgctxt "Descriptives|"
 msgid "Variables"
-msgstr "Variabloj"
+msgstr "Változók"
 
 msgctxt "Descriptives|"
 msgid "Split"
-msgstr ""
+msgstr "Szétválasztás"
 
 msgctxt "Descriptives|"
 msgid "Frequency tables"
-msgstr "Tabeloj de ofteco"
+msgstr "Gyakorisági táblák"
 
 msgctxt "Descriptives|"
 msgid "Maximum distinct values"
@@ -37,18 +42,18 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "scale"
-msgstr ""
+msgstr "skála"
 
 msgctxt "Descriptives|"
 msgid ""
 "The scale parameter controls how much the table is expanded. For example, "
 "scale = 2 will cause the table to be roughly twice as long as the default "
 "(scale = 1)."
-msgstr ""
+msgstr "táblázat"
 
 msgctxt "Descriptives|"
 msgid "Boxplots"
-msgstr ""
+msgstr "Boxplotok"
 
 msgctxt "Descriptives|"
 msgid "Boxplot element"
@@ -64,83 +69,83 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Use color palette"
-msgstr "Uzi koloraron"
+msgstr "Használja a színsémát"
 
 msgctxt "Descriptives|"
 msgid "Label outliers"
-msgstr ""
+msgstr "Outlierek címkézése"
 
 msgctxt "Descriptives|"
 msgid "Graph above scatter plot"
-msgstr ""
+msgstr "Pontfelhődiagram feletti gráf"
 
 msgctxt "Descriptives|"
 msgid "Density"
-msgstr "Denso"
+msgstr "Sűrűség"
 
 msgctxt "Descriptives|"
 msgid "Histogram"
-msgstr ""
+msgstr "Hisztogram"
 
 msgctxt "Descriptives|"
 msgid "None"
-msgstr "Nenio"
+msgstr "Nincs"
 
 msgctxt "Descriptives|"
 msgid "Graph right of scatter plot"
-msgstr ""
+msgstr "Gráf a pontfelhődiagramtól jobbra"
 
 msgctxt "Descriptives|"
 msgid "Add regression line"
-msgstr ""
+msgstr "Regressziós vonal hozzáadása"
 
 msgctxt "Descriptives|"
 msgid "Smooth"
-msgstr "Glata"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Linear"
-msgstr "Lineara"
+msgstr "Lineáris"
 
 msgctxt "Descriptives|"
 msgid "Show confidence interval"
-msgstr ""
+msgstr "Mutassa a konfidencia intervallumot"
 
 msgctxt "Descriptives|"
 msgid "Show legend"
-msgstr ""
+msgstr "Mutassa a jelmagyarázatot"
 
 msgctxt "Descriptives|"
 msgid "Basic plots"
-msgstr "Bazaj diagramoj"
+msgstr "Alapvető ábrák"
 
 msgctxt "Descriptives|"
 msgid "Distribution plots"
-msgstr ""
+msgstr "Eloszlási ábrák"
 
 msgctxt "Descriptives|"
 msgid "Display density"
-msgstr ""
+msgstr "Mutassa a sűrűséget"
 
 msgctxt "Descriptives|"
 msgid "Correlation plots"
-msgstr ""
+msgstr "Korrelációs ábrák"
 
 msgctxt "Descriptives|"
 msgid "Q-Q plots"
-msgstr ""
+msgstr "Q-Q ábrák"
 
 msgctxt "Descriptives|"
 msgid "Pie charts"
-msgstr ""
+msgstr "Kördiagram"
 
 msgctxt "Descriptives|"
 msgid "Statistics"
-msgstr ""
+msgstr "Statisztika"
 
 msgctxt "Descriptives|"
 msgid "Quartiles"
-msgstr ""
+msgstr "Kvartilis"
 
 msgctxt "Descriptives|"
 msgid "Cut points for: "
@@ -148,27 +153,31 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid " equal groups"
-msgstr ""
+msgstr " egyenlő csoportok"
 
 msgctxt "Descriptives|"
 msgid "Percentiles:"
-msgstr ""
+msgstr "Percentilisek:"
+
+msgctxt "Descriptives|"
+msgid "Central tendency"
+msgstr "Centrális tendencia"
 
 msgctxt "Descriptives|"
 msgid "Mean"
-msgstr "Aritmetika meznombro"
+msgstr "Átlag"
 
 msgctxt "Descriptives|"
 msgid "Median"
-msgstr "Mediano"
+msgstr "Medián"
 
 msgctxt "Descriptives|"
 msgid "Mode"
-msgstr "Plejoftanto"
+msgstr "Módusz"
 
 msgctxt "Descriptives|"
 msgid "Sum"
-msgstr "Sumo"
+msgstr "Összeg"
 
 msgctxt "Descriptives|"
 msgid "Dispersion"
@@ -176,11 +185,11 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "S.E. mean"
-msgstr ""
+msgstr "S. E. átlag"
 
 msgctxt "Descriptives|"
 msgid "Std. deviation"
-msgstr "Norma devio"
+msgstr "Szórás"
 
 msgctxt "Descriptives|"
 msgid "MAD"
@@ -196,35 +205,35 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Variance"
-msgstr "Varianco"
+msgstr "Variancia"
 
 msgctxt "Descriptives|"
 msgid "Range"
-msgstr ""
+msgstr "Terjedelem"
 
 msgctxt "Descriptives|"
 msgid "Minimum"
-msgstr "Minimumo"
+msgstr "Minimum"
 
 msgctxt "Descriptives|"
 msgid "Maximum"
-msgstr "Maksimumo"
+msgstr "Maximum"
 
 msgctxt "Descriptives|"
 msgid "Distribution"
-msgstr ""
+msgstr "Eloszlás"
 
 msgctxt "Descriptives|"
 msgid "Skewness"
-msgstr ""
+msgstr "Ferdeség"
 
 msgctxt "Descriptives|"
 msgid "Kurtosis"
-msgstr ""
+msgstr "Csúcsosság"
 
 msgctxt "Descriptives|"
 msgid "Shapiro-Wilk test"
-msgstr ""
+msgstr "Shapiro-Wilk teszt"
 
 msgctxt "Descriptives|"
 msgid "Values are group midpoints"
@@ -240,7 +249,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Sturges"
-msgstr "Sturges"
+msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Scott"
@@ -256,7 +265,7 @@ msgstr "Freedman-Diaconis"
 
 msgctxt "Descriptives|"
 msgid "Manual"
-msgstr "Propra"
+msgstr "Kézi"
 
 msgctxt "Descriptives|"
 msgid "Number of bins"
@@ -268,59 +277,59 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Coefficient of variation"
-msgstr ""
+msgstr "Variációs koefficiens"
 
 msgctxt "Description|"
 msgid "Explore the data with tables and plots"
-msgstr ""
+msgstr "Az adatok feltárása táblázatokkal és ábrákkal"
 
 msgctxt "Descriptives|"
 msgid "Transpose descriptives table"
-msgstr ""
+msgstr "Leíró táblák transzponálása"
 
 msgctxt "Descriptives|"
 msgid "Customizable plots"
-msgstr ""
+msgstr "Testreszabható ábrák"
 
 msgctxt "Descriptives|"
 msgid "Dot plots"
-msgstr ""
+msgstr "Pontábrák"
 
 msgctxt "Descriptives|"
 msgid "Quantiles"
-msgstr ""
+msgstr "Kvantilisek"
 
 msgctxt "Descriptives|"
 msgid "Sample size"
-msgstr ""
+msgstr "Minta nagyság"
 
 msgctxt "Descriptives|"
 msgid "Valid"
-msgstr ""
+msgstr "Valid"
 
 msgctxt "Descriptives|"
 msgid "Missing"
-msgstr ""
+msgstr "Hiányzó érték"
 
 msgctxt "Descriptives|"
 msgid "Horizontal axis:"
-msgstr ""
+msgstr "Horizontális tengely:"
 
 msgctxt "Descriptives|"
 msgid "Vertical axis:"
-msgstr ""
+msgstr "Vertikális tengely:"
 
 msgctxt "Descriptives|"
 msgid "Display legend"
-msgstr ""
+msgstr "Felirat megjelenítése"
 
 msgctxt "Descriptives|"
 msgid "Display value"
-msgstr ""
+msgstr "Érték megjelenítése"
 
 msgctxt "Descriptives|"
 msgid "Relative text size"
-msgstr ""
+msgstr "Relatív szövegméret"
 
 msgctxt "Descriptives|"
 msgid "Width to height ratio of tiles"
@@ -336,19 +345,15 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Number of observations"
-msgstr ""
+msgstr "Megfigyelések száma"
 
 msgctxt "Descriptives|"
 msgid "For nominal and ordinal variables"
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Central tendency"
-msgstr ""
+msgstr "Nominális és ordinális változók számára"
 
 msgctxt "Descriptives|"
 msgid "Scatter plots"
-msgstr ""
+msgstr "Pontfelhődiagramok"
 
 msgctxt "Descriptives|"
 msgid "Tile heatmaps for selected variables"
@@ -356,11 +361,11 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Tables"
-msgstr ""
+msgstr "Táblázatok"
 
 msgctxt "Descriptives|"
 msgid "Categorical plots"
-msgstr ""
+msgstr "Kategórikus ábrák"
 
 msgctxt "Descriptives|"
 msgid "Pareto plots"
@@ -372,7 +377,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Likert plots"
-msgstr ""
+msgstr "Likert ábrák"
 
 msgctxt "Descriptives|"
 msgid "Assume all variables share the same levels"
@@ -380,27 +385,27 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Adjustable font size for vertical axis"
-msgstr ""
+msgstr "Állítható betűméret a vertikális tengelyen"
 
 msgctxt "Descriptives|"
 msgid "Normal"
-msgstr ""
+msgstr "Normális"
 
 msgctxt "Descriptives|"
 msgid "Small"
-msgstr ""
+msgstr "Kicsi"
 
 msgctxt "Descriptives|"
 msgid "Medium"
-msgstr ""
+msgstr "Közepes"
 
 msgctxt "Descriptives|"
 msgid "Large"
-msgstr ""
+msgstr "Nagy"
 
 msgctxt "Descriptives|"
 msgid "Transparency"
-msgstr ""
+msgstr "Transzparencia"
 
 msgctxt "Descriptives|"
 msgid "Inference"
@@ -408,7 +413,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Confidence interval for mean"
-msgstr ""
+msgstr "Az átlag konfidencia intervalluma"
 
 msgctxt "Descriptives|"
 msgid "Width"
@@ -416,47 +421,47 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Method"
-msgstr ""
+msgstr "Módszer"
 
 msgctxt "Descriptives|"
 msgid "Normal model"
-msgstr ""
+msgstr "Normális modell"
 
 msgctxt "Descriptives|"
 msgid "Bootstrap"
-msgstr ""
+msgstr "Bootstrap"
 
 msgctxt "Descriptives|"
 msgid "Confidence interval for std. deviation"
-msgstr ""
+msgstr "A szórás konfidencia intervalluma"
 
 msgctxt "Descriptives|"
 msgid "Confidence interval for variance"
-msgstr ""
+msgstr "A variancia konfidencia intervalluma"
 
 msgctxt "Descriptives|"
 msgid "Bootstrap confidence interval options"
-msgstr ""
+msgstr "Bootstrap konfidencia intervallum opciók"
 
 msgctxt "Descriptives|"
 msgid "Bootstrap samples"
-msgstr ""
+msgstr "Bootstrap minták"
 
 msgctxt "Descriptives|"
 msgid "T model"
-msgstr ""
+msgstr "T modell"
 
 msgctxt "Descriptives|"
 msgid "Frequency plots"
-msgstr ""
+msgstr "Gyakorisági ábrák"
 
 msgctxt "Descriptives|"
 msgid "Separate frequencies:"
-msgstr ""
+msgstr "Gyakoriságok szétválasztása:"
 
 msgctxt "Descriptives|"
 msgid "How to combine separate frequencies"
-msgstr ""
+msgstr "Hogyan kell különálló gyakoriságokat kombinálni"
 
 msgctxt "Descriptives|"
 msgid "Stack"
@@ -482,7 +487,7 @@ msgstr ""
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Variable"
-msgstr ""
+msgstr "Változó"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "A variable that is measured repeatedly over time."
@@ -566,19 +571,17 @@ msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Distribution"
 msgstr ""
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Density"
-msgstr "Denso"
+msgstr ""
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Histogram"
 msgstr ""
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "None"
-msgstr "Nenio"
+msgstr ""
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Lag plot"
@@ -600,15 +603,13 @@ msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Add regression line"
 msgstr ""
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Smooth"
-msgstr "Glata"
+msgstr ""
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Linear"
-msgstr "Lineara"
+msgstr ""
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Confidence interval"
@@ -701,10 +702,9 @@ msgctxt "FlexplotForm|"
 msgid "Cubic"
 msgstr ""
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "None"
-msgstr "Nenio"
+msgstr ""
 
 msgctxt "FlexplotForm|"
 msgid "Fitted line (scatterplots)"
@@ -1696,10 +1696,9 @@ msgctxt "raincloudPlots|"
 msgid "Advanced"
 msgstr ""
 
-#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Mean"
-msgstr "Aritmetika meznombro"
+msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Whether to also show a mean for each cloud."
