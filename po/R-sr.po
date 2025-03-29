@@ -1,24 +1,22 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: jaspDescriptives 0.15.0\n"
+"Project-Id-Version: jaspDescriptives 0.19.2\n"
 "POT-Creation-Date: 2025-03-08 03:18\n"
-"PO-Revision-Date: 2021-04-19 01:26+0000\n"
-"Last-Translator: phlostically <phlostically@mailinator.com>\n"
-"Language-Team: Esperanto <https://hosted.weblate.org/projects/jasp/"
-"jaspdescriptives-r/eo/>\n"
-"Language: eo\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.6-dev\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 
 msgid "Time Series Plot"
 msgstr ""
 
-#, fuzzy
 msgid "Lag Plot"
-msgstr "Q-Q-Diagramo"
+msgstr ""
 
 msgid "Autocorrelation Function"
 msgstr ""
@@ -30,28 +28,28 @@ msgid "Descriptive Statistics"
 msgstr ""
 
 msgid "Valid"
-msgstr "Valida"
+msgstr ""
 
 msgid "Missing"
-msgstr "Mankanta"
+msgstr ""
 
 msgid "Mean"
-msgstr "Aritmetika meznombro"
+msgstr ""
 
 msgid "Std. Deviation"
-msgstr "Norma Devio"
+msgstr ""
 
 msgid "Variance"
-msgstr "Varianco"
+msgstr ""
 
 msgid "Range"
 msgstr ""
 
 msgid "Minimum"
-msgstr "Minimumo"
+msgstr ""
 
 msgid "Maximum"
-msgstr "Maksimumo"
+msgstr ""
 
 msgid "Start"
 msgstr ""
@@ -68,13 +66,10 @@ msgstr ""
 msgid "The time variable should have unique values only."
 msgstr ""
 
-msgid ""
-"The 'Time' variable has a date-like format, please filter by date instead."
+msgid "The 'Time' variable has a date-like format, please filter by date instead."
 msgstr ""
 
-msgid ""
-"The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:"
-"ss). Try to filter by time index instead."
+msgid "The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:ss). Try to filter by time index instead."
 msgstr ""
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
@@ -86,8 +81,7 @@ msgstr ""
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
 msgstr ""
 
-msgid ""
-"The 'End' value of the filter should be larger/later than the 'Start' value."
+msgid "The 'End' value of the filter should be larger/later than the 'Start' value."
 msgstr ""
 
 msgid "Lag"
@@ -97,7 +91,7 @@ msgid "Association %s"
 msgstr ""
 
 msgid "Frequency Tables"
-msgstr "Tabelo de Oftecoj"
+msgstr ""
 
 msgid "Correlation plots"
 msgstr ""
@@ -112,10 +106,10 @@ msgid "Boxplots"
 msgstr ""
 
 msgid "Q-Q Plots"
-msgstr "Q-Q-Diagramoj"
+msgstr ""
 
 msgid "Q-Q Plot"
-msgstr "Q-Q-Diagramo"
+msgstr ""
 
 msgid "Plotting is not possible: Variable only contains NA!"
 msgstr ""
@@ -132,28 +126,22 @@ msgstr ""
 msgid "Interval plots"
 msgstr ""
 
-#, fuzzy
 msgid "Dot Plots"
-msgstr "Q-Q-Diagramoj"
+msgstr ""
 
 msgid "Heatmaps"
 msgstr ""
 
-#, fuzzy
 msgid "Pareto Plots"
-msgstr "Q-Q-Diagramoj"
+msgstr ""
 
-#, fuzzy
 msgid "Density Plots"
-msgstr "Q-Q-Diagramoj"
+msgstr ""
 
-#, fuzzy
 msgid "Likert Plots"
-msgstr "Q-Q-Diagramoj"
+msgstr ""
 
-msgid ""
-"Excluded %1$i rows from the analysis that correspond to the missing values "
-"of the split-by variable %2$s"
+msgid "Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s"
 msgstr ""
 
 msgid "%s%% Confidence Interval Mean"
@@ -190,13 +178,13 @@ msgid "%s%% CI Variance Lower"
 msgstr ""
 
 msgid "Mode"
-msgstr "Plejoftanto"
+msgstr ""
 
 msgid "Median"
-msgstr "Mediano"
+msgstr ""
 
 msgid "Std. Error of Mean"
-msgstr "Norma Eraro de Aritmetika Meznombro"
+msgstr ""
 
 msgid "Coefficient of variation"
 msgstr ""
@@ -223,10 +211,10 @@ msgid "Std. Error of Kurtosis"
 msgstr ""
 
 msgid "Shapiro-Wilk"
-msgstr "Shapiro-Wilk"
+msgstr ""
 
 msgid "P-value of Shapiro-Wilk"
-msgstr "P-valoro de Shapiro-Wilk"
+msgstr ""
 
 msgid "25th percentile"
 msgstr ""
@@ -244,52 +232,46 @@ msgid "Error in Percentiles, all values should >=0 and <=100"
 msgstr ""
 
 msgid "Sum"
-msgstr "Sumo"
+msgstr ""
 
 msgid "All values are identical"
 msgstr ""
 
-msgid ""
-"Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty "
-"set is %2$s."
+msgid "Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty set is %2$s."
 msgstr ""
 
-msgid ""
-"More than one mode exists. For nominal and ordinal data, the first mode is "
-"reported. For continuous data, the mode with the highest density estimate is "
-"reported but multiple modes may exist. We recommend visualizing the data to "
-"check for multimodality."
+msgid "More than one mode exists. For nominal and ordinal data, the first mode is reported. For continuous data, the mode with the highest density estimate is reported but multiple modes may exist. We recommend visualizing the data to check for multimodality."
 msgstr ""
 
 msgid "The mode is computed assuming that variables are discrete."
 msgstr ""
 
 msgid "Total"
-msgstr "Totalo"
+msgstr ""
 
 msgid "All variables have more than %1$s distinct values"
 msgstr ""
 
 msgid "Frequencies"
-msgstr "Oftecoj"
+msgstr ""
 
 msgid "Frequencies for %s"
-msgstr "Oftecoj de %s"
+msgstr ""
 
 msgid "Frequency"
-msgstr "Ofteco"
+msgstr ""
 
 msgid "Percent"
-msgstr "Procento"
+msgstr ""
 
 msgid "Valid Percent"
-msgstr "Valida Procento"
+msgstr ""
 
 msgid "Cumulative Percent"
 msgstr ""
 
 msgid "Density"
-msgstr "Denso"
+msgstr ""
 
 msgid "Plotting not possible: %s"
 msgstr ""
@@ -303,14 +285,10 @@ msgstr ""
 msgid "No non-missing values!"
 msgstr ""
 
-msgid ""
-"Association cannot be computed due to missing values. Try a different 'Use' "
-"setting."
+msgid "Association cannot be computed due to missing values. Try a different 'Use' setting."
 msgstr ""
 
-msgid ""
-"Some associations cannot be computed due to missing values. Try a different "
-"'Use' setting."
+msgid "Some associations cannot be computed due to missing values. Try a different 'Use' setting."
 msgstr ""
 
 msgid "Theoretical Quantiles"
@@ -325,17 +303,13 @@ msgstr ""
 msgid "Leaf"
 msgstr ""
 
-msgid ""
-"A stem and leaf table could not be made because there are fewer than 2 non-"
-"missing observations"
+msgid "A stem and leaf table could not be made because there are fewer than 2 non-missing observations"
 msgstr ""
 
 msgid "The decimal point is at the |"
 msgstr ""
 
-msgid ""
-"There must be a unique value per combination of levels of horizontal and "
-"vertical axis!"
+msgid "There must be a unique value per combination of levels of horizontal and vertical axis!"
 msgstr ""
 
 msgid "All categorical variables must have the same number of levels!"
@@ -356,9 +330,7 @@ msgstr ""
 msgid "Interval around mean is custom."
 msgstr ""
 
-msgid ""
-"<span style = 'color: darkorange'>Error with custom interval: Specified "
-"number of clouds does not match clouds in plot.</span>"
+msgid "<span style = 'color: darkorange'>Error with custom interval: Specified number of clouds does not match clouds in plot.</span>"
 msgstr ""
 
 msgid "Interval around mean represents ± 1 standard error"
@@ -370,22 +342,13 @@ msgstr ""
 msgid "Points are slightly jittered from their true values."
 msgstr ""
 
-msgid ""
-"<span style = 'color: darkorange'> Warning! Some data is not "
-"shown<br>because it lies outside of the interval set by the custom axis "
-"limits.</span>"
+msgid "<span style = 'color: darkorange'> Warning! Some data is not shown<br>because it lies outside of the interval set by the custom axis limits.</span>"
 msgstr ""
 
-msgid ""
-"<span style = 'color: darkorange'> Error with custom orientation: Specified "
-"number of clouds does not match clouds in plot.<br>Reverted to default all "
-"'R'. Point nudge set to 0.</span>"
+msgid "<span style = 'color: darkorange'> Error with custom orientation: Specified number of clouds does not match clouds in plot.<br>Reverted to default all 'R'. Point nudge set to 0.</span>"
 msgstr ""
 
-msgid ""
-"<span style = 'color: darkorange'> Error with custom color: Specified number "
-"of clouds does not match clouds in plot.<br>Ignoring custom color input.</"
-"span>"
+msgid "<span style = 'color: darkorange'> Error with custom color: Specified number of clouds does not match clouds in plot.<br>Ignoring custom color input.</span>"
 msgstr ""
 
 msgid "Statistics"
@@ -403,13 +366,11 @@ msgstr ""
 msgid "Lower Whisker"
 msgstr ""
 
-#, fuzzy
 msgid "25th Percentile"
-msgstr "Procento"
+msgstr ""
 
-#, fuzzy
 msgid "75th Percentile"
-msgstr "Procento"
+msgstr ""
 
 msgid "Upper Whisker"
 msgstr ""
@@ -417,9 +378,8 @@ msgstr ""
 msgid "%s%% CI for Mean Difference"
 msgstr ""
 
-#, fuzzy
 msgid "Standard Error"
-msgstr "Norma Devio"
+msgstr ""
 
 msgid "<i>N</i><sub>Total</sub> = %s."
 msgstr ""
@@ -434,9 +394,7 @@ msgid "<br>Interval around mean represents %d%% confidence interval."
 msgstr ""
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
-msgid_plural ""
-"The following variables have more than %1$s distinct values and are omitted: "
-"%2$s."
+msgid_plural "The following variables have more than %1$s distinct values and are omitted: %2$s."
 msgstr[0] ""
 msgstr[1] ""
 
