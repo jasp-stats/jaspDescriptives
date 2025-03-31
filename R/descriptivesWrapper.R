@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2013-2024 University of Amsterdam
+# Copyright (C) 2013-2025 University of Amsterdam
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,11 +15,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-# This is a generated file. Don't change it
+# This is a generated file. Don't change it!
 
 Descriptives <- function(
           data = NULL,
-          version = "0.19.2",
+          version = "0.19.3",
           formula = NULL,
           associationMatrixUse = "everything",
           boxPlot = FALSE,
@@ -36,7 +36,8 @@ Descriptives <- function(
           covariance = FALSE,
           customHistogramPosition = "stack",
           densityPlot = FALSE,
-          densityPlotSeparate = list(types = "", value = ""),
+          densityPlotCategoricalType = "count",
+          densityPlotSeparate = list(types = list(), value = ""),
           densityPlotTransparency = 20,
           densityPlotType = "density",
           descriptivesTableTransposed = FALSE,
@@ -50,13 +51,13 @@ Descriptives <- function(
           frequencyTablesMaximumDistinctValues = 10,
           heatmapDisplayValue = FALSE,
           heatmapDisplayValueRelativeTextSize = 1,
-          heatmapHorizontalAxis = list(types = "", value = ""),
+          heatmapHorizontalAxis = list(types = list(), value = ""),
           heatmapLegend = FALSE,
           heatmapPlot = FALSE,
           heatmapStatisticContinuous = "mean",
           heatmapStatisticDiscrete = "mode",
           heatmapTileWidthHeightRatio = 1,
-          heatmapVerticalAxis = list(types = "", value = ""),
+          heatmapVerticalAxis = list(types = list(), value = ""),
           intervalPlot = FALSE,
           iqr = FALSE,
           kurtosis = FALSE,
@@ -102,7 +103,7 @@ Descriptives <- function(
           seMean = FALSE,
           shapiroWilkTest = FALSE,
           skewness = FALSE,
-          splitBy = list(types = "", value = ""),
+          splitBy = list(types = list(), value = ""),
           statisticsValuesAreGroupMidpoints = FALSE,
           stemAndLeaf = FALSE,
           stemAndLeafScale = 1,
@@ -123,16 +124,20 @@ Descriptives <- function(
    options[["data"]] <- NULL
    options[["version"]] <- NULL
 
+
+   if (!jaspBase::jaspResultsCalledFromJasp() && !is.null(data)) {
+      jaspBase::storeDataSet(data)
+   }
+
    if (!is.null(formula)) {
       if (!inherits(formula, "formula")) {
          formula <- as.formula(formula)
       }
       options$formula <- jaspBase::jaspFormula(formula, data)
    }
-
    optionsWithFormula <- c("associationMatrixUse", "colorPalette", "densityPlotSeparate", "distributionAndCorrelationPlotHistogramBinWidthType", "heatmapHorizontalAxis", "heatmapVerticalAxis", "likertPlotAdjustableFontSize", "meanCiMethod", "sdCiMethod", "splitBy", "variables", "varianceCiMethod")
    for (name in optionsWithFormula) {
       if ((name %in% optionsWithFormula) && inherits(options[[name]], "formula")) options[[name]] = jaspBase::jaspFormula(options[[name]], data)   }
 
-   return(jaspBase::runWrappedAnalysis("jaspDescriptives::Descriptives", data, options, version))
+   return(jaspBase::runWrappedAnalysis("jaspDescriptives", "Descriptives", "Descriptives.qml", options, version, FALSE))
 }
