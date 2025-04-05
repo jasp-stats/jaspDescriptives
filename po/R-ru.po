@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2025-03-08 03:18\n"
-"PO-Revision-Date: 2025-03-17 13:06+0000\n"
-"Last-Translator: MikeWinny <winny63@gmail.com>\n"
+"PO-Revision-Date: 2025-04-02 18:57+0000\n"
+"Last-Translator: Иван Рудаков <riv@polygene.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/ru/>\n"
 "Language: ru\n"
@@ -236,13 +236,13 @@ msgid "P-value of Shapiro-Wilk"
 msgstr "P-значение коэффициента Шапиро-Уилка"
 
 msgid "25th percentile"
-msgstr "25-й процентиль"
+msgstr "25%-й процентиль"
 
 msgid "50th percentile"
 msgstr "50-й процентиль"
 
 msgid "75th percentile"
-msgstr "75-й процентиль"
+msgstr "75%-й квартиль"
 
 msgid "%gth percentile"
 msgstr "%g-й процентиль"
@@ -401,7 +401,6 @@ msgid ""
 "span>"
 msgstr ""
 
-#, fuzzy
 msgid "Statistics"
 msgstr "Описательные статистики"
 
@@ -415,26 +414,22 @@ msgid "<i>N</i>"
 msgstr ""
 
 msgid "Lower Whisker"
-msgstr ""
+msgstr "Наблюдаемый минимум"
 
-#, fuzzy
 msgid "25th Percentile"
-msgstr "25-й процентиль"
+msgstr "25%-й Процентиль"
 
-#, fuzzy
 msgid "75th Percentile"
-msgstr "75-й процентиль"
+msgstr "75%-й Квартиль"
 
 msgid "Upper Whisker"
-msgstr ""
+msgstr "Наблюдаемый максимум"
 
-#, fuzzy
 msgid "%s%% CI for Mean Difference"
-msgstr "%s%% ДИ Среднего (верхняя граница)"
+msgstr "%s%% ДИ для разницы средних"
 
-#, fuzzy
 msgid "Standard Error"
-msgstr "Стандартное отклонение"
+msgstr "Стандартная ошибка"
 
 msgid "<i>N</i><sub>Total</sub> = %s."
 msgstr ""
