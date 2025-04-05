@@ -2,69 +2,71 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.19.2\n"
 "POT-Creation-Date: 2025-03-08 03:18\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-04-05 14:20+0000\n"
+"Last-Translator: Marko Bojović <bojovicmarko@outlook.com>\n"
+"Language-Team: Serbian <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-r/sr/>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 msgid "Time Series Plot"
-msgstr ""
+msgstr "Графикон временске серије"
 
 msgid "Lag Plot"
-msgstr ""
+msgstr "График кашњења"
 
 msgid "Autocorrelation Function"
-msgstr ""
+msgstr "Функција аутокорелације"
 
 msgid "Partial Autocorrelation Function"
-msgstr ""
+msgstr "Функција парцијалне аутокорелације"
 
 msgid "Descriptive Statistics"
-msgstr ""
+msgstr "Дескриптивна статистика"
 
 msgid "Valid"
-msgstr ""
+msgstr "Валидан"
 
 msgid "Missing"
-msgstr ""
+msgstr "Недостајуће"
 
 msgid "Mean"
-msgstr ""
+msgstr "Аритметичка средина"
 
 msgid "Std. Deviation"
-msgstr ""
+msgstr "Станд. девијација"
 
 msgid "Variance"
-msgstr ""
+msgstr "Варијанца"
 
 msgid "Range"
-msgstr ""
+msgstr "Распон"
 
 msgid "Minimum"
-msgstr ""
+msgstr "Минимум"
 
 msgid "Maximum"
-msgstr ""
+msgstr "Максимум"
 
 msgid "Start"
-msgstr ""
+msgstr "Почни"
 
 msgid "End"
-msgstr ""
+msgstr "Крај"
 
 msgid "Lag 1 Autocorrelation"
-msgstr ""
+msgstr "Аутокорелација са кашњењем 1"
 
 msgid "The time series data should be equally-spaced."
-msgstr ""
+msgstr "Подаци временских серија треба да буду равномерно распоређени."
 
 msgid "The time variable should have unique values only."
-msgstr ""
+msgstr "Временска променлива мора имати само јединствене вредности."
 
 msgid "The 'Time' variable has a date-like format, please filter by date instead."
 msgstr ""
