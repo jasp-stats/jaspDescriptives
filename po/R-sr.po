@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.19.2\n"
 "POT-Creation-Date: 2025-03-08 03:18\n"
-"PO-Revision-Date: 2025-04-05 14:20+0000\n"
+"PO-Revision-Date: 2025-04-07 02:38+0000\n"
 "Last-Translator: Marko Bojović <bojovicmarko@outlook.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/sr/>\n"
@@ -70,78 +70,81 @@ msgstr "Временска променлива мора имати само ј�
 
 msgid "The 'Time' variable has a date-like format, please filter by date instead."
 msgstr ""
+"Варијабла 'Време' има формат сличан датуму - молимо филтрирајте по датуму."
 
 msgid "The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:ss). Try to filter by time index instead."
 msgstr ""
+"Варијабла 'Време' није у формату сличном датуму (нпр. гггг-мм-дд чч:мм:сс). "
+"Покушајте да филтрирате преко временског индекса."
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
-msgstr ""
+msgstr "'Start' мора бити у формату сличном датуму (нпр. гггг-мм-дд чч:мм:сс)."
 
 msgid "The 'Start' value of the filter should be before last observation."
-msgstr ""
+msgstr "Вредност 'Start' у филтеру мора бити пре последњег запажања."
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
-msgstr ""
+msgstr "'End' мора бити у формату сличном датуму (нпр. гггг-мм-дд чч:мм:сс)."
 
 msgid "The 'End' value of the filter should be larger/later than the 'Start' value."
-msgstr ""
+msgstr "Вредност 'End' у филтеру мора бити већа/каснија од вредности 'Start'."
 
 msgid "Lag"
-msgstr ""
+msgstr "Кашњење"
 
 msgid "Association %s"
-msgstr ""
+msgstr "Асоцијација %s"
 
 msgid "Frequency Tables"
-msgstr ""
+msgstr "Табеле учесталости"
 
 msgid "Correlation plots"
-msgstr ""
+msgstr "Корелациони дијаграми"
 
 msgid "Correlation plot"
-msgstr ""
+msgstr "Корелациони дијаграм"
 
 msgid "Distribution Plots"
-msgstr ""
+msgstr "Дистрибуциони графикони"
 
 msgid "Boxplots"
-msgstr ""
+msgstr "Бокс графикони"
 
 msgid "Q-Q Plots"
-msgstr ""
+msgstr "Q-Q дијаграм"
 
 msgid "Q-Q Plot"
-msgstr ""
+msgstr "Q-Q графикон"
 
 msgid "Plotting is not possible: Variable only contains NA!"
-msgstr ""
+msgstr "Цртање није могуће: Варијабла садржи само NA вредности!"
 
 msgid "Pie charts"
-msgstr ""
+msgstr "Пита дијаграм"
 
 msgid "Stem and Leaf"
-msgstr ""
+msgstr "S-L дијаграм"
 
 msgid "Scatter Plots"
-msgstr ""
+msgstr "Дијаграми расипања"
 
 msgid "Interval plots"
-msgstr ""
+msgstr "Дијаграм интервала"
 
 msgid "Dot Plots"
-msgstr ""
+msgstr "Дијаграми тачака"
 
 msgid "Heatmaps"
-msgstr ""
+msgstr "Топлотне мапе"
 
 msgid "Pareto Plots"
-msgstr ""
+msgstr "Pareto дијаграми"
 
 msgid "Density Plots"
-msgstr ""
+msgstr "Дијаграми густине"
 
 msgid "Likert Plots"
-msgstr ""
+msgstr "Likert дијаграми"
 
 msgid "Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s"
 msgstr ""
@@ -156,133 +159,139 @@ msgid "%s%% Confidence Interval Variance"
 msgstr ""
 
 msgid "Upper"
-msgstr ""
+msgstr "Горњи"
 
 msgid "Lower"
-msgstr ""
+msgstr "Ниже"
 
 msgid "%s%% CI Mean Upper"
-msgstr ""
+msgstr "%s%% CI средња (горња граница)"
 
 msgid "%s%% CI Mean Lower"
-msgstr ""
+msgstr "%s%% CI средња (доња граница)"
 
 msgid "%s%% CI Std. Dev. Upper"
-msgstr ""
+msgstr "%s%% CI станд. дев. (горња граница)"
 
 msgid "%s%% CI Std. Dev. Lower"
-msgstr ""
+msgstr "%s%% CI станд. дев. (доња граница)"
 
 msgid "%s%% CI Variance Upper"
-msgstr ""
+msgstr "%s%% CI Варијанса (горња граница)"
 
 msgid "%s%% CI Variance Lower"
-msgstr ""
+msgstr "%s%% CI Варијанса (доња граница)"
 
 msgid "Mode"
-msgstr ""
+msgstr "Мод"
 
 msgid "Median"
-msgstr ""
+msgstr "Медијана"
 
 msgid "Std. Error of Mean"
-msgstr ""
+msgstr "Стд. грешка средње вредности"
 
 msgid "Coefficient of variation"
-msgstr ""
+msgstr "Коефицијент варијације"
 
 msgid "MAD"
-msgstr ""
+msgstr "MAD"
 
 msgid "MAD robust"
-msgstr ""
+msgstr "MAD робустан"
 
 msgid "IQR"
-msgstr ""
+msgstr "IQR"
 
 msgid "Skewness"
-msgstr ""
+msgstr "Асиметрија (Skewness)"
 
 msgid "Std. Error of Skewness"
-msgstr ""
+msgstr "Стд. грешка асиметрије (Skewness)"
 
 msgid "Kurtosis"
-msgstr ""
+msgstr "Спљоштеност (Kurtosis)"
 
 msgid "Std. Error of Kurtosis"
-msgstr ""
+msgstr "Стд. грешка спљоштености (Kurtosis)"
 
 msgid "Shapiro-Wilk"
-msgstr ""
+msgstr "Shapiro-Wilk"
 
 msgid "P-value of Shapiro-Wilk"
-msgstr ""
+msgstr "P-вредност Shapiro-Wilk"
 
 msgid "25th percentile"
-msgstr ""
+msgstr "25. перцентил"
 
 msgid "50th percentile"
-msgstr ""
+msgstr "50. перцентил"
 
 msgid "75th percentile"
-msgstr ""
+msgstr "75. перцентил"
 
 msgid "%gth percentile"
-msgstr ""
+msgstr "%g перцентил"
 
 msgid "Error in Percentiles, all values should >=0 and <=100"
-msgstr ""
+msgstr "Грешка у перцентилима, све вредности би требало да буду >=0 и <=100"
 
 msgid "Sum"
-msgstr ""
+msgstr "Збир"
 
 msgid "All values are identical"
-msgstr ""
+msgstr "Све вредности су идентичне"
 
 msgid "Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty set is %2$s."
 msgstr ""
+"Инфимум (минимум) празног скупа је %1$s, супремум (максимум) празног скупа "
+"је %2$s."
 
 msgid "More than one mode exists. For nominal and ordinal data, the first mode is reported. For continuous data, the mode with the highest density estimate is reported but multiple modes may exist. We recommend visualizing the data to check for multimodality."
 msgstr ""
+"Постоји више од једног мода. За номиналне и ординалне податке, пријављује се "
+"први мод. За континуиране податке, пријављује се мод са највећом проценом "
+"густине, али може постојати више модова. Препоручујемо визуелизацију "
+"података да би се проверило вишемодално распоређење."
 
 msgid "The mode is computed assuming that variables are discrete."
-msgstr ""
+msgstr "Мод се израчунава под претпоставком да су променљиве дискретне."
 
 msgid "Total"
-msgstr ""
+msgstr "Укупно"
 
 msgid "All variables have more than %1$s distinct values"
-msgstr ""
+msgstr "Све променљиве имају више од %1$s различитих вредности"
 
 msgid "Frequencies"
-msgstr ""
+msgstr "Фреквенције"
 
 msgid "Frequencies for %s"
-msgstr ""
+msgstr "Фреквенције за %s"
 
 msgid "Frequency"
-msgstr ""
+msgstr "Фреквенција"
 
 msgid "Percent"
-msgstr ""
+msgstr "Проценат"
 
 msgid "Valid Percent"
-msgstr ""
+msgstr "Важећи проценат"
 
 msgid "Cumulative Percent"
-msgstr ""
+msgstr "Кумулативни проценат"
 
 msgid "Density"
-msgstr ""
+msgstr "Густина"
 
 msgid "Plotting not possible: %s"
-msgstr ""
+msgstr "Цртање није могуће: %s"
 
 msgid "Plotting is not possible: No plot type selected!"
-msgstr ""
+msgstr "Цртање није могуће: Није изабрана врста графикона!"
 
 msgid "Counts"
-msgstr ""
+msgstr "Бројеви"
 
 msgid "No non-missing values!"
 msgstr ""
@@ -357,22 +366,22 @@ msgid "Statistics"
 msgstr ""
 
 msgid "Primary Factor"
-msgstr ""
+msgstr "Примари фактор"
 
 msgid "Secondary Factor"
-msgstr ""
+msgstr "Секундарни фактор"
 
 msgid "<i>N</i>"
-msgstr ""
+msgstr "<i>N</i>"
 
 msgid "Lower Whisker"
 msgstr ""
 
 msgid "25th Percentile"
-msgstr ""
+msgstr "25. перцентил"
 
 msgid "75th Percentile"
-msgstr ""
+msgstr "75. перцентил"
 
 msgid "Upper Whisker"
 msgstr ""
@@ -381,7 +390,7 @@ msgid "%s%% CI for Mean Difference"
 msgstr ""
 
 msgid "Standard Error"
-msgstr ""
+msgstr "Стандардна грешка"
 
 msgid "<i>N</i><sub>Total</sub> = %s."
 msgstr ""
