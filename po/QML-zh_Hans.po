@@ -57,7 +57,7 @@ msgstr ""
 "(scale = 1) 的两倍。"
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
+msgid "Customizable Plots"
 msgstr "自定义绘图"
 
 msgctxt "Descriptives|"
@@ -125,7 +125,7 @@ msgid "Show legend"
 msgstr "显示图例"
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
+msgid "Basic Plots"
 msgstr "基本图"
 
 msgctxt "Descriptives|"
@@ -361,7 +361,7 @@ msgid "Tables"
 msgstr "表格"
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
+msgid "Categorical Plots"
 msgstr "分类图"
 
 msgctxt "Descriptives|"

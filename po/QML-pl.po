@@ -115,7 +115,7 @@ msgid "Show legend"
 msgstr "Pokaż legendę"
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
+msgid "Basic Plots"
 msgstr "Podstawowe wykresy"
 
 msgctxt "Descriptives|"
@@ -267,8 +267,8 @@ msgid "Transpose descriptives table"
 msgstr "Transponuj tabelę"
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
-msgstr "Wykresy konfigurowalne"
+msgid "Customizable Plots"
+msgstr "Wykresy Konfigurowalne"
 
 msgctxt "Descriptives|"
 msgid "Dot plots"
@@ -351,7 +351,7 @@ msgid "Bootstrap samples"
 msgstr "Liczba próbek"
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
+msgid "Categorical Plots"
 msgstr "Wykresy dla danych kategorialnych"
 
 msgctxt "Descriptives|"

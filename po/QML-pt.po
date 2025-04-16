@@ -145,7 +145,7 @@ msgid "Use color palette"
 msgstr "Usar paleta de cores"
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
+msgid "Basic Plots"
 msgstr "Gráficos básicos"
 
 msgctxt "Descriptives|"
@@ -287,8 +287,8 @@ msgid "Transpose descriptives table"
 msgstr "Transpor tabela de descritivas"
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
-msgstr "Gráficos customizáveis"
+msgid "Customizable Plots"
+msgstr "Gráficos Customizáveis"
 
 msgctxt "Descriptives|"
 msgid "Dot plots"
@@ -363,8 +363,8 @@ msgid "Tables"
 msgstr "Tabelas"
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
-msgstr "Gráficos categóricos"
+msgid "Categorical Plots"
+msgstr "Gráficos Categóricos"
 
 msgctxt "Descriptives|"
 msgid "Pareto plots"

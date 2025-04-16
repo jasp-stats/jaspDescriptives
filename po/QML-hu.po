@@ -116,8 +116,8 @@ msgid "Show legend"
 msgstr "Mutassa a jelmagyarázatot"
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
-msgstr "Alapvető ábrák"
+msgid "Basic Plots"
+msgstr "Alapvető Ábrák"
 
 msgctxt "Descriptives|"
 msgid "Distribution plots"
@@ -288,8 +288,8 @@ msgid "Transpose descriptives table"
 msgstr "Leíró táblák transzponálása"
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
-msgstr "Testreszabható ábrák"
+msgid "Customizable Plots"
+msgstr "Testreszabható Ábrák"
 
 msgctxt "Descriptives|"
 msgid "Dot plots"
@@ -364,8 +364,8 @@ msgid "Tables"
 msgstr "Táblázatok"
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
-msgstr "Kategórikus ábrák"
+msgid "Categorical Plots"
+msgstr "Kategórikus Ábrák"
 
 msgctxt "Descriptives|"
 msgid "Pareto plots"

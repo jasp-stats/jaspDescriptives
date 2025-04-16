@@ -115,7 +115,7 @@ msgid "Show legend"
 msgstr "Legende anzeigen"
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
+msgid "Basic Plots"
 msgstr "Einfache Diagramme"
 
 msgctxt "Descriptives|"
@@ -287,7 +287,7 @@ msgid "Transpose descriptives table"
 msgstr "Deskriptive Tabelle transponieren"
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
+msgid "Customizable Plots"
 msgstr "Einstellbare Diagramme"
 
 msgctxt "Descriptives|"
@@ -363,7 +363,7 @@ msgid "Tables"
 msgstr "Tabellen"
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
+msgid "Categorical Plots"
 msgstr "Kategoriale Diagramme"
 
 msgctxt "Descriptives|"

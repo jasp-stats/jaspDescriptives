@@ -281,7 +281,7 @@ Form
 
 	Section
 	{
-		title: qsTr("Basic plots")
+		title: qsTr("Basic Plots")
 		columns: 2
 
 		Group
@@ -344,7 +344,7 @@ Form
 
 		Group
 		{
-			title: qsTr("Categorical plots")
+			title: qsTr("Categorical Plots")
 
 			CheckBox
 			{
@@ -404,7 +404,7 @@ Form
 
 	Section
 	{
-		title: qsTr("Customizable plots")
+		title: qsTr("Customizable Plots")
 		columns: 1
 
 		ColorPalette{}

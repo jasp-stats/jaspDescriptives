@@ -196,7 +196,7 @@ msgid "Values are group midpoints"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
+msgid "Basic Plots"
 msgstr ""
 
 msgctxt "Descriptives|"
@@ -260,7 +260,7 @@ msgid "Dot plots"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
+msgid "Categorical Plots"
 msgstr ""
 
 msgctxt "Descriptives|"
@@ -300,7 +300,7 @@ msgid "Large"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
+msgid "Customizable Plots"
 msgstr ""
 
 msgctxt "Descriptives|"

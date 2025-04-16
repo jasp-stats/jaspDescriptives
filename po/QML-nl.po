@@ -114,7 +114,7 @@ msgid "Show legend"
 msgstr "Toon legenda"
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
+msgid "Basic Plots"
 msgstr "Basisgrafieken"
 
 msgctxt "Descriptives|"
@@ -286,8 +286,8 @@ msgid "Transpose descriptives table"
 msgstr "Tabel met beschrijvingen transponeren"
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
-msgstr "Aanpasbare grafieken"
+msgid "Customizable Plots"
+msgstr "Aanpasbare Grafieken"
 
 msgctxt "Descriptives|"
 msgid "Dot plots"
@@ -362,8 +362,8 @@ msgid "Tables"
 msgstr "Tabellen"
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
-msgstr "Categorische grafieken"
+msgid "Categorical Plots"
+msgstr "Categorische Grafieken"
 
 msgctxt "Descriptives|"
 msgid "Pareto plots"

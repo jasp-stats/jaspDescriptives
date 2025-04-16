@@ -69,8 +69,8 @@ msgid "Linear"
 msgstr "Linear"
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
-msgstr "Gráficas básicas"
+msgid "Basic Plots"
+msgstr "Gráficas Básicas"
 
 msgctxt "Descriptives|"
 msgid "Boxplot element"
@@ -157,8 +157,8 @@ msgid "Graph right of scatter plot"
 msgstr "Representar á dereita da gráfica de dispersión"
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
-msgstr "Gráficas personalizables"
+msgid "Customizable Plots"
+msgstr "Gráficas Personalizables"
 
 msgctxt "Description|"
 msgid "Descriptive Statistics"
@@ -363,8 +363,8 @@ msgid "Tables"
 msgstr "Táboas"
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
-msgstr "Gráficas con categorías"
+msgid "Categorical Plots"
+msgstr "Gráficas con Categorías"
 
 msgctxt "Descriptives|"
 msgid "Pareto plots"

@@ -115,8 +115,8 @@ msgid "Show legend"
 msgstr "Показать легенду"
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
-msgstr "Основные графики"
+msgid "Basic Plots"
+msgstr "Основные Графики"
 
 msgctxt "Descriptives|"
 msgid "Distribution plots"
@@ -287,8 +287,8 @@ msgid "Transpose descriptives table"
 msgstr "Транспонировать таблицу описательных статистик"
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
-msgstr "Настраиваемые графики"
+msgid "Customizable Plots"
+msgstr "Настраиваемые Графики"
 
 msgctxt "Descriptives|"
 msgid "Dot plots"
@@ -391,8 +391,8 @@ msgid "Bootstrap samples"
 msgstr "Выборки бутстрэпа"
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
-msgstr "Категориальные графики"
+msgid "Categorical Plots"
+msgstr "Категориальные Графики"
 
 msgctxt "Descriptives|"
 msgid "Pareto plots"

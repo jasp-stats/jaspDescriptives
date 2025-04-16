@@ -113,7 +113,7 @@ msgid "Show legend"
 msgstr "凡例を表示する"
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
+msgid "Basic Plots"
 msgstr "基本的な図"
 
 msgctxt "Descriptives|"
@@ -285,7 +285,7 @@ msgid "Transpose descriptives table"
 msgstr "記述表を転置する"
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
+msgid "Customizable Plots"
 msgstr "カスタマイズ可能なプロット"
 
 msgctxt "Descriptives|"
@@ -361,7 +361,7 @@ msgid "Tables"
 msgstr "表"
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
+msgid "Categorical Plots"
 msgstr "カテゴリカルプロット"
 
 msgctxt "Descriptives|"

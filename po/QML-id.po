@@ -117,8 +117,8 @@ msgid "Show legend"
 msgstr "Tampilkan legenda"
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
-msgstr "Plot dasar"
+msgid "Basic Plots"
+msgstr "Plot Dasar"
 
 msgctxt "Descriptives|"
 msgid "Distribution plots"
@@ -292,7 +292,7 @@ msgstr "Transpos tabel deskriptif"
 
 #, fuzzy
 msgctxt "Descriptives|"
-msgid "Customizable plots"
+msgid "Customizable Plots"
 msgstr "Plot yang dapat disesuaikan"
 
 msgctxt "Descriptives|"
@@ -370,7 +370,7 @@ msgid "Tables"
 msgstr "Tabel"
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
+msgid "Categorical Plots"
 msgstr ""
 
 msgctxt "Descriptives|"

@@ -114,8 +114,8 @@ msgid "Show legend"
 msgstr "Montrer la légende"
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
-msgstr "Graphiques de base"
+msgid "Basic Plots"
+msgstr "Graphiques de Base"
 
 msgctxt "Descriptives|"
 msgid "Distribution plots"
@@ -286,8 +286,8 @@ msgid "Transpose descriptives table"
 msgstr "Transposer le tableau descriptif"
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
-msgstr "Tracés personnalisables"
+msgid "Customizable Plots"
+msgstr "Tracés Personnalisables"
 
 msgctxt "Descriptives|"
 msgid "Dot plots"
@@ -362,8 +362,8 @@ msgid "Tables"
 msgstr "Tableaux"
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
-msgstr "Graphiques catégoriels"
+msgid "Categorical Plots"
+msgstr "Graphiques Catégoriels"
 
 msgctxt "Descriptives|"
 msgid "Pareto plots"
