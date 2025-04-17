@@ -22,6 +22,7 @@ import JASP
 import JASP.Controls
 
 
+
 Form {
     columns: 1
 
@@ -80,10 +81,71 @@ Form {
 
                     removeInvisibles:	true
                     preferredWidth: jaspForm.width - 2 * jaspTheme.contentMargin
-                    preferredHeight: yesRM.checked ? 500  * jaspTheme.uiScale : 300 * jaspTheme.uiScale
+                    preferredHeight: yesRM.checked ? 600  * jaspTheme.uiScale : 300 * jaspTheme.uiScale
 
                     infoLabel: qsTr("Input")
-                    AvailableVariablesList { name: "allVariablesList"}
+                    AvailableVariablesList { name: "allVariablesList"; id: allVariablesList}
+
+                    AssignedVariablesList {
+                        name: "variableRepeatedMeasures"
+                        id: variableRepeatedMeasures
+                        title: qsTr("Repeated Measures Variables")
+                        visible: yesRM.checked
+                        allowedColumns: ["scale"]
+                        property bool active: yesRM.checked
+                        onActiveChanged: {
+                            while (!active && count > 0) {
+                                itemDoubleClicked(0)
+                            }
+                        }
+                    }
+
+                    DropDown {
+                        name: "rmValueOptionsDropDown"
+                        label: qsTr("Repeated Measures Value as")
+                        id: rmValueOptionsDropDown
+                        visible: yesRM.checked
+                        enabled: yesRM.checked && variableRepeatedMeasures.count > 0
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                currentIndex = -1
+                            }
+                            if (!enabled) {
+                                currentIndex = 1
+                            }
+                        }
+                        values: [
+                            { label: qsTr("X-Axis Variable"), value: "rmValueAsX" },
+                            { label: qsTr("Y-Axis Variable"), value: "rmValueAsY" }
+                        ]
+                        indexDefaultValue: 1   // alapértelmezett: Variable Y
+                    }
+
+                    DropDown {
+                        name: "rmFactorOptionsDropDown"
+                        label: qsTr("Repeated Measures Factor as")
+                        id: rmFactorOptionsDropDown
+                        visible: yesRM.checked
+                        enabled: yesRM.checked && variableRepeatedMeasures.count > 0
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                currentIndex = -1
+                            }
+                            if (!enabled) {
+                                currentIndex = 0
+                            }
+                        }
+                        values: [
+                            { label: qsTr("X-Axis Variable"), value: "rmFactorAsX" },
+                            { label: qsTr("Y-Axis Variable"), value: "rmFactorAsY" },
+                            { label: qsTr("Group Variable"), value: "rmFactorAsGroup" },
+                            { label: qsTr("Split (Columns)"), value: "rmFactorAsColumnSplit" },
+                            { label: qsTr("Split (Rows)"), value: "rmFactorAsRowSplit" },
+                            { label: qsTr("Grid"), value: "rmFactorAsGrid" },
+                            { label: qsTr("Not visible"), value: "rmFactorNotVisible" }
+                        ]
+                        indexDefaultValue: 0   // alapértelmezett: Variable X
+                    }
 
                     AssignedVariablesList {
                         name: "variableXPlotBuilder"
@@ -95,14 +157,15 @@ Form {
                         info: qsTr("Select the variable for the X-axis.")
                         property bool active: noRM.checked
                         onActiveChanged: if (!active && count > 0) itemDoubleClicked(0)
-                    }
-
-                    AssignedVariablesList {
-                        name: "variableRepeatedMeasures"
-                        title: qsTr("Repeated Measures Variables")
-                        visible: yesRM.checked
-                        property bool active: yesRM.checked
-                        onActiveChanged: if (!active && count > 0) itemDoubleClicked(0)
+                        enabled: isRM.value === "noRM" || (isRM.value === "RM" && variableRepeatedMeasures.count > 0 &&
+                                                            (rmFactorOptionsDropDown.value !== "rmFactorAsX" && rmValueOptionsDropDown.value !== "rmValueAsX"))
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                   while (count > 0) {
+                                       itemDoubleClicked(0)
+                                   }
+                               }
+                        }
                     }
 
                     AssignedVariablesList {
@@ -111,10 +174,19 @@ Form {
                         allowedColumns: ["scale", "ordinal", "nominal"]
                         id: variableYPlotBuilder
                         singleVariable: true
-                        visible: noRM.checked
+                        // visible: noRM.checked
                         property bool active: noRM.checked
                         onActiveChanged: if (!active && count > 0) itemDoubleClicked(0)
                         info: qsTr("Select the variable for the Y-axis.")
+                        enabled: isRM.value === "noRM" || (isRM.value === "RM" && variableRepeatedMeasures.count > 0 &&
+                                                            (rmFactorOptionsDropDown.value !== "rmFactorAsY" && rmValueOptionsDropDown.value !== "rmValueAsY"))
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                   while (count > 0) {
+                                       itemDoubleClicked(0)
+                                   }
+                               }
+                        }
                     }
 
                     AssignedVariablesList {
@@ -131,6 +203,16 @@ Form {
                                 colorByVariableY.checked = false;
                             }
                         }
+                        enabled: isRM.value === "noRM" || (isRM.value === "RM" && variableRepeatedMeasures.count > 0 &&
+                                                            (rmFactorOptionsDropDown.value !== "rmFactorAsGroup"))
+
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                   while (count > 0) {
+                                       itemDoubleClicked(0)
+                                   }
+                               }
+                        }
                     }
 
                     AssignedVariablesList {
@@ -140,6 +222,16 @@ Form {
                         allowedColumns: ["ordinal", "nominal"]
                         singleVariable: true
                         info: qsTr("You can choose a variable to split the plots into columns.")
+                        enabled: isRM.value === "noRM" || (isRM.value === "RM" && variableRepeatedMeasures.count > 0 &&
+                                                           (rmFactorOptionsDropDown.value !== "rmFactorAsColumnSplit"))
+
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                   while (count > 0) {
+                                       itemDoubleClicked(0)
+                                   }
+                               }
+                        }
                     }
 
                     AssignedVariablesList {
@@ -149,6 +241,16 @@ Form {
                         allowedColumns: ["ordinal", "nominal"]
                         singleVariable: true
                         info: qsTr("You can choose a variable to split the plots into rows.")
+                        enabled: isRM.value === "noRM" || (isRM.value === "RM" && variableRepeatedMeasures.count > 0 &&
+                                                           (rmFactorOptionsDropDown.value !== "rmFactorAsRowSplit"))
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                   while (count > 0) {
+                                       itemDoubleClicked(0)
+                                   }
+                               }
+                        }
+
                     }
 
                     AssignedVariablesList {
@@ -158,86 +260,24 @@ Form {
                         allowedColumns: ["ordinal", "nominal"]
                         singleVariable: true
                         info: qsTr("You can choose a variable to make a grid.")
+                        enabled: isRM.value === "noRM" || (isRM.value === "RM" && variableRepeatedMeasures.count > 0 &&
+                                                           (rmFactorOptionsDropDown.value !== "rmFactorAsGrid"))
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                   while (count > 0) {
+                                       itemDoubleClicked(0)
+                                   }
+                               }
+                        }
                     }
                 }
             } // End variables form
-
-            Section {
-            title:qsTr("Repeated measures options")
-            visible: yesRM.checked
-            columns:2
-
-            RadioButtonGroup {
-                id:						rmValueOptions
-                name:					"rmValueOptions"
-                title:					qsTr("Value of repeated measurements as")
-                radioButtonsOnSameRow:	false
-
-                RadioButton {
-                    label:		qsTr("Variable X")
-                    value:		"rmValueAsX"
-                    id:			rmValueAsX
-                }
-
-                RadioButton {
-                    label:		qsTr("Variable Y")
-                    value:		"rmValueAsY"
-                    id:         rmValueAsY
-                    checked:    true
-                }
-            }
-
-            RadioButtonGroup {
-                id:						rmFactorOptions
-                name:					"rmFactorOptions"
-                title:					qsTr("Factor of repeated measurements as")
-                radioButtonsOnSameRow:	false
-                columns:				1
-
-                RadioButton {
-                    label:		qsTr("Variable X")
-                    value:      "rmFactorAsX"
-                    id:         rmFactorAsX
-                    checked:    true
-                }
-
-                RadioButton {
-                    label:		qsTr("Variable Y")
-                    value:		"rmFactorAsY"
-                    id:         rmFactorAsY
-                }
-
-                RadioButton {
-                    label:		qsTr("Grouping variable")
-                    value:		"rmFactorAsGroup"
-                    id:         rmFactorAsGroup
-                }
-
-                RadioButton {
-                    label:		qsTr("Column split variable")
-                    value:		"rmFactorAsColumnSplit"
-                    id:         rmFactorAsColumnSplit
-                }
-
-                RadioButton {
-                    label:		qsTr("Row split variable")
-                    value:		"rmFactorAsRowSplit"
-                    id:         rmFactorAsRowSplit
-                }
-
-                RadioButton {
-                    label:		qsTr("Grid variable")
-                    value:		"rmFactorAsGrid"
-                    id:         rmFactorAsGrid
-                }
-            }
-
-            }
 
             Label {
                 text: qsTr("Data and geometries")
                 wrapMode: Text.Wrap
                 color: "black"
+                font.bold: true
             }
 
             // -------------------------------------------------------------------
@@ -247,19 +287,44 @@ Form {
 
             Section {
                 title: qsTr("Individual data points")
+
                 Label {
-                    text: qsTr("Individual data points requires both x-axis and y-axis variables")
+                    text: qsTr("Required: X AND Y-Axis Variables")
                     wrapMode: Text.Wrap
                     color: "black"
                 }
+
                 CheckBox {
                     name: "addDataPoint"
                     label: qsTr("Individual data points")
                     id: addDataPoint
                     info: qsTr("Check this option to show individual data points on the plot.")
                     columns: 4
-                    enabled: ((variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0) ||
-                              (isRM.value === "RM"))
+                    enabled: (
+                                 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                 ||
+
+                                 // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                 (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                      // a) X variable is assigned and either drop-down defines Y
+                                      (variableXPlotBuilder.count > 0 &&
+                                       (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                      ||
+
+                                      // b) Y variable is assigned and either drop-down defines X
+                                      (variableYPlotBuilder.count > 0 &&
+                                       (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                      ||
+
+                                      // c) Drop-downs define both X and Y roles separately
+                                      ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                       (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                      ))
+                                 )
                     onEnabledChanged: {
                         if (!enabled) {
                             checked = false;
@@ -364,8 +429,7 @@ Form {
                 title: qsTr("Distributions (histogram, boxplot, violin)")
 
                 Label {
-                    text: qsTr("Histogram requires either x-axis or y-axis variable, but not both" + "\n" +
-                               "Boxplot and violin plot require both x-axis and y-axis variables")
+                    text: qsTr("Required: X OR Y-Axis Variable (histogram); X AND Y-Axis Variables (boxplot, violin)")
                     wrapMode: Text.Wrap
                     color: "black"
                 }
@@ -381,7 +445,7 @@ Form {
                         name: "addHistogram"
                         id: addHistogram
                         label: qsTr("Histogram")
-                        info: qsTr("Check this option to create histogram for x or y variables.")
+                        info: qsTr("Check this option to create histogram for x or y variables. Histogram requires either X-Axis or X-Axis variable, but not both.")
                         enabled: (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0)
                                  && !(variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
 
@@ -415,9 +479,32 @@ Form {
                         name: "addBoxplot"
                         id: addBoxplot
                         label: qsTr("Boxplot")
-                        info: qsTr("Check this option to create boxplot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                  (isRM.value === "RM"))
+                        info: qsTr("Check this option to create boxplot. Boxplot and violin plot require both x-axis and y-axis variables.")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -497,9 +584,32 @@ Form {
                         name: "addViolin"
                         id: addViolin
                         label: qsTr("Violin plot")
-                        info: qsTr("Check this option to add a violin plot to your visualization.")
-                        enabled: ((variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0) ||
-                                  (isRM.value === "RM"))
+                        info: qsTr("Check this option to add a violin plot to your visualization. Boxplot and violin plot require both x-axis and y-axis variables.")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -544,7 +654,6 @@ Form {
                             name: "drawQuantilesViolinPlotBuilder"
                             label: qsTr("Draw quantiles")
                             defaultValue: "0.25, 0.5, 0.75"
-                            multiple: true
                         }
 
                         CheckBox {
@@ -575,10 +684,11 @@ Form {
                 title: qsTr("Amounts (count and sum)")
 
                 Label {
-                    text: qsTr("Counts requires either x-axis or y-axis variable, but not both")
+                    text: qsTr("Required: X OR Y-Axis Variable")
                     wrapMode: Text.Wrap
                     color: "black"
                 }
+
 
 
                 GridLayout {
@@ -830,7 +940,7 @@ Form {
 
 
                 Label {
-                    text: qsTr("Sums require both x-axis and y-axis variables")
+                    text: qsTr("Required: X AND Y-Axis Variables")
                     wrapMode: Text.Wrap
                     color: "black"
                 }
@@ -846,8 +956,31 @@ Form {
                         name: "addSumBar"
                         label: qsTr("Sum bar")
                         info: qsTr("Enable to add a sum bar to the plot.")
-                        enabled: ((isRM.value === "noRM" && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0) ||
-                                  (isRM.value === "RM"))
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -878,8 +1011,31 @@ Form {
                         name: "addSumDash"
                         label: qsTr("Sum dash")
                         info: qsTr("Enable to add dashed lines to the plot.")
-                        enabled: ((variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0) ||
-                                  (isRM.value === "RM"))
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -920,8 +1076,31 @@ Form {
                         name: "addSumDot"
                         label: qsTr("Sum dot")
                         info: qsTr("Enable to add sum dots to the plot.")
-                        enabled: ((variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0) ||
-                                  (isRM.value === "RM"))
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -957,8 +1136,31 @@ Form {
                         name: "addSumLine"
                         label: qsTr("Sum line")
                         info: qsTr("Enable to add a sum line to the plot.")
-                        enabled: ((variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0) ||
-                                  (isRM.value === "RM"))
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -994,8 +1196,31 @@ Form {
                         name: "addSumArea"
                         label: qsTr("Sum area")
                         info: qsTr("Enable to add a sum area to the plot.")
-                        enabled: ((variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0) ||
-                                  (isRM.value === "RM"))
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1022,8 +1247,31 @@ Form {
                         name: "addSumValue"
                         label: qsTr("Sum value")
                         info: qsTr("Enable to add sum values to the plot.")
-                        enabled: ((variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0) ||
-                                  (isRM.value === "RM"))
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1074,14 +1322,18 @@ Form {
 
             Section {
                 title: qsTr("Proportions")
+                columns:2
 
                 Label {
-                    text: qsTr("Proportions require group variable and either x-axis or y-axis variable, but not both")
+                    text: qsTr("Required: Group Variable AND X OR Y-Axis Variable")
                     wrapMode: Text.Wrap
                     color: "black"
+                    Layout.columnSpan: 2
                 }
 
+
                 RadioButtonGroup {
+                    Layout.columnSpan: 2
                     id: propModeGroup
                     name: "propMode"
                     title: qsTr("Proportion mode")
@@ -1107,10 +1359,21 @@ Form {
                         name: "addBarStack"
                         label: qsTr("Bar stack")
                         info: qsTr("Add a bar stack to the plot. The mode (absolute or relative) is set by the Proportion Mode above.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0)
-                                   && variableColorPlotBuilder.count > 0)
-                                  && !(variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM"
+                        enabled: (
+                            // noRM :
+                            ( noRM.checked &&
+                              ((variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0) && variableColorPlotBuilder.count > 0)
+                            )
+                            ||
+                            // yesRM :
+                            ( yesRM.checked && variableRepeatedMeasures.count > 0 &&
+                              (
+                                 ((variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0) && rmFactorOptionsDropDown.value === "rmFactorAsGroup")
+                                 ||
+                                 (variableColorPlotBuilder.count > 0 && (rmFactorOptionsDropDown.value === "rmFactorAsX" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                              )
+                            )
+                        )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false
@@ -1135,10 +1398,21 @@ Form {
                         name: "addAreaStack"
                         label: qsTr("Area stack")
                         info: qsTr("Add an area stack to the plot. The mode (absolute or relative) is set by the Proportion Mode above.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0)
-                                   && variableColorPlotBuilder.count > 0)
-                                  && !(variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM"
+                        enabled: (
+                            // noRM :
+                            ( noRM.checked &&
+                              ((variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0) && variableColorPlotBuilder.count > 0)
+                            )
+                            ||
+                            // yesRM :
+                            ( yesRM.checked && variableRepeatedMeasures.count > 0 &&
+                              (
+                                 ((variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0) && rmFactorOptionsDropDown.value === "rmFactorAsGroup")
+                                 ||
+                                 (variableColorPlotBuilder.count > 0 && (rmFactorOptionsDropDown.value === "rmFactorAsX" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                              )
+                            )
+                        )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false
@@ -1180,10 +1454,11 @@ Form {
                 title: qsTr("Mean")
 
                 Label {
-                    text: qsTr("Mean requires both x-axis and y-axis variables")
+                    text: qsTr("Required: X AND Y-Axis Variables")
                     wrapMode: Text.Wrap
                     color: "black"
                 }
+
 
                 GridLayout {
                     columns: 3
@@ -1195,8 +1470,31 @@ Form {
                         name: "addMeanBar"
                         label: qsTr("Mean bar")
                         info: qsTr("Enable to add a mean bar to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1227,8 +1525,31 @@ Form {
                         name: "addMeanDash"
                         label: qsTr("Mean dash")
                         info: qsTr("Enable to add dashed mean lines to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1269,8 +1590,31 @@ Form {
                         name: "addMeanDot"
                         label: qsTr("Mean dot")
                         info: qsTr("Enable to add mean dots to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1306,8 +1650,31 @@ Form {
                         name: "addMeanLine"
                         label: qsTr("Mean line")
                         info: qsTr("Enable to add mean lines to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1343,8 +1710,31 @@ Form {
                         name: "addMeanArea"
                         label: qsTr("Mean area")
                         info: qsTr("Enable to add mean areas to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1372,8 +1762,31 @@ Form {
                         name: "addMeanValue"
                         label: qsTr("Mean value")
                         info: qsTr("Enable to add mean values to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1426,7 +1839,7 @@ Form {
                 title: qsTr("Median")
 
                 Label {
-                    text: qsTr("Median requires both x-axis and y-axis variables")
+                    text: qsTr("Required: X AND Y-Axis Variables")
                     wrapMode: Text.Wrap
                     color: "black"
                 }
@@ -1441,8 +1854,31 @@ Form {
                         name: "addMedianBar"
                         label: qsTr("Median bar")
                         info: qsTr("Enable to add a median bar to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1474,8 +1910,31 @@ Form {
                         name: "addMedianDash"
                         label: qsTr("Median dash")
                         info: qsTr("Enable to add dashed median lines to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1517,8 +1976,31 @@ Form {
                         name: "addMedianDot"
                         label: qsTr("Median dot")
                         info: qsTr("Enable to add median dots to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1554,8 +2036,31 @@ Form {
                         name: "addMedianLine"
                         label: qsTr("Median line")
                         info: qsTr("Enable to add median lines to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1592,8 +2097,31 @@ Form {
                         name: "addMedianArea"
                         label: qsTr("Median area")
                         info: qsTr("Enable to add median areas to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1621,8 +2149,31 @@ Form {
                         name: "addMedianValue"
                         label: qsTr("Median value")
                         info: qsTr("Enable to add median values to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1674,8 +2225,13 @@ Form {
                 title: qsTr("Error bars and ribbons (range, SD, SEM, 95% CI)")
 
                 Label {
-                    text: qsTr("Error bars and ribbons require both x-axis and y-axis variables" + "\n" +
-                               "The optimal dodge value is 0 if both x-axis and y-axis variables are continuous")	
+                    text: qsTr("Required: X AND Y-Axis Variables")
+                    wrapMode: Text.Wrap
+                    color: "black"
+                }
+
+                Label {
+                    text: qsTr("The optimal dodge value is 0 if both X and Y-Axis Variables are continuous")
                     wrapMode: Text.Wrap
                     color: "black"
                 }
@@ -1691,8 +2247,31 @@ Form {
                         name: "addRangeErrorBar"
                         label: qsTr("Range error bar")
                         info: qsTr("Enable to add range error bars to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1731,8 +2310,31 @@ Form {
                         name: "addSDErrorBar"
                         label: qsTr("SD error bar")
                         info: qsTr("Enable to add standard deviation error bars to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1772,8 +2374,31 @@ Form {
                         name: "addSEMErrorBar"
                         label: qsTr("SEM error bar")
                         info: qsTr("Enable to add SEM error bars to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1813,8 +2438,31 @@ Form {
                         name: "addCI95ErrorBar"
                         label: qsTr("95% CI Error Bar")
                         info: qsTr("Enable to add 95% confidence interval error bars to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1859,8 +2507,31 @@ Form {
                         name: "addRangeRibbon"
                         label: qsTr("Range ribbon")
                         info: qsTr("Enable to add a range ribbon to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1887,8 +2558,31 @@ Form {
                         name: "addSdRibbon"
                         label: qsTr("SD ribbon")
                         info: qsTr("Enable to add an SD ribbon to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1915,8 +2609,31 @@ Form {
                         name: "addSemRibbon"
                         label: qsTr("SEM ribbon")
                         info: qsTr("Enable to add a SEM ribbon to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1942,8 +2659,31 @@ Form {
                         name: "addCi95Ribbon"
                         label: qsTr("95% CI ribbon")
                         info: qsTr("Enable to add a 95% confidence interval ribbon to the plot.")
-                        enabled: ((isRM.value === "noRM" && (variableXPlotBuilder.count > 0 & variableYPlotBuilder.count > 0))
-                                  || isRM.value === "RM")
+                        enabled: (
+                                     // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                     (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                     ||
+
+                                     // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                          // a) X variable is assigned and either drop-down defines Y
+                                          (variableXPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                          ||
+
+                                          // b) Y variable is assigned and either drop-down defines X
+                                          (variableYPlotBuilder.count > 0 &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                          ||
+
+                                          // c) Drop-downs define both X and Y roles separately
+                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                          ))
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1974,10 +2714,11 @@ Form {
 
 
                 Label {
-                    text: qsTr("Curve fit requires individual data points")
+                    text: qsTr("Required: individual data points (Curve fit)")
                     wrapMode: Text.Wrap
                     color: "black"
                 }
+
 
                 CheckBox {
                     name: "addCurveFitPlotBuilder"
@@ -2053,14 +2794,14 @@ Form {
                         TextField {
                             name: "xReferenceLine"
                             label: qsTr("X-axis intercept")
-                            placeholderText: qsTr("e.g. 0.5, 1, 3")
+                            placeholderText: qsTr("e.g. 0.5, or c(1,2)")
                             fieldWidth: 100
                         }
 
                         TextField {
                             name: "yReferenceLine"
                             label: qsTr("Y-axis intercept")
-                            placeholderText: qsTr("e.g. 0.5, 1, 3")
+                            placeholderText: qsTr("e.g. 0.5, or c(1,2)")
                             fieldWidth: 100
                         }
                     }
@@ -2096,68 +2837,47 @@ Form {
                 }
 
                 CheckBox {
-                    name: "addAnnotationLinePlotBuilder"
-                    label: qsTr("Add annotation line")
-                    info: qsTr("Add annotation lines.")
-                    columns: 2
+                    name: "addIdentityLinePlotBuilder"
+                    label: qsTr("Add identity line")
+                    info: "Add identity line (y = x)."
 
-                    Group {
-                        TextField {
-                            name: "xAnnotation"
-                            label: qsTr("X start")
-                            placeholderText: qsTr("e.g. 0")
-                            fieldWidth:100
-                        }
-                        TextField {
-                            name: "xendAnnotation"
-                            label: qsTr("X end")
-                            placeholderText: qsTr("e.g. Inf")
-                            fieldWidth: 100
-                        }
+                    CheckBox{
+                        name: "reversedirectionIdentityLine"
+                        label: "Reverse direction"
                     }
-                    Group {
-                        TextField {
-                            name: "yAnnotation"
-                            label: qsTr("Y start")
-                            placeholderText: qsTr("e.g. 0")
-                            fieldWidth: 100
-                        }
-                        TextField {
-                            name: "yendAnnotation"
-                            label: qsTr("Y end")
-                            placeholderText: qsTr("e.g. Inf")
-                            fieldWidth: 100
-                        }
+
+                    TextField {
+                        name: "colorIdentityLine"
+                        label: qsTr("Line color")
+                        placeholderText: qsTr("e.g. black, #ff5733")
+                        defaultValue: "lightgray"
+                        fieldWidth: 100
                     }
-                    Group {
-                        TextField {
-                            name: "colorAnnotationLine"
-                            label: qsTr("Line color")
-                            placeholderText: qsTr("e.g. black, #ff5733")
-                            defaultValue: "lightgray"
-                            fieldWidth: 100
-                        }
 
-                        Label {
-                            text: qsTr("Note: For available colors, see %1 this page %2").arg("<a href='https://r-charts.com/colors/' style='color: blue; text-decoration: underline;'>").arg("</a>.")
-                            wrapMode: TextBrowser.Wrap
-                            textFormat: TextBrowser.RichText
+                }
 
-                            MouseArea {
-                                anchors.fill: parent
-                                onClicked: {
-                                    Qt.openUrlExternally("https://r-charts.com/colors/")
-                                }
-                            }
+                Label {
+                    text: qsTr("Note: For available colors, see %1this page%2")
+                    .arg("<a href='https://r-charts.com/colors/' style='color: blue; text-decoration: underline;'>")
+                    .arg("</a>")
+                    wrapMode: TextBrowser.Wrap
+                    textFormat: TextBrowser.RichText
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            Qt.openUrlExternally("https://r-charts.com/colors/")
                         }
                     }
                 }
+
             }
 
             Label {
                 text: qsTr("Axis settings and annotations")
                 wrapMode: Text.Wrap
                 color: "black"
+                font.bold: true
             }
 
             // -------------------------------------------------------------------
@@ -2397,11 +3117,11 @@ Form {
                 Group {
 
 
-                        TextField {
-                            name: "titlePlotBuilder"
-                            label: qsTr("Title")
-                            placeholderText: qsTr("Enter the plot title here")
-                            fieldWidth: 300
+                    TextField {
+                        name: "titlePlotBuilder"
+                        label: qsTr("Title")
+                        placeholderText: qsTr("Enter the plot title here")
+                        fieldWidth: 300
 
                     }
                 }
@@ -2414,37 +3134,167 @@ Form {
 
                 ComponentsList {
                     name: "annotationPlotBuilder"
+                    id: annotationPlotBuilder
                     title: qsTr("Annotations")
                     addItemManually: true
                     minimumItems: 0
+                    enabled: (
+                                 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                 (noRM.checked && variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0)
+
+                                 ||
+
+                                 // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                 (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                      // a) Y variable is assigned and either drop-down defines Y
+                                      (variableYPlotBuilder.count > 0 ||
+                                       (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                      ||
+
+                                      // b) X variable is assigned and either drop-down defines X
+                                      (variableXPlotBuilder.count > 0 ||
+                                       (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                      ||
+
+                                      // c) Drop-downs define both X and Y roles separately
+                                      ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                       (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                      ))
+                                 )
+                    onEnabledChanged: {
+                        if (!enabled) {
+                                   // remove all components one by one
+                                   for (var i = annotationPlotBuilder.count - 1; i >= 0; --i) {
+                                       annotationPlotBuilder.removeItem(i)
+                                   }
+                               }
+                    }
 
                     rowComponent: Row {
-                        TextField {
-                            name: "annotationText"
-                            label: qsTr("Text")
-                            placeholderText: qsTr("p = 0.1, $italic(p)==0.1$")
-                            fieldWidth: 150
-                        }
-                        DoubleField {
-                            name: "annotationX"
-                            label: qsTr("X")
-                            defaultValue: 3
-                            fieldWidth: 60
-                        }
-                        DoubleField {
-                            name: "annotationY"
-                            label: qsTr("Y")
-                            defaultValue: 3
-                            fieldWidth: 60
+
+                        Group {
+
+                            title: qsTr("Annotation ") + (rowIndex + 1)
+                            columns: 4
+
+                            Group {
+                            title: qsTr("Label")
+                                TextField {
+                                    name: "annotationText"
+                                    label: qsTr("Text")
+                                    placeholderText: qsTr("e.g. p = 0.1, $italic(p)==0.1$")
+                                    fieldWidth: 100
+                                }
+                            }
+
+                            Group {
+
+                                columns: 2
+                                title: qsTr("Position")
+
+                                Group {
+                                    DoubleField {
+                                        name: "annotationX"
+                                        label: qsTr("X-Axis")
+                                        defaultValue: 3
+                                        fieldWidth: 60
+                                    }
+                                    DoubleField {
+                                        name: "annotationY"
+                                        label: qsTr("Y-Axis")
+                                        defaultValue: 3
+                                        fieldWidth: 60
+                                    }
+                                }
+
+                                Group {
+                                    DropDown {
+                                        visible: rmFactorOptionsDropDown.currentValue !== "rmFactorAsColumnSplit"
+                                        name: "ColumnAnnotation"
+                                        label: qsTr("Column")
+                                        source: [ { name: "columnsvariableSplitPlotBuilder", use: "levels" } ]
+                                    }
+                                    DropDown {
+                                        visible: rmFactorOptionsDropDown.currentValue === "rmFactorAsColumnSplit" && isRM.value === "RM"
+                                        name: "RMColumnAnnotation"
+                                        label: qsTr("Column")
+                                        source: [ { name: "variableRepeatedMeasures", use: "list" } ]
+                                        enabled: isRM.value === "RM"
+                                        onEnabledChanged: {
+                                            if (!enabled) {
+                                                currentIndex = -1
+                                            }
+                                        }
+                                    }
+
+                                    DropDown {
+                                        visible: rmFactorOptionsDropDown.currentValue !== "rmFactorAsRowSplit"
+                                        name: "RowAnnotation"
+                                        label: qsTr("Row")
+                                        source: [ { name: "rowsvariableSplitPlotBuilder", use: "levels" } ]
+                                    }
+                                    DropDown {
+                                        visible: rmFactorOptionsDropDown.currentValue === "rmFactorAsRowSplit" && isRM.value === "RM"
+                                        name: "RMRowAnnotation"
+                                        label: qsTr("Row")
+                                        source: [ { name: "variableRepeatedMeasures", use: "list" } ]
+                                        enabled: isRM.value === "RM"
+                                        onEnabledChanged: {
+                                            if (!enabled) {
+                                                currentIndex = -1
+                                            }
+                                        }
+                                    }
+
+                                    DropDown {
+                                        visible: rmFactorOptionsDropDown.currentValue !== "rmFactorAsGrid"
+                                        name: "GridAnnotation"
+                                        label: qsTr("Grid")
+                                        source: [ { name: "gridVariablePlotBuilder", use: "levels" } ]
+                                    }
+                                    DropDown {
+                                        visible: rmFactorOptionsDropDown.currentValue === "rmFactorAsGrid" && isRM.value === "RM"
+                                        name: "RMGridAnnotation"
+                                        label: qsTr("Grid")
+                                        source: [ { name: "variableRepeatedMeasures", use: "list" } ]
+                                        enabled: isRM.value === "RM"
+                                        onEnabledChanged: {
+                                            if (!enabled) {
+                                                currentIndex = -1
+                                            }
+                                        }
+                                    }
+                                }
+
+
+                            }
+
+                            Group {
+                                title:qsTr("Appearance")
+
+                                DoubleField {
+                                    name: "annotationSize"
+                                    label: qsTr("Size")
+                                    defaultValue: 5.5
+                                }
+
+                                TextField {
+                                    name: "colorText"
+                                    label: qsTr("Color")
+                                    placeholderText: qsTr("e.g. black, #ff5733")
+                                    defaultValue: "black"
+                                    fieldWidth: 60
+                                }
+
+                            }
+
                         }
 
-                        DoubleField {
-                            name: "annotationSize"
-                            label: qsTr("Size")
-                            defaultValue: 6
-                        }
                     }
                 }
+
             }
 
 
@@ -2452,6 +3302,7 @@ Form {
                 text: qsTr("Theme, colors, size, and legend")
                 wrapMode: Text.Wrap
                 color: "black"
+                font.bold: true
             }
 
 
@@ -2482,7 +3333,7 @@ Form {
                         name: "colorByGroup"
                         title: qsTr("Color by")
                         radioButtonsOnSameRow: true
-                        columns: 5
+                        columns: 4
 
                         RadioButton {
                             value: "none"
@@ -2518,6 +3369,22 @@ Form {
                             value: "rm"
                             label: qsTr("Repeated measures")
                             enabled: yesRM.checked
+                            checked: false
+                            onEnabledChanged: { if (!enabled && checked) { checked = false; } }
+                        }
+
+                        RadioButton {
+                            value: "splitColumn"
+                            label: qsTr("Split (column)")
+                            enabled: columnsvariableSplitPlotBuilder.count > 0
+                            checked: false
+                            onEnabledChanged: { if (!enabled && checked) { checked = false; } }
+                        }
+
+                        RadioButton {
+                            value: "splitRow"
+                            label: qsTr("Split (rows)")
+                            enabled: rowsvariableSplitPlotBuilder.count > 0
                             checked: false
                             onEnabledChanged: { if (!enabled && checked) { checked = false; } }
                         }
@@ -2574,8 +3441,8 @@ Form {
                     }
                     Label {
                         text: qsTr("Note: For available colors, see %1 this page %2")
-                                .arg("<a href='https://r-charts.com/colors/' style='color: blue; text-decoration: underline;'>")
-                                .arg("</a>.")
+                        .arg("<a href='https://r-charts.com/colors/' style='color: blue; text-decoration: underline;'>")
+                        .arg("</a>.")
                         wrapMode: TextBrowser.Wrap
                         textFormat: TextBrowser.RichText
                         MouseArea {
@@ -2692,70 +3559,322 @@ Form {
             }
 
             Label {
-                text: qsTr("Additional options")
+                text: qsTr("Split and grid control")
                 wrapMode: Text.Wrap
                 color: "black"
+                font.bold: true
             }
 
+            Section {
+                title: qsTr("Split control")
+
+                GridLayout {
+                    columns: 2
+                    rowSpacing: 10
+                    columnSpacing: 20
+                    enabled: columnsvariableSplitPlotBuilder.count > 0
 
 
+                    Label {
+                        text: qsTr("Scale and axis settings")
+                    }
+
+                    Column {
+                        spacing: 10
+
+                        DropDown {
+                            name: "scales"
+                            label: qsTr("Scale range")
+                            values: [
+                                { label: qsTr("shared across all facets"), value: "fixed" },
+                                { label: qsTr("vary across X"), value: "free_x" },
+                                { label: qsTr("vary across Y"), value: "free_y" },
+                                { label: qsTr("vary across both axes"), value: "free" }
+                            ]
+                            startValue: "fixed"
+                        }
+
+                        DropDown {
+                            name: "axes"
+                            label: qsTr("Show axis lines")
+                            values: [
+                                { label: qsTr("only on outer panels"), value: "margins" },
+                                { label: qsTr("on all X axes"), value: "all_x" },
+                                { label: qsTr("on all Y axes"), value: "all_y" },
+                                { label: qsTr("on all axes"), value: "all" }
+                            ]
+                            startValue: "margins"
+                        }
+
+                        DropDown {
+                            name: "axisLabels"
+                            label: qsTr("Axis label visibility")
+                            values: [
+                                { label: qsTr("show on all axes"), value: "all" },
+                                { label: qsTr("only on outer axes"), value: "margins" },
+                                { label: qsTr("only on interior X axes"), value: "all_x" },
+                                { label: qsTr("only on interior Y axes"), value: "all_y" }
+                            ]
+                            startValue: "all"
+                        }
+                    }
+
+                    Label {
+                        text: qsTr("Layout settings")
+                    }
+
+                    Column {
+                        spacing: 10
+
+                        RadioButtonGroup {
+                            id: asTableGroup
+                            name: "asTable"
+                            title: qsTr("Highest value at")
+                            radioButtonsOnSameRow: true
+
+                            RadioButton {
+                                value: "bottom-right"
+                                label: qsTr("bottom right")
+                                checked: true
+                            }
+                            RadioButton {
+                                value: "top-right"
+                                label: qsTr("top right")
+                            }
+                        }
+
+                        DropDown {
+                            name: "space"
+                            label: qsTr("Panel size adjustment")
+                            values: [
+                                { label: qsTr("same size"), value: "fixed" },
+                                { label: qsTr("free width (X)"), value: "free_x" },
+                                { label: qsTr("free height (Y)"), value: "free_y" },
+                                { label: qsTr("free width and height"), value: "free" }
+                            ]
+                            startValue: "fixed"
+                        }
+
+                        CheckBox {
+                            id: marginsCheckBox
+                            name: "margins"
+                            label: qsTr("Include marginal plots")
+                            checked: false
+                        }
+
+                        // New text fields for X/Y axis titles:
+                        TextField {
+                            name: "xAxisTitleSplit"
+                            label: qsTr("X axis title")
+                            placeholderText: qsTr("Enter a label for the X axis")
+                        }
+
+                        TextField {
+                            name: "yAxisTitleSplit"
+                            label: qsTr("Y axis title")
+                            placeholderText: qsTr("Enter a label for the Y axis")
+                        }
+                    }
+                }
+            }
 
             Section {
+                title: qsTr("Grid control")
+                GridLayout {
+
+                    enabled: gridVariablePlotBuilder.count > 0
+
+                    columns: 2
+                    rowSpacing: 10
+                    columnSpacing: 20
+
+                    Label {
+                        text: qsTr("Layout settings")
+                    }
+
+                    Column {
+                        spacing: 10
+
+                        DoubleField {
+                            name: "ncolFacetWrap"
+                            label: qsTr("Number of columns")
+                            defaultValue: gridVariablePlotBuilder.levels ? Math.floor(gridVariablePlotBuilder.levels / 2) + 1 : 0
+                        }
+
+                        DoubleField {
+                            name: "nrowFacetWrap"
+                            label: qsTr("Number of rows")
+                            defaultValue: gridVariablePlotBuilder.levels ? Math.floor(gridVariablePlotBuilder.levels / 2) + 1 : 0
+                        }
+
+
+                        RadioButtonGroup {
+                            name: "asTableFacetWrap"
+                            title: qsTr("Highest value at")
+                            radioButtonsOnSameRow: true
+
+                            RadioButton {
+                                value: "bottom-rightFacetWrap"
+                                label: qsTr("bottomright")
+                                checked: true
+                            }
+                            RadioButton {
+                                value: "top-rightFacetWrap"
+                                label: qsTr("top right")
+                            }
+                        }
+                    }
+
+                    Label {
+                        text: qsTr("Scales and strip settings")
+                    }
+
+                    Column {
+                        spacing: 10
+
+                        DropDown {
+                            name: "scalesFacetWrap"
+                            label: qsTr("Scale range")
+                            values: [
+                                { label: qsTr("shared across all facets"), value: "fixed" },
+                                { label: qsTr("vary across X"), value: "free_x" },
+                                { label: qsTr("vary across Y"), value: "free_y" },
+                                { label: qsTr("vary across both axes"), value: "free" }
+                            ]
+                            startValue: "fixed"
+                        }
+
+                        DropDown {
+                            name: "stripPosition"
+                            label: qsTr("Strip position")
+                            values: [
+                                { label: qsTr("top"), value: "top" },
+                                { label: qsTr("bottom"), value: "bottom" },
+                                { label: qsTr("left"), value: "left" },
+                                { label: qsTr("right"), value: "right" }
+                            ]
+                            startValue: "top"
+                        }
+                    }
+                }
+            }
+
+            Label {
+                text: qsTr("P value and comparison lines")
+                wrapMode: Text.Wrap
+                color: "black"
+                font.bold: true
+            }
+
+            Section {
+
                 title: qsTr("P value brackets")
                 columns: 4
 
                 Label {
-                    text: qsTr("P value brackets require categorical x-axis variable")
+                    text: qsTr("Required: X AND Y-Axis Variables")
                     wrapMode: Text.Wrap
                     color: "black"
-                    Layout.columnSpan: 3
                 }
 
 
                 Group{
-                columns: 2
-                TextField {
-                    name: "labelcolor"
-                    label: qsTr("P value color")
-                    fieldWidth: 70
-                    defaultValue: "black"
-                }
+                    columns: 2
 
-                DoubleField {
-                    name: "labelSizePValue"
-                    label: qsTr("P value size")
-                    defaultValue: 4.5
-                }
+                    Group{
+                    columns: 1
+                        TextField {
+                            name: "labelcolor"
+                            label: qsTr("P value color")
+                            fieldWidth: 70
+                            defaultValue: "black"
+                        }
 
-                DoubleField {
-                    name: "yPositionPValue"
-                    label: qsTr("Y-axis position of the first P value")
-                    decimals: 2
-                    fieldWidth: 70
-                    value: 70
-                }
+                        DoubleField {
+                            name: "labelSizePValue"
+                            label: qsTr("P value size")
+                            defaultValue: 4.5
+                        }
+                    }
 
-                DoubleField {
-                    name: "stepDistance"
-                    label: qsTr("Step distance")
-                    decimals: 2
-                    fieldWidth: 70
-                    value: 0.15
-                }
+                    Group{
+                        columns:1
+                        DoubleField {
+                            name: "yPositionPValue"
+                            label: qsTr("Y-Axis position of the first P value")
+                            decimals: 2
+                            fieldWidth: 70
+                            value: 70
+                        }
+
+                        DoubleField {
+                            name: "stepDistance"
+                            label: qsTr("Step distance")
+                            decimals: 2
+                            fieldWidth: 70
+                            value: 0.15
+                        }
+
+                        Label {
+                            text: qsTr("Note: If custom Y-Axis limits are set, the starting" + "\n" + "position for the P value must fall within the defined interval")
+                            wrapMode: Text.Wrap
+                            color: "black"
+                        }
+                    }
                 }
 
                 ComponentsList {
                     name: "pairwiseComparisons"
                     title: qsTr("Pairwise comparisons table")
-
+                    id: pairwiseComparisons
                     addItemManually: true
                     minimumItems: 0
                     maximumItems: -1
 
+                    enabled: (
+                                 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                                 ||
+
+                                 // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                 (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                      // a) X variable is assigned and either drop-down defines Y
+                                      (variableXPlotBuilder.count > 0 &&
+                                       (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                      ||
+
+                                      // b) Y variable is assigned and either drop-down defines X
+                                      (variableYPlotBuilder.count > 0 &&
+                                       (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                      ||
+
+                                      // c) Drop-downs define both X and Y roles separately
+                                      ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                       (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                      ))
+                                 )
+
+                    onEnabledChanged: {
+                        if (!enabled) {
+                                   // remove all components one by one
+                                   for (var i = pairwiseComparisons.count - 1; i >= 0; --i) {
+                                       pairwiseComparisons.removeItem(i)
+                                   }
+                               }
+                    }
+
                     rowComponent: Row {
 
                         Group {
+                        title: qsTr("Bracket ") + (rowIndex + 1)
+                        columns: 3
+
+                        Group {
                             title: qsTr("Compared groups")
+
                             TextField {
                                 name: "group1"
                                 label: qsTr("Group 1")
@@ -2769,19 +3888,15 @@ Form {
                             }
                         }
 
-                        Group {
-                            title: qsTr("P value")
+                        Group{
+                            title: qsTr("P value and brackets")
+
                             TextField {
                                 name: "pAdj"
                                 label: qsTr("P value")
                                 fieldWidth: 70
                                 defaultValue: "* or 0.49"
                             }
-
-                        }
-
-                        Group {
-                            title: qsTr("Brackets")
 
                             DoubleField {
                                 name: "tipLengthPValue"
@@ -2798,104 +3913,292 @@ Form {
                                 fieldWidth: 70
                                 value: 0.3
                             }
-
                         }
 
-
-                        // Group {
-                        //     title: qsTr("Grouping")
-
-                        //     DropDown {
-                        //         name: "GroupPValue"
-                        //         label: qsTr("Group level")
-                        //         source: rmFactorAsGroup.checked ? [ { name: "variableRepeatedMeasures",} ] : [ { name: "variableColorPlotBuilder", use: "levels" } ]
-                        //     }
-
-
-                        //     DropDown {
-                        //         name: "ColumnPValue"
-                        //         label: qsTr("Column")
-                        //         source: rmFactorAsColumnSplit.checked ? [ { name: "variableRepeatedMeasures" } ] : [ { name: "columnsvariableSplitPlotBuilder", use: "levels" } ]
-                        //     }
-
-                        //     DropDown {
-                        //         name: "RowPValue"
-                        //         label: qsTr("Row")
-                        //         source: rmFactorAsRowSplit.checked ? [ { name: "variableRepeatedMeasures" } ] : [ { name: "rowsvariableSplitPlotBuilder", use: "levels" } ]
-                        //     }
-
-                        //     DropDown {
-                        //         name: "GridPValue"
-                        //         label: qsTr("Grid")
-                        //         source: rmFactorAsGrid.checked ? [ { name: "variableRepeatedMeasures" } ] : [ { name: "gridVariablePlotBuilder", use: "levels" } ]
-
-                        //     }
-
-                        // }
-
                         Group {
-                            title: qsTr("Grouping")
+                            title: qsTr("Position")
+                            columns: 2
 
-                            // Group level - separate RM and non-RM components with different names
                             DropDown {
-                                visible: !rmFactorAsGroup.checked
-                                name: "GroupPValue"  // Regular name for non-RM mode
+                                visible: rmFactorOptionsDropDown.currentValue !== "rmFactorAsGroup"
+                                name: "GroupPValue"  // Normál mód
                                 label: qsTr("Group level")
                                 source: [ { name: "variableColorPlotBuilder", use: "levels" } ]
                             }
                             DropDown {
-                                visible: rmFactorAsGroup.checked
-                                name: "RMGroupPValue"  // Different name for RM mode
+                                visible: rmFactorOptionsDropDown.currentValue === "rmFactorAsGroup" && isRM.value === "RM"
+                                name: "RMGroupPValue"  // RM mód
                                 label: qsTr("Group level")
                                 source: [ { name: "variableRepeatedMeasures", use: "list" } ]
+                                enabled: isRM.value === "RM"
+                                onEnabledChanged: {
+                                    if (!enabled) {
+                                        currentIndex = -1
+                                    }
+                                }
+
                             }
 
-                            // Column - separate RM and non-RM components with different names
                             DropDown {
-                                visible: !rmFactorAsColumnSplit.checked
-                                name: "ColumnPValue"  // Regular name for non-RM mode
+                                visible: rmFactorOptionsDropDown.currentValue !== "rmFactorAsColumnSplit"
+                                name: "ColumnPValue"
                                 label: qsTr("Column")
                                 source: [ { name: "columnsvariableSplitPlotBuilder", use: "levels" } ]
                             }
                             DropDown {
-                                visible: rmFactorAsColumnSplit.checked
-                                name: "RMColumnPValue"  // Different name for RM mode
+                                visible: rmFactorOptionsDropDown.currentValue === "rmFactorAsColumnSplit" && isRM.value === "RM"
+                                name: "RMColumnPValue"
                                 label: qsTr("Column")
                                 source: [ { name: "variableRepeatedMeasures", use: "list" } ]
+                                enabled: isRM.value === "RM"
+                                onEnabledChanged: {
+                                    if (!enabled) {
+                                        currentIndex = -1
+                                    }
+                                }
                             }
 
-                            // Row - separate RM and non-RM components with different names
                             DropDown {
-                                visible: !rmFactorAsRowSplit.checked
-                                name: "RowPValue"  // Regular name for non-RM mode
+                                visible: rmFactorOptionsDropDown.currentValue !== "rmFactorAsRowSplit"
+                                name: "RowPValue"
                                 label: qsTr("Row")
                                 source: [ { name: "rowsvariableSplitPlotBuilder", use: "levels" } ]
                             }
                             DropDown {
-                                visible: rmFactorAsRowSplit.checked
-                                name: "RMRowPValue"  // Different name for RM mode
+                                visible: rmFactorOptionsDropDown.currentValue === "rmFactorAsRowSplit" && isRM.value === "RM"
+                                name: "RMRowPValue"
                                 label: qsTr("Row")
                                 source: [ { name: "variableRepeatedMeasures", use: "list" } ]
+                                enabled: isRM.value === "RM"
+                                onEnabledChanged: {
+                                    if (!enabled) {
+                                        currentIndex = -1
+                                    }
+                                }
+
                             }
 
-                            // Grid - separate RM and non-RM components with different names
                             DropDown {
-                                visible: !rmFactorAsGrid.checked
-                                name: "GridPValue"  // Regular name for non-RM mode
+                                visible: rmFactorOptionsDropDown.currentValue !== "rmFactorAsGrid"
+                                name: "GridPValue"
                                 label: qsTr("Grid")
                                 source: [ { name: "gridVariablePlotBuilder", use: "levels" } ]
                             }
                             DropDown {
-                                visible: rmFactorAsGrid.checked
-                                name: "RMGridPValue"  // Different name for RM mode
+                                visible: rmFactorOptionsDropDown.currentValue === "rmFactorAsGrid" && isRM.value === "RM"
+                                name: "RMGridPValue"
                                 label: qsTr("Grid")
                                 source: [ { name: "variableRepeatedMeasures", use: "list" } ]
+                                enabled: isRM.value === "RM"
+                                onEnabledChanged: {
+                                    if (!enabled) {
+                                        currentIndex = -1
+                                    }
+                                }
                             }
+                        }
+
                         }
 
                     }
                 }
             }
+
+            Section{
+            title: qsTr("Custom comparison lines")
+
+            Label {
+                text: qsTr("Required: X AND Y-Axis Variables")
+                wrapMode: Text.Wrap
+                color: "black"
+            }
+
+            Label {
+                text: qsTr("Note: If custom Y-Axis limits are set, the starting" + "\n" + "position for the Y-Axis starnd and end values must fall within the defined interval")
+                wrapMode: Text.Wrap
+                color: "black"
+            }
+
+            ComponentsList {
+                name: "annotationLineList"
+                id:annotationLineList
+                title: qsTr("Add annotation lines")
+                addItemManually: true
+                minimumItems: 0
+                enabled: (
+                             // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                             (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+
+                             ||
+
+                             // 2. If repeated measures (yesRM) and at least one of the following is true:
+                             (yesRM.checked && variableRepeatedMeasures.count > 0 && (
+                                  // a) X variable is assigned and either drop-down defines Y
+                                  (variableXPlotBuilder.count > 0 &&
+                                   (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+
+                                  ||
+
+                                  // b) Y variable is assigned and either drop-down defines X
+                                  (variableYPlotBuilder.count > 0 &&
+                                   (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
+
+                                  ||
+
+                                  // c) Drop-downs define both X and Y roles separately
+                                  ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
+                                   (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                  ))
+                             )
+
+                onEnabledChanged: {
+                    if (!enabled) {
+                               // remove all components one by one
+                               for (var i = annotationLineList.count - 1; i >= 0; --i) {
+                                   annotationLineList.removeItem(i)
+                               }
+                           }
+                }
+                rowComponent: Row {
+
+
+                    Group {
+                        columns: 5
+                        title: qsTr("Line ") + (rowIndex + 1)
+
+                        Group{
+                            title: qsTr("Label")
+                            TextField {
+                                name: "textAnnotationline"
+                                label: qsTr("Label")
+                                fieldWidth: 60
+                            }
+                        }
+
+
+                        Group {
+                        title: qsTr("Position")
+                        columns: 4
+
+                        Group {
+                            DoubleField {
+                                name: "xAnnotation"
+                                label: qsTr("X-Axis start")
+                            }
+                            DoubleField {
+                                name: "xendAnnotation"
+                                label: qsTr("X-Axis end")
+                            }
+                        }
+
+                        Group {
+                            DoubleField {
+                                name: "yAnnotation"
+                                label: qsTr("Y-Axis start")
+                            }
+                            DoubleField {
+                                name: "yendAnnotation"
+                                label: qsTr("Y-Axis end")
+                            }
+                        }
+
+                        Group{
+
+                            DropDown {
+                                visible: rmFactorOptionsDropDown.currentValue !== "rmFactorAsColumnSplit"
+                                name: "ColumnAnnotationCompLine"
+                                label: qsTr("Column")
+                                source: [ { name: "columnsvariableSplitPlotBuilder", use: "levels" } ]
+                            }
+                            DropDown {
+                                visible: rmFactorOptionsDropDown.currentValue === "rmFactorAsColumnSplit" && isRM.value === "RM"
+                                name: "RMColumnCompLine"
+                                label: qsTr("Column")
+                                source: [ { name: "variableRepeatedMeasures", use: "list" } ]
+                                enabled: isRM.value === "RM"
+                                onEnabledChanged: {
+                                    if (!enabled) {
+                                        currentIndex = -1
+                                    }
+                                }
+                            }
+
+
+                            DropDown {
+                                visible: rmFactorOptionsDropDown.currentValue !== "rmFactorAsRowSplit"
+                                name: "RowAnnotationCompLine"
+                                label: qsTr("Row")
+                                source: [ { name: "rowsvariableSplitPlotBuilder", use: "levels" } ]
+                            }
+                            DropDown {
+                                visible: rmFactorOptionsDropDown.currentValue === "rmFactorAsRowSplit" && isRM.value === "RM"
+                                name: "RMRowCompLine"
+                                label: qsTr("Row")
+                                source: [ { name: "variableRepeatedMeasures", use: "list" } ]
+                                enabled: isRM.value === "RM"
+                                onEnabledChanged: {
+                                    if (!enabled) {
+                                        currentIndex = -1;
+                                    }
+                                }
+                            }
+
+                            DropDown {
+                                visible: rmFactorOptionsDropDown.currentValue !== "rmFactorAsGrid"
+                                name: "GridAnnotationCompLine"
+                                label: qsTr("Grid")
+                                source: [ { name: "gridVariablePlotBuilder", use: "levels" } ]
+                            }
+                            DropDown {
+                                visible: rmFactorOptionsDropDown.currentValue === "rmFactorAsGrid" && isRM.value === "RM"
+                                name: "RMGridCompLine"
+                                label: qsTr("Grid")
+                                source: [ { name: "variableRepeatedMeasures", use: "list" } ]
+                                enabled: isRM.value === "RM"
+                                onEnabledChanged: {
+                                    if (!enabled) {
+                                        currentIndex = -1
+                                    }
+                                }
+                            }
+
+                        }
+
+                        }
+
+                        Group{
+                            title: qsTr("Appearance")
+
+                            TextField {
+                                name: "colorAnnotationLine"
+                                label: qsTr("Line color")
+                                placeholderText: qsTr("e.g. black, #ff5733")
+                                defaultValue: "black"
+                                fieldWidth: 60
+                            }
+
+                            DoubleField {
+                                name: "textSizeAnnotationLine"
+                                label: qsTr("Label size")
+                                defaultValue: 5.5
+                                fieldWidth: 60
+                            }
+
+                            DoubleField {
+                                name: "textDistanceAnnotationLine"
+                                label: qsTr("Label distance")
+                                defaultValue: 0.5
+                                fieldWidth: 60
+                            }
+                        }
+
+                    }
+
+                }
+            }
+
+            }
+
         }
     }
 
@@ -3095,4 +4398,3 @@ Form {
 }
 
 // End Form
-

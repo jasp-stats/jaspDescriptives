@@ -26,14 +26,8 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
   # Read dataset
   dataset <- .plotBuilderReadData(options)
 
-  # (Optional) Additional error handling if needed
-  # .plotBuilderErrorHandling(dataset, options)
-
   # Compute results
   plotResults <- .plotBuilderComputeResults(jaspResults, dataset, options)
-
-  # Error handling (plotId presence, uniqueness)
-  .plotBuilderErrorHandling(dataset, options)
 
   # Output individual plots
   .plotBuilderOutputIndividualPlots(jaspResults, options, plotResults)
@@ -55,11 +49,15 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
   options
 }
 
-
 .plotBuilderReadData <- function(options) {
 
-  allColumns <- unique(unlist(lapply(options$PlotBuilderTab, function(tab) {
-    c(
+  datasetRMList    <- list()
+  datasetNonRMList <- list()
+
+  for (tab in options$PlotBuilderTab) {
+    plotId <- as.character(tab$value)
+
+    neededCols <- unique(c(
       encodeColNames(tab$variableXPlotBuilder),
       encodeColNames(tab$variableYPlotBuilder),
       encodeColNames(tab$variableColorPlotBuilder),
@@ -67,34 +65,20 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       encodeColNames(tab$columnsvariableSplitPlotBuilder),
       encodeColNames(tab$gridVariablePlotBuilder),
       encodeColNames(tab$rowsvariableSplitPlotBuilder)
-    )
-  })))
+    ))
 
-  dataset <- .readDataSetToEnd(columns = allColumns)
-
-  dataset <- dplyr::mutate(dataset, row_id = dplyr::row_number())
-
-  datasetRMList <- list()
-  datasetNonRM  <- dataset
-
-  for (tab in options$PlotBuilderTab) {
+    ds <- .readDataSetToEnd(columns = neededCols)
+    ds <- dplyr::mutate(ds, row_id = dplyr::row_number())
 
     if (identical(tab[["isRM"]], "RM")) {
-      repeatedMeasuresCols <- tab[["variableRepeatedMeasures"]]
+      repeatedMeasuresCols <- encodeColNames(tab[["variableRepeatedMeasures"]])
       pivotedXName <- "Repeated measures"
       pivotedYName <- "Values"
 
-      plotId <- as.character(tab$value)
-
       if (is.null(repeatedMeasuresCols) || length(repeatedMeasuresCols) == 0) {
-        datasetRMList[[plotId]] <- dataset
-        next
-      }
-
-      if (!is.null(pivotedXName) && nzchar(pivotedXName) &&
-          !is.null(pivotedYName) && nzchar(pivotedYName)) {
-
-        tempRM <- dataset |>
+        datasetRMList[[plotId]] <- ds
+      } else {
+        tempRM <- ds |>
           dplyr::mutate(ID = dplyr::row_number()) |>
           tidyr::pivot_longer(
             cols      = dplyr::all_of(repeatedMeasuresCols),
@@ -105,42 +89,60 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
             !!rlang::sym(pivotedXName) := factor(decodeColNames(!!rlang::sym(pivotedXName)))
           )
 
-        originalCols <- names(dataset)
+        originalCols <- names(ds)
         pivotedCols  <- names(tempRM)
         missingCols  <- setdiff(originalCols, pivotedCols)
         missingCols  <- setdiff(missingCols, "row_id")
-
         if (length(missingCols) > 0) {
-          additionalData <- dplyr::select(dataset, row_id, dplyr::all_of(missingCols))
-
-          tempRM <- dplyr::left_join(
-            x  = tempRM,
-            y  = additionalData,
-            by = "row_id"
-          )
+          additionalData <- dplyr::select(ds, row_id, dplyr::all_of(missingCols))
+          tempRM <- dplyr::left_join(tempRM, additionalData, by = "row_id")
         }
 
+        if (!is.null(tab$variableColorPlotBuilder)) {
+          colorVarRaw <- tab$variableColorPlotBuilder
+          colorVar <- encodeColNames(colorVarRaw)
+          if (colorVar %in% names(tempRM)) {
+            tempRM <- tempRM[!is.na(tempRM[[colorVar]]), ]
+          }
+        }
+        if (!is.null(tab$variableXPlotBuilder)) {
+          xVarRaw <- tab$variableXPlotBuilder
+          xVar <- encodeColNames(xVarRaw)
+          if (xVar %in% names(tempRM)) {
+            tempRM <- tempRM[!is.na(tempRM[[xVar]]), ]
+          }
+        }
+        if (!is.null(tab$columnsvariableSplitPlotBuilder)) {
+          colSplitRaw <- tab$columnsvariableSplitPlotBuilder
+          colSplit <- encodeColNames(colSplitRaw)
+          if (colSplit %in% names(tempRM)) {
+            tempRM <- tempRM[!is.na(tempRM[[colSplit]]), ]
+          }
+        }
+        if (!is.null(tab$rowsvariableSplitPlotBuilder)) {
+          rowSplitRaw <- tab$rowsvariableSplitPlotBuilder
+          rowSplit <- encodeColNames(rowSplitRaw)
+          if (rowSplit %in% names(tempRM)) {
+            tempRM <- tempRM[!is.na(tempRM[[rowSplit]]), ]
+          }
+        }
+        if (!is.null(tab$gridVariablePlotBuilder)) {
+          gridVarRaw <- tab$gridVariablePlotBuilder
+          gridVar <- encodeColNames(gridVarRaw)
+          if (gridVar %in% names(tempRM)) {
+            tempRM <- tempRM[!is.na(tempRM[[gridVar]]), ]
+          }
+        }
 
         datasetRMList[[plotId]] <- tempRM
       }
+    } else {
+      datasetNonRMList[[plotId]] <- na.omit(ds)
     }
   }
 
-  return(list(datasetRMList = datasetRMList, datasetNonRM = datasetNonRM))
+  return(list(datasetRMList = datasetRMList, datasetNonRMList = datasetNonRMList))
 }
-
-createJaspQmlSource(
-  sourceID = "plotBuilderDataSource",
-
-  value = .plotBuilderReadData
-)
-
-# Error handling function ----
-.plotBuilderErrorHandling <- function(dataset, options) {
-
-  .hasErrors()
-}
-
 
 
 #Results functions ----
@@ -164,7 +166,7 @@ createJaspQmlSource(
 .plotBuilderPlots <- function(dataset, options) {
 
   datasetRMList <- dataset$datasetRMList
-  datasetNonRM  <- dataset$datasetNonRM
+  datasetNonRMList <- dataset$datasetNonRMList
 
   # Initialize the list to store plots
   updatedPlots <- list()
@@ -174,10 +176,9 @@ createJaspQmlSource(
 
     plotId <- as.character(tab$value)
     localData <- if (identical(tab[["isRM"]], "RM")) {
-      # Use the specific RM dataset for this plot
       datasetRMList[[plotId]]
     } else {
-      datasetNonRM
+      datasetNonRMList[[plotId]]
     }
 
 
@@ -192,7 +193,7 @@ createJaspQmlSource(
     if (identical(tab[["isRM"]], "RM")) {
 
       # Process the repeated measures factor option
-      rmFactorOption <- tab[["rmFactorOptions"]]
+      rmFactorOption <- tab[["rmFactorOptionsDropDown"]]
       if (rmFactorOption == "rmFactorAsX") {
         xVar <- "Repeated measures"
       } else if (rmFactorOption == "rmFactorAsY") {
@@ -205,10 +206,14 @@ createJaspQmlSource(
         gridVar <- "Repeated measures"
       } else if (rmFactorOption == "rmFactorAsRowSplit") {
         rowsVar <- "Repeated measures"
+      } else if (rmFactorOption == "rmFactorNotVisible") {
+        hiddenRM <- "Repeated measures"
       }
 
+
+
       # Process the repeated measures value option
-      rmValueOption <- tab[["rmValueOptions"]]
+      rmValueOption <- tab[["rmValueOptionsDropDown"]]
       if (rmValueOption == "rmValueAsX") {
         xVar <- "Values"
       } else if (rmValueOption == "rmValueAsY") {
@@ -222,13 +227,17 @@ createJaspQmlSource(
       if (colorBy == "none") {
         colorVar <- ""
       } else if (colorBy == "grouping") {
-        colorVar <- tab[["variableColorPlotBuilder"]]
+        colorVar <- encodeColNames(tab[["variableColorPlotBuilder"]])
       } else if (colorBy == "x") {
         colorVar <- xVar
       } else if (colorBy == "y") {
         colorVar <- yVar
       } else if (colorBy == "rm") {
         colorVar <- "Repeated measures"
+      } else if (colorBy == "splitColumn") {
+        colorVar <- colsVar
+      } else if (colorBy == "splitRow") {
+        colorVar <- rowsVar
       }
     }
 
@@ -339,16 +348,22 @@ createJaspQmlSource(
     # Add histogram (tidyplots::add_histogram)----
     if (tab[["addHistogram"]]) {
 
-      argList <- list(
-        bins  = tab[["binsPlotBuilder"]],
-        alpha = tab[["alphaHistogramPlotBuilder"]]
-      )
-
-      tidyplot_obj <- do.call(
-        tidyplots::add_histogram,
-        c(list(tidyplot_obj), argList)
-      )
+      tidyplot_obj <- tryCatch({
+        if (!is.numeric(localData[[xVar]]) && !is.numeric(localData[[yVar]])) {
+          stop("The histogram requires that the X-Axis or Y-Axis Variable is continuous", call. = FALSE)
+        }
+        argList <- list(
+          bins  = tab[["binsPlotBuilder"]],
+          alpha = tab[["alphaHistogramPlotBuilder"]]
+        )
+        do.call(tidyplots::add_histogram, c(list(tidyplot_obj), argList))
+      },
+      error = function(e) {
+        stop(e$message, call. = FALSE)
+      })
     }
+
+
 
     # Add boxplot (tidyplots::add_boxplot)----
     if (tab[["addBoxplot"]]) {
@@ -678,11 +693,39 @@ createJaspQmlSource(
           tidyplots::add_barstack_absolute,
           c(list(tidyplot_obj), argList)
         )
+
+        titleValueY <- tab[["titleYPlotBuilder"]]
+        if (!is.null(titleValueY) && titleValueY != "") {
+          tidyplot_obj <- tidyplot_obj |>
+            tidyplots::adjust_y_axis_title(title = titleValueY)
+
+        }
+
+        titleValueX <- tab[["titleXPlotBuilder"]]
+        if (!is.null(titleValueX) && titleValueX != "") {
+          tidyplot_obj <- tidyplot_obj |>
+            tidyplots::adjust_x_axis_title(title = titleValueX)
+        }
+
       } else if (mode == "relative") {
         tidyplot_obj <- do.call(
           tidyplots::add_barstack_relative,
           c(list(tidyplot_obj), argList)
         )
+
+        titleValueY <- tab[["titleYPlotBuilder"]]
+        if (!is.null(titleValueY) && titleValueY != "") {
+          tidyplot_obj <- tidyplot_obj |>
+            tidyplots::adjust_y_axis_title(title = titleValueY)
+
+        }
+
+        titleValueX <- tab[["titleXPlotBuilder"]]
+        if (!is.null(titleValueX) && titleValueX != "") {
+          tidyplot_obj <- tidyplot_obj |>
+            tidyplots::adjust_x_axis_title(title = titleValueX)
+        }
+
       }
     }
 
@@ -1176,27 +1219,50 @@ createJaspQmlSource(
       tidyplot_obj <- tidyplot_obj |>
         tidyplots::add_reference_lines(
           y         = eval(parse(text = paste0("c(", tab[["yReferenceLine"]], ")"))),
-          linetype  = "solid",
+          x         = eval(parse(text = paste0("c(", tab[["xReferenceLine"]], ")"))),
+          linetype  = "dashed",
           linewidth = tab[["linewidhtReferenceLines"]],
           color     = eval(parse(text = paste0("\"", tab[["colorReferenceLine"]], "\"")))
         )
     }
 
-    # Add annotation line (tidyplots::add_annotation_line)----
-    if (tab[["addAnnotationLinePlotBuilder"]] &&
-        !is.null(tab[["xAnnotation"]]) && nzchar(tab[["xAnnotation"]]) &&
-        !is.null(tab[["xendAnnotation"]]) && nzchar(tab[["xendAnnotation"]]) &&
-        !is.null(tab[["yAnnotation"]]) && nzchar(tab[["yAnnotation"]]) &&
-        !is.null(tab[["yendAnnotation"]]) && nzchar(tab[["yendAnnotation"]])) {
+    # Add identity line ----
+    if (!is.null(tab[["addIdentityLinePlotBuilder"]]) && tab[["addIdentityLinePlotBuilder"]]) {
+      if (!is.null(xVar) && xVar %in% colnames(localData) && is.numeric(localData[[xVar]])) {
+        x_min <- min(localData[[xVar]], na.rm = TRUE)
+        x_max <- max(localData[[xVar]], na.rm = TRUE)
+      } else {
+        x_min <- 0
+        x_max <- 1
+      }
 
-      tidyplot_obj <- tidyplot_obj |>
-        tidyplots::add_annotation_line(
-          x      = eval(parse(text = paste0("c(", tab[["xAnnotation"]], ")"))),
-          xend   = eval(parse(text = paste0("c(", tab[["xendAnnotation"]], ")"))),
-          y      = eval(parse(text = paste0("c(", tab[["yAnnotation"]], ")"))),
-          yend   = eval(parse(text = paste0("c(", tab[["yendAnnotation"]], ")"))),
-          color  = eval(parse(text = paste0("\"", tab[["colorAnnotationLine"]], "\"")))
-        )
+      if (!is.null(yVar) && yVar %in% colnames(localData) && is.numeric(localData[[yVar]])) {
+        y_min <- min(localData[[yVar]], na.rm = TRUE)
+        y_max <- max(localData[[yVar]], na.rm = TRUE)
+      } else {
+        y_min <- 0
+        y_max <- 1
+      }
+
+      if (!is.null(tab[["reversedirectionIdentityLine"]]) && tab[["reversedirectionIdentityLine"]]) {
+        tidyplot_obj <- tidyplot_obj |>
+          tidyplots::add_annotation_line(
+            x     = x_min,
+            xend  = x_max,
+            y     = y_max,
+            yend  = y_min,
+            color = eval(parse(text = paste0("\"", tab[["colorIdentityLine"]], "\"")))
+          )
+      } else {
+        tidyplot_obj <- tidyplot_obj |>
+          tidyplots::add_annotation_line(
+            x     = x_min,
+            xend  = x_max,
+            y     = y_min,
+            yend  = y_max,
+            color = eval(parse(text = paste0("\"", tab[["colorIdentityLine"]], "\"")))
+          )
+      }
     }
 
     if (length(tab[["titlePlotBuilder"]]) > 0) {
@@ -1309,6 +1375,9 @@ createJaspQmlSource(
     plotStyle    <- tab[["plotStyle"]]
     baseFontSize <- tab[["baseFontSize"]]
 
+
+    mode <- tab[["propMode"]]
+    if (is.null(mode)) mode <- "absolute"
 
     # Adjust X axis (tidyplots::adjust_x_axis)----
     adjust_args_xaxis <- list()
@@ -1475,35 +1544,243 @@ createJaspQmlSource(
       }
     }
 
-    #Add annotation (tidyplot::add_annotation_text )----
-    if (!is.null(tab[["annotationPlotBuilder"]]) && length(tab[["annotationPlotBuilder"]]) > 0) {
-      for (i in seq_along(tab[["annotationPlotBuilder"]])) {
-        rowData   <- tab[["annotationPlotBuilder"]][[i]]
-        plotText  <- rowData$annotationText
-        plotX     <- rowData$annotationX
-        plotY     <- rowData$annotationY
-        fontSize  <- rowData$annotationSize
-
-        tidyplot_obj <- tidyplot_obj |>
-          tidyplots::add_annotation_text(
-          text     = plotText,
-          x        = plotX,
-          y        = plotY,
-          fontsize = fontSize
-        )
-      }
-    }
+    # #Add annotation (tidyplot::add_annotation_text )----
+    # if (!is.null(tab[["annotationPlotBuilder"]]) && length(tab[["annotationPlotBuilder"]]) > 0) {
+    #   for (i in seq_along(tab[["annotationPlotBuilder"]])) {
+    #     rowData   <- tab[["annotationPlotBuilder"]][[i]]
+    #     plotText  <- rowData$annotationText
+    #     plotX     <- rowData$annotationX
+    #     plotY     <- rowData$annotationY
+    #     fontSize  <- rowData$annotationSize
+    #
+    #     tidyplot_obj <- tidyplot_obj |>
+    #       tidyplots::add_annotation_text(
+    #       text     = plotText,
+    #       x        = plotX,
+    #       y        = plotY,
+    #       fontsize = fontSize
+    #     )
+    #   }
+    # }
 
     # Extract the ggplot object from tidyplot----
     tidyplot_obj <- tidyplot_obj[[1]]
 
+    # Add annotation (using ggplot2::geom_text) ----
+    if (!is.null(tab[["annotationPlotBuilder"]]) && length(tab[["annotationPlotBuilder"]]) > 0) {
+      for (i in seq_along(tab[["annotationPlotBuilder"]])) {
+        rowData  <- tab[["annotationPlotBuilder"]][[i]]
+        plotText <- rowData$annotationText
+        plotX    <- rowData$annotationX
+        plotY    <- rowData$annotationY
+        fontSize <- as.numeric(rowData$annotationSize)
+
+        # Read annotation text color (default is black)
+        colorText <- if (!is.null(rowData$colorAnnotationLine) && nzchar(rowData$colorAnnotationLine)) {
+          rowData$colorAnnotationLine
+        } else {
+          "black"
+        }
+
+        # Convert text to a plotmath expression if it is wrapped in dollar signs,
+        # e.g. "$italic(P)$" will become an expression italic(P)
+        label_expr <- plotText
+        if (grepl("^\\$.*\\$$", plotText)) {
+          stripped <- sub("^\\$(.*)\\$$", "\\1", plotText)
+          label_expr <- parse(text = stripped)
+        }
+
+        # Handle facet drop-down inputs for Column, Row, and Grid.
+        # There is no prioritization; each facet field is stored as an independent column.
+        facetData <- list()
+
+        # Column facet: first check the standard drop-down; if empty, check the RM-specific one.
+        if (!is.null(rowData$ColumnAnnotation) && nzchar(rowData$ColumnAnnotation)) {
+          facetData[[colsVar]] <- rowData$ColumnAnnotation
+        } else if (!is.null(rowData$RMColumnAnnotation) && nzchar(rowData$RMColumnAnnotation)) {
+          facetData[[colsVar]] <- rowData$RMColumnAnnotation
+        }
+
+        # Row facet:
+        if (!is.null(rowData$RowAnnotation) && nzchar(rowData$RowAnnotation)) {
+          facetData[[rowsVar]] <- rowData$RowAnnotation
+        } else if (!is.null(rowData$RMRowAnnotation) && nzchar(rowData$RMRowAnnotation)) {
+          facetData[[rowsVar]] <- rowData$RMRowAnnotation
+        }
+
+        # Grid facet:
+        if (!is.null(rowData$GridAnnotation) && nzchar(rowData$GridAnnotation)) {
+          facetData[[gridVar]] <- rowData$GridAnnotation
+        } else if (!is.null(rowData$RMGridAnnotation) && nzchar(rowData$RMGridAnnotation)) {
+          facetData[[gridVar]] <- rowData$RMGridAnnotation
+        }
+
+        # If in RM mode, decode each facet value using decodeColNames()
+        if (!is.null(tab[["isRM"]]) && tab[["isRM"]] == "RM" && length(facetData) > 0) {
+          for (field in names(facetData)) {
+            facetData[[field]] <- decodeColNames(facetData[[field]])
+          }
+        }
+
+        # Build a one-row data frame to hold the annotation coordinates and all facet assignments.
+        thisAnnotation <- data.frame(
+          x = plotX,
+          y = plotY,
+          label = label_expr,
+          stringsAsFactors = FALSE
+        )
+        # Add facet information (if available) to the annotation data frame
+        if (length(facetData) > 0) {
+          for (f in names(facetData)) {
+            thisAnnotation[[f]] <- facetData[[f]]
+          }
+        }
+
+        # Add the annotation to the ggplot object.
+        tidyplot_obj <- tidyplot_obj +
+          ggplot2::geom_text(
+            data = thisAnnotation,
+            mapping = ggplot2::aes(x = x, y = y, label = label),
+            size = fontSize,
+            color = colorText,
+            inherit.aes = FALSE
+          )
+      }
+    }
+
+
+    # Add custom comparison line (using ggplot2::geom_text, geom_segment) ----
+    rmOption <- tab[["rmFactorOptionsDropDown"]]
+
+    if (!is.null(tab[["annotationLineList"]]) && length(tab[["annotationLineList"]]) > 0) {
+
+      if (!is.null(xVar) && xVar %in% colnames(localData) && !is.factor(localData[[xVar]])) {
+        stop("The X-Axis variable can only be a factor variable. The Y-Axis variable must be either continuous or ordinal.", call. = FALSE)
+      }
+
+      if (!is.null(yVar) && yVar %in% colnames(localData) && !(is.numeric(localData[[yVar]]) || is.ordered(localData[[yVar]]))) {
+        stop("The X-Axis variable can only be a factor variable. The Y-Axis variable must be either continuous or ordinal.", call. = FALSE)
+      }
+
+
+
+      for (line in tab[["annotationLineList"]]) {
+        if (!is.null(line[["xAnnotation"]]) && nzchar(line[["xAnnotation"]]) &&
+            !is.null(line[["xendAnnotation"]]) && nzchar(line[["xendAnnotation"]]) &&
+            !is.null(line[["yAnnotation"]]) && nzchar(line[["yAnnotation"]]) &&
+            !is.null(line[["yendAnnotation"]]) && nzchar(line[["yendAnnotation"]])) {
+
+          x_val    <- eval(parse(text = paste0("c(", line[["xAnnotation"]], ")")))
+          xend_val <- eval(parse(text = paste0("c(", line[["xendAnnotation"]], ")")))
+          y_val    <- eval(parse(text = paste0("c(", line[["yAnnotation"]], ")")))
+          yend_val <- eval(parse(text = paste0("c(", line[["yendAnnotation"]], ")")))
+
+          if (rmOption == "rmFactorAsColumnSplit") {
+            colAnnotLine <- if (!is.null(line[["RMColumnCompLine"]])) decodeColNames(line[["RMColumnCompLine"]]) else ""
+          } else {
+            colAnnotLine <- if (!is.null(line[["ColumnAnnotationCompLine"]])) line[["ColumnAnnotationCompLine"]] else ""
+          }
+
+          if (rmOption == "rmFactorAsRowSplit") {
+            rowAnnotLine <- if (!is.null(line[["RMRowCompLine"]])) decodeColNames(line[["RMRowCompLine"]]) else ""
+          } else {
+            rowAnnotLine <- if (!is.null(line[["RowAnnotationCompLine"]])) line[["RowAnnotationCompLine"]] else ""
+          }
+
+          if (rmOption == "rmFactorAsGrid") {
+            gridAnnotLine <- if (!is.null(line[["RMGridCompLine"]])) decodeColNames(line[["RMGridCompLine"]]) else ""
+          } else {
+            gridAnnotLine <- if (!is.null(line[["GridAnnotationCompLine"]])) line[["GridAnnotationCompLine"]] else ""
+          }
+
+          thisSegment <- data.frame(
+            x = x_val,
+            xend = xend_val,
+            y = y_val,
+            yend = yend_val,
+            stringsAsFactors = FALSE
+          )
+          if (!is.null(colsVar) && nzchar(colAnnotLine)) {
+            thisSegment[[colsVar]] <- colAnnotLine
+          }
+          if (!is.null(rowsVar) && nzchar(rowAnnotLine)) {
+            thisSegment[[rowsVar]] <- rowAnnotLine
+          }
+          if (!is.null(gridVar) && nzchar(gridAnnotLine)) {
+            thisSegment[[gridVar]] <- gridAnnotLine
+          }
+
+          tidyplot_obj <- tidyplot_obj +
+            ggplot2::geom_segment(
+              data = thisSegment,
+              mapping = ggplot2::aes(x = x, xend = xend, y = y, yend = yend),
+              color = eval(parse(text = paste0("\"", line[["colorAnnotationLine"]], "\""))),
+              inherit.aes = FALSE
+            )
+
+          if (!is.null(line[["textAnnotationline"]]) && nzchar(line[["textAnnotationline"]])) {
+            x_mid <- (x_val + xend_val) / 2
+            y_mid <- (y_val + yend_val) / 2
+
+            offset <- as.numeric(line[["textDistanceAnnotationLine"]])
+            globalYMin   <- min(localData[[yVar]], na.rm = TRUE)
+            globalYMax   <- max(localData[[yVar]], na.rm = TRUE)
+            globalYRange <- globalYMax - globalYMin
+            offset_scaled <- offset * (globalYRange / 10)
+
+            thisText <- data.frame(
+              x = x_mid,
+              y = y_mid + offset_scaled,
+              label = eval(parse(text = paste0("\"", line[["textAnnotationline"]], "\""))),
+              stringsAsFactors = FALSE
+            )
+            if (!is.null(colsVar) && nzchar(colAnnotLine)) {
+              thisText[[colsVar]] <- colAnnotLine
+            }
+            if (!is.null(rowsVar) && nzchar(rowAnnotLine)) {
+              thisText[[rowsVar]] <- rowAnnotLine
+            }
+            if (!is.null(gridVar) && nzchar(gridAnnotLine)) {s
+              thisText[[gridVar]] <- gridAnnotLine
+            }
+
+            tidyplot_obj <- tidyplot_obj +
+              ggplot2::geom_text(
+                data = thisText,
+                mapping = ggplot2::aes(x = x, y = y, label = label),
+                size = as.numeric(line[["textSizeAnnotationLine"]]),
+                inherit.aes = FALSE
+              )
+          }
+
+        }
+      }
+    }
+
+
+
+
+
+
+
+
+
+    if (tab[["propMode"]] == "relative") {
+      blankLayer <- ggplot2::geom_blank(
+        data = data.frame(x = c(0, 1), y = c(0, 1)),
+        mapping = ggplot2::aes(x = x, y = y),
+        inherit.aes = FALSE
+      )
+    } else {
+      blankLayer <- ggplot2::geom_blank()
+    }
+
 
     # Apply theme
     if (plotStyle == "JASP") {
-      # Custom JASP theme (assuming themeJaspRaw is from a JASP-specific pkg)
       tidyplot_obj <- tidyplot_obj +
         jaspGraphs::themeJaspRaw(fontsize = baseFontSize, legend.position = legend_position) +
-        ggplot2::geom_blank() +
+        blankLayer +
         jaspGraphs::geom_rangeframe() +
         ggplot2::theme(
           strip.text = ggplot2::element_text(size = baseFontSize)
@@ -1543,13 +1820,15 @@ createJaspQmlSource(
 
     tidyplot_obj <- tidyplot_obj +
       ggplot2::theme(
+        axis.text.x = ggplot2::element_text(size = baseFontSize * 0.85),
+        axis.text.y = ggplot2::element_text(size = baseFontSize * 0.85),
         legend.title = ggplot2::element_text(
-          size   = baseFontSize *0.8,
+          size   = baseFontSize * 0.85,
           hjust  = 0,
           margin = ggplot2::margin(5, 5, 5, 5)
         ),
         legend.text = ggplot2::element_text(
-          size   = baseFontSize *0.8,
+          size   = baseFontSize * 0.8,
           margin = ggplot2::margin(5, 5, 5, 5)
         ),
         legend.margin = ggplot2::margin(10, 10, 10, 10),
@@ -1562,19 +1841,27 @@ createJaspQmlSource(
         ggplot2::theme(legend.title = ggplot2:::element_blank())
     }
 
-
-
     # Facet logic for row / column ----
 
     hasRows <- (!is.null(rowsVar) && rowsVar != "")
     hasCols <- (!is.null(colsVar) && colsVar != "")
+    as_table_value <- if (tab[["asTable"]] %in% c("bottom-right", 0)) TRUE else FALSE
+
 
     if (hasRows) {
       # For the displayed label, we do NOT add backticks
+      yAxisTitleSplit <- tab[["yAxisTitleSplit"]]
+
+      if (is.null(yAxisTitleSplit) || nchar(trimws(yAxisTitleSplit)) == 0) {
+        axis_name <- rowsVar
+      } else {
+        axis_name <- yAxisTitleSplit
+      }
+
       tidyplot_obj <- tidyplot_obj +
         ggplot2::scale_y_continuous(
           sec.axis = ggplot2::sec_axis(~ .,
-                                       name   = rowsVar,  # display "Repeated measures" without backticks
+                                       name   = axis_name,  # display "Repeated measures" without backticks
                                        breaks = NULL,
                                        labels = NULL
           )
@@ -1583,11 +1870,19 @@ createJaspQmlSource(
 
     if (hasCols) {
       # For the displayed label, we do NOT add backticks
+      xAxisTitleSplit <- tab[["xAxisTitleSplit"]]
+
+      if (is.null(xAxisTitleSplit) || nchar(trimws(xAxisTitleSplit)) == 0) {
+        subtitle_name <- colsVar
+      } else {
+        subtitle_name <- xAxisTitleSplit
+      }
+
       tidyplot_obj <- tidyplot_obj +
-        ggplot2::labs(subtitle = colsVar) +  # display "Repeated measures" without backticks
+        ggplot2::labs(subtitle = subtitle_name) +  # display "Repeated measures" without backticks
         ggplot2::theme(
           plot.subtitle = ggplot2::element_text(size = baseFontSize, hjust = 0.5),
-          strip.text    = ggplot2::element_text(size = baseFontSize)
+          strip.text     = ggplot2::element_text(size = baseFontSize)
         )
     }
 
@@ -1595,31 +1890,60 @@ createJaspQmlSource(
     if (hasRows && hasCols) {
       tidyplot_obj <- tidyplot_obj +
         ggplot2::facet_grid(
-          stats::as.formula(paste0("`", rowsVar, "` ~ `", colsVar, "`"))
+          stats::as.formula(paste0("`", rowsVar, "` ~ `", colsVar, "`")),
+          scales = tab[["scales"]],
+          axes = tab[["axes"]],
+          axis.labels = tab[["axisLabels"]],
+          as.table = as_table_value,
+          space = tab[["space"]],
+          margins = tab[["margins"]]
         )
     } else if (hasCols) {
       tidyplot_obj <- tidyplot_obj +
         ggplot2::facet_grid(
-          stats::as.formula(paste0(". ~ `", colsVar, "`"))
+          stats::as.formula(paste0(". ~ `", colsVar, "`")),
+          scales = tab[["scales"]],
+          axes = tab[["axes"]],
+          axis.labels = tab[["axisLabels"]],
+          as.table = as_table_value,
+          space = tab[["space"]],
+          margins = tab[["margins"]]
         )
     } else if (hasRows) {
       tidyplot_obj <- tidyplot_obj +
         ggplot2::facet_grid(
-          stats::as.formula(paste0("`", rowsVar, "` ~ ."))
+          stats::as.formula(paste0("`", rowsVar, "` ~ .")),
+          scales = tab[["scales"]],
+          axes = tab[["axes"]],
+          axis.labels = tab[["axisLabels"]],
+          as.table = as_table_value,
+          space = tab[["space"]],
+          margins = tab[["margins"]]
         )
     }
 
     # Facet logic for facet_wrap using gridVariable ----
-    # Facet_wrap logic (feltételezve, hogy tab[["gridVariable"]] tartalmazza a változót)
     hasGrid <- (!is.null(gridVar) && gridVar != "")
 
     if (hasGrid) {
-      # A backtick-et CSAK a formulán belül használjuk:
+      as_table_value <- if (tab[["asTableFacetWrap"]] %in% c("bottom-rightFacetWrap", 0)) TRUE else FALSE
+
+      nrow_value <- if (!is.null(tab[["nrowFacetWrap"]]) && nchar(trimws(tab[["nrowFacetWrap"]])) > 0)
+        as.numeric(tab[["nrowFacetWrap"]]) else NULL
+      ncol_value <- if (!is.null(tab[["ncolFacetWrap"]]) && nchar(trimws(tab[["ncolFacetWrap"]])) > 0)
+        as.numeric(tab[["ncolFacetWrap"]]) else NULL
+
       tidyplot_obj <- tidyplot_obj +
         ggplot2::facet_wrap(
           stats::as.formula(paste0("~ `", gridVar, "`")),
+          nrow = nrow_value,
+          ncol = ncol_value,
+          scales = tab[["scalesFacetWrap"]],
+          as.table = as_table_value,
+          strip.position = tab[["stripPosition"]]
         )
     }
+
 
     # Connect points with lines if needed (for RM)----
     if (tab[["connectRMPlotBuilder"]]) {
@@ -1649,62 +1973,17 @@ createJaspQmlSource(
 
     # P value from ggpubr::stat_pvalue_manual----
 
-    # if (!is.null(tab[["pairwiseComparisons"]]) && length(tab[["pairwiseComparisons"]]) > 0) {
-    #
-    #   #universal settings for the p value
-    #   label_size <- tab[["labelSizePValue"]]
-    #   labelcolor <- tab[["labelcolor"]]
-    #
-    #   #separate settings for each bracket
-    #   dfComparisons <- data.frame(
-    #     group1     = as.character(sapply(tab[["pairwiseComparisons"]], function(x) x$group1)),
-    #     group2     = as.character(sapply(tab[["pairwiseComparisons"]], function(x) x$group2)),
-    #     p          = as.character(sapply(tab[["pairwiseComparisons"]], function(x) x$pAdj)),
-    #     y.position =  tab[["yPositionPValue"]],
-    #     stringsAsFactors = FALSE
-    #   )
-    #
-    #   # colorVar <- tab[["variableColorPlotBuilder"]]
-    #   if (!is.null(colorVar) && nchar(colorVar) > 0) {
-    #     dfComparisons$color <- as.character(
-    #       sapply(tab[["pairwiseComparisons"]], function(x) x$GroupPValue)
-    #     )
-    #   }
-    #
-    #   # rowsVar <- tab[["rowsvariableSplitPlotBuilder"]]
-    #   if (!is.null(rowsVar)) {
-    #     dfComparisons[[rowsVar]] <- as.character(
-    #       sapply(tab[["pairwiseComparisons"]], function(x) x$RowPValue)
-    #     )
-    #   }
-    #
-    #   if (!is.null(colsVar)) {
-    #     dfComparisons[[colsVar]] <- as.character(
-    #       sapply(tab[["pairwiseComparisons"]], function(x) x$ColumnPValue)
-    #     )
-    #   }
-    #
-    #   bracket.size <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$bracketSizePValue))
-    #   tip_length <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$tipLengthPValue))
-    #   stepDistance <- tab[["stepDistance"]]
-    #
-    #   tidyplot_obj <- tidyplot_obj +
-    #     ggpubr::stat_pvalue_manual(
-    #       data          = dfComparisons,
-    #       label         = "p",
-    #       xmin          = "group1",
-    #       xmax          = "group2",
-    #       y.position    = "y.position",
-    #       size          = label_size,
-    #       bracket.size  = bracket.size,
-    #       tip.length    = tip_length,
-    #       color = if (!is.null(colorVar) && nchar(colorVar) > 0) "color" else as.character(labelcolor),
-    #       inherit.aes   = FALSE,
-    #       step.increase = stepDistance
-    #     )
-    # }
-
     if (!is.null(tab[["pairwiseComparisons"]]) && length(tab[["pairwiseComparisons"]]) > 0) {
+
+      if (!is.null(xVar) && xVar %in% colnames(localData) && !is.factor(localData[[xVar]])) {
+        stop("The X-Axis variable can only be a factor variable. The Y-Axis variable must be either continuous or ordinal.", call. = FALSE)
+      }
+
+      if (!is.null(yVar) && yVar %in% colnames(localData) && !(is.numeric(localData[[yVar]]) || is.ordered(localData[[yVar]]))) {
+        stop("The X-Axis variable can only be a factor variable. The Y-Axis variable must be either continuous or ordinal.", call. = FALSE)
+      }
+
+
 
       # universal settings for the p value
       label_size <- tab[["labelSizePValue"]]
@@ -1719,65 +1998,16 @@ createJaspQmlSource(
         stringsAsFactors = FALSE
       )
 
-      # # Color settings: if a color variable is provided,
-      # # decode GroupPValue if isRM equals "RM"
-      # if (!is.null(colorVar) && nchar(colorVar) > 0) {
-      #   dfComparisons$color <- as.character(
-      #     sapply(tab[["pairwiseComparisons"]], function(x) {
-      #       if (identical(tab[["isRM"]], "RM"))
-      #         decodeColNames(x$GroupPValue)
-      #       else
-      #         x$GroupPValue
-      #     })
-      #   )
-      # }
-      #
-      # # Rows grouping: decode RowPValue if isRM equals "RM"
-      # if (!is.null(rowsVar)) {
-      #   dfComparisons[[rowsVar]] <- as.character(
-      #     sapply(tab[["pairwiseComparisons"]], function(x) {
-      #       if (identical(tab[["isRM"]], "RM"))
-      #         decodeColNames(x$RowPValue)
-      #       else
-      #         x$RowPValue
-      #     })
-      #   )
-      # }
-      #
-      # # Columns grouping: decode ColumnPValue if isRM equals "RM"
-      # if (!is.null(colsVar)) {
-      #   dfComparisons[[colsVar]] <- as.character(
-      #     sapply(tab[["pairwiseComparisons"]], function(x) {
-      #       if (identical(tab[["isRM"]], "RM"))
-      #         decodeColNames(x$ColumnPValue)
-      #       else
-      #         x$ColumnPValue
-      #     })
-      #   )
-      # }
-      #
-      # # Grid: decode ColumnPValue if isRM equals "RM"
-      # if (!is.null(gridVar)) {
-      #   dfComparisons[[gridVar]] <- as.character(
-      #     sapply(tab[["pairwiseComparisons"]], function(x) {
-      #       if (identical(tab[["isRM"]], "RM"))
-      #         decodeColNames(x$GridPValue)
-      #       else
-      #         x$GridPValue
-      #     })
-      #   )
-      # }
+      rmOption <- tab[["rmFactorOptionsDropDown"]]
 
       # Color settings: check for both standard and RM-specific variable names
       if (!is.null(colorVar) && nchar(colorVar) > 0) {
         dfComparisons$color <- as.character(
           sapply(tab[["pairwiseComparisons"]], function(x) {
-            # First check if we have the RM-specific value
-            if (!is.null(x$RMGroupPValue)) {
+            if (rmOption == "rmFactorAsGroup")
               decodeColNames(x$RMGroupPValue)
-            } else {
+            else
               x$GroupPValue  # Use standard value otherwise
-            }
           })
         )
       }
@@ -1786,12 +2016,10 @@ createJaspQmlSource(
       if (!is.null(rowsVar)) {
         dfComparisons[[rowsVar]] <- as.character(
           sapply(tab[["pairwiseComparisons"]], function(x) {
-            # First check if we have the RM-specific value
-            if (!is.null(x$RMRowPValue)) {
+            if (rmOption == "rmFactorAsRowSplit")
               decodeColNames(x$RMRowPValue)
-            } else {
+            else
               x$RowPValue  # Use standard value otherwise
-            }
           })
         )
       }
@@ -1800,12 +2028,10 @@ createJaspQmlSource(
       if (!is.null(colsVar)) {
         dfComparisons[[colsVar]] <- as.character(
           sapply(tab[["pairwiseComparisons"]], function(x) {
-            # First check if we have the RM-specific value
-            if (!is.null(x$RMColumnPValue)) {
+            if (rmOption == "rmFactorAsColumnSplit")
               decodeColNames(x$RMColumnPValue)
-            } else {
+            else
               x$ColumnPValue  # Use standard value otherwise
-            }
           })
         )
       }
@@ -1814,19 +2040,27 @@ createJaspQmlSource(
       if (!is.null(gridVar)) {
         dfComparisons[[gridVar]] <- as.character(
           sapply(tab[["pairwiseComparisons"]], function(x) {
-            # First check if we have the RM-specific value
-            if (!is.null(x$RMGridPValue)) {
+            if (rmOption == "rmFactorAsGrid")
               decodeColNames(x$RMGridPValue)
-            } else {
+            else
               x$GridPValue  # Use standard value otherwise
-            }
           })
         )
       }
 
+
+
       bracket.size <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$bracketSizePValue))
       tip_length   <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$tipLengthPValue))
       stepDistance <- tab[["stepDistance"]]
+
+      # Itt jön az új logika: pValueColor
+      pValueColor <- labelcolor  # default
+      if (!is.null(colorVar) && nchar(colorVar) > 0) {
+        if (!colorBy %in% c("x", "y")) {
+          pValueColor <- "color"  # <-- csak akkor "color", ha NEM x/y
+        }
+      }
 
       tidyplot_obj <- tidyplot_obj +
         ggpubr::stat_pvalue_manual(
@@ -1838,7 +2072,7 @@ createJaspQmlSource(
           size          = label_size,
           bracket.size  = bracket.size,
           tip.length    = tip_length,
-          color         = if (!is.null(colorVar) && nchar(colorVar) > 0) "color" else as.character(labelcolor),
+          color         = pValueColor,
           inherit.aes   = FALSE,
           step.increase = stepDistance
         )
