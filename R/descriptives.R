@@ -23,38 +23,21 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   makeSplit <- splitName != ""
   numberMissingSplitBy <- 0
 
-  # if (is.null(dataset)) {
-  #
-  #   preloadData <- FALSE
-  #   temp <- .descriptivesReadData(options, variables, splitName)
-  #   dataset         <- temp[["dataset"]]
-  #   dataset.factors <- temp[["dataset.factors"]]
-  #
-  # }  else {
-
-    preloadData <- TRUE
-    dataset.factors <- dataset
-    # for (var in variables)
-      # dataset[[var]] <- as.numeric(dataset[[var]])
-
-  # }
-
   if (makeSplit && length(variables) > 0) {
     splitFactor <- dataset[[splitName]]
     splitLevels <- levels(splitFactor)
     # remove missing values from the grouping variable
     dataset <- dataset[!is.na(splitFactor), ]
-    dataset.factors <- dataset.factors[!is.na(splitFactor), ]
 
     numberMissingSplitBy <- sum(is.na(splitFactor))
 
     # Actually remove missing values from the split factor
     splitFactor <- na.omit(splitFactor)
     # create a list of datasets, one for each level
-    splitDat.factors <- split(dataset.factors[variables], splitFactor)
+    splitDat <- split(dataset[variables], splitFactor)
   }
 
-  .descriptivesDescriptivesTable(dataset, dataset.factors, options, jaspResults, numberMissingSplitBy = numberMissingSplitBy)
+  .descriptivesDescriptivesTable(dataset, options, jaspResults, numberMissingSplitBy = numberMissingSplitBy)
 
   # Covariance matrix
   if (options[["covariance"]] || options[["correlation"]]) {
@@ -68,7 +51,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     if (sum(variableTypes == "scale") > 1) {
       .descriptivesCovarianceTables(
         container = jaspResults[["associationMatrix"]],
-        dataset   = if (makeSplit) splitDat.factors else dataset.factors,
+        dataset   = if (makeSplit) splitDat else dataset,
         variables = options[["variables"]][options[["variables.types"]] == "scale"],
         options   = options
       )
@@ -83,7 +66,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       jaspResults[["tables"]]$position <- 3
     }
 
-    .descriptivesFrequencyTables(dataset.factors, options, jaspResults[["tables"]])
+    .descriptivesFrequencyTables(dataset, options, jaspResults[["tables"]])
   }
 
   # Correlation plot
@@ -95,10 +78,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
         corrPlot$dependOn(c("correlationPlots", "splitBy", "variables"))
 
         for (i in seq_along(splitLevels))
-          corrPlot[[splitLevels[i]]] <- .descriptivesMatrixPlot(splitDat.factors[[i]], options, splitLevels[i])
+          corrPlot[[splitLevels[i]]] <- .descriptivesMatrixPlot(splitDat[[i]], options, splitLevels[i])
 
       } else {
-        jaspResults[["matrixPlot"]] <- .descriptivesMatrixPlot(dataset.factors, options, gettext("Correlation plot")) # Create one plot
+        jaspResults[["matrixPlot"]] <- .descriptivesMatrixPlot(dataset, options, gettext("Correlation plot")) # Create one plot
       }
 
       jaspResults[["matrixPlot"]]$position <- 6
@@ -121,9 +104,9 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     for (var in variables) {
       if (is.null(distPlots[[var]])) {
         if (makeSplit) {
-          distPlots[[var]] <- .descriptivesFrequencyPlots(dataset = splitDat.factors, options = options, variable = var)
+          distPlots[[var]] <- .descriptivesFrequencyPlots(dataset = splitDat, options = options, variable = var)
         } else {
-          distPlots[[var]] <- .descriptivesFrequencyPlots(dataset = dataset.factors, options = options, variable = var)
+          distPlots[[var]] <- .descriptivesFrequencyPlots(dataset = dataset, options = options, variable = var)
         }
       }
     }
@@ -141,7 +124,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
     for (var in variables[variableTypes == "scale"]) {
       if (is.null(splitPlots[[var]])) {
-        splitPlots[[var]] <- .descriptivesSplitPlot(dataset = dataset.factors, options = options, variable = var)
+        splitPlots[[var]] <- .descriptivesSplitPlot(dataset = dataset, options = options, variable = var)
         splitPlots[[var]]$dependOn(optionContainsValue = list(variables = var))
       }
     }
@@ -175,7 +158,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
             deeperQQPlots$dependOn(optionContainsValue = list(variables = var))
             QQPlots[[var]] <- deeperQQPlots
             # splits dataset according to split values
-            qqSplitData <- split(dataset.factors, qqSplitFactor)
+            qqSplitData <- split(dataset, qqSplitFactor)
             for (lev in seq_along(qqSplitLevels)) {
               QQPlots[[var]][[paste0(var, lev)]] <- .descriptivesQQPlot(dataset = qqSplitData[[lev]], options = options, qqvar = var, levelName = qqSplitLevels[lev])
             }
@@ -184,7 +167,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     } else { # no split
       for (var in variables[variableTypes == "scale"]) {
         if (is.null(QQPlots[[var]])) {
-          QQPlots[[var]] <- .descriptivesQQPlot(dataset = dataset.factors, options = options, qqvar = var)
+          QQPlots[[var]] <- .descriptivesQQPlot(dataset = dataset, options = options, qqvar = var)
         }
       }
     }
@@ -203,9 +186,9 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     for (var in variables[variableTypes != "scale"]) {
       if (is.null(piePlots[[var]])) {
         piePlots[[var]] <- if (makeSplit) {
-          .descriptivesPieChart(dataset = splitDat.factors, options = options, variable = var)
+          .descriptivesPieChart(dataset = splitDat, options = options, variable = var)
         } else {
-          .descriptivesPieChart(dataset = dataset.factors, options = options, variable = var)
+          .descriptivesPieChart(dataset = dataset, options = options, variable = var)
         }
       }
     }
@@ -222,7 +205,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     if (sum(variableTypes == "scale") > 0L) {
       .descriptivesStemAndLeafTables(
         container = jaspResults[["stemAndLeaf"]],
-        dataset   = if (makeSplit) splitDat.factors else dataset.factors,
+        dataset   = if (makeSplit) splitDat else dataset,
         variables = variables[variableTypes == "scale"],
         options   = options
       )
@@ -240,7 +223,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       ))
       jaspResults[["scatterPlots"]]$position <- 10
     }
-    .descriptivesScatterPlots(jaspResults[["scatterPlots"]], dataset.factors, variables[variableTypes == "scale"], splitName, options)
+    .descriptivesScatterPlots(jaspResults[["scatterPlots"]], dataset, variables[variableTypes == "scale"], splitName, options)
   }
 
   # Interval plots
@@ -255,7 +238,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
     for (var in variables[variableTypes == "scale"]) {
       if (is.null(intervalPlots[[var]])) {
-        intervalPlots[[var]] <- .descriptivesIntervalPlot(dataset = dataset.factors, options = options, variable = var)
+        intervalPlots[[var]] <- .descriptivesIntervalPlot(dataset = dataset, options = options, variable = var)
         intervalPlots[[var]]$dependOn(optionContainsValue = list(variables = var))
       }
     }
@@ -274,7 +257,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     for (var in variables) {
       if (is.null(dotPlots[[var]])) {
         dotPlots[[var]] <- .descriptivesDotPlots(
-          dataset = if (makeSplit) splitDat.factors else dataset.factors,
+          dataset = if (makeSplit) splitDat else dataset,
           options = options,
           variable = var
         )
@@ -295,7 +278,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       jaspResults[["heatmaps"]]$position <- 14
     }
 
-    .descriptivesHeatmaps(jaspResults[["heatmaps"]], dataset.factors, variables, options)
+    .descriptivesHeatmaps(jaspResults[["heatmaps"]], dataset, variables, options)
   }
 
   # Pareto plots
@@ -312,9 +295,9 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       # Only categorical variables
       if (is.null(parPlots[[var]])) {
         parPlots[[var]] <- if (makeSplit) {
-          .descriptivesParetoPlots(splitDat.factors, var, options)
+          .descriptivesParetoPlots(splitDat, var, options)
         } else {
-          .descriptivesParetoPlots(dataset.factors, var, options)
+          .descriptivesParetoPlots(dataset, var, options)
         }
       }
     }
@@ -331,7 +314,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       jaspResults[["densityPlot"]]$position <- 17
     }
 
-    .descriptivesDensityPlots(jaspResults[["densityPlot"]], dataset.factors, variables, options, preloadData)
+    .descriptivesDensityPlots(jaspResults[["densityPlot"]], dataset, variables, options)
   }
 
   # Likert plots
@@ -349,28 +332,28 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
     for (var in variables[variableTypes != "scale"]) {
       # exclude non-categorical variables from dataframe
-      if (is.numeric(dataset.factors[[var]])) {
+      if (is.numeric(dataset[[var]])) {
         if (makeSplit) {
           for (i in seq_along(splitLevels))
-            splitDat.factors[[i]] <- splitDat.factors[[i]][, !names(splitDat.factors[[i]]) %in% c(var), drop = FALSE]
+            splitDat[[i]] <- splitDat[[i]][, !names(splitDat[[i]]) %in% c(var), drop = FALSE]
         } else {
-          dataset.factors <- dataset.factors[, !names(dataset.factors) %in% c(var), drop = FALSE]
+          dataset <- dataset[, !names(dataset) %in% c(var), drop = FALSE]
         }
       }
     }
 
     if (makeSplit) {
       for (i in seq_along(splitLevels))
-        likPlots[[splitLevels[i]]] <- .descriptivesLikertPlots(splitDat.factors[[i]], splitLevels[i], options)
+        likPlots[[splitLevels[i]]] <- .descriptivesLikertPlots(splitDat[[i]], splitLevels[i], options)
     } else {
-      jaspResults[["likertPlot"]] <- .descriptivesLikertPlots(dataset.factors, gettext("Likert Plots"), options)
+      jaspResults[["likertPlot"]] <- .descriptivesLikertPlots(dataset, gettext("Likert Plots"), options)
     }
   }
 
   return()
 }
 
-.descriptivesDescriptivesTable <- function(dataset, dataset.factors, options, jaspResults, numberMissingSplitBy = 0) {
+.descriptivesDescriptivesTable <- function(dataset, options, jaspResults, numberMissingSplitBy = 0) {
   if (!is.null(jaspResults[["stats"]])) {
     return()
   } # The options for this table didn't change so we don't need to rebuild it
@@ -498,7 +481,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
     for (variable in variables) {
       for (l in seq_len(nLevels)) {
-        column <- dataset.factors[[variable]][split == splitLevels[l]]
+        column <- dataset[[variable]][split == splitLevels[l]]
         columnType <- options[["variables.types"]][options[["variables"]] == variable]
         subReturn <- .descriptivesDescriptivesTable_subFunction(column, columnType, list(Variable = variable, Level = splitLevels[l]), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, shouldAddModeContinuousTreatedAsDiscreteFootnote, jaspResults)
 
@@ -537,7 +520,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     }
   } else { # we dont want to split
     for (variable in variables) {
-      column <- dataset.factors[[variable]]
+      column <- dataset[[variable]]
       columnType <- options[["variables.types"]][options[["variables"]] == variable]
       subReturn <- .descriptivesDescriptivesTable_subFunction(column, columnType, list(Variable = variable), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, shouldAddModeContinuousTreatedAsDiscreteFootnote, jaspResults)
 
@@ -2383,30 +2366,18 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     ggplot2::theme(plot.margin = ggplot2::margin(5))
 }
 
-.descriptivesDensityPlots <- function(container, dataset, variables, options,
-                                      preloadData) {
+.descriptivesDensityPlots <- function(container, dataset, variables, options) {
   # we are not ready to plot
   if (length(variables) == 0)
     return()
 
-  if (options[["densityPlotSeparate"]] != "") {
-    if (preloadData)
+  if (options[["densityPlotSeparate"]] != "")
       separator <- as.factor(dataset[[options[["densityPlotSeparate"]]]])
-    else {
-      separator <- .readDataSetToEnd(columns.as.factor = options[["densityPlotSeparate"]])
-      separator <- separator[, , drop = TRUE]
-    }
-  }
 
   for (i in seq_along(variables)) {
 
     variableName <- variables[[i]]
-    if (preloadData) {
-      variable <- dataset[[variableName]]
-    } else {
-      variable <- .readDataSetToEnd(columns = variableName)
-      variable <- variable[, , drop = TRUE]
-    }
+    variable <- dataset[[variableName]]
     variableType <- options[["variables.types"]][[i]]
     data <- if (options[["densityPlotSeparate"]] != "") {
       data.frame(variable, separator)
