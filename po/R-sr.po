@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.19.2\n"
 "POT-Creation-Date: 2025-03-08 03:18\n"
-"PO-Revision-Date: 2025-04-07 02:38+0000\n"
+"PO-Revision-Date: 2025-04-23 10:14+0000\n"
 "Last-Translator: Marko Bojović <bojovicmarko@outlook.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/sr/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 
 msgid "Time Series Plot"
 msgstr "Графикон временске серије"
@@ -148,15 +148,17 @@ msgstr "Likert дијаграми"
 
 msgid "Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s"
 msgstr ""
+"Изузето је %1$i редова из анализе који су у вези са недостајућим вредностима "
+"променљиве %2$s која се користи за дељење"
 
 msgid "%s%% Confidence Interval Mean"
-msgstr ""
+msgstr "%s%% Интервал поверења за средњу вредност"
 
 msgid "%s%% Confidence Interval Std. Dev."
-msgstr ""
+msgstr "%s%% Интервал поверења за станд. дев."
 
 msgid "%s%% Confidence Interval Variance"
-msgstr ""
+msgstr "%s%% Интервал поверења за варијансу"
 
 msgid "Upper"
 msgstr "Горњи"
@@ -294,31 +296,37 @@ msgid "Counts"
 msgstr "Бројеви"
 
 msgid "No non-missing values!"
-msgstr ""
+msgstr "Нема вредности које нису недостајуће!"
 
 msgid "Association cannot be computed due to missing values. Try a different 'Use' setting."
 msgstr ""
+"Асоцијација не може бити израчуната због недостајућих вредности. Покушајте "
+"са различитом поставком ‘употреба’."
 
 msgid "Some associations cannot be computed due to missing values. Try a different 'Use' setting."
 msgstr ""
+"Неке асоцијације не могу бити израчунате због недостајућих вредности. "
+"Покушајте са различитом поставком ‘употреба’."
 
 msgid "Theoretical Quantiles"
-msgstr ""
+msgstr "Теоријски квантили"
 
 msgid "Sample Quantiles"
-msgstr ""
+msgstr "Квантилни узорци"
 
 msgid "Stem"
-msgstr ""
+msgstr "Стем"
 
 msgid "Leaf"
-msgstr ""
+msgstr "Лист"
 
 msgid "A stem and leaf table could not be made because there are fewer than 2 non-missing observations"
 msgstr ""
+"Табела стем-а и листа није могла бити направљена јер постоји мање од 2 "
+"вредности које нису недостајуће"
 
 msgid "The decimal point is at the |"
-msgstr ""
+msgstr "Десетична тачка је на |"
 
 msgid "There must be a unique value per combination of levels of horizontal and vertical axis!"
 msgstr ""
