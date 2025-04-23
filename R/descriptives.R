@@ -668,9 +668,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       # Type 7: default in R
       # Type 3: Nearest even order statistic (SAS default till ca. 2010).
       quartileType <- ifelse(columnType == "scale", 7, 3)
-      resultsCol[["q1"]] <- quantile(na.omitted, c(.25), names = FALSE, type = quartileType)
-      resultsCol[["q2"]] <- quantile(na.omitted, c(.5), names = FALSE, type = quartileType)
-      resultsCol[["q3"]] <- quantile(na.omitted, c(.75), names = FALSE, type = quartileType)
+      q123 <- quantile(na.omitted, c(.25, .5, .75), names = FALSE, type = quartileType)
+      resultsCol[["q1"]] <- q123[1]
+      resultsCol[["q2"]] <- q123[2]
+      resultsCol[["q3"]] <- q123[3]
     } else {
       resultsCol[["q1"]] <- ""
       resultsCol[["q2"]] <- ""
