@@ -236,13 +236,13 @@ msgid "P-value of Shapiro-Wilk"
 msgstr "P-значение коэффициента Шапиро-Уилка"
 
 msgid "25th percentile"
-msgstr "25%-й процентиль"
+msgstr "25-й процентиль"
 
 msgid "50th percentile"
 msgstr "50-й процентиль"
 
 msgid "75th percentile"
-msgstr "75%-й квартиль"
+msgstr "75-й квартиль"
 
 msgid "%gth percentile"
 msgstr "%g-й процентиль"
@@ -417,10 +417,10 @@ msgid "Lower Whisker"
 msgstr "Наблюдаемый минимум"
 
 msgid "25th Percentile"
-msgstr "25%-й Процентиль"
+msgstr "25-й Процентиль"
 
 msgid "75th Percentile"
-msgstr "75%-й Квартиль"
+msgstr "75-й Квартиль"
 
 msgid "Upper Whisker"
 msgstr "Наблюдаемый максимум"
