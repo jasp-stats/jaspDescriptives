@@ -1857,8 +1857,8 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
         if (is.null(errorMessage)) {
 
           p <- try(jaspGraphs::JASPScatterPlot(
-            x                 = dataset[, v1],
-            y                 = dataset[, v2],
+            x                 = dataset[[v1]],
+            y                 = dataset[[v2]],
             group             = group,
             xName             = v1,
             yName             = v2,
