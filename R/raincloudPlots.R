@@ -120,7 +120,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   uniqueCombis           <- infoFactorCombinations$uniqueCombis
   predictors <- if (options[["secondaryFactor"]] != "") c("primaryFactor", "secondaryFactor") else "primaryFactor"
 
-  output <- list(lowerBound = c(), upperBound = c(), successfulComputation = FALSE, se = c())
+  output <- list(lowerBound = c(), upperBound = c(), successfulComputation = FALSE, se = c(), sd = c())
 
   if (options[["meanIntervalCustom"]]) {
     if (options[["numberOfClouds"]] == nrow(uniqueCombis)) {
@@ -144,8 +144,8 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
     } else {
       isWithinPredictor <- FALSE
     }
-    # browser()
-    if (sum(isWithinPredictor) == 0) {
+
+    if (all(!isWithinPredictor)) {
       summaryStat <- jaspTTests::.summarySE(as.data.frame(dataset),
                                             measurevar = inputVariable,
                                             groupvars = predictors,
@@ -155,7 +155,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
                                             errorBarType = options[["meanIntervalOption"]],
                                             dependentName = inputVariable,
                                             subjectName = NULL)
-    } else if (sum(isWithinPredictor) > 0) {
+    } else if (any(isWithinPredictor)) {
       summaryStat <- jaspTTests::.summarySEwithin(as.data.frame(dataset), measurevar = inputVariable,
                                                   betweenvars = predictors[!isWithinPredictor],
                                                   withinvars = predictors[isWithinPredictor],
@@ -176,9 +176,14 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
       selectRow <- ((summaryStat[["primaryFactor"]] == primaryLevel) & (summaryStat[["secondaryFactor"]] == secondaryLevel))
     }
 
+    if (options[["meanIntervalOption"]] == "sd") {
+      summaryStat[["ciLower"]][selectRow] <- summaryStat[[inputVariable]][selectRow] - summaryStat[["sd"]][selectRow]
+      summaryStat[["ciUpper"]][selectRow] <- summaryStat[[inputVariable]][selectRow] + summaryStat[["sd"]][selectRow]
+    }
+
     output$lowerBound[cloudNumber] <- summaryStat[["ciLower"]][selectRow]
     output$upperBound[cloudNumber] <- summaryStat[["ciUpper"]][selectRow]
-    # output$sd[cloudNumber] <- summaryStat[["sd"]][selectRow]
+    output$sd[cloudNumber] <- summaryStat[["sd"]][selectRow]
     output$se[cloudNumber] <- summaryStat[["se"]][selectRow]
     output$successfulComputation <- TRUE
   }
@@ -731,6 +736,8 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   } else if (options[["meanInterval"]]) {
     if (options[["meanIntervalOption"]] == "se") {
       meanInterval <- gettextf("Interval around mean represents ± 1 standard error")
+    } else if (options[["meanIntervalOption"]] == "sd") {
+      meanInterval <- gettextf("Interval around mean represents ± 1 standard deviation")
     } else if (options[["meanIntervalOption"]] == "ci") {
       meanInterval <- gettextf(
         "Interval around mean represents %d%% confidence interval.", options[["meanCiWidth"]] * 100)
@@ -846,7 +853,11 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   }
 
   if (options[["mean"]] && options[["meanInterval"]] && options[["meanIntervalOption"]] == "se" && !options[["meanIntervalCustom"]]) {
-      tableInProgress$addColumnInfo(name = "se", title = gettextf("Standard Error"), type = "number", format = "dp:2")
+    tableInProgress$addColumnInfo(name = "se", title = gettextf("Standard Error"), type = "number", format = "dp:2")
+  }
+
+  if (options[["mean"]] && options[["meanInterval"]] && options[["meanIntervalOption"]] == "sd" && !options[["meanIntervalCustom"]]) {
+    tableInProgress$addColumnInfo(name = "sd", title = gettextf("Standard Deviation"), type = "number", format = "dp:2")
   }
 
   tableInProgress$showSpecifiedColumnsOnly <- TRUE  # Only show columns that were added
@@ -893,7 +904,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   if (options[["meanInterval"]] || options[["meanIntervalCustom"]]) {
     tableStatistics$lowerBound <- dataInfo$intervalBounds[[inputVariable]]$lowerBound
     tableStatistics$se         <- dataInfo$intervalBounds[[inputVariable]]$se
-    # tableStatistics$sd         <- dataInfo$intervalBounds[[inputVariable]]$sd
+    tableStatistics$sd         <- dataInfo$intervalBounds[[inputVariable]]$sd
     tableStatistics$upperBound <- dataInfo$intervalBounds[[inputVariable]]$upperBound
   }
 
