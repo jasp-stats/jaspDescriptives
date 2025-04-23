@@ -202,7 +202,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       jaspResults[["stemAndLeaf"]]$position <- 11
     }
 
-    if (sum(variableTypes == "scale") > 0L) {
+    if (any(variableTypes == "scale")) {
       .descriptivesStemAndLeafTables(
         container = jaspResults[["stemAndLeaf"]],
         dataset   = if (makeSplit) splitDat else dataset,
