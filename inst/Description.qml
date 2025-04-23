@@ -6,7 +6,7 @@ Description
 	name		: "jaspDescriptives"
 	title		: qsTr("Descriptives")
 	description	: qsTr("Explore the data with tables and plots")
-	version			: "0.19.2"
+	version			: "0.20.0"
 	author		: "JASP Team"
 	maintainer	: "JASP Team <jasp-stats.org>"
 	website		: "jasp-stats.org"
