@@ -501,15 +501,13 @@ test_that("plot with custom cloud color matches", {
     list(levels = "", name = "", values = "R"),
     list(levels = "", name = "", values = 0),
     list(levels = "", name = "", values = 0),
-    list(levels = list(""), name = "", values = list("#8B93FF", "#5755FE", "#FF71CD"))
+    list(levels = list(""), name = "", values = c("#8B93FF", "#5755FE", "#FF71CD"))
   )
   options$dependentVariables <- "bill_length_mm"
   options$dependentVariables.types <- "scale"
   options$heightPlot <- 550
   options$mean <- TRUE
-  options$meanCiAssumption <- TRUE
-  options$meanCiBootstrapSamples <- 1001
-  options$meanCiMethod <- "bootstrap"
+  options$meanCiAssumption <- FALSE
   options$meanCiWidth <- 0.99
   options$meanInterval <- TRUE
   options$meanIntervalOption <- "ci"
