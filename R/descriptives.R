@@ -16,8 +16,11 @@
 #
 
 DescriptivesInternal <- function(jaspResults, dataset, options) {
+
   variables     <- unlist(options[["variables"]])
   variableTypes <- options[["variables.types"]]
+  scaleVariables    <- variables[variableTypes == "scale"]
+  nonScaleVariables <- variables[variableTypes != "scale"]
 
   splitName <- options$splitBy
   makeSplit <- splitName != ""
@@ -122,7 +125,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
     splitPlots <- jaspResults[["boxPlot"]]
 
-    for (var in variables[variableTypes == "scale"]) {
+    for (var in scaleVariables) {
       if (is.null(splitPlots[[var]])) {
         splitPlots[[var]] <- .descriptivesSplitPlot(dataset = dataset, options = options, variable = var)
         splitPlots[[var]]$dependOn(optionContainsValue = list(variables = var))
@@ -152,7 +155,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       qqSplitLevels <- levels(qqSplitFactor)
       # remove missing values from the grouping variable
       dataset <- dataset[!is.na(qqSplitFactor), ]
-      for (var in variables[variableTypes == "scale"]) {
+      for (var in scaleVariables) {
         if (is.null(QQPlots[[var]])) {
             deeperQQPlots <- createJaspContainer(paste0(var))
             deeperQQPlots$dependOn(optionContainsValue = list(variables = var))
@@ -165,7 +168,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
         }
       }
     } else { # no split
-      for (var in variables[variableTypes == "scale"]) {
+      for (var in scaleVariables) {
         if (is.null(QQPlots[[var]])) {
           QQPlots[[var]] <- .descriptivesQQPlot(dataset = dataset, options = options, qqvar = var)
         }
@@ -183,7 +186,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
     piePlots <- jaspResults[["pieCharts"]]
     jaspGraphs::setGraphOption("palette", options[["colorPalette"]])
-    for (var in variables[variableTypes != "scale"]) {
+    for (var in nonScaleVariables) {
       if (is.null(piePlots[[var]])) {
         piePlots[[var]] <- if (makeSplit) {
           .descriptivesPieChart(dataset = splitDat, options = options, variable = var)
@@ -206,7 +209,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       .descriptivesStemAndLeafTables(
         container = jaspResults[["stemAndLeaf"]],
         dataset   = if (makeSplit) splitDat else dataset,
-        variables = variables[variableTypes == "scale"],
+        variables = scaleVariables,
         options   = options
       )
     }
@@ -223,7 +226,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       ))
       jaspResults[["scatterPlots"]]$position <- 10
     }
-    .descriptivesScatterPlots(jaspResults[["scatterPlots"]], dataset, variables[variableTypes == "scale"], splitName, options)
+    .descriptivesScatterPlots(jaspResults[["scatterPlots"]], dataset, scaleVariables, splitName, options)
   }
 
   # Interval plots
@@ -236,7 +239,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
     intervalPlots <- jaspResults[["IntervalPlots"]]
 
-    for (var in variables[variableTypes == "scale"]) {
+    for (var in scaleVariables) {
       if (is.null(intervalPlots[[var]])) {
         intervalPlots[[var]] <- .descriptivesIntervalPlot(dataset = dataset, options = options, variable = var)
         intervalPlots[[var]]$dependOn(optionContainsValue = list(variables = var))
@@ -291,7 +294,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
     parPlots <- jaspResults[["paretoPlots"]]
 
-    for (var in variables[variableTypes != "scale"]) {
+    for (var in nonScaleVariables) {
       # Only categorical variables
       if (is.null(parPlots[[var]])) {
         parPlots[[var]] <- if (makeSplit) {
@@ -330,7 +333,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
     likPlots <- jaspResults[["likertPlot"]]
 
-    for (var in variables[variableTypes != "scale"]) {
+    for (var in nonScaleVariables) {
       # exclude non-categorical variables from dataframe
       if (is.numeric(dataset[[var]])) {
         if (makeSplit) {
@@ -479,10 +482,13 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     splitLevels <- levels(split)
     nLevels <- length(levels(split))
 
-    for (variable in variables) {
+    for (varIndex in seq_along(variables)) {
       for (l in seq_len(nLevels)) {
+
+        variable <- variables[varIndex]
         column <- dataset[[variable]][split == splitLevels[l]]
-        columnType <- options[["variables.types"]][options[["variables"]] == variable]
+        columnType <- options[["variables.types"]][varIndex]
+
         subReturn <- .descriptivesDescriptivesTable_subFunction(column, columnType, list(Variable = variable, Level = splitLevels[l]), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, shouldAddModeContinuousTreatedAsDiscreteFootnote, jaspResults)
 
         shouldAddNominalTextFootnote                     <- subReturn$shouldAddNominalTextFootnote
@@ -519,9 +525,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       }
     }
   } else { # we dont want to split
-    for (variable in variables) {
+    for (varIndex in seq_along(variables)) {
+      variable <- variables[varIndex]
       column <- dataset[[variable]]
-      columnType <- options[["variables.types"]][options[["variables"]] == variable]
+      columnType <- options[["variables.types"]][varIndex]
       subReturn <- .descriptivesDescriptivesTable_subFunction(column, columnType, list(Variable = variable), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, shouldAddModeContinuousTreatedAsDiscreteFootnote, jaspResults)
 
       shouldAddNominalTextFootnote                     <- subReturn$shouldAddNominalTextFootnote
