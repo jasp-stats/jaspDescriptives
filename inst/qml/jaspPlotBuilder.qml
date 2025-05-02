@@ -28,6 +28,7 @@ Form {
 
     infoBottom:
         "## " + qsTr("References") + "\n" +
+        "- Engler, J. B. (2025). “Tidyplots Empowers Life Scientists With Easy Code-Based Data Visualization.” _iMeta_, 4, e70018. https://doi.org/10.1002/imt2.70018\n" +
         "- Engler, J. B. (2024). _tidyplots: Tidy Plots for Scientific Papers_. R package version 0.2.1. Available at: <https://CRAN.R-project.org/package=tidyplots>.\n" +
         "- Wickham, H., & Seidel, D. (2023). _rlang: Functions for Base Types and Core R and 'Tidyverse' Features_. R package version 1.1.1. Available at: <https://CRAN.R-project.org/package=rlang>.\n" +
         "- Wickham, H., François, R., Henry, L., Müller, K., & Vaughan, D. (2023). _dplyr: A Grammar of Data Manipulation_. R package version 1.1.4. Available at: <https://CRAN.R-project.org/package=dplyr>.\n" +
@@ -84,67 +85,12 @@ Form {
                     preferredHeight: yesRM.checked ? 600  * jaspTheme.uiScale : 300 * jaspTheme.uiScale
 
                     infoLabel: qsTr("Input")
-                    AvailableVariablesList { name: "allVariablesList"; id: allVariablesList}
 
-                    AssignedVariablesList {
-                        name: "variableRepeatedMeasures"
-                        id: variableRepeatedMeasures
-                        title: qsTr("Repeated Measures Variables")
-                        visible: yesRM.checked
-                        allowedColumns: ["scale"]
-                        property bool active: yesRM.checked
-                        onActiveChanged: {
-                            while (!active && count > 0) {
-                                itemDoubleClicked(0)
-                            }
-                        }
-                    }
+                    // NO RM DATASET -------------------------------------------------------------------------------------------------------------------------
 
-                    DropDown {
-                        name: "rmValueOptionsDropDown"
-                        label: qsTr("Repeated Measures Value as")
-                        id: rmValueOptionsDropDown
-                        visible: yesRM.checked
-                        enabled: yesRM.checked && variableRepeatedMeasures.count > 0
-                        onEnabledChanged: {
-                            if (!enabled) {
-                                currentIndex = -1
-                            }
-                            if (!enabled) {
-                                currentIndex = 1
-                            }
-                        }
-                        values: [
-                            { label: qsTr("X-Axis Variable"), value: "rmValueAsX" },
-                            { label: qsTr("Y-Axis Variable"), value: "rmValueAsY" }
-                        ]
-                        indexDefaultValue: 1   // alapértelmezett: Variable Y
-                    }
-
-                    DropDown {
-                        name: "rmFactorOptionsDropDown"
-                        label: qsTr("Repeated Measures Factor as")
-                        id: rmFactorOptionsDropDown
-                        visible: yesRM.checked
-                        enabled: yesRM.checked && variableRepeatedMeasures.count > 0
-                        onEnabledChanged: {
-                            if (!enabled) {
-                                currentIndex = -1
-                            }
-                            if (!enabled) {
-                                currentIndex = 0
-                            }
-                        }
-                        values: [
-                            { label: qsTr("X-Axis Variable"), value: "rmFactorAsX" },
-                            { label: qsTr("Y-Axis Variable"), value: "rmFactorAsY" },
-                            { label: qsTr("Group Variable"), value: "rmFactorAsGroup" },
-                            { label: qsTr("Split (Columns)"), value: "rmFactorAsColumnSplit" },
-                            { label: qsTr("Split (Rows)"), value: "rmFactorAsRowSplit" },
-                            { label: qsTr("Grid"), value: "rmFactorAsGrid" },
-                            { label: qsTr("Not visible"), value: "rmFactorNotVisible" }
-                        ]
-                        indexDefaultValue: 0   // alapértelmezett: Variable X
+                    AvailableVariablesList {
+                        name: "allVariablesList"
+                        id: allVariablesList
                     }
 
                     AssignedVariablesList {
@@ -153,18 +99,18 @@ Form {
                         id: variableXPlotBuilder
                         allowedColumns: ["scale", "ordinal", "nominal"]
                         minLevels: 2
+                        visible: !yesRM.checked
                         singleVariable: true
                         info: qsTr("Select the variable for the X-axis.")
                         property bool active: noRM.checked
                         onActiveChanged: if (!active && count > 0) itemDoubleClicked(0)
-                        enabled: isRM.value === "noRM" || (isRM.value === "RM" && variableRepeatedMeasures.count > 0 &&
-                                                            (rmFactorOptionsDropDown.value !== "rmFactorAsX" && rmValueOptionsDropDown.value !== "rmValueAsX"))
+                        enabled: isRM.value === "noRM"
                         onEnabledChanged: {
                             if (!enabled) {
-                                   while (count > 0) {
-                                       itemDoubleClicked(0)
-                                   }
-                               }
+                                while (count > 0) {
+                                    itemDoubleClicked(0)
+                                }
+                            }
                         }
                     }
 
@@ -174,18 +120,17 @@ Form {
                         allowedColumns: ["scale", "ordinal", "nominal"]
                         id: variableYPlotBuilder
                         singleVariable: true
-                        // visible: noRM.checked
+                        visible: !yesRM.checked
                         property bool active: noRM.checked
                         onActiveChanged: if (!active && count > 0) itemDoubleClicked(0)
                         info: qsTr("Select the variable for the Y-axis.")
-                        enabled: isRM.value === "noRM" || (isRM.value === "RM" && variableRepeatedMeasures.count > 0 &&
-                                                            (rmFactorOptionsDropDown.value !== "rmFactorAsY" && rmValueOptionsDropDown.value !== "rmValueAsY"))
+                        enabled: isRM.value === "noRM"
                         onEnabledChanged: {
                             if (!enabled) {
-                                   while (count > 0) {
-                                       itemDoubleClicked(0)
-                                   }
-                               }
+                                while (count > 0) {
+                                    itemDoubleClicked(0)
+                                }
+                            }
                         }
                     }
 
@@ -195,23 +140,22 @@ Form {
                         id: variableColorPlotBuilder
                         allowedColumns: ["scale", "ordinal", "nominal"]
                         minLevels: 2
+                        visible: !yesRM.checked
                         singleVariable: true
                         info: qsTr("Select the variable for data grouping, which will also determine the coloring..")
+                        enabled: isRM.value === "noRM"
                         onCountChanged: {
                             if (count > 0) {
                                 colorByVariableX.checked = false;
                                 colorByVariableY.checked = false;
                             }
                         }
-                        enabled: isRM.value === "noRM" || (isRM.value === "RM" && variableRepeatedMeasures.count > 0 &&
-                                                            (rmFactorOptionsDropDown.value !== "rmFactorAsGroup"))
-
                         onEnabledChanged: {
                             if (!enabled) {
-                                   while (count > 0) {
-                                       itemDoubleClicked(0)
-                                   }
-                               }
+                                while (count > 0) {
+                                    itemDoubleClicked(0)
+                                }
+                            }
                         }
                     }
 
@@ -221,16 +165,15 @@ Form {
                         id: columnsvariableSplitPlotBuilder
                         allowedColumns: ["ordinal", "nominal"]
                         singleVariable: true
+                        visible: !yesRM.checked
                         info: qsTr("You can choose a variable to split the plots into columns.")
-                        enabled: isRM.value === "noRM" || (isRM.value === "RM" && variableRepeatedMeasures.count > 0 &&
-                                                           (rmFactorOptionsDropDown.value !== "rmFactorAsColumnSplit"))
-
+                        enabled: isRM.value === "noRM"
                         onEnabledChanged: {
                             if (!enabled) {
-                                   while (count > 0) {
-                                       itemDoubleClicked(0)
-                                   }
-                               }
+                                while (count > 0) {
+                                    itemDoubleClicked(0)
+                                }
+                            }
                         }
                     }
 
@@ -240,15 +183,15 @@ Form {
                         id: rowsvariableSplitPlotBuilder
                         allowedColumns: ["ordinal", "nominal"]
                         singleVariable: true
+                        visible: !yesRM.checked
                         info: qsTr("You can choose a variable to split the plots into rows.")
-                        enabled: isRM.value === "noRM" || (isRM.value === "RM" && variableRepeatedMeasures.count > 0 &&
-                                                           (rmFactorOptionsDropDown.value !== "rmFactorAsRowSplit"))
+                        enabled: isRM.value === "noRM"
                         onEnabledChanged: {
                             if (!enabled) {
-                                   while (count > 0) {
-                                       itemDoubleClicked(0)
-                                   }
-                               }
+                                while (count > 0) {
+                                    itemDoubleClicked(0)
+                                }
+                            }
                         }
 
                     }
@@ -259,19 +202,171 @@ Form {
                         id: gridVariablePlotBuilder
                         allowedColumns: ["ordinal", "nominal"]
                         singleVariable: true
+                        visible: !yesRM.checked
                         info: qsTr("You can choose a variable to make a grid.")
-                        enabled: isRM.value === "noRM" || (isRM.value === "RM" && variableRepeatedMeasures.count > 0 &&
-                                                           (rmFactorOptionsDropDown.value !== "rmFactorAsGrid"))
+                        enabled: isRM.value === "noRM"
                         onEnabledChanged: {
                             if (!enabled) {
-                                   while (count > 0) {
-                                       itemDoubleClicked(0)
-                                   }
-                               }
+                                while (count > 0) {
+                                    itemDoubleClicked(0)
+                                }
+                            }
+                        }
+                    }
+
+                    //  RM DATASET ---------------------------------------------------------------------------------------------------------------------------
+
+
+                    FactorLevelList	{
+                        name: "repeatedMeasuresFactors";
+                        id: repeatedMeasuresFactors
+                        title: qsTr("Repeated Measures Factors")
+                        visible: yesRM.checked
+                        enabled: yesRM.checked
+                        height: 180 * preferencesModel.uiScale;	factorName: qsTr("RM Factor")
+
+                    }
+
+                    AssignedRepeatedMeasuresCells {
+                        id: rmCells
+                        name: "repeatedMeasuresCells"
+                        title: qsTr("Repeated Measures Cells")
+                        source: "repeatedMeasuresFactors"
+                        visible: yesRM.checked
+                        enabled: yesRM.checked
+                    }
+
+
+                    AssignedVariablesList {
+                        name: "betweenSubjectFactors"
+                        title: qsTr("Between Subject Factors")
+                        allowedColumns: ["nominal"]
+                        minLevels: 2
+                        visible: yesRM.checked
+                        enabled: yesRM.checked
+
+                    }
+                    AssignedVariablesList {
+                        name: "covariates"
+                        title: qsTr("Covariates")
+                        allowedColumns: ["scale"]
+                        minNumericLevels: 2
+                        visible: yesRM.checked
+                        enabled: yesRM.checked
+                    }
+
+
+                }
+
+            } // End variables
+
+
+            Section{
+                visible: yesRM.checked
+                title: qsTr("Assign repeated measures components")
+                VariablesForm {
+                    removeInvisibles: true
+                    id: varsForm
+                    preferredHeight: 300 * preferencesModel.uiScale
+
+                    AvailableVariablesList {
+                        id: withinComponents
+                        name: "withinComponents"
+                        enabled: yesRM.checked
+                        title: qsTr("Repeated Measures Components")
+                        source: ["repeatedMeasuresFactors", "betweenSubjectFactors", "covariates"]
+                        onEnabledChanged: {
+                            if (enabled) {
+                                while (count > 0) {
+                                    itemDoubleClicked(0)
+                                }
+                            }
+                        }
+                    }
+
+                    AssignedVariablesList {
+                        id: xVarRM
+                        allowedColumns: ["scale", "ordinal", "nominal"]
+                        name: "xVarRM"
+                        title: qsTr("X-Axis Variable")
+                        singleVariable: true
+                        enabled: yesRM.checked
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                while (count > 0) {
+                                    itemDoubleClicked(0)
+                                }
+                            }
+                        }
+                    }
+
+
+                    AssignedVariablesList {
+                        id: groupVarRM
+                        name: "groupVarRM"
+                        title: qsTr("Group Variable")
+                        singleVariable: true
+                        enabled: yesRM.checked
+                        allowedColumns: ["scale", "ordinal", "nominal"]
+                        onEnabledChanged: {
+                            if (!enabled) while (count > 0) itemDoubleClicked(0)
+                        }
+                    }
+
+                    AssignedVariablesList {
+                        name: "colSplitRM"
+                        title: qsTr("Split (Columns)")
+                        id: colSplitRM
+                        allowedColumns: ["ordinal", "nominal"]
+                        singleVariable: true
+                        enabled: yesRM.checked
+                        info: qsTr("You can choose a variable to split the plots into columns.")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                while (count > 0) {
+                                    itemDoubleClicked(0)
+                                }
+                            }
+                        }
+                    }
+
+                    AssignedVariablesList {
+                        name: "rowSplitRM"
+                        title: qsTr("Split (Rows)")
+                        id: rowSplitRM
+                        allowedColumns: ["ordinal", "nominal"]
+                        singleVariable: true
+                        enabled: yesRM.checked
+                        info: qsTr("You can choose a variable to split the plots into rows.")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                while (count > 0) {
+                                    itemDoubleClicked(0)
+                                }
+                            }
+                        }
+
+                    }
+
+                    AssignedVariablesList {
+                        name: "gridVarRM"
+                        title: qsTr("Grid")
+                        id: gridVarRM
+                        allowedColumns: ["ordinal", "nominal"]
+                        singleVariable: true
+                        enabled: yesRM.checked
+                        info: qsTr("You can choose a variable to make a grid.")
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                while (count > 0) {
+                                    itemDoubleClicked(0)
+                                }
+                            }
                         }
                     }
                 }
-            } // End variables form
+
+            }
 
             Label {
                 text: qsTr("Data and geometries")
@@ -307,24 +402,13 @@ Form {
                                  ||
 
                                  // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                 (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                      // a) X variable is assigned and either drop-down defines Y
-                                      (variableXPlotBuilder.count > 0 &&
-                                       (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                      ||
+                                      xVarRM.count > 0
 
-                                      // b) Y variable is assigned and either drop-down defines X
-                                      (variableYPlotBuilder.count > 0 &&
-                                       (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                      ||
-
-                                      // c) Drop-downs define both X and Y roles separately
-                                      ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                       (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                       ))
                                  )
+
                     onEnabledChanged: {
                         if (!enabled) {
                             checked = false;
@@ -487,24 +571,13 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
+
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -592,24 +665,13 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
+
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -963,24 +1025,13 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
+
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1018,24 +1069,13 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
+
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1083,24 +1123,13 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
+
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1143,24 +1172,13 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
+
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1203,24 +1221,13 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
+
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1254,24 +1261,13 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
+
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1360,20 +1356,18 @@ Form {
                         label: qsTr("Bar stack")
                         info: qsTr("Add a bar stack to the plot. The mode (absolute or relative) is set by the Proportion Mode above.")
                         enabled: (
-                            // noRM :
-                            ( noRM.checked &&
-                              ((variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0) && variableColorPlotBuilder.count > 0)
-                            )
-                            ||
-                            // yesRM :
-                            ( yesRM.checked && variableRepeatedMeasures.count > 0 &&
-                              (
-                                 ((variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0) && rmFactorOptionsDropDown.value === "rmFactorAsGroup")
-                                 ||
-                                 (variableColorPlotBuilder.count > 0 && (rmFactorOptionsDropDown.value === "rmFactorAsX" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
-                              )
-                            )
-                        )
+                                     // noRM :
+                                     ( noRM.checked &&
+                                      ((variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0) && variableColorPlotBuilder.count > 0)
+                                      )
+                                     ||
+                                     // yesRM :
+                                     ( yesRM.checked && variableRepeatedMeasures.count > 0 &&
+                                      (
+                                          ((xVarRM.count > 0) && groupVarRM.count > 0)
+                                          )
+                                      )
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false
@@ -1399,20 +1393,18 @@ Form {
                         label: qsTr("Area stack")
                         info: qsTr("Add an area stack to the plot. The mode (absolute or relative) is set by the Proportion Mode above.")
                         enabled: (
-                            // noRM :
-                            ( noRM.checked &&
-                              ((variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0) && variableColorPlotBuilder.count > 0)
-                            )
-                            ||
-                            // yesRM :
-                            ( yesRM.checked && variableRepeatedMeasures.count > 0 &&
-                              (
-                                 ((variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0) && rmFactorOptionsDropDown.value === "rmFactorAsGroup")
-                                 ||
-                                 (variableColorPlotBuilder.count > 0 && (rmFactorOptionsDropDown.value === "rmFactorAsX" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
-                              )
-                            )
-                        )
+                                     // noRM :
+                                     ( noRM.checked &&
+                                      ((variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0) && variableColorPlotBuilder.count > 0)
+                                      )
+                                     ||
+                                     // yesRM :
+                                     ( yesRM.checked && variableRepeatedMeasures.count > 0 &&
+                                      (
+                                          ((xVarRM.count > 0) && groupVarRM.count > 0)
+                                          )
+                                      )
+                                     )
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false
@@ -1477,24 +1469,13 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
+
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -1532,22 +1513,10 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
                         onEnabledChanged: {
@@ -1597,22 +1566,10 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
                         onEnabledChanged: {
@@ -1657,22 +1614,10 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
                         onEnabledChanged: {
@@ -1717,22 +1662,10 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
                         onEnabledChanged: {
@@ -1769,22 +1702,10 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
                         onEnabledChanged: {
@@ -1861,22 +1782,10 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
                         onEnabledChanged: {
@@ -1917,22 +1826,10 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
                         onEnabledChanged: {
@@ -1983,22 +1880,10 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
                         onEnabledChanged: {
@@ -2043,22 +1928,10 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
                         onEnabledChanged: {
@@ -2104,22 +1977,10 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
                         onEnabledChanged: {
@@ -2156,22 +2017,10 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
                         onEnabledChanged: {
@@ -2254,22 +2103,10 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
                         onEnabledChanged: {
@@ -2317,22 +2154,10 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
                         onEnabledChanged: {
@@ -2381,22 +2206,10 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
                         onEnabledChanged: {
@@ -2445,22 +2258,10 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
                         onEnabledChanged: {
@@ -2514,22 +2315,10 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
                         onEnabledChanged: {
@@ -2565,22 +2354,10 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
                         onEnabledChanged: {
@@ -2616,25 +2393,14 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                          ||
+                                          xVarRM.count > 0
 
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                           ))
                                      )
-                        onEnabledChanged: {
+
+                        onEnabledChanged:{
                             if (!enabled) {
                                 checked = false;
                             }
@@ -2666,24 +2432,10 @@ Form {
                                      ||
 
                                      // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                     (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                          // a) X variable is assigned and either drop-down defines Y
-                                          (variableXPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                     (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
 
-                                          ||
-
-                                          // b) Y variable is assigned and either drop-down defines X
-                                          (variableYPlotBuilder.count > 0 &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                          ||
-
-                                          // c) Drop-downs define both X and Y roles separately
-                                          ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                           (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
-                                          ))
                                      )
+
                         onEnabledChanged: {
                             if (!enabled) {
                                 checked = false;
@@ -2956,7 +2708,7 @@ Form {
                     CheckBox {
                         name: "enableSort"
                         label: qsTr("Sort")
-                        checked: false  // Alapértelmezett állapot
+                        checked: false
 
 
                         DropDown {
@@ -3145,31 +2897,21 @@ Form {
                                  ||
 
                                  // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                 (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                      // a) Y variable is assigned and either drop-down defines Y
-                                      (variableYPlotBuilder.count > 0 ||
-                                       (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                      ||
+                                      (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
 
-                                      // b) X variable is assigned and either drop-down defines X
-                                      (variableXPlotBuilder.count > 0 ||
-                                       (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
 
-                                      ||
-
-                                      // c) Drop-downs define both X and Y roles separately
-                                      ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                       (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
-                                      ))
+                                      )
+                                  )
                                  )
                     onEnabledChanged: {
                         if (!enabled) {
-                                   // remove all components one by one
-                                   for (var i = annotationPlotBuilder.count - 1; i >= 0; --i) {
-                                       annotationPlotBuilder.removeItem(i)
-                                   }
-                               }
+                            // remove all components one by one
+                            for (var i = annotationPlotBuilder.count - 1; i >= 0; --i) {
+                                annotationPlotBuilder.removeItem(i)
+                            }
+                        }
                     }
 
                     rowComponent: Row {
@@ -3180,7 +2922,7 @@ Form {
                             columns: 4
 
                             Group {
-                            title: qsTr("Label")
+                                title: qsTr("Label")
                                 TextField {
                                     name: "annotationText"
                                     label: qsTr("Text")
@@ -3210,18 +2952,13 @@ Form {
                                 }
 
                                 Group {
+
                                     DropDown {
-                                        visible: rmFactorOptionsDropDown.currentValue !== "rmFactorAsColumnSplit"
+                                        visible: noRM.checked
                                         name: "ColumnAnnotation"
                                         label: qsTr("Column")
-                                        source: [ { name: "columnsvariableSplitPlotBuilder", use: "levels" } ]
-                                    }
-                                    DropDown {
-                                        visible: rmFactorOptionsDropDown.currentValue === "rmFactorAsColumnSplit" && isRM.value === "RM"
-                                        name: "RMColumnAnnotation"
-                                        label: qsTr("Column")
-                                        source: [ { name: "variableRepeatedMeasures", use: "list" } ]
-                                        enabled: isRM.value === "RM"
+                                        values: columnsvariableSplitPlotBuilder.levels
+                                        enabled: noRM.checked
                                         onEnabledChanged: {
                                             if (!enabled) {
                                                 currentIndex = -1
@@ -3229,18 +2966,54 @@ Form {
                                         }
                                     }
 
+                                    DropDown
+                                    {
+                                        name: "RMColumnAnnotation";
+                                        title: qsTr("Column");
+                                        visible: yesRM.checked
+                                        enabled: yesRM.checked
+                                        values: colSplitRM.columnsNames.length > 0
+                                                ? (repeatedMeasuresFactors.factorLevelMap.hasOwnProperty(colSplitRM.columnsNames[0])
+                                                   ? repeatedMeasuresFactors.factorLevelMap[colSplitRM.columnsNames[0]]
+                                                   : colSplitRM.levels)
+                                                : []
+                                        addEmptyValue: groupValue.columnsNames.length === 0
+                                        placeholderText: qsTr("<No Value>")
+                                        onEnabledChanged: {
+                                            if (!enabled) {
+                                                currentIndex = -1
+                                            }
+                                        }
+                                    }
+
+
+
                                     DropDown {
-                                        visible: rmFactorOptionsDropDown.currentValue !== "rmFactorAsRowSplit"
                                         name: "RowAnnotation"
                                         label: qsTr("Row")
-                                        source: [ { name: "rowsvariableSplitPlotBuilder", use: "levels" } ]
+                                        values: rowsvariableSplitPlotBuilder.levels
+                                        enabled: noRM.checked
+                                        visible: noRM.checked
+                                        onEnabledChanged: {
+                                            if (!enabled) {
+                                                currentIndex = -1
+                                            }
+                                        }
                                     }
-                                    DropDown {
-                                        visible: rmFactorOptionsDropDown.currentValue === "rmFactorAsRowSplit" && isRM.value === "RM"
-                                        name: "RMRowAnnotation"
-                                        label: qsTr("Row")
-                                        source: [ { name: "variableRepeatedMeasures", use: "list" } ]
-                                        enabled: isRM.value === "RM"
+
+                                    DropDown
+                                    {
+                                        name: "RMRowAnnotation";
+                                        title: qsTr("Row");
+                                        visible: yesRM.checked
+                                        enabled: yesRM.checked
+                                        values: rowSplitRM.columnsNames.length > 0
+                                                ? (repeatedMeasuresFactors.factorLevelMap.hasOwnProperty(rowSplitRM.columnsNames[0])
+                                                   ? repeatedMeasuresFactors.factorLevelMap[rowSplitRM.columnsNames[0]]
+                                                   : rowSplitRM.levels)
+                                                : []
+                                        addEmptyValue: groupValue.columnsNames.length === 0
+                                        placeholderText: qsTr("<No Value>")
                                         onEnabledChanged: {
                                             if (!enabled) {
                                                 currentIndex = -1
@@ -3249,23 +3022,39 @@ Form {
                                     }
 
                                     DropDown {
-                                        visible: rmFactorOptionsDropDown.currentValue !== "rmFactorAsGrid"
                                         name: "GridAnnotation"
                                         label: qsTr("Grid")
-                                        source: [ { name: "gridVariablePlotBuilder", use: "levels" } ]
-                                    }
-                                    DropDown {
-                                        visible: rmFactorOptionsDropDown.currentValue === "rmFactorAsGrid" && isRM.value === "RM"
-                                        name: "RMGridAnnotation"
-                                        label: qsTr("Grid")
-                                        source: [ { name: "variableRepeatedMeasures", use: "list" } ]
-                                        enabled: isRM.value === "RM"
+                                        values: gridVariablePlotBuilder.levels
+                                        enabled: noRM.checked
+                                        visible: noRM.checked
                                         onEnabledChanged: {
                                             if (!enabled) {
                                                 currentIndex = -1
                                             }
                                         }
                                     }
+
+                                    DropDown
+                                    {
+                                        name: "RMGridAnnotation";
+                                        title: qsTr("Grid");
+                                        visible: yesRM.checked
+                                        enabled: yesRM.checked
+                                        values: gridVarRM.columnsNames.length > 0
+                                                ? (repeatedMeasuresFactors.factorLevelMap.hasOwnProperty(gridVarRM.columnsNames[0])
+                                                   ? repeatedMeasuresFactors.factorLevelMap[gridVarRM.columnsNames[0]]
+                                                   : gridVarRM.levels)
+                                                : []
+                                        addEmptyValue: groupValue.columnsNames.length === 0
+                                        placeholderText: qsTr("<No Value>")
+                                        onEnabledChanged: {
+                                            if (!enabled) {
+                                                currentIndex = -1
+                                            }
+                                        }
+                                    }
+
+
                                 }
 
 
@@ -3345,15 +3134,15 @@ Form {
                         RadioButton {
                             value: "grouping"
                             label: qsTr("Group variable")
-                            enabled: variableColorPlotBuilder.count > 0
-                            checked: variableColorPlotBuilder.count > 0
+                            enabled: variableColorPlotBuilder.count > 0 || groupVarRM.count > 0
+                            checked: variableColorPlotBuilder.count > 0 || groupVarRM.count > 0
                             onEnabledChanged: { if (!enabled && checked) { checked = false; } }
                         }
                         RadioButton {
                             id: colorXRadio
                             value: "x"
                             label: qsTr("X variable")
-                            enabled: variableXPlotBuilder.count > 0 && variableColorPlotBuilder.count === 0
+                            enabled: (variableXPlotBuilder.count > 0 && variableColorPlotBuilder.count === 0) || (xVarRM.count > 0 && groupVarRM.count === 0)
                             checked: false
                             onEnabledChanged: { if (!enabled && checked) { checked = false; } }
                         }
@@ -3361,14 +3150,7 @@ Form {
                             id: colorYRadio
                             value: "y"
                             label: qsTr("Y variable")
-                            enabled: variableYPlotBuilder.count > 0 && variableColorPlotBuilder.count === 0
-                            checked: false
-                            onEnabledChanged: { if (!enabled && checked) { checked = false; } }
-                        }
-                        RadioButton {
-                            value: "rm"
-                            label: qsTr("Repeated measures")
-                            enabled: yesRM.checked
+                            enabled: (variableYPlotBuilder.count > 0 && variableColorPlotBuilder.count === 0) || (groupVarRM.count === 0)
                             checked: false
                             onEnabledChanged: { if (!enabled && checked) { checked = false; } }
                         }
@@ -3376,7 +3158,7 @@ Form {
                         RadioButton {
                             value: "splitColumn"
                             label: qsTr("Split (column)")
-                            enabled: columnsvariableSplitPlotBuilder.count > 0
+                            enabled: columnsvariableSplitPlotBuilder.count > 0 || colSplitRM.count > 0
                             checked: false
                             onEnabledChanged: { if (!enabled && checked) { checked = false; } }
                         }
@@ -3384,7 +3166,7 @@ Form {
                         RadioButton {
                             value: "splitRow"
                             label: qsTr("Split (rows)")
-                            enabled: rowsvariableSplitPlotBuilder.count > 0
+                            enabled: rowsvariableSplitPlotBuilder.count > 0 || rowSplitRM.count > 0
                             checked: false
                             onEnabledChanged: { if (!enabled && checked) { checked = false; } }
                         }
@@ -3481,7 +3263,6 @@ Form {
                     }
                 }
 
-                // Jobb oszlop: Margók
                 Group {
                     title: qsTr("Margins")
                     columns: 4
@@ -3572,7 +3353,8 @@ Form {
                     columns: 2
                     rowSpacing: 10
                     columnSpacing: 20
-                    enabled: columnsvariableSplitPlotBuilder.count > 0
+                    enabled: columnsvariableSplitPlotBuilder.count > 0 || colSplitRM.count > 0 ||
+                             rowsvariableSplitPlotBuilder.count > 0 || rowSplitRM.count > 0
 
 
                     Label {
@@ -3682,7 +3464,7 @@ Form {
                 title: qsTr("Grid control")
                 GridLayout {
 
-                    enabled: gridVariablePlotBuilder.count > 0
+                    enabled: gridVariablePlotBuilder.count > 0 || gridVarRM.count > 0
 
                     columns: 2
                     rowSpacing: 10
@@ -3782,7 +3564,7 @@ Form {
                     columns: 2
 
                     Group{
-                    columns: 1
+                        columns: 1
                         TextField {
                             name: "labelcolor"
                             label: qsTr("P value color")
@@ -3838,165 +3620,216 @@ Form {
                                  ||
 
                                  // 2. If repeated measures (yesRM) and at least one of the following is true:
-                                 (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                      // a) X variable is assigned and either drop-down defines Y
-                                      (variableXPlotBuilder.count > 0 &&
-                                       (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
+                                 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
 
-                                      ||
+                                      xVarRM.count > 0
 
-                                      // b) Y variable is assigned and either drop-down defines X
-                                      (variableYPlotBuilder.count > 0 &&
-                                       (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                      ||
-
-                                      // c) Drop-downs define both X and Y roles separately
-                                      ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                       (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
                                       ))
                                  )
 
+
                     onEnabledChanged: {
                         if (!enabled) {
-                                   // remove all components one by one
-                                   for (var i = pairwiseComparisons.count - 1; i >= 0; --i) {
-                                       pairwiseComparisons.removeItem(i)
-                                   }
-                               }
+                            // remove all components one by one
+                            for (var i = pairwiseComparisons.count - 1; i >= 0; --i) {
+                                pairwiseComparisons.removeItem(i)
+                            }
+                        }
                     }
 
                     rowComponent: Row {
 
                         Group {
-                        title: qsTr("Bracket ") + (rowIndex + 1)
-                        columns: 3
+                            title: qsTr("Bracket ") + (rowIndex + 1)
+                            columns: 3
 
-                        Group {
-                            title: qsTr("Compared groups")
+                            Group {
+                                title: qsTr("Compared groups")
 
-                            TextField {
-                                name: "group1"
-                                label: qsTr("Group 1")
-                                fieldWidth: 60
-                            }
-
-                            TextField {
-                                name: "group2"
-                                label: qsTr("Group 2")
-                                fieldWidth: 60
-                            }
-                        }
-
-                        Group{
-                            title: qsTr("P value and brackets")
-
-                            TextField {
-                                name: "pAdj"
-                                label: qsTr("P value")
-                                fieldWidth: 70
-                                defaultValue: "* or 0.49"
-                            }
-
-                            DoubleField {
-                                name: "tipLengthPValue"
-                                label: qsTr("Tip length")
-                                decimals: 2
-                                fieldWidth: 70
-                                value: 0.03
-                            }
-
-                            DoubleField {
-                                name: "bracketSizePValue"
-                                label: qsTr("Bracket size")
-                                decimals: 2
-                                fieldWidth: 70
-                                value: 0.3
-                            }
-                        }
-
-                        Group {
-                            title: qsTr("Position")
-                            columns: 2
-
-                            DropDown {
-                                visible: rmFactorOptionsDropDown.currentValue !== "rmFactorAsGroup"
-                                name: "GroupPValue"  // Normál mód
-                                label: qsTr("Group level")
-                                source: [ { name: "variableColorPlotBuilder", use: "levels" } ]
-                            }
-                            DropDown {
-                                visible: rmFactorOptionsDropDown.currentValue === "rmFactorAsGroup" && isRM.value === "RM"
-                                name: "RMGroupPValue"  // RM mód
-                                label: qsTr("Group level")
-                                source: [ { name: "variableRepeatedMeasures", use: "list" } ]
-                                enabled: isRM.value === "RM"
-                                onEnabledChanged: {
-                                    if (!enabled) {
-                                        currentIndex = -1
-                                    }
+                                TextField {
+                                    name: "group1"
+                                    label: qsTr("Group 1")
+                                    fieldWidth: 60
                                 }
 
-                            }
-
-                            DropDown {
-                                visible: rmFactorOptionsDropDown.currentValue !== "rmFactorAsColumnSplit"
-                                name: "ColumnPValue"
-                                label: qsTr("Column")
-                                source: [ { name: "columnsvariableSplitPlotBuilder", use: "levels" } ]
-                            }
-                            DropDown {
-                                visible: rmFactorOptionsDropDown.currentValue === "rmFactorAsColumnSplit" && isRM.value === "RM"
-                                name: "RMColumnPValue"
-                                label: qsTr("Column")
-                                source: [ { name: "variableRepeatedMeasures", use: "list" } ]
-                                enabled: isRM.value === "RM"
-                                onEnabledChanged: {
-                                    if (!enabled) {
-                                        currentIndex = -1
-                                    }
+                                TextField {
+                                    name: "group2"
+                                    label: qsTr("Group 2")
+                                    fieldWidth: 60
                                 }
                             }
 
-                            DropDown {
-                                visible: rmFactorOptionsDropDown.currentValue !== "rmFactorAsRowSplit"
-                                name: "RowPValue"
-                                label: qsTr("Row")
-                                source: [ { name: "rowsvariableSplitPlotBuilder", use: "levels" } ]
+                            Group{
+                                title: qsTr("P value and brackets")
+
+
+                                // DoubleField {
+                                //     name: "pAdj"
+                                //     label: qsTr("P value")
+                                //     decimals: 2
+                                //     fieldWidth: 70
+                                //     value: 0.03
+                                // }
+
+                                TextField {
+                                    name: "pAdj"
+                                    label: qsTr("Group 2")
+                                    fieldWidth: 60
+                                    value: "* or 0.001"
+                                }
+
+
+
+                                DoubleField {
+                                    name: "tipLengthPValue"
+                                    label: qsTr("Tip length")
+                                    decimals: 2
+                                    fieldWidth: 70
+                                    value: 0.03
+                                }
+
+                                DoubleField {
+                                    name: "bracketSizePValue"
+                                    label: qsTr("Bracket size")
+                                    decimals: 2
+                                    fieldWidth: 70
+                                    value: 0.3
+                                }
                             }
-                            DropDown {
-                                visible: rmFactorOptionsDropDown.currentValue === "rmFactorAsRowSplit" && isRM.value === "RM"
-                                name: "RMRowPValue"
-                                label: qsTr("Row")
-                                source: [ { name: "variableRepeatedMeasures", use: "list" } ]
-                                enabled: isRM.value === "RM"
-                                onEnabledChanged: {
-                                    if (!enabled) {
-                                        currentIndex = -1
+
+                            Group {
+                                title: qsTr("Position")
+                                columns: 2
+
+
+                                DropDown {
+                                    name: "GroupPValue"
+                                    label: qsTr("Group")
+                                    values: variableColorPlotBuilder.levels
+                                    visible: noRM.checked
+                                    enabled: noRM.checked
+                                    onEnabledChanged: {
+                                        if (!enabled) {
+                                            currentIndex = -1
+                                        }
                                     }
                                 }
 
-                            }
+                                DropDown {
+                                    name: "RMGroupPValue";
+                                    label: qsTr("Group");
+                                    visible: yesRM.checked
+                                    enabled: yesRM.checked
+                                    values: groupVarRM.columnsNames.length > 0
+                                            ? (repeatedMeasuresFactors.factorLevelMap.hasOwnProperty(groupVarRM.columnsNames[0])
+                                               ? repeatedMeasuresFactors.factorLevelMap[groupVarRM.columnsNames[0]]
+                                               : groupVarRM.levels)
+                                            : []
+                                    addEmptyValue: groupValue.columnsNames.length === 0
+                                    placeholderText: qsTr("<No Value>")
+                                    onEnabledChanged: {
+                                        if (!enabled) {
+                                            currentIndex = -1
+                                        }
+                                    }
+                                }
 
-                            DropDown {
-                                visible: rmFactorOptionsDropDown.currentValue !== "rmFactorAsGrid"
-                                name: "GridPValue"
-                                label: qsTr("Grid")
-                                source: [ { name: "gridVariablePlotBuilder", use: "levels" } ]
-                            }
-                            DropDown {
-                                visible: rmFactorOptionsDropDown.currentValue === "rmFactorAsGrid" && isRM.value === "RM"
-                                name: "RMGridPValue"
-                                label: qsTr("Grid")
-                                source: [ { name: "variableRepeatedMeasures", use: "list" } ]
-                                enabled: isRM.value === "RM"
-                                onEnabledChanged: {
-                                    if (!enabled) {
-                                        currentIndex = -1
+                                DropDown {
+                                    name: "ColumnPValue"
+                                    label: qsTr("Column")
+                                    values: columnsvariableSplitPlotBuilder.levels
+                                    visible: noRM.checked
+                                    enabled: noRM.checked
+                                    onEnabledChanged: {
+                                        if (!enabled) {
+                                            currentIndex = -1
+                                        }
+                                    }
+                                }
+
+                                DropDown {
+                                    name: "RMColumnPValue";
+                                    label: qsTr("Column");
+                                    visible: yesRM.checked
+                                    enabled: yesRM.checked
+                                    values: colSplitRM.columnsNames.length > 0
+                                            ? (repeatedMeasuresFactors.factorLevelMap.hasOwnProperty(colSplitRM.columnsNames[0])
+                                               ? repeatedMeasuresFactors.factorLevelMap[colSplitRM.columnsNames[0]]
+                                               : colSplitRM.levels)
+                                            : []
+                                    addEmptyValue: groupValue.columnsNames.length === 0
+                                    placeholderText: qsTr("<No Value>")
+                                    onEnabledChanged: {
+                                        if (!enabled) {
+                                            currentIndex = -1
+                                        }
+                                    }
+                                }
+
+                                DropDown {
+                                    name: "RowPValue"
+                                    label: qsTr("Row")
+                                    values: rowsvariableSplitPlotBuilder.levels
+                                    visible: noRM.checked
+                                    enabled: noRM.checked
+                                    onEnabledChanged: {
+                                        if (!enabled) {
+                                            currentIndex = -1
+                                        }
+                                    }
+                                }
+
+                                DropDown {
+                                    name: "RMRowPValue";
+                                    label: qsTr("Row");
+                                    visible: yesRM.checked
+                                    enabled: yesRM.checked
+                                    values: rowSplitRM.columnsNames.length > 0
+                                            ? (repeatedMeasuresFactors.factorLevelMap.hasOwnProperty(rowSplitRM.columnsNames[0])
+                                               ? repeatedMeasuresFactors.factorLevelMap[rowSplitRM.columnsNames[0]]
+                                               : rowSplitRM.levels)
+                                            : []
+                                    addEmptyValue: groupValue.columnsNames.length === 0
+                                    placeholderText: qsTr("<No Value>")
+                                    onEnabledChanged: {
+                                        if (!enabled) {
+                                            currentIndex = -1
+                                        }
+                                    }
+                                }
+
+                                DropDown {
+                                    name: "GridPValue"
+                                    label: qsTr("Grid")
+                                    values: gridVariablePlotBuilder.levels
+                                    visible: noRM.checked
+                                    enabled: noRM.checked
+                                    onEnabledChanged: {
+                                        if (!enabled) {
+                                            currentIndex = -1
+                                        }
+                                    }
+                                }
+
+                                DropDown {
+                                    name: "RMGridPValue";
+                                    label: qsTr("Grid");
+                                    visible: yesRM.checked
+                                    enabled: yesRM.checked
+                                    values: gridVarRM.columnsNames.length > 0
+                                            ? (repeatedMeasuresFactors.factorLevelMap.hasOwnProperty(gridVarRM.columnsNames[0])
+                                               ? repeatedMeasuresFactors.factorLevelMap[gridVarRM.columnsNames[0]]
+                                               : gridVarRM.levels)
+                                            : []
+                                    addEmptyValue: groupValue.columnsNames.length === 0
+                                    placeholderText: qsTr("<No Value>")
+                                    onEnabledChanged: {
+                                        if (!enabled) {
+                                            currentIndex = -1
+                                        }
                                     }
                                 }
                             }
-                        }
 
                         }
 
@@ -4005,197 +3838,224 @@ Form {
             }
 
             Section{
-            title: qsTr("Custom comparison lines")
+                title: qsTr("Custom comparison lines")
 
-            Label {
-                text: qsTr("Required: X AND Y-Axis Variables")
-                wrapMode: Text.Wrap
-                color: "black"
-            }
-
-            Label {
-                text: qsTr("Note: If custom Y-Axis limits are set, the starting" + "\n" + "position for the Y-Axis starnd and end values must fall within the defined interval")
-                wrapMode: Text.Wrap
-                color: "black"
-            }
-
-            ComponentsList {
-                name: "annotationLineList"
-                id:annotationLineList
-                title: qsTr("Add annotation lines")
-                addItemManually: true
-                minimumItems: 0
-                enabled: (
-                             // 1. If not repeated measures (noRM) and both X and Y variables are assigned
-                             (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-
-                             ||
-
-                             // 2. If repeated measures (yesRM) and at least one of the following is true:
-                             (yesRM.checked && variableRepeatedMeasures.count > 0 && (
-                                  // a) X variable is assigned and either drop-down defines Y
-                                  (variableXPlotBuilder.count > 0 &&
-                                   (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
-
-                                  ||
-
-                                  // b) Y variable is assigned and either drop-down defines X
-                                  (variableYPlotBuilder.count > 0 &&
-                                   (rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX"))
-
-                                  ||
-
-                                  // c) Drop-downs define both X and Y roles separately
-                                  ((rmValueOptionsDropDown.value === "rmValueAsX" || rmFactorOptionsDropDown.value === "rmFactorAsX") &&
-                                   (rmValueOptionsDropDown.value === "rmValueAsY" || rmFactorOptionsDropDown.value === "rmFactorAsY"))
-                                  ))
-                             )
-
-                onEnabledChanged: {
-                    if (!enabled) {
-                               // remove all components one by one
-                               for (var i = annotationLineList.count - 1; i >= 0; --i) {
-                                   annotationLineList.removeItem(i)
-                               }
-                           }
+                Label {
+                    text: qsTr("Required: X AND Y-Axis Variables")
+                    wrapMode: Text.Wrap
+                    color: "black"
                 }
-                rowComponent: Row {
 
+                Label {
+                    text: qsTr("Note: If custom Y-Axis limits are set, the starting" + "\n" + "position for the Y-Axis starnd and end values must fall within the defined interval")
+                    wrapMode: Text.Wrap
+                    color: "black"
+                }
 
-                    Group {
-                        columns: 5
-                        title: qsTr("Line ") + (rowIndex + 1)
+                ComponentsList {
+                    name: "annotationLineList"
+                    id:annotationLineList
+                    title: qsTr("Add annotation lines")
+                    addItemManually: true
+                    minimumItems: 0
+                    enabled: (
+                                 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
+                                 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
 
-                        Group{
-                            title: qsTr("Label")
-                            TextField {
-                                name: "textAnnotationline"
-                                label: qsTr("Label")
-                                fieldWidth: 60
+                                 ||
+
+                                 // 2. If repeated measures (yesRM) and at least one of the following is true:
+                                 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
+
+                                      xVarRM.count > 0
+
+                                      ))
+                                 )
+
+                    onEnabledChanged: {
+                        if (!enabled) {
+                            // remove all components one by one
+                            for (var i = annotationLineList.count - 1; i >= 0; --i) {
+                                annotationLineList.removeItem(i)
                             }
                         }
+                    }
+
+                    rowComponent: Row {
 
 
                         Group {
-                        title: qsTr("Position")
-                        columns: 4
+                            columns: 5
+                            title: qsTr("Line ") + (rowIndex + 1)
 
-                        Group {
-                            DoubleField {
-                                name: "xAnnotation"
-                                label: qsTr("X-Axis start")
-                            }
-                            DoubleField {
-                                name: "xendAnnotation"
-                                label: qsTr("X-Axis end")
-                            }
-                        }
-
-                        Group {
-                            DoubleField {
-                                name: "yAnnotation"
-                                label: qsTr("Y-Axis start")
-                            }
-                            DoubleField {
-                                name: "yendAnnotation"
-                                label: qsTr("Y-Axis end")
-                            }
-                        }
-
-                        Group{
-
-                            DropDown {
-                                visible: rmFactorOptionsDropDown.currentValue !== "rmFactorAsColumnSplit"
-                                name: "ColumnAnnotationCompLine"
-                                label: qsTr("Column")
-                                source: [ { name: "columnsvariableSplitPlotBuilder", use: "levels" } ]
-                            }
-                            DropDown {
-                                visible: rmFactorOptionsDropDown.currentValue === "rmFactorAsColumnSplit" && isRM.value === "RM"
-                                name: "RMColumnCompLine"
-                                label: qsTr("Column")
-                                source: [ { name: "variableRepeatedMeasures", use: "list" } ]
-                                enabled: isRM.value === "RM"
-                                onEnabledChanged: {
-                                    if (!enabled) {
-                                        currentIndex = -1
-                                    }
+                            Group{
+                                title: qsTr("Label")
+                                TextField {
+                                    name: "textAnnotationline"
+                                    label: qsTr("Label")
+                                    fieldWidth: 60
                                 }
                             }
 
 
-                            DropDown {
-                                visible: rmFactorOptionsDropDown.currentValue !== "rmFactorAsRowSplit"
-                                name: "RowAnnotationCompLine"
-                                label: qsTr("Row")
-                                source: [ { name: "rowsvariableSplitPlotBuilder", use: "levels" } ]
-                            }
-                            DropDown {
-                                visible: rmFactorOptionsDropDown.currentValue === "rmFactorAsRowSplit" && isRM.value === "RM"
-                                name: "RMRowCompLine"
-                                label: qsTr("Row")
-                                source: [ { name: "variableRepeatedMeasures", use: "list" } ]
-                                enabled: isRM.value === "RM"
-                                onEnabledChanged: {
-                                    if (!enabled) {
-                                        currentIndex = -1;
+                            Group {
+                                title: qsTr("Position")
+                                columns: 4
+
+                                Group {
+                                    DoubleField {
+                                        name: "xAnnotation"
+                                        label: qsTr("X-Axis start")
                                     }
+                                    DoubleField {
+                                        name: "xendAnnotation"
+                                        label: qsTr("X-Axis end")
+                                    }
+                                }
+
+                                Group {
+                                    DoubleField {
+                                        name: "yAnnotation"
+                                        label: qsTr("Y-Axis start")
+                                    }
+                                    DoubleField {
+                                        name: "yendAnnotation"
+                                        label: qsTr("Y-Axis end")
+                                    }
+                                }
+
+                                Group{
+
+                                    DropDown {
+                                        name: "ColumnAnnotationCompLine"
+                                        label: qsTr("Column")
+                                        values: columnsvariableSplitPlotBuilder.levels
+                                        visible: noRM.checked
+                                        enabled: noRM.checked
+                                        onEnabledChanged: {
+                                            if (!enabled) {
+                                                currentIndex = -1
+                                            }
+                                        }
+                                    }
+
+                                    DropDown{
+                                        name: "RMColumnCompLine";
+                                        label: qsTr("Column");
+                                        visible: yesRM.checked
+                                        enabled: yesRM.checked
+                                        values: colSplitRM.columnsNames.length > 0
+                                                ? (repeatedMeasuresFactors.factorLevelMap.hasOwnProperty(colSplitRM.columnsNames[0])
+                                                   ? repeatedMeasuresFactors.factorLevelMap[colSplitRM.columnsNames[0]]
+                                                   : colSplitRM.levels)
+                                                : []
+                                        addEmptyValue: groupValue.columnsNames.length === 0
+                                        placeholderText: qsTr("<No Value>")
+                                        onEnabledChanged: {
+                                            if (!enabled) {
+                                                currentIndex = -1
+                                            }
+                                        }
+                                    }
+
+                                    DropDown {
+                                        name: "RowAnnotationCompLine"
+                                        label: qsTr("Row")
+                                        values: rowsvariableSplitPlotBuilder.levels
+                                        visible: noRM.checked
+                                        enabled: noRM.checked
+                                        onEnabledChanged: {
+                                            if (!enabled) {
+                                                currentIndex = -1
+                                            }
+                                        }
+                                    }
+
+                                    DropDown{
+                                        name: "RMRowCompLine";
+                                        label: qsTr("Row");
+                                        visible: yesRM.checked
+                                        enabled: yesRM.checked
+                                        values: rowSplitRM.columnsNames.length > 0
+                                                ? (repeatedMeasuresFactors.factorLevelMap.hasOwnProperty(rowSplitRM.columnsNames[0])
+                                                   ? repeatedMeasuresFactors.factorLevelMap[rowSplitRM.columnsNames[0]]
+                                                   : rowSplitRM.levels)
+                                                : []
+                                        addEmptyValue: groupValue.columnsNames.length === 0
+                                        placeholderText: qsTr("<No Value>")
+                                        onEnabledChanged: {
+                                            if (!enabled) {
+                                                currentIndex = -1
+                                            }
+                                        }
+                                    }
+
+                                    DropDown {
+                                        name: "GridAnnotationCompLine"
+                                        label: qsTr("Grid")
+                                        values: gridVariablePlotBuilder.levels
+                                        visible: noRM.checked
+                                        enabled: noRM.checked
+                                        onEnabledChanged: {
+                                            if (!enabled) {
+                                                currentIndex = -1
+                                            }
+                                        }
+                                    }
+
+                                    DropDown{
+                                        name: "RMGridCompLine";
+                                        label: qsTr("Grid");
+                                        visible: yesRM.checked
+                                        enabled: yesRM.checked
+                                        values: gridVarRM.columnsNames.length > 0
+                                                ? (repeatedMeasuresFactors.factorLevelMap.hasOwnProperty(gridVarRM.columnsNames[0])
+                                                   ? repeatedMeasuresFactors.factorLevelMap[gridVarRM.columnsNames[0]]
+                                                   : gridVarRM.levels)
+                                                : []
+                                        addEmptyValue: groupValue.columnsNames.length === 0
+                                        placeholderText: qsTr("<No Value>")
+                                        onEnabledChanged: {
+                                            if (!enabled) {
+                                                currentIndex = -1
+                                            }
+                                        }
+                                    }
+
+                                }
+
+                            }
+
+                            Group{
+                                title: qsTr("Appearance")
+
+                                TextField {
+                                    name: "colorAnnotationLine"
+                                    label: qsTr("Line color")
+                                    placeholderText: qsTr("e.g. black, #ff5733")
+                                    defaultValue: "black"
+                                    fieldWidth: 60
+                                }
+
+                                DoubleField {
+                                    name: "textSizeAnnotationLine"
+                                    label: qsTr("Label size")
+                                    defaultValue: 5.5
+                                    fieldWidth: 60
+                                }
+
+                                DoubleField {
+                                    name: "textDistanceAnnotationLine"
+                                    label: qsTr("Label distance")
+                                    defaultValue: 0.5
+                                    fieldWidth: 60
                                 }
                             }
 
-                            DropDown {
-                                visible: rmFactorOptionsDropDown.currentValue !== "rmFactorAsGrid"
-                                name: "GridAnnotationCompLine"
-                                label: qsTr("Grid")
-                                source: [ { name: "gridVariablePlotBuilder", use: "levels" } ]
-                            }
-                            DropDown {
-                                visible: rmFactorOptionsDropDown.currentValue === "rmFactorAsGrid" && isRM.value === "RM"
-                                name: "RMGridCompLine"
-                                label: qsTr("Grid")
-                                source: [ { name: "variableRepeatedMeasures", use: "list" } ]
-                                enabled: isRM.value === "RM"
-                                onEnabledChanged: {
-                                    if (!enabled) {
-                                        currentIndex = -1
-                                    }
-                                }
-                            }
-
-                        }
-
-                        }
-
-                        Group{
-                            title: qsTr("Appearance")
-
-                            TextField {
-                                name: "colorAnnotationLine"
-                                label: qsTr("Line color")
-                                placeholderText: qsTr("e.g. black, #ff5733")
-                                defaultValue: "black"
-                                fieldWidth: 60
-                            }
-
-                            DoubleField {
-                                name: "textSizeAnnotationLine"
-                                label: qsTr("Label size")
-                                defaultValue: 5.5
-                                fieldWidth: 60
-                            }
-
-                            DoubleField {
-                                name: "textDistanceAnnotationLine"
-                                label: qsTr("Label distance")
-                                defaultValue: 0.5
-                                fieldWidth: 60
-                            }
                         }
 
                     }
-
                 }
-            }
 
             }
 
@@ -4222,7 +4082,6 @@ Form {
                 name: "rowSpecifications"
                 title: qsTr("Specify layout")
                 addItemManually: true
-                newItemName: qsTr("Column 1")
                 Layout.preferredWidth: form.width - 2 * jaspTheme.generalAnchorMargin
 
                 rowComponent: Row {

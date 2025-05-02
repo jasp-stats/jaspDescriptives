@@ -19,7 +19,6 @@
 
 # Main function ----
 jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
-
   # Initialize options
   options <- .plotBuilderInitOptions(jaspResults, options)
 
@@ -49,6 +48,8 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
   options
 }
 
+
+
 .plotBuilderReadData <- function(options) {
 
   datasetRMList    <- list()
@@ -57,97 +58,84 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
   for (tab in options$PlotBuilderTab) {
     plotId <- as.character(tab$value)
 
-    neededCols <- unique(c(
-      encodeColNames(tab$variableXPlotBuilder),
-      encodeColNames(tab$variableYPlotBuilder),
-      encodeColNames(tab$variableColorPlotBuilder),
-      encodeColNames(tab$variableRepeatedMeasures),
-      encodeColNames(tab$columnsvariableSplitPlotBuilder),
-      encodeColNames(tab$gridVariablePlotBuilder),
-      encodeColNames(tab$rowsvariableSplitPlotBuilder)
-    ))
+    if (identical(tab$isRM, "RM")) {
 
-    ds <- .readDataSetToEnd(columns = neededCols)
-    ds <- dplyr::mutate(ds, row_id = dplyr::row_number())
+      rm.vars <- encodeColNames(tab$repeatedMeasuresCells)
+      factors <- encodeColNames(tab$betweenSubjectFactors)
+      covars  <- encodeColNames(tab$covariates)
 
-    if (identical(tab[["isRM"]], "RM")) {
-      repeatedMeasuresCols <- encodeColNames(tab[["variableRepeatedMeasures"]])
-      pivotedXName <- "Repeated measures"
-      pivotedYName <- "Values"
+      rm.factors <- lapply(tab$repeatedMeasuresFactors, function(fct) {
+        fct$name   <- encodeColNames(fct$name)
+        fct$levels <- encodeColNames(fct$levels)
+        fct
+      })
 
-      if (is.null(repeatedMeasuresCols) || length(repeatedMeasuresCols) == 0) {
-        datasetRMList[[plotId]] <- ds
-      } else {
-        tempRM <- ds |>
-          dplyr::mutate(ID = dplyr::row_number()) |>
-          tidyr::pivot_longer(
-            cols      = dplyr::all_of(repeatedMeasuresCols),
-            names_to  = pivotedXName,
-            values_to = pivotedYName
-          ) |>
-          dplyr::mutate(
-            !!rlang::sym(pivotedXName) := factor(decodeColNames(!!rlang::sym(pivotedXName)))
-          )
-
-        originalCols <- names(ds)
-        pivotedCols  <- names(tempRM)
-        missingCols  <- setdiff(originalCols, pivotedCols)
-        missingCols  <- setdiff(missingCols, "row_id")
-        if (length(missingCols) > 0) {
-          additionalData <- dplyr::select(ds, row_id, dplyr::all_of(missingCols))
-          tempRM <- dplyr::left_join(tempRM, additionalData, by = "row_id")
-        }
-
-        if (!is.null(tab$variableColorPlotBuilder)) {
-          colorVarRaw <- tab$variableColorPlotBuilder
-          colorVar <- encodeColNames(colorVarRaw)
-          if (colorVar %in% names(tempRM)) {
-            tempRM <- tempRM[!is.na(tempRM[[colorVar]]), ]
-          }
-        }
-        if (!is.null(tab$variableXPlotBuilder)) {
-          xVarRaw <- tab$variableXPlotBuilder
-          xVar <- encodeColNames(xVarRaw)
-          if (xVar %in% names(tempRM)) {
-            tempRM <- tempRM[!is.na(tempRM[[xVar]]), ]
-          }
-        }
-        if (!is.null(tab$columnsvariableSplitPlotBuilder)) {
-          colSplitRaw <- tab$columnsvariableSplitPlotBuilder
-          colSplit <- encodeColNames(colSplitRaw)
-          if (colSplit %in% names(tempRM)) {
-            tempRM <- tempRM[!is.na(tempRM[[colSplit]]), ]
-          }
-        }
-        if (!is.null(tab$rowsvariableSplitPlotBuilder)) {
-          rowSplitRaw <- tab$rowsvariableSplitPlotBuilder
-          rowSplit <- encodeColNames(rowSplitRaw)
-          if (rowSplit %in% names(tempRM)) {
-            tempRM <- tempRM[!is.na(tempRM[[rowSplit]]), ]
-          }
-        }
-        if (!is.null(tab$gridVariablePlotBuilder)) {
-          gridVarRaw <- tab$gridVariablePlotBuilder
-          gridVar <- encodeColNames(gridVarRaw)
-          if (gridVar %in% names(tempRM)) {
-            tempRM <- tempRM[!is.na(tempRM[[gridVar]]), ]
-          }
-        }
-
-        datasetRMList[[plotId]] <- tempRM
+      expectedVars <- sum(vapply(rm.factors, function(f) length(f$levels), integer(1)))
+      if (length(rm.vars) != expectedVars || any(rm.vars == "")) {
+        .quitAnalysis(
+          "Please assign variables from the available variables to each level of every Repeated Measures Factor (RM Factor)."
+        )
       }
+
+      all.vars <- c(factors, covars, rm.vars)
+
+      ds_rm <- .readDataSetToEnd(
+        columns.as.numeric  = c(rm.vars, covars),
+        columns.as.factor   = factors,
+        exclude.na.listwise = all.vars
+      )
+
+      missing.vars <- setdiff(rm.vars, colnames(ds_rm))
+      if (length(missing.vars) > 0) {
+        .quitAnalysis(
+          "Please assign variables from the available variables to each level of every Repeated Measures Factor (RM Factor)."
+        )
+      }
+
+      ds_rm <- .shortToLong(
+        ds_rm,
+        rm.factors,
+        rm.vars,
+        c(factors, covars),
+        dependentName = "Value",
+        subjectName   = "ID"
+      )
+
+      datasetRMList[[plotId]] <- ds_rm
+
     } else {
-      datasetNonRMList[[plotId]] <- na.omit(ds)
+      plotCols <- unique(c(
+        tab$variableXPlotBuilder,
+        tab$variableYPlotBuilder,
+        tab$variableColorPlotBuilder,
+        tab$columnsvariableSplitPlotBuilder,
+        tab$gridVariablePlotBuilder,
+        tab$rowsvariableSplitPlotBuilder
+      ))
+      encCols <- encodeColNames(plotCols)
+
+      ds <- .readDataSetToEnd(
+        columns = encCols,
+        exclude.na.listwise = plotCols
+      ) |>
+        dplyr::mutate(row_id = dplyr::row_number()) |>
+        na.omit()
+
+      datasetNonRMList[[plotId]] <- ds
     }
   }
 
-  return(list(datasetRMList = datasetRMList, datasetNonRMList = datasetNonRMList))
+  list(
+    datasetRMList    = datasetRMList,
+    datasetNonRMList = datasetNonRMList
+  )
 }
 
 
-#Results functions ----
-.plotBuilderComputeResults <- function(jaspResults, dataset, options) {
 
+
+# Results functions ----
+.plotBuilderComputeResults <- function(jaspResults, dataset, options) {
   # If not computed yet, compute and store in state
   if (is.null(jaspResults[["statePlotResults"]])) {
     plotResults <- .plotBuilderPlots(dataset, options)
@@ -162,6 +150,61 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
   return(plotResults)
 }
 
+# :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+# This little helper function (addDecodedLabels) is very important. Unfortunately, if you don't use
+# decodeColNames() on the variable names in RM plots, the plot layout won't show the actual names of
+# the variables, only their names as encoded by JASP. But it is not a good idea to do the decoding
+# when reading the data, so we just do it in the ggplot mapping.
+
+
+addDecodedLabels <- function(p) {
+  decodeFun <- function(x) decodeColNames(x)
+
+  # 1) Fix axis tick‐labels only if discrete
+  for (axis in c("x", "y")) {
+    scale_obj <- p$scales$get_scales(axis)
+    if (inherits(scale_obj, c("ScaleDiscrete", "ScaleOrdinal"))) {
+      scale_obj$labels <- decodeFun
+      scale_obj$drop   <- FALSE
+      # visszarakjuk a plot-ba
+      p$scales$scales <- lapply(p$scales$scales, function(s) {
+        if (identical(s$aesthetics, scale_obj$aesthetics)) scale_obj else s
+      })
+    }
+  }
+
+  # 2) For colour / fill / shape / linetype: only tweak labels, keep palette
+  for (aes in c("colour", "fill", "shape", "linetype")) {
+    sc <- p$scales$get_scales(aes)
+    if (inherits(sc, c("ScaleDiscrete", "ScaleOrdinal", "ScaleManual"))) {
+      sc$labels <- decodeFun
+      sc$drop   <- FALSE
+      p$scales$scales <- lapply(p$scales$scales, function(s) {
+        if (identical(s$aesthetics, sc$aesthetics)) sc else s
+      })
+    }
+  }
+
+  # 3) Patch the facet labeller (works for facet_grid & facet_wrap)
+  fac <- p$facet
+  if (inherits(fac, c("FacetGrid", "FacetWrap"))) {
+    fac$params$labeller <- ggplot2::as_labeller(decodeFun)
+    p$facet <- fac
+  }
+
+  # 4) Decode all manual titles/subtitles/etc.
+  labs <- p$labels
+  for (nm in c("title", "subtitle", "caption", "tag", "x", "y")) {
+    if (!is.null(labs[[nm]])) {
+      labs[[nm]] <- decodeFun(labs[[nm]])
+    }
+  }
+  p$labels <- labs
+
+  p
+}
+
+# Creating plots -----
 
 .plotBuilderPlots <- function(dataset, options) {
 
@@ -171,14 +214,21 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
   # Initialize the list to store plots
   updatedPlots <- list()
 
-  # Creating plots -----
+
   for (tab in options[["PlotBuilderTab"]]) {
 
     plotId <- as.character(tab$value)
+
     localData <- if (identical(tab[["isRM"]], "RM")) {
       datasetRMList[[plotId]]
     } else {
       datasetNonRMList[[plotId]]
+    }
+
+    if (is.null(localData) ||
+      !is.data.frame(localData) ||
+      nrow(localData) == 0) {
+      next
     }
 
 
@@ -191,39 +241,34 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     gridVar <- encodeColNames(tab[["gridVariablePlotBuilder"]])
 
     if (identical(tab[["isRM"]], "RM")) {
-
-      # Process the repeated measures factor option
-      rmFactorOption <- tab[["rmFactorOptionsDropDown"]]
-      if (rmFactorOption == "rmFactorAsX") {
-        xVar <- "Repeated measures"
-      } else if (rmFactorOption == "rmFactorAsY") {
-        yVar <- "Repeated measures"
-      } else if (rmFactorOption == "rmFactorAsGroup") {
-        colorVar <- "Repeated measures"
-      } else if (rmFactorOption == "rmFactorAsColumnSplit") {
-        colsVar <- "Repeated measures"
-      } else if (rmFactorOption == "rmFactorAsGrid") {
-        gridVar <- "Repeated measures"
-      } else if (rmFactorOption == "rmFactorAsRowSplit") {
-        rowsVar <- "Repeated measures"
-      } else if (rmFactorOption == "rmFactorNotVisible") {
-        hiddenRM <- "Repeated measures"
-      }
-
-
-
-      # Process the repeated measures value option
-      rmValueOption <- tab[["rmValueOptionsDropDown"]]
-      if (rmValueOption == "rmValueAsX") {
-        xVar <- "Values"
-      } else if (rmValueOption == "rmValueAsY") {
-        yVar <- "Values"
-      }
+      xVar      <- encodeColNames(tab[["xVarRM"]])
+      yVar      <- "Value"
+      rowsVar   <- encodeColNames(tab[["rowSplitRM"]])
+      colsVar   <- encodeColNames(tab[["colSplitRM"]])
+      gridVar   <- encodeColNames(tab[["gridVarRM"]])
     }
 
-    # Process the colorBy option only if not already set by rmFactorAsGroup
-    if (is.null(colorVar)) {
-      colorBy <- tab[["colorByGroup"]]
+    colorBy <- tab[["colorByGroup"]]
+
+
+    if (identical(tab[["isRM"]], "RM")) {
+      # ——— RM specific colorVar ———
+      if (colorBy == "none") {
+        colorVar <- ""
+      } else if (colorBy == "grouping") {
+        colorVar <- encodeColNames(tab[["groupVarRM"]])
+      } else if (colorBy == "x") {
+        colorVar <- xVar
+      } else if (colorBy == "y") {
+        colorVar <- yVar
+      } else if (colorBy == "splitColumn") {
+        colorVar <- colsVar
+      } else if (colorBy == "splitRow") {
+        colorVar <- rowsVar
+      }
+
+    } else {
+      # ——— non RM ———
       if (colorBy == "none") {
         colorVar <- ""
       } else if (colorBy == "grouping") {
@@ -232,14 +277,14 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         colorVar <- xVar
       } else if (colorBy == "y") {
         colorVar <- yVar
-      } else if (colorBy == "rm") {
-        colorVar <- "Repeated measures"
       } else if (colorBy == "splitColumn") {
         colorVar <- colsVar
       } else if (colorBy == "splitRow") {
         colorVar <- rowsVar
       }
     }
+
+
 
     # The next section is necessary because some functions do not work if the
     # variable is defined as ordinal within JASP.
@@ -306,7 +351,6 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     # Adjust color labels (tidyplots::rename_color_labels)----
     if (!is.null(tab[["colorLabelRenamer"]]) && length(tab[["colorLabelRenamer"]]) > 0) {
 
-      # Ellenőrizd, hogy minden elem esetén meg vannak-e adva az új és régi címkék
       valid_labels <- sapply(tab[["colorLabelRenamer"]], function(x) {
         !is.null(x$newColorLabel) && nzchar(x$newColorLabel) &&
           !is.null(x$originalColorLabel) && nzchar(x$originalColorLabel)
@@ -348,19 +392,20 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     # Add histogram (tidyplots::add_histogram)----
     if (tab[["addHistogram"]]) {
 
-      tidyplot_obj <- tryCatch({
-        if (!is.numeric(localData[[xVar]]) && !is.numeric(localData[[yVar]])) {
-          stop("The histogram requires that the X-Axis or Y-Axis Variable is continuous", call. = FALSE)
-        }
-        argList <- list(
-          bins  = tab[["binsPlotBuilder"]],
-          alpha = tab[["alphaHistogramPlotBuilder"]]
-        )
-        do.call(tidyplots::add_histogram, c(list(tidyplot_obj), argList))
-      },
-      error = function(e) {
-        stop(e$message, call. = FALSE)
-      })
+      tidyplot_obj <- tryCatch(
+        {
+          if (!is.numeric(localData[[xVar]]) && !is.numeric(localData[[yVar]])) {
+            stop("The histogram requires that the X-Axis or Y-Axis Variable is continuous", call. = FALSE)
+          }
+          argList <- list(
+            bins  = tab[["binsPlotBuilder"]],
+            alpha = tab[["alphaHistogramPlotBuilder"]]
+          )
+          do.call(tidyplots::add_histogram, c(list(tidyplot_obj), argList))
+        },
+        error = function(e) {
+          stop(e$message, call. = FALSE)
+        })
     }
 
 
@@ -795,26 +840,26 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     # Add Mean Line (tidyplots::add_mean_line)----
     if (tab[["addMeanLine"]]) {
 
-    argList <- list(
-    dodge_width = tab[["dodgeMeanLine"]],
-    alpha       = tab[["alphaMeanLine"]],
-    linewidth   = tab[["linewidthMeanLine"]]
-  )
+      argList <- list(
+        dodge_width = tab[["dodgeMeanLine"]],
+        alpha       = tab[["alphaMeanLine"]],
+        linewidth   = tab[["linewidthMeanLine"]]
+      )
 
-  if ((exists("colorBy") && colorBy %in% c("x", "y")) || tab[["blackOutlineMeanLine"]]) {
-    argList$color <- "black"
-    argList$fill  <- "black"
-  }
+      if ((exists("colorBy") && colorBy %in% c("x", "y")) || tab[["blackOutlineMeanLine"]]) {
+        argList$color <- "black"
+        argList$fill  <- "black"
+      }
 
-  if (exists("colorBy") && colorBy %in% c("x", "y")) {
-    argList$group <- 1
-  }
+      if (exists("colorBy") && colorBy %in% c("x", "y")) {
+        argList$group <- 1
+      }
 
-  tidyplot_obj <- do.call(
-    tidyplots::add_mean_line,
-    c(list(tidyplot_obj), argList)
-  )
-}
+      tidyplot_obj <- do.call(
+        tidyplots::add_mean_line,
+        c(list(tidyplot_obj), argList)
+      )
+    }
 
 
     # Add Mean Area (tidyplots::add_mean_area)----
@@ -1275,7 +1320,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         tidyplots::add_caption(caption = tab[["captionPlotBuilder"]])
     }
 
-   #Color palette settings ----
+    # Color palette settings ----
     if (!is.null(tab[["colorsAll"]])) {
       colorOption <- tab[["colorsAll"]]
 
@@ -1310,8 +1355,8 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
         # define jasp palette
         jasp_colors <- c("blue", "colorblind", "colorblind2",
-                         "colorblind3", "sportsTeamsNBA", "ggplot2",
-                         "grandBudapest", "jaspPalette", "gray")
+          "colorblind3", "sportsTeamsNBA", "ggplot2",
+          "grandBudapest", "jaspPalette", "gray")
 
         # if tidy plot palette
         if (colorOption %in% names(tidy_colors)) {
@@ -1392,8 +1437,8 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     byValueX   <- tab[["breakByX"]]
 
     if (!is.null(fromValueX) && fromValueX != "" &&
-        !is.null(toValueX) && toValueX != "" &&
-        !is.null(byValueX) && byValueX != "") {
+      !is.null(toValueX) && toValueX != "" &&
+      !is.null(byValueX) && byValueX != "") {
 
       fromNumeric <- suppressWarnings(as.numeric(fromValueX))
       toNumeric   <- suppressWarnings(as.numeric(toValueX))
@@ -1408,7 +1453,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     limitToX   <- tab[["limitToX"]]
 
     if (!is.null(limitFromX) && limitFromX != "" &&
-        !is.null(limitToX)   && limitToX   != "") {
+      !is.null(limitToX)   && limitToX   != "") {
 
       limitFromNumericX <- suppressWarnings(as.numeric(limitFromX))
       limitToNumericX   <- suppressWarnings(as.numeric(limitToX))
@@ -1475,8 +1520,8 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     byValueY   <- tab[["breakByY"]]
 
     if (!is.null(fromValueY) && fromValueY != "" &&
-        !is.null(toValueY)   && toValueY   != "" &&
-        !is.null(byValueY)   && byValueY   != "") {
+      !is.null(toValueY)   && toValueY   != "" &&
+      !is.null(byValueY)   && byValueY   != "") {
 
       fromNumericY <- suppressWarnings(as.numeric(fromValueY))
       toNumericY   <- suppressWarnings(as.numeric(toValueY))
@@ -1491,7 +1536,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     limitToY   <- tab[["limitToY"]]
 
     if (!is.null(limitFromY) && limitFromY != "" &&
-        !is.null(limitToY)   && limitToY   != "") {
+      !is.null(limitToY)   && limitToY   != "") {
 
       limitFromNumericY <- suppressWarnings(as.numeric(limitFromY))
       limitToNumericY   <- suppressWarnings(as.numeric(limitToY))
@@ -1590,8 +1635,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
           label_expr <- parse(text = stripped)
         }
 
-        # Handle facet drop-down inputs for Column, Row, and Grid.
-        # There is no prioritization; each facet field is stored as an independent column.
+
         facetData <- list()
 
         # Column facet: first check the standard drop-down; if empty, check the RM-specific one.
@@ -1650,7 +1694,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
 
     # Add custom comparison line (using ggplot2::geom_text, geom_segment) ----
-    rmOption <- tab[["rmFactorOptionsDropDown"]]
+    rmOption <- tab[["isRM"]]
 
     if (!is.null(tab[["annotationLineList"]]) && length(tab[["annotationLineList"]]) > 0) {
 
@@ -1666,29 +1710,29 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
       for (line in tab[["annotationLineList"]]) {
         if (!is.null(line[["xAnnotation"]]) && nzchar(line[["xAnnotation"]]) &&
-            !is.null(line[["xendAnnotation"]]) && nzchar(line[["xendAnnotation"]]) &&
-            !is.null(line[["yAnnotation"]]) && nzchar(line[["yAnnotation"]]) &&
-            !is.null(line[["yendAnnotation"]]) && nzchar(line[["yendAnnotation"]])) {
+          !is.null(line[["xendAnnotation"]]) && nzchar(line[["xendAnnotation"]]) &&
+          !is.null(line[["yAnnotation"]]) && nzchar(line[["yAnnotation"]]) &&
+          !is.null(line[["yendAnnotation"]]) && nzchar(line[["yendAnnotation"]])) {
 
           x_val    <- eval(parse(text = paste0("c(", line[["xAnnotation"]], ")")))
           xend_val <- eval(parse(text = paste0("c(", line[["xendAnnotation"]], ")")))
           y_val    <- eval(parse(text = paste0("c(", line[["yAnnotation"]], ")")))
           yend_val <- eval(parse(text = paste0("c(", line[["yendAnnotation"]], ")")))
 
-          if (rmOption == "rmFactorAsColumnSplit") {
-            colAnnotLine <- if (!is.null(line[["RMColumnCompLine"]])) decodeColNames(line[["RMColumnCompLine"]]) else ""
+          if (rmOption == "RM") {
+            colAnnotLine <- if (!is.null(line[["RMColumnCompLine"]])) line[["RMColumnCompLine"]] else ""
           } else {
             colAnnotLine <- if (!is.null(line[["ColumnAnnotationCompLine"]])) line[["ColumnAnnotationCompLine"]] else ""
           }
 
-          if (rmOption == "rmFactorAsRowSplit") {
-            rowAnnotLine <- if (!is.null(line[["RMRowCompLine"]])) decodeColNames(line[["RMRowCompLine"]]) else ""
+          if (rmOption == "RM") {
+            rowAnnotLine <- if (!is.null(line[["RMRowCompLine"]])) line[["RMRowCompLine"]] else ""
           } else {
             rowAnnotLine <- if (!is.null(line[["RowAnnotationCompLine"]])) line[["RowAnnotationCompLine"]] else ""
           }
 
-          if (rmOption == "rmFactorAsGrid") {
-            gridAnnotLine <- if (!is.null(line[["RMGridCompLine"]])) decodeColNames(line[["RMGridCompLine"]]) else ""
+          if (rmOption == "RM") {
+            gridAnnotLine <- if (!is.null(line[["RMGridCompLine"]])) line[["RMGridCompLine"]] else ""
           } else {
             gridAnnotLine <- if (!is.null(line[["GridAnnotationCompLine"]])) line[["GridAnnotationCompLine"]] else ""
           }
@@ -1740,7 +1784,8 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
             if (!is.null(rowsVar) && nzchar(rowAnnotLine)) {
               thisText[[rowsVar]] <- rowAnnotLine
             }
-            if (!is.null(gridVar) && nzchar(gridAnnotLine)) {s
+            if (!is.null(gridVar) && nzchar(gridAnnotLine)) {
+              s
               thisText[[gridVar]] <- gridAnnotLine
             }
 
@@ -1756,13 +1801,6 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         }
       }
     }
-
-
-
-
-
-
-
 
 
     if (tab[["propMode"]] == "relative") {
@@ -1824,14 +1862,10 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         axis.text.y = ggplot2::element_text(size = baseFontSize * 0.85),
         legend.title = ggplot2::element_text(
           size   = baseFontSize * 0.85,
-          hjust  = 0,
-          margin = ggplot2::margin(5, 5, 5, 5)
         ),
         legend.text = ggplot2::element_text(
           size   = baseFontSize * 0.8,
-          margin = ggplot2::margin(5, 5, 5, 5)
         ),
-        legend.margin = ggplot2::margin(10, 10, 10, 10),
         plot.margin   = ggplot2::margin(t = t, r = r, b = b, l = l)
       )
 
@@ -1841,7 +1875,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         ggplot2::theme(legend.title = ggplot2:::element_blank())
     }
 
-    # Facet logic for row / column ----
+    # Facet logic for row / column ----------
 
     hasRows <- (!is.null(rowsVar) && rowsVar != "")
     hasCols <- (!is.null(colsVar) && colsVar != "")
@@ -1853,17 +1887,17 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       yAxisTitleSplit <- tab[["yAxisTitleSplit"]]
 
       if (is.null(yAxisTitleSplit) || nchar(trimws(yAxisTitleSplit)) == 0) {
-        axis_name <- rowsVar
+        axis_name <- decodeColNames(rowsVar)
       } else {
         axis_name <- yAxisTitleSplit
       }
 
       tidyplot_obj <- tidyplot_obj +
         ggplot2::scale_y_continuous(
-          sec.axis = ggplot2::sec_axis(~ .,
-                                       name   = axis_name,  # display "Repeated measures" without backticks
-                                       breaks = NULL,
-                                       labels = NULL
+          sec.axis = ggplot2::sec_axis(~.,
+            name   = axis_name,
+            breaks = NULL,
+            labels = NULL
           )
         )
     }
@@ -1976,14 +2010,15 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
     if (!is.null(tab[["pairwiseComparisons"]]) && length(tab[["pairwiseComparisons"]]) > 0) {
 
       if (!is.null(xVar) && xVar %in% colnames(localData) && !is.factor(localData[[xVar]])) {
-        stop("The X-Axis variable can only be a factor variable. The Y-Axis variable must be either continuous or ordinal.", call. = FALSE)
+        .quitAnalysis("The X-Axis variable can only be a factor variable.
+             The Y-Axis variable must be either continuous or ordinal.")
       }
 
-      if (!is.null(yVar) && yVar %in% colnames(localData) && !(is.numeric(localData[[yVar]]) || is.ordered(localData[[yVar]]))) {
-        stop("The X-Axis variable can only be a factor variable. The Y-Axis variable must be either continuous or ordinal.", call. = FALSE)
+      if (!is.null(yVar) && yVar %in% colnames(localData) && !(is.numeric(localData[[yVar]]) ||
+        is.ordered(localData[[yVar]]))) {
+        .quitAnalysis("The X-Axis variable can only be a factor variable.
+             The Y-Axis variable must be either continuous or ordinal.")
       }
-
-
 
       # universal settings for the p value
       label_size <- tab[["labelSizePValue"]]
@@ -1998,67 +2033,66 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         stringsAsFactors = FALSE
       )
 
-      rmOption <- tab[["rmFactorOptionsDropDown"]]
 
-      # Color settings: check for both standard and RM-specific variable names
-      if (!is.null(colorVar) && nchar(colorVar) > 0) {
+      if (rmOption == "RM")
+
+
+        rmOption <- tab[["isRM"]]
+
+      if (!is.null(colorVar)) {
         dfComparisons$color <- as.character(
           sapply(tab[["pairwiseComparisons"]], function(x) {
-            if (rmOption == "rmFactorAsGroup")
-              decodeColNames(x$RMGroupPValue)
+            if (rmOption == "RM")
+              x$RMGroupPValue
             else
               x$GroupPValue  # Use standard value otherwise
           })
         )
       }
 
-      # Rows grouping: check for both standard and RM-specific variable names
-      if (!is.null(rowsVar)) {
-        dfComparisons[[rowsVar]] <- as.character(
-          sapply(tab[["pairwiseComparisons"]], function(x) {
-            if (rmOption == "rmFactorAsRowSplit")
-              decodeColNames(x$RMRowPValue)
-            else
-              x$RowPValue  # Use standard value otherwise
-          })
-        )
-      }
-
-      # Columns grouping: check for both standard and RM-specific variable names
       if (!is.null(colsVar)) {
         dfComparisons[[colsVar]] <- as.character(
           sapply(tab[["pairwiseComparisons"]], function(x) {
-            if (rmOption == "rmFactorAsColumnSplit")
-              decodeColNames(x$RMColumnPValue)
+            if (rmOption == "RM")
+              x$RMColumnPValue
             else
-              x$ColumnPValue  # Use standard value otherwise
+              x$ColumnPValue
           })
         )
       }
 
-      # Grid: check for both standard and RM-specific variable names
+      if (!is.null(rowsVar)) {
+        dfComparisons[[rowsVar]] <- as.character(
+          sapply(tab[["pairwiseComparisons"]], function(x) {
+            if (rmOption == "RM")
+              x$RMRowPValue
+            else
+              x$RowPValue
+          })
+        )
+      }
+
       if (!is.null(gridVar)) {
         dfComparisons[[gridVar]] <- as.character(
           sapply(tab[["pairwiseComparisons"]], function(x) {
-            if (rmOption == "rmFactorAsGrid")
-              decodeColNames(x$RMGridPValue)
+            if (rmOption == "RM")
+              x$RMGridPValue
             else
-              x$GridPValue  # Use standard value otherwise
+              x$GridPValue
           })
         )
       }
 
 
-
+      colorBy <- tab[["colorByGroup"]]
       bracket.size <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$bracketSizePValue))
       tip_length   <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$tipLengthPValue))
       stepDistance <- tab[["stepDistance"]]
 
-      # Itt jön az új logika: pValueColor
       pValueColor <- labelcolor  # default
       if (!is.null(colorVar) && nchar(colorVar) > 0) {
         if (!colorBy %in% c("x", "y")) {
-          pValueColor <- "color"  # <-- csak akkor "color", ha NEM x/y
+          pValueColor <- "color"
         }
       }
 
@@ -2078,6 +2112,13 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         )
     }
 
+
+    # Render plot ----------
+
+
+    if (identical(rmOption, "RM")) {
+      tidyplot_obj <- addDecodedLabels(tidyplot_obj)
+    }
 
     # Save the plot in our results list
     updatedPlots[[plotId]] <- tidyplot_obj
@@ -2201,7 +2242,9 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         }
         columnsWidth <- tryCatch(
           eval(parse(text = columnsWidth)),
-          error = function(e) { rep(1, ncol) }
+          error = function(e) {
+            rep(1, ncol)
+          }
         )
         if (length(columnsWidth) != ncol) {
           columnsWidth <- rep(1, ncol)
@@ -2213,7 +2256,9 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       labelSize <- 5
       if (!is.null(options[["labelSize"]])) {
         labelSizeParsed <- as.numeric(options[["labelSize"]])
-        if (is.na(labelSizeParsed)) { labelSizeParsed <- 5 }
+        if (is.na(labelSizeParsed)) {
+          labelSizeParsed <- 5
+        }
         labelSize <- labelSizeParsed
       }
 
@@ -2224,7 +2269,9 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         }
         relativeHeight <- tryCatch(
           eval(parse(text = relativeHeight)),
-          error = function(e) { rep(1, ncol) }
+          error = function(e) {
+            rep(1, ncol)
+          }
         )
         if (length(relativeHeight) != ncol) {
           relativeHeight <- rep(1, ncol)
@@ -2250,13 +2297,12 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
           }
         }
 
-        # Daraboljuk a plot azonosítókat vessző mentén, megtartva az üres elemeket
         plotIDs <- unlist(strsplit(plotIDsStr, ","))
-        if(length(plotIDs) == 0) {
+        if (length(plotIDs) == 0) {
           plotIDs <- c("")
         } else {
           plotIDs <- sapply(plotIDs, function(x) {
-            if(nchar(trimws(x)) == 0) "" else trimws(x)
+            if (nchar(trimws(x)) == 0) "" else trimws(x)
           })
         }
         nRows <- length(plotIDs)
@@ -2268,18 +2314,24 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
           }
           rowHeightsParsed <- tryCatch(
             eval(parse(text = rowHeightsStr)),
-            error = function(e) { rep(1, nRows) }
+            error = function(e) {
+              rep(1, nRows)
+            }
           )
-          if (length(rowHeightsParsed) == nRows) { rowHeights <- rowHeightsParsed }
+          if (length(rowHeightsParsed) == nRows) {
+            rowHeights <- rowHeightsParsed
+          }
         }
 
         labels <- NULL
         if (!is.null(labelsStr) && labelsStr != "") {
           labels <- unlist(strsplit(labelsStr, ","))
           labels <- sapply(labels, function(x) {
-            if(nchar(trimws(x)) == 0) "" else trimws(x)
+            if (nchar(trimws(x)) == 0) "" else trimws(x)
           })
-          if (length(labels) != nRows) { labels <- NULL }
+          if (length(labels) != nRows) {
+            labels <- NULL
+          }
         }
 
         plotsInColumn <- vector("list", nRows)
@@ -2342,7 +2394,9 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       labelSize <- 5
       if (!is.null(options[["labelSize"]])) {
         labelSizeParsed <- as.numeric(options[["labelSize"]])
-        if (is.na(labelSizeParsed)) { labelSizeParsed <- 5 }
+        if (is.na(labelSizeParsed)) {
+          labelSizeParsed <- 5
+        }
         labelSize <- labelSizeParsed
       }
 
@@ -2361,11 +2415,11 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         }
 
         plotIDs <- unlist(strsplit(plotIDsStr, ","))
-        if(length(plotIDs) == 0) {
+        if (length(plotIDs) == 0) {
           plotIDs <- c("")
         } else {
           plotIDs <- sapply(plotIDs, function(x) {
-            if(nchar(trimws(x)) == 0) "" else trimws(x)
+            if (nchar(trimws(x)) == 0) "" else trimws(x)
           })
         }
         nPlots <- length(plotIDs)
@@ -2377,18 +2431,24 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
           }
           relWidthsParsed <- tryCatch(
             eval(parse(text = relWidthsStr)),
-            error = function(e) { rep(1, nPlots) }
+            error = function(e) {
+              rep(1, nPlots)
+            }
           )
-          if (length(relWidthsParsed) == nPlots) { relWidths <- relWidthsParsed }
+          if (length(relWidthsParsed) == nPlots) {
+            relWidths <- relWidthsParsed
+          }
         }
 
         labels <- NULL
         if (!is.null(labelsStr) && labelsStr != "") {
           labels <- unlist(strsplit(labelsStr, ","))
           labels <- sapply(labels, function(x) {
-            if(nchar(trimws(x)) == 0) "" else trimws(x)
+            if (nchar(trimws(x)) == 0) "" else trimws(x)
           })
-          if (length(labels) != nPlots) { labels <- NULL }
+          if (length(labels) != nPlots) {
+            labels <- NULL
+          }
         }
 
         plotsInFullRow <- vector("list", nPlots)
@@ -2445,7 +2505,9 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
         }
         relheightWithinRowLayout <- tryCatch(
           eval(parse(text = relheightWithinRowLayoutStr)),
-          error = function(e) { rep(1, length(fullRowPlots)) }
+          error = function(e) {
+            rep(1, length(fullRowPlots))
+          }
         )
         if (length(relheightWithinRowLayout) != length(fullRowPlots)) {
           relheightWithinRowLayout <- rep(1, length(fullRowPlots))
@@ -2467,10 +2529,14 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       }
       relativeHeight <- tryCatch(
         eval(parse(text = relativeHeightStr)),
-        error = function(e) { c(1, 1) }
+        error = function(e) {
+          c(1, 1)
+        }
       )
       if (!is.null(columnGrid) && !is.null(fullRowGrid)) {
-        if (length(relativeHeight) != 2) { relativeHeight <- c(1, 1) }
+        if (length(relativeHeight) != 2) {
+          relativeHeight <- c(1, 1)
+        }
       } else {
         relativeHeight <- 1
       }
