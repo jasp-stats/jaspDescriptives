@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.18.3\n"
-"POT-Creation-Date: 2025-03-08 03:18\n"
+"POT-Creation-Date: 2025-05-03 03:27\n"
 "PO-Revision-Date: 2025-03-19 23:04+0000\n"
 "Last-Translator: Uğur ÇELİK <prof_ugur@hotmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/jasp/"
@@ -83,8 +83,8 @@ msgstr ""
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
 msgstr ""
-"'Başlangıç' tarih benzeri bir biçimde olmalıdır (örneğin, yyyy-aa-gg "
-"ss:dd:ss)."
+"'Başlangıç' tarih benzeri bir biçimde olmalıdır (örneğin, yyyy-aa-gg ss:dd:"
+"ss)."
 
 msgid "The 'Start' value of the filter should be before last observation."
 msgstr "Filtrenin 'Başlangıç' değeri son gözlemden önce olmalıdır."
@@ -389,6 +389,10 @@ msgstr ""
 msgid "Interval around mean represents ± 1 standard error"
 msgstr "Ortalama civarındaki aralık ± 1 standart hatayı temsil eder"
 
+#, fuzzy
+msgid "Interval around mean represents ± 1 standard deviation"
+msgstr "Ortalama civarındaki aralık ± 1 standart hatayı temsil eder"
+
 msgid "Interval around mean represents %d%% confidence interval."
 msgstr "Ortalama civarındaki aralık %d%% güven aralığını temsil eder."
 
@@ -420,8 +424,8 @@ msgid ""
 "span>"
 msgstr ""
 "<span style = 'color: darkorange'> Özel renkle ilgili hata: Belirtilen bulut "
-"sayısı çizimdeki bulutlarla uyuşmuyor.<br>Özel renk girişi göz ardı "
-"ediliyor.</span>"
+"sayısı çizimdeki bulutlarla uyuşmuyor.<br>Özel renk girişi göz ardı ediliyor."
+"</span>"
 
 msgid "Statistics"
 msgstr "İstatistikler"
@@ -452,6 +456,10 @@ msgstr "Ortalama Fark için %s%% CI"
 
 msgid "Standard Error"
 msgstr "Standart Hata"
+
+#, fuzzy
+msgid "Standard Deviation"
+msgstr "Standart Sapma"
 
 msgid "<i>N</i><sub>Total</sub> = %s."
 msgstr "<i>N</i><sub>Toplam</sub> = %s."

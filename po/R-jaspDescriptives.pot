@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.20.0\n"
-"POT-Creation-Date: 2025-04-23 10:42\n"
+"POT-Creation-Date: 2025-05-03 03:27\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -335,6 +335,9 @@ msgstr ""
 msgid "Interval around mean represents ± 1 standard error"
 msgstr ""
 
+msgid "Interval around mean represents ± 1 standard deviation"
+msgstr ""
+
 msgid "Interval around mean represents %d%% confidence interval."
 msgstr ""
 
@@ -378,6 +381,9 @@ msgid "%s%% CI for Mean Difference"
 msgstr ""
 
 msgid "Standard Error"
+msgstr ""
+
+msgid "Standard Deviation"
 msgstr ""
 
 msgid "<i>N</i><sub>Total</sub> = %s."

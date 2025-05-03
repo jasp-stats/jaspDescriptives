@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-03-08 03:18\n"
+"POT-Creation-Date: 2025-05-03 03:27\n"
 "PO-Revision-Date: 2025-03-18 11:36+0000\n"
 "Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
@@ -362,6 +362,9 @@ msgstr ""
 msgid "Interval around mean represents ± 1 standard error"
 msgstr ""
 
+msgid "Interval around mean represents ± 1 standard deviation"
+msgstr ""
+
 msgid "Interval around mean represents %d%% confidence interval."
 msgstr ""
 
@@ -415,6 +418,10 @@ msgstr "平均數差異之%s%%信賴區間上界"
 
 msgid "Standard Error"
 msgstr "標準誤"
+
+#, fuzzy
+msgid "Standard Deviation"
+msgstr "標準差"
 
 msgid "<i>N</i><sub>Total</sub> = %s."
 msgstr ""

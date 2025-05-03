@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-03-08 03:18\n"
+"POT-Creation-Date: 2025-05-03 03:27\n"
 "PO-Revision-Date: 2024-05-19 20:45+0000\n"
 "Last-Translator: robachowyk <kaya.robach@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/jasp/"
@@ -383,6 +383,9 @@ msgstr ""
 msgid "Interval around mean represents ± 1 standard error"
 msgstr ""
 
+msgid "Interval around mean represents ± 1 standard deviation"
+msgstr ""
+
 msgid "Interval around mean represents %d%% confidence interval."
 msgstr ""
 
@@ -440,6 +443,10 @@ msgstr "IC supérieur de la moyenne %s%%"
 
 #, fuzzy
 msgid "Standard Error"
+msgstr "Écart type"
+
+#, fuzzy
+msgid "Standard Deviation"
 msgstr "Écart type"
 
 msgid "<i>N</i><sub>Total</sub> = %s."

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-03-08 03:18\n"
+"POT-Creation-Date: 2025-05-03 03:27\n"
 "PO-Revision-Date: 2024-09-05 15:09+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
@@ -387,6 +387,10 @@ msgstr ""
 msgid "Interval around mean represents ± 1 standard error"
 msgstr "Przedział wokół średniej wynosi ± 1 błąd standardowy"
 
+#, fuzzy
+msgid "Interval around mean represents ± 1 standard deviation"
+msgstr "Przedział wokół średniej wynosi ± 1 błąd standardowy"
+
 msgid "Interval around mean represents %d%% confidence interval."
 msgstr "Przedział wokół średniej przedstawia %d%% przedział ufności."
 
@@ -446,6 +450,10 @@ msgstr "%s%% PU dla różnicy średnich"
 
 msgid "Standard Error"
 msgstr "Błąd standardowy"
+
+#, fuzzy
+msgid "Standard Deviation"
+msgstr "Odch. stand."
 
 msgid "<i>N</i><sub>Total</sub> = %s."
 msgstr "<i>N</i><sub>Całość</sub> = %s."

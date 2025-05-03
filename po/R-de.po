@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2025-03-08 03:18\n"
+"POT-Creation-Date: 2025-05-03 03:27\n"
 "PO-Revision-Date: 2025-03-12 18:33+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
@@ -397,6 +397,10 @@ msgstr ""
 msgid "Interval around mean represents ± 1 standard error"
 msgstr "Intervall um Mittelwert repräsentiert ± 1 Standardabweichung"
 
+#, fuzzy
+msgid "Interval around mean represents ± 1 standard deviation"
+msgstr "Intervall um Mittelwert repräsentiert ± 1 Standardabweichung"
+
 msgid "Interval around mean represents %d%% confidence interval."
 msgstr "Intervall um Mittelwert repräsentiert %d%%-Konfidenzintervall."
 
@@ -461,6 +465,9 @@ msgstr "%s%%-KI für Mittelwertdifferenz"
 msgid "Standard Error"
 msgstr "Standardfehler"
 
+msgid "Standard Deviation"
+msgstr "Standardabweichung"
+
 msgid "<i>N</i><sub>Total</sub> = %s."
 msgstr "<i>N</i><sub>Gesamt</sub> = %s."
 
@@ -508,9 +515,6 @@ msgstr[1] "Der Dezimalpunkt ist %s Stellen von links von dem |"
 
 #~ msgid "Lower Interval Limit"
 #~ msgstr "Untere Intervallgrenze"
-
-#~ msgid "Standard Deviation"
-#~ msgstr "Standardabweichung"
 
 #~ msgid "Upper Interval Limit"
 #~ msgstr "Obere Intervallgrenze"
