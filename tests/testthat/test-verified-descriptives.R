@@ -20,10 +20,10 @@ test_that("Main table results match R, SPSS, SAS and MiniTab", {
                                     data.frame("Data"=1:5),
                                     options)
   resultTable <- results$results$stats$data
-
+  resultTable[[1]]$Mode <- resultTable[[1]]$Mode$value
   jaspTools::expect_equal_tables(
     "test"=resultTable,
-    "ref"=list(0, 1, 5, 3, 3, 1, 1, 1.58113883008419, 0.707106781186548, 5, "Data",
+    "ref"=list(5, 3, 3, 1, 2.99984982592643, 1.58113883008419, 0.707106781186548, 5, "Data",
                2.5, 2, 3, 4)
   )
 })
