@@ -417,7 +417,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
   if (options$valid)                          stats$addColumnInfo(name="Valid",                       title=gettext("Valid"),                   type="integer")
   if (options$missing)                        stats$addColumnInfo(name="Missing",                     title=gettext("Missing"),                 type="integer")
-  if (options$mode)                           stats$addColumnInfo(name="Mode",                        title=gettext("Mode"),                    type="number")
+  if (options$mode)                           stats$addColumnInfo(name="Mode",                        title=gettext("Mode"),                    type="mixed")
   if (options$median)                         stats$addColumnInfo(name="Median",                      title=gettext("Median"),                  type="number")
   if (options$mean)                           stats$addColumnInfo(name="Mean",                        title=gettext("Mean"), 				            type="number")
   if (options$seMean)                         stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of Mean"),      type="number")
@@ -474,7 +474,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   # lets just add footnotes once instead of a gazillion times..
   shouldAddNominalTextFootnote <- FALSE
   shouldAddModeMoreThanOnceFootnote <- FALSE
-  shouldAddModeContinuousTreatedAsDiscreteFootnote <- FALSE
 
   # Find the number of levels to loop over
   if (wantsSplit) {
@@ -489,11 +488,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
         column <- dataset[[variable]][split == splitLevels[l]]
         columnType <- options[["variables.types"]][varIndex]
 
-        subReturn <- .descriptivesDescriptivesTable_subFunction(column, columnType, list(Variable = variable, Level = splitLevels[l]), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, shouldAddModeContinuousTreatedAsDiscreteFootnote, jaspResults)
+        subReturn <- .descriptivesDescriptivesTable_subFunction(column, columnType, list(Variable = variable, Level = splitLevels[l]), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, jaspResults)
 
         shouldAddNominalTextFootnote                     <- subReturn$shouldAddNominalTextFootnote
         shouldAddModeMoreThanOnceFootnote                <- subReturn$shouldAddModeMoreThanOnceFootnote
-        shouldAddModeContinuousTreatedAsDiscreteFootnote <- subReturn$shouldAddModeContinuousTreatedAsDiscreteFootnote
 
         stats$addRows(subReturn$resultsCol, rowNames = paste0(variable, l))
 
@@ -513,15 +511,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
           )
         }
 
-        if(subReturn$shouldAddModeMoreThanOnceFootnote)
+        if (subReturn$shouldAddModeMoreThanOnceFootnote)
           stats$addFootnote(message  = gettext("More than one mode exists. For nominal and ordinal data, the first mode is reported. For continuous data, the mode with the highest density estimate is reported but multiple modes may exist. We recommend visualizing the data to check for multimodality."),
                             colNames = "Mode",
                             rowNames = variable)
 
-        if (subReturn$shouldAddModeContinuousTreatedAsDiscreteFootnote)
-          stats$addFootnote(message  = gettext("The mode is computed assuming that variables are discrete."),
-                            colNames = "Mode",
-                            rowNames = variable)
       }
     }
   } else { # we dont want to split
@@ -529,11 +523,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       variable <- variables[varIndex]
       column <- dataset[[variable]]
       columnType <- options[["variables.types"]][varIndex]
-      subReturn <- .descriptivesDescriptivesTable_subFunction(column, columnType, list(Variable = variable), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, shouldAddModeContinuousTreatedAsDiscreteFootnote, jaspResults)
+      subReturn <- .descriptivesDescriptivesTable_subFunction(column, columnType, list(Variable = variable), options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, jaspResults)
 
       shouldAddNominalTextFootnote                     <- subReturn$shouldAddNominalTextFootnote
       shouldAddModeMoreThanOnceFootnote                <- subReturn$shouldAddModeMoreThanOnceFootnote
-      shouldAddModeContinuousTreatedAsDiscreteFootnote <- subReturn$shouldAddModeContinuousTreatedAsDiscreteFootnote
 
       stats$addRows(subReturn$resultsCol, rowNames = variable)
 
@@ -555,17 +548,13 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
                           colNames = "Mode",
                           rowNames = variable)
 
-      if (subReturn$shouldAddModeContinuousTreatedAsDiscreteFootnote)
-		stats$addFootnote(message  = gettext("The mode is computed assuming that variables are discrete."),
-                          colNames = "Mode",
-                          rowNames = variable)
     }
   }
 
   return(stats)
 }
 
-.descriptivesDescriptivesTable_subFunction <- function(column, columnType, resultsCol, options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, shouldAddModeContinuousTreatedAsDiscreteFootnote, jaspResults) {
+.descriptivesDescriptivesTable_subFunction <- function(column, columnType, resultsCol, options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, jaspResults) {
   equalGroupsNo          <- options$quantilesForEqualGroupsNumber
   percentilesPercentiles <- unique(options$percentileValues)
 
@@ -641,32 +630,27 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
   if (options$mode) {
 
-    # TODO: fix this after we have mixed columns (DvdB)
-    if (FALSE && columnType == "scale") { # scale data
+    if (columnType == "scale") {
+
+      # scale data -- highest density estimate
+      modeType <- "number"
       temp <- .desriptivesComputeModeContinuous(na.omitted)
       mode <- temp[["xValues"]][which.max(temp[["yValues"]])]
 
       shouldAddModeMoreThanOnceFootnote <- temp[["numModes"]] > 1L
-    } else { # ordinal, nominal, or nominal text data
+
+    } else {
+
+      # ordinal or nominal data -- most frequent value
       tb <- table(na.omitted)
       allModes <- names(tb[tb == max(tb)])
-      mode <- allModes[1] # use only the first mode
+      mode <- allModes[1L] # use only the first mode
 
       shouldAddModeMoreThanOnceFootnote <- length(allModes) > 1L
+      modeType <- "string"
     }
 
-    shouldAddModeContinuousTreatedAsDiscreteFootnote <- columnType == "scale"
-
-    # need some help here @vandenman
-    # modeType <- switch(columnType,
-    #                    "scale" = "number",
-    #                    "ordinal" = "integer",
-    #                    "nominal" = "string")
-    # resultsCol[["Mode"]] <- createMixedRow(
-    #   value = mode[1L],
-    #   type =  modeType
-    # )
-    resultsCol[["Mode"]] <- mode[1L]
+    resultsCol[["Mode"]] <- jaspBase::createMixedRow(value = mode, type = modeType)
 
   }
 
@@ -747,7 +731,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     resultsCol = resultsCol,
     shouldAddNominalTextFootnote = shouldAddNominalTextFootnote,
     shouldAddModeMoreThanOnceFootnote = shouldAddModeMoreThanOnceFootnote,
-    shouldAddModeContinuousTreatedAsDiscreteFootnote = shouldAddModeContinuousTreatedAsDiscreteFootnote,
     shouldAddIdenticalFootnote = shouldAddIdenticalFootnote,
     shouldAddExplainEmptySet = shouldAddExplainEmptySet
   ))
