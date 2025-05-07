@@ -1589,25 +1589,6 @@ addDecodedLabels <- function(p) {
       }
     }
 
-    # #Add annotation (tidyplot::add_annotation_text )----
-    # if (!is.null(tab[["annotationPlotBuilder"]]) && length(tab[["annotationPlotBuilder"]]) > 0) {
-    #   for (i in seq_along(tab[["annotationPlotBuilder"]])) {
-    #     rowData   <- tab[["annotationPlotBuilder"]][[i]]
-    #     plotText  <- rowData$annotationText
-    #     plotX     <- rowData$annotationX
-    #     plotY     <- rowData$annotationY
-    #     fontSize  <- rowData$annotationSize
-    #
-    #     tidyplot_obj <- tidyplot_obj |>
-    #       tidyplots::add_annotation_text(
-    #       text     = plotText,
-    #       x        = plotX,
-    #       y        = plotY,
-    #       fontsize = fontSize
-    #     )
-    #   }
-    # }
-
     # Extract the ggplot object from tidyplot----
     tidyplot_obj <- tidyplot_obj[[1]]
 
@@ -1616,6 +1597,11 @@ addDecodedLabels <- function(p) {
       for (i in seq_along(tab[["annotationPlotBuilder"]])) {
         rowData  <- tab[["annotationPlotBuilder"]][[i]]
         plotText <- rowData$annotationText
+
+        # ← GUARD AGAINST EMPTY ANNOTATIONS:
+        if (is.null(plotText) || !nzchar(plotText))
+          next
+
         plotX    <- rowData$annotationX
         plotY    <- rowData$annotationY
         fontSize <- as.numeric(rowData$annotationSize)
