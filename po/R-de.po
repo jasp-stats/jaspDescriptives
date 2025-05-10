@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2025-05-03 03:27\n"
+"POT-Creation-Date: 2025-05-10 03:28\n"
 "PO-Revision-Date: 2025-03-12 18:33+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
@@ -277,10 +277,6 @@ msgstr ""
 "Dichteschätzung gemeldet, es können jedoch mehrere Modi vorhanden sein. Wir "
 "empfehlen, die Daten zu visualisieren, um sie auf Multimodalität zu prüfen."
 
-msgid "The mode is computed assuming that variables are discrete."
-msgstr ""
-"Der Modus wird unter der Annahme berechnet, dass Variablen diskret sind."
-
 msgid "Total"
 msgstr "Gesamt"
 
@@ -305,9 +301,6 @@ msgstr "Prozent gültig"
 msgid "Cumulative Percent"
 msgstr "Prozent kumulativ"
 
-msgid "Density"
-msgstr "Dichte"
-
 msgid "Plotting not possible: %s"
 msgstr "Abbilden nicht möglich: %s"
 
@@ -316,6 +309,9 @@ msgstr "Abbilden ist nicht möglich: Kein Diagrammtyp ausgewählt!"
 
 msgid "Counts"
 msgstr "Häufigkeiten"
+
+msgid "Density"
+msgstr "Dichte"
 
 msgid "No non-missing values!"
 msgstr "Keine nicht-fehlenden Werte!"
@@ -498,6 +494,10 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "Der Dezimalpunkt ist %s Stelle von links von dem |"
 msgstr[1] "Der Dezimalpunkt ist %s Stellen von links von dem |"
+
+#~ msgid "The mode is computed assuming that variables are discrete."
+#~ msgstr ""
+#~ "Der Modus wird unter der Annahme berechnet, dass Variablen diskret sind."
 
 #~ msgid "The mode is computed assuming that variables are discreet."
 #~ msgstr ""

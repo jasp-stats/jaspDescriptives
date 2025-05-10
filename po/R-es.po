@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
-"POT-Creation-Date: 2025-05-03 03:27\n"
+"POT-Creation-Date: 2025-05-10 03:28\n"
 "PO-Revision-Date: 2025-05-03 14:12+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
@@ -274,9 +274,6 @@ msgstr ""
 "de la densidad más alta, pero pueden existir varias modas. Recomendamos "
 "visualizar los datos para verificar la multimodalidad."
 
-msgid "The mode is computed assuming that variables are discrete."
-msgstr "La moda se calcula asumiendo que las variables son discretas."
-
 msgid "Total"
 msgstr "Total"
 
@@ -301,9 +298,6 @@ msgstr "Porcentaje Válido"
 msgid "Cumulative Percent"
 msgstr "Porcentaje Acumulado"
 
-msgid "Density"
-msgstr "Densidad"
-
 msgid "Plotting not possible: %s"
 msgstr "No es posible hacer el gráfico: %s"
 
@@ -312,6 +306,9 @@ msgstr "No es posible hacer el gráfico: ¡No se eligió el tipo de gráfico!"
 
 msgid "Counts"
 msgstr "Recuentos"
+
+msgid "Density"
+msgstr "Densidad"
 
 msgid "No non-missing values!"
 msgstr "¡Sin valores no ausentes!"
@@ -489,6 +486,9 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "El punto decimal está en el dígito %s a la izquierda de |"
 msgstr[1] "El punto decimal está a %s dígitos a la izquierda de |"
+
+#~ msgid "The mode is computed assuming that variables are discrete."
+#~ msgstr "La moda se calcula asumiendo que las variables son discretas."
 
 #~ msgid "The mode is computed assuming that variables are discreet."
 #~ msgstr "La moda se calcula asumiendo que las variables son discretas."

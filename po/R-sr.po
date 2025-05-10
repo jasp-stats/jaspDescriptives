@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.19.2\n"
-"POT-Creation-Date: 2025-05-03 03:27\n"
+"POT-Creation-Date: 2025-05-10 03:28\n"
 "PO-Revision-Date: 2025-04-23 10:14+0000\n"
 "Last-Translator: Marko Bojović <bojovicmarko@outlook.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/jasp/"
@@ -268,9 +268,6 @@ msgstr ""
 "густине, али може постојати више модова. Препоручујемо визуелизацију "
 "података да би се проверило вишемодално распоређење."
 
-msgid "The mode is computed assuming that variables are discrete."
-msgstr "Мод се израчунава под претпоставком да су променљиве дискретне."
-
 msgid "Total"
 msgstr "Укупно"
 
@@ -295,9 +292,6 @@ msgstr "Важећи проценат"
 msgid "Cumulative Percent"
 msgstr "Кумулативни проценат"
 
-msgid "Density"
-msgstr "Густина"
-
 msgid "Plotting not possible: %s"
 msgstr "Цртање није могуће: %s"
 
@@ -306,6 +300,9 @@ msgstr "Цртање није могуће: Није изабрана врста
 
 msgid "Counts"
 msgstr "Бројеви"
+
+msgid "Density"
+msgstr "Густина"
 
 msgid "No non-missing values!"
 msgstr "Нема вредности које нису недостајуће!"
@@ -466,3 +463,6 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] ""
 msgstr[1] ""
+
+#~ msgid "The mode is computed assuming that variables are discrete."
+#~ msgstr "Мод се израчунава под претпоставком да су променљиве дискретне."

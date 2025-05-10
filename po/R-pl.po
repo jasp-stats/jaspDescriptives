@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-05-03 03:27\n"
+"POT-Creation-Date: 2025-05-10 03:28\n"
 "PO-Revision-Date: 2024-09-05 15:09+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
@@ -273,9 +273,6 @@ msgstr ""
 "najwyższym oszacowaniem gęstości. Zalecamy wizualizację danych w celu "
 "sprawdzenia wielomodalności."
 
-msgid "The mode is computed assuming that variables are discrete."
-msgstr "Modalna została obliczona przy założeniu, że zmienne są dyskretne."
-
 msgid "Total"
 msgstr "Całość"
 
@@ -300,9 +297,6 @@ msgstr "Procent ważnych"
 msgid "Cumulative Percent"
 msgstr "Procent skumulowany"
 
-msgid "Density"
-msgstr "Gęstość"
-
 msgid "Plotting not possible: %s"
 msgstr "Nie można utworzyć wykresu: %s"
 
@@ -311,6 +305,9 @@ msgstr "Nie można utworzyć wykresu: nie wybrano typu wykresu!"
 
 msgid "Counts"
 msgstr "Liczebności"
+
+msgid "Density"
+msgstr "Gęstość"
 
 msgid "No non-missing values!"
 msgstr "Występują wyłącznie braki danych!"
@@ -490,6 +487,9 @@ msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "Punkt dziesiętny znajduje się %s cyfrę na lewo od |"
 msgstr[1] "Punkt dziesiętny znajduje się %s cyfry na lewo od |"
 msgstr[2] "Punkt dziesiętny znajduje się %s cyfr na lewo od |"
+
+#~ msgid "The mode is computed assuming that variables are discrete."
+#~ msgstr "Modalna została obliczona przy założeniu, że zmienne są dyskretne."
 
 #~ msgid "The mode is computed assuming that variables are discreet."
 #~ msgstr "Modalna została obliczona przy założeniu, że zmienne są dyskretne."

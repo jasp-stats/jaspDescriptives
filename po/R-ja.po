@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.11.0\n"
-"POT-Creation-Date: 2025-05-03 03:27\n"
+"POT-Creation-Date: 2025-05-10 03:28\n"
 "PO-Revision-Date: 2024-07-12 14:09+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -265,9 +265,6 @@ msgstr ""
 "が存在するかもしれません。データの可視化を行い、多峰性について確認することを"
 "推奨します。"
 
-msgid "The mode is computed assuming that variables are discrete."
-msgstr "モードは変数が離散と仮定して算出されます."
-
 msgid "Total"
 msgstr "合計"
 
@@ -292,9 +289,6 @@ msgstr "有効パーセント"
 msgid "Cumulative Percent"
 msgstr "累積パーセント"
 
-msgid "Density"
-msgstr "密度"
-
 msgid "Plotting not possible: %s"
 msgstr "プロットできません: %s"
 
@@ -303,6 +297,9 @@ msgstr "プロットできません：プロットタイプが選択されてい
 
 msgid "Counts"
 msgstr "カウント"
+
+msgid "Density"
+msgstr "密度"
 
 msgid "No non-missing values!"
 msgstr "欠測値はありません！"
@@ -467,6 +464,9 @@ msgstr[0] "|の右にある小数点は %s 桁です"
 msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "|の左にある小数点は %s 桁です"
+
+#~ msgid "The mode is computed assuming that variables are discrete."
+#~ msgstr "モードは変数が離散と仮定して算出されます."
 
 #~ msgid "The mode is computed assuming that variables are discreet."
 #~ msgstr "モードは、変数が離散的と仮定して計算されます。"

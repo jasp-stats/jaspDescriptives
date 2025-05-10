@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2025-05-03 03:27\n"
+"POT-Creation-Date: 2025-05-10 03:28\n"
 "PO-Revision-Date: 2021-09-02 14:35+0000\n"
 "Last-Translator: Laura Durans <lauraadurans@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
@@ -272,9 +272,6 @@ msgid ""
 "check for multimodality."
 msgstr ""
 
-msgid "The mode is computed assuming that variables are discrete."
-msgstr ""
-
 msgid "Total"
 msgstr "Total"
 
@@ -299,9 +296,6 @@ msgstr "Porcentagem válida"
 msgid "Cumulative Percent"
 msgstr "Porcentagem cumulativa"
 
-msgid "Density"
-msgstr "Densidade"
-
 msgid "Plotting not possible: %s"
 msgstr "Não foi possível efetuar a plotagem: %s"
 
@@ -311,6 +305,9 @@ msgstr ""
 
 msgid "Counts"
 msgstr "Contagem"
+
+msgid "Density"
+msgstr "Densidade"
 
 msgid "No non-missing values!"
 msgstr "Sem valores não ausentes!"

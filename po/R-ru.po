@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-05-03 03:27\n"
+"POT-Creation-Date: 2025-05-10 03:28\n"
 "PO-Revision-Date: 2025-04-02 18:57+0000\n"
 "Last-Translator: Иван Рудаков <riv@polygene.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
@@ -269,9 +269,6 @@ msgid ""
 "check for multimodality."
 msgstr ""
 
-msgid "The mode is computed assuming that variables are discrete."
-msgstr ""
-
 msgid "Total"
 msgstr "Общий"
 
@@ -296,9 +293,6 @@ msgstr "Значимый процент"
 msgid "Cumulative Percent"
 msgstr "Накопленный процент"
 
-msgid "Density"
-msgstr "Плотность"
-
 msgid "Plotting not possible: %s"
 msgstr "Построение графиков невозможно: %s"
 
@@ -307,6 +301,9 @@ msgstr "Построение графика невозможно: Ни один 
 
 msgid "Counts"
 msgstr "Количество"
+
+msgid "Density"
+msgstr "Плотность"
 
 msgid "No non-missing values!"
 msgstr "Нет непропущенных значений!"

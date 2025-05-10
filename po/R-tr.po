@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.18.3\n"
-"POT-Creation-Date: 2025-05-03 03:27\n"
+"POT-Creation-Date: 2025-05-10 03:28\n"
 "PO-Revision-Date: 2025-03-19 23:04+0000\n"
 "Last-Translator: Uğur ÇELİK <prof_ugur@hotmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/jasp/"
@@ -274,9 +274,6 @@ msgstr ""
 "raporlanır ancak birden fazla mod mevcut olabilir. Çok modluluğu kontrol "
 "etmek için verileri görselleştirmenizi öneririz."
 
-msgid "The mode is computed assuming that variables are discrete."
-msgstr "Mod, değişkenlerin ayrık olduğu varsayılarak hesaplanır."
-
 msgid "Total"
 msgstr "Toplam"
 
@@ -301,9 +298,6 @@ msgstr "Geçerli Yüzde"
 msgid "Cumulative Percent"
 msgstr "Birikimli Yüzde"
 
-msgid "Density"
-msgstr "Yoğunluk"
-
 msgid "Plotting not possible: %s"
 msgstr "Çizim mümkün değil: %s"
 
@@ -312,6 +306,9 @@ msgstr "Çizim mümkün değil: Grafik türü seçilmedi!"
 
 msgid "Counts"
 msgstr "Sayımlar"
+
+msgid "Density"
+msgstr "Yoğunluk"
 
 msgid "No non-missing values!"
 msgstr "Eksik olmayan değer yok!"
@@ -491,3 +488,6 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "Ondalık nokta | işaretinin solundaki %s rakamıdır"
 msgstr[1] "Ondalık nokta | işaretinin solundaki %s basamaktır"
+
+#~ msgid "The mode is computed assuming that variables are discrete."
+#~ msgstr "Mod, değişkenlerin ayrık olduğu varsayılarak hesaplanır."

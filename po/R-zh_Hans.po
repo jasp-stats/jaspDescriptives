@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-05-03 03:27\n"
+"POT-Creation-Date: 2025-05-10 03:28\n"
 "PO-Revision-Date: 2024-12-06 09:00+0000\n"
 "Last-Translator: tao guo <guotao3s@163.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -261,9 +261,6 @@ msgstr ""
 "报告具有最高密度估计的众数，但可能存在多个众数。我们建议可视化数据以查看多个"
 "众数。"
 
-msgid "The mode is computed assuming that variables are discrete."
-msgstr "计算众数时假设变量是离散的."
-
 msgid "Total"
 msgstr "总计"
 
@@ -288,9 +285,6 @@ msgstr "有效百分比"
 msgid "Cumulative Percent"
 msgstr "累计百分比"
 
-msgid "Density"
-msgstr "密度"
-
 msgid "Plotting not possible: %s"
 msgstr "无法绘图：%s"
 
@@ -299,6 +293,9 @@ msgstr "无法完成绘图：未选择绘图类型！"
 
 msgid "Counts"
 msgstr "计数"
+
+msgid "Density"
+msgstr "密度"
 
 msgid "No non-missing values!"
 msgstr "没有非缺失值！"
@@ -457,6 +454,9 @@ msgstr[0] "小数点是 | 右边的 %s 位"
 msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "小数点是 | 左边的 %s 位"
+
+#~ msgid "The mode is computed assuming that variables are discrete."
+#~ msgstr "计算众数时假设变量是离散的."
 
 #~ msgid "The mode is computed assuming that variables are discreet."
 #~ msgstr "计算众数时假设变量是离散的."

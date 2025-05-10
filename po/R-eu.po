@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-05-03 03:27\n"
+"POT-Creation-Date: 2025-05-10 03:28\n"
 "PO-Revision-Date: 2022-06-29 08:59+0000\n"
 "Last-Translator: José Ramón Rueda <joseramon.rueda@ehu.es>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/jasp/"
@@ -261,9 +261,6 @@ msgid ""
 "check for multimodality."
 msgstr ""
 
-msgid "The mode is computed assuming that variables are discrete."
-msgstr ""
-
 msgid "Total"
 msgstr "Guztira"
 
@@ -288,9 +285,6 @@ msgstr ""
 msgid "Cumulative Percent"
 msgstr ""
 
-msgid "Density"
-msgstr ""
-
 msgid "Plotting not possible: %s"
 msgstr ""
 
@@ -300,6 +294,9 @@ msgstr ""
 #, fuzzy
 msgid "Counts"
 msgstr "Zenbaketak"
+
+msgid "Density"
+msgstr ""
 
 msgid "No non-missing values!"
 msgstr ""

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.20.0\n"
-"POT-Creation-Date: 2025-05-03 03:27\n"
+"POT-Creation-Date: 2025-05-10 03:28\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -242,9 +242,6 @@ msgstr ""
 msgid "More than one mode exists. For nominal and ordinal data, the first mode is reported. For continuous data, the mode with the highest density estimate is reported but multiple modes may exist. We recommend visualizing the data to check for multimodality."
 msgstr ""
 
-msgid "The mode is computed assuming that variables are discrete."
-msgstr ""
-
 msgid "Total"
 msgstr ""
 
@@ -269,9 +266,6 @@ msgstr ""
 msgid "Cumulative Percent"
 msgstr ""
 
-msgid "Density"
-msgstr ""
-
 msgid "Plotting not possible: %s"
 msgstr ""
 
@@ -279,6 +273,9 @@ msgid "Plotting is not possible: No plot type selected!"
 msgstr ""
 
 msgid "Counts"
+msgstr ""
+
+msgid "Density"
 msgstr ""
 
 msgid "No non-missing values!"
