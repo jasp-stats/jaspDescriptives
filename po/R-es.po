@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
 "POT-Creation-Date: 2025-05-03 03:27\n"
-"PO-Revision-Date: 2024-09-30 17:05+0000\n"
+"PO-Revision-Date: 2025-05-03 14:12+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/es/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 msgid "Time Series Plot"
 msgstr "Gráfico de Serie temporal"
@@ -38,7 +38,7 @@ msgid "Mean"
 msgstr "Media"
 
 msgid "Std. Deviation"
-msgstr "Desviación Típica"
+msgstr "Desviación típica"
 
 msgid "Variance"
 msgstr "Varianza"
@@ -387,9 +387,8 @@ msgstr ""
 "número indicado de nubes no coincide con las nubes del gráfico.</span>"
 
 msgid "Interval around mean represents ± 1 standard error"
-msgstr "El intervalo en torno a la media representa ± 1 desviación típica."
+msgstr "El intervalo en torno a la media representa ± 1 error típico."
 
-#, fuzzy
 msgid "Interval around mean represents ± 1 standard deviation"
 msgstr "El intervalo en torno a la media representa ± 1 desviación típica."
 
@@ -457,9 +456,8 @@ msgstr "IC del %s%% para la Diferencia de Medias"
 msgid "Standard Error"
 msgstr "Error Típico"
 
-#, fuzzy
 msgid "Standard Deviation"
-msgstr "Desviación Típica"
+msgstr "Desviación típica"
 
 msgid "<i>N</i><sub>Total</sub> = %s."
 msgstr "<i>N</i><sub>Total</sub> = %s."
