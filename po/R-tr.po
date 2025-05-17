@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.18.3\n"
 "POT-Creation-Date: 2025-05-10 03:28\n"
-"PO-Revision-Date: 2025-03-19 23:04+0000\n"
-"Last-Translator: Uğur ÇELİK <prof_ugur@hotmail.com>\n"
+"PO-Revision-Date: 2025-05-16 23:05+0000\n"
+"Last-Translator: Ertuğrul Uyar <ertugruluyar.academic@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/tr/>\n"
 "Language: tr\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 msgid "Time Series Plot"
 msgstr "Zaman Serisi Grafiği"
@@ -38,14 +38,13 @@ msgid "Mean"
 msgstr "Ortalama"
 
 msgid "Std. Deviation"
-msgstr "Standart Sapma"
+msgstr "Std. Sapma"
 
 msgid "Variance"
 msgstr "Varyans"
 
-#, fuzzy
 msgid "Range"
-msgstr "Sıra"
+msgstr "Açıklık"
 
 msgid "Minimum"
 msgstr "Minimum"
@@ -102,7 +101,7 @@ msgstr "Gecikme"
 
 #, fuzzy
 msgid "Association %s"
-msgstr "Çağrıştırma %s"
+msgstr "İlişki %s"
 
 msgid "Frequency Tables"
 msgstr "Frekans Tabloları"
@@ -175,7 +174,7 @@ msgid "Upper"
 msgstr "Üst"
 
 msgid "Lower"
-msgstr "Daha düşük"
+msgstr "Alt"
 
 msgid "%s%% CI Mean Upper"
 msgstr "%s%% CI Ortalaması Üst"
@@ -386,9 +385,8 @@ msgstr ""
 msgid "Interval around mean represents ± 1 standard error"
 msgstr "Ortalama civarındaki aralık ± 1 standart hatayı temsil eder"
 
-#, fuzzy
 msgid "Interval around mean represents ± 1 standard deviation"
-msgstr "Ortalama civarındaki aralık ± 1 standart hatayı temsil eder"
+msgstr "Ortalama civarındaki aralık, ± 1 standart sapmayı temsil eder"
 
 msgid "Interval around mean represents %d%% confidence interval."
 msgstr "Ortalama civarındaki aralık %d%% güven aralığını temsil eder."
@@ -396,7 +394,6 @@ msgstr "Ortalama civarındaki aralık %d%% güven aralığını temsil eder."
 msgid "Points are slightly jittered from their true values."
 msgstr "Puanlar gerçek değerlerinden biraz sapmış durumda."
 
-#, fuzzy
 msgid ""
 "<span style = 'color: darkorange'> Warning! Some data is not "
 "shown<br>because it lies outside of the interval set by the custom axis "
@@ -454,7 +451,6 @@ msgstr "Ortalama Fark için %s%% CI"
 msgid "Standard Error"
 msgstr "Standart Hata"
 
-#, fuzzy
 msgid "Standard Deviation"
 msgstr "Standart Sapma"
 
