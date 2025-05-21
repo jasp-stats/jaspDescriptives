@@ -1362,7 +1362,7 @@ Form {
                                       )
                                      ||
                                      // yesRM :
-                                     ( yesRM.checked && variableRepeatedMeasures.count > 0 &&
+                                     ( yesRM.checked && repeatedMeasuresFactors.count > 0 &&
                                       (
                                           ((xVarRM.count > 0) && groupVarRM.count > 0)
                                           )
@@ -1370,7 +1370,7 @@ Form {
                                      )
                         onEnabledChanged: {
                             if (!enabled) {
-                                checked = false
+                                checked = false;
                             }
                         }
                         // Nested parameters
@@ -1399,7 +1399,7 @@ Form {
                                       )
                                      ||
                                      // yesRM :
-                                     ( yesRM.checked && variableRepeatedMeasures.count > 0 &&
+                                     ( yesRM.checked && repeatedMeasuresFactors.count > 0 &&
                                       (
                                           ((xVarRM.count > 0) && groupVarRM.count > 0)
                                           )
