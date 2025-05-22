@@ -1362,10 +1362,7 @@ Form {
                                       )
                                      ||
                                      // yesRM :
-                                     ( yesRM.checked && repeatedMeasuresFactors.count > 0 &&
-                                      (
-                                          ((xVarRM.count > 0) && groupVarRM.count > 0)
-                                          )
+                                     ((yesRM.checked && repeatedMeasuresFactors.count > 0) && groupVarRM.count > 0
                                       )
                                      )
                         onEnabledChanged: {
@@ -1399,10 +1396,7 @@ Form {
                                       )
                                      ||
                                      // yesRM :
-                                     ( yesRM.checked && repeatedMeasuresFactors.count > 0 &&
-                                      (
-                                          ((xVarRM.count > 0) && groupVarRM.count > 0)
-                                          )
+                                     ((yesRM.checked && repeatedMeasuresFactors.count > 0) && groupVarRM.count > 0
                                       )
                                      )
                         onEnabledChanged: {
