@@ -1343,12 +1343,13 @@ Form {
                     RadioButton {
                         value: "relative"
                         label: qsTr("Relative")
+                        id: relative
                     }
                 }
 
                 // Use a GridLayout to arrange the two checkboxes side-by-side
                 GridLayout {
-                    columns: 2
+                    columns: 3
                     columnSpacing: 40
 
                     CheckBox {
@@ -1429,6 +1430,19 @@ Form {
                             checked: false
                         }
                     }
+
+                    CheckBox {
+                        enabled: relative.checked
+                        name: "asPercentage"
+                        label: qsTr("Show as percentages")
+                        checked: false
+                        onEnabledChanged: {
+                            if (!enabled) {
+                                checked = false
+                            }
+                        }
+                    }
+
                 }
             }
 

@@ -2098,6 +2098,17 @@ addDecodedLabels <- function(p) {
         )
     }
 
+    # asPercentage axis labeling ----
+    asPercentage <- isTRUE(tab[["asPercentage"]])
+
+    # Only apply percent labels if the variable is NOT a factor
+    if (asPercentage && !is.factor(localData[[yVar]])) {
+      tidyplot_obj <- tidyplot_obj + ggplot2::scale_y_continuous(labels = scales::percent_format(accuracy = 1))
+    }
+
+    if (asPercentage && !is.factor(localData[[xVar]])) {
+      tidyplot_obj <- tidyplot_obj + ggplot2::scale_x_continuous(labels = scales::percent_format(accuracy = 1))
+    }
 
     # Render plot ----------
 
