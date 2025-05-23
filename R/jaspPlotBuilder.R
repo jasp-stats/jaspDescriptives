@@ -1791,8 +1791,6 @@ addDecodedLabels <- function(p) {
 
     if (tab[["propMode"]] == "relative") {
       blankLayer <- ggplot2::geom_blank(
-        data = data.frame(x = c(0, 1), y = c(0, 1)),
-        mapping = ggplot2::aes(x = x, y = y),
         inherit.aes = FALSE
       )
     } else {
