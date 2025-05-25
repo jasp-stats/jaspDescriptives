@@ -2146,7 +2146,7 @@ addDecodedLabels <- function(p) {
 
   # Create or retrieve individual tidy plots container
   if (!is(jaspResults[["tidyPlotsContainer"]], "JaspContainer")) {
-    tidyPlotsContainer <- createJaspContainer(title = gettext("Individual Plots"))
+    tidyPlotsContainer <- createJaspContainer(title = gettext("Plots"))
     jaspResults[["tidyPlotsContainer"]] <- tidyPlotsContainer
   } else {
     tidyPlotsContainer <- jaspResults[["tidyPlotsContainer"]]
