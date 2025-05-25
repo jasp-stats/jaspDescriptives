@@ -1481,14 +1481,23 @@ addDecodedLabels <- function(p) {
 
     # Adjust X axis labels (tidyplots::rename_x_axis_labels)----
     if (!is.null(tab[["xAxisLabelRenamer"]]) && length(tab[["xAxisLabelRenamer"]]) > 0) {
-      label_map_x <- setNames(
-        sapply(tab[["xAxisLabelRenamer"]], function(x) x$newXLabel),
-        sapply(tab[["xAxisLabelRenamer"]], function(x) x$originalXLabel)
-      )
-      if (length(label_map_x) > 0) {
+      # Filter for entries where both original and new labels are non-empty and not null
+      valid_labels <- Filter(function(x) {
+        !is.null(x$originalXLabel) && x$originalXLabel != "" &&
+          !is.null(x$newXLabel) && x$newXLabel != ""
+      }, tab[["xAxisLabelRenamer"]])
+
+      # Only proceed if there are any valid (non-empty) label pairs to rename
+      if (length(valid_labels) > 0) {
+        label_map_x <- setNames(
+          sapply(valid_labels, function(x) x$newXLabel),
+          sapply(valid_labels, function(x) x$originalXLabel)
+        )
+        # Apply axis label renaming only for valid pairs
         tidyplot_obj <- tidyplots::rename_x_axis_labels(tidyplot_obj, new_names = label_map_x)
       }
     }
+
 
     # Sort X axis labels (tidyplots::sort_x_axis_labels)----
     enableSort <- tab[["enableSort"]]
@@ -1580,11 +1589,19 @@ addDecodedLabels <- function(p) {
 
     # Adjust Y axis labels (tidyplots::rename_y_axis_labels)----
     if (!is.null(tab[["yAxisLabelRenamer"]]) && length(tab[["yAxisLabelRenamer"]]) > 0) {
-      label_map_y <- setNames(
-        sapply(tab[["yAxisLabelRenamer"]], function(x) x$newYLabel),
-        sapply(tab[["yAxisLabelRenamer"]], function(x) x$originalYLabel)
-      )
-      if (length(label_map_y) > 0) {
+      # Filter for entries where both original and new labels are non-empty and not null
+      valid_labels_y <- Filter(function(x) {
+        !is.null(x$originalYLabel) && x$originalYLabel != "" &&
+          !is.null(x$newYLabel) && x$newYLabel != ""
+      }, tab[["yAxisLabelRenamer"]])
+
+      # Only proceed if there are any valid (non-empty) label pairs to rename
+      if (length(valid_labels_y) > 0) {
+        label_map_y <- setNames(
+          sapply(valid_labels_y, function(x) x$newYLabel),
+          sapply(valid_labels_y, function(x) x$originalYLabel)
+        )
+        # Apply axis label renaming only for valid pairs
         tidyplot_obj <- tidyplots::rename_y_axis_labels(tidyplot_obj, new_names = label_map_y)
       }
     }
