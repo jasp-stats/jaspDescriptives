@@ -165,7 +165,6 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
                                                   .drop = FALSE,
                                                   errorBarType = options[["meanIntervalOption"]],
                                                   usePooledSE = TRUE,
-                                                  useMoreyCorrection = TRUE,
                                                   dependentName = "observationId",
                                                   subjectName = inputVariable)
     }
