@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2025-05-10 03:28\n"
-"PO-Revision-Date: 2025-03-12 18:33+0000\n"
+"PO-Revision-Date: 2025-06-10 15:01+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/de/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
-"X-Generator: Weblate 5.10.3-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 msgid "Time Series Plot"
 msgstr "Zeitreihendiagramm"
@@ -391,9 +391,8 @@ msgstr ""
 "span>"
 
 msgid "Interval around mean represents ± 1 standard error"
-msgstr "Intervall um Mittelwert repräsentiert ± 1 Standardabweichung"
+msgstr "Intervall um Mittelwert repräsentiert ± 1 Standardfehler"
 
-#, fuzzy
 msgid "Interval around mean represents ± 1 standard deviation"
 msgstr "Intervall um Mittelwert repräsentiert ± 1 Standardabweichung"
 
