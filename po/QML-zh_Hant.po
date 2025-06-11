@@ -111,7 +111,7 @@ msgid "Show legend"
 msgstr "顯示註釋"
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
+msgid "Basic Plots"
 msgstr "基本統計圖"
 
 msgctxt "Descriptives|"
@@ -283,7 +283,7 @@ msgid "Transpose descriptives table"
 msgstr "將描述性統計量表「行列轉置」"
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
+msgid "Customizable Plots"
 msgstr "修改統計圖設定"
 
 msgctxt "Descriptives|"
@@ -347,7 +347,7 @@ msgid "Bootstrap samples"
 msgstr "拔靴法抽樣數"
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
+msgid "Categorical Plots"
 msgstr "類別變數圖"
 
 msgctxt "Descriptives|"
@@ -1947,14 +1947,6 @@ msgid "Show points"
 msgstr ""
 
 msgctxt "raincloudPlots|"
-msgid ""
-"You can choose between a confidence interval or ±1 standard error.<br>For "
-"the computation of the confidence interval and standard error, within and "
-"between factors are determined based on the specifciation of the ID "
-"variable<br><h4>"
-msgstr ""
-
-msgctxt "raincloudPlots|"
 msgid "Standard error"
 msgstr "標準誤"
 
@@ -2062,4 +2054,16 @@ msgctxt "raincloudPlots|"
 msgid ""
 "Note: This module has a %1 youtube tutorial %2 & requires data in long "
 "format."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"You can choose between a confidence interval, ±1 standard error, or ±1  "
+"standard deviation.<br>For the computation of the confidence interval/se/sd, "
+"within and between factors are determined based on the specifciation of the "
+"ID variable<br><h4>"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Standard deviation"
 msgstr ""

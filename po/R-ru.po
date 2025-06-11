@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-03-08 03:18\n"
-"PO-Revision-Date: 2024-10-06 18:00+0000\n"
-"Last-Translator: Valery Egorova <l.eremeyeva@yandex.ru>\n"
+"POT-Creation-Date: 2025-05-10 03:28\n"
+"PO-Revision-Date: 2025-04-02 18:57+0000\n"
+"Last-Translator: Иван Рудаков <riv@polygene.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/ru/>\n"
 "Language: ru\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 msgid "Time Series Plot"
 msgstr "График временного ряда"
@@ -36,7 +36,7 @@ msgid "Missing"
 msgstr "Пропущенные"
 
 msgid "Mean"
-msgstr "Среднее"
+msgstr "Среднее значение"
 
 msgid "Std. Deviation"
 msgstr "Стандартное отклонение"
@@ -45,7 +45,7 @@ msgid "Variance"
 msgstr "Дисперсия"
 
 msgid "Range"
-msgstr "Размах"
+msgstr "Диапазон"
 
 msgid "Minimum"
 msgstr "Минимум"
@@ -173,10 +173,10 @@ msgid "%s%% Confidence Interval Variance"
 msgstr "%s%% Доверительный Интервал Дисперсии"
 
 msgid "Upper"
-msgstr "Верхняя граница"
+msgstr "Верхний"
 
 msgid "Lower"
-msgstr "Нижняя граница"
+msgstr "Нижний"
 
 msgid "%s%% CI Mean Upper"
 msgstr "%s%% ДИ Среднего (верхняя граница)"
@@ -242,7 +242,7 @@ msgid "50th percentile"
 msgstr "50-й процентиль"
 
 msgid "75th percentile"
-msgstr "75-й процентиль"
+msgstr "75-й квартиль"
 
 msgid "%gth percentile"
 msgstr "%g-й процентиль"
@@ -269,11 +269,8 @@ msgid ""
 "check for multimodality."
 msgstr ""
 
-msgid "The mode is computed assuming that variables are discrete."
-msgstr ""
-
 msgid "Total"
-msgstr "Всего"
+msgstr "Общий"
 
 msgid "All variables have more than %1$s distinct values"
 msgstr "Все переменные имеют более %1$s различных значений"
@@ -296,9 +293,6 @@ msgstr "Значимый процент"
 msgid "Cumulative Percent"
 msgstr "Накопленный процент"
 
-msgid "Density"
-msgstr "Плотность"
-
 msgid "Plotting not possible: %s"
 msgstr "Построение графиков невозможно: %s"
 
@@ -307,6 +301,9 @@ msgstr "Построение графика невозможно: Ни один 
 
 msgid "Counts"
 msgstr "Количество"
+
+msgid "Density"
+msgstr "Плотность"
 
 msgid "No non-missing values!"
 msgstr "Нет непропущенных значений!"
@@ -377,6 +374,9 @@ msgstr ""
 msgid "Interval around mean represents ± 1 standard error"
 msgstr ""
 
+msgid "Interval around mean represents ± 1 standard deviation"
+msgstr ""
+
 msgid "Interval around mean represents %d%% confidence interval."
 msgstr ""
 
@@ -401,7 +401,6 @@ msgid ""
 "span>"
 msgstr ""
 
-#, fuzzy
 msgid "Statistics"
 msgstr "Описательные статистики"
 
@@ -415,25 +414,25 @@ msgid "<i>N</i>"
 msgstr ""
 
 msgid "Lower Whisker"
-msgstr ""
+msgstr "Наблюдаемый минимум"
 
-#, fuzzy
 msgid "25th Percentile"
-msgstr "25-й процентиль"
+msgstr "25-й Процентиль"
 
-#, fuzzy
 msgid "75th Percentile"
-msgstr "75-й процентиль"
+msgstr "75-й Квартиль"
 
 msgid "Upper Whisker"
-msgstr ""
+msgstr "Наблюдаемый максимум"
 
-#, fuzzy
 msgid "%s%% CI for Mean Difference"
-msgstr "%s%% ДИ Среднего (верхняя граница)"
+msgstr "%s%% ДИ для разницы средних"
+
+msgid "Standard Error"
+msgstr "Стандартная ошибка"
 
 #, fuzzy
-msgid "Standard Error"
+msgid "Standard Deviation"
 msgstr "Стандартное отклонение"
 
 msgid "<i>N</i><sub>Total</sub> = %s."

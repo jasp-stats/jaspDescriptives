@@ -115,7 +115,7 @@ msgid "Show legend"
 msgstr "Pokaż legendę"
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
+msgid "Basic Plots"
 msgstr "Podstawowe wykresy"
 
 msgctxt "Descriptives|"
@@ -267,8 +267,8 @@ msgid "Transpose descriptives table"
 msgstr "Transponuj tabelę"
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
-msgstr "Wykresy konfigurowalne"
+msgid "Customizable Plots"
+msgstr "Wykresy Konfigurowalne"
 
 msgctxt "Descriptives|"
 msgid "Dot plots"
@@ -351,7 +351,7 @@ msgid "Bootstrap samples"
 msgstr "Liczba próbek"
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
+msgid "Categorical Plots"
 msgstr "Wykresy dla danych kategorialnych"
 
 msgctxt "Descriptives|"
@@ -486,7 +486,7 @@ msgstr ""
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Variable"
-msgstr ""
+msgstr "Zmienna"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "A variable that is measured repeatedly over time."
@@ -494,7 +494,7 @@ msgstr ""
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time"
-msgstr ""
+msgstr "Czas"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
@@ -506,10 +506,9 @@ msgid ""
 "supplied, the row order of the data is used."
 msgstr ""
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Transpose descriptives table"
-msgstr "Transponuj tabelę"
+msgstr "Transponuj tabelę stat. opisowych"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Filter by"
@@ -525,27 +524,27 @@ msgstr ""
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Row number"
-msgstr ""
+msgstr "Numer wiersza"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Start"
-msgstr ""
+msgstr "Początek"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "End"
-msgstr ""
+msgstr "Koniec"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time index"
-msgstr ""
+msgstr "Indeks czasu"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots"
-msgstr ""
+msgstr "Wykresy"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time series plot"
@@ -557,32 +556,28 @@ msgstr ""
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Points"
-msgstr ""
+msgstr "Punkty"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Line"
-msgstr ""
+msgstr "Linia"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Both"
-msgstr ""
+msgstr "Oba"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Distribution"
 msgstr "Rozkład"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Density"
 msgstr "Gęstość"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Histogram"
 msgstr "Histogram"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "None"
 msgstr "Brak"
@@ -603,28 +598,25 @@ msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Lag"
 msgstr ""
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Add regression line"
 msgstr "Dodaj linię regresji"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Smooth"
 msgstr "Wygładzona"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Linear"
 msgstr "Linia prosta"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Confidence interval"
-msgstr ""
+msgstr "Przedział ufności"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Autocorrelation function"
-msgstr ""
+msgstr "Funkcja autokorelacji"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Maximum lag"
@@ -643,7 +635,7 @@ msgstr ""
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Based on white noise"
-msgstr ""
+msgstr "W oparciu o biały szum"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Based on moving average"
@@ -659,64 +651,52 @@ msgstr ""
 
 msgctxt "Description|"
 msgid "Flexplot"
-msgstr ""
+msgstr "Moduł Flexplot"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Dependent Variable"
 msgstr "Zmienna zależna"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Independent Variable(s)"
-msgstr "Zmienna(e) niezależna(e)"
+msgstr "Zmienne niezależne"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Paneled Variable(s)"
 msgstr "Zmienne grupujące"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Options"
 msgstr "Opcje"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Point transparency"
 msgstr "Przejrzystość punktów"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Jitter in X"
 msgstr "Losowy szum w X"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Jitter in Y"
 msgstr "Losowy szum w Y"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Plot confidence bands"
 msgstr "Nanieś przedziały ufności"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Loess"
 msgstr "LOESS"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Regression"
 msgstr "Regresja"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Quadratic"
 msgstr "Kwadratowa"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Cubic"
 msgstr "Sześcienna"
@@ -731,12 +711,10 @@ msgctxt "FlexplotForm|"
 msgid "Fitted line (scatterplots)"
 msgstr "Linia dopasowania"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Quartiles"
 msgstr "Kwartyle"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Standard deviations"
 msgstr "Odchylenie standardowe"
@@ -745,46 +723,38 @@ msgctxt "FlexplotForm|"
 msgid "Intervals (categorical predictors)"
 msgstr "Przedziały (predyktory kategorialne)"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "JASP"
 msgstr "JASP"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Black and white"
 msgstr "Czerń i biel"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Minimal"
 msgstr "Minimalistyczny"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Classic"
 msgstr "Klasyczny"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Dark"
 msgstr "Ciemny"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "GGplot theme"
-msgstr "Motyw"
+msgstr "Motyw GGplot"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "GGplot Default"
-msgstr "Domyślny"
+msgstr "Domyślny GGplot"
 
 msgctxt "FlexplotForm|"
 msgid "Nature"
 msgstr "Nature"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "AAAS"
 msgstr "AAAS"
@@ -793,52 +763,42 @@ msgctxt "FlexplotForm|"
 msgid "Lancet"
 msgstr "Lancet"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "JCO"
 msgstr "JCO"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Color Palette"
 msgstr "Paleta kolorów"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Convert to grayscale"
 msgstr "Konwertuj na skalę szarości"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Ghost lines"
 msgstr "Linie siatki"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Plot Labels"
 msgstr "Etykiety"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "X Axis Label"
 msgstr "Etykieta osi X"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Y Axis Label"
 msgstr "Etykieta osi Y"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Legend Label"
 msgstr "Etykieta legendy"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Column Panel Label"
 msgstr "Etykieta kolumny"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Row Panel Label"
 msgstr "Etykieta wiersza"
@@ -873,7 +833,7 @@ msgstr "Pary kompletnych obserwacji"
 
 msgctxt "Description|"
 msgid "Raincloud Plots"
-msgstr ""
+msgstr "Wykresy chmury deszczowej"
 
 msgctxt "FlexplotForm|"
 msgid ""
@@ -888,7 +848,7 @@ msgstr ""
 
 msgctxt "FlexplotForm|"
 msgid "Example"
-msgstr ""
+msgstr "Przykład"
 
 #, qt-format
 msgctxt "FlexplotForm|"
@@ -897,7 +857,7 @@ msgstr ""
 
 msgctxt "FlexplotForm|"
 msgid "Input"
-msgstr ""
+msgstr "Dane wejściowe"
 
 msgctxt "FlexplotForm|"
 msgid ""
@@ -1029,15 +989,15 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "R Packages"
-msgstr ""
+msgstr "Pakiety R"
 
 msgctxt "Descriptives|"
 msgid "Input"
-msgstr ""
+msgstr "Dane wejściowe"
 
 msgctxt "Descriptives|"
 msgid "All variables of interest."
-msgstr ""
+msgstr "Wszystkie wybrane zmienne."
 
 msgctxt "Descriptives|"
 msgid "Can be split by a categorical variable such as experimental condition."
@@ -1049,7 +1009,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Percentile Values"
-msgstr ""
+msgstr "Wartości percentyli"
 
 msgctxt "Descriptives|"
 msgid "Displays the 25th, 50th, and 75th percentiles of the data points."
@@ -1358,9 +1318,10 @@ msgctxt "raincloudPlots|"
 msgid "References"
 msgstr ""
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Input"
-msgstr ""
+msgstr "Dane wejściowe"
 
 msgctxt "raincloudPlots|"
 msgid "Dependent Variables"
@@ -1802,7 +1763,7 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Confidence interval"
-msgstr ""
+msgstr "Przedział ufności"
 
 msgctxt "raincloudPlots|"
 msgid "Interval line width"
@@ -1964,14 +1925,6 @@ msgid "Show points"
 msgstr ""
 
 msgctxt "raincloudPlots|"
-msgid ""
-"You can choose between a confidence interval or ±1 standard error.<br>For "
-"the computation of the confidence interval and standard error, within and "
-"between factors are determined based on the specifciation of the ID "
-"variable<br><h4>"
-msgstr ""
-
-msgctxt "raincloudPlots|"
 msgid "Standard error"
 msgstr ""
 
@@ -2073,4 +2026,16 @@ msgctxt "raincloudPlots|"
 msgid ""
 "Note: This module has a %1 youtube tutorial %2 & requires data in long "
 "format."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"You can choose between a confidence interval, ±1 standard error, or ±1  "
+"standard deviation.<br>For the computation of the confidence interval/se/sd, "
+"within and between factors are determined based on the specifciation of the "
+"ID variable<br><h4>"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Standard deviation"
 msgstr ""

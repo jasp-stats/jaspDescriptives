@@ -115,7 +115,7 @@ msgid "Show legend"
 msgstr "Legende anzeigen"
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
+msgid "Basic Plots"
 msgstr "Einfache Diagramme"
 
 msgctxt "Descriptives|"
@@ -208,7 +208,7 @@ msgstr "Varianz"
 
 msgctxt "Descriptives|"
 msgid "Range"
-msgstr "Wertebereich"
+msgstr "Spannweite"
 
 msgctxt "Descriptives|"
 msgid "Minimum"
@@ -287,7 +287,7 @@ msgid "Transpose descriptives table"
 msgstr "Deskriptive Tabelle transponieren"
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
+msgid "Customizable Plots"
 msgstr "Einstellbare Diagramme"
 
 msgctxt "Descriptives|"
@@ -363,7 +363,7 @@ msgid "Tables"
 msgstr "Tabellen"
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
+msgid "Categorical Plots"
 msgstr "Kategoriale Diagramme"
 
 msgctxt "Descriptives|"
@@ -1189,7 +1189,7 @@ msgstr ""
 msgctxt "Descriptives|"
 msgid ""
 "Interquartile range of the data points; 75th percentile - 25th percentile."
-msgstr "mittlere 50% der Daten; 75. Perzentil - 25. Perzentil."
+msgstr "Interquartilsabstand der Datenpunkte; 75. Perzentil - 25. Perzentil."
 
 msgctxt "Descriptives|"
 msgid "Variance of the data points."
@@ -1197,7 +1197,7 @@ msgstr "Varianz der Datenpunkte."
 
 msgctxt "Descriptives|"
 msgid "Range of the data points; maximum - minimum."
-msgstr "Wertebereich der Datenpunkte; Maximum - Minimum."
+msgstr "Spannweite der Datenpunkte; Maximum - Minimum."
 
 msgctxt "Descriptives|"
 msgid "Minimum value of the data points."
@@ -1411,7 +1411,7 @@ msgstr "Zeigt eine Häufigkeitstabelle für jede Variable."
 
 msgctxt "Descriptives|"
 msgid "Displays the spread of a variable."
-msgstr "Zeigt die Spannweite einer Variablen an."
+msgstr "Zeigt die Streubreite einer Variablen an."
 
 msgctxt "Descriptives|"
 msgid "Stem: the first digit(s)."
@@ -1704,7 +1704,7 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Height, Width, and Spread"
-msgstr "Höhe, Breite, und Spannweite"
+msgstr "Höhe, Breite, und Streubreite"
 
 msgctxt "raincloudPlots|"
 msgid ""
@@ -1866,10 +1866,9 @@ msgctxt "raincloudPlots|"
 msgid "Point"
 msgstr "Punkt"
 
-#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Spread"
-msgstr "Spannweite"
+msgstr "Streubreite"
 
 msgctxt "raincloudPlots|"
 msgid "Size"
@@ -2277,18 +2276,6 @@ msgid "Show points"
 msgstr "Punkte anzeigen"
 
 msgctxt "raincloudPlots|"
-msgid ""
-"You can choose between a confidence interval or ±1 standard error.<br>For "
-"the computation of the confidence interval and standard error, within and "
-"between factors are determined based on the specifciation of the ID "
-"variable<br><h4>"
-msgstr ""
-"Sie können zwischen einem Konfidenzintervall oder ±1 Standardfehler wählen."
-"<br>Für die Berechnung des Konfidenzintervalls und des Standardfehlers "
-"werden Innere und Zwischen-Faktoren anhand der Angabe der ID-Variable "
-"festgelegt<br>h4>"
-
-msgctxt "raincloudPlots|"
 msgid "Standard error"
 msgstr "Standardfehler"
 
@@ -2414,3 +2401,15 @@ msgid ""
 msgstr ""
 "Anmerkung: Dieses Modul verfügt über ein %1 Youtube-Tutorium %2 & benötigt "
 "Daten im Long-Format."
+
+msgctxt "raincloudPlots|"
+msgid ""
+"You can choose between a confidence interval, ±1 standard error, or ±1  "
+"standard deviation.<br>For the computation of the confidence interval/se/sd, "
+"within and between factors are determined based on the specifciation of the "
+"ID variable<br><h4>"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Standard deviation"
+msgstr "Standardabweichung"

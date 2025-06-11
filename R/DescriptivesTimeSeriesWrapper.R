@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2013-2024 University of Amsterdam
+# Copyright (C) 2013-2025 University of Amsterdam
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,11 +15,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-# This is a generated file. Don't change it
+# This is a generated file. Don't change it!
 
 DescriptivesTimeSeries <- function(
           data = NULL,
-          version = "0.19.2",
+          version = "0.19.3",
           acf = FALSE,
           acfCi = TRUE,
           acfCiLevel = 0.95,
@@ -28,7 +28,7 @@ DescriptivesTimeSeries <- function(
           acfZeroLag = FALSE,
           dateEnd = "",
           dateStart = "",
-          dependent = list(types = "", value = ""),
+          dependent = list(types = list(), value = ""),
           descriptivesTableTransposed = FALSE,
           filter = FALSE,
           filterBy = "row",
@@ -46,7 +46,7 @@ DescriptivesTimeSeries <- function(
           plotWidth = 480,
           rowEnd = 100,
           rowStart = 1,
-          time = list(types = "", value = ""),
+          time = list(types = list(), value = ""),
           timeEnd = 100,
           timeSeriesPlot = TRUE,
           timeSeriesPlotDistribution = "none",
@@ -62,9 +62,14 @@ DescriptivesTimeSeries <- function(
    options[["data"]] <- NULL
    options[["version"]] <- NULL
 
+
+   if (!jaspBase::jaspResultsCalledFromJasp() && !is.null(data)) {
+      jaspBase::storeDataSet(data)
+   }
+
    optionsWithFormula <- c("dependent", "time")
    for (name in optionsWithFormula) {
       if ((name %in% optionsWithFormula) && inherits(options[[name]], "formula")) options[[name]] = jaspBase::jaspFormula(options[[name]], data)   }
 
-   return(jaspBase::runWrappedAnalysis("jaspDescriptives::DescriptivesTimeSeries", data, options, version))
+   return(jaspBase::runWrappedAnalysis("jaspDescriptives", "DescriptivesTimeSeries", "DescriptivesTimeSeries.qml", options, version, TRUE))
 }

@@ -895,7 +895,7 @@ msgid "Values are group midpoints"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
+msgid "Basic Plots"
 msgstr ""
 
 msgctxt "Descriptives|"
@@ -975,7 +975,7 @@ msgid "Dot plots"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
+msgid "Categorical Plots"
 msgstr ""
 
 msgctxt "Descriptives|"
@@ -1077,7 +1077,7 @@ msgid "Large"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
+msgid "Customizable Plots"
 msgstr ""
 
 msgctxt "Descriptives|"
@@ -1782,14 +1782,6 @@ msgid ""
 msgstr ""
 
 msgctxt "raincloudPlots|"
-msgid ""
-"You can choose between a confidence interval or ±1 standard error.<br>For "
-"the computation of the confidence interval and standard error, within and "
-"between factors are determined based on the specifciation of the ID "
-"variable<br><h4>"
-msgstr ""
-
-msgctxt "raincloudPlots|"
 msgid "Confidence interval"
 msgstr ""
 
@@ -2022,4 +2014,16 @@ msgctxt "raincloudPlots|"
 msgid ""
 "Note: This module has a %1 youtube tutorial %2 & requires data in long "
 "format."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"You can choose between a confidence interval, ±1 standard error, or ±1  "
+"standard deviation.<br>For the computation of the confidence interval/se/sd, "
+"within and between factors are determined based on the specifciation of the "
+"ID variable<br><h4>"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Standard deviation"
 msgstr ""

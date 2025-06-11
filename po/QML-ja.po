@@ -113,7 +113,7 @@ msgid "Show legend"
 msgstr "凡例を表示する"
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
+msgid "Basic Plots"
 msgstr "基本的な図"
 
 msgctxt "Descriptives|"
@@ -285,7 +285,7 @@ msgid "Transpose descriptives table"
 msgstr "記述表を転置する"
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
+msgid "Customizable Plots"
 msgstr "カスタマイズ可能なプロット"
 
 msgctxt "Descriptives|"
@@ -361,7 +361,7 @@ msgid "Tables"
 msgstr "表"
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
+msgid "Categorical Plots"
 msgstr "カテゴリカルプロット"
 
 msgctxt "Descriptives|"
@@ -2048,14 +2048,6 @@ msgid "Show points"
 msgstr ""
 
 msgctxt "raincloudPlots|"
-msgid ""
-"You can choose between a confidence interval or ±1 standard error.<br>For "
-"the computation of the confidence interval and standard error, within and "
-"between factors are determined based on the specifciation of the ID "
-"variable<br><h4>"
-msgstr ""
-
-msgctxt "raincloudPlots|"
 msgid "Standard error"
 msgstr ""
 
@@ -2157,4 +2149,16 @@ msgctxt "raincloudPlots|"
 msgid ""
 "Note: This module has a %1 youtube tutorial %2 & requires data in long "
 "format."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"You can choose between a confidence interval, ±1 standard error, or ±1  "
+"standard deviation.<br>For the computation of the confidence interval/se/sd, "
+"within and between factors are determined based on the specifciation of the "
+"ID variable<br><h4>"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Standard deviation"
 msgstr ""

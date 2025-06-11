@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-03-08 03:18\n"
-"PO-Revision-Date: 2024-09-05 15:09+0000\n"
+"POT-Creation-Date: 2025-05-10 03:28\n"
+"PO-Revision-Date: 2025-06-01 21:05+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/pl/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 msgid "Time Series Plot"
 msgstr "Wykres szeregu czasowego"
@@ -273,9 +273,6 @@ msgstr ""
 "najwyższym oszacowaniem gęstości. Zalecamy wizualizację danych w celu "
 "sprawdzenia wielomodalności."
 
-msgid "The mode is computed assuming that variables are discrete."
-msgstr "Modalna została obliczona przy założeniu, że zmienne są dyskretne."
-
 msgid "Total"
 msgstr "Całość"
 
@@ -300,9 +297,6 @@ msgstr "Procent ważnych"
 msgid "Cumulative Percent"
 msgstr "Procent skumulowany"
 
-msgid "Density"
-msgstr "Gęstość"
-
 msgid "Plotting not possible: %s"
 msgstr "Nie można utworzyć wykresu: %s"
 
@@ -311,6 +305,9 @@ msgstr "Nie można utworzyć wykresu: nie wybrano typu wykresu!"
 
 msgid "Counts"
 msgstr "Liczebności"
+
+msgid "Density"
+msgstr "Gęstość"
 
 msgid "No non-missing values!"
 msgstr "Występują wyłącznie braki danych!"
@@ -387,6 +384,9 @@ msgstr ""
 msgid "Interval around mean represents ± 1 standard error"
 msgstr "Przedział wokół średniej wynosi ± 1 błąd standardowy"
 
+msgid "Interval around mean represents ± 1 standard deviation"
+msgstr "Przedział wokół średniej wynosi ± 1 odchylenie standardowe"
+
 msgid "Interval around mean represents %d%% confidence interval."
 msgstr "Przedział wokół średniej przedstawia %d%% przedział ufności."
 
@@ -447,6 +447,10 @@ msgstr "%s%% PU dla różnicy średnich"
 msgid "Standard Error"
 msgstr "Błąd standardowy"
 
+#, fuzzy
+msgid "Standard Deviation"
+msgstr "Odch. stand."
+
 msgid "<i>N</i><sub>Total</sub> = %s."
 msgstr "<i>N</i><sub>Całość</sub> = %s."
 
@@ -482,6 +486,9 @@ msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "Punkt dziesiętny znajduje się %s cyfrę na lewo od |"
 msgstr[1] "Punkt dziesiętny znajduje się %s cyfry na lewo od |"
 msgstr[2] "Punkt dziesiętny znajduje się %s cyfr na lewo od |"
+
+#~ msgid "The mode is computed assuming that variables are discrete."
+#~ msgstr "Modalna została obliczona przy założeniu, że zmienne są dyskretne."
 
 #~ msgid "The mode is computed assuming that variables are discreet."
 #~ msgstr "Modalna została obliczona przy założeniu, że zmienne są dyskretne."

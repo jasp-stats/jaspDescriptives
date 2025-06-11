@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2025-03-08 03:18\n"
-"PO-Revision-Date: 2024-09-30 17:05+0000\n"
+"POT-Creation-Date: 2025-05-10 03:28\n"
+"PO-Revision-Date: 2025-05-03 14:12+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/gl/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 "X-Virgin-Header: remove this line if you change anything in the header.\n"
 "X-Language: gl_ES\n"
 "X-Source-Language: C\n"
@@ -46,7 +46,7 @@ msgid "Mean"
 msgstr "Media"
 
 msgid "Std. Deviation"
-msgstr "Desvío Padrón"
+msgstr "Desvío padrón"
 
 msgid "Variance"
 msgstr "Varianza"
@@ -281,9 +281,6 @@ msgstr ""
 "densidad más alta, pero poden existir varias modas. Aconsellamos visualizar "
 "os datos para verificar a multimodalidade."
 
-msgid "The mode is computed assuming that variables are discrete."
-msgstr "A moda calcúlase asumindo que as variables son discretas."
-
 msgid "Total"
 msgstr "Total"
 
@@ -308,9 +305,6 @@ msgstr "Porcentaxe Válida"
 msgid "Cumulative Percent"
 msgstr "Porcentaxe Acumulada"
 
-msgid "Density"
-msgstr "Densidade"
-
 msgid "Plotting not possible: %s"
 msgstr "Non é posible facer a gráfica: %s"
 
@@ -319,6 +313,9 @@ msgstr "Non é posible facer a gráfica: Non se elixiu o tipo de gráfica!"
 
 msgid "Counts"
 msgstr "Recontos"
+
+msgid "Density"
+msgstr "Densidade"
 
 msgid "No non-missing values!"
 msgstr "Non hai valores non ausentes!"
@@ -393,6 +390,9 @@ msgstr ""
 "indicado de nubes non coincide coas nubes da gráfica.</span>"
 
 msgid "Interval around mean represents ± 1 standard error"
+msgstr "O intervalo arredor da media representa ± 1 erro padrón."
+
+msgid "Interval around mean represents ± 1 standard deviation"
 msgstr "O intervalo arredor da media representa ± 1 desvío padrón."
 
 msgid "Interval around mean represents %d%% confidence interval."
@@ -458,6 +458,9 @@ msgstr "IC do %s%% para a Diferenza de Medias"
 msgid "Standard Error"
 msgstr "Erro Padrón"
 
+msgid "Standard Deviation"
+msgstr "Desvío padrón"
+
 msgid "<i>N</i><sub>Total</sub> = %s."
 msgstr "<i>N</i><sub>Total</sub> = %s."
 
@@ -488,6 +491,9 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "O punto decimal está no díxito %s á esquerda do |"
 msgstr[1] "O punto decimal está %s díxitos á esquerda do |"
+
+#~ msgid "The mode is computed assuming that variables are discrete."
+#~ msgstr "A moda calcúlase asumindo que as variables son discretas."
 
 #~ msgid "The mode is computed assuming that variables are discreet."
 #~ msgstr "A moda calcúlase asumindo que as variables son discretas."

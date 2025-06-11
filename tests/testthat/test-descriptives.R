@@ -25,16 +25,19 @@ test_that("Main table results match", {
   options$quartiles <- TRUE
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   table <- results[["results"]][["stats"]][["data"]]
+  # extract mixed columns
+  for (i in seq_along(table))
+    table[[i]]$Mode <- table[[i]]$Mode$value
   jaspTools::expect_equal_tables(table,
                                  list(1.89652072756094, 0, 3.356094448, -0.120135614827586, -0.2223981035,
-                                      -2.336742886, 0, -2.336742886, 0.00342000811150064, 5.692837334,
+                                      -2.336742886, 0, -0.67267746847303, 0.00342000811150064, 5.692837334,
                                       0.933547444665698, 0.885861572513177, 1.10575982846952, 0.618135836828014,
                                       0.145193378675912, 0.313719932561217, -6.96786566, 58, "contNormal",
                                       1.22270479825695, -0.8465404722, -0.6015855064, 0.189093977,
                                       0.5121792992, -2.12776693668, -1.6743740472, -1.38430134284,
                                       -0.77748184225, -0.2223981035, 0.38502497975, 0.972132667292966,
                                       1, 2.179421126, -0.283499835571429, -0.405769511, -3.023963827,
-                                      0, -3.023963827, 0.401705854633909, 5.203384953, 0.972586424088514,
+                                      0, -0.508121519370532, 0.401705854633909, 5.203384953, 0.972586424088514,
                                       0.166587887409046, 0.994612407217046, 0.716632727345669, 0.15347202634745,
                                       0.365360605557062, -11.906993094, 42, "contNormal", 0.989253840590086,
                                       -0.9755913562, -0.5800195022, -0.2167812726, 0.521794901, -1.89726255948,
@@ -456,4 +459,30 @@ test_that("dot plot with large counts is legible", {
   plotName <- results[["results"]][["DotPlots"]][["collection"]][["DotPlots_factorLargeCounts"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "dot_plot_large_counts")
+})
+
+test_that("mode has mixed column", {
+  options <- jaspTools::analysisOptions("Descriptives")
+  options$variables <- c("contNormal", "contBinom", "facGender", "facFive")
+  options$variables.types <- c("scale", "nominal", "nominal", "ordinal")
+  options$mode <- TRUE
+  # disable all default columns
+  options$valid <- FALSE
+  options$missing <- FALSE
+  options$mean <- FALSE
+  options$minimum <- FALSE
+  options$maximum <- FALSE
+  options$sd <- FALSE
+  options$correlationPlots <- FALSE
+
+  results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
+  table <- results[["results"]][["stats"]][["data"]]
+  formats <- sapply(table, \(x) x[["Mode"]][["format"]])
+  types   <- sapply(table, \(x) x[["Mode"]][["type"]])
+  values  <- lapply(table, \(x) x[["Mode"]][["value"]])
+
+  testthat::expect_true(!is.null(formats[[1]]))             # "sf:4;dp:3", but not null is fine
+  testthat::expect_true(all(sapply(formats[2:4], is.null))) # other columns should be null
+  testthat::expect_equal(values, list(-0.610455634204076, "0", "f", "1"), tolerance = 1e-6)
+
 })

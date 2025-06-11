@@ -25,11 +25,11 @@ msgstr "Değişkenler"
 
 msgctxt "Descriptives|"
 msgid "Split"
-msgstr ""
+msgstr "Bölmek"
 
 msgctxt "Descriptives|"
 msgid "Transpose descriptives table"
-msgstr ""
+msgstr "Transpoze tanımlayıcı tablo"
 
 msgctxt "Descriptives|"
 msgid "Frequency tables"
@@ -55,7 +55,7 @@ msgid ""
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
+msgid "Customizable Plots"
 msgstr ""
 
 msgctxt "Descriptives|"
@@ -96,7 +96,7 @@ msgstr "Histogram"
 
 msgctxt "Descriptives|"
 msgid "None"
-msgstr ""
+msgstr "Hiçbiri"
 
 msgctxt "Descriptives|"
 msgid "Graph right of scatter plot"
@@ -123,7 +123,7 @@ msgid "Show legend"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
+msgid "Basic Plots"
 msgstr ""
 
 msgctxt "Descriptives|"
@@ -359,7 +359,7 @@ msgid "Tables"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
+msgid "Categorical Plots"
 msgstr ""
 
 msgctxt "Descriptives|"
@@ -502,9 +502,10 @@ msgid ""
 "supplied, the row order of the data is used."
 msgstr ""
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Transpose descriptives table"
-msgstr ""
+msgstr "Transpoze tanımlayıcı tablo"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Filter by"
@@ -575,9 +576,10 @@ msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Histogram"
 msgstr "Histogram"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "None"
-msgstr ""
+msgstr "Hiçbiri"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Lag plot"
@@ -701,9 +703,10 @@ msgctxt "FlexplotForm|"
 msgid "Cubic"
 msgstr ""
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "None"
-msgstr ""
+msgstr "Hiçbiri"
 
 msgctxt "FlexplotForm|"
 msgid "Fitted line (scatterplots)"
@@ -1144,17 +1147,19 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "How to deal with missing values?"
-msgstr ""
+msgstr "Eksik değerlerle nasıl başa çıkılır?"
 
 msgctxt "Descriptives|"
 msgid "use all observations, resulting in NA when there are missing values."
-msgstr ""
+msgstr "tüm gözlemleri kullanır, eksik değerler olduğunda NA ile sonuçlanır."
 
 msgctxt "Descriptives|"
 msgid ""
 "missing values are handled by casewise deletion (i.e., only use rows of the "
 "data set that are complete)."
 msgstr ""
+"eksik değerler, durum boyunca silme yöntemiyle ele alınır (yani, veri "
+"setinin yalnızca tam olan satırları kullanılır)."
 
 msgctxt "Descriptives|"
 msgid ""
@@ -1923,14 +1928,6 @@ msgid "Show points"
 msgstr ""
 
 msgctxt "raincloudPlots|"
-msgid ""
-"You can choose between a confidence interval or ±1 standard error.<br>For "
-"the computation of the confidence interval and standard error, within and "
-"between factors are determined based on the specifciation of the ID "
-"variable<br><h4>"
-msgstr ""
-
-msgctxt "raincloudPlots|"
 msgid "Standard error"
 msgstr ""
 
@@ -2032,4 +2029,16 @@ msgctxt "raincloudPlots|"
 msgid ""
 "Note: This module has a %1 youtube tutorial %2 & requires data in long "
 "format."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"You can choose between a confidence interval, ±1 standard error, or ±1  "
+"standard deviation.<br>For the computation of the confidence interval/se/sd, "
+"within and between factors are determined based on the specifciation of the "
+"ID variable<br><h4>"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Standard deviation"
 msgstr ""

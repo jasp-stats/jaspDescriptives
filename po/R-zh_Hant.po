@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-03-08 03:18\n"
-"PO-Revision-Date: 2025-02-13 20:01+0000\n"
-"Last-Translator: 陳正昌 <chencc99@gmail.com>\n"
+"POT-Creation-Date: 2025-05-10 03:28\n"
+"PO-Revision-Date: 2025-03-18 11:36+0000\n"
+"Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/jasp/jaspdescriptives-r/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.10-rc\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 msgid "Time Series Plot"
 msgstr ""
@@ -259,11 +259,8 @@ msgstr ""
 "可能存在多個眾數，但顯示具有最高機率密度估計的眾數。建議圖形檢查資料是否存在"
 "多個眾數。"
 
-msgid "The mode is computed assuming that variables are discrete."
-msgstr "計算眾數時假設變數為間斷型。"
-
 msgid "Total"
-msgstr "總計"
+msgstr "總效果"
 
 msgid "All variables have more than %1$s distinct values"
 msgstr "所有變項中皆有高於 %1$s 個的不同數值"
@@ -286,9 +283,6 @@ msgstr "有效百分比"
 msgid "Cumulative Percent"
 msgstr "累積百分比"
 
-msgid "Density"
-msgstr "密度"
-
 msgid "Plotting not possible: %s"
 msgstr "無法繪圖：%s"
 
@@ -297,6 +291,9 @@ msgstr "無法繪圖：未選取統計圖類型!"
 
 msgid "Counts"
 msgstr "計次"
+
+msgid "Density"
+msgstr "密度"
 
 msgid "No non-missing values!"
 msgstr "皆為遺漏值!"
@@ -362,6 +359,9 @@ msgstr ""
 msgid "Interval around mean represents ± 1 standard error"
 msgstr ""
 
+msgid "Interval around mean represents ± 1 standard deviation"
+msgstr ""
+
 msgid "Interval around mean represents %d%% confidence interval."
 msgstr ""
 
@@ -416,6 +416,10 @@ msgstr "平均數差異之%s%%信賴區間上界"
 msgid "Standard Error"
 msgstr "標準誤"
 
+#, fuzzy
+msgid "Standard Deviation"
+msgstr "標準差"
+
 msgid "<i>N</i><sub>Total</sub> = %s."
 msgstr ""
 
@@ -441,6 +445,9 @@ msgstr[0] "小數點位數為 | 右邊 %s 位數"
 msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "小數點位數為 | 左邊 %s 位數"
+
+#~ msgid "The mode is computed assuming that variables are discrete."
+#~ msgstr "計算眾數時假設變數為間斷型。"
 
 #~ msgid "The mode is computed assuming that variables are discreet."
 #~ msgstr "計算眾數時假設變數為間斷型。"

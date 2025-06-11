@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.18.3\n"
-"POT-Creation-Date: 2025-03-08 03:18\n"
+"POT-Creation-Date: 2025-05-10 03:28\n"
 "PO-Revision-Date: 2024-06-30 10:01+0000\n"
 "Last-Translator: Marco Capozzi <giammarcous@yahoo.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/jasp/"
@@ -262,9 +262,6 @@ msgid ""
 "check for multimodality."
 msgstr ""
 
-msgid "The mode is computed assuming that variables are discrete."
-msgstr "La moda viene calcolata assumendo che le variabili siano discrete."
-
 msgid "Total"
 msgstr "Totale"
 
@@ -289,9 +286,6 @@ msgstr ""
 msgid "Cumulative Percent"
 msgstr ""
 
-msgid "Density"
-msgstr "Densità"
-
 msgid "Plotting not possible: %s"
 msgstr "Non è possibile costruire il grafico: %s"
 
@@ -301,6 +295,9 @@ msgstr ""
 
 msgid "Counts"
 msgstr "Conteggio"
+
+msgid "Density"
+msgstr "Densità"
 
 msgid "No non-missing values!"
 msgstr ""
@@ -370,6 +367,9 @@ msgstr ""
 msgid "Interval around mean represents ± 1 standard error"
 msgstr ""
 
+msgid "Interval around mean represents ± 1 standard deviation"
+msgstr ""
+
 msgid "Interval around mean represents %d%% confidence interval."
 msgstr ""
 
@@ -428,6 +428,10 @@ msgstr ""
 msgid "Standard Error"
 msgstr "Deviazione standard"
 
+#, fuzzy
+msgid "Standard Deviation"
+msgstr "Deviazione standard"
+
 msgid "<i>N</i><sub>Total</sub> = %s."
 msgstr ""
 
@@ -456,6 +460,9 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] ""
 msgstr[1] ""
+
+#~ msgid "The mode is computed assuming that variables are discrete."
+#~ msgstr "La moda viene calcolata assumendo che le variabili siano discrete."
 
 #~ msgid "The mode is computed assuming that variables are discreet."
 #~ msgstr "La moda viene calcolata assumendo che le variabili siano discrete."

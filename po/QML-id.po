@@ -117,8 +117,8 @@ msgid "Show legend"
 msgstr "Tampilkan legenda"
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
-msgstr "Plot dasar"
+msgid "Basic Plots"
+msgstr "Plot Dasar"
 
 msgctxt "Descriptives|"
 msgid "Distribution plots"
@@ -292,7 +292,7 @@ msgstr "Transpos tabel deskriptif"
 
 #, fuzzy
 msgctxt "Descriptives|"
-msgid "Customizable plots"
+msgid "Customizable Plots"
 msgstr "Plot yang dapat disesuaikan"
 
 msgctxt "Descriptives|"
@@ -370,7 +370,7 @@ msgid "Tables"
 msgstr "Tabel"
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
+msgid "Categorical Plots"
 msgstr ""
 
 msgctxt "Descriptives|"
@@ -666,7 +666,7 @@ msgstr ""
 
 msgctxt "Description|"
 msgid "Flexplot"
-msgstr ""
+msgstr "Plot Fleksibel"
 
 #, fuzzy
 msgctxt "FlexplotForm|"
@@ -1954,14 +1954,6 @@ msgid "Show points"
 msgstr ""
 
 msgctxt "raincloudPlots|"
-msgid ""
-"You can choose between a confidence interval or ±1 standard error.<br>For "
-"the computation of the confidence interval and standard error, within and "
-"between factors are determined based on the specifciation of the ID "
-"variable<br><h4>"
-msgstr ""
-
-msgctxt "raincloudPlots|"
 msgid "Standard error"
 msgstr ""
 
@@ -2063,4 +2055,16 @@ msgctxt "raincloudPlots|"
 msgid ""
 "Note: This module has a %1 youtube tutorial %2 & requires data in long "
 "format."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"You can choose between a confidence interval, ±1 standard error, or ±1  "
+"standard deviation.<br>For the computation of the confidence interval/se/sd, "
+"within and between factors are determined based on the specifciation of the "
+"ID variable<br><h4>"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Standard deviation"
 msgstr ""

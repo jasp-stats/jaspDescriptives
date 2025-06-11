@@ -156,8 +156,8 @@ msgid "Show legend"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
-msgstr "Oinarrizko grafikoak"
+msgid "Basic Plots"
+msgstr "Oinarrizko Grafikoak"
 
 msgctxt "Descriptives|"
 msgid "Distribution plots"
@@ -369,7 +369,7 @@ msgid "Transpose descriptives table"
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
+msgid "Customizable Plots"
 msgstr ""
 
 msgctxt "Descriptives|"

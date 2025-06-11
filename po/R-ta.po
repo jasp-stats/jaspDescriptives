@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.19.2\n"
-"POT-Creation-Date: 2025-03-08 03:18\n"
+"POT-Creation-Date: 2025-05-10 03:28\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -254,9 +254,6 @@ msgid ""
 "check for multimodality."
 msgstr ""
 
-msgid "The mode is computed assuming that variables are discrete."
-msgstr ""
-
 msgid "Total"
 msgstr ""
 
@@ -281,9 +278,6 @@ msgstr ""
 msgid "Cumulative Percent"
 msgstr ""
 
-msgid "Density"
-msgstr ""
-
 msgid "Plotting not possible: %s"
 msgstr ""
 
@@ -291,6 +285,9 @@ msgid "Plotting is not possible: No plot type selected!"
 msgstr ""
 
 msgid "Counts"
+msgstr ""
+
+msgid "Density"
 msgstr ""
 
 msgid "No non-missing values!"
@@ -357,6 +354,9 @@ msgstr ""
 msgid "Interval around mean represents ± 1 standard error"
 msgstr ""
 
+msgid "Interval around mean represents ± 1 standard deviation"
+msgstr ""
+
 msgid "Interval around mean represents %d%% confidence interval."
 msgstr ""
 
@@ -409,6 +409,9 @@ msgid "%s%% CI for Mean Difference"
 msgstr ""
 
 msgid "Standard Error"
+msgstr ""
+
+msgid "Standard Deviation"
 msgstr ""
 
 msgid "<i>N</i><sub>Total</sub> = %s."

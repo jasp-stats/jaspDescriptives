@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-03-08 03:18\n"
+"POT-Creation-Date: 2025-05-10 03:28\n"
 "PO-Revision-Date: 2021-10-30 19:47+0000\n"
 "Last-Translator: Igor Dobrača <igor.dobraca@gmail.com>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/jasp/"
@@ -269,9 +269,6 @@ msgid ""
 "check for multimodality."
 msgstr ""
 
-msgid "The mode is computed assuming that variables are discrete."
-msgstr ""
-
 msgid "Total"
 msgstr "Ukupno"
 
@@ -296,9 +293,6 @@ msgstr "Zbirni postotak"
 msgid "Cumulative Percent"
 msgstr "Zbirni postotak"
 
-msgid "Density"
-msgstr "Gustoća"
-
 msgid "Plotting not possible: %s"
 msgstr "Crtanje nije moguće: %s"
 
@@ -307,6 +301,9 @@ msgstr "Crtanje nije moguće: vrsta grafikona nije odabrana!"
 
 msgid "Counts"
 msgstr ""
+
+msgid "Density"
+msgstr "Gustoća"
 
 msgid "No non-missing values!"
 msgstr ""
@@ -374,6 +371,9 @@ msgstr ""
 msgid "Interval around mean represents ± 1 standard error"
 msgstr ""
 
+msgid "Interval around mean represents ± 1 standard deviation"
+msgstr ""
+
 msgid "Interval around mean represents %d%% confidence interval."
 msgstr ""
 
@@ -430,6 +430,10 @@ msgstr ""
 
 #, fuzzy
 msgid "Standard Error"
+msgstr "Standardna devijacija"
+
+#, fuzzy
+msgid "Standard Deviation"
 msgstr "Standardna devijacija"
 
 msgid "<i>N</i><sub>Total</sub> = %s."

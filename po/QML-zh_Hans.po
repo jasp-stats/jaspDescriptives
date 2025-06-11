@@ -57,7 +57,7 @@ msgstr ""
 "(scale = 1) 的两倍。"
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
+msgid "Customizable Plots"
 msgstr "自定义绘图"
 
 msgctxt "Descriptives|"
@@ -125,7 +125,7 @@ msgid "Show legend"
 msgstr "显示图例"
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
+msgid "Basic Plots"
 msgstr "基本图"
 
 msgctxt "Descriptives|"
@@ -361,7 +361,7 @@ msgid "Tables"
 msgstr "表格"
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
+msgid "Categorical Plots"
 msgstr "分类图"
 
 msgctxt "Descriptives|"
@@ -2093,16 +2093,6 @@ msgid "Show points"
 msgstr "显示点"
 
 msgctxt "raincloudPlots|"
-msgid ""
-"You can choose between a confidence interval or ±1 standard error.<br>For "
-"the computation of the confidence interval and standard error, within and "
-"between factors are determined based on the specifciation of the ID "
-"variable<br><h4>"
-msgstr ""
-"你可以选择置信区间或 ±1 标准差。置信区间和标准差的计算是根据 ID 变量的指定来"
-"确定的，考虑了因素内部和因素之间的差异"
-
-msgctxt "raincloudPlots|"
 msgid "Standard error"
 msgstr "标准差"
 
@@ -2203,11 +2193,25 @@ msgstr "如果你使用此模块，请引用为："
 #, qt-format
 msgctxt "raincloudPlots|"
 msgid "This module has a %1 youtube tutorial"
-msgstr ""
+msgstr "此模块有一个 %1 youtube 视频教程"
 
 #, qt-format
 msgctxt "raincloudPlots|"
 msgid ""
 "Note: This module has a %1 youtube tutorial %2 & requires data in long "
 "format."
+msgstr "注意：此模块有 %1 youtube 视频教程%2 它要求数据是长格式。"
+
+msgctxt "raincloudPlots|"
+msgid ""
+"You can choose between a confidence interval, ±1 standard error, or ±1  "
+"standard deviation.<br>For the computation of the confidence interval/se/sd, "
+"within and between factors are determined based on the specifciation of the "
+"ID variable<br><h4>"
 msgstr ""
+"您可以在置信区间、±1 标准误差或 ±1 标准差之间进行选择。<br>对于置信区间/标准"
+"误/标准差的计算，因子内和因子间是根据 ID 变量的指定确定的<br><h4>"
+
+msgctxt "raincloudPlots|"
+msgid "Standard deviation"
+msgstr "标准差"

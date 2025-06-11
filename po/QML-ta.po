@@ -119,7 +119,7 @@ msgid "Show legend"
 msgstr "புராணக்கதை காட்டு"
 
 msgctxt "Descriptives|"
-msgid "Basic plots"
+msgid "Basic Plots"
 msgstr "அடிப்படை அடுக்குகள்"
 
 msgctxt "Descriptives|"
@@ -291,7 +291,7 @@ msgid "Transpose descriptives table"
 msgstr "விளக்கமளிக்கும் இடமாற்ற அட்டவணை"
 
 msgctxt "Descriptives|"
-msgid "Customizable plots"
+msgid "Customizable Plots"
 msgstr "தனிப்பயனாக்கக்கூடிய அடுக்கு"
 
 msgctxt "Descriptives|"
@@ -367,7 +367,7 @@ msgid "Tables"
 msgstr "அட்டவணைகள்"
 
 msgctxt "Descriptives|"
-msgid "Categorical plots"
+msgid "Categorical Plots"
 msgstr "வகைப்படுத்தப்பட்ட அடுக்கு"
 
 msgctxt "Descriptives|"

@@ -281,7 +281,7 @@ Form
 
 	Section
 	{
-		title: qsTr("Basic plots")
+		title: qsTr("Basic Plots")
 		columns: 2
 
 		Group
@@ -344,7 +344,7 @@ Form
 
 		Group
 		{
-			title: qsTr("Categorical plots")
+			title: qsTr("Categorical Plots")
 
 			CheckBox
 			{
@@ -404,7 +404,7 @@ Form
 
 	Section
 	{
-		title: qsTr("Customizable plots")
+		title: qsTr("Customizable Plots")
 		columns: 1
 
 		ColorPalette{}
@@ -512,30 +512,21 @@ Form
 				name:	"densityPlotType"
 				id: 	densityPlotType
 				title:	qsTr("Type for scale variables:")
-				info:  qsTr("Whether to display a density plot or histogram.") + "</ul>"
+				info:  qsTr("Whether to display a density plot or histogram.")
 				RadioButton { value: "density";		label: qsTr("Density");		checked: true	}
 				RadioButton
 				{
 					value: "histogram"
 					label: qsTr("Histogram")
-					info:  "</ul>"
 					RadioButtonGroup
 					{
 						name:	"customHistogramPosition";
 						id: 	customHistogramPosition
 						title:	qsTr("How to combine separate frequencies")
-						RadioButton { value: "stack";		label: qsTr("Stack");		checked: true	}
-						RadioButton { value: "identity";		label: qsTr("Identity")					}
-						RadioButton { value: "dodge";	label: qsTr("Dodge")							}
-						info:  
-						"<ul>" +
-						qsTr("Options for separate bins of the histogram")
-						+ "<ul>"
-					  +	"<li>" + qsTr("Stack: Bars are stacked vertically, combining counts across categories within each bin.") + "</li>"
-					  +	"<li>" + qsTr("Identity: Bars are layered on top of each other, with transparency often used to distinguish overlapping data.") + "</li>"
-					  + "<li>" + qsTr("Dodge: Bars are placed side-by-side, allowing for easy comparison of different categories within each bin.") + "</li>"
-					+ "</ul>"
-
+						info: qsTr("Options for separate bins of the histogram")
+						RadioButton { value: "stack";		label: qsTr("Stack");		info: qsTr("Stack: Bars are stacked vertically, combining counts across categories within each bin."); checked: true			}
+						RadioButton { value: "identity";	label: qsTr("Identity");	info: qsTr("Identity: Bars are layered on top of each other, with transparency often used to distinguish overlapping data.")	}
+						RadioButton { value: "dodge";		label: qsTr("Dodge");		info: qsTr("Dodge: Bars are placed side-by-side, allowing for easy comparison of different categories within each bin.")		}
 					}
 				}
 			}

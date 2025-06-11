@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.18.3\n"
-"POT-Creation-Date: 2025-03-08 03:18\n"
-"PO-Revision-Date: 2024-07-20 03:17+0000\n"
-"Last-Translator: blomusti <m.f.varkara@gmail.com>\n"
+"POT-Creation-Date: 2025-05-10 03:28\n"
+"PO-Revision-Date: 2025-05-16 23:05+0000\n"
+"Last-Translator: Ertuğrul Uyar <ertugruluyar.academic@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/tr/>\n"
 "Language: tr\n"
@@ -11,244 +11,256 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 msgid "Time Series Plot"
-msgstr ""
+msgstr "Zaman Serisi Grafiği"
 
 msgid "Lag Plot"
-msgstr ""
+msgstr "Gecikme Grafiği"
 
 msgid "Autocorrelation Function"
-msgstr ""
+msgstr "Otokorelasyon Fonksiyonu"
 
 msgid "Partial Autocorrelation Function"
-msgstr ""
+msgstr "Kısmi Otokorelasyon Fonksiyonu"
 
 msgid "Descriptive Statistics"
-msgstr ""
+msgstr "Tanımlayıcı İstatistikler"
 
 msgid "Valid"
-msgstr ""
+msgstr "Geçerli"
 
 msgid "Missing"
-msgstr ""
+msgstr "Eksik(Yok)"
 
 msgid "Mean"
-msgstr ""
+msgstr "Ortalama"
 
 msgid "Std. Deviation"
-msgstr ""
+msgstr "Std. Sapma"
 
 msgid "Variance"
-msgstr ""
+msgstr "Varyans"
 
 msgid "Range"
-msgstr ""
+msgstr "Açıklık"
 
 msgid "Minimum"
-msgstr ""
+msgstr "Minimum"
 
 msgid "Maximum"
-msgstr ""
+msgstr "Maksimum"
 
 msgid "Start"
-msgstr ""
+msgstr "Başla"
 
 msgid "End"
-msgstr ""
+msgstr "Son"
 
 msgid "Lag 1 Autocorrelation"
-msgstr ""
+msgstr "Lag 1 Otokorelasyon"
 
 msgid "The time series data should be equally-spaced."
-msgstr ""
+msgstr "Zaman serisi verileri eşit aralıklarla olmalıdır."
 
 msgid "The time variable should have unique values only."
-msgstr ""
+msgstr "Zaman değişkeni yalnızca benzersiz değerlere sahip olmalıdır."
 
 msgid ""
 "The 'Time' variable has a date-like format, please filter by date instead."
 msgstr ""
+"'Time' değişkeni tarih benzeri bir biçime sahiptir, lütfen bunun yerine "
+"tarihe göre filtreleme yapın."
 
 msgid ""
 "The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:"
 "ss). Try to filter by time index instead."
 msgstr ""
+"'Time' değişkeni tarih benzeri bir biçimde değil (örn. yyyy-mm-dd hh:mm:ss). "
+"Bunun yerine zaman dizinine göre filtrelemeyi deneyin."
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
 msgstr ""
+"'Başlangıç' tarih benzeri bir biçimde olmalıdır (örneğin, yyyy-aa-gg ss:dd:"
+"ss)."
 
 msgid "The 'Start' value of the filter should be before last observation."
-msgstr ""
+msgstr "Filtrenin 'Başlangıç' değeri son gözlemden önce olmalıdır."
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
 msgstr ""
+"'Son' tarih benzeri bir biçimde olmalıdır (örneğin, yyyy-aa-gg ss:dd:ss)."
 
 msgid ""
 "The 'End' value of the filter should be larger/later than the 'Start' value."
-msgstr ""
+msgstr "Filtrenin 'Bitiş' değeri 'Başlangıç' değerinden büyük/sonra olmalıdır."
 
 msgid "Lag"
-msgstr ""
-
-msgid "Association %s"
-msgstr ""
-
-msgid "Frequency Tables"
-msgstr ""
-
-msgid "Correlation plots"
-msgstr ""
-
-msgid "Correlation plot"
-msgstr ""
-
-msgid "Distribution Plots"
-msgstr ""
-
-msgid "Boxplots"
-msgstr ""
+msgstr "Gecikme"
 
 #, fuzzy
+msgid "Association %s"
+msgstr "İlişki %s"
+
+msgid "Frequency Tables"
+msgstr "Frekans Tabloları"
+
+msgid "Correlation plots"
+msgstr "Korelasyon grafikleri"
+
+msgid "Correlation plot"
+msgstr "Korelasyon grafiği"
+
+msgid "Distribution Plots"
+msgstr "Dağılım Grafikleri"
+
+msgid "Boxplots"
+msgstr "Kutu grafikleri"
+
 msgid "Q-Q Plots"
-msgstr "Çubuk Grafikleri"
+msgstr "Q-Q Grafikleri"
 
 msgid "Q-Q Plot"
-msgstr ""
+msgstr "Q-Q Grafiği"
 
 msgid "Plotting is not possible: Variable only contains NA!"
-msgstr ""
+msgstr "Çizim mümkün değil: Değişken sadece NA içeriyor!"
 
 msgid "Pie charts"
-msgstr ""
+msgstr "Pasta grafikleri"
 
 msgid "Stem and Leaf"
-msgstr ""
+msgstr "Dal ve yaprak"
 
 msgid "Scatter Plots"
-msgstr ""
+msgstr "Dağılım Grafikleri"
 
 msgid "Interval plots"
-msgstr ""
+msgstr "Aralık grafikleri"
 
 msgid "Dot Plots"
-msgstr ""
+msgstr "Nokta Grafikleri"
 
 msgid "Heatmaps"
-msgstr ""
+msgstr "Isı haritaları"
 
 msgid "Pareto Plots"
-msgstr ""
+msgstr "Pareto Grafikleri"
 
 msgid "Density Plots"
-msgstr ""
+msgstr "Yoğunluk Grafikleri"
 
 msgid "Likert Plots"
-msgstr ""
+msgstr "Likert Grafikleri"
 
 msgid ""
 "Excluded %1$i rows from the analysis that correspond to the missing values "
 "of the split-by variable %2$s"
 msgstr ""
+"Bölünmüş değişken %2$s'nin eksik değerlerine karşılık gelen %1$i satır "
+"analizi dışında tutuldu"
 
 msgid "%s%% Confidence Interval Mean"
-msgstr ""
+msgstr "%s%% Güven Aralığı Ortalaması"
 
 msgid "%s%% Confidence Interval Std. Dev."
-msgstr ""
+msgstr "%s%% Güven Aralığı Standart Sapması."
 
 msgid "%s%% Confidence Interval Variance"
-msgstr ""
+msgstr "%s%% Güven Aralığı Varyansı"
 
 msgid "Upper"
-msgstr ""
+msgstr "Üst"
 
 msgid "Lower"
-msgstr ""
+msgstr "Alt"
 
 msgid "%s%% CI Mean Upper"
-msgstr ""
+msgstr "%s%% CI Ortalaması Üst"
 
 msgid "%s%% CI Mean Lower"
-msgstr ""
+msgstr "%s%% CI Ortalaması Daha Düşük"
 
 msgid "%s%% CI Std. Dev. Upper"
-msgstr ""
+msgstr "%s%% CI Std. Sapma Üst"
 
 msgid "%s%% CI Std. Dev. Lower"
-msgstr ""
+msgstr "%s%% CI Std. Sapma Daha Düşük"
 
 msgid "%s%% CI Variance Upper"
-msgstr ""
+msgstr "%s%% CI Varyansı Üst"
 
 msgid "%s%% CI Variance Lower"
-msgstr ""
+msgstr "%s%% CI Varyansı Daha Düşük"
 
 msgid "Mode"
-msgstr ""
+msgstr "Mod"
 
 msgid "Median"
-msgstr ""
+msgstr "Medyan"
 
 msgid "Std. Error of Mean"
-msgstr ""
+msgstr "Ortalamanın Standart Hatası"
 
 msgid "Coefficient of variation"
-msgstr ""
+msgstr "Değişim katsayısı"
 
 msgid "MAD"
-msgstr ""
+msgstr "OMS"
 
 msgid "MAD robust"
-msgstr ""
+msgstr "OMS güveni"
 
 msgid "IQR"
-msgstr ""
+msgstr "IQR(Çeyrekler Arası Aralık)"
 
 msgid "Skewness"
-msgstr ""
+msgstr "Çarpıklık"
 
 msgid "Std. Error of Skewness"
-msgstr ""
+msgstr "Çarpıklık Standart Hatası"
 
 msgid "Kurtosis"
-msgstr ""
+msgstr "Basıklık"
 
 msgid "Std. Error of Kurtosis"
-msgstr ""
+msgstr "Basıklık Standart Hatası"
 
 msgid "Shapiro-Wilk"
-msgstr ""
+msgstr "Shapiro-Wilk"
 
 msgid "P-value of Shapiro-Wilk"
-msgstr ""
+msgstr "Shapiro-Wilk P-değeri"
 
 msgid "25th percentile"
-msgstr ""
+msgstr "25. yüzdelik"
 
 msgid "50th percentile"
-msgstr ""
+msgstr "50. yüzdelik"
 
 msgid "75th percentile"
-msgstr ""
+msgstr "75. yüzdelik"
 
+#, fuzzy
 msgid "%gth percentile"
-msgstr ""
+msgstr "%gth yüzdelik"
 
 msgid "Error in Percentiles, all values should >=0 and <=100"
-msgstr ""
+msgstr "Yüzdeliklerde Hata, tüm değerler >=0 ve <=100 olmalıdır"
 
 msgid "Sum"
-msgstr ""
+msgstr "Toplam"
 
 msgid "All values are identical"
-msgstr ""
+msgstr "Tüm değerler aynı"
 
 msgid ""
 "Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty "
 "set is %2$s."
 msgstr ""
+"Boş kümenin en küçük (minimum) değeri %1$s, en büyük (supremum) değeri "
+"%2$s'dir."
 
 msgid ""
 "More than one mode exists. For nominal and ordinal data, the first mode is "
@@ -256,189 +268,222 @@ msgid ""
 "reported but multiple modes may exist. We recommend visualizing the data to "
 "check for multimodality."
 msgstr ""
-
-msgid "The mode is computed assuming that variables are discrete."
-msgstr ""
+"Birden fazla mod mevcuttur. Nominal ve sıralı veriler için ilk mod "
+"raporlanır. Sürekli veriler için en yüksek yoğunluk tahminine sahip mod "
+"raporlanır ancak birden fazla mod mevcut olabilir. Çok modluluğu kontrol "
+"etmek için verileri görselleştirmenizi öneririz."
 
 msgid "Total"
-msgstr ""
+msgstr "Toplam"
 
 msgid "All variables have more than %1$s distinct values"
-msgstr ""
+msgstr "Tüm değişkenlerin %1$s'den fazla farklı değeri var"
 
 msgid "Frequencies"
-msgstr ""
+msgstr "Frekanslar"
 
 msgid "Frequencies for %s"
-msgstr ""
+msgstr "%s için frekanslar"
 
 msgid "Frequency"
-msgstr ""
+msgstr "Frekans"
 
 msgid "Percent"
-msgstr ""
+msgstr "Yüzde"
 
 msgid "Valid Percent"
-msgstr ""
+msgstr "Geçerli Yüzde"
 
 msgid "Cumulative Percent"
-msgstr ""
-
-msgid "Density"
-msgstr ""
+msgstr "Birikimli Yüzde"
 
 msgid "Plotting not possible: %s"
-msgstr ""
+msgstr "Çizim mümkün değil: %s"
 
 msgid "Plotting is not possible: No plot type selected!"
-msgstr ""
+msgstr "Çizim mümkün değil: Grafik türü seçilmedi!"
 
 msgid "Counts"
-msgstr ""
+msgstr "Sayımlar"
+
+msgid "Density"
+msgstr "Yoğunluk"
 
 msgid "No non-missing values!"
-msgstr ""
+msgstr "Eksik olmayan değer yok!"
 
 msgid ""
 "Association cannot be computed due to missing values. Try a different 'Use' "
 "setting."
 msgstr ""
+"Eksik değerler nedeniyle ilişkilendirme hesaplanamıyor. Farklı bir "
+"'Kullanım' ayarı deneyin."
 
 msgid ""
 "Some associations cannot be computed due to missing values. Try a different "
 "'Use' setting."
 msgstr ""
+"Eksik değerler nedeniyle bazı ilişkiler hesaplanamıyor. Farklı bir "
+"'Kullanım' ayarı deneyin."
 
 msgid "Theoretical Quantiles"
-msgstr ""
+msgstr "Teorik Kuantiller"
 
 msgid "Sample Quantiles"
-msgstr ""
+msgstr "Örneklem Kuantilleri"
 
 msgid "Stem"
-msgstr ""
+msgstr "Dal"
 
 msgid "Leaf"
-msgstr ""
+msgstr "Yaprak"
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
 "missing observations"
 msgstr ""
+"Eksik olmayan gözlem sayısı 2'den az olduğundan bir dal ve yaprak tablosu "
+"oluşturulamadı"
 
 msgid "The decimal point is at the |"
-msgstr ""
+msgstr "Ondalık nokta |"
 
 msgid ""
 "There must be a unique value per combination of levels of horizontal and "
 "vertical axis!"
 msgstr ""
+"Yatay ve dikey eksen seviyelerinin her kombinasyonu için benzersiz bir değer "
+"olmalıdır!"
 
 msgid "All categorical variables must have the same number of levels!"
-msgstr ""
+msgstr "Tüm kategorik değişkenlerin aynı sayıda seviyeye sahip olması gerekir!"
 
 msgid "Items must have 2 or more levels!"
-msgstr ""
+msgstr "Öğelerin seviyesi 2 veya daha fazlaolmalıdır!"
 
 msgid "Levels within variable require at least two or more data points!"
 msgstr ""
+"Değişken içindeki seviyeler en az iki veya daha fazla veri noktası "
+"gerektirir!"
 
 msgid "Raincloud Plots"
-msgstr ""
+msgstr "Yağmur Bulutu Grafikleri"
 
 msgid "Not shown are %s observations due to missing data."
-msgstr ""
+msgstr "Eksik veriler nedeniyle %s gözlemi gösterilmiyor."
 
 msgid "Interval around mean is custom."
-msgstr ""
+msgstr "Ortalama civarındaki aralık özeldir."
 
 msgid ""
 "<span style = 'color: darkorange'>Error with custom interval: Specified "
 "number of clouds does not match clouds in plot.</span>"
 msgstr ""
+"<span style = 'color: darkorange'>Özel aralıkta hata: Belirtilen bulut "
+"sayısı, grafikteki bulutlarla uyuşmuyor.</span>"
 
 msgid "Interval around mean represents ± 1 standard error"
-msgstr ""
+msgstr "Ortalama civarındaki aralık ± 1 standart hatayı temsil eder"
+
+msgid "Interval around mean represents ± 1 standard deviation"
+msgstr "Ortalama civarındaki aralık, ± 1 standart sapmayı temsil eder"
 
 msgid "Interval around mean represents %d%% confidence interval."
-msgstr ""
+msgstr "Ortalama civarındaki aralık %d%% güven aralığını temsil eder."
 
 msgid "Points are slightly jittered from their true values."
-msgstr ""
+msgstr "Puanlar gerçek değerlerinden biraz sapmış durumda."
 
 msgid ""
 "<span style = 'color: darkorange'> Warning! Some data is not "
 "shown<br>because it lies outside of the interval set by the custom axis "
 "limits.</span>"
 msgstr ""
+"<span style = 'color: darkorange'> Uyarı! Bazı veriler "
+"gösterilmiyor<br>çünkü özel eksen sınırları tarafından ayarlanan aralığın "
+"dışında yer alıyor.</span>"
 
 msgid ""
 "<span style = 'color: darkorange'> Error with custom orientation: Specified "
 "number of clouds does not match clouds in plot.<br>Reverted to default all "
 "'R'. Point nudge set to 0.</span>"
 msgstr ""
+"<span style = 'color: darkorange'> Özel yönlendirmede hata: Belirtilen bulut "
+"sayısı çizimdeki bulutlarla uyuşmuyor.<br>Varsayılan tüm 'R'ye geri "
+"döndürüldü. Nokta öteleme 0 olarak ayarlandı.</span>"
 
 msgid ""
 "<span style = 'color: darkorange'> Error with custom color: Specified number "
 "of clouds does not match clouds in plot.<br>Ignoring custom color input.</"
 "span>"
 msgstr ""
+"<span style = 'color: darkorange'> Özel renkle ilgili hata: Belirtilen bulut "
+"sayısı çizimdeki bulutlarla uyuşmuyor.<br>Özel renk girişi göz ardı ediliyor."
+"</span>"
 
 msgid "Statistics"
-msgstr ""
+msgstr "İstatistikler"
 
 msgid "Primary Factor"
-msgstr ""
+msgstr "Birincil Faktör"
 
 msgid "Secondary Factor"
-msgstr ""
+msgstr "İkincil Faktör"
 
 msgid "<i>N</i>"
-msgstr ""
+msgstr "<i>N</i>"
 
 msgid "Lower Whisker"
-msgstr ""
+msgstr "Alt Bıyık"
 
 msgid "25th Percentile"
-msgstr ""
+msgstr "25. Yüzdelik"
 
 msgid "75th Percentile"
-msgstr ""
+msgstr "75. Yüzdelik"
 
 msgid "Upper Whisker"
-msgstr ""
+msgstr "Üst Bıyık"
 
 msgid "%s%% CI for Mean Difference"
-msgstr ""
+msgstr "Ortalama Fark için %s%% CI"
 
 msgid "Standard Error"
-msgstr ""
+msgstr "Standart Hata"
+
+msgid "Standard Deviation"
+msgstr "Standart Sapma"
 
 msgid "<i>N</i><sub>Total</sub> = %s."
-msgstr ""
+msgstr "<i>N</i><sub>Toplam</sub> = %s."
 
 msgid "This excludes %s observations due to missing data."
-msgstr ""
+msgstr "Bu, eksik veriler nedeniyle %s gözlemini hariç tutar."
 
 msgid "<br>Interval around mean is custom."
-msgstr ""
+msgstr "<br>Ortalama etrafındaki aralık özeldir."
 
 msgid "<br>Interval around mean represents %d%% confidence interval."
-msgstr ""
+msgstr "<br>Ortalama etrafındaki aralık %d%% güven aralığını temsil eder."
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
 "The following variables have more than %1$s distinct values and are omitted: "
 "%2$s."
-msgstr[0] ""
+msgstr[0] "%2$s, %1$s'den fazla farklı değere sahip olduğundan atlanmıştır."
 msgstr[1] ""
+"Aşağıdaki değişkenlerin %1$s'den fazla farklı değeri vardır ve bunlar "
+"atlanmıştır: %2$s."
 
 msgid "The decimal point is %s digit to the right of the |"
 msgid_plural "The decimal point is %s digits to the right of the |"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ondalık nokta | işaretinin sağındaki %s rakamıdır"
+msgstr[1] "Ondalık nokta | işaretinin sağındaki %s basamaktır"
 
 msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ondalık nokta | işaretinin solundaki %s rakamıdır"
+msgstr[1] "Ondalık nokta | işaretinin solundaki %s basamaktır"
+
+#~ msgid "The mode is computed assuming that variables are discrete."
+#~ msgstr "Mod, değişkenlerin ayrık olduğu varsayılarak hesaplanır."

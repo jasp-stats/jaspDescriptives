@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-03-08 03:18\n"
+"POT-Creation-Date: 2025-05-10 03:28\n"
 "PO-Revision-Date: 2024-05-19 20:45+0000\n"
 "Last-Translator: robachowyk <kaya.robach@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/jasp/"
@@ -271,9 +271,6 @@ msgstr ""
 "haute densité est rapporté mais plusieurs modes peuvent exister. Nous "
 "recommandons de visualiser les données afin de vérifier les multi-modalités."
 
-msgid "The mode is computed assuming that variables are discrete."
-msgstr ""
-
 msgid "Total"
 msgstr "Total"
 
@@ -298,9 +295,6 @@ msgstr "Pourcentage valide"
 msgid "Cumulative Percent"
 msgstr "Pourcentage Cumulé"
 
-msgid "Density"
-msgstr "Densité"
-
 msgid "Plotting not possible: %s"
 msgstr "Traçage impossible : %s"
 
@@ -310,6 +304,9 @@ msgstr ""
 
 msgid "Counts"
 msgstr "Comptes"
+
+msgid "Density"
+msgstr "Densité"
 
 msgid "No non-missing values!"
 msgstr "Aucune valeur non-manquante !"
@@ -383,6 +380,9 @@ msgstr ""
 msgid "Interval around mean represents ± 1 standard error"
 msgstr ""
 
+msgid "Interval around mean represents ± 1 standard deviation"
+msgstr ""
+
 msgid "Interval around mean represents %d%% confidence interval."
 msgstr ""
 
@@ -440,6 +440,10 @@ msgstr "IC supérieur de la moyenne %s%%"
 
 #, fuzzy
 msgid "Standard Error"
+msgstr "Écart type"
+
+#, fuzzy
+msgid "Standard Deviation"
 msgstr "Écart type"
 
 msgid "<i>N</i><sub>Total</sub> = %s."
