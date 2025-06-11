@@ -82,7 +82,9 @@ Form {
 
 					removeInvisibles:	true
 					preferredWidth: jaspForm.width - 2 * jaspTheme.contentMargin
-					preferredHeight: yesRM.checked ? 600  * jaspTheme.uiScale : 300 * jaspTheme.uiScale
+					preferredHeight: 300 * jaspTheme.uiScale
+					visible: noRM.checked
+
 
 					infoLabel: qsTr("Input")
 
@@ -90,7 +92,6 @@ Form {
 
 					AvailableVariablesList {
 						name: "allVariablesList"
-						id: allVariablesList
 					}
 
 					AssignedVariablesList {
@@ -99,19 +100,8 @@ Form {
 						id: variableXPlotBuilder
 						allowedColumns: ["scale", "ordinal", "nominal"]
 						minLevels: 2
-						visible: !yesRM.checked
 						singleVariable: true
 						info: qsTr("Select the variable for the X-axis.")
-						property bool active: noRM.checked
-						onActiveChanged: if (!active && count > 0) itemDoubleClicked(0)
-						enabled: isRM.value === "noRM"
-						onEnabledChanged: {
-							if (!enabled) {
-								while (count > 0) {
-									itemDoubleClicked(0)
-								}
-							}
-						}
 					}
 
 					AssignedVariablesList {
@@ -120,18 +110,7 @@ Form {
 						allowedColumns: ["scale", "ordinal", "nominal"]
 						id: variableYPlotBuilder
 						singleVariable: true
-						visible: !yesRM.checked
-						property bool active: noRM.checked
-						onActiveChanged: if (!active && count > 0) itemDoubleClicked(0)
 						info: qsTr("Select the variable for the Y-axis.")
-						enabled: isRM.value === "noRM"
-						onEnabledChanged: {
-							if (!enabled) {
-								while (count > 0) {
-									itemDoubleClicked(0)
-								}
-							}
-						}
 					}
 
 					AssignedVariablesList {
@@ -143,18 +122,10 @@ Form {
 						visible: !yesRM.checked
 						singleVariable: true
 						info: qsTr("Select the variable for data grouping, which will also determine the coloring..")
-						enabled: isRM.value === "noRM"
 						onCountChanged: {
 							if (count > 0) {
 								colorByVariableX.checked = false;
 								colorByVariableY.checked = false;
-							}
-						}
-						onEnabledChanged: {
-							if (!enabled) {
-								while (count > 0) {
-									itemDoubleClicked(0)
-								}
 							}
 						}
 					}
@@ -165,16 +136,7 @@ Form {
 						id: columnsvariableSplitPlotBuilder
 						allowedColumns: ["ordinal", "nominal"]
 						singleVariable: true
-						visible: !yesRM.checked
 						info: qsTr("You can choose a variable to split the plots into columns.")
-						enabled: isRM.value === "noRM"
-						onEnabledChanged: {
-							if (!enabled) {
-								while (count > 0) {
-									itemDoubleClicked(0)
-								}
-							}
-						}
 					}
 
 					AssignedVariablesList {
@@ -183,16 +145,7 @@ Form {
 						id: rowsvariableSplitPlotBuilder
 						allowedColumns: ["ordinal", "nominal"]
 						singleVariable: true
-						visible: !yesRM.checked
 						info: qsTr("You can choose a variable to split the plots into rows.")
-						enabled: isRM.value === "noRM"
-						onEnabledChanged: {
-							if (!enabled) {
-								while (count > 0) {
-									itemDoubleClicked(0)
-								}
-							}
-						}
 
 					}
 
@@ -202,27 +155,30 @@ Form {
 						id: gridVariablePlotBuilder
 						allowedColumns: ["ordinal", "nominal"]
 						singleVariable: true
-						visible: !yesRM.checked
 						info: qsTr("You can choose a variable to make a grid.")
-						enabled: isRM.value === "noRM"
-						onEnabledChanged: {
-							if (!enabled) {
-								while (count > 0) {
-									itemDoubleClicked(0)
-								}
-							}
-						}
 					}
+				}
 
 					//  RM DATASET ---------------------------------------------------------------------------------------------------------------------------
+
+				VariablesForm {
+
+					removeInvisibles:	true
+					preferredWidth: jaspForm.width - 2 * jaspTheme.contentMargin
+					preferredHeight: 600  * jaspTheme.uiScale
+					visible: yesRM.checked
+
+					infoLabel: qsTr("Input")
+
+					AvailableVariablesList {
+						name: "allVariablesListRM"
+					}
 
 
 					FactorLevelList	{
 						name: "repeatedMeasuresFactors";
 						id: repeatedMeasuresFactors
 						title: qsTr("Repeated Measures Factors")
-						visible: yesRM.checked
-						enabled: yesRM.checked
 						height: 180 * preferencesModel.uiScale;	factorName: qsTr("RM Factor")
 
 					}
@@ -232,8 +188,6 @@ Form {
 						name: "repeatedMeasuresCells"
 						title: qsTr("Repeated Measures Cells")
 						source: "repeatedMeasuresFactors"
-						visible: yesRM.checked
-						enabled: yesRM.checked
 					}
 
 
@@ -242,8 +196,6 @@ Form {
 						title: qsTr("Between Subject Factors")
 						allowedColumns: ["nominal"]
 						minLevels: 2
-						visible: yesRM.checked
-						enabled: yesRM.checked
 
 					}
 					AssignedVariablesList {
@@ -251,8 +203,6 @@ Form {
 						title: qsTr("Covariates")
 						allowedColumns: ["scale"]
 						minNumericLevels: 2
-						visible: yesRM.checked
-						enabled: yesRM.checked
 					}
 
 
@@ -272,16 +222,8 @@ Form {
 					AvailableVariablesList {
 						id: withinComponents
 						name: "withinComponents"
-						enabled: yesRM.checked
 						title: qsTr("Repeated Measures Components")
 						source: ["repeatedMeasuresFactors", "betweenSubjectFactors", "covariates"]
-						onEnabledChanged: {
-							if (enabled) {
-								while (count > 0) {
-									itemDoubleClicked(0)
-								}
-							}
-						}
 					}
 
 					AssignedVariablesList {
@@ -290,14 +232,6 @@ Form {
 						name: "xVarRM"
 						title: qsTr("X-Axis Variable")
 						singleVariable: true
-						enabled: yesRM.checked
-						onEnabledChanged: {
-							if (!enabled) {
-								while (count > 0) {
-									itemDoubleClicked(0)
-								}
-							}
-						}
 					}
 
 
@@ -306,11 +240,7 @@ Form {
 						name: "groupVarRM"
 						title: qsTr("Group Variable")
 						singleVariable: true
-						enabled: yesRM.checked
 						allowedColumns: ["scale", "ordinal", "nominal"]
-						onEnabledChanged: {
-							if (!enabled) while (count > 0) itemDoubleClicked(0)
-						}
 					}
 
 					AssignedVariablesList {
@@ -319,15 +249,7 @@ Form {
 						id: colSplitRM
 						allowedColumns: ["ordinal", "nominal"]
 						singleVariable: true
-						enabled: yesRM.checked
 						info: qsTr("You can choose a variable to split the plots into columns.")
-						onEnabledChanged: {
-							if (!enabled) {
-								while (count > 0) {
-									itemDoubleClicked(0)
-								}
-							}
-						}
 					}
 
 					AssignedVariablesList {
@@ -336,16 +258,7 @@ Form {
 						id: rowSplitRM
 						allowedColumns: ["ordinal", "nominal"]
 						singleVariable: true
-						enabled: yesRM.checked
 						info: qsTr("You can choose a variable to split the plots into rows.")
-						onEnabledChanged: {
-							if (!enabled) {
-								while (count > 0) {
-									itemDoubleClicked(0)
-								}
-							}
-						}
-
 					}
 
 					AssignedVariablesList {
@@ -354,15 +267,7 @@ Form {
 						id: gridVarRM
 						allowedColumns: ["ordinal", "nominal"]
 						singleVariable: true
-						enabled: yesRM.checked
 						info: qsTr("You can choose a variable to make a grid.")
-						onEnabledChanged: {
-							if (!enabled) {
-								while (count > 0) {
-									itemDoubleClicked(0)
-								}
-							}
-						}
 					}
 				}
 
