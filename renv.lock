@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.5.0",
+    "Version": "4.5.1",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -1145,7 +1145,7 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspTTests",
-      "RemoteSha": "fe5cd7c9b2c0d08d58d1214e3c97b09907309039"
+      "RemoteSha": "20f0d01bc746315bca1338db9b5dea289bd58548"
     },
     "jpeg": {
       "Package": "jpeg",
