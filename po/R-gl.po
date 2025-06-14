@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2025-06-14 03:32\n"
-"PO-Revision-Date: 2025-05-03 14:12+0000\n"
+"PO-Revision-Date: 2025-06-15 08:01+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/gl/>\n"
@@ -373,15 +373,14 @@ msgid "Levels within variable require at least two or more data points!"
 msgstr ""
 "Os niveis nunha variable requiren dous ou máis puntos de datos, cando menos!"
 
-#, fuzzy
 msgid "Plots"
-msgstr "Gráficas Q-Q"
+msgstr "Gráficas"
 
 msgid "Available Plot IDs"
-msgstr ""
+msgstr "IDs das gráficas dispoñibles"
 
 msgid "Plot Grid"
-msgstr ""
+msgstr "Grella da gráfica"
 
 msgid "Raincloud Plots"
 msgstr "Gráficas de nube chovendo"
