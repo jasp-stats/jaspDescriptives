@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-06-15 08:01+0000\n"
+"PO-Revision-Date: 2025-06-16 09:04+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/es/>\n"
@@ -2548,9 +2548,8 @@ msgstr "Altura da oscilación"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Jitter width"
-msgstr ""
+msgstr "Ancho de la oscilación"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Transparency"
 msgstr "Transparencia"
@@ -2561,15 +2560,15 @@ msgstr "Finta"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Black outline"
-msgstr ""
+msgstr "Contorno negro"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Empty circles"
-msgstr ""
+msgstr "Círculos vacíos"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Connect data points (requires repeated measures)"
-msgstr ""
+msgstr "Conectar puntos de datos (requiere medidas repetidas)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Line width"
