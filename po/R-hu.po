@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.19.0\n"
-"POT-Creation-Date: 2025-05-10 03:28\n"
+"POT-Creation-Date: 2025-06-14 03:32\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -335,6 +335,15 @@ msgid "Items must have 2 or more levels!"
 msgstr ""
 
 msgid "Levels within variable require at least two or more data points!"
+msgstr ""
+
+msgid "Plots"
+msgstr ""
+
+msgid "Available Plot IDs"
+msgstr ""
+
+msgid "Plot Grid"
 msgstr ""
 
 msgid "Raincloud Plots"

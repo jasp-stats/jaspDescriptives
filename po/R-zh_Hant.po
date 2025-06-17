@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-05-10 03:28\n"
+"POT-Creation-Date: 2025-06-14 03:32\n"
 "PO-Revision-Date: 2025-03-18 11:36+0000\n"
 "Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
@@ -341,6 +341,16 @@ msgstr "項目至少需要有兩個水準！"
 
 msgid "Levels within variable require at least two or more data points!"
 msgstr "變數的個別水準中需要至少兩個資料點！"
+
+#, fuzzy
+msgid "Plots"
+msgstr "常態Q-Q 圖"
+
+msgid "Available Plot IDs"
+msgstr ""
+
+msgid "Plot Grid"
+msgstr ""
 
 msgid "Raincloud Plots"
 msgstr "雨雲圖"

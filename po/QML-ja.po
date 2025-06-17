@@ -2162,3 +2162,1506 @@ msgstr ""
 msgctxt "raincloudPlots|"
 msgid "Standard deviation"
 msgstr ""
+
+msgctxt "Description|"
+msgid "Plot Builder (beta)"
+msgstr ""
+
+#, fuzzy
+msgctxt "jaspPlotBuilder|"
+msgid "References"
+msgstr "文献"
+
+msgctxt "jaspPlotBuilder|"
+msgid "Plot 1"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Repeated measurements"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Choose whether you want to make plots of repeated measurements from repeated "
+"measurements."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "No"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Yes"
+msgstr ""
+
+#, fuzzy
+msgctxt "jaspPlotBuilder|"
+msgid "Input"
+msgstr "入力"
+
+msgctxt "jaspPlotBuilder|"
+msgid "X-Axis Variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Select the variable for the X-axis."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Y-Axis Variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Select the variable for the Y-axis."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Group Variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Select the variable for data grouping, which will also determine the "
+"coloring.."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Split (Columns)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "You can choose a variable to split the plots into columns."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Split (Rows)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "You can choose a variable to split the plots into rows."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Grid"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "You can choose a variable to make a grid."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Repeated Measures Factors"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "RM Factor"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Repeated Measures Cells"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Between Subject Factors"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Covariates"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Assign repeated measures components"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Repeated Measures Components"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Data and geometries"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Individual data points"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Required: X AND Y-Axis Variables"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Check this option to show individual data points on the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Point size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Jitter height"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Jitter width"
+msgstr ""
+
+#, fuzzy
+msgctxt "jaspPlotBuilder|"
+msgid "Transparency"
+msgstr "透過度"
+
+#, fuzzy
+msgctxt "jaspPlotBuilder|"
+msgid "Dodge"
+msgstr "Dodge"
+
+msgctxt "jaspPlotBuilder|"
+msgid "Black outline"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Empty circles"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Connect data points (requires repeated measures)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Line width"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Distributions (histogram, boxplot, violin)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Required: X OR Y-Axis Variable (histogram); X AND Y-Axis Variables (boxplot, "
+"violin)"
+msgstr ""
+
+#, fuzzy
+msgctxt "jaspPlotBuilder|"
+msgid "Histogram"
+msgstr "ヒストグラム"
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Check this option to create histogram for x or y variables. Histogram "
+"requires either X-Axis or X-Axis variable, but not both."
+msgstr ""
+
+#, fuzzy
+msgctxt "jaspPlotBuilder|"
+msgid "Number of bins"
+msgstr "ビンの数"
+
+msgctxt "jaspPlotBuilder|"
+msgid "Boxplot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Check this option to create boxplot. Boxplot and violin plot require both x-"
+"axis and y-axis variables."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Boxplot width"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Whiskers width"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Show outliers"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Outlier coef"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Outlier size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable black outline/fill for the boxplot geom."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Violin plot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Check this option to add a violin plot to your visualization. Boxplot and "
+"violin plot require both x-axis and y-axis variables."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Scale method"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Area"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Count"
+msgstr ""
+
+#, fuzzy
+msgctxt "jaspPlotBuilder|"
+msgid "Width"
+msgstr "幅"
+
+msgctxt "jaspPlotBuilder|"
+msgid "Draw quantiles"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Trim violins"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Amounts (count and sum)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Required: X OR Y-Axis Variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Count bar"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add a count bar to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Bar width"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Count dash"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add dashed lines to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Dash width"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Black dash"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Count dot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add count dots to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Dot size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Count line"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add count lines to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Black line"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Count area"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add a count area to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Count value"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add count values to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Font size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Accuracy"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Horizontal justification"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Vertical justification"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Black text"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Sum bar"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add a sum bar to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Sum dash"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Sum dot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add sum dots to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Sum line"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add a sum line to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Sum area"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add a sum area to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Sum value"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add sum values to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Proportions"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Required: Group Variable AND X OR Y-Axis Variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Proportion mode"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Absolute"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Relative"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Bar stack"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Add a bar stack to the plot. The mode (absolute or relative) is set by the "
+"Proportion Mode above."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Reverse order"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Area stack"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Add an area stack to the plot. The mode (absolute or relative) is set by the "
+"Proportion Mode above."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Replace N/A"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Show as percentages"
+msgstr ""
+
+#, fuzzy
+msgctxt "jaspPlotBuilder|"
+msgid "Mean"
+msgstr "平均値"
+
+msgctxt "jaspPlotBuilder|"
+msgid "Mean bar"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add a mean bar to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Mean dash"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add dashed mean lines to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Mean dot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add mean dots to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Mean line"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add mean lines to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Mean area"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add mean areas to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Mean value"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add mean values to the plot."
+msgstr ""
+
+#, fuzzy
+msgctxt "jaspPlotBuilder|"
+msgid "Median"
+msgstr "中央値"
+
+msgctxt "jaspPlotBuilder|"
+msgid "Median bar"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add a median bar to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Median dash"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add dashed median lines to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Median dot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add median dots to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Median line"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add median lines to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Median area"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add median areas to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Median value"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add median values to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Error bars and ribbons (range, SD, SEM, 95% CI)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"The optimal dodge value is 0 if both X and Y-Axis Variables are continuous"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Range error bar"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add range error bars to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Black lines"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "SD error bar"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add standard deviation error bars to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "SEM error bar"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add SEM error bars to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "95% CI Error Bar"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add 95% confidence interval error bars to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Range ribbon"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add a range ribbon to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "SD ribbon"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add an SD ribbon to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "SEM ribbon"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add a SEM ribbon to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "95% CI ribbon"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add a 95% confidence interval ribbon to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Curve fit and reference lines"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Required: individual data points (Curve fit)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add curve fit"
+msgstr ""
+
+#, fuzzy
+msgctxt "jaspPlotBuilder|"
+msgid "Method"
+msgstr "方法"
+
+#, fuzzy
+msgctxt "jaspPlotBuilder|"
+msgid "Linear"
+msgstr "線形"
+
+msgctxt "jaspPlotBuilder|"
+msgid "LOESS"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "SE"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add reference line"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "X-axis intercept"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "e.g. 0.5, or c(1,2)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Y-axis intercept"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Line color"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "e.g. black, #ff5733"
+msgstr ""
+
+#, qt-format
+msgctxt "jaspPlotBuilder|"
+msgid "Note: For available colors, see %1 this page %2"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add identity line"
+msgstr ""
+
+#, qt-format
+msgctxt "jaspPlotBuilder|"
+msgid "Note: For available colors, see %1this page%2"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Axis settings and annotations"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "X-axis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Title"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enter x-axis title"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Specify the title for the x-axis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Limits"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "From"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "To"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "By"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Labels"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Shorten"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Whether to shorten axis labels using K for thousand, M for million, and so "
+"on."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Sort"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Order"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Rename labels"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Original label"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "New label"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Y-axis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enter y-axis title"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Specify the title for the Y-axis."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Breaks"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Rotate"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable sorting"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Title, caption, annotation"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enter the plot title here"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Caption"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Annotations"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Annotation "
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Label"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Text"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "e.g. p = 0.1, $italic(p)==0.1$"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Position"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "X-Axis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Y-Axis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Column"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "<No Value>"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Row"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Appearance"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Color"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Theme, colors, size, and legend"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Theme and color"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Theme"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Font base size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Color settings"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Color by"
+msgstr ""
+
+#, fuzzy
+msgctxt "jaspPlotBuilder|"
+msgid "None"
+msgstr "なし"
+
+msgctxt "jaspPlotBuilder|"
+msgid "Group variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "X variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Y variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Split (column)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Split (rows)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Color schemes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "JASP colors: jaspPalette"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "JASP colors: colorblind"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "JASP colors: colorblind2"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "JASP colors: colorblind3"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "JASP colors: sportsTeamsNBA"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "JASP colors: ggplot2"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "JASP colors: grandBudapest"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "JASP colors: gray"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "JASP colors: blue"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Discrete: Friendly"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Discrete: Seaside"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Discrete: Apple"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Discrete: Friendly Long"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Discrete: Okabe Ito"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Discrete: IBM"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Discrete: Metro"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Discrete: Candy"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Discrete: Alger"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Discrete: Rainbow"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Continuous: Viridis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Continuous: Magma"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Continuous: Inferno"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Continuous: Plasma"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Continuous: Cividis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Continuous: Rocket"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Continuous: Mako"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Continuous: Turbo"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Continuous: Blue Pink Yellow"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Diverging: Blue to Red"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Diverging: Blue to Brown"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Diverging: BuRd"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Diverging: BuYlRd"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Diverging: Spectral"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Diverging: Icefire"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Custom colors"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "e.g. red, blue, ##ff5733"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Size and margins"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Plot size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Width (px)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Height (px)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Margins"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Top"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Bottom"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Left"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Right"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Legend"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "No legend"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Remove title"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Split and grid control"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Split control"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Scale and axis settings"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Scale range"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "shared across all facets"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "vary across X"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "vary across Y"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "vary across both axes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Show axis lines"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "only on outer panels"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "on all X axes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "on all Y axes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "on all axes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Axis label visibility"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "show on all axes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "only on outer axes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "only on interior X axes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "only on interior Y axes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Layout settings"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Highest value at"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "bottom right"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "top right"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Panel size adjustment"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "same size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "free width (X)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "free height (Y)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "free width and height"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Include marginal plots"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "X axis title"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enter a label for the X axis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Y axis title"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enter a label for the Y axis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Grid control"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Number of columns"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Number of rows"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "bottomright"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Scales and strip settings"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Strip position"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "top"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "bottom"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "left"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "right"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "P value and comparison lines"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "P value brackets"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "P value color"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "P value size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Y-Axis position of the first P value"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Step distance"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Note: If custom Y-Axis limits are set, the starting\n"
+"position for the P value must fall within the defined interval"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Pairwise comparisons table"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Bracket "
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Compared groups"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Group 1"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Group 2"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "P value and brackets"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Tip length"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Bracket size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Group"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Custom comparison lines"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Note: If custom Y-Axis limits are set, the starting\n"
+"position for the Y-Axis starnd and end values must fall within the defined "
+"interval"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add annotation lines"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Line "
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "X-Axis start"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "X-Axis end"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Y-Axis start"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Y-Axis end"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Label size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Label distance"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Plot layout"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Arrange plots by column"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Relative column widths"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "1,1"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Specify layout"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Column "
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Plot IDs"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Plot 1, Plot 2, ..."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Plot heights"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Specify the relative heights of the plots in the specified column."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "A, B, C, ..."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Collect legend"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Arrange plots by row"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Relative row heights"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Row "
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Plot widths"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Specify the relative widths of the plots in the specified row."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Note: If you have column and row arrangement,\n"
+"the column will be the top part of the layout\n"
+"and the row will be the bottom part of the layout."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Label settings"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Horizontal position"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Vertical position"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Additional settings"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Column heights/row widths"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Specify the relative heights of the columns or widths of the rows in the "
+"plot layout."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Height"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Spacing"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Collect legend across layout"
+msgstr ""
