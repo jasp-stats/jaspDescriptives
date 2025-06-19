@@ -3183,6 +3183,36 @@ Form {
 				}
 
 				Group {
+					title: qsTr("Axis padding")
+					columns: 4
+
+					DoubleField {
+						name: "YPaddingSecond"
+						label: qsTr("Top")
+						value: 0.05
+					}
+
+					DoubleField {
+						name: "YPaddingFirst"
+						label: qsTr("Bottom")
+						value: 0.04
+					}
+
+					DoubleField {
+						name: "XPaddingFirst"
+						label: qsTr("Left")
+						value: 0.05
+					}
+
+					DoubleField {
+						name: "XPaddingSecond"
+						label: qsTr("Right")
+						value: 0.05
+					}
+
+				}
+
+				Group {
 					title: qsTr("Margins")
 					columns: 4
 

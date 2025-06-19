@@ -1470,8 +1470,9 @@ addDecodedLabels <- function(p) {
     adjust_args_xaxis$cut_short_scale <- isTRUE(cutShortScale)
 
     # add padding
-    adjust_args_xaxis$padding <- c(0.1, 0.1)
-
+    XPaddingFirst <- tab[["XPaddingFirst"]]
+    XPaddingSecond <- tab[["XPaddingSecond"]]
+    adjust_args_xaxis$padding <- c(XPaddingFirst,XPaddingSecond)
     if (length(adjust_args_xaxis) > 0) {
       tidyplot_obj <- do.call(
         tidyplots::adjust_x_axis,
@@ -1562,7 +1563,10 @@ addDecodedLabels <- function(p) {
     adjust_args_yaxis$cut_short_scale <- isTRUE(cutShortScaleY)
 
     # add padding
-    adjust_args_yaxis$padding <- c(0.1, 0.1)
+
+    YPaddingFirst <- tab[["YPaddingFirst"]]
+    YPaddingSecond <- tab[["YPaddingSecond"]]
+    adjust_args_yaxis$padding <- c(YPaddingFirst, YPaddingSecond)
 
     if (length(adjust_args_yaxis) > 0) {
       tidyplot_obj <- do.call(
