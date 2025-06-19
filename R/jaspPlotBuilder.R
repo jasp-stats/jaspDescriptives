@@ -2130,6 +2130,17 @@ addDecodedLabels <- function(p) {
       tidyplot_obj <- tidyplot_obj + ggplot2::scale_x_continuous(labels = scales::percent_format(accuracy = 1))
     }
 
+    # Add stat ellipse ----
+    if(tab[["addStatEllipse"]]) {
+      tidyplot_obj <- tidyplot_obj +
+        ggplot2::stat_ellipse(
+          geom = "polygon",
+          alpha = tab[["fillEllipse"]],
+          type = tab[["ellipseType"]],
+          level = tab[["levelEllipse"]]
+        )
+    }
+
     # Render plot ----------
 
 

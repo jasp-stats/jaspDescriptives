@@ -389,12 +389,58 @@ Form {
 
 				}
 
+				CheckBox { ///////////////////////
+					name: "addStatEllipse"
+					label: qsTr("Add ellipse")
+					checked: false
+					enabled: addDataPoint.checked
+					columns: 3
+					info: qsTr("Add a statistical ellipse around the points. 'Ellipse type' controls the method: \"t\"
+					assumes a multivariate t-distribution, \"Normal\" assumes a multivariate normal distribution, and \"Euclidean\" draws a
+					circle whose radius equals the value of 'Level' (Euclidean distance from the centre; it may not look perfectly circular without coord_fixed()).
+					'Level' sets the confidence level of the ellipse, or the radius when 'Ellipse type' is \"Euclidean\".")
+					onEnabledChanged: {
+						if (!enabled) {
+							checked = false;
+						}
+					}
+
+					DropDown {
+						name: "ellipseType"
+						label: qsTr("Ellipse type")
+						values: [
+							{ label: qsTr("t"), value: "t" },
+							{ label: qsTr("Normal"), value: "norm" },
+							{ label: qsTr("Euclidean"), value: "euclid"}
+						]
+						indexDefaultValue: 0
+					}
+
+					DoubleField {
+						name: "fillEllipse"
+						label: qsTr("Transparency")
+						value: 0.20
+						min: 0
+						max: 1
+					}
+
+					DoubleField {
+						name: "levelEllipse"
+						label: qsTr("Level")
+						value: 0.95
+						min: 0
+						max: 1
+					}
+
+				} /////////////////////////////////////////
+
 				CheckBox {
 					name: "connectRMPlotBuilder"
 					label: qsTr("Connect data points (requires repeated measures)")
 					id: connectRMPlotBuilder
 					checked: false
 					enabled: isRM.value === "RM" & addDataPoint.checked
+					columns: 2
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
