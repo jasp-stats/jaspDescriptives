@@ -376,7 +376,8 @@ addDecodedLabels <- function(p) {
         jitter_width  = tab[["jitterwPlotBuilder"]],
         size          = tab[["pointsizePlotBuilder"]],
         alpha         = tab[["alphaPlotBuilder"]],
-        shape         = ifelse(tab[["emptyCircles"]], 1, 21)
+        shape         = ifelse(tab[["emptyCircles"]], 1, 21),
+        white_border  = tab[["whiteBorder"]]
       )
 
       if (tab[["blackOutlineDataPoint"]]) {

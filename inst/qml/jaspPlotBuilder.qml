@@ -375,6 +375,12 @@ Form {
 						}
 
 						CheckBox {
+							name: "whiteBorder"
+							label: qsTr("White outline")
+							checked: false
+						}
+
+						CheckBox {
 							name: "emptyCircles"
 							label: qsTr("Empty circles")
 							checked: false
