@@ -17,9 +17,25 @@
 
 # This is a generated file. Don't change it!
 
+#' Time Series Descriptives
+#'
+#' Time Series Descriptives allows the user to obtain descriptive statistics and descriptive plots for univariate time-series.
+#'
+#' @param acf, Plots the autocorrelation for a specified number of lags. The confidence interval may be given assuming either a white noise process, or assuming for a lag q a moving average process of order q - 1.
+#'    Defaults to \code{FALSE}.
+#' @param dependent, A variable that is measured repeatedly over time.
+#' @param filter, Filters the time series so only a specific range will be used for further analyses. Row number refers to the row number in the spreadsheet. If a 'Time' variable is supplied it is also possible to filter by time index or date, depending on the format of the 'Time' variable.
+#'    Defaults to \code{FALSE}.
+#' @param lagPlot, Plots the dependent variable (y-axis) against a lagged version of itself (x-axis). The lag stands for the amount of observations in between the dependent variable and the lagged version of itself. The regression line is the autoregression at the specified lag.
+#'    Defaults to \code{FALSE}.
+#' @param pacf, Plots the partial autocorrelation for a specified number of lags.
+#'    Defaults to \code{FALSE}.
+#' @param time, Optional. Can either be an ordinal variable indicating the order of the observations, or a text variable indicating the date/time stamp of the observations. Combined date and time values should be in the standard format 'YYYY-MM-DD HH:MM:SS', where seconds (':SS') can also be omitted. Date-only values should be in the format 'YYYY-MM-DD'. If a time variable is not supplied, the row order of the data is used.
+#' @param timeSeriesPlot, Plots the dependent variable (y-axis) over time (x-axis).
+#'    Defaults to \code{TRUE}.
 DescriptivesTimeSeries <- function(
           data = NULL,
-          version = "0.19.3",
+          version = "0.95",
           acf = FALSE,
           acfCi = TRUE,
           acfCiLevel = 0.95,

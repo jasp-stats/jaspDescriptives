@@ -17,9 +17,32 @@
 
 # This is a generated file. Don't change it!
 
+#' Flexplot
+#'
+#' Flexplot allows the user to create graphical displays of data, using barcharts and histograms for univariate data, and various different types of scatterplots for bivariate and multivariate data.
+#'
+#' @param alpha, The degree of transparency of the dots in the graphics
+#' @param confidence, Should 95% confidence intervals be displayed?
+#'    Defaults to \code{FALSE}.
+#' @param dependent, The variable of interest. This is also called the outcome variable. If only an outcome variable is specified, Flexplot will produce a histogram for numeric data and a barchart for categorical data. If independent variable(s) and/or panelled variable(s) are specified, this variable will be displayed on the Y axis.
+#' @param ghost, Ghost lines are a visual aid that can be used when doing panelled plots. Ghost lines simply repeat the fitted line from one panel across the other panels to make it easier to make comparisons across panels.
+#'    Defaults to \code{TRUE}.
+#' @param jitx, The maximal amount of "jittering" used on the X axis to remove overlap between datapoints. The maximal amount of jittering is proportional to the density of the data. In other words, the maximum jittering will occur at the mode of the dataset, and little to no jittering will occur in locations where there is no overlap.
+#' @param jity, The maximal amount of "jittering" used on the Y axis to remove overlap between datapoints. The maximal amount of jittering is proportional to the density of the data. In other words, the maximum jittering will occur at the mode of the dataset, and little to no jittering will occur in locations where there is no overlap.
+#' @param paneledVars, Variables specified in these boxes will be binned (if numeric) then displayed as different subplots. The first variable specified as a panelled variable will form the column plots, while the second will form the row plots.
+#' @param theme, the type of GGplot theme to use when displaying the data. Can be one of the following:
+#' @param type, The type of fitted line displayed when the x axis is a numeric variable. These can be one of the following:
+#' \itemize{
+#'   \item \code{"Loess"} (default) : A non-parametric loess line
+#'   \item \code{"Regression"}: A straight (regression) line
+#'   \item \code{"Quadratic"}: A line that includes both a linear effect and a quadratic (squared) term
+#'   \item \code{"Cubic"}: A line that includes a linear, squared, and cubed term
+#'   \item \code{"None"}: No line
+#' }
+#' @param variables, The variable(s) for which we wish to visually assess relationships with the DV. The first variable chosen shows up on the X axis, either as a scatterplot (for numeric predictors) or as a beeswarm plot (for categorical variables). The second variable chosen will show up as different colors/lines/symbols. If the second varaible chosen is numeric, it will be binned first.
 flexplot <- function(
           data = NULL,
-          version = "0.19.3",
+          version = "0.95",
           formula = NULL,
           alpha = 0.4,
           bw = FALSE,
