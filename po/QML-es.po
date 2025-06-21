@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2025-06-21 03:32+0000\n"
+"Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/es/>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.13-dev\n"
 "X-Language: es\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -472,19 +478,19 @@ msgstr "Identidad"
 
 msgctxt "Descriptives|"
 msgid "Dodge"
-msgstr "Dodge"
+msgstr "Finta"
 
 msgctxt "Description|"
 msgid "Time Series Descriptives"
-msgstr "Descriptivos de Series Temporales"
+msgstr "Descriptivos de Serie Temporal"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Time Series Descriptives allows the user to obtain descriptive statistics "
 "and descriptive plots for univariate time-series."
 msgstr ""
-"Series Temporales permite al usuario obtener estadísticos descriptivos y "
-"gráficos descriptivos para series temporales univariantes."
+"Descriptivos de Serie Temporal permite al usuario obtener estadísticos "
+"descriptivos y gráficos descriptivos para series temporales univariantes."
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Variable"
@@ -1742,7 +1748,7 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Point Size"
-msgstr "Tamaño de los puntos"
+msgstr "Tamaño de punto"
 
 msgctxt "raincloudPlots|"
 msgid "We recommend a greater size, the fewer points you have."
@@ -2400,183 +2406,185 @@ msgstr "Desviación típica"
 
 msgctxt "Description|"
 msgid "Plot Builder (beta)"
-msgstr ""
+msgstr "Generador de gráficos (beta)"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "References"
 msgstr "Referencias"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Plot 1"
-msgstr ""
+msgstr "Gráfico 1"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Repeated measurements"
-msgstr ""
+msgstr "Medidas repetidas"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Choose whether you want to make plots of repeated measurements from repeated "
 "measurements."
 msgstr ""
+"Elegir si se quieren hacer gráficos de medidas repetidas desde medidas "
+"repetidas."
 
 msgctxt "jaspPlotBuilder|"
 msgid "No"
-msgstr ""
+msgstr "No"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Yes"
-msgstr ""
+msgstr "Sí"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Input"
 msgstr "Entrada"
 
 msgctxt "jaspPlotBuilder|"
 msgid "X-Axis Variable"
-msgstr ""
+msgstr "Variable del eje X"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Select the variable for the X-axis."
-msgstr ""
+msgstr "Seleccionar la variable para el eje X."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Y-Axis Variable"
-msgstr ""
+msgstr "Variable del eje Y"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Select the variable for the Y-axis."
-msgstr ""
+msgstr "Seleccionar la variable para el eje Y."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Group Variable"
-msgstr ""
+msgstr "Variable de agrupación"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Select the variable for data grouping, which will also determine the "
 "coloring.."
 msgstr ""
+"Seleccionar la variable para la agrupación de datos, que va tamén a "
+"determinar el coloreado."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Split (Columns)"
-msgstr ""
+msgstr "Dividir (columnas)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "You can choose a variable to split the plots into columns."
-msgstr ""
+msgstr "Puede elegir una variable para dividir los gráficos en columnas."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Split (Rows)"
-msgstr ""
+msgstr "Dividir (filas)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "You can choose a variable to split the plots into rows."
-msgstr ""
+msgstr "Puede elegir una variable para dividir los gráficos en filas."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Grid"
-msgstr ""
+msgstr "Cuadrícula"
 
 msgctxt "jaspPlotBuilder|"
 msgid "You can choose a variable to make a grid."
-msgstr ""
+msgstr "Puede elegir una variable para hacer una cuadrícula."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Repeated Measures Factors"
-msgstr ""
+msgstr "Factores de Medidas Repetidas"
 
 msgctxt "jaspPlotBuilder|"
 msgid "RM Factor"
-msgstr ""
+msgstr "Factor de MR"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Repeated Measures Cells"
-msgstr ""
+msgstr "Celdas de Medidas Repetidas"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Between Subject Factors"
-msgstr ""
+msgstr "Factores Entre Elementos"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Covariates"
-msgstr ""
+msgstr "Covariables"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Assign repeated measures components"
-msgstr ""
+msgstr "Asignar componentes de medidas repetidas"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Repeated Measures Components"
-msgstr ""
+msgstr "Componentes de Medidas Repetidas"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Data and geometries"
-msgstr ""
+msgstr "Datos y geometrías"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Individual data points"
-msgstr ""
+msgstr "Puntos individuales de datos"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Required: X AND Y-Axis Variables"
-msgstr ""
+msgstr "Requerido: Variables de los ejes X e Y"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Check this option to show individual data points on the plot."
 msgstr ""
+"Marcar esta opción para mostrar puntos individuales de datos en el gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Point size"
-msgstr ""
+msgstr "Tamaño de punto"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Jitter height"
-msgstr ""
+msgstr "Altura da oscilación"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Jitter width"
-msgstr ""
+msgstr "Ancho de la oscilación"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Transparency"
 msgstr "Transparencia"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Dodge"
-msgstr "Dodge"
+msgstr "Finta"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Black outline"
-msgstr ""
+msgstr "Contorno negro"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Empty circles"
-msgstr ""
+msgstr "Círculos vacíos"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Connect data points (requires repeated measures)"
-msgstr ""
+msgstr "Conectar puntos de datos (requiere medidas repetidas)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Line width"
-msgstr ""
+msgstr "Ancho de línea"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Distributions (histogram, boxplot, violin)"
-msgstr ""
+msgstr "Distribuciones (histograma, gráfico de caja, violín)"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Required: X OR Y-Axis Variable (histogram); X AND Y-Axis Variables (boxplot, "
 "violin)"
 msgstr ""
+"Requerido: Variable del eje X o Y (histograma); Variables de los ejes X e Y ("
+"gráfico de caja, violín)"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Histogram"
 msgstr "Histograma"
@@ -2586,116 +2594,120 @@ msgid ""
 "Check this option to create histogram for x or y variables. Histogram "
 "requires either X-Axis or X-Axis variable, but not both."
 msgstr ""
+"Marcar esta opción para generar el histograma para la variable X o Y. "
+"Histograma requiere la variable del eje X o del eje Y, pero no ambas."
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Number of bins"
 msgstr "Número de barras"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Boxplot"
-msgstr ""
+msgstr "Diagrama de caja"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Check this option to create boxplot. Boxplot and violin plot require both x-"
 "axis and y-axis variables."
 msgstr ""
+"Marcar esta opción para generar un gráfico de caja. Los gráficos de caja y "
+"violín requieren ambas variables, del eje X y del eje Y."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Boxplot width"
-msgstr ""
+msgstr "Ancho del gráfico de caja"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Whiskers width"
-msgstr ""
+msgstr "Ancho de bigotes"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Show outliers"
-msgstr ""
+msgstr "Mostrar valores atípicos"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Outlier coef"
-msgstr ""
+msgstr "Coef. atípico"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Outlier size"
-msgstr ""
+msgstr "Tamaño de atípicos"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable black outline/fill for the boxplot geom."
-msgstr ""
+msgstr "Permitir borde negro/relleno en geometría de gráfico de caja."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Violin plot"
-msgstr ""
+msgstr "Gráfico de violín"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Check this option to add a violin plot to your visualization. Boxplot and "
 "violin plot require both x-axis and y-axis variables."
 msgstr ""
+"Marcar esta opción para añadir un gráfico de violín a la visualización. Los "
+"gráficos de caja y violín requieren ambas variables, del eje X y del eje Y."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Scale method"
-msgstr ""
+msgstr "Método de escala"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Area"
-msgstr ""
+msgstr "Área"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count"
-msgstr ""
+msgstr "Recuento"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Width"
 msgstr "Ancho"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Draw quantiles"
-msgstr ""
+msgstr "Dibujar cuantiles"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Trim violins"
-msgstr ""
+msgstr "Recortar violines"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Amounts (count and sum)"
-msgstr ""
+msgstr "Cantidades (recuento y suma)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Required: X OR Y-Axis Variable"
-msgstr ""
+msgstr "Requerido: Variable del eje X o Y"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count bar"
-msgstr ""
+msgstr "Barra de recuento"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a count bar to the plot."
-msgstr ""
+msgstr "Permite añadir una barra de recuento al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Bar width"
-msgstr ""
+msgstr "Ancho de barra"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count dash"
-msgstr ""
+msgstr "Raya de recuento"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add dashed lines to the plot."
-msgstr ""
+msgstr "Permite añadir líneas discontinuas al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Dash width"
-msgstr ""
+msgstr "Ancho de raya"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Black dash"
-msgstr ""
+msgstr "Raya negra"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count dot"
@@ -3301,63 +3313,63 @@ msgstr "Ninguna"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Group variable"
-msgstr ""
+msgstr "Variable de agrupación"
 
 msgctxt "jaspPlotBuilder|"
 msgid "X variable"
-msgstr ""
+msgstr "Variable X"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Y variable"
-msgstr ""
+msgstr "Variable Y"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Split (column)"
-msgstr ""
+msgstr "Dividir (columna)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Split (rows)"
-msgstr ""
+msgstr "Dividir (filas)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Color schemes"
-msgstr ""
+msgstr "Esquemas de colores"
 
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: jaspPalette"
-msgstr ""
+msgstr "Colores de JASP: jaspPalette"
 
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: colorblind"
-msgstr ""
+msgstr "Colores de JASP: colorblind"
 
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: colorblind2"
-msgstr ""
+msgstr "Colores de JASP: colorblind2"
 
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: colorblind3"
-msgstr ""
+msgstr "Colores de JASP: colorblind3"
 
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: sportsTeamsNBA"
-msgstr ""
+msgstr "Colores de JASP: sportsTeamsNBA"
 
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: ggplot2"
-msgstr ""
+msgstr "Colores de JASP: ggplot2"
 
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: grandBudapest"
-msgstr ""
+msgstr "Colores de JASP: grandBudapest"
 
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: gray"
-msgstr ""
+msgstr "Colores de JASP: gris"
 
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: blue"
-msgstr ""
+msgstr "Colores de JASP: azul"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: Friendly"
