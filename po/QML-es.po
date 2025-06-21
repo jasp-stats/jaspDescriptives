@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2025-06-21 19:26+0000\n"
+"Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
+"Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/es/>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.13-dev\n"
 "X-Language: es\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -2629,7 +2635,7 @@ msgstr "Tamaño de atípicos"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable black outline/fill for the boxplot geom."
-msgstr "Permitir borde negro/relleno en geometría de gráfico de caja."
+msgstr "Habilitar borde negro/relleno en geometría de gráfico de caja."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Violin plot"
@@ -2677,11 +2683,11 @@ msgstr "Requerido: Variable del eje X o Y"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count bar"
-msgstr "Barra de recuento"
+msgstr "Barra de recuentos"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a count bar to the plot."
-msgstr "Permite añadir una barra de recuento al gráfico."
+msgstr "Habilitar añadir una barra de recuentos al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Bar width"
@@ -2689,11 +2695,11 @@ msgstr "Ancho de barra"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count dash"
-msgstr "Raya de recuento"
+msgstr "Raya de recuentos"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add dashed lines to the plot."
-msgstr "Permite añadir líneas discontinuas al gráfico."
+msgstr "Habilitar añadir líneas discontinuas al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Dash width"
@@ -2705,250 +2711,251 @@ msgstr "Raya negra"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count dot"
-msgstr ""
+msgstr "Punto de recuentos"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add count dots to the plot."
-msgstr ""
+msgstr "Habilitar añadir puntos de recuentos al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Dot size"
-msgstr ""
+msgstr "Tamaño de puntos"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count line"
-msgstr ""
+msgstr "Línea de recuentos"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add count lines to the plot."
-msgstr ""
+msgstr "Habilitar añadir líneas de recuentos al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Black line"
-msgstr ""
+msgstr "Línea negra"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count area"
-msgstr ""
+msgstr "Área de recuentos"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a count area to the plot."
-msgstr ""
+msgstr "Habilitar añadir un área de recuentos al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count value"
-msgstr ""
+msgstr "Valor de recontos"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add count values to the plot."
-msgstr ""
+msgstr "Habilitar añadir valores de recuentos al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Font size"
-msgstr ""
+msgstr "Tamaño de fuente"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Accuracy"
-msgstr ""
+msgstr "Precisión"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Horizontal justification"
-msgstr ""
+msgstr "Justificación horizontal"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Vertical justification"
-msgstr ""
+msgstr "Justificación vertical"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Black text"
-msgstr ""
+msgstr "Texto negro"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum bar"
-msgstr ""
+msgstr "Barra de suma"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a sum bar to the plot."
-msgstr ""
+msgstr "Habilitar añadir una barra de suma al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum dash"
-msgstr ""
+msgstr "Raya de suma"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum dot"
-msgstr ""
+msgstr "Punto de suma"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add sum dots to the plot."
-msgstr ""
+msgstr "Habilitar añadir puntos de suma al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum line"
-msgstr ""
+msgstr "Línea de suma"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a sum line to the plot."
-msgstr ""
+msgstr "Habilitar añadir una línea de suma al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum area"
-msgstr ""
+msgstr "Área de suma"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a sum area to the plot."
-msgstr ""
+msgstr "Habilitar añadir un área de suma al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum value"
-msgstr ""
+msgstr "Valor de suma"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add sum values to the plot."
-msgstr ""
+msgstr "Habilitar añadir valores de suma al gráfico."
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Proportions"
 msgstr "Proporciones"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Required: Group Variable AND X OR Y-Axis Variable"
-msgstr ""
+msgstr "Requerido: Variable de grupo, y Variable del eje X o Y"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Proportion mode"
-msgstr ""
+msgstr "Moda de proporción"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Absolute"
-msgstr ""
+msgstr "Absoluto"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Relative"
-msgstr ""
+msgstr "Relativo"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Bar stack"
-msgstr ""
+msgstr "Pila de barras"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Add a bar stack to the plot. The mode (absolute or relative) is set by the "
 "Proportion Mode above."
 msgstr ""
+"Añadir una pila de barras al gráfico. La moda (absoluta o relativa) se "
+"establece mediante la Moda de la Proporción de arriba."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Reverse order"
-msgstr ""
+msgstr "Orden inverso"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Area stack"
-msgstr ""
+msgstr "Pila de áreas"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Add an area stack to the plot. The mode (absolute or relative) is set by the "
 "Proportion Mode above."
 msgstr ""
+"Añadir una pila de áreas al gráfico. La moda (absoluta o relativa) se "
+"establece mediante la Moda de la Proporción de arriba."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Replace N/A"
-msgstr ""
+msgstr "Reemplazar N/A"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Show as percentages"
-msgstr ""
+msgstr "Mostrar los porcentajes"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Mean"
 msgstr "Media"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Mean bar"
-msgstr ""
+msgstr "Barra de media"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a mean bar to the plot."
-msgstr ""
+msgstr "Habilitar añadir una barra de media al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Mean dash"
-msgstr ""
+msgstr "Raya de media"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add dashed mean lines to the plot."
-msgstr ""
+msgstr "Habilitar añadir líneas discontinuas de media al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Mean dot"
-msgstr ""
+msgstr "Punto de media"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add mean dots to the plot."
-msgstr ""
+msgstr "Habilitar añadir puntos de media al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Mean line"
-msgstr ""
+msgstr "Línea de media"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add mean lines to the plot."
-msgstr ""
+msgstr "Habilitar añadir líneas de media al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Mean area"
-msgstr ""
+msgstr "Área de media"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add mean areas to the plot."
-msgstr ""
+msgstr "Habilitar añadir áreas de media al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Mean value"
-msgstr ""
+msgstr "Valor de media"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add mean values to the plot."
-msgstr ""
+msgstr "Habilitar añadir valores de media al gráfico."
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Median"
 msgstr "Mediana"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Median bar"
-msgstr ""
+msgstr "Barra de mediana"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a median bar to the plot."
-msgstr ""
+msgstr "Habilitar añadir una barra de mediana al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Median dash"
-msgstr ""
+msgstr "Raya de mediana"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add dashed median lines to the plot."
-msgstr ""
+msgstr "Habilitar añadir líneas discontinuas de mediana al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Median dot"
-msgstr ""
+msgstr "Punto de mediana"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add median dots to the plot."
-msgstr ""
+msgstr "Habilitar añadir puntos de mediana al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Median line"
-msgstr ""
+msgstr "Línea de mediana"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add median lines to the plot."
-msgstr ""
+msgstr "Habilitar añadir líneas de mediana al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Median area"
