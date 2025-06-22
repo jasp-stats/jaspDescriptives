@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-06-21 19:26+0000\n"
+"PO-Revision-Date: 2025-06-22 22:01+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/es/>\n"
@@ -2687,7 +2687,7 @@ msgstr "Barra de recuentos"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a count bar to the plot."
-msgstr "Habilitar añadir una barra de recuentos al gráfico."
+msgstr "Habilitar añadir una barra de recuentos, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Bar width"
@@ -2699,7 +2699,7 @@ msgstr "Raya de recuentos"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add dashed lines to the plot."
-msgstr "Habilitar añadir líneas discontinuas al gráfico."
+msgstr "Habilitar añadir líneas discontinuas, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Dash width"
@@ -2715,7 +2715,7 @@ msgstr "Punto de recuentos"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add count dots to the plot."
-msgstr "Habilitar añadir puntos de recuentos al gráfico."
+msgstr "Habilitar añadir puntos de recuentos, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Dot size"
@@ -2727,7 +2727,7 @@ msgstr "Línea de recuentos"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add count lines to the plot."
-msgstr "Habilitar añadir líneas de recuentos al gráfico."
+msgstr "Habilitar añadir líneas de recuentos, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Black line"
@@ -2739,7 +2739,7 @@ msgstr "Área de recuentos"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a count area to the plot."
-msgstr "Habilitar añadir un área de recuentos al gráfico."
+msgstr "Habilitar añadir un área de recuentos, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count value"
@@ -2747,7 +2747,7 @@ msgstr "Valor de recontos"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add count values to the plot."
-msgstr "Habilitar añadir valores de recuentos al gráfico."
+msgstr "Habilitar añadir valores de recuentos, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Font size"
@@ -2775,7 +2775,7 @@ msgstr "Barra de suma"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a sum bar to the plot."
-msgstr "Habilitar añadir una barra de suma al gráfico."
+msgstr "Habilitar añadir una barra de suma, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum dash"
@@ -2787,7 +2787,7 @@ msgstr "Punto de suma"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add sum dots to the plot."
-msgstr "Habilitar añadir puntos de suma al gráfico."
+msgstr "Habilitar añadir puntos de suma, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum line"
@@ -2795,7 +2795,7 @@ msgstr "Línea de suma"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a sum line to the plot."
-msgstr "Habilitar añadir una línea de suma al gráfico."
+msgstr "Habilitar añadir una línea de suma, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum area"
@@ -2803,7 +2803,7 @@ msgstr "Área de suma"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a sum area to the plot."
-msgstr "Habilitar añadir un área de suma al gráfico."
+msgstr "Habilitar añadir un área de suma, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum value"
@@ -2811,7 +2811,7 @@ msgstr "Valor de suma"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add sum values to the plot."
-msgstr "Habilitar añadir valores de suma al gráfico."
+msgstr "Habilitar añadir valores de suma, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Proportions"
@@ -2879,7 +2879,7 @@ msgstr "Barra de media"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a mean bar to the plot."
-msgstr "Habilitar añadir una barra de media al gráfico."
+msgstr "Habilitar añadir una barra de media, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Mean dash"
@@ -2887,7 +2887,7 @@ msgstr "Raya de media"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add dashed mean lines to the plot."
-msgstr "Habilitar añadir líneas discontinuas de media al gráfico."
+msgstr "Habilitar añadir líneas discontinuas de media, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Mean dot"
@@ -2895,7 +2895,7 @@ msgstr "Punto de media"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add mean dots to the plot."
-msgstr "Habilitar añadir puntos de media al gráfico."
+msgstr "Habilitar añadir puntos de media, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Mean line"
@@ -2903,7 +2903,7 @@ msgstr "Línea de media"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add mean lines to the plot."
-msgstr "Habilitar añadir líneas de media al gráfico."
+msgstr "Habilitar añadir líneas de media, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Mean area"
@@ -2911,7 +2911,7 @@ msgstr "Área de media"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add mean areas to the plot."
-msgstr "Habilitar añadir áreas de media al gráfico."
+msgstr "Habilitar añadir áreas de media, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Mean value"
@@ -2919,7 +2919,7 @@ msgstr "Valor de media"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add mean values to the plot."
-msgstr "Habilitar añadir valores de media al gráfico."
+msgstr "Habilitar añadir valores de media, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Median"
@@ -2931,7 +2931,7 @@ msgstr "Barra de mediana"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a median bar to the plot."
-msgstr "Habilitar añadir una barra de mediana al gráfico."
+msgstr "Habilitar añadir una barra de mediana, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Median dash"
@@ -2939,7 +2939,7 @@ msgstr "Raya de mediana"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add dashed median lines to the plot."
-msgstr "Habilitar añadir líneas discontinuas de mediana al gráfico."
+msgstr "Habilitar añadir líneas discontinuas de mediana, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Median dot"
@@ -2947,7 +2947,7 @@ msgstr "Punto de mediana"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add median dots to the plot."
-msgstr "Habilitar añadir puntos de mediana al gráfico."
+msgstr "Habilitar añadir puntos de mediana, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Median line"
@@ -2955,330 +2955,331 @@ msgstr "Línea de mediana"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add median lines to the plot."
-msgstr "Habilitar añadir líneas de mediana al gráfico."
+msgstr "Habilitar añadir líneas de mediana, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Median area"
-msgstr ""
+msgstr "Área de mediana"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add median areas to the plot."
-msgstr ""
+msgstr "Habilitar añadir áreas de mediana, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Median value"
-msgstr ""
+msgstr "Valor de mediana"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add median values to the plot."
-msgstr ""
+msgstr "Habilitar añadir valor de mediana, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Error bars and ribbons (range, SD, SEM, 95% CI)"
-msgstr ""
+msgstr "Barras y franjas de errores (rango, DT, MES, IC del 95%)"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "The optimal dodge value is 0 if both X and Y-Axis Variables are continuous"
 msgstr ""
+"El valor óptimo de la finta es 0 cuando las variables de los ejes X e Y son "
+"continuas"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Range error bar"
-msgstr ""
+msgstr "Barra de errores del rango"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add range error bars to the plot."
-msgstr ""
+msgstr "Habilitar añadir barras de errores del rango, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Black lines"
-msgstr ""
+msgstr "Líneas negras"
 
 msgctxt "jaspPlotBuilder|"
 msgid "SD error bar"
-msgstr ""
+msgstr "Barra de errores de DT"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add standard deviation error bars to the plot."
-msgstr ""
+msgstr "Habilitar añadir barras de errores de la desviación típica, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "SEM error bar"
-msgstr ""
+msgstr "Barra de errores de MES"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add SEM error bars to the plot."
-msgstr ""
+msgstr "Habilitar añadir barras de errores de MES, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "95% CI Error Bar"
-msgstr ""
+msgstr "Barra de errores del IC de 95%"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add 95% confidence interval error bars to the plot."
 msgstr ""
+"Habilitar añadir barras de errores de los intervalos con 95% de confianza, "
+"al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Range ribbon"
-msgstr ""
+msgstr "Franja de rango"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a range ribbon to the plot."
-msgstr ""
+msgstr "Habilitar añadir una franja del rango, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "SD ribbon"
-msgstr ""
+msgstr "Franja de DT"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add an SD ribbon to the plot."
-msgstr ""
+msgstr "Habilitar añadir una franja de DT, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "SEM ribbon"
-msgstr ""
+msgstr "Franja de MES"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a SEM ribbon to the plot."
-msgstr ""
+msgstr "Habilitar añadir una franja de MES, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "95% CI ribbon"
-msgstr ""
+msgstr "Franja de IC de 95%"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a 95% confidence interval ribbon to the plot."
 msgstr ""
+"Habilitar añadir una franja del intervalo con 95% de confianza, al gráfico."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Curve fit and reference lines"
-msgstr ""
+msgstr "Ajuste de la curva y líneas de referencia"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Required: individual data points (Curve fit)"
-msgstr ""
+msgstr "Requerido: Puntos individuales de datos (ajuste de la curva)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Add curve fit"
-msgstr ""
+msgstr "Añadir ajuste de la curva"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Method"
 msgstr "Método"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Linear"
 msgstr "Lineal"
 
 msgctxt "jaspPlotBuilder|"
 msgid "LOESS"
-msgstr ""
+msgstr "Loess"
 
 msgctxt "jaspPlotBuilder|"
 msgid "SE"
-msgstr ""
+msgstr "ET"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Add reference line"
-msgstr ""
+msgstr "Añadir línea de referencia"
 
 msgctxt "jaspPlotBuilder|"
 msgid "X-axis intercept"
-msgstr ""
+msgstr "Constante del eje X"
 
 msgctxt "jaspPlotBuilder|"
 msgid "e.g. 0.5, or c(1,2)"
-msgstr ""
+msgstr "p.e. 0.5, o c(1,2)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Y-axis intercept"
-msgstr ""
+msgstr "Constante del eje Y"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Line color"
-msgstr ""
+msgstr "Color de línea"
 
 msgctxt "jaspPlotBuilder|"
 msgid "e.g. black, #ff5733"
-msgstr ""
+msgstr "p.e. negro, #ff5733"
 
 #, qt-format
 msgctxt "jaspPlotBuilder|"
 msgid "Note: For available colors, see %1 this page %2"
-msgstr ""
+msgstr "Nota: Para colores disponibles, consulta %1 esta página %2"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Add identity line"
-msgstr ""
+msgstr "Añadir línea de identidad"
 
 #, qt-format
 msgctxt "jaspPlotBuilder|"
 msgid "Note: For available colors, see %1this page%2"
-msgstr ""
+msgstr "Nota: Para colores disponibles, consulta %1 esta página %2"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Axis settings and annotations"
-msgstr ""
+msgstr "Configuración de ejes y comentarios"
 
 msgctxt "jaspPlotBuilder|"
 msgid "X-axis"
-msgstr ""
+msgstr "Eje X"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enter x-axis title"
-msgstr ""
+msgstr "Introducir el título del eje X"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Specify the title for the x-axis"
-msgstr ""
+msgstr "Especificar el título del eje X"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Limits"
-msgstr ""
+msgstr "Límites"
 
 msgctxt "jaspPlotBuilder|"
 msgid "From"
-msgstr ""
+msgstr "De"
 
 msgctxt "jaspPlotBuilder|"
 msgid "To"
-msgstr ""
+msgstr "A"
 
 msgctxt "jaspPlotBuilder|"
 msgid "By"
-msgstr ""
+msgstr "Por"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Labels"
-msgstr ""
+msgstr "Etiquetas"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Shorten"
-msgstr ""
+msgstr "Acortar"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Whether to shorten axis labels using K for thousand, M for million, and so "
 "on."
 msgstr ""
+"Si acortar las etiquetas de los ejes usando K para mil, M para millón, etc."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sort"
-msgstr ""
+msgstr "Ordenar"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Order"
-msgstr ""
+msgstr "Orden"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Rename labels"
-msgstr ""
+msgstr "Renombrar las etiquetas"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Original label"
-msgstr ""
+msgstr "Etiqueta original"
 
 msgctxt "jaspPlotBuilder|"
 msgid "New label"
-msgstr ""
+msgstr "Nueva etiqueta"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Y-axis"
-msgstr ""
+msgstr "Eje Y"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enter y-axis title"
-msgstr ""
+msgstr "Introducir el título del eje Y"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Specify the title for the Y-axis."
-msgstr ""
+msgstr "Especificar el título del eje Y."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Breaks"
-msgstr ""
+msgstr "Rupturas"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Rotate"
-msgstr ""
+msgstr "Rotar"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable sorting"
-msgstr ""
+msgstr "Habilitar ordenar"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Title, caption, annotation"
-msgstr ""
+msgstr "Título, leyenda, comentario"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enter the plot title here"
-msgstr ""
+msgstr "Introducir aquí el título del gráfico"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Caption"
-msgstr ""
+msgstr "Leyenda"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Annotations"
-msgstr ""
+msgstr "Comentarios"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Annotation "
-msgstr ""
+msgstr "Comentario "
 
 msgctxt "jaspPlotBuilder|"
 msgid "Label"
-msgstr ""
+msgstr "Etiqueta"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Text"
-msgstr ""
+msgstr "Texto"
 
 msgctxt "jaspPlotBuilder|"
 msgid "e.g. p = 0.1, $italic(p)==0.1$"
-msgstr ""
+msgstr "p.e. p = 0.1, $italic(p)==0.1$"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Position"
 msgstr "Posición"
 
 msgctxt "jaspPlotBuilder|"
 msgid "X-Axis"
-msgstr ""
+msgstr "Eje X"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Y-Axis"
-msgstr ""
+msgstr "Eje Y"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Column"
-msgstr ""
+msgstr "Columna"
 
 msgctxt "jaspPlotBuilder|"
 msgid "<No Value>"
-msgstr ""
+msgstr "<Ningún valor>"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Row"
-msgstr ""
+msgstr "Fila"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Appearance"
-msgstr ""
+msgstr "Apariencia"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Size"
 msgstr "Tamaño"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Color"
 msgstr "Color"
