@@ -316,7 +316,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   # Density plots
   if (options[["densityPlot"]]) {
     if (is.null(jaspResults[["densityPlot"]])) {
-      jaspResults[["densityPlot"]] <- createJaspContainer(gettext("Density Plots"))
+      jaspResults[["densityPlot"]] <- createJaspContainer(gettext("Frequency Plots"))
       jaspResults[["densityPlot"]]$dependOn(c(
         "densityPlot", "densityPlotSeparate", "densityPlotType", "customHistogramPosition",
         "colorPalette", "splitBy", "variables", "densityPlotTransparency"
@@ -428,18 +428,18 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if (options$median)                         stats$addColumnInfo(name="Median",                      title=gettext("Median"),                  type="number")
   if (options$mean)                           stats$addColumnInfo(name="Mean",                        title=gettext("Mean"), 				            type="number")
   if (options$seMean)                         stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of Mean"),      type="number")
-  if (options$meanCi) {                       stats$addColumnInfo(name="MeanCIUB",                    title=meanCiUbTitle,                      type="number", overtitle = meanCiOvertitle)
-                                              stats$addColumnInfo(name="MeanCILB",                    title=meanCiLbTitle,                      type="number", overtitle = meanCiOvertitle)}
+  if (options$meanCi) {                       stats$addColumnInfo(name="MeanCILB",                    title=meanCiLbTitle,                      type="number", overtitle = meanCiOvertitle)
+                                              stats$addColumnInfo(name="MeanCIUB",                    title=meanCiUbTitle,                      type="number", overtitle = meanCiOvertitle)}
   if (options$sd)                             stats$addColumnInfo(name="Std. Deviation",              title=gettext("Std. Deviation"),          type="number")
-  if (options$sdCi) {                         stats$addColumnInfo(name="SdCIUB",                      title=sdCiUbTitle,                        type="number", overtitle = sdCiOvertitle)
-                                              stats$addColumnInfo(name="SdCILB",                      title=sdCiLbTitle,                        type="number", overtitle = sdCiOvertitle)}
+  if (options$sdCi) {                         stats$addColumnInfo(name="SdCILB",                      title=sdCiLbTitle,                        type="number", overtitle = sdCiOvertitle)
+                                              stats$addColumnInfo(name="SdCIUB",                      title=sdCiUbTitle,                        type="number", overtitle = sdCiOvertitle)}
   if (options$coefficientOfVariation)         stats$addColumnInfo(name="Coefficient of Variation",    title=gettext("Coefficient of variation"),type="number")
   if (options$mad)                            stats$addColumnInfo(name="MAD",                         title=gettext("MAD"),                     type="number")
   if (options$madRobust)                      stats$addColumnInfo(name="MAD Robust",                  title=gettext("MAD robust"),              type="number")
   if (options$iqr)                            stats$addColumnInfo(name="IQR",                         title=gettext("IQR"),                     type="number")
   if (options$variance)                       stats$addColumnInfo(name="Variance",                    title=gettext("Variance"),                type="number")
-  if (options$varianceCi) {                   stats$addColumnInfo(name="VarianceCIUB",                title=varianceCiUbTitle,                  type="number", overtitle = varianceCiOvertitle)
-                                              stats$addColumnInfo(name="VarianceCILB",                title=varianceCiLbTitle,                  type="number", overtitle = varianceCiOvertitle)}
+  if (options$varianceCi) {                   stats$addColumnInfo(name="VarianceCILB",                title=varianceCiLbTitle,                  type="number", overtitle = varianceCiOvertitle)
+                                              stats$addColumnInfo(name="VarianceCIUB",                title=varianceCiUbTitle,                  type="number", overtitle = varianceCiOvertitle)}
   if (options$skewness) {                     stats$addColumnInfo(name="Skewness",                    title=gettext("Skewness"),                type="number")
                                               stats$addColumnInfo(name="Std. Error of Skewness",      title=gettext("Std. Error of Skewness"),  type="number") }
   if (options$kurtosis) {                     stats$addColumnInfo(name="Kurtosis",                    title=gettext("Kurtosis"),                type="number")
@@ -1546,7 +1546,8 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     xBar <- mean(data)
     se <- sd(data) / sqrt(length(data))
     z <- qnorm((1 - ciWidth) / 2, lower.tail = FALSE)
-    CIs <- c(xBar - z * se, xBar + z * se)
+    errorMargin <- abs(z * se)
+    CIs <- c(xBar - errorMargin, xBar + errorMargin)
   } else if (options[["meanCiMethod"]] == "bootstrap") {
     stateContainerName <- paste0("bootstrapSamples", variableName)
     means <- .bootstrapStats(data, options, jaspResults, stateContainerName)$means
@@ -1558,10 +1559,9 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   } else {
     CIs <- c(NA, NA)
   }
-  CIs <- sort(CIs)
   return(list(
-    "upper" = CIs[1],
-    "lower" = CIs[2]
+    "lower" = CIs[1],
+    "upper" = CIs[2]
   ))
 }
 
@@ -2050,11 +2050,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
   nLevels <- c(nlevels(data[["horizontal"]]), nlevels(data[["vertical"]]))
   plotSize <- c(200 + nLevels * 25) * c(options[["heatmapTileWidthHeightRatio"]], 1)
-  if (any(plotSize > 800)) {
-    plotSize <- (plotSize / max(plotSize)) * 800
+  if (any(plotSize > 700)) {
+    plotSize <- (plotSize / max(plotSize)) * 700
   }
   if (options[["heatmapLegend"]]) {
-    plotSize <- plotSize + c(50, 50)
+    plotSize <- plotSize + c(100, 100)
   }
 
   if (any(table(data[["horizontal"]], data[["vertical"]]) > 1)) {
@@ -2075,10 +2075,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     }
 
     palette <- options[["colorPalette"]]
-    plot <- plot + if (variableType == "scale") {
-      jaspGraphs::scale_JASPfill_continuous(palette)
-    } else {
+    plot <- plot + if (is.factor(data[["value"]])) {
       jaspGraphs::scale_JASPfill_discrete(palette)
+    } else {
+      jaspGraphs::scale_JASPfill_continuous(palette)
     }
 
     plot <- jaspGraphs::themeJasp(plot, legend.position = if (options[["heatmapLegend"]]) "right" else "none")
@@ -2403,7 +2403,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     return()
 
   if (options[["densityPlotSeparate"]] != "")
-      separator <- dataset[[options[["densityPlotSeparate"]]]]
+      separator <- as.factor(dataset[[options[["densityPlotSeparate"]]]])
 
   for (i in seq_along(variables)) {
 
@@ -2484,7 +2484,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
                                                      densityShadeAlpha = 1 - (options[["densityPlotTransparency"]]/100),
                                                      xName = axeName,
                                                      groupingVariableName = options[["densityPlotSeparate"]],
-                                                     groupingVariable = as.factor(data[["separator"]]),
+                                                     groupingVariable = data[["separator"]],
                                                      histogramPosition = options[["customHistogramPosition"]])
 
 
@@ -2493,7 +2493,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     densPlot$plotObject <- jaspGraphs::jaspHistogram(x = data[["variable"]],
                                                      xName = axeName,
                                                      groupingVariableName = options[["densityPlotSeparate"]],
-                                                     groupingVariable = as.factor(data[["separator"]]),
+                                                     groupingVariable = data[["separator"]],
                                                      binWidthType = "sturges",
                                                      histogramPosition = options[["customHistogramPosition"]])
     if (options[["customHistogramPosition"]] == "identity")
