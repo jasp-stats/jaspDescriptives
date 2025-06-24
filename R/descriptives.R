@@ -1558,6 +1558,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   } else {
     CIs <- c(NA, NA)
   }
+  CIs <- sort(CIs)
   return(list(
     "upper" = CIs[1],
     "lower" = CIs[2]
@@ -2483,7 +2484,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
                                                      densityShadeAlpha = 1 - (options[["densityPlotTransparency"]]/100),
                                                      xName = axeName,
                                                      groupingVariableName = options[["densityPlotSeparate"]],
-                                                     groupingVariable = data[["separator"]],
+                                                     groupingVariable = as.factor(data[["separator"]]),
                                                      histogramPosition = options[["customHistogramPosition"]])
 
 
@@ -2492,7 +2493,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     densPlot$plotObject <- jaspGraphs::jaspHistogram(x = data[["variable"]],
                                                      xName = axeName,
                                                      groupingVariableName = options[["densityPlotSeparate"]],
-                                                     groupingVariable = data[["separator"]],
+                                                     groupingVariable = as.factor(data[["separator"]]),
                                                      binWidthType = "sturges",
                                                      histogramPosition = options[["customHistogramPosition"]])
     if (options[["customHistogramPosition"]] == "identity")
