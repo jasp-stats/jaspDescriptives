@@ -2075,6 +2075,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     }
 
     palette <- options[["colorPalette"]]
+    # This factor check refers to the result of the summary statistic (mode/n/etc)
     plot <- plot + if (is.factor(data[["value"]])) {
       jaspGraphs::scale_JASPfill_discrete(palette)
     } else {
