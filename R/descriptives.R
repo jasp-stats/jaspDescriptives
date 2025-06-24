@@ -1026,57 +1026,36 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
 
 .plotScatterDescriptives <- function(xVar, yVar, xBreaks = NULL, yBreaks = NULL, xName = NULL, yName = NULL) {
-  isNumericX <- !(is.factor(xVar) || (is.integer(xVar) && length(unique(xVar)) <= 10))
-  isNumericY <- !(is.factor(yVar) || (is.integer(yVar) && length(unique(yVar)) <= 10))
-  bothNumeric <- isNumericX && isNumericY
+
   d <- data.frame(x = xVar, y = yVar)
   d <- na.omit(d)
-
-  if (!isNumericX)
-    d$x <- as.factor(d$x)
-
-  if (!isNumericY)
-    d$y <- as.factor(d$y)
 
   if (is.null(xBreaks))
     xBreaks <- jaspGraphs::getPrettyAxisBreaks(d$x)
 
   fit <- NULL
 
-  if (bothNumeric) {
-    fit <- lm(y ~ poly(x, 1, raw = TRUE), d)
-    lineObj <- .poly.predDescriptives(fit, line = FALSE, xMin = xBreaks[1], xMax = xBreaks[length(xBreaks)], lwd = lwd)
-    rangeLineObj <- c(lineObj[1], lineObj[length(lineObj)])
-    yLimits <- range(c(pretty(yVar)), rangeLineObj)
+  fit <- lm(y ~ poly(x, 1, raw = TRUE), d)
+  lineObj <- .poly.predDescriptives(fit, line = FALSE, xMin = xBreaks[1], xMax = xBreaks[length(xBreaks)], lwd = lwd)
+  rangeLineObj <- c(lineObj[1], lineObj[length(lineObj)])
+  yLimits <- range(c(pretty(yVar)), rangeLineObj)
 
-    if (!all(is.na(yLimits))) { # this is NA in case both x and y only contain a single unique value
-      if (is.null(yBreaks) || yLimits[1L] <= yBreaks[1L] || yLimits[2L] >= yBreaks[length(yBreaks)]) {
-        yBreaks <- jaspGraphs::getPrettyAxisBreaks(yLimits)
-      }
+  if (!all(is.na(yLimits))) { # this is NA in case both x and y only contain a single unique value
+    if (is.null(yBreaks) || yLimits[1L] <= yBreaks[1L] || yLimits[2L] >= yBreaks[length(yBreaks)]) {
+      yBreaks <- jaspGraphs::getPrettyAxisBreaks(yLimits)
     }
-  } else if (is.null(yBreaks)) {
-    yBreaks <- jaspGraphs::getPrettyAxisBreaks(d$y)
   }
+
 
   p <- ggplot2::ggplot(data = d, ggplot2::aes(x = x, y = y)) +
     jaspGraphs::geom_point()
 
-  if (bothNumeric) {
-    xr <- range(xBreaks)
-    dfLine <- data.frame(x = xr, y = rangeLineObj)
-    p <- p + ggplot2::geom_line(data = dfLine, ggplot2::aes(x = x, y = y), size = .7, inherit.aes = FALSE)
-  }
-
-  if (isNumericX) {
-    p <- p + ggplot2::scale_x_continuous(name = xName, breaks = xBreaks, limits = range(xBreaks))
-  } else {
-    p <- p + ggplot2::scale_x_discrete(name = xName)
-  }
-  if (isNumericY) {
-    p <- p + ggplot2::scale_y_continuous(name = yName, breaks = yBreaks, limits = range(yBreaks))
-  } else {
-    p <- p + ggplot2::scale_y_discrete(name = yName)
-  }
+  xr <- range(xBreaks)
+  dfLine <- data.frame(x = xr, y = rangeLineObj)
+  p <- p +
+    ggplot2::geom_line(data = dfLine, ggplot2::aes(x = x, y = y), size = .7, inherit.aes = FALSE) +
+    ggplot2::scale_x_continuous(name = xName, breaks = xBreaks, limits = range(xBreaks)) +
+    ggplot2::scale_y_continuous(name = yName, breaks = yBreaks, limits = range(yBreaks))
 
   return(jaspGraphs::themeJasp(p))
 }
@@ -1194,7 +1173,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       boxWidth  <- 0.2
       vioWidth  <- 0.3
     } else {
-      group     <- as.factor(dataset[[options$splitBy]])[!is.na(dataset[[variable]])]
+      group     <- dataset[[options$splitBy]][!is.na(dataset[[variable]])]
       xlab      <- options$splitBy
       boxWidth  <- 0.4
       vioWidth  <- 0.6
@@ -1286,7 +1265,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     group <- factor(rep("", length(y)))
     xlab <- gettext("Total")
   } else {
-    group <- as.factor(dataset[[options$splitBy]])[!is.na(dataset[[variable]])]
+    group <- dataset[[options$splitBy]][!is.na(dataset[[variable]])]
     xlab <- options$splitBy
   }
 
@@ -1852,11 +1831,9 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
 .descriptivesScatterPlots <- function(jaspContainer, dataset, variables, split, options, name = NULL, dependOnVariables = TRUE) {
   jaspGraphs::setGraphOption("palette", options[["colorPalette"]])
-  # omit NAs here so it also affects the split variable
-  dataset <- na.omit(dataset)
 
   if (!is.null(split) && split != "") {
-    group <- dataset[, split]
+    # group with split will be defined later, to handle missingness
     legendTitle <- split
   } else {
     group <- NULL
@@ -1865,21 +1842,20 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   }
 
   nvar <- length(variables)
-  # Set's a message with instruction for user using jaspHtml
-  if (nvar < 2L) {
-    #   msg <- if (length(numerics) > 1L) { # basically all user variables have the wrong type...
-    #     "These plots can only be shown for scale variables."
-    #   } else {
-    #     "Please enter two variables."
-    #   }
-    #   jaspContainer[["scatterplotMsg"]] <- createJaspHtml(text = msg, dependencies = "variables")
+
+  if (nvar < 2L)
     return()
-  }
 
   for (i in 1:(nvar - 1L)) {
     for (j in (i + 1L):nvar) {
       v1 <- variables[i]
       v2 <- variables[j]
+
+      # omit NAs, including split if relevant
+      pairwiseData <- na.omit(dataset[, c(v1, v2, split)])
+      if (!is.null(split) && split != "") {
+        group <- pairwiseData[[split]]
+      }
 
       if (!is.null(name)) {
         plotName <- name
@@ -1893,12 +1869,12 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
           scatterPlot$dependOn(optionContainsValue = list(variables = c(v1, v2)))
         }
 
-        errorMessage <- .descriptivesCheckPlotErrors(dataset, c(v1, v2, split), obsAmount = "< 2")
+        errorMessage <- .descriptivesCheckPlotErrors(pairwiseData, c(v1, v2, split), obsAmount = "< 2")
         if (is.null(errorMessage)) {
 
           p <- try(jaspGraphs::JASPScatterPlot(
-            x                 = dataset[[v1]],
-            y                 = dataset[[v2]],
+            x                 = pairwiseData[[v1]],
+            y                 = pairwiseData[[v2]],
             group             = group,
             xName             = v1,
             yName             = v2,
@@ -2030,7 +2006,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if (length(variables) == 0 || isFALSE(options[["heatmapPlot"]]))
     return()
 
-  axes <- .readDataSetToEnd(columns.as.factor = axesNames)
+  axes <- dataset[axesNames]
 
   for (i in seq_along(variables)) {
     variableName <- variables[[i]]
@@ -2426,7 +2402,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     return()
 
   if (options[["densityPlotSeparate"]] != "")
-      separator <- as.factor(dataset[[options[["densityPlotSeparate"]]]])
+      separator <- dataset[[options[["densityPlotSeparate"]]]]
 
   for (i in seq_along(variables)) {
 
