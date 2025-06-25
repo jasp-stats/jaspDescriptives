@@ -1143,8 +1143,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   thePlot <- createJaspPlot(title = variable, width = options$plotWidth, height = options$plotHeight, dependencies = depends)
 
   additionalChecks <- if (options[["boxPlotViolin"]]) "variance"  else NULL
-  minObsAmount <-     if (options[["boxPlotViolin"]]) "< 3"       else "< 1"
-  errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = minObsAmount, additionalChecks = additionalChecks)
+  minObsAmount <-     if (options[["boxPlotViolin"]]) "< 2"       else "< 1"
+  errorMessage <- .descriptivesCheckPlotErrors(dataset, variable,
+                                               obsAmount = minObsAmount,
+                                               obsGrouping = options[["splitBy"]],
+                                               additionalChecks = additionalChecks)
 
   if (!is.null(errorMessage)) {
     thePlot$setError(gettextf("Plotting not possible: %s", errorMessage))
@@ -1870,7 +1873,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
           scatterPlot$dependOn(optionContainsValue = list(variables = c(v1, v2)))
         }
 
-        errorMessage <- .descriptivesCheckPlotErrors(pairwiseData, c(v1, v2, split), obsAmount = "< 2")
+        wantsAnyDensity <- any(options[c("scatterPlotGraphTypeAbove", "scatterPlotGraphTypeRight")] == "density")
+        obsGrouping <- if (wantsAnyDensity) options[["splitBy"]] else NULL
+        errorMessage <- .descriptivesCheckPlotErrors(pairwiseData, c(v1, v2, split),
+                                                     obsAmount = "< 2",
+                                                     obsGrouping = obsGrouping)
         if (is.null(errorMessage)) {
 
           p <- try(jaspGraphs::JASPScatterPlot(
@@ -1906,8 +1913,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   }
 }
 
-.descriptivesCheckPlotErrors <- function(dataset, vars, obsAmount, additionalChecks = NULL) {
-  errors <- .hasErrors(dataset, all.target = vars, message = "short", type = c("infinity", "observations", additionalChecks), observations.amount = obsAmount)
+.descriptivesCheckPlotErrors <- function(dataset, vars, obsAmount, additionalChecks = NULL, obsGrouping = NULL) {
+  errors <- .hasErrors(dataset, all.target = vars, message = "short", observations.grouping = obsGrouping,
+                       type = c("infinity", "observations", additionalChecks),
+                       observations.amount = obsAmount)
   if (!isFALSE(errors)) {
     return(errors$message)
   }
