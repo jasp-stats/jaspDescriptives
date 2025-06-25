@@ -1129,7 +1129,7 @@
     },
     "jaspTTests": {
       "Package": "jaspTTests",
-      "Version": "0.20.0",
+      "Version": "0.95.0",
       "Source": "GitHub",
       "Requirements": [
         "BayesFactor",
@@ -1145,7 +1145,7 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspTTests",
-      "RemoteSha": "20f0d01bc746315bca1338db9b5dea289bd58548"
+      "RemoteSha": "91356e2d9445269064239ef8e517d5ad5649ed67"
     },
     "jpeg": {
       "Package": "jpeg",
