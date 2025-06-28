@@ -158,7 +158,7 @@ msgid "Pareto Plots"
 msgstr "Gráficas de Pareto"
 
 msgid "Frequency Plots"
-msgstr "Táboas de Frecuencias"
+msgstr "Gráficas de Frecuencias"
 
 msgid "Likert Plots"
 msgstr "Gráficas de Likert"
