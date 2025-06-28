@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.19.2\n"
-"POT-Creation-Date: 2025-06-14 03:32\n"
+"POT-Creation-Date: 2025-06-28 03:33\n"
 "PO-Revision-Date: 2025-04-23 10:14+0000\n"
 "Last-Translator: Marko Bojović <bojovicmarko@outlook.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/jasp/"
@@ -144,8 +144,9 @@ msgstr "Топлотне мапе"
 msgid "Pareto Plots"
 msgstr "Pareto дијаграми"
 
-msgid "Density Plots"
-msgstr "Дијаграми густине"
+#, fuzzy
+msgid "Frequency Plots"
+msgstr "Табеле учесталости"
 
 msgid "Likert Plots"
 msgstr "Likert дијаграми"
@@ -473,6 +474,9 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] ""
 msgstr[1] ""
+
+#~ msgid "Density Plots"
+#~ msgstr "Дијаграми густине"
 
 #~ msgid "The mode is computed assuming that variables are discrete."
 #~ msgstr "Мод се израчунава под претпоставком да су променљиве дискретне."

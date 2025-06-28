@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-06-14 03:32\n"
+"POT-Creation-Date: 2025-06-28 03:33\n"
 "PO-Revision-Date: 2022-06-29 08:59+0000\n"
 "Last-Translator: José Ramón Rueda <joseramon.rueda@ehu.es>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/jasp/"
@@ -144,8 +144,8 @@ msgid "Pareto Plots"
 msgstr "Korrelazio-grafikoak"
 
 #, fuzzy
-msgid "Density Plots"
-msgstr "Banaketa-grafikoak"
+msgid "Frequency Plots"
+msgstr "Maiztasun-taulak"
 
 #, fuzzy
 msgid "Likert Plots"
@@ -460,3 +460,7 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] ""
 msgstr[1] ""
+
+#, fuzzy
+#~ msgid "Density Plots"
+#~ msgstr "Banaketa-grafikoak"

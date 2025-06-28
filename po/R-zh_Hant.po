@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-06-14 03:32\n"
+"POT-Creation-Date: 2025-06-28 03:33\n"
 "PO-Revision-Date: 2025-03-18 11:36+0000\n"
 "Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
@@ -140,8 +140,9 @@ msgstr "熱圖"
 msgid "Pareto Plots"
 msgstr "柏拉圖"
 
-msgid "Density Plots"
-msgstr "密度圖"
+#, fuzzy
+msgid "Frequency Plots"
+msgstr "次數表"
 
 msgid "Likert Plots"
 msgstr "李克特圖"
@@ -455,6 +456,9 @@ msgstr[0] "小數點位數為 | 右邊 %s 位數"
 msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "小數點位數為 | 左邊 %s 位數"
+
+#~ msgid "Density Plots"
+#~ msgstr "密度圖"
 
 #~ msgid "The mode is computed assuming that variables are discrete."
 #~ msgstr "計算眾數時假設變數為間斷型。"

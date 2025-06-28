@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.18.3\n"
-"POT-Creation-Date: 2025-06-14 03:32\n"
+"POT-Creation-Date: 2025-06-28 03:33\n"
 "PO-Revision-Date: 2024-06-30 10:01+0000\n"
 "Last-Translator: Marco Capozzi <giammarcous@yahoo.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/jasp/"
@@ -146,8 +146,9 @@ msgstr "Mappa di calore"
 msgid "Pareto Plots"
 msgstr "Grafici di Pereto"
 
-msgid "Density Plots"
-msgstr "Grafici di densità"
+#, fuzzy
+msgid "Frequency Plots"
+msgstr "Tabelle di frequenza"
 
 msgid "Likert Plots"
 msgstr ""
@@ -470,6 +471,9 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] ""
 msgstr[1] ""
+
+#~ msgid "Density Plots"
+#~ msgstr "Grafici di densità"
 
 #~ msgid "The mode is computed assuming that variables are discrete."
 #~ msgstr "La moda viene calcolata assumendo che le variabili siano discrete."

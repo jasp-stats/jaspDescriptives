@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2025-06-14 03:32\n"
+"POT-Creation-Date: 2025-06-28 03:33\n"
 "PO-Revision-Date: 2025-06-15 08:01+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
@@ -157,8 +157,9 @@ msgstr "Mapas de calor"
 msgid "Pareto Plots"
 msgstr "Gráficas de Pareto"
 
-msgid "Density Plots"
-msgstr "Gráficas de Densidade"
+#, fuzzy
+msgid "Frequency Plots"
+msgstr "Táboas de Frecuencias"
 
 msgid "Likert Plots"
 msgstr "Gráficas de Likert"
@@ -500,6 +501,9 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "O punto decimal está no díxito %s á esquerda do |"
 msgstr[1] "O punto decimal está %s díxitos á esquerda do |"
+
+#~ msgid "Density Plots"
+#~ msgstr "Gráficas de Densidade"
 
 #~ msgid "The mode is computed assuming that variables are discrete."
 #~ msgstr "A moda calcúlase asumindo que as variables son discretas."

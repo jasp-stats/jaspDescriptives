@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-06-14 03:32\n"
+"POT-Creation-Date: 2025-06-28 03:33\n"
 "PO-Revision-Date: 2024-05-19 20:45+0000\n"
 "Last-Translator: robachowyk <kaya.robach@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/jasp/"
@@ -146,8 +146,9 @@ msgstr "Carte de chaleur"
 msgid "Pareto Plots"
 msgstr "Graphiques de Pareto"
 
-msgid "Density Plots"
-msgstr "Diagramme à points"
+#, fuzzy
+msgid "Frequency Plots"
+msgstr "Tableaux de Fréquence"
 
 msgid "Likert Plots"
 msgstr "Graphiques Likert"
@@ -486,6 +487,9 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "La virgule décimale se trouve à %s chiffre à gauche du |"
 msgstr[1] "La virgule décimale se trouve à %s chiffres à gauche du |"
+
+#~ msgid "Density Plots"
+#~ msgstr "Diagramme à points"
 
 #~ msgid "Not all values are available for <i>Nominal Text</i> variables"
 #~ msgstr ""

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-06-14 03:32\n"
+"POT-Creation-Date: 2025-06-28 03:33\n"
 "PO-Revision-Date: 2021-10-30 19:47+0000\n"
 "Last-Translator: Igor Dobrača <igor.dobraca@gmail.com>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/jasp/"
@@ -145,8 +145,8 @@ msgid "Pareto Plots"
 msgstr "Dijagram točaka"
 
 #, fuzzy
-msgid "Density Plots"
-msgstr "Dijagram točaka"
+msgid "Frequency Plots"
+msgstr "Tablica frekvencija"
 
 #, fuzzy
 msgid "Likert Plots"
@@ -481,6 +481,10 @@ msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "Decimalna točka je %s znamenka lijevo od |"
 msgstr[1] "Decimalna točka je %s znamenki lijevo od |"
 msgstr[2] "Decimalna točka je %s znamenki lijevo od |"
+
+#, fuzzy
+#~ msgid "Density Plots"
+#~ msgstr "Dijagram točaka"
 
 #~ msgid "Not all values are available for <i>Nominal Text</i> variables"
 #~ msgstr "Nisu sve vrijednosti dostupne za <i>nominalne</i> varijable"

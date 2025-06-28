@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.11.0\n"
-"POT-Creation-Date: 2025-06-14 03:32\n"
+"POT-Creation-Date: 2025-06-28 03:33\n"
 "PO-Revision-Date: 2024-07-12 14:09+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -145,8 +145,9 @@ msgstr "ヒートマップ"
 msgid "Pareto Plots"
 msgstr "パレートプロット"
 
-msgid "Density Plots"
-msgstr "密度プロット"
+#, fuzzy
+msgid "Frequency Plots"
+msgstr "度数分布表"
 
 msgid "Likert Plots"
 msgstr "リッカートプロット"
@@ -474,6 +475,9 @@ msgstr[0] "|の右にある小数点は %s 桁です"
 msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "|の左にある小数点は %s 桁です"
+
+#~ msgid "Density Plots"
+#~ msgstr "密度プロット"
 
 #~ msgid "The mode is computed assuming that variables are discrete."
 #~ msgstr "モードは変数が離散と仮定して算出されます."

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2025-06-14 03:32\n"
+"POT-Creation-Date: 2025-06-28 03:33\n"
 "PO-Revision-Date: 2021-09-02 14:35+0000\n"
 "Last-Translator: Laura Durans <lauraadurans@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
@@ -148,8 +148,8 @@ msgid "Pareto Plots"
 msgstr "Diagramas de pontos"
 
 #, fuzzy
-msgid "Density Plots"
-msgstr "Diagramas de pontos"
+msgid "Frequency Plots"
+msgstr "Tabelas de Frequências"
 
 #, fuzzy
 msgid "Likert Plots"
@@ -482,6 +482,10 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "O ponto decimal está %s dígito à esquerda de |"
 msgstr[1] "Os pontos decimais estão %s dígitos à esquerda de |"
+
+#, fuzzy
+#~ msgid "Density Plots"
+#~ msgstr "Diagramas de pontos"
 
 #~ msgid "Not all values are available for <i>Nominal Text</i> variables"
 #~ msgstr ""

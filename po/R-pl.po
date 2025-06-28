@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-06-14 03:32\n"
+"POT-Creation-Date: 2025-06-28 03:33\n"
 "PO-Revision-Date: 2025-06-01 21:05+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
@@ -148,8 +148,9 @@ msgstr "Mapy cieplne"
 msgid "Pareto Plots"
 msgstr "Wykresy Pareto"
 
-msgid "Density Plots"
-msgstr "Wykresy gęstości"
+#, fuzzy
+msgid "Frequency Plots"
+msgstr "Tabela częstości"
 
 msgid "Likert Plots"
 msgstr "Wykresy Likerta"
@@ -496,6 +497,9 @@ msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "Punkt dziesiętny znajduje się %s cyfrę na lewo od |"
 msgstr[1] "Punkt dziesiętny znajduje się %s cyfry na lewo od |"
 msgstr[2] "Punkt dziesiętny znajduje się %s cyfr na lewo od |"
+
+#~ msgid "Density Plots"
+#~ msgstr "Wykresy gęstości"
 
 #~ msgid "The mode is computed assuming that variables are discrete."
 #~ msgstr "Modalna została obliczona przy założeniu, że zmienne są dyskretne."

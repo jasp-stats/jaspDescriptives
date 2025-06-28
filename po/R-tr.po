@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.18.3\n"
-"POT-Creation-Date: 2025-06-14 03:32\n"
+"POT-Creation-Date: 2025-06-28 03:33\n"
 "PO-Revision-Date: 2025-05-16 23:05+0000\n"
 "Last-Translator: Ertuğrul Uyar <ertugruluyar.academic@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/jasp/"
@@ -148,8 +148,9 @@ msgstr "Isı haritaları"
 msgid "Pareto Plots"
 msgstr "Pareto Grafikleri"
 
-msgid "Density Plots"
-msgstr "Yoğunluk Grafikleri"
+#, fuzzy
+msgid "Frequency Plots"
+msgstr "Frekans Tabloları"
 
 msgid "Likert Plots"
 msgstr "Likert Grafikleri"
@@ -494,6 +495,9 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "Ondalık nokta | işaretinin solundaki %s rakamıdır"
 msgstr[1] "Ondalık nokta | işaretinin solundaki %s basamaktır"
+
+#~ msgid "Density Plots"
+#~ msgstr "Yoğunluk Grafikleri"
 
 #~ msgid "The mode is computed assuming that variables are discrete."
 #~ msgstr "Mod, değişkenlerin ayrık olduğu varsayılarak hesaplanır."

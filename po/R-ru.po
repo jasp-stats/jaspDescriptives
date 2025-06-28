@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-06-14 03:32\n"
+"POT-Creation-Date: 2025-06-28 03:33\n"
 "PO-Revision-Date: 2025-04-02 18:57+0000\n"
 "Last-Translator: Иван Рудаков <riv@polygene.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
@@ -150,8 +150,9 @@ msgstr "Теплловые карты"
 msgid "Pareto Plots"
 msgstr "Графики Парето"
 
-msgid "Density Plots"
-msgstr "Графики плотности"
+#, fuzzy
+msgid "Frequency Plots"
+msgstr "Частотные таблицы"
 
 msgid "Likert Plots"
 msgstr "Графики Ликерта"
@@ -476,6 +477,9 @@ msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "Десятичный знак — это %s цифра слева от |"
 msgstr[1] "Десятичный знак — это %s цифры слева от |"
 msgstr[2] "Десятичный знак — это %s цифры слева от |"
+
+#~ msgid "Density Plots"
+#~ msgstr "Графики плотности"
 
 #~ msgid "Not all values are available for <i>Nominal Text</i> variables"
 #~ msgstr ""

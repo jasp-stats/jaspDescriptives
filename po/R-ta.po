@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.19.2\n"
-"POT-Creation-Date: 2025-06-14 03:32\n"
+"POT-Creation-Date: 2025-06-28 03:33\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -138,7 +138,7 @@ msgstr ""
 msgid "Pareto Plots"
 msgstr ""
 
-msgid "Density Plots"
+msgid "Frequency Plots"
 msgstr ""
 
 msgid "Likert Plots"
