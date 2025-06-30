@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2025-06-28 03:33\n"
-"PO-Revision-Date: 2025-06-01 21:05+0000\n"
+"PO-Revision-Date: 2025-06-30 11:54+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/pl/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 msgid "Time Series Plot"
 msgstr "Wykres szeregu czasowego"
@@ -60,7 +60,7 @@ msgid "End"
 msgstr "Koniec"
 
 msgid "Lag 1 Autocorrelation"
-msgstr ""
+msgstr "Autokorelacja (Lag 1)"
 
 msgid "The time series data should be equally-spaced."
 msgstr "Dane szeregów czasowych powinny być równomiernie rozmieszczone."
@@ -148,9 +148,8 @@ msgstr "Mapy cieplne"
 msgid "Pareto Plots"
 msgstr "Wykresy Pareto"
 
-#, fuzzy
 msgid "Frequency Plots"
-msgstr "Tabela częstości"
+msgstr "Wykresy częstości"
 
 msgid "Likert Plots"
 msgstr "Wykresy Likerta"
@@ -365,15 +364,14 @@ msgid "Levels within variable require at least two or more data points!"
 msgstr ""
 "Poziomy w ramach zmiennej wymagają co najmniej dwóch lub więcej wartości!"
 
-#, fuzzy
 msgid "Plots"
-msgstr "Wykresy K-K"
+msgstr "Wykresy"
 
 msgid "Available Plot IDs"
-msgstr ""
+msgstr "Identyfikatory wykresów"
 
 msgid "Plot Grid"
-msgstr ""
+msgstr "Siatka wykresów"
 
 msgid "Raincloud Plots"
 msgstr "Wykresy chmury deszczowej"
@@ -418,6 +416,9 @@ msgid ""
 "number of clouds does not match clouds in plot.<br>Reverted to default all "
 "'R'. Point nudge set to 0.</span>"
 msgstr ""
+"<span style='color: darkorange'> Błąd w niestandardowej orientacji: podana "
+"liczba chmur nie odpowiada liczbie chmur na wykresie.<br>Przywrócono "
+"domyślną wartość 'R'. Przesunięcie punktów ustawiono na 0.</span>"
 
 msgid ""
 "<span style = 'color: darkorange'> Error with custom color: Specified number "
@@ -458,7 +459,6 @@ msgstr "%s%% PU dla różnicy średnich"
 msgid "Standard Error"
 msgstr "Błąd standardowy"
 
-#, fuzzy
 msgid "Standard Deviation"
 msgstr "Odch. stand."
 
