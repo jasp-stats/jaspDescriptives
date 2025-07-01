@@ -668,11 +668,11 @@ msgstr "Na podstawie średniej ruchomej"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Partial autocorrelation function"
-msgstr "Funkcja cząstkowej autokorelacji"
+msgstr "Funkcja autokorelacji cząstkowej"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the partial autocorrelation for a specified number of lags."
-msgstr ""
+msgstr "Tworzy wykres autokorelacji cząstkowej dla określonej liczby opóźnień."
 
 msgctxt "Description|"
 msgid "Flexplot"
@@ -726,7 +726,6 @@ msgctxt "FlexplotForm|"
 msgid "Cubic"
 msgstr "Sześcienna"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "None"
 msgstr "Brak"
@@ -865,6 +864,9 @@ msgid ""
 "barcharts and histograms for univariate data, and various different types of "
 "scatterplots for bivariate and multivariate data."
 msgstr ""
+"Flexplot umożliwia tworzenie graficznych przedstawień danych, wykorzystując "
+"wykresy słupkowe i histogramy dla danych jednowymiarowych oraz różne typy "
+"wykresów rozrzutu dla danych dwuwymiarowych i wielowymiarowych."
 
 msgctxt "FlexplotForm|"
 msgid "References"
@@ -1141,12 +1143,14 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "width of the confidence interval."
-msgstr ""
+msgstr "szerokość przedziałów ufności."
 
 msgctxt "Descriptives|"
 msgid ""
 "a confidence interval for the standard deviation based on bootstrap samples."
 msgstr ""
+"przedział ufności dla odchylenia standardowego oparty na próbkach "
+"bootstrapowych"
 
 msgctxt "Descriptives|"
 msgid "a confidence interval for the variance based on bootstrap samples."
