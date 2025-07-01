@@ -1379,7 +1379,7 @@ msgstr "Wybierz wszystkie zmienne, które mają zostać przedstawione na wykresi
 
 msgctxt "raincloudPlots|"
 msgid "Primary Factor"
-msgstr "Czynnik pierwszego rzędu"
+msgstr "Czynnik pierwszorzędowy"
 
 msgctxt "raincloudPlots|"
 msgid "Its levels are shown on the x-axis (y-axis for horizontal plot)."
@@ -1387,7 +1387,7 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Secondary Factor"
-msgstr ""
+msgstr "Czynnik drugorzędowy"
 
 msgctxt "raincloudPlots|"
 msgid "Its levels are color coded."
@@ -1983,7 +1983,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Analytical (chi-square)"
-msgstr "Chi-kwadrat"
+msgstr "Zwykłe (chi-kwadrat)"
 
 msgctxt "Descriptives|"
 msgid ""
@@ -2005,7 +2005,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Type for scale variables:"
-msgstr ""
+msgstr "Dla danych ilościowych:"
 
 msgctxt "Descriptives|"
 msgid "Whether to display a density plot or histogram."
@@ -2035,19 +2035,19 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Type for categorical variables:"
-msgstr ""
+msgstr "Dla danych kategorialnych:"
 
 msgctxt "Descriptives|"
 msgid "Counts"
-msgstr ""
+msgstr "Liczebności"
 
 msgctxt "Descriptives|"
 msgid "Proportions"
-msgstr ""
+msgstr "Proporcje"
 
 msgctxt "Descriptives|"
 msgid "Conditional proportions"
-msgstr ""
+msgstr "Proporcje warunkowe"
 
 msgctxt "Descriptives|"
 msgid ""
@@ -2491,7 +2491,7 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "Proportions"
-msgstr ""
+msgstr "Proporcje"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Required: Group Variable AND X OR Y-Axis Variable"
