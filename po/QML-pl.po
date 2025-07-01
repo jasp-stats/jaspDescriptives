@@ -58,11 +58,11 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Boxplots"
-msgstr "Wykresy pudełkowe"
+msgstr "Wykresy skrzynkowe"
 
 msgctxt "Descriptives|"
 msgid "Boxplot element"
-msgstr "Wykres pudełkowy"
+msgstr "Wykres skrzynkowy"
 
 msgctxt "Descriptives|"
 msgid "Violin element"
@@ -870,7 +870,7 @@ msgstr ""
 
 msgctxt "FlexplotForm|"
 msgid "References"
-msgstr ""
+msgstr "Odniesienia"
 
 msgctxt "FlexplotForm|"
 msgid "Example"
@@ -965,7 +965,7 @@ msgstr ""
 
 msgctxt "FlexplotForm|"
 msgid "No line"
-msgstr ""
+msgstr "Bez linii"
 
 msgctxt "FlexplotForm|"
 msgid ""
@@ -1229,7 +1229,7 @@ msgstr ""
 "Wyświetla liczebności poszczególnych czynników/poziomów zmiennej w "
 "kolejności malejącej. Oś y przedstawia częstość (liczebności jako szare "
 "słupki) każdego czynnika/poziomu, a oś x przedstawia czynniki/poziomy "
-"zmiennej w uporządkowanym porządku."
+"zmiennej w kolejności uporządkowanej."
 
 msgctxt "Descriptives|"
 msgid ""
@@ -1365,22 +1365,21 @@ msgctxt "raincloudPlots|"
 msgid "References"
 msgstr ""
 
-#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Input"
 msgstr "Dane wejściowe"
 
 msgctxt "raincloudPlots|"
 msgid "Dependent Variables"
-msgstr ""
+msgstr "Zmienne zależne"
 
 msgctxt "raincloudPlots|"
 msgid "Select all the variables that you want to plot."
-msgstr ""
+msgstr "Wybierz wszystkie zmienne, które mają zostać przedstawione na wykresie."
 
 msgctxt "raincloudPlots|"
 msgid "Primary Factor"
-msgstr ""
+msgstr "Czynnik pierwszego rzędu"
 
 msgctxt "raincloudPlots|"
 msgid "Its levels are shown on the x-axis (y-axis for horizontal plot)."
@@ -1404,7 +1403,7 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 msgctxt "raincloudPlots|"
 msgid ""
@@ -1419,7 +1418,7 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Color palette"
-msgstr ""
+msgstr "Paleta kolorów"
 
 msgctxt "raincloudPlots|"
 msgid "How to color code the levels of the secondary factor."
@@ -1427,13 +1426,15 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Covariate palette"
-msgstr ""
+msgstr "Paleta dla kowariancji"
 
 msgctxt "raincloudPlots|"
 msgid ""
 "How to color code the covariate. 'Viridis' works good for both discrete and "
 "continuous covariates."
 msgstr ""
+"Sposób kodowania kolorów współzmiennej. „Viridis” dobrze sprawdza się "
+"zarówno dla zmiennych dyskretnych, jak i ciągłych."
 
 msgctxt "raincloudPlots|"
 msgid "Apply color palette to primary factor"
@@ -1448,7 +1449,7 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Horizontal plot"
-msgstr ""
+msgstr "Wykres poziomy"
 
 msgctxt "raincloudPlots|"
 msgid ""
@@ -1459,7 +1460,7 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Table with statistics"
-msgstr ""
+msgstr "Tabela ze statystykami"
 
 msgctxt "raincloudPlots|"
 msgid ""
@@ -1470,7 +1471,7 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Box Statistics"
-msgstr ""
+msgstr "Statystyki wykresu skrzynkowego"
 
 msgctxt "raincloudPlots|"
 msgid ""
@@ -1482,11 +1483,11 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Cloud Elements"
-msgstr ""
+msgstr "Elementy chmury"
 
 msgctxt "raincloudPlots|"
 msgid "Show violin"
-msgstr ""
+msgstr "Pokaż wykres wiolinowy"
 
 msgctxt "raincloudPlots|"
 msgid ""
@@ -1496,7 +1497,7 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Show box"
-msgstr ""
+msgstr "Pokaż skrzynkę"
 
 msgctxt "raincloudPlots|"
 msgid ""
@@ -1514,11 +1515,11 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Element Settings"
-msgstr ""
+msgstr "Ustawienia elementów"
 
 msgctxt "raincloudPlots|"
 msgid "Nudge"
-msgstr ""
+msgstr "Przesunięcie"
 
 msgctxt "raincloudPlots|"
 msgid ""
@@ -1532,7 +1533,7 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Height, Width, and Spread"
-msgstr ""
+msgstr "Wysokość, szerokość i rozrzut"
 
 msgctxt "raincloudPlots|"
 msgid ""
@@ -1620,68 +1621,67 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Violin"
-msgstr ""
+msgstr "Wiolinowy"
 
 msgctxt "raincloudPlots|"
 msgid "Height"
-msgstr ""
+msgstr "Wysokość"
 
 msgctxt "raincloudPlots|"
 msgid "Outline"
-msgstr ""
+msgstr "Obrys"
 
 msgctxt "raincloudPlots|"
 msgid "black"
-msgstr ""
+msgstr "czarny"
 
 msgctxt "raincloudPlots|"
 msgid "none"
-msgstr ""
+msgstr "brak"
 
 msgctxt "raincloudPlots|"
 msgid "Outline width"
-msgstr ""
+msgstr "Szerokość obrysu"
 
 msgctxt "raincloudPlots|"
 msgid "Smoothing"
-msgstr ""
+msgstr "Wygładzanie"
 
 msgctxt "raincloudPlots|"
 msgid "Box"
-msgstr ""
+msgstr "Skrzynka"
 
-#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Width"
 msgstr "Szerokość"
 
 msgctxt "raincloudPlots|"
 msgid "Padding"
-msgstr ""
+msgstr "Odstęp"
 
 msgctxt "raincloudPlots|"
 msgid "Point"
-msgstr ""
+msgstr "Punkt"
 
 msgctxt "raincloudPlots|"
 msgid "Spread"
-msgstr ""
+msgstr "Rozrzut"
 
 msgctxt "raincloudPlots|"
 msgid "Size"
-msgstr ""
+msgstr "Rozmiar"
 
 msgctxt "raincloudPlots|"
 msgid "Jitter"
-msgstr ""
+msgstr "Losowy szum"
 
 msgctxt "raincloudPlots|"
 msgid "ID lines"
-msgstr ""
+msgstr "Linie ID"
 
 msgctxt "raincloudPlots|"
 msgid "Axes, Caption, and Plot Size"
-msgstr ""
+msgstr "Osie, podpis i rozmiar wykresu"
 
 msgctxt "raincloudPlots|"
 msgid "Custom limits for dependent variable axis:"
@@ -1983,7 +1983,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Analytical (chi-square)"
-msgstr ""
+msgstr "Chi-kwadrat"
 
 msgctxt "Descriptives|"
 msgid ""
