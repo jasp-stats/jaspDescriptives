@@ -2654,23 +2654,23 @@ msgstr "Proporcje"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Required: Group Variable AND X OR Y-Axis Variable"
-msgstr "Wymagane: zmienna grupująca oraz zmienna osi X albo osi Y."
+msgstr "Wymagane: zmienna grupująca oraz zmienna osi X albo osi Y"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Proportion mode"
-msgstr ""
+msgstr "Tryb proporcji"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Absolute"
-msgstr ""
+msgstr "Bezwzględny"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Relative"
-msgstr ""
+msgstr "Względny"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Bar stack"
-msgstr ""
+msgstr "Wykres skumulowany"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
