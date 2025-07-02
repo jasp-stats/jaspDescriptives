@@ -2446,7 +2446,7 @@ msgid ""
 "axis and y-axis variables."
 msgstr ""
 "Zaznacz tę opcję, aby utworzyć wykres skrzynkowy. Wykres skrzynkowy i "
-"wiolinowy wymagają zmiennych zarówno na osi x, jak i na osi y."
+"skrzypcowy wymagają zmiennych zarówno na osi x, jak i na osi y."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Boxplot width"
@@ -2454,98 +2454,99 @@ msgstr "Szerokość wykresu skrzynkowego"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Whiskers width"
-msgstr ""
+msgstr "Szerokość wąsów"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Show outliers"
-msgstr ""
+msgstr "Pokaż przypadki odstające"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Outlier coef"
-msgstr ""
+msgstr "Współ. przypadków odst."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Outlier size"
-msgstr ""
+msgstr "Rozmiar przypadków odst."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable black outline/fill for the boxplot geom."
-msgstr ""
+msgstr "Włącz czarny obrys/wypełnienie dla geometrii wykresu skrzynkowego."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Violin plot"
-msgstr ""
+msgstr "Wykres skrzypcowy"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Check this option to add a violin plot to your visualization. Boxplot and "
 "violin plot require both x-axis and y-axis variables."
 msgstr ""
+"Zaznacz tę opcję, aby dodać wykres skrzypcowy do wizualizacji. Wykres "
+"skrzynkowy i skrzypcowy wymagają zmiennych zarówno na osi x, jak i na osi y."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Scale method"
-msgstr ""
+msgstr "Metoda skalowania"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Area"
-msgstr ""
+msgstr "Obszar"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count"
-msgstr ""
+msgstr "Liczebność"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Width"
 msgstr "Szerokość"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Draw quantiles"
-msgstr ""
+msgstr "Rysuj kwantyle"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Trim violins"
-msgstr ""
+msgstr "Przytnij wyk. skrzypcowe"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Amounts (count and sum)"
-msgstr ""
+msgstr "Ilości (liczebność i suma)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Required: X OR Y-Axis Variable"
-msgstr ""
+msgstr "Wymagane: zmienne dla osi X albo Y"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count bar"
-msgstr ""
+msgstr "Wykres liczebności"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a count bar to the plot."
-msgstr ""
+msgstr "Włącz tę opcję, aby dodać do wykres liczebności."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Bar width"
-msgstr ""
+msgstr "Szerokość słupka"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count dash"
-msgstr ""
+msgstr "Słupek liczebności"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add dashed lines to the plot."
-msgstr ""
+msgstr "Włącz tę opcję, aby dodać do wykresu linie przerywane."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Dash width"
-msgstr ""
+msgstr "Szerokość linii"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Black dash"
-msgstr ""
+msgstr "Czarne linie"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count dot"
-msgstr ""
+msgstr "Punkt liczebności"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add count dots to the plot."
