@@ -2530,7 +2530,7 @@ msgstr "Szerokość słupka"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count dash"
-msgstr "Słupek liczebności"
+msgstr "Linia liczebności"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add dashed lines to the plot."
@@ -2538,11 +2538,11 @@ msgstr "Włącz tę opcję, aby dodać do wykresu linie przerywane."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Dash width"
-msgstr "Szerokość linii"
+msgstr "Szerokość kreski"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Black dash"
-msgstr "Czarne linie"
+msgstr "Czarne kreski"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count dot"
@@ -2550,27 +2550,27 @@ msgstr "Punkt liczebności"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add count dots to the plot."
-msgstr ""
+msgstr "Włącz tę opcję, aby dodać do wykresu punkty z liczebnościami."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Dot size"
-msgstr ""
+msgstr "Rozmiar punktu"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count line"
-msgstr ""
+msgstr "Linia liczebości"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add count lines to the plot."
-msgstr ""
+msgstr "Włącz tę opcję, aby dodać do wykresu linie liczebności."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Black line"
-msgstr ""
+msgstr "Czarne linie"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count area"
-msgstr ""
+msgstr "Obszar"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a count area to the plot."
