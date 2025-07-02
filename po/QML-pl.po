@@ -2300,126 +2300,126 @@ msgid ""
 "Select the variable for data grouping, which will also determine the "
 "coloring.."
 msgstr ""
-"Wybierz zmienną do grupującą danych, która jednocześnie będzie determinowała "
-"kolor."
+"Wybierz zmienną grupującą, która jednocześnie będzie determinowała kolor."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Split (Columns)"
-msgstr ""
+msgstr "Podziel (kolumny)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "You can choose a variable to split the plots into columns."
 msgstr ""
+"Możesz wybrać zmienną, według której wykresy zostaną podzielone na kolumny."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Split (Rows)"
-msgstr ""
+msgstr "Podziel (wiersze)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "You can choose a variable to split the plots into rows."
 msgstr ""
+"Możesz wybrać zmienną, według której wykresy zostaną podzielone na wiersze."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Grid"
-msgstr ""
+msgstr "Siatka"
 
 msgctxt "jaspPlotBuilder|"
 msgid "You can choose a variable to make a grid."
-msgstr ""
+msgstr "Możesz wybrać zmienną, według której zostanie utworzona siatka."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Repeated Measures Factors"
-msgstr ""
+msgstr "Czynniki wewnątrzobiektowe"
 
 msgctxt "jaspPlotBuilder|"
 msgid "RM Factor"
-msgstr ""
+msgstr "Czynnik PP"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Repeated Measures Cells"
-msgstr ""
+msgstr "Komórki z powtarzanymi pomiarami"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Between Subject Factors"
-msgstr ""
+msgstr "Czynniki międzyobiektowe"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Covariates"
-msgstr ""
+msgstr "Współzmienne"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Assign repeated measures components"
-msgstr ""
+msgstr "Przypisz czynniki wewnątrzobiektowe"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Repeated Measures Components"
-msgstr ""
+msgstr "Czynniki wewnątrzobiektowe"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Data and geometries"
-msgstr ""
+msgstr "Dane i geometrie"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Individual data points"
-msgstr ""
+msgstr "Punkty danych"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Required: X AND Y-Axis Variables"
-msgstr ""
+msgstr "Wymagane: zmienne dla osi X oraz Y"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Check this option to show individual data points on the plot."
-msgstr ""
+msgstr "Zaznacz tę opcję, aby wyświetlić pojedyncze punkty na wykresie."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Point size"
-msgstr ""
+msgstr "Rozmiar punktu"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Jitter height"
-msgstr ""
+msgstr "Wysokość jednostki szumu"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Jitter width"
-msgstr ""
+msgstr "Szerokość jednostki szumu"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Transparency"
 msgstr "Przezroczystość"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Dodge"
-msgstr "Unikaj nakładania"
+msgstr "Unikaj"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Black outline"
-msgstr ""
+msgstr "Czarny obrys"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Empty circles"
-msgstr ""
+msgstr "Puste koła"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Connect data points (requires repeated measures)"
-msgstr ""
+msgstr "Połącz punkty (wymaga powtórzonych pomiarów)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Line width"
-msgstr ""
+msgstr "Szerokość linii"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Distributions (histogram, boxplot, violin)"
-msgstr ""
+msgstr "Rozkłady (histogram, wykres skrzynkowy i wiolinowy)"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Required: X OR Y-Axis Variable (histogram); X AND Y-Axis Variables (boxplot, "
 "violin)"
 msgstr ""
+"Wymagane: zmienna na osi X lub Y (histogram); zmienna na osi X oraz Y ("
+"wykresy skrzynkowe i wiolinowe)"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Histogram"
 msgstr "Histogram"
@@ -2429,25 +2429,28 @@ msgid ""
 "Check this option to create histogram for x or y variables. Histogram "
 "requires either X-Axis or X-Axis variable, but not both."
 msgstr ""
+"Zaznacz tę opcję, aby utworzyć histogram dla zmiennych x lub y. Histogram "
+"wymaga zmiennej na osi X albo zmiennej na osi Y, ale nie obu jednocześnie."
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Number of bins"
 msgstr "Liczba słupków"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Boxplot"
-msgstr ""
+msgstr "Wykres skrzynkowy"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Check this option to create boxplot. Boxplot and violin plot require both x-"
 "axis and y-axis variables."
 msgstr ""
+"Zaznacz tę opcję, aby utworzyć wykres skrzynkowy. Wykres skrzynkowy i "
+"wiolinowy wymagają zmiennych zarówno na osi x, jak i na osi y."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Boxplot width"
-msgstr ""
+msgstr "Szerokość wykresu skrzynkowego"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Whiskers width"
