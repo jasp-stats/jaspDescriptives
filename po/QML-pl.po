@@ -2570,63 +2570,63 @@ msgstr "Czarne linie"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count area"
-msgstr "Obszar"
+msgstr "Obszar zliczeń"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a count area to the plot."
-msgstr ""
+msgstr "Włącz tę opcję, aby dodać do wykresu obszar zliczeń."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count value"
-msgstr ""
+msgstr "Wartość zliczenia"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add count values to the plot."
-msgstr ""
+msgstr "Włącz tę opcję, aby dodać do wykresu wartości zliczeń."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Font size"
-msgstr ""
+msgstr "Rozmiar czcionki"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Accuracy"
-msgstr ""
+msgstr "Dokładność"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Horizontal justification"
-msgstr ""
+msgstr "Justowanie poziomo"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Vertical justification"
-msgstr ""
+msgstr "Justowanie pionowe"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Black text"
-msgstr ""
+msgstr "Czarny tekst"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum bar"
-msgstr ""
+msgstr "Słupek sumy"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a sum bar to the plot."
-msgstr ""
+msgstr "Włącz tę opcję, aby dodać do wykresu słupek sumy."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum dash"
-msgstr ""
+msgstr "Linia sumy"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum dot"
-msgstr ""
+msgstr "Punkty dla sumy"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add sum dots to the plot."
-msgstr ""
+msgstr "Włącz tę opcję, aby dodać do wykresu punkty dla sumy."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum line"
-msgstr ""
+msgstr "Linia sumy"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a sum line to the plot."
