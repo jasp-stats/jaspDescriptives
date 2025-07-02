@@ -1133,23 +1133,23 @@ msgstr "Średnia arytmetyczna danych"
 
 msgctxt "Descriptives|"
 msgid "Skewness of the distribution of the data points."
-msgstr "Skośność rozkładu danych"
+msgstr "Skośność rozkładu danych."
 
 msgctxt "Descriptives|"
 msgid "Kurtosis of the distribution of the data points."
-msgstr ""
+msgstr "Kurtoza rozkładu danych."
 
 msgctxt "Descriptives|"
 msgid "Sum of the data points."
-msgstr ""
+msgstr "Suma danych."
 
 msgctxt "Descriptives|"
 msgid "Dispersion (only for continuous variables)"
-msgstr ""
+msgstr "Rozproszenie (tylko dla zmiennych ciągłych)"
 
 msgctxt "Descriptives|"
 msgid "Standard deviation of the data points."
-msgstr ""
+msgstr "Odchylenie standardowe dla danych"
 
 msgctxt "Descriptives|"
 msgid ""
