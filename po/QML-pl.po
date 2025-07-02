@@ -2614,7 +2614,7 @@ msgstr "Włącz tę opcję, aby dodać do wykresu słupek sumy."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum dash"
-msgstr "Linia sumy"
+msgstr "Linia przerywana sumy"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum dot"
@@ -2630,23 +2630,23 @@ msgstr "Linia sumy"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a sum line to the plot."
-msgstr ""
+msgstr "Włącz tę opcję, aby dodać do wykresu linię dla sumy."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum area"
-msgstr ""
+msgstr "Obszar sumy"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a sum area to the plot."
-msgstr ""
+msgstr "Włącz tę opcję, aby dodać do wykresu obszar sumy."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum value"
-msgstr ""
+msgstr "Wartość sumy"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add sum values to the plot."
-msgstr ""
+msgstr "Włącz tę opcję, aby dodać do wykresu wartości sumy."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Proportions"
@@ -2654,7 +2654,7 @@ msgstr "Proporcje"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Required: Group Variable AND X OR Y-Axis Variable"
-msgstr ""
+msgstr "Wymagane: zmienna grupująca oraz zmienna osi X albo osi Y."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Proportion mode"
