@@ -2235,72 +2235,73 @@ msgstr ""
 "Możesz wybrać pomiędzy przedziałem ufności, ±1 błędem standardowym lub ±1 "
 "odchyleniem standardowym.<br>Do obliczenia przedziału ufności/błędu "
 "standardowego/odchylenia standardowego czynniki wewnątrz- i międzyobiektowe "
-"są określane na podstawie specyfikacji zmiennej identyfikacyjnej (ID)."
+"są określane na podstawie specyfikacji zmiennej identyfikacyjnej (ID)<br><h4>"
 
 msgctxt "raincloudPlots|"
 msgid "Standard deviation"
-msgstr ""
+msgstr "Odchylenie standardowe"
 
 msgctxt "Description|"
 msgid "Plot Builder (beta)"
-msgstr ""
+msgstr "Kreator wykresów (beta)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "References"
-msgstr ""
+msgstr "Odniesienia"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Plot 1"
-msgstr ""
+msgstr "Wykres 1"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Repeated measurements"
-msgstr ""
+msgstr "Powtórzone pomiary"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Choose whether you want to make plots of repeated measurements from repeated "
 "measurements."
-msgstr ""
+msgstr "Wybierz, czy chcesz tworzyć wykresy z pomiarów powtarzanych."
 
 msgctxt "jaspPlotBuilder|"
 msgid "No"
-msgstr ""
+msgstr "Nie"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Yes"
-msgstr ""
+msgstr "Tak"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Input"
 msgstr "Dane wejściowe"
 
 msgctxt "jaspPlotBuilder|"
 msgid "X-Axis Variable"
-msgstr ""
+msgstr "Zmienna na osi X"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Select the variable for the X-axis."
-msgstr ""
+msgstr "Wybierz zmienną dla osi X."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Y-Axis Variable"
-msgstr ""
+msgstr "Zmienna na osi Y"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Select the variable for the Y-axis."
-msgstr ""
+msgstr "Wybierz zmienną dla osi Y."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Group Variable"
-msgstr ""
+msgstr "Zmienna grupująca"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Select the variable for data grouping, which will also determine the "
 "coloring.."
 msgstr ""
+"Wybierz zmienną do grupującą danych, która jednocześnie będzie determinowała "
+"kolor."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Split (Columns)"
