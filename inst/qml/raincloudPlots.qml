@@ -216,7 +216,7 @@ Form
 			CheckBox
 			{
 				name:  			"tableBoxStatistics"
-				label: 			qsTr("Box Statistics")
+				label: 			qsTr("Box statistics")
 				checked: 		true
 				info:			qsTr(
 									"Shows the box statistics in the table: lower whisker, 25th percentile, median, 75th percentile, upper whisker.<br>" +
