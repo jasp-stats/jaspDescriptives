@@ -2353,20 +2353,6 @@ msgctxt "raincloudPlots|"
 msgid "If you use this module, please cite it as:"
 msgstr "Se utilizas este módulo, por favor, cítao como:"
 
-#, qt-format
-msgctxt "raincloudPlots|"
-msgid "This module has a %1 youtube tutorial"
-msgstr "Este módulo ten un tutorial %1 de Youtube"
-
-#, qt-format
-msgctxt "raincloudPlots|"
-msgid ""
-"Note: This module has a %1 youtube tutorial %2 & requires data in long "
-"format."
-msgstr ""
-"Aviso: Este módulo ten un tutorial %1 de Youtube %2 e require datos con "
-"formato longo."
-
 msgctxt "raincloudPlots|"
 msgid ""
 "You can choose between a confidence interval, ±1 standard error, or ±1  "
@@ -3903,3 +3889,15 @@ msgstr "Espazado"
 msgctxt "jaspPlotBuilder|"
 msgid "Collect legend across layout"
 msgstr "Recoller lenda entre o deseño"
+
+#, qt-format
+msgctxt "raincloudPlots|"
+msgid "This module has a %1 YouTube tutorial"
+msgstr ""
+
+#, qt-format
+msgctxt "raincloudPlots|"
+msgid ""
+"Note: This module has a %1 YouTube tutorial %2 & requires data in long "
+"format."
+msgstr ""
