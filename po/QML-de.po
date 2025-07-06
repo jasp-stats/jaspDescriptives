@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-07-06 03:42+0000\n"
+"PO-Revision-Date: 2025-07-06 09:57+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/de/>\n"
@@ -2408,59 +2408,59 @@ msgstr "Standardabweichung"
 
 msgctxt "Description|"
 msgid "Plot Builder (beta)"
-msgstr ""
+msgstr "Diagramm-Baukasten (Beta)"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "References"
 msgstr "Referenzen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Plot 1"
-msgstr ""
+msgstr "Diagramm 1"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Repeated measurements"
-msgstr ""
+msgstr "Messwiederholung"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Choose whether you want to make plots of repeated measurements from repeated "
 "measurements."
 msgstr ""
+"Wählen Sie aus, ob Sie Diagramme mit Messwiederholung von wiederholten "
+"Messungen erstellen möchten."
 
 msgctxt "jaspPlotBuilder|"
 msgid "No"
-msgstr ""
+msgstr "Nein"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Input"
 msgstr "Eingabe"
 
 msgctxt "jaspPlotBuilder|"
 msgid "X-Axis Variable"
-msgstr ""
+msgstr "Variable X-Achse"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Select the variable for the X-axis."
-msgstr ""
+msgstr "Wählen Sie die Variable für die X-Achse aus."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Y-Axis Variable"
-msgstr ""
+msgstr "Variable Y-Achse"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Select the variable for the Y-axis."
-msgstr ""
+msgstr "Wählen Sie die Variable für die Y-Achse aus."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Group Variable"
-msgstr ""
+msgstr "Gruppierungsvariable"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
