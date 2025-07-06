@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-07-06 10:18+0000\n"
+"PO-Revision-Date: 2025-07-07 14:01+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/de/>\n"
@@ -2739,43 +2739,43 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "Black line"
-msgstr ""
+msgstr "Schwarze Linie"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count area"
-msgstr ""
+msgstr "Anzahl-Fläche"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a count area to the plot."
-msgstr ""
+msgstr "Aktivieren, um eine Fläche für Anzahlen zur Abbildung hinzuzufügen."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count value"
-msgstr ""
+msgstr "Anzahl-Wert"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add count values to the plot."
-msgstr ""
+msgstr "Aktivieren, um Zählwerte zum Diagramm hinzuzufügen."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Font size"
-msgstr ""
+msgstr "Schriftgröße"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Accuracy"
-msgstr ""
+msgstr "Genauigkeit"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Horizontal justification"
-msgstr ""
+msgstr "Horizontale Bündigkeit"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Vertical justification"
-msgstr ""
+msgstr "Vertikale Bündigkeit"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Black text"
-msgstr ""
+msgstr "Schwarzer Text"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum bar"
