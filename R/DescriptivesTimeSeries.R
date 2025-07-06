@@ -96,6 +96,9 @@ DescriptivesTimeSeriesInternal <- function(jaspResults, dataset, options) {
 
 .tsFillLagPlot <- function(lagPlot, dataset, options) {
   # create lag version of y
+  if (options$lagPlotLag >= length(dataset$y)) {
+    .quitAnalysis(gettextf("The specified lag exceeds the number of observations in the data. Please choose a smaller lag.", options$lagPlotLag, length(dataset$y)))
+  }
   yLag <- c(rep(NA, options$lagPlotLag), dataset$y[1:(length(dataset$y) - options$lagPlotLag)])
 
   yName <- decodeColNames(options$dependent[1])
