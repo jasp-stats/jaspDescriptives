@@ -2498,61 +2498,61 @@ msgstr "Sie können eine Variable wählen, um ein Gitter zu machen."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Repeated Measures Factors"
-msgstr "Faktor mit Messwiederholung"
+msgstr "Faktoren mit Messwiederholung"
 
 msgctxt "jaspPlotBuilder|"
 msgid "RM Factor"
-msgstr ""
+msgstr "MW-Faktor"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Repeated Measures Cells"
-msgstr ""
+msgstr "Messwiederholungszellen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Between Subject Factors"
-msgstr ""
+msgstr "Zwischensubjektfaktoren"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Covariates"
-msgstr ""
+msgstr "Kovariaten"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Assign repeated measures components"
-msgstr ""
+msgstr "Komponenten mit Messwiederholung zuweisen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Repeated Measures Components"
-msgstr ""
+msgstr "Messwiederholungskompenten"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Data and geometries"
-msgstr ""
+msgstr "Daten und Geometrie-Elemente"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Individual data points"
-msgstr ""
+msgstr "Einzelne Datenpunkte"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Required: X AND Y-Axis Variables"
-msgstr ""
+msgstr "Erforderlich: X- UND Y-Achsen-Variablen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Check this option to show individual data points on the plot."
 msgstr ""
+"Aktivieren Sie diese Option, um einzelne Datenpunkte im Diagramm zu zeigen."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Point size"
-msgstr ""
+msgstr "Punktgröße"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Jitter height"
-msgstr ""
+msgstr "Verwacklungshöhe"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Jitter width"
-msgstr ""
+msgstr "Verwacklungsbreite"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Transparency"
 msgstr "Transparenz"
@@ -2599,8 +2599,10 @@ msgid ""
 "Check this option to create histogram for x or y variables. Histogram "
 "requires either X-Axis or X-Axis variable, but not both."
 msgstr ""
+"Aktivieren Sie diese Option, um Histogramm für x- oder y-Variablen zu "
+"erstellen. Histogramm erfordert entweder X-Achsen- oder X-Achsen-Variable, "
+"aber nicht beide."
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Number of bins"
 msgstr "Anzahl von Klassen"
@@ -2644,7 +2646,7 @@ msgstr "Aktivierung schwarzer Umrisse/Füllung für das Boxplot-Geom."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Violin plot"
-msgstr ""
+msgstr "Violinendiagramm"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
@@ -2681,7 +2683,7 @@ msgstr "Violinen trimmen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Amounts (count and sum)"
-msgstr ""
+msgstr "Beträge (Anzahl und Summe)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Required: X OR Y-Axis Variable"
@@ -2689,7 +2691,7 @@ msgstr "Nötig: X- ODER Y-Achsen-Variable"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count bar"
-msgstr ""
+msgstr "Anzahl-Balken"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a count bar to the plot."
@@ -2701,7 +2703,7 @@ msgstr "Balkenbreite"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count dash"
-msgstr ""
+msgstr "Anzahl-Strich"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add dashed lines to the plot."
@@ -2717,7 +2719,7 @@ msgstr "Schwarze Striche"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count dot"
-msgstr ""
+msgstr "Anzahl-Punkt"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add count dots to the plot."
