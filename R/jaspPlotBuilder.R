@@ -106,7 +106,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
       missing.vars <- setdiff(rm.vars, colnames(ds_rm))
       if (length(missing.vars) > 0)
-        .quitAnalysis("Please assign a variable to every RM factor (defined in Repeated Measures Factors) within Repeated Measures Cells.")
+        .quitAnalysis(gettext("Please assign a variable to every RM factor (defined in Repeated Measures Factors) within Repeated Measures Cells."))
 
       ds_rm <- .shortToLong(
         ds_rm,
