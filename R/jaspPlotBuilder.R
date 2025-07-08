@@ -48,6 +48,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 }
 
 # ──────────────────────────────────────────────────────────────────────────────
+removeEmptyStrings <- function(x) Filter(nzchar, x)
 .plotBuilderReadData <- function(options) {
 
   datasetRMList    <- list()
@@ -59,9 +60,9 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
     if (identical(tab$isRM, "RM")) {
 
-      rm.vars    <- encodeColNames(tab$repeatedMeasuresCells)       |> nzchar() |> (\(x) tab$repeatedMeasuresCells[x])() |> encodeColNames()
-      factors    <- encodeColNames(tab$betweenSubjectFactors)       |> (\(x) x[nzchar(x)])()
-      covars     <- encodeColNames(tab$covariates)                  |> (\(x) x[nzchar(x)])()
+      rm.vars    <- encodeColNames(removeEmptyStrings(tab$repeatedMeasuresCells))
+      factors    <- encodeColNames(removeEmptyStrings(tab$betweenSubjectFactors))
+      covars     <- encodeColNames(removeEmptyStrings(tab$covariates))
 
       pointsize  <- encodeColNames(tab$sizeVariablePlotBuilder)
       labelVar   <- encodeColNames(tab$labelVariablePlotBuilder)
@@ -84,14 +85,14 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
       all.vars     <- c(factors, covars, rm.vars,
                         if (usePoint)  pointsize,
                         if (useLabel)  labelVar,
-                        if (useShape)  shapeVar) |> (\(x) x[nzchar(x)])()
+                        if (useShape)  shapeVar)
 
-      numeric.vars <- c(rm.vars, covars, if (usePoint) pointsize)   |> (\(x) x[nzchar(x)])()
+      numeric.vars <- c(rm.vars, covars, if (usePoint) pointsize)
 
       id.vars.long <- c(factors, covars,
                         if (usePoint)  pointsize,
                         if (useLabel)  labelVar,
-                        if (useShape)  shapeVar) |> (\(x) x[nzchar(x)])()
+                        if (useShape)  shapeVar)
 
       doListwise      <- isTRUE(tab$deleteNAListwise)
       excludeListwise <- if (doListwise)
@@ -100,7 +101,9 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
       ds_rm <- .readDataSetToEnd(
         columns.as.numeric  = numeric.vars,
-        columns.as.factor   = c(factors, if (useShape) shapeVar),
+        columns.as.factor   = c(factors,
+                                if (useShape) shapeVar,
+                                if (useLabel) labelVar),
         exclude.na.listwise = excludeListwise
       )
 
