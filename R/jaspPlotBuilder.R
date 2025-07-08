@@ -75,7 +75,7 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
       expectedVars <- sum(vapply(rm.factors, function(f) length(f$levels), integer(1)))
       if (length(rm.vars) != expectedVars || any(rm.vars == ""))
-        .quitAnalysis("Please assign a variable to every RM factor (defined in Repeated Measures Factors) within Repeated Measures Cells.")
+        .quitAnalysis(gettext("Please assign a variable to every RM factor (defined in Repeated Measures Factors) within Repeated Measures Cells."))
 
       usePoint  <- nzchar(pointsize)
       useLabel  <- nzchar(labelVar)
