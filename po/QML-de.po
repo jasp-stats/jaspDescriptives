@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-07-07 14:01+0000\n"
+"PO-Revision-Date: 2025-07-10 17:01+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/de/>\n"
@@ -2723,19 +2723,19 @@ msgstr "Anzahl-Punkt"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add count dots to the plot."
-msgstr ""
+msgstr "Aktivieren, um Anzahl-Punkte zur Abbildung hinzuzufügen."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Dot size"
-msgstr ""
+msgstr "Punktgröße"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count line"
-msgstr ""
+msgstr "Anzahl-Linie"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add count lines to the plot."
-msgstr ""
+msgstr "Aktivieren, um Anzahl-Linien zur Abbildung hinzuzufügen."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Black line"
@@ -2836,11 +2836,11 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "Absolute"
-msgstr ""
+msgstr "Absolut"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Relative"
-msgstr ""
+msgstr "Relativ"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Bar stack"
@@ -2927,7 +2927,6 @@ msgctxt "jaspPlotBuilder|"
 msgid "Enable to add mean values to the plot."
 msgstr ""
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Median"
 msgstr "Median"
