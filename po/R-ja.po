@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.11.0\n"
-"POT-Creation-Date: 2025-06-28 03:33\n"
+"POT-Creation-Date: 2025-07-12 03:40\n"
 "PO-Revision-Date: 2024-07-12 14:09+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -351,6 +351,11 @@ msgstr "項目は、2つ以上の水準である必要があります!"
 
 msgid "Levels within variable require at least two or more data points!"
 msgstr "変数内の水準は少なくとも2つ以上のデータポイントが必要です!"
+
+msgid ""
+"Please assign a variable to every RM factor (defined in Repeated Measures "
+"Factors) within Repeated Measures Cells."
+msgstr ""
 
 #, fuzzy
 msgid "Plots"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.19.0\n"
-"POT-Creation-Date: 2025-06-28 03:33\n"
+"POT-Creation-Date: 2025-07-12 03:40\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -335,6 +335,11 @@ msgid "Items must have 2 or more levels!"
 msgstr ""
 
 msgid "Levels within variable require at least two or more data points!"
+msgstr ""
+
+msgid ""
+"Please assign a variable to every RM factor (defined in Repeated Measures "
+"Factors) within Repeated Measures Cells."
 msgstr ""
 
 msgid "Plots"

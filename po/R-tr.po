@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.18.3\n"
-"POT-Creation-Date: 2025-06-28 03:33\n"
+"POT-Creation-Date: 2025-07-12 03:40\n"
 "PO-Revision-Date: 2025-05-16 23:05+0000\n"
 "Last-Translator: Ertuğrul Uyar <ertugruluyar.academic@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/jasp/"
@@ -366,6 +366,11 @@ msgid "Levels within variable require at least two or more data points!"
 msgstr ""
 "Değişken içindeki seviyeler en az iki veya daha fazla veri noktası "
 "gerektirir!"
+
+msgid ""
+"Please assign a variable to every RM factor (defined in Repeated Measures "
+"Factors) within Repeated Measures Cells."
+msgstr ""
 
 #, fuzzy
 msgid "Plots"

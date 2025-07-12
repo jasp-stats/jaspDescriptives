@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-06-28 03:33\n"
+"POT-Creation-Date: 2025-07-12 03:40\n"
 "PO-Revision-Date: 2021-10-30 19:47+0000\n"
 "Last-Translator: Igor Dobrača <igor.dobraca@gmail.com>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/jasp/"
@@ -352,6 +352,11 @@ msgid "Items must have 2 or more levels!"
 msgstr ""
 
 msgid "Levels within variable require at least two or more data points!"
+msgstr ""
+
+msgid ""
+"Please assign a variable to every RM factor (defined in Repeated Measures "
+"Factors) within Repeated Measures Cells."
 msgstr ""
 
 #, fuzzy
