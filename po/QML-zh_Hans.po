@@ -2276,7 +2276,7 @@ msgstr "协变量"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Assign repeated measures components"
-msgstr "分配重复测量成分"
+msgstr "指定重复测量成分"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Repeated Measures Components"
@@ -2284,7 +2284,7 @@ msgstr "重复测量成分"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Data and geometries"
-msgstr ""
+msgstr "数据和图形"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Individual data points"
