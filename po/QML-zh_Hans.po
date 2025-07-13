@@ -2224,27 +2224,27 @@ msgstr "重复测量"
 
 msgctxt "jaspPlotBuilder|"
 msgid "No"
-msgstr "无"
+msgstr "否"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Yes"
-msgstr ""
+msgstr "是"
 
 msgctxt "jaspPlotBuilder|"
 msgid "X-Axis Variable"
-msgstr ""
+msgstr "X 轴变量"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Y-Axis Variable"
-msgstr ""
+msgstr "Y 轴变量"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Group Variable"
-msgstr ""
+msgstr "分组变量"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Split (Columns)"
-msgstr ""
+msgstr "行分隔"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Split (Rows)"
