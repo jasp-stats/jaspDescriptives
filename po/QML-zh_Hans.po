@@ -2244,43 +2244,43 @@ msgstr "分组变量"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Split (Columns)"
-msgstr "行分隔"
+msgstr "列分隔"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Split (Rows)"
-msgstr ""
+msgstr "行分隔"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Grid"
-msgstr ""
+msgstr "网格"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Repeated Measures Factors"
-msgstr ""
+msgstr "是否为重复测量因子"
 
 msgctxt "jaspPlotBuilder|"
 msgid "RM Factor"
-msgstr ""
+msgstr "重复测量因子"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Repeated Measures Cells"
-msgstr ""
+msgstr "重复测量单元格"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Between Subject Factors"
-msgstr ""
+msgstr "组间因子"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Covariates"
-msgstr ""
+msgstr "协变量"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Assign repeated measures components"
-msgstr ""
+msgstr "分配重复测量成分"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Repeated Measures Components"
-msgstr ""
+msgstr "重复测量成分"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Data and geometries"
