@@ -2316,11 +2316,12 @@ addDecodedLabels <- function(p) {
         stringsAsFactors = FALSE
       )
 
-
-      if (rmOption == "RM")
-
-
         rmOption <- tab[["isRM"]]
+
+        if (rmOption == "RM") {
+          dfComparisons$group1 <- encodeColNames(dfComparisons$group1)
+          dfComparisons$group2 <- encodeColNames(dfComparisons$group2)
+        }
 
       if (!is.null(colorVar)) {
         dfComparisons$color <- as.character(
