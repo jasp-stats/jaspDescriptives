@@ -1802,22 +1802,42 @@ addDecodedLabels <- function(p) {
 
       max_y_annot <- -Inf
       if (!is.null(yVar) && yVar %in% colnames(localData) && is.numeric(localData[[yVar]])) {
-        if (!is.null(tab[["pairwiseComparisons"]]) && length(tab[["pairwiseComparisons"]]) > 0 && !is.null(tab[["yPositionPValue"]])) {
+
+        if (!is.null(tab[["pairwiseComparisons"]]) &&
+            length(tab[["pairwiseComparisons"]]) > 0 &&
+            !is.null(tab[["yPositionPValue"]])) {
+
           y_pos_base <- suppressWarnings(as.numeric(tab[["yPositionPValue"]]))
-          if (is.finite(y_pos_base)) max_y_annot <- max(max_y_annot, y_pos_base, na.rm = TRUE)
+          if (is.finite(y_pos_base)) {
+
+            max_y_annot <- max(max_y_annot, y_pos_base, na.rm = TRUE)
+
+            n_brackets  <- length(tab[["pairwiseComparisons"]])
+            step_inc    <- suppressWarnings(as.numeric(tab[["stepDistance"]]))
+            if (is.na(step_inc)) step_inc <- 0
+
+            highest_pval <- y_pos_base + step_inc * (n_brackets - 1)
+            max_y_annot  <- max(max_y_annot, highest_pval, na.rm = TRUE)
+          }
         }
-        if (!is.null(tab[["annotationLineList"]]) && length(tab[["annotationLineList"]]) > 0) {
+
+        if (!is.null(tab[["annotationLineList"]]) &&
+            length(tab[["annotationLineList"]]) > 0) {
+
           for (line in tab[["annotationLineList"]]) {
-            y_val <- suppressWarnings(as.numeric(line[["yAnnotation"]]))
-            yend_val <- suppressWarnings(as.numeric(line[["yendAnnotation"]]))
+            y_val      <- suppressWarnings(as.numeric(line[["yAnnotation"]]))
+            yend_val   <- suppressWarnings(as.numeric(line[["yendAnnotation"]]))
             offset_raw <- suppressWarnings(as.numeric(line[["textDistanceAnnotationLine"]]))
             if (is.finite(y_val) && is.finite(yend_val) && is.finite(offset_raw)) {
-              y_text_pos <- ((y_val + yend_val) / 2) + offset_raw
+              y_text_pos  <- ((y_val + yend_val) / 2) + offset_raw
               max_y_annot <- max(max_y_annot, y_val, yend_val, y_text_pos, na.rm = TRUE)
             }
           }
         }
-        if (!is.null(tab[["annotationPlotBuilder"]]) && length(tab[["annotationPlotBuilder"]]) > 0) {
+
+        if (!is.null(tab[["annotationPlotBuilder"]]) &&
+            length(tab[["annotationPlotBuilder"]]) > 0) {
+
           for (annot in tab[["annotationPlotBuilder"]]) {
             y_pos_annot <- suppressWarnings(as.numeric(annot$annotationY))
             if (is.finite(y_pos_annot)) {
@@ -1831,10 +1851,11 @@ addDecodedLabels <- function(p) {
 
           if (!user_has_limits && !user_has_breaks) {
             adjust_args_yaxis$breaks <- pretty(y_data_range)
-            adjust_args_yaxis$limits <- c(y_data_range[1], max_y_annot * 1.05)
+            adjust_args_yaxis$limits <- c(y_data_range[1], max_y_annot * 1.5)
           }
         }
       }
+
 
       if (is.null(adjust_args_yaxis$limits) && user_has_limits) {
         adjust_args_yaxis$limits <- c(limitFromY, limitToY)
