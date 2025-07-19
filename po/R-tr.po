@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.18.3\n"
-"POT-Creation-Date: 2025-07-12 03:40\n"
+"POT-Creation-Date: 2025-07-19 03:38\n"
 "PO-Revision-Date: 2025-05-16 23:05+0000\n"
 "Last-Translator: Ertuğrul Uyar <ertugruluyar.academic@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/jasp/"
@@ -18,6 +18,11 @@ msgstr "Zaman Serisi Grafiği"
 
 msgid "Lag Plot"
 msgstr "Gecikme Grafiği"
+
+msgid ""
+"The specified lag, %1$s, is too large given the %2$s observations in the "
+"data. Please choose a smaller lag."
+msgstr ""
 
 msgid "Autocorrelation Function"
 msgstr "Otokorelasyon Fonksiyonu"

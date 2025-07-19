@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2025-07-12 03:40\n"
+"POT-Creation-Date: 2025-07-19 03:38\n"
 "PO-Revision-Date: 2021-09-02 14:35+0000\n"
 "Last-Translator: Laura Durans <lauraadurans@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
@@ -23,6 +23,11 @@ msgstr ""
 #, fuzzy
 msgid "Lag Plot"
 msgstr "Diagrama Q-Q"
+
+msgid ""
+"The specified lag, %1$s, is too large given the %2$s observations in the "
+"data. Please choose a smaller lag."
+msgstr ""
 
 #, fuzzy
 msgid "Autocorrelation Function"

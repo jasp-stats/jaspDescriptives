@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-07-12 03:40\n"
+"POT-Creation-Date: 2025-07-19 03:38\n"
 "PO-Revision-Date: 2022-06-29 08:59+0000\n"
 "Last-Translator: José Ramón Rueda <joseramon.rueda@ehu.es>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/jasp/"
@@ -19,6 +19,11 @@ msgstr ""
 #, fuzzy
 msgid "Lag Plot"
 msgstr "Q-Q grafikoa"
+
+msgid ""
+"The specified lag, %1$s, is too large given the %2$s observations in the "
+"data. Please choose a smaller lag."
+msgstr ""
 
 #, fuzzy
 msgid "Autocorrelation Function"

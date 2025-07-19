@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
-"POT-Creation-Date: 2025-07-12 03:40\n"
+"POT-Creation-Date: 2025-07-19 03:38\n"
 "PO-Revision-Date: 2025-07-13 08:01+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
@@ -18,6 +18,11 @@ msgstr "Gráfico de Serie temporal"
 
 msgid "Lag Plot"
 msgstr "Gráfico de retardos"
+
+msgid ""
+"The specified lag, %1$s, is too large given the %2$s observations in the "
+"data. Please choose a smaller lag."
+msgstr ""
 
 msgid "Autocorrelation Function"
 msgstr "Función de Autocorrelación"

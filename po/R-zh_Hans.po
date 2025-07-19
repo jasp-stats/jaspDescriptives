@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-07-12 03:40\n"
+"POT-Creation-Date: 2025-07-19 03:38\n"
 "PO-Revision-Date: 2025-06-30 09:01+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -18,6 +18,11 @@ msgstr "时间序列图"
 
 msgid "Lag Plot"
 msgstr "滞后图"
+
+msgid ""
+"The specified lag, %1$s, is too large given the %2$s observations in the "
+"data. Please choose a smaller lag."
+msgstr ""
 
 msgid "Autocorrelation Function"
 msgstr "自相关函数"
