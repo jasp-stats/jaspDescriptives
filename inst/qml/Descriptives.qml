@@ -120,9 +120,10 @@ Form
 			Group
 			{
 				title: qsTr("Mean")
-				CheckBox { name: "meanArithmetic";	label: qsTr("Arithmetic");	info: qsTr("Arithmetic mean of the data points") ;	checked: true		}
-				CheckBox { name: "meanGeometric";		label: qsTr("Geometric");		info: qsTr("Geometric mean of the data points");		checked: false	}
-				CheckBox { name: "meanHarmonic";		label: qsTr("Harmonic");		info: qsTr("Harmonic mean of the data points");			checked: false	}
+				infoLabel: qsTr("Sample mean.")
+				CheckBox { name: "meanArithmetic";	label: qsTr("Arithmetic");	info: qsTr("Arithmetic mean of the data points.") ;	checked: true		}
+				CheckBox { name: "meanGeometric";		label: qsTr("Geometric");		info: qsTr("Geometric mean of the data points; defined only for strictly positive variables.");		checked: false	}
+				CheckBox { name: "meanHarmonic";		label: qsTr("Harmonic");		info: qsTr("Harmonic mean of the data points; defined only for strictly positive variables.");			checked: false	}
 			}
 
 		}
