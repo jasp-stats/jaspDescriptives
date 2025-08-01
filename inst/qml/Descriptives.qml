@@ -116,7 +116,15 @@ Form
 
 			CheckBox { name: "mode";			label: qsTr("Mode");	info: qsTr("Mode of the data points; if more than one mode exists, only the first is reported. For nominal and ordinal data, the mode is the most frequent observed value. For continuous data, the mode is the value with highest density estimate (see 'Distribution Plots' -> 'Display density'). If a footnote about multimodality for continuous variables is reported, we recommend visualizing the data to check for multimodality.")	}
 			CheckBox { name: "median";			label: qsTr("Median");	info: qsTr("Median of the data points.")					}
-			CheckBox { name: "mean";			label: qsTr("Mean");	info: qsTr("Arithmetic mean of the data points") ;	checked: true	}
+
+			Group
+			{
+				title: qsTr("Mean")
+				CheckBox { name: "meanArithmetic";	label: qsTr("Arithmetic");	info: qsTr("Arithmetic mean of the data points") ;	checked: true		}
+				CheckBox { name: "meanGeometric";		label: qsTr("Geometric");		info: qsTr("Geometric mean of the data points");		checked: false	}
+				CheckBox { name: "meanHarmonic";		label: qsTr("Harmonic");		info: qsTr("Harmonic mean of the data points");			checked: false	}
+			}
+
 		}
 
 		Group
@@ -152,12 +160,12 @@ Form
 		{
 			title:		qsTr("Inference")
 
-			CheckBox { name: "seMean";	label: qsTr("S.E. mean"); info: qsTr("Standard error of the mean.") }
+			CheckBox { name: "seMean";	label: qsTr("S.E. mean"); info: qsTr("Standard error of the arithmetic mean.") }
 
 			CheckBox
 			{
 				name: "meanCi"
-				label: qsTr("Confidence interval for mean")
+				label: qsTr("Confidence interval for the arithmetic mean")
 
 				CIField
 				{
