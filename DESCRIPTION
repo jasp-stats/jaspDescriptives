@@ -1,7 +1,7 @@
 Package: jaspDescriptives
 Type: Package
 Title: Descriptives Module for JASP
-Version: 0.95.0
+Version: 0.95.1
 Date: 2022-09-12
 Author: JASP Team
 Website: jasp-stats.org
