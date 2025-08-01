@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2025-08-02 18:02+0000\n"
+"Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/de/>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.13-dev\n"
 "X-Language: de\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -2367,7 +2373,6 @@ msgctxt "Descriptives|"
 msgid "Conditional proportions"
 msgstr "Bedingte Anteile"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "Display counts, proportions, or conditional proportions (conditional for "
@@ -2391,6 +2396,10 @@ msgid ""
 "within and between factors are determined based on the specifciation of the "
 "ID variable<br><h4>"
 msgstr ""
+"Sie können zwischen einem Konfidenzintervall oder ±1 Standardfehler oder ±1 "
+"Standardabweichung wählen.<br>Für die Berechnung des Konfidenzintervalls/"
+"Standardfehlers/SD werden Binnen- und Zwischen-Faktoren anhand der Angabe "
+"der ID-Variable festgelegt<br>h4>"
 
 msgctxt "raincloudPlots|"
 msgid "Standard deviation"
@@ -2702,11 +2711,11 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum dash"
-msgstr ""
+msgstr "Summen-Strich"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum dot"
-msgstr ""
+msgstr "Summen-Punkt"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add sum dots to the plot."
@@ -2714,27 +2723,27 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum line"
-msgstr ""
+msgstr "Summen-Linie"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a sum line to the plot."
-msgstr ""
+msgstr "Aktivieren, um eine Summen-Linie zum Diagramm hinzuzufügen."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum area"
-msgstr ""
+msgstr "Summen-Fläche"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a sum area to the plot."
-msgstr ""
+msgstr "Aktivieren, um eine Summen-Fläche zum Diagramm hinzuzufügen."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum value"
-msgstr ""
+msgstr "Summen-Wert"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add sum values to the plot."
-msgstr ""
+msgstr "Aktivieren, um Summen-Werte zum Diagramm hinzuzufügen."
 
 #, fuzzy
 msgctxt "jaspPlotBuilder|"
@@ -2759,7 +2768,7 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "Reverse order"
-msgstr ""
+msgstr "Reihenfolge umdrehen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Area stack"
@@ -2828,11 +2837,11 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "Median value"
-msgstr ""
+msgstr "Median-Wert"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Error bars and ribbons (range, SD, SEM, 95% CI)"
-msgstr ""
+msgstr "Fehlerbalken und -bänder (Spannweite, SD, SEM, 95% KI)"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
@@ -2857,158 +2866,158 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "Range ribbon"
-msgstr ""
+msgstr "Spannweiten-Band"
 
 msgctxt "jaspPlotBuilder|"
 msgid "SD ribbon"
-msgstr ""
+msgstr "SD-Band"
 
 msgctxt "jaspPlotBuilder|"
 msgid "SEM ribbon"
-msgstr ""
+msgstr "SEM-Band"
 
 msgctxt "jaspPlotBuilder|"
 msgid "95% CI ribbon"
-msgstr ""
+msgstr "95% KI-Band"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Curve fit and reference lines"
-msgstr ""
+msgstr "Kurvenanpassungen und Referenzlinien"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Required: individual data points (Curve fit)"
-msgstr ""
+msgstr "Erforderlich: Individuelle Datenpunkte (Kurvenanpassung)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Add curve fit"
-msgstr ""
+msgstr "Kurvenanpassung hinzufügen"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Method"
 msgstr "Methode"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Linear"
 msgstr "Linear"
 
 msgctxt "jaspPlotBuilder|"
 msgid "LOESS"
-msgstr ""
+msgstr "LOESS"
 
 msgctxt "jaspPlotBuilder|"
 msgid "SE"
-msgstr ""
+msgstr "Standardfehler"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Add reference line"
-msgstr ""
+msgstr "Referenzlinie hinzufügen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "X-axis intercept"
-msgstr ""
+msgstr "X-Achsen-Konstante"
 
 msgctxt "jaspPlotBuilder|"
 msgid "e.g. 0.5, or c(1,2)"
-msgstr ""
+msgstr "z.B. 0.5 oder c(1,2)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Y-axis intercept"
-msgstr ""
+msgstr "Y-Achsen-Konstante"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Line color"
-msgstr ""
+msgstr "Linienfarbe"
 
 msgctxt "jaspPlotBuilder|"
 msgid "e.g. black, #ff5733"
-msgstr ""
+msgstr "z.B. black, #ff5733"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Add identity line"
-msgstr ""
+msgstr "Identitätslinie hinzufügen"
 
 #, qt-format
 msgctxt "jaspPlotBuilder|"
 msgid "Note: For available colors, see %1this page%2"
-msgstr ""
+msgstr "Hinweis: Für verfügbare Farben, siehe %1diese Seite%2"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Axis settings and annotations"
-msgstr ""
+msgstr "Achseneinstellungen und Anmerkungen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enter x-axis title"
-msgstr ""
+msgstr "X-Achsen-Titel eingeben"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Limits"
-msgstr ""
+msgstr "Grenzen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "From"
-msgstr ""
+msgstr "Von"
 
 msgctxt "jaspPlotBuilder|"
 msgid "To"
-msgstr ""
+msgstr "bis"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "By"
-msgstr ""
+msgstr "über"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Labels"
-msgstr ""
+msgstr "Beschriftungen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Shorten"
-msgstr ""
+msgstr "Abkürzen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sort"
-msgstr ""
+msgstr "Sortieren"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Order"
-msgstr ""
+msgstr "Reihenfolge"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Rename labels"
-msgstr ""
+msgstr "Beschriftungen umbenennen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Original label"
-msgstr ""
+msgstr "Ursprüngliche Beschriftung"
 
 msgctxt "jaspPlotBuilder|"
 msgid "New label"
-msgstr ""
+msgstr "Neue Beschriftung"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enter y-axis title"
-msgstr ""
+msgstr "Y-Achsen-Titel eingeben"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Breaks"
-msgstr ""
+msgstr "Unterbrechungen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Rotate"
-msgstr ""
+msgstr "Drehen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enter the plot title here"
-msgstr ""
+msgstr "Diagrammtitel hier eingeben"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Caption"
-msgstr ""
+msgstr "Bildunterschrift"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Annotation "
