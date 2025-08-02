@@ -1939,78 +1939,69 @@ addDecodedLabels <- function(p) {
         plotY    <- rowData$annotationY
         fontSize <- as.numeric(rowData$annotationSize)
 
-        # Read annotation text color (default is black)
         colorText <- if (!is.null(rowData$colorAnnotationLine) && nzchar(rowData$colorText)) {
           rowData$colorAnnotationLine
         } else {
           "black"
         }
 
-        # Convert text to a plotmath expression if it is wrapped in dollar signs,
-        # e.g. "$italic(P)$" will become an expression italic(P)
-        label_expr <- plotText
+         label_to_plot <- plotText
+        parse_label   <- FALSE
         if (grepl("^\\$.*\\$$", plotText)) {
-          stripped <- sub("^\\$(.*)\\$$", "\\1", plotText)
-          label_expr <- parse(text = stripped)
+          label_to_plot <- sub("^\\$(.*)\\$$", "\\1", plotText)
+          parse_label   <- TRUE
         }
 
 
         facetData <- list()
 
-        # Column facet: first check the standard drop-down; if empty, check the RM-specific one.
         if (!is.null(rowData$ColumnAnnotation) && nzchar(rowData$ColumnAnnotation)) {
           facetData[[colsVar]] <- rowData$ColumnAnnotation
         } else if (!is.null(rowData$RMColumnAnnotation) && nzchar(rowData$RMColumnAnnotation)) {
           facetData[[colsVar]] <- rowData$RMColumnAnnotation
         }
 
-        # Row facet:
         if (!is.null(rowData$RowAnnotation) && nzchar(rowData$RowAnnotation)) {
           facetData[[rowsVar]] <- rowData$RowAnnotation
         } else if (!is.null(rowData$RMRowAnnotation) && nzchar(rowData$RMRowAnnotation)) {
           facetData[[rowsVar]] <- rowData$RMRowAnnotation
         }
 
-        # Grid facet:
         if (!is.null(rowData$GridAnnotation) && nzchar(rowData$GridAnnotation)) {
           facetData[[gridVar]] <- rowData$GridAnnotation
         } else if (!is.null(rowData$RMGridAnnotation) && nzchar(rowData$RMGridAnnotation)) {
           facetData[[gridVar]] <- rowData$RMGridAnnotation
         }
 
-        # If in RM mode, decode each facet value using decodeColNames()
         if (!is.null(tab[["isRM"]]) && tab[["isRM"]] == "RM" && length(facetData) > 0) {
           for (field in names(facetData)) {
             facetData[[field]] <- decodeColNames(facetData[[field]])
           }
         }
 
-        # Build a one-row data frame to hold the annotation coordinates and all facet assignments.
         thisAnnotation <- data.frame(
           x = plotX,
           y = plotY,
-          label = label_expr,
+          label = label_to_plot,
           stringsAsFactors = FALSE
         )
-        # Add facet information (if available) to the annotation data frame
         if (length(facetData) > 0) {
           for (f in names(facetData)) {
             thisAnnotation[[f]] <- facetData[[f]]
           }
         }
 
-        # Add the annotation to the ggplot object.
         tidyplot_obj <- tidyplot_obj +
           ggplot2::geom_text(
             data = thisAnnotation,
             mapping = ggplot2::aes(x = x, y = y, label = label),
             size = fontSize,
             color = colorText,
-            inherit.aes = FALSE
+            inherit.aes = FALSE,
+            parse = parse_label
           )
       }
     }
-
 
     # Add custom comparison line (using ggplot2::geom_text, geom_segment) ----
     rmOption <- tab[["isRM"]]
