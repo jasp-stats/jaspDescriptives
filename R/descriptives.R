@@ -380,7 +380,8 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     stats$addFootnote(message = gettextf("Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s", numberMissingSplitBy, options$splitBy))
 
   stats$dependOn(c(
-    "splitBy", "variables", "quantilesForEqualGroupsNumber", "percentileValues", "mode", "median", "mean",
+    "splitBy", "variables", "quantilesForEqualGroupsNumber", "percentileValues", "mode", "median",
+    "meanArithmetic", "meanGeometric", "meanHarmonic",
     "seMean", "sd", "coefficientOfVariation", "variance", "skewness", "kurtosis", "shapiroWilkTest",
     "range", "iqr", "mad", "madRobust", "minimum", "maximum", "sum", "quartiles", "quantilesForEqualGroups",
     "percentiles", "descriptivesTableTransposed", "valid", "missing", "meanCi", "meanCiLevel", "meanCiMethod",
@@ -414,8 +415,8 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     meanCiOvertitle <- NULL
     sdCiOvertitle <- NULL
     varianceCiOvertitle <- NULL
-    meanCiUbTitle <- gettextf("%s%% CI Mean Upper", formattedMeanCiPercent)
-    meanCiLbTitle <- gettextf("%s%% CI Mean Lower", formattedMeanCiPercent)
+    meanCiUbTitle <- gettextf("%s%% CI A. Mean Upper", formattedMeanCiPercent)
+    meanCiLbTitle <- gettextf("%s%% CI A. Mean Lower", formattedMeanCiPercent)
     sdCiUbTitle <- gettextf("%s%% CI Std. Dev. Upper", formattedSdCiPercent)
     sdCiLbTitle <- gettextf("%s%% CI Std. Dev. Lower", formattedSdCiPercent)
     varianceCiUbTitle <- gettextf("%s%% CI Variance Upper", formattedVarianceCiPercent)
@@ -426,10 +427,12 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if (options$missing)                        stats$addColumnInfo(name="Missing",                     title=gettext("Missing"),                 type="integer")
   if (options$mode)                           stats$addColumnInfo(name="Mode",                        title=gettext("Mode"),                    type="mixed")
   if (options$median)                         stats$addColumnInfo(name="Median",                      title=gettext("Median"),                  type="number")
-  if (options$mean)                           stats$addColumnInfo(name="Mean",                        title=gettext("Mean"), 				            type="number")
-  if (options$seMean)                         stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of Mean"),      type="number")
+  if (options$meanArithmetic)                 stats$addColumnInfo(name="MeanArithmetic",              title=gettext("Arithmetic Mean"), 				type="number")
+  if (options$seMean)                         stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of A. Mean"),      type="number")
   if (options$meanCi) {                       stats$addColumnInfo(name="MeanCILB",                    title=meanCiLbTitle,                      type="number", overtitle = meanCiOvertitle)
                                               stats$addColumnInfo(name="MeanCIUB",                    title=meanCiUbTitle,                      type="number", overtitle = meanCiOvertitle)}
+  if (options$meanGeometric)                  stats$addColumnInfo(name="MeanGeometric",               title=gettext("Geometric Mean"),          type="number")
+  if (options$meanHarmonic)                   stats$addColumnInfo(name="MeanHarmonic",                title=gettext("Harmonic Mean"),           type="number")
   if (options$sd)                             stats$addColumnInfo(name="Std. Deviation",              title=gettext("Std. Deviation"),          type="number")
   if (options$sdCi) {                         stats$addColumnInfo(name="SdCILB",                      title=sdCiLbTitle,                        type="number", overtitle = sdCiOvertitle)
                                               stats$addColumnInfo(name="SdCIUB",                      title=sdCiUbTitle,                        type="number", overtitle = sdCiOvertitle)}
@@ -575,9 +578,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   resultsCol[["Missing"]]                 <- if (options$missing) rows - length(na.omitted)
 
   if (columnType == "scale") {
-    resultsCol[["Median"]]                  <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$median,            na.omitted, median)
-    resultsCol[["Mean"]]                    <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$mean,              na.omitted, mean)
-    resultsCol[["Std. Error of Mean"]]      <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$seMean, na.omitted, function(param) { sd(param)/sqrt(length(param))} )
+    resultsCol[["Median"]]                  <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$median,             na.omitted, median)
+    resultsCol[["MeanArithmetic"]]          <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$meanArithmetic,     na.omitted, mean)
+    resultsCol[["Std. Error of Mean"]]      <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$seMean,             na.omitted, function(param) { sd(param)/sqrt(length(param))} )
+    resultsCol[["MeanGeometric"]]           <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$meanGeometric,      na.omitted, .geometricMean )
+    resultsCol[["MeanHarmonic"]]            <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$meanHarmonic,       na.omitted, .harmonicMean )
     resultsCol[["Std. Deviation"]]          <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$sd, na.omitted, sd)
     resultsCol[["Coefficient of Variation"]]<- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$coefficientOfVariation,      na.omitted, function(param) { sd(param) / mean(param)})
     resultsCol[["MAD"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$mad,               na.omitted, function(param) { mad(param, constant = 1) } )
@@ -2099,7 +2104,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   container[[plotName]] <- jaspPlot
 }
 
-.descriptivesHeatmapAggregateData <- function(variable, groups, fun = c("identity", "mean", "median", "mode", "length")) {
+.descriptivesHeatmapAggregateData <- function(variable, groups, fun = c("identity", "meanArithmetic", "median", "mode", "length")) {
   fun <- match.arg(fun)
   mode <- function(x) {
     levels <- levels(x)
@@ -2512,4 +2517,20 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
 
   container[[plotName]] <- densPlot
+}
+
+.geometricMean <- function(x) {
+  if (any(x <= 0)) return(NA)
+
+  return(
+    exp(mean(log(x)))
+  )
+}
+
+.harmonicMean <- function(x) {
+  if (any(x <= 0)) return(NA)
+
+  return(
+    1 / mean(1/x)
+  )
 }
