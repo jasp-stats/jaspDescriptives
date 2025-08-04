@@ -2240,7 +2240,7 @@ TabView {
 				title: qsTr("Labels")
 				info: qsTr("Handle rotation, shortening and sorting")
 
-				CheckBox { name: "rotateXLa	bel"; label: qsTr("Rotate") }
+				CheckBox { name: "rotateXLabel"; label: qsTr("Rotate") }
 
 				CheckBox {
 					name: "cutShortScale"

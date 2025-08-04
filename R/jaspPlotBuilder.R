@@ -1790,83 +1790,74 @@ addDecodedLabels <- function(p) {
         adjust_args_yaxis$title <- titleValueY
       }
 
-
       limitFromY <- suppressWarnings(as.numeric(tab[["limitFromY"]]))
       limitToY   <- suppressWarnings(as.numeric(tab[["limitToY"]]))
       fromValueY <- suppressWarnings(as.numeric(tab[["breakFromY"]]))
       toValueY   <- suppressWarnings(as.numeric(tab[["breakToY"]]))
       byValueY   <- suppressWarnings(as.numeric(tab[["breakByY"]]))
-
       user_has_limits <- !is.na(limitFromY) && !is.na(limitToY)
       user_has_breaks <- !is.na(fromValueY) && !is.na(toValueY) && !is.na(byValueY)
 
-      max_y_annot <- -Inf
-      if (!is.null(yVar) && yVar %in% colnames(localData) && is.numeric(localData[[yVar]])) {
 
-        if (!is.null(tab[["pairwiseComparisons"]]) &&
-            length(tab[["pairwiseComparisons"]]) > 0 &&
-            !is.null(tab[["yPositionPValue"]])) {
+      automatic_limit_setting_active <- TRUE
 
-          y_pos_base <- suppressWarnings(as.numeric(tab[["yPositionPValue"]]))
-          if (is.finite(y_pos_base)) {
-
-            max_y_annot <- max(max_y_annot, y_pos_base, na.rm = TRUE)
-
-            n_brackets  <- length(tab[["pairwiseComparisons"]])
-            step_inc    <- suppressWarnings(as.numeric(tab[["stepDistance"]]))
-            if (is.na(step_inc)) step_inc <- 0
-
-            highest_pval <- y_pos_base + step_inc * (n_brackets - 1)
-            max_y_annot  <- max(max_y_annot, highest_pval, na.rm = TRUE)
-          }
-        }
-
-        if (!is.null(tab[["annotationLineList"]]) &&
-            length(tab[["annotationLineList"]]) > 0) {
-
-          for (line in tab[["annotationLineList"]]) {
-            y_val      <- suppressWarnings(as.numeric(line[["yAnnotation"]]))
-            yend_val   <- suppressWarnings(as.numeric(line[["yendAnnotation"]]))
-            offset_raw <- suppressWarnings(as.numeric(line[["textDistanceAnnotationLine"]]))
-            if (is.finite(y_val) && is.finite(yend_val) && is.finite(offset_raw)) {
-              y_text_pos  <- ((y_val + yend_val) / 2) + offset_raw
-              max_y_annot <- max(max_y_annot, y_val, yend_val, y_text_pos, na.rm = TRUE)
-            }
-          }
-        }
-
-        if (!is.null(tab[["annotationPlotBuilder"]]) &&
-            length(tab[["annotationPlotBuilder"]]) > 0) {
-
-          for (annot in tab[["annotationPlotBuilder"]]) {
-            y_pos_annot <- suppressWarnings(as.numeric(annot$annotationY))
-            if (is.finite(y_pos_annot)) {
-              max_y_annot <- max(max_y_annot, y_pos_annot, na.rm = TRUE)
-            }
-          }
-        }
-
-        y_data_range <- range(localData[[yVar]], na.rm = TRUE)
-        if (is.finite(max_y_annot) && max_y_annot > y_data_range[2]) {
-
-          if (!user_has_limits && !user_has_breaks) {
-            adjust_args_yaxis$breaks <- pretty(y_data_range)
-            adjust_args_yaxis$limits <- c(y_data_range[1], max_y_annot * 1.5)
-          }
-        }
-      }
-
-
-      if (is.null(adjust_args_yaxis$limits) && user_has_limits) {
+      if (user_has_limits) {
         adjust_args_yaxis$limits <- c(limitFromY, limitToY)
+        automatic_limit_setting_active <- FALSE
       }
-      if (is.null(adjust_args_yaxis$breaks) && user_has_breaks) {
+
+      if (automatic_limit_setting_active) {
+
+        highest_y_from_annots <- -Inf
+        num_comparisons <- 0
+        if (!is.null(tab[["pairwiseComparisons"]])) {
+          num_comparisons <- length(tab[["pairwiseComparisons"]])
+        }
+
+        if (num_comparisons > 0 && !is.null(tab[["yPositionPValue"]])) {
+          y_pos_base <- suppressWarnings(as.numeric(tab[["yPositionPValue"]]))
+          step_inc   <- suppressWarnings(as.numeric(tab[["stepDistance"]]))
+          if (is.na(step_inc)) step_inc <- 0
+
+          if (is.finite(y_pos_base)) {
+            highest_y_from_annots <- y_pos_base + (num_comparisons - 1) * step_inc
+          }
+        }
+
+        max_y_from_data <- -Inf
+        if (!is.null(yVar) && yVar %in% colnames(localData) && is.numeric(localData[[yVar]])) {
+          max_y_from_data <- max(localData[[yVar]], na.rm = TRUE)
+        }
+
+        required_y_max <- max(max_y_from_data, highest_y_from_annots, na.rm = TRUE)
+
+        if (is.finite(required_y_max)) {
+          min_y <- min(localData[[yVar]], na.rm = TRUE)
+          adjust_args_yaxis$limits <- c(min_y, required_y_max * 1.05)
+        }
+      }
+
+      if (user_has_breaks) {
         adjust_args_yaxis$breaks <- seq(fromValueY, toValueY, byValueY)
       }
 
-      adjust_args_yaxis$rotate_labels <- isTRUE(tab[["rotateYLabel"]])
+      num_comparisons_for_padding <- 0
+      if (!is.null(tab[["pairwiseComparisons"]])) {
+        num_comparisons_for_padding <- length(tab[["pairwiseComparisons"]])
+      }
+
+      bottom_padding <- suppressWarnings(as.numeric(tab[["YPaddingFirst"]]))
+      top_padding    <- suppressWarnings(as.numeric(tab[["YPaddingSecond"]]))
+
+      if (num_comparisons_for_padding > 1) {
+        additional_padding <- (num_comparisons_for_padding - 1) * 0.15
+        top_padding <- top_padding + additional_padding
+      }
+
+      adjust_args_yaxis$padding <- c(bottom_padding, top_padding)
+
+      adjust_args_yaxis$rotate_labels   <- isTRUE(tab[["rotateYLabel"]])
       adjust_args_yaxis$cut_short_scale <- isTRUE(tab[["cutShortScaleY"]])
-      adjust_args_yaxis$padding <- c(tab[["YPaddingFirst"]], tab[["YPaddingSecond"]])
 
       if (length(adjust_args_yaxis) > 0) {
         tidyplot_obj <- do.call(
@@ -1946,12 +1937,13 @@ addDecodedLabels <- function(p) {
           "black"
         }
 
-        # Convert text to a plotmath expression if it is wrapped in dollar signs,
-        # e.g. "$italic(P)$" will become an expression italic(P)
-        label_expr <- plotText
+
+
+        label_to_plot <- plotText
+        parse_label   <- FALSE #
         if (grepl("^\\$.*\\$$", plotText)) {
-          stripped <- sub("^\\$(.*)\\$$", "\\1", plotText)
-          label_expr <- parse(text = stripped)
+          label_to_plot <- sub("^\\$(.*)\\$$", "\\1", plotText)
+          parse_label   <- TRUE
         }
 
 
@@ -1964,53 +1956,47 @@ addDecodedLabels <- function(p) {
           facetData[[colsVar]] <- rowData$RMColumnAnnotation
         }
 
-        # Row facet:
         if (!is.null(rowData$RowAnnotation) && nzchar(rowData$RowAnnotation)) {
           facetData[[rowsVar]] <- rowData$RowAnnotation
         } else if (!is.null(rowData$RMRowAnnotation) && nzchar(rowData$RMRowAnnotation)) {
           facetData[[rowsVar]] <- rowData$RMRowAnnotation
         }
 
-        # Grid facet:
         if (!is.null(rowData$GridAnnotation) && nzchar(rowData$GridAnnotation)) {
           facetData[[gridVar]] <- rowData$GridAnnotation
         } else if (!is.null(rowData$RMGridAnnotation) && nzchar(rowData$RMGridAnnotation)) {
           facetData[[gridVar]] <- rowData$RMGridAnnotation
         }
 
-        # If in RM mode, decode each facet value using decodeColNames()
         if (!is.null(tab[["isRM"]]) && tab[["isRM"]] == "RM" && length(facetData) > 0) {
           for (field in names(facetData)) {
             facetData[[field]] <- decodeColNames(facetData[[field]])
           }
         }
 
-        # Build a one-row data frame to hold the annotation coordinates and all facet assignments.
         thisAnnotation <- data.frame(
           x = plotX,
           y = plotY,
-          label = label_expr,
+          label = label_to_plot,
           stringsAsFactors = FALSE
         )
-        # Add facet information (if available) to the annotation data frame
         if (length(facetData) > 0) {
           for (f in names(facetData)) {
             thisAnnotation[[f]] <- facetData[[f]]
           }
         }
 
-        # Add the annotation to the ggplot object.
         tidyplot_obj <- tidyplot_obj +
           ggplot2::geom_text(
             data = thisAnnotation,
             mapping = ggplot2::aes(x = x, y = y, label = label),
             size = fontSize,
             color = colorText,
-            inherit.aes = FALSE
+            inherit.aes = FALSE,
+            parse = parse_label
           )
       }
     }
-
 
     # Add custom comparison line (using ggplot2::geom_text, geom_segment) ----
     rmOption <- tab[["isRM"]]
@@ -2200,7 +2186,7 @@ addDecodedLabels <- function(p) {
     }
     if (isTRUE(tab[["rotateYLabel"]])) {
       tidyplot_obj <- tidyplot_obj +
-        ggplot2::theme(axis.text.y = ggplot2::element_text(angle = 45, hjust = 1))
+        ggplot2::theme(axis.text.y = ggplot2::element_text(angle = 45, hjust = 0.5))
     }
 
     # Facet logic for row / column ----------
@@ -2417,9 +2403,6 @@ addDecodedLabels <- function(p) {
         )
     }
 
-
-
-
     # asPercentage axis labeling ----
     asPercentage <- isTRUE(tab[["asPercentage"]])
 
@@ -2435,6 +2418,43 @@ addDecodedLabels <- function(p) {
     if (!hasColor) {
       tidyplot_obj <- tidyplot_obj +
         ggplot2::guides(color = "none", fill = "none")
+    }
+
+    # --- Y-Axis Title Centering Logic ------
+    fromValueY_num <- suppressWarnings(as.numeric(tab[["breakFromY"]]))
+    toValueY_num   <- suppressWarnings(as.numeric(tab[["breakToY"]]))
+    byValueY   <- suppressWarnings(as.numeric(tab[["breakByY"]]))
+
+
+    # Check if both from/to values are provided and are valid finite numbers
+    if (!is.na(fromValueY_num) && !is.na(toValueY_num) && !is.na(byValueY) &&
+        is.finite(fromValueY_num) && is.finite(toValueY_num)) {
+
+      # Build the plot to extract final panel parameters, including the full y-range
+      built_plot <- ggplot2::ggplot_build(tidyplot_obj)
+
+      # The y.range contains the final min and max values of the y-axis
+      y_axis_range <- built_plot$layout$panel_params[[1]]$y.range
+
+      if (!is.null(y_axis_range)) {
+        plot_min_y <- y_axis_range[1]
+        plot_max_y <- y_axis_range[2]
+
+        # Calculate the midpoint of the user-specified range
+        title_center_y <- (fromValueY_num + toValueY_num) / 2
+
+        # Calculate the relative position (0 to 1) of the midpoint within the full plot range.
+        # This will be our hjust value.
+        if ((plot_max_y - plot_min_y) > 0) {
+          relative_pos <- (title_center_y - plot_min_y) / (plot_max_y - plot_min_y)
+          # Clamp the value between 0 and 1 for safety
+          final_pos  <- max(0, min(1, relative_pos))
+
+          # Apply the calculated hjust to the y-axis title
+          tidyplot_obj <- tidyplot_obj +
+            ggplot2::theme(axis.title.y = ggplot2::element_text(hjust = final_pos))
+        }
+      }
     }
 
     # Render plot -----
