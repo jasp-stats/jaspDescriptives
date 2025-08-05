@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2025-07-19 03:38\n"
-"PO-Revision-Date: 2021-09-02 14:35+0000\n"
-"Last-Translator: Laura Durans <lauraadurans@gmail.com>\n"
+"PO-Revision-Date: 2025-08-05 16:01+0000\n"
+"Last-Translator: Wendel Paulo Silvestre <wpsilvestre@ucs.br>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/pt/>\n"
 "Language: pt\n"
@@ -12,29 +12,29 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.8.1-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 "X-Language: en_US\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
 
 msgid "Time Series Plot"
-msgstr ""
+msgstr "Gráfico de séries temporais"
 
-#, fuzzy
 msgid "Lag Plot"
-msgstr "Diagrama Q-Q"
+msgstr "Gráfico Lag"
 
 msgid ""
 "The specified lag, %1$s, is too large given the %2$s observations in the "
 "data. Please choose a smaller lag."
 msgstr ""
+"O lag especificado, %1$s, é muito grande, posto que há %2$s observações nos "
+"dados. Por favor, use um lag menor."
 
-#, fuzzy
 msgid "Autocorrelation Function"
-msgstr "Diagrama de correlação"
+msgstr "Função de autocorrelação"
 
 msgid "Partial Autocorrelation Function"
-msgstr ""
+msgstr "Função de autocorrelação parcial"
 
 msgid "Descriptive Statistics"
 msgstr "Estatísticas descritivas"
@@ -49,7 +49,7 @@ msgid "Mean"
 msgstr "Média"
 
 msgid "Std. Deviation"
-msgstr "Desvio Padrão"
+msgstr "Desv. Padrão"
 
 msgid "Variance"
 msgstr "Variância"
@@ -64,47 +64,49 @@ msgid "Maximum"
 msgstr "Máximo"
 
 msgid "Start"
-msgstr ""
+msgstr "Iniciar"
 
 msgid "End"
-msgstr ""
+msgstr "Finalizar"
 
 msgid "Lag 1 Autocorrelation"
-msgstr ""
+msgstr "Autocorrelação lag 1"
 
 msgid "The time series data should be equally-spaced."
-msgstr ""
+msgstr "Os dados da série temporal devem ser igualmente espaçados."
 
 msgid "The time variable should have unique values only."
-msgstr ""
+msgstr "A variável tempo deve ter apenas valores únicos."
 
 msgid ""
 "The 'Time' variable has a date-like format, please filter by date instead."
-msgstr ""
+msgstr "A variável 'Tempo' tem formato de data. Por favor, filtre por data."
 
 msgid ""
 "The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:"
 "ss). Try to filter by time index instead."
 msgstr ""
+"A variável 'Tempo' não está no formato de data (e.g., yyyy-mm-dd hh:mm:ss). "
+"Tente filtrar por índice de tempo."
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
-msgstr ""
+msgstr "'Iniciar' precisa estar em formato de data (e.g., yyyy-mm-dd hh:mm:ss)."
 
 msgid "The 'Start' value of the filter should be before last observation."
-msgstr ""
+msgstr "O valor 'inicial' do filtro deve ser antes da última observação."
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
-msgstr ""
+msgstr "'Finalizar' deve estar em formato de data (e.g., yyyy-mm-dd hh:mm:ss)."
 
 msgid ""
 "The 'End' value of the filter should be larger/later than the 'Start' value."
-msgstr ""
+msgstr "O valor 'final' do filtro deve ser maior do que/após o valor 'inicial'."
 
 msgid "Lag"
-msgstr ""
+msgstr "Lag"
 
 msgid "Association %s"
-msgstr ""
+msgstr "Associação %s"
 
 msgid "Frequency Tables"
 msgstr "Tabelas de Frequências"
@@ -122,7 +124,7 @@ msgid "Boxplots"
 msgstr "Diagrama de barra"
 
 msgid "Q-Q Plots"
-msgstr "Diagramas Q-Q"
+msgstr "Gráficos Q-Q"
 
 msgid "Q-Q Plot"
 msgstr "Diagrama Q-Q"
@@ -146,19 +148,16 @@ msgid "Dot Plots"
 msgstr "Diagramas de pontos"
 
 msgid "Heatmaps"
-msgstr ""
+msgstr "Mapas de calor"
 
-#, fuzzy
 msgid "Pareto Plots"
-msgstr "Diagramas de pontos"
+msgstr "Gráficos de Pareto"
 
-#, fuzzy
 msgid "Frequency Plots"
-msgstr "Tabelas de Frequências"
+msgstr "Gráficos de Frequências"
 
-#, fuzzy
 msgid "Likert Plots"
-msgstr "Diagramas de pontos"
+msgstr "Gráficos Likert"
 
 msgid ""
 "Excluded %1$i rows from the analysis that correspond to the missing values "
@@ -168,37 +167,37 @@ msgstr ""
 "variável de divisão %2$s"
 
 msgid "%s%% Confidence Interval Mean"
-msgstr ""
+msgstr "%s%% Intervalo médio de confiança"
 
 msgid "%s%% Confidence Interval Std. Dev."
-msgstr ""
+msgstr "%s%% Desv. Pad. do intervalo de confiança"
 
 msgid "%s%% Confidence Interval Variance"
-msgstr ""
+msgstr "%s%% Variância do intervalo de confiança"
 
 msgid "Upper"
-msgstr ""
+msgstr "Superior"
 
 msgid "Lower"
-msgstr ""
+msgstr "Inferior"
 
 msgid "%s%% CI Mean Upper"
-msgstr ""
+msgstr "%s%% Média superior do IC"
 
 msgid "%s%% CI Mean Lower"
-msgstr ""
+msgstr "%s%% Média inferior do IC"
 
 msgid "%s%% CI Std. Dev. Upper"
-msgstr ""
+msgstr "%s%% Desv. Pad. superior do IC"
 
 msgid "%s%% CI Std. Dev. Lower"
-msgstr ""
+msgstr "%s%% Desv. Pad. inferior do IC"
 
 msgid "%s%% CI Variance Upper"
-msgstr ""
+msgstr "%s%% Variância superior do IC"
 
 msgid "%s%% CI Variance Lower"
-msgstr ""
+msgstr "%s%% Variância inferior do IC"
 
 msgid "Mode"
 msgstr "Moda"
@@ -239,23 +238,20 @@ msgstr "Teste de Shapiro-Wilk"
 msgid "P-value of Shapiro-Wilk"
 msgstr "P-value do Shapiro-Wilk"
 
-#, fuzzy
 msgid "25th percentile"
-msgstr "%go. percentil"
+msgstr "25° percentil"
 
-#, fuzzy
 msgid "50th percentile"
-msgstr "%go. percentil"
+msgstr "50° percentil"
 
-#, fuzzy
 msgid "75th percentile"
-msgstr "%go. percentil"
+msgstr "75° percentil"
 
 msgid "%gth percentile"
 msgstr "%go. percentil"
 
 msgid "Error in Percentiles, all values should >=0 and <=100"
-msgstr ""
+msgstr "Erro nos percentis, todos os valores devem ser >=0 e <=100"
 
 msgid "Sum"
 msgstr "Soma"
@@ -276,6 +272,10 @@ msgid ""
 "reported but multiple modes may exist. We recommend visualizing the data to "
 "check for multimodality."
 msgstr ""
+"Mais de um modo existe. Para dados nominais e ordinais, o primeiro modo é "
+"relatado. Para dados contínuos, o modo com a maior densidade de estimativas "
+"é relatado mas múltiplos modos podem existir. Recomenda-se visualizar os "
+"dados para verificar por multimodalidade."
 
 msgid "Total"
 msgstr "Total"
@@ -302,14 +302,14 @@ msgid "Cumulative Percent"
 msgstr "Porcentagem cumulativa"
 
 msgid "Plotting not possible: %s"
-msgstr "Não foi possível efetuar a plotagem: %s"
+msgstr "A plotagem não é possível: %s"
 
 msgid "Plotting is not possible: No plot type selected!"
 msgstr ""
 "Não é possível efetuar a plotagem: Não foi selecionado um tipo de gráfico!"
 
 msgid "Counts"
-msgstr "Contagem"
+msgstr "Contagens"
 
 msgid "Density"
 msgstr "Densidade"
@@ -321,11 +321,15 @@ msgid ""
 "Association cannot be computed due to missing values. Try a different 'Use' "
 "setting."
 msgstr ""
+"A associação não pode ser computada devido a valores ausentes. Tente "
+"utilizar uma configuração 'Usar' diferente."
 
 msgid ""
 "Some associations cannot be computed due to missing values. Try a different "
 "'Use' setting."
 msgstr ""
+"Algumas associações não puderam ser calculadas devido a valores ausentes. "
+"Tente utilizar uma configuração 'Usar' diferente."
 
 msgid "Theoretical Quantiles"
 msgstr "Quantis teóricos"
@@ -334,10 +338,10 @@ msgid "Sample Quantiles"
 msgstr "Quartil da amostra"
 
 msgid "Stem"
-msgstr ""
+msgstr "Ramo"
 
 msgid "Leaf"
-msgstr ""
+msgstr "Folha"
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
@@ -353,124 +357,139 @@ msgid ""
 "There must be a unique value per combination of levels of horizontal and "
 "vertical axis!"
 msgstr ""
+"Deve haver um único valor por combinação de níveis nos eixos horizontal e "
+"vertical!"
 
 msgid "All categorical variables must have the same number of levels!"
-msgstr ""
+msgstr "Todas as variáveis categóricas devem ter o mesmo número de níveis!"
 
 msgid "Items must have 2 or more levels!"
-msgstr ""
+msgstr "Os itens devem ter 2 ou mais níveis!"
 
 msgid "Levels within variable require at least two or more data points!"
 msgstr ""
+"Níveis dentro da variável requerem pelo menos dois ou mais pontos de dados!"
 
 msgid ""
 "Please assign a variable to every RM factor (defined in Repeated Measures "
 "Factors) within Repeated Measures Cells."
 msgstr ""
+"Por favor, atribua uma variável para cada fator de MR (definido nos fatores "
+"a medidas repetidas) nas células de medidas repetidas."
 
-#, fuzzy
 msgid "Plots"
-msgstr "Diagramas Q-Q"
+msgstr "Gráficos"
 
 msgid "Available Plot IDs"
-msgstr ""
+msgstr "IDs de gráficos disponíveis"
 
 msgid "Plot Grid"
-msgstr ""
+msgstr "Gráfico Grid"
 
 msgid "Raincloud Plots"
-msgstr ""
+msgstr "Gráfico nuvem de chuva"
 
 msgid "Not shown are %s observations due to missing data."
-msgstr ""
+msgstr "%s observações não exibidas devido a dados ausentes."
 
 msgid "Interval around mean is custom."
-msgstr ""
+msgstr "O intervalo em torno da média é personalizado."
 
 msgid ""
 "<span style = 'color: darkorange'>Error with custom interval: Specified "
 "number of clouds does not match clouds in plot.</span>"
 msgstr ""
+"<span style = 'color: darkorange'>Erro com o intervalo personalizado: O "
+"número especificado de nuvens não corresponde ao número de nuvens no "
+"gráfico.</span>"
 
 msgid "Interval around mean represents ± 1 standard error"
-msgstr ""
+msgstr "O intervalo em torno da média representa ± 1 erro padrão"
 
 msgid "Interval around mean represents ± 1 standard deviation"
-msgstr ""
+msgstr "O intervalo em torno da média representa ± 1 desvio padrão"
 
 msgid "Interval around mean represents %d%% confidence interval."
 msgstr ""
+"O intervalo em torno da média representa um intervalo de confiança de %d%%."
 
 msgid "Points are slightly jittered from their true values."
 msgstr ""
+"Os pontos estão ligeiramente deslocados em relação aos seus valores reais."
 
 msgid ""
 "<span style = 'color: darkorange'> Warning! Some data is not "
 "shown<br>because it lies outside of the interval set by the custom axis "
 "limits.</span>"
 msgstr ""
+"<span style = 'color: darkorange'> Aviso! Parte dos dados não são "
+"exibidos<br>porque se situam fora do intervalo definido pelos limites "
+"personalizados de eixo.</span>"
 
 msgid ""
 "<span style = 'color: darkorange'> Error with custom orientation: Specified "
 "number of clouds does not match clouds in plot.<br>Reverted to default all "
 "'R'. Point nudge set to 0.</span>"
 msgstr ""
+"<span style = 'color: darkorange'> Erro com a orientação personalizada: O "
+"número especificado de nuvens não corresponde ao número de nuvens no "
+"gráfico.<br>Revertido para padrão todos os 'R'. Deslocamento de ponto "
+"definido como 0.</span>"
 
 msgid ""
 "<span style = 'color: darkorange'> Error with custom color: Specified number "
 "of clouds does not match clouds in plot.<br>Ignoring custom color input.</"
 "span>"
 msgstr ""
+"<span style = 'color: darkorange'>Erro com cor personalizada: O número "
+"especificado de nuvens não corresponde ao número de nuvens no "
+"gráfico.<br>Ignorando a entrada de cor personalizada.</span>"
 
-#, fuzzy
 msgid "Statistics"
-msgstr "Estatísticas descritivas"
+msgstr "Estatística"
 
 msgid "Primary Factor"
-msgstr ""
+msgstr "Fator primário"
 
 msgid "Secondary Factor"
-msgstr ""
+msgstr "Fator secundário"
 
 msgid "<i>N</i>"
-msgstr ""
+msgstr "<i>N</i>"
 
 msgid "Lower Whisker"
-msgstr ""
+msgstr "Bigode inferior"
 
-#, fuzzy
 msgid "25th Percentile"
-msgstr "%go. percentil"
+msgstr "25° Percentil"
 
-#, fuzzy
 msgid "75th Percentile"
-msgstr "%go. percentil"
+msgstr "75° Percentil"
 
 msgid "Upper Whisker"
-msgstr ""
+msgstr "Bigode superior"
 
 msgid "%s%% CI for Mean Difference"
-msgstr ""
+msgstr "%s%% IC para diferença média"
 
-#, fuzzy
 msgid "Standard Error"
-msgstr "Desvio Padrão"
+msgstr "Erro Padrão"
 
-#, fuzzy
 msgid "Standard Deviation"
 msgstr "Desvio Padrão"
 
 msgid "<i>N</i><sub>Total</sub> = %s."
-msgstr ""
+msgstr "<i>N</i><sub>Total</sub> = %s."
 
 msgid "This excludes %s observations due to missing data."
-msgstr ""
+msgstr "Isso exclui %s observações devido a dados ausentes."
 
 msgid "<br>Interval around mean is custom."
-msgstr ""
+msgstr "<br>O intervalo em torno da média é personalizado."
 
 msgid "<br>Interval around mean represents %d%% confidence interval."
 msgstr ""
+"<br>O intervalo em torno da média representa %d%% de intervalo de confiança."
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
