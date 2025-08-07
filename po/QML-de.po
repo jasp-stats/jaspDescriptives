@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-08-02 18:02+0000\n"
+"PO-Revision-Date: 2025-08-08 07:02+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/de/>\n"
@@ -3265,59 +3265,61 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "Custom colors"
-msgstr ""
+msgstr "Benutzerdefinierte Farben"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Plot size"
-msgstr ""
+msgstr "Diagrammgröße"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Width (px)"
-msgstr ""
+msgstr "Breite (px)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Height (px)"
-msgstr ""
+msgstr "Höhe (px)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Margins"
-msgstr ""
+msgstr "Ränder"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Top"
-msgstr ""
+msgstr "Oben"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Bottom"
-msgstr ""
+msgstr "Unten"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Left"
-msgstr ""
+msgstr "Links"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Right"
-msgstr ""
+msgstr "Rechts"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Legend"
-msgstr ""
+msgstr "Legende"
 
 msgctxt "jaspPlotBuilder|"
 msgid "No legend"
-msgstr ""
+msgstr "Keine Legende"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Remove title"
-msgstr ""
+msgstr "Titel entfernen"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Split and grid control"
-msgstr ""
+msgstr "Aufteilungs- und Raster-Einstellungen"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Split control"
-msgstr ""
+msgstr "Aufteilungs-Einstellungen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Scale and axis settings"
@@ -3461,23 +3463,23 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "top"
-msgstr ""
+msgstr "oben"
 
 msgctxt "jaspPlotBuilder|"
 msgid "bottom"
-msgstr ""
+msgstr "unten"
 
 msgctxt "jaspPlotBuilder|"
 msgid "left"
-msgstr ""
+msgstr "links"
 
 msgctxt "jaspPlotBuilder|"
 msgid "right"
-msgstr ""
+msgstr "rechts"
 
 msgctxt "jaspPlotBuilder|"
 msgid "P value and comparison lines"
-msgstr ""
+msgstr "P-Wert und Vergleichslinien"
 
 msgctxt "jaspPlotBuilder|"
 msgid "P value brackets"
@@ -3507,7 +3509,7 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "Pairwise comparisons table"
-msgstr ""
+msgstr "Tabelle paarweiser Vergleiche"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Bracket "
@@ -3515,15 +3517,15 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "Compared groups"
-msgstr ""
+msgstr "Verglichene Gruppen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Group 1"
-msgstr ""
+msgstr "Gruppe 1"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Group 2"
-msgstr ""
+msgstr "Gruppe 2"
 
 msgctxt "jaspPlotBuilder|"
 msgid "P value and brackets"
