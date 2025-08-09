@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2025-08-09 03:35+0000\n"
+"Last-Translator: Wendel Paulo Silvestre <wpsilvestre@ucs.br>\n"
+"Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/pt/>\n"
+"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.13-dev\n"
 "X-Language: pt\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -206,11 +212,11 @@ msgstr "Rotular outliers"
 
 msgctxt "Description|"
 msgid "Descriptives"
-msgstr "Descritivas"
+msgstr "Descritivos"
 
 msgctxt "Description|"
 msgid "Descriptive Statistics"
-msgstr "Estatísticas Descritivas"
+msgstr "Estatística Descritiva"
 
 msgctxt "Descriptives|"
 msgid "Frequency tables"
@@ -336,7 +342,7 @@ msgstr "Para variáveis escalares"
 
 msgctxt "Descriptives|"
 msgid "Value itself"
-msgstr "Valor"
+msgstr "Valor em si"
 
 msgctxt "Descriptives|"
 msgid "Number of observations"
@@ -506,7 +512,6 @@ msgid ""
 "supplied, the row order of the data is used."
 msgstr ""
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Transpose descriptives table"
 msgstr "Transpor tabela de descritivas"
@@ -567,22 +572,18 @@ msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Both"
 msgstr ""
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Distribution"
 msgstr "Distribuição"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Density"
 msgstr "Densidade"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Histogram"
 msgstr "Histograma"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "None"
 msgstr "Nenhum"
@@ -603,17 +604,14 @@ msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Lag"
 msgstr ""
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Add regression line"
 msgstr "Adicionar linha de regressão"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Smooth"
 msgstr "Suavizar"
 
-#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Linear"
 msgstr "Linear"
@@ -659,44 +657,36 @@ msgstr ""
 
 msgctxt "Description|"
 msgid "Flexplot"
-msgstr ""
+msgstr "Flexplot"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Dependent Variable"
 msgstr "Variável Dependente"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Independent Variable(s)"
-msgstr "Variável independente(s)"
+msgstr "Variável(is) Independente(s)"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Paneled Variable(s)"
-msgstr "Variáveis em painel"
+msgstr "Variável(is) em Painel"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Options"
 msgstr "Opções"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Point transparency"
 msgstr "Transparência dos pontos"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Jitter in X"
 msgstr "Jitter em X"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Jitter in Y"
 msgstr "Jitter em Y"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Plot confidence bands"
 msgstr "Traçar faixas de confiança"
@@ -717,17 +707,14 @@ msgctxt "FlexplotForm|"
 msgid "Cubic"
 msgstr ""
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "None"
 msgstr "Nenhum"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Fitted line (scatterplots)"
-msgstr "Linha de ajuste (gráfico de dispersão)"
+msgstr "Linha ajustada (gráfico de dispersão)"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Quartiles"
 msgstr "Quartis"
@@ -736,7 +723,6 @@ msgctxt "FlexplotForm|"
 msgid "Standard deviations"
 msgstr ""
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Intervals (categorical predictors)"
 msgstr "Intervalos (preditores categóricos)"
@@ -761,7 +747,6 @@ msgctxt "FlexplotForm|"
 msgid "Dark"
 msgstr ""
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "GGplot theme"
 msgstr "Tema do GGplot"
@@ -786,25 +771,21 @@ msgctxt "FlexplotForm|"
 msgid "JCO"
 msgstr ""
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Color Palette"
-msgstr "Paleta de cores"
+msgstr "Paleta de Cores"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Convert to grayscale"
 msgstr "Converter para escala de cinza"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Ghost lines"
 msgstr "Linhas fantasmas"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Plot Labels"
-msgstr "Legendas do gráfico"
+msgstr "Rótulos do gráfico"
 
 msgctxt "FlexplotForm|"
 msgid "X Axis Label"
@@ -1716,7 +1697,6 @@ msgctxt "raincloudPlots|"
 msgid "Advanced"
 msgstr ""
 
-#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Mean"
 msgstr "Média"
@@ -1926,7 +1906,6 @@ msgid ""
 "Horizontal lines are displayed marking 95% confidence intervals for the mean"
 msgstr ""
 
-#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Show legend"
 msgstr "Mostrar legenda"
@@ -2145,7 +2124,6 @@ msgctxt "jaspPlotBuilder|"
 msgid "Jitter width"
 msgstr ""
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Transparency"
 msgstr "Transparência"
@@ -2180,7 +2158,6 @@ msgid ""
 "violin)"
 msgstr ""
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Histogram"
 msgstr "Histograma"
@@ -2191,7 +2168,6 @@ msgid ""
 "requires either X-Axis or X-Axis variable, but not both."
 msgstr ""
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Number of bins"
 msgstr "Número de caixas"
@@ -2414,7 +2390,6 @@ msgctxt "jaspPlotBuilder|"
 msgid "Show as percentages"
 msgstr ""
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Mean"
 msgstr "Média"
@@ -2443,7 +2418,6 @@ msgctxt "jaspPlotBuilder|"
 msgid "Mean value"
 msgstr ""
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Median"
 msgstr "Mediana"
@@ -2529,7 +2503,6 @@ msgctxt "jaspPlotBuilder|"
 msgid "Method"
 msgstr ""
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Linear"
 msgstr "Linear"
@@ -2727,7 +2700,6 @@ msgctxt "jaspPlotBuilder|"
 msgid "Color by"
 msgstr ""
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "None"
 msgstr "Nenhum"
@@ -3518,7 +3490,6 @@ msgctxt "jaspPlotBuilder|"
 msgid "t"
 msgstr ""
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Normal"
 msgstr "Normal"
@@ -3543,7 +3514,6 @@ msgid ""
 "bins give finer detail, fewer bins give a more general overview"
 msgstr ""
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Density"
 msgstr "Densidade"
