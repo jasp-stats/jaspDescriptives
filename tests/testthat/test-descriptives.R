@@ -469,7 +469,7 @@ test_that("mode has mixed column", {
   # disable all default columns
   options$valid <- FALSE
   options$missing <- FALSE
-  options$mean <- FALSE
+  options$meanArithmetic <- FALSE
   options$minimum <- FALSE
   options$maximum <- FALSE
   options$sd <- FALSE
