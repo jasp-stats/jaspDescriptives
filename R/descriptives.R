@@ -447,26 +447,26 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if (options$shapiroWilkTest) {              stats$addColumnInfo(name="Shapiro-Wilk",                title=gettext("Shapiro-Wilk"),            type="number")
                                               stats$addColumnInfo(name="P-value of Shapiro-Wilk",     title=gettext("P-value of Shapiro-Wilk"), type="pvalue") }
   if (options$range)                          stats$addColumnInfo(name="Range",                       title=gettext("Range"),                   type="number")
-  if (options$minimum)                        stats$addColumnInfo(name="Minimum",                     title=gettext("Minimum"),                 type="number")
-  if (options$maximum)                        stats$addColumnInfo(name="Maximum",                     title=gettext("Maximum"),                 type="number")
+  if (options$minimum)                        stats$addColumnInfo(name="Minimum",                     title=gettext("Minimum"),                 type="mixed")
+  if (options$maximum)                        stats$addColumnInfo(name="Maximum",                     title=gettext("Maximum"),                 type="mixed")
 
   if (options$quartiles) {
-                                    stats$addColumnInfo(name="q1", title=gettext("25th percentile"), type="number")
-                                    stats$addColumnInfo(name="q2", title=gettext("50th percentile"), type="number")
-                                    stats$addColumnInfo(name="q3", title=gettext("75th percentile"), type="number")
+                                    stats$addColumnInfo(name="q1", title=gettext("25th percentile"), type="mixed")
+                                    stats$addColumnInfo(name="q2", title=gettext("50th percentile"), type="mixed")
+                                    stats$addColumnInfo(name="q3", title=gettext("75th percentile"), type="mixed")
   }
 
   if (options$quantilesForEqualGroups) { # I've read that there are several ways how to estimate percentiles so it should be checked if it match the SPSS way
     tempPercentNames <- 1 / equalGroupsNo * 1:(equalGroupsNo - 1) * 100
 
     for (i in seq_along(tempPercentNames))
-      stats$addColumnInfo(name = paste0("eg", i), title = gettextf("%gth percentile", round(tempPercentNames[i], 2)), type = "number")
+      stats$addColumnInfo(name = paste0("eg", i), title = gettextf("%gth percentile", round(tempPercentNames[i], 2)), type = "mixed")
   }
 
   if (options$percentiles) {
     for (i in percentilesPercentiles) {
       if (i >= 0 && i <= 100) {
-        stats$addColumnInfo(name = paste0("pc", i), title = gettextf("%gth percentile", i), type = "number")
+        stats$addColumnInfo(name = paste0("pc", i), title = gettextf("%gth percentile", i), type = "mixed")
       } else {
         .quitAnalysis(gettext("Error in Percentiles, all values should >=0 and <=100"))
       }
@@ -568,6 +568,12 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   rows       <- length(column)
   na.omitted <- na.omit(column)
 
+  # for ordinals, we show the label (a string) rather than the value
+  mixedRowType <- if (columnType == "scale") "number" else "string"
+  maybeToString <- if (columnType == "scale") identity else as.character
+  toMixedCol <- \(x) jaspBase::createMixedColumn(maybeToString(x), mixedRowType)
+
+
   shouldAddIdenticalFootnote <- all(na.omitted[1] == na.omitted) && (options$skewness || options$kurtosis || options$shapiroWilkTest)
 
   valid <- length(na.omitted)
@@ -591,12 +597,13 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     resultsCol[["Shapiro-Wilk"]]            <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$shapiroWilkTest,   na.omitted, function(param) { res <- try(shapiro.test(param)$statistic); if(isTryError(res)) NaN else res })
     resultsCol[["P-value of Shapiro-Wilk"]] <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$shapiroWilkTest,   na.omitted, function(param) { res <- try(shapiro.test(param)$p.value);   if(isTryError(res)) NaN else res })
     resultsCol[["Sum"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$sum,               na.omitted, sum)
+    resultsCol[["Range"]]                   <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$range,             na.omitted, function(param) { range(param)[2] - range(param)[1]})
   }
 
   if (columnType == "scale" || columnType == "ordinal") {
-    resultsCol[["Range"]]                   <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$range,             na.omitted, function(param) { range(param)[2] - range(param)[1]})
-    resultsCol[["Minimum"]]                 <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$minimum,           na.omitted, min)
-    resultsCol[["Maximum"]]                 <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$maximum,           na.omitted, max)
+    if (options$minimum) resultsCol[["Minimum"]] <- toMixedCol(min(na.omitted))
+    if (options$maximum) resultsCol[["Maximum"]] <- toMixedCol(max(na.omitted))
+
   }
   # validator for meanCi, sdCi, and varianceCi
   ciOptionChecker <- function(fun, na.omitted, columnType, options, jaspResults, variableName) {
@@ -673,9 +680,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       # Type 3: Nearest even order statistic (SAS default till ca. 2010).
       quartileType <- ifelse(columnType == "scale", 7, 3)
       q123 <- quantile(na.omitted, c(.25, .5, .75), names = FALSE, type = quartileType)
-      resultsCol[["q1"]] <- q123[1]
-      resultsCol[["q2"]] <- q123[2]
-      resultsCol[["q3"]] <- q123[3]
+
+      resultsCol[["q1"]] <- toMixedCol(q123[1])
+      resultsCol[["q2"]] <- toMixedCol(q123[2])
+      resultsCol[["q3"]] <- toMixedCol(q123[3])
     } else {
       resultsCol[["q1"]] <- ""
       resultsCol[["q2"]] <- ""
@@ -714,14 +722,14 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     if (options$quantilesForEqualGroups) {
 
       for (i in seq(equalGroupsNo - 1))
-        resultsCol[[paste0("eg", i)]] <- quantile(na.omitted, c(i / equalGroupsNo), names=FALSE, type=quartileType)
+        resultsCol[[paste0("eg", i)]] <- toMixedCol(quantile(na.omitted, c(i / equalGroupsNo), names = FALSE, type = quartileType))
 
     }
 
     if (options$percentiles) {
 
       for (i in percentilesPercentiles)
-        resultsCol[[paste0("pc", i)]] <- quantile(na.omitted, c(i / 100), names=FALSE, type=quartileType)
+        resultsCol[[paste0("pc", i)]] <- toMixedCol(quantile(na.omitted, c(i / 100), names = FALSE, type = quartileType))
 
     }
   } else {
