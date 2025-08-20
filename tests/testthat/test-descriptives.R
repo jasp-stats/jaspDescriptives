@@ -25,9 +25,15 @@ test_that("Main table results match", {
   options$quartiles <- TRUE
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   table <- results[["results"]][["stats"]][["data"]]
-  # extract mixed columns
-  for (i in seq_along(table))
-    table[[i]]$Mode <- table[[i]]$Mode$value
+
+  # omit the mixed column output (this test only has scale data)
+  for (col_idx in seq_along(table))
+    for (row_idx in seq_along(table[[col_idx]])) {
+      if ("format" %in% names(table[[col_idx]][[row_idx]])) {
+        table[[col_idx]][[row_idx]] <- table[[col_idx]][[row_idx]]$value
+      }
+    }
+
   jaspTools::expect_equal_tables(table,
                                  list(1.89652072756094, 0, 3.356094448, -0.120135614827586, -0.2223981035,
                                       -2.336742886, 0, -0.67267746847303, 0.00342000811150064, 5.692837334,
@@ -329,7 +335,16 @@ test_that("Analysis handles identical variables", {
 
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
 
-  jaspTools::expect_equal_tables(results[['results']][['stats']][['data']],
+  table <- results[['results']][['stats']][['data']]
+  # omit the mixed column output (this test only has scale data)
+  for (col_idx in seq_along(table))
+    for (row_idx in seq_along(table[[col_idx]])) {
+      if ("format" %in% names(table[[col_idx]][[row_idx]])) {
+        table[[col_idx]][[row_idx]] <- table[[col_idx]][[row_idx]]$value
+      }
+    }
+
+  jaspTools::expect_equal_tables(table,
                       list(-1.19915675837133, 1, 1.007309698, -0.33853731055, -1.625143884,
                            0, 0.0819021844894419, 0.915696014062066, 0.338805595442952,
                            0.850644958728125, 0.992383612541845, 0.512103336707757, 20,
@@ -484,5 +499,62 @@ test_that("mode has mixed column", {
   testthat::expect_true(!is.null(formats[[1]]))             # "sf:4;dp:3", but not null is fine
   testthat::expect_true(all(sapply(formats[2:4], is.null))) # other columns should be null
   testthat::expect_equal(values, list(-0.610455634204076, "0", "f", "1"), tolerance = 1e-6)
+
+})
+
+test_that("minimum and maximum return correctly show labels (not values) for ordinals", {
+
+  df <- data.frame(
+    ord = factor(letters[1:5]),
+    con = c(-0.045, -0.016, 0.594, 0.821, 0.944)
+  )
+  options <- jaspTools::analysisOptions("Descriptives")
+
+  options$variables <- c("ord", "con")
+  options$variables.types <- c("ordinal", "scale")
+  options$correlationPlots <- FALSE
+  options$quartiles <- TRUE
+  options$percentiles <- TRUE
+  options$quantilesForEqualGroups <- TRUE
+  options$quantilesForEqualGroupsNumber <- 5
+  options$percentiles <- TRUE
+  options$percentileValues <- c(2, 5, 8)
+
+
+  results <- jaspTools::runAnalysis("Descriptives", df, options)
+  table <- results[["results"]][["stats"]][["data"]]
+
+  jaspTools::expect_equal_tables(
+    table,
+    list("string", "e", "string", "a", 0, 5, "ord", "string", "a", "string",
+         "b", "string", "c", "string", "d", "string", "a", "string",
+         "a", "string", "a", "string", "a", "string", "b", "string",
+         "d", "sf:4;dp:3", "number", 0.944, 0.4596, "sf:4;dp:3", "number",
+         -0.045, 0, 0.46479382526019, 5, "con", "sf:4;dp:3", "number",
+         -0.0218, "sf:4;dp:3", "number", 0.35, "sf:4;dp:3", "number",
+         0.6848, "sf:4;dp:3", "number", 0.8456, "sf:4;dp:3", "number",
+         -0.04268, "sf:4;dp:3", "number", -0.0392, "sf:4;dp:3", "number",
+         -0.03572, "sf:4;dp:3", "number", -0.016, "sf:4;dp:3", "number",
+         0.594, "sf:4;dp:3", "number", 0.821)
+  )
+
+  # change the order of the ordinal, this changes the minimum, maximum, and quantiles
+  levels(df$ord) <- levels(df$ord)[c(2, 5, 1, 4, 3)]
+
+  results <- jaspTools::runAnalysis(dataset = df, options = options)
+  table <- results[["results"]][["stats"]][["data"]]
+
+  jaspTools::expect_equal_tables(
+    table,
+    list("string", "c", "string", "b", 0, 5, "ord", "string", "b", "string",
+         "e", "string", "a", "string", "d", "string", "b", "string",
+         "b", "string", "b", "string", "b", "string", "e", "string",
+         "d", "sf:4;dp:3", "number", 0.944, 0.4596, "sf:4;dp:3", "number",
+         -0.045, 0, 0.46479382526019, 5, "con", "sf:4;dp:3", "number",
+         -0.0218, "sf:4;dp:3", "number", 0.35, "sf:4;dp:3", "number",
+         0.6848, "sf:4;dp:3", "number", 0.8456, "sf:4;dp:3", "number",
+         -0.04268, "sf:4;dp:3", "number", -0.0392, "sf:4;dp:3", "number",
+         -0.03572, "sf:4;dp:3", "number", -0.016, "sf:4;dp:3", "number",
+         0.594, "sf:4;dp:3", "number", 0.821))
 
 })
