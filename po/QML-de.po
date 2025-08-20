@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-08-17 16:01+0000\n"
+"PO-Revision-Date: 2025-08-21 09:01+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/de/>\n"
@@ -3343,99 +3343,100 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "Show axis lines"
-msgstr ""
+msgstr "Achsenlinien anzeigen"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "only on outer panels"
-msgstr ""
+msgstr "nur auf äußeren Kacheln"
 
 msgctxt "jaspPlotBuilder|"
 msgid "on all X axes"
-msgstr ""
+msgstr "auf allen X-Achsen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "on all Y axes"
-msgstr ""
+msgstr "auf allen Y-Achsen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "on all axes"
-msgstr ""
+msgstr "auf allen Achsen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Axis label visibility"
-msgstr ""
+msgstr "Sichtbarkeit Achsenbeschriftungen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "show on all axes"
-msgstr ""
+msgstr "auf allen Achsen anzeigen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "only on outer axes"
-msgstr ""
+msgstr "nur auf äußeren Achsen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "only on interior X axes"
-msgstr ""
+msgstr "nur auf inneren X-Achsen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "only on interior Y axes"
-msgstr ""
+msgstr "nur auf inneren Y-Achsen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Layout settings"
-msgstr ""
+msgstr "Anordnungs-Einstellugen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Highest value at"
-msgstr ""
+msgstr "Höchsten Wert auf"
 
 msgctxt "jaspPlotBuilder|"
 msgid "bottom right"
-msgstr ""
+msgstr "rechts unten"
 
 msgctxt "jaspPlotBuilder|"
 msgid "top right"
-msgstr ""
+msgstr "rechts oben"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Panel size adjustment"
-msgstr ""
+msgstr "Anpassung Kachelgröße"
 
 msgctxt "jaspPlotBuilder|"
 msgid "same size"
-msgstr ""
+msgstr "gleiche Größe"
 
 msgctxt "jaspPlotBuilder|"
 msgid "free width (X)"
-msgstr ""
+msgstr "freie Breite (X)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "free height (Y)"
-msgstr ""
+msgstr "freie Höhe (Y)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "free width and height"
-msgstr ""
+msgstr "freie Breite und Höhe"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Include marginal plots"
-msgstr ""
+msgstr "Rand-Diagramme einbeziehen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "X axis title"
-msgstr ""
+msgstr "X-Achsentitel"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enter a label for the X axis"
-msgstr ""
+msgstr "Eingabe einer Beschriftung für die X-Achse"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Y axis title"
-msgstr ""
+msgstr "Y-Achsentitel"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enter a label for the Y axis"
-msgstr ""
+msgstr "Eingabe einer Beschriftung für die Y-Achse"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Grid control"
