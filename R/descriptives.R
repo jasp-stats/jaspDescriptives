@@ -603,7 +603,9 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if (columnType == "scale" || columnType == "ordinal") {
     if (options$minimum) resultsCol[["Minimum"]] <- toMixedCol(min(na.omitted))
     if (options$maximum) resultsCol[["Maximum"]] <- toMixedCol(max(na.omitted))
-
+  } else {
+    if (options$minimum) resultsCol[["Minimum"]] <- toMixedCol("")
+    if (options$maximum) resultsCol[["Maximum"]] <- toMixedCol("")
   }
   # validator for meanCi, sdCi, and varianceCi
   ciOptionChecker <- function(fun, na.omitted, columnType, options, jaspResults, variableName) {
@@ -685,9 +687,9 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       resultsCol[["q2"]] <- toMixedCol(q123[2])
       resultsCol[["q3"]] <- toMixedCol(q123[3])
     } else {
-      resultsCol[["q1"]] <- ""
-      resultsCol[["q2"]] <- ""
-      resultsCol[["q3"]] <- ""
+      resultsCol[["q1"]] <- toMixedCol("")
+      resultsCol[["q2"]] <- toMixedCol("")
+      resultsCol[["q3"]] <- toMixedCol("")
     }
   } else {
     resultsCol[["q1"]] <- NULL
@@ -736,14 +738,14 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     if (options$quantilesForEqualGroups) {
 
       for (i in seq(equalGroupsNo - 1))
-        resultsCol[[paste0("eg", i)]] <- ""
+        resultsCol[[paste0("eg", i)]] <- toMixedCol("")
 
     }
 
     if (options$percentiles) {
 
       for (i in percentilesPercentiles)
-        resultsCol[[paste0("pc", i)]] <- ""
+        resultsCol[[paste0("pc", i)]] <- toMixedCol("")
 
     }
   }
