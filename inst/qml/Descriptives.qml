@@ -121,9 +121,9 @@ Form
 			{
 				title: qsTr("Mean")
 				infoLabel: qsTr("Sample mean.")
-				CheckBox { name: "meanArithmetic";	label: qsTr("Arithmetic");	info: qsTr("Arithmetic mean of the data points.") ;	checked: true		}
-				CheckBox { name: "meanGeometric";		label: qsTr("Geometric");		info: qsTr("Geometric mean of the data points; defined only for strictly positive variables.");		checked: false	}
-				CheckBox { name: "meanHarmonic";		label: qsTr("Harmonic");		info: qsTr("Harmonic mean of the data points; defined only for strictly positive variables.");			checked: false	}
+				CheckBox { name: "meanArithmetic";	label: qsTr("Arithmetic");	info: qsTr("Arithmetic mean of the data points; otherwise also colloquially called 'the mean' or 'the average'. Calculated as the sum of all data points divided by the number of data points.") ;	checked: true		}
+				CheckBox { name: "meanGeometric";	label: qsTr("Geometric");	info: qsTr("Geometric mean of the data points; defined only for strictly positive variables. Calculated as the product of all data points, raised to the power of 1 divided by the number of points (the n-th root of the product).");	checked: false	}
+				CheckBox { name: "meanHarmonic";	label: qsTr("Harmonic");	info: qsTr("Harmonic mean of the data points; defined only for strictly positive variables. Calculated as the number of data points divided by the sum of the reciprocals of the data points.");	checked: false	}
 			}
 
 		}
