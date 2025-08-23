@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2025-08-23 03:26+0000\n"
+"Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/de/>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.13\n"
 "X-Language: de\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -2713,7 +2719,7 @@ msgstr "Summen-Punkt"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add sum dots to the plot."
-msgstr ""
+msgstr "Aktivieren, um Summen-Punkte zum Diagramm hinzuzufügen."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum line"
@@ -2774,36 +2780,35 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "Show as percentages"
-msgstr ""
+msgstr "Als Prozentwerte anzeigen"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Mean"
 msgstr "Mittelwert"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Mean bar"
-msgstr ""
+msgstr "Mittelwert-Balken"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Mean dash"
-msgstr ""
+msgstr "Mittelwert-Strich"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Mean dot"
-msgstr ""
+msgstr "MIttelwert-Punkt"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Mean line"
-msgstr ""
+msgstr "Mittelwert-Linie"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Mean area"
-msgstr ""
+msgstr "Mittelwert-Fläche"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Mean value"
-msgstr ""
+msgstr "Mittelwert-Wert"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Median"
@@ -2811,23 +2816,23 @@ msgstr "Median"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Median bar"
-msgstr ""
+msgstr "Median-Balken"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Median dash"
-msgstr ""
+msgstr "Median-Strich"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Median dot"
-msgstr ""
+msgstr "Median-Punkt"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Median line"
-msgstr ""
+msgstr "Median-Linie"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Median area"
-msgstr ""
+msgstr "Median-Fläche"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Median value"
@@ -2841,22 +2846,24 @@ msgctxt "jaspPlotBuilder|"
 msgid ""
 "The optimal dodge value is 0 if both X and Y-Axis Variables are continuous"
 msgstr ""
+"Der optimale Ausweich-Wert ist 0, falls sowohl X- und Y-Achsenvariablen "
+"kontinuierlich sind"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Range error bar"
-msgstr ""
+msgstr "Spannweite-Fehlerbalken"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Black lines"
-msgstr ""
+msgstr "Schwarze Linien"
 
 msgctxt "jaspPlotBuilder|"
 msgid "SD error bar"
-msgstr ""
+msgstr "SD-Fehlerbalken"
 
 msgctxt "jaspPlotBuilder|"
 msgid "SEM error bar"
-msgstr ""
+msgstr "SEM-Fehlerbalken"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Range ribbon"
@@ -2959,7 +2966,6 @@ msgctxt "jaspPlotBuilder|"
 msgid "To"
 msgstr "bis"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "By"
 msgstr "über"
@@ -3008,254 +3014,250 @@ msgctxt "jaspPlotBuilder|"
 msgid "Enter the plot title here"
 msgstr "Diagrammtitel hier eingeben"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Caption"
 msgstr "Bildunterschrift"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Annotation "
-msgstr ""
+msgstr "Annotierung "
 
 msgctxt "jaspPlotBuilder|"
 msgid "Label"
-msgstr ""
+msgstr "Beschriftung"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 msgctxt "jaspPlotBuilder|"
 msgid "e.g. p = 0.1, $italic(p)==0.1$"
-msgstr ""
+msgstr "z. B., p = 0.1, $italic(p)==0.1$"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Position"
 msgstr "Position"
 
 msgctxt "jaspPlotBuilder|"
 msgid "X-Axis"
-msgstr ""
+msgstr "X-Achse"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Y-Axis"
-msgstr ""
+msgstr "Y-Achse"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Column"
-msgstr ""
+msgstr "Spalte"
 
 msgctxt "jaspPlotBuilder|"
 msgid "<No Value>"
-msgstr ""
+msgstr "<Kein Wert>"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Row"
-msgstr ""
+msgstr "Zeile"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Appearance"
-msgstr ""
+msgstr "Gestaltung"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Size"
 msgstr "Größe"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Color"
 msgstr "Farbe"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Theme, colors, size, and legend"
-msgstr ""
+msgstr "Schema, Farben, Größe und Legende"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Theme and color"
-msgstr ""
+msgstr "Schema und Farben"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Theme"
-msgstr ""
+msgstr "Schema"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Font base size"
-msgstr ""
+msgstr "Basis-Schriftgröße"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Color settings"
-msgstr ""
+msgstr "Farbeinstellungen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Color by"
-msgstr ""
+msgstr "Farbe nach"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "None"
-msgstr "Keine"
+msgstr "Nichts"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Group variable"
-msgstr ""
+msgstr "Gruppierungsvariable"
 
 msgctxt "jaspPlotBuilder|"
 msgid "X variable"
-msgstr ""
+msgstr "X-Variable"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Y variable"
-msgstr ""
+msgstr "Y-Variable"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Split (column)"
-msgstr ""
+msgstr "Aufteilung (Spalte)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Split (rows)"
-msgstr ""
+msgstr "Aufteilung (Zeilen)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Color schemes"
-msgstr ""
+msgstr "Farbschemas"
 
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: jaspPalette"
-msgstr ""
+msgstr "JASP-Farben: jaspPalette"
 
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: colorblind"
-msgstr ""
+msgstr "JASP-Farben: farbenblind"
 
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: colorblind2"
-msgstr ""
+msgstr "JASP-Farben: farbenblind2"
 
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: colorblind3"
-msgstr ""
+msgstr "JASP-Farben: farbenblind3"
 
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: sportsTeamsNBA"
-msgstr ""
+msgstr "JASP-Farben: sportTeamsNBA"
 
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: ggplot2"
-msgstr ""
+msgstr "JASP-Farben: ggplot2"
 
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: grandBudapest"
-msgstr ""
+msgstr "JASP-Farben: grandBudapest"
 
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: gray"
-msgstr ""
+msgstr "JASP-Farben: grau"
 
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: blue"
-msgstr ""
+msgstr "JASP-Farben: blau"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: Friendly"
-msgstr ""
+msgstr "Kategoriell: Freundlich"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: Seaside"
-msgstr ""
+msgstr "Kategoriell: Strand"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: Apple"
-msgstr ""
+msgstr "Kategoriell: Apfel"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: Friendly Long"
-msgstr ""
+msgstr "Kategoriell: Freundlich Lang"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: Okabe Ito"
-msgstr ""
+msgstr "Kategoriell: Okabe Ito"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: IBM"
-msgstr ""
+msgstr "Kategoriell: IBM"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: Metro"
-msgstr ""
+msgstr "Kategoriell: Metro"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: Candy"
-msgstr ""
+msgstr "Kategoriell: Süßigkeit"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: Alger"
-msgstr ""
+msgstr "Kategoriell: Alger"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: Rainbow"
-msgstr ""
+msgstr "Kategoriell: Regenbogen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Continuous: Viridis"
-msgstr ""
+msgstr "Kategoriell: Viridis"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Continuous: Magma"
-msgstr ""
+msgstr "Kategoriell: Magma"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Continuous: Inferno"
-msgstr ""
+msgstr "Kategoriell: Inferno"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Continuous: Plasma"
-msgstr ""
+msgstr "Kategoriell: Plasma"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Continuous: Cividis"
-msgstr ""
+msgstr "Kategoriell: Cividis"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Continuous: Rocket"
-msgstr ""
+msgstr "Kategoriell: Rakete"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Continuous: Mako"
-msgstr ""
+msgstr "Kategoriell: Mako"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Continuous: Turbo"
-msgstr ""
+msgstr "Kategoriell: Turbo"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Continuous: Blue Pink Yellow"
-msgstr ""
+msgstr "Kontinuierlich: Blau Pink Gelb"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Diverging: Blue to Red"
-msgstr ""
+msgstr "Divergierend: Blau zu Rot"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Diverging: Blue to Brown"
-msgstr ""
+msgstr "Divergierend: Blau zu Braun"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Diverging: BuRd"
-msgstr ""
+msgstr "Divergierend: BuRd"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Diverging: BuYlRd"
-msgstr ""
+msgstr "Divergierend: BuYlRd"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Diverging: Spectral"
-msgstr ""
+msgstr "Divergierend: Spektral"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Diverging: Icefire"
-msgstr ""
+msgstr "Divergierend: Eisfeuer"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Custom colors"
@@ -3341,99 +3343,100 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "Show axis lines"
-msgstr ""
+msgstr "Achsenlinien anzeigen"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "only on outer panels"
-msgstr ""
+msgstr "nur auf äußeren Kacheln"
 
 msgctxt "jaspPlotBuilder|"
 msgid "on all X axes"
-msgstr ""
+msgstr "auf allen X-Achsen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "on all Y axes"
-msgstr ""
+msgstr "auf allen Y-Achsen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "on all axes"
-msgstr ""
+msgstr "auf allen Achsen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Axis label visibility"
-msgstr ""
+msgstr "Sichtbarkeit Achsenbeschriftungen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "show on all axes"
-msgstr ""
+msgstr "auf allen Achsen anzeigen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "only on outer axes"
-msgstr ""
+msgstr "nur auf äußeren Achsen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "only on interior X axes"
-msgstr ""
+msgstr "nur auf inneren X-Achsen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "only on interior Y axes"
-msgstr ""
+msgstr "nur auf inneren Y-Achsen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Layout settings"
-msgstr ""
+msgstr "Anordnungs-Einstellugen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Highest value at"
-msgstr ""
+msgstr "Höchsten Wert auf"
 
 msgctxt "jaspPlotBuilder|"
 msgid "bottom right"
-msgstr ""
+msgstr "rechts unten"
 
 msgctxt "jaspPlotBuilder|"
 msgid "top right"
-msgstr ""
+msgstr "rechts oben"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Panel size adjustment"
-msgstr ""
+msgstr "Anpassung Kachelgröße"
 
 msgctxt "jaspPlotBuilder|"
 msgid "same size"
-msgstr ""
+msgstr "gleiche Größe"
 
 msgctxt "jaspPlotBuilder|"
 msgid "free width (X)"
-msgstr ""
+msgstr "freie Breite (X)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "free height (Y)"
-msgstr ""
+msgstr "freie Höhe (Y)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "free width and height"
-msgstr ""
+msgstr "freie Breite und Höhe"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Include marginal plots"
-msgstr ""
+msgstr "Rand-Diagramme einbeziehen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "X axis title"
-msgstr ""
+msgstr "X-Achsentitel"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enter a label for the X axis"
-msgstr ""
+msgstr "Eingabe einer Beschriftung für die X-Achse"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Y axis title"
-msgstr ""
+msgstr "Y-Achsentitel"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enter a label for the Y axis"
-msgstr ""
+msgstr "Eingabe einer Beschriftung für die Y-Achse"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Grid control"
@@ -3790,37 +3793,43 @@ msgid ""
 "Select continuous variables that may influence the outcome and should be "
 "included as covariates in the analysis"
 msgstr ""
+"Auswahl kontinuierlicher Variablen die das Ergebnis beeinflussen können und "
+"in der Analyse als Kovariaten einbezogen werden sollten"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Select the variable for data grouping, which will also determine the coloring"
 msgstr ""
+"Auswahl der Variable für Datengruppierung, die auch die Farbgebung festlegt"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Check this option to show individual data points on the plot"
-msgstr ""
+msgstr "Option aktivieren, um einzelne Datenpunkte im Diagramm anzuzeigen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Set the point size"
-msgstr ""
+msgstr "Punktgröße einstellen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Size by variable"
-msgstr ""
+msgstr "Größe nach Variable"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Choose this if you want the point size to be determined by a variable rather "
 "than a fixed constant"
 msgstr ""
+"Wählen Sie dies, wenn Sie die Punktgröße durch eine Variable festlegen "
+"möchten, anstatt nach einer festen Konstante"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Shape by variable"
-msgstr ""
+msgstr "Form nach Variable"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Choose this if you want the point shape to be determined by a variable"
 msgstr ""
+"Wählen Sie dies, wenn Sie die Punktform durch eine Variable festlegen möchten"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Set the transparency"
