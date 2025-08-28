@@ -362,6 +362,11 @@ Form
 
 					CIField { name: 	"paretoPlotRuleCi" }
 				}
+				CheckBox
+				{
+					name: "paretoShiftAccumulationLine"
+					label: qsTr("Shift accumulation line")
+				}
 			}
 
 			CheckBox
