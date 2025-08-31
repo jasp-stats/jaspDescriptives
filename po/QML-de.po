@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2025-09-01 05:30+0000\n"
+"Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/de/>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.13.1-dev\n"
 "X-Language: de\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -470,7 +476,6 @@ msgctxt "Descriptives|"
 msgid "Identity"
 msgstr "Identität"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Dodge"
 msgstr "Ausweichen"
@@ -839,10 +844,9 @@ msgctxt "Descriptives|"
 msgid "Correlation"
 msgstr "Korrelation"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Use"
-msgstr "Verwenden"
+msgstr "Verwendung"
 
 msgctxt "Descriptives|"
 msgid "Everything"
@@ -889,7 +893,6 @@ msgctxt "FlexplotForm|"
 msgid "Input"
 msgstr "Eingabe"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid ""
 "The variable of interest. This is also called the outcome variable. If only "
@@ -904,7 +907,6 @@ msgstr ""
 "Daten. Werden unabhängige Variable(n) und/oder Panel-Variable(n) vorgegeben, "
 "wird diese Variable auf der Y-Achse angezeigt."
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid ""
 "The variable(s) for which we wish to visually assess relationships with the "
@@ -918,8 +920,8 @@ msgstr ""
 "möchten. Die erste ausgewählte Variable wird auf der X-Achse gezeigt, "
 "entweder als Streudiagramm (für numerische Prädiktoren) oder als "
 "Bienenschwarm-Diagramm (für kategorische Variablen). Die zweite ausgewählte "
-"Variable wird mit verschiedene Farben/Zeilen/Symbolen gezeigt. Wenn die "
-"ausgewählte zweite Variable numerisch ist, wird sie zunächst unterteilt."
+"Variable wird mit verschiedene Farben/Linien/Symbolen gezeigt. Wenn die "
+"zweite ausgewählte Variable numerisch ist, wird sie zunächst unterteilt."
 
 #, fuzzy
 msgctxt "FlexplotForm|"
@@ -2503,7 +2505,6 @@ msgctxt "jaspPlotBuilder|"
 msgid "Transparency"
 msgstr "Transparenz"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Dodge"
 msgstr "Ausweichen"
@@ -2697,11 +2698,11 @@ msgstr "Schwarzer Text"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum bar"
-msgstr ""
+msgstr "Summen-Balken"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a sum bar to the plot."
-msgstr ""
+msgstr "Aktivieren, um Summen-Balken zum Diagramm hinzuzufügen."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Sum dash"
