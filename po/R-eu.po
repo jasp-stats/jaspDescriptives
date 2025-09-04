@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2025-07-19 03:38\n"
-"PO-Revision-Date: 2025-09-02 09:01+0000\n"
+"PO-Revision-Date: 2025-09-05 08:02+0000\n"
 "Last-Translator: Jose Ramon Rueda <joseramon.rueda@ehu.eus>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/eu/>\n"
@@ -11,13 +11,13 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13.1-dev\n"
+"X-Generator: Weblate 5.13.1-rc\n"
 
 msgid "Time Series Plot"
-msgstr "Denbora-serieen Grafikoa"
+msgstr "Denbora-Serieen Grafikoa"
 
 msgid "Lag Plot"
-msgstr "Atzerapen grafikoa"
+msgstr "Atzerapen Grafikoa"
 
 #, fuzzy
 msgid ""
@@ -46,7 +46,7 @@ msgid "Mean"
 msgstr "Batez bestekoa"
 
 msgid "Std. Deviation"
-msgstr "Desbiderapen estandarra"
+msgstr "Desbiderapen Estandarra"
 
 msgid "Variance"
 msgstr "Bariantza"
@@ -130,7 +130,7 @@ msgid "Boxplots"
 msgstr "Kutxa-grafikoak"
 
 msgid "Q-Q Plots"
-msgstr "Q-Q grafikoak"
+msgstr "Q-Q Grafikoak"
 
 msgid "Q-Q Plot"
 msgstr "Q-Q Grafikoa"
@@ -142,7 +142,7 @@ msgid "Pie charts"
 msgstr "Sektore-diagramak"
 
 msgid "Stem and Leaf"
-msgstr "Zurtoin eta hosto"
+msgstr "Zurtoin eta Hosto"
 
 msgid "Scatter Plots"
 msgstr "Sakabanapen Diagramak"
@@ -261,7 +261,7 @@ msgid "%gth percentile"
 msgstr "%. pertzentila"
 
 msgid "Error in Percentiles, all values should >=0 and <=100"
-msgstr "Pertzentiletan errorea, balio guztiek >=0 eta <=100 izan behar dute"
+msgstr "Pertzentiletan Errorea , balio guztiek >=0 eta <=100 izan behar dute"
 
 msgid "Sum"
 msgstr "Batura"
@@ -306,21 +306,19 @@ msgstr "Maiztasuna"
 msgid "Percent"
 msgstr "Ehunekoa"
 
-#, fuzzy
 msgid "Valid Percent"
-msgstr "Ehuneko baliogarria"
+msgstr "Ehuneko Baliogarria"
 
 #, fuzzy
 msgid "Cumulative Percent"
 msgstr "Ehuneko Metatua"
 
 msgid "Plotting not possible: %s"
-msgstr "Ezinezkoa da grafikoa egitea: %s"
+msgstr "Ezin da grafikoa egitea: %s"
 
 msgid "Plotting is not possible: No plot type selected!"
-msgstr "Ezinezkoa da grafikoa egitea: Grafiko mota aukeratu gabe¡"
+msgstr "Ezin da grafikoa egitea: Grafiko mota aukeratu gabe!"
 
-#, fuzzy
 msgid "Counts"
 msgstr "Zenbaketak"
 
@@ -328,7 +326,7 @@ msgid "Density"
 msgstr "Dentsitatea"
 
 msgid "No non-missing values!"
-msgstr "Ez dago baliorik-gabeko datuak¡"
+msgstr "Ez dago baliorik-gabeko datuak!"
 
 #, fuzzy
 msgid ""
@@ -338,12 +336,11 @@ msgstr ""
 "Ezin da asoziazioa kalkulatu balio falta direlako. Saiatu beste 'Erabili' "
 "ezarpen batekin."
 
-#, fuzzy
 msgid ""
 "Some associations cannot be computed due to missing values. Try a different "
 "'Use' setting."
 msgstr ""
-"Ezin dira asoziazio butzuk  kalkulatu balio falta direlako. Saiatu beste "
+"Ezin dira asoziazio butzuk kalkulatu balio falta direlako. Saiatu beste "
 "'Erabili' ezarpen batekin."
 
 msgid "Theoretical Quantiles"
@@ -408,108 +405,136 @@ msgstr "Irudikatu Sarea"
 msgid "Raincloud Plots"
 msgstr "Euri-hodei Grafikoak"
 
+#, fuzzy
 msgid "Not shown are %s observations due to missing data."
-msgstr ""
+msgstr "Ez dira erakusten %s behaketak, faltatzen datuak direlako."
 
+#, fuzzy
 msgid "Interval around mean is custom."
-msgstr ""
+msgstr "Batez bestekoaren inguruko tartea pertsonalizagarria da."
 
+#, fuzzy
 msgid ""
 "<span style = 'color: darkorange'>Error with custom interval: Specified "
 "number of clouds does not match clouds in plot.</span>"
 msgstr ""
+"<span style = 'color: darkorange'>Errorea tarte pertsonalizatuarekin: "
+"zehaztutako hodei kopurua ez dator bat grafikoko hodeiekin.</span>"
 
 msgid "Interval around mean represents ± 1 standard error"
-msgstr ""
+msgstr "Batez bestekoaren inguruko tarteak ± 1 errore estandarra adierazten du"
 
 msgid "Interval around mean represents ± 1 standard deviation"
 msgstr ""
+"Batez bestekoaren inguruko tarteak ± 1 desbideratze estandarra adierazten du"
 
+#, fuzzy
 msgid "Interval around mean represents %d%% confidence interval."
-msgstr ""
+msgstr "Batez bestekoaren inguruko tarteak %d% konfiantza-tartea adierazten du."
 
 msgid "Points are slightly jittered from their true values."
-msgstr ""
+msgstr "Puntuak apur bat desbideratuta daude beren benetako balioetatik."
 
+#, fuzzy
 msgid ""
 "<span style = 'color: darkorange'> Warning! Some data is not "
 "shown<br>because it lies outside of the interval set by the custom axis "
 "limits.</span>"
 msgstr ""
+"<span style = 'color: darklarange'> Kontuz! Datu batzuk ez dira "
+"erakusten<br>ardatz pertsonalizatuen mugek ezarritako tartetik kanpo "
+"daudelako.</span>"
 
 msgid ""
 "<span style = 'color: darkorange'> Error with custom orientation: Specified "
 "number of clouds does not match clouds in plot.<br>Reverted to default all "
 "'R'. Point nudge set to 0.</span>"
 msgstr ""
+"<span style = 'color: darkorange'> Orientazio pertsonalizatuarekin errorea: "
+"zehaztutako hodei kopurua ez dator bat grafikoko hodeiekin.<br>'R' guztiak "
+"lehenetsita. Puntuaren mugimendua 0ra ezarrita.</span>"
 
 msgid ""
 "<span style = 'color: darkorange'> Error with custom color: Specified number "
 "of clouds does not match clouds in plot.<br>Ignoring custom color input.</"
 "span>"
 msgstr ""
+"<span style = 'color: darklarange'> Errorea kolore pertsonalizatuarekin: "
+"Zehaztutako hodei kopurua ez dator bat grafikoko hodeiekin.<br>Kolore "
+"pertsonalizatuaren sarrera alde batera uzten.</span>"
 
 msgid "Statistics"
-msgstr ""
+msgstr "Estatistikoak"
 
+#, fuzzy
 msgid "Primary Factor"
-msgstr ""
+msgstr "Oinarrizko Faktorea"
 
+#, fuzzy
 msgid "Secondary Factor"
-msgstr ""
+msgstr "Faktore Sekundarioa"
 
+#, fuzzy
 msgid "<i>N</i>"
-msgstr ""
+msgstr "<i>N</i>"
 
 msgid "Lower Whisker"
-msgstr ""
+msgstr "Beheko Bibotea"
 
 msgid "25th Percentile"
-msgstr ""
+msgstr "25. Pertzentila"
 
 msgid "75th Percentile"
-msgstr ""
+msgstr "75. Pertzentila"
 
 msgid "Upper Whisker"
-msgstr ""
+msgstr "Goiko Bibotea"
 
+#, fuzzy
 msgid "%s%% CI for Mean Difference"
-msgstr ""
+msgstr "Batez besteko diferentziarako %s%% CI"
 
 msgid "Standard Error"
-msgstr ""
+msgstr "Errore Estandarra"
 
 msgid "Standard Deviation"
-msgstr ""
+msgstr "Desbideratze estandarra"
 
 msgid "<i>N</i><sub>Total</sub> = %s."
-msgstr ""
+msgstr "<i>N</i><sub>Totala</sub> = %s."
 
 msgid "This excludes %s observations due to missing data."
-msgstr ""
+msgstr "Honek %s behaketa baztertzen ditu datu falta direlako."
 
+#, fuzzy
 msgid "<br>Interval around mean is custom."
-msgstr ""
+msgstr "Batez bestekoaren inguruko tartea pertsonalizagarria da."
 
+#, fuzzy
 msgid "<br>Interval around mean represents %d%% confidence interval."
-msgstr ""
+msgstr "Batez bestekoaren inguruko tarteak %d% konfiantza-tartea adierazten du."
 
+#, fuzzy
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
 "The following variables have more than %1$s distinct values and are omitted: "
 "%2$s."
-msgstr[0] ""
+msgstr[0] "%2$s-k %1$s balio desberdin baino gehiago ditu eta ezabatzen da."
 msgstr[1] ""
+"Hurrengo aldagaiek %1$s balio desberdin baino gehiago dituzte eta ezabatzen "
+"dira: %2$s."
 
+#, fuzzy
 msgid "The decimal point is %s digit to the right of the |"
 msgid_plural "The decimal point is %s digits to the right of the |"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Hamartarra |-ren eskuinaldera dagoen digituaren %a da."
+msgstr[1] "Hamartarra |-ren eskuinaldera dauden digituen %a da."
 
+#, fuzzy
 msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Hamartarra |-ren eskualdera dagoen digituaren %a da."
+msgstr[1] "Hamartarra |-ren eskualdera dauden digituen %a da."
 
 #, fuzzy
 #~ msgid "Density Plots"
