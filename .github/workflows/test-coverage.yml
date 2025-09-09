@@ -10,6 +10,7 @@ name: coverage
 
 jobs:
   coverage:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
     uses: vandenman/jasp-actions/.github/workflows/coverage.yml@coverage
     with:
       needs_JAGS: false
