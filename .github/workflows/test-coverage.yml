@@ -10,7 +10,7 @@ name: coverage
 
 jobs:
 
-  unit-tests:
+  coverage:
 
     uses: vandenman/jasp-actions/.github/workflows/unittests.yml@coverage
     with:
