@@ -12,6 +12,6 @@ jobs:
 
   coverage:
 
-    uses: vandenman/jasp-actions/.github/workflows/unittests.yml@coverage
+    uses: vandenman/jasp-actions/.github/workflows/coverage.yml@coverage
     with:
       needs_JAGS:   false
