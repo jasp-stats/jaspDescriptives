@@ -1,0 +1,17 @@
+on:
+  push:
+    paths: ['**.R', 'tests/**', '**.c', '**.cpp', '**.h', '**.hpp', 'DESCRIPTION', 'NAMESPACE', 'MAKEVARS', 'MAKEVARS.win', '**.yml']
+  pull_request:
+    paths: ['**.R', 'tests/**', '**.c', '**.cpp', '**.h', '**.hpp', 'DESCRIPTION', 'NAMESPACE', 'MAKEVARS', 'MAKEVARS.win']
+  # schedule:
+  #   - cron:  '13 12 * * 1-5'
+
+name: coverage
+
+jobs:
+
+  unit-tests:
+
+    uses: vandenman/jasp-actions/.github/workflows/unittests.yml@coverage
+    with:
+      needs_JAGS:   false
