@@ -13,5 +13,4 @@ jobs:
     uses: vandenman/jasp-actions/.github/workflows/unittests.yml@coverage
     with:
       needs_JAGS: false
-    secrets:
-      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    secrets: inherit
