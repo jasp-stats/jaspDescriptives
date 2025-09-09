@@ -9,9 +9,9 @@ on:
 name: coverage
 
 jobs:
-
   coverage:
-
-    uses: vandenman/jasp-actions/.github/workflows/coverage.yml@coverage
+    uses: vandenman/jasp-actions/.github/workflows/unittests.yml@coverage
     with:
-      needs_JAGS:   false
+      needs_JAGS: false
+    secrets:
+      CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
