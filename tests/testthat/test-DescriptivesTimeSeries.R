@@ -1,6 +1,8 @@
 context("Descriptives Time Series")
 
-qmlFile <- if (endsWith(getwd(), "testthat")) {
+qmlFile <- if (isTRUE(as.logical(Sys.getenv("CI", "false")))) {
+  system.file("qml", "common", "DescriptivesTimeSeriesForm.qml", package = "jaspDescriptives")
+} else if (endsWith(getwd(), "testthat")) {
   "../../inst/qml/common/DescriptivesTimeSeriesForm.qml"
 } else {
   "inst/qml/common/DescriptivesTimeSeriesForm.qml"
