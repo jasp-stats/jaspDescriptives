@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2025-09-10 09:02+0000\n"
+"Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
+"Language-Team: German <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/de/>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.14-dev\n"
 "X-Language: de\n"
 "X-Source-Language: American English\n"
 "X-Qt-Contexts: true\n"
@@ -2481,7 +2487,7 @@ msgstr "Einzelne Datenpunkte"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Required: X AND Y-Axis Variables"
-msgstr "Erforderlich: X- UND Y-Achsen-Variablen"
+msgstr "Benötigt: X- UND Y-Achsen-Variablen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Point size"
@@ -2528,8 +2534,8 @@ msgid ""
 "Required: X OR Y-Axis Variable (histogram); X AND Y-Axis Variables (boxplot, "
 "violin)"
 msgstr ""
-"Erforderlich: X- ODER Y-Achsen-Variable (Histogramm); X- UND Y-Achsen-"
-"Variablen (Boxplot, Violine)"
+"Benötigt: X- ODER Y-Achsen-Variable (Histogramm); X- UND Y-Achsen-Variablen ("
+"Boxplot, Violine)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Histogram"
@@ -2616,7 +2622,7 @@ msgstr "Beträge (Anzahl und Summe)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Required: X OR Y-Axis Variable"
-msgstr "Nötig: X- ODER Y-Achsen-Variable"
+msgstr "Benötigt: X- ODER Y-Achsen-Variable"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Count bar"
@@ -2753,7 +2759,7 @@ msgstr "Relativ"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Bar stack"
-msgstr ""
+msgstr "Balken-Stapel"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Reverse order"
@@ -2761,11 +2767,11 @@ msgstr "Reihenfolge umdrehen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Area stack"
-msgstr ""
+msgstr "Flächen-Stapel"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Replace N/A"
-msgstr ""
+msgstr "N/A ersetzen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Show as percentages"
@@ -2876,7 +2882,7 @@ msgstr "Kurvenanpassungen und Referenzlinien"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Required: individual data points (Curve fit)"
-msgstr "Erforderlich: Individuelle Datenpunkte (Kurvenanpassung)"
+msgstr "Benötigt: Individuelle Datenpunkte (Kurvenanpassung)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Add curve fit"
@@ -3306,29 +3312,32 @@ msgctxt "jaspPlotBuilder|"
 msgid "Split control"
 msgstr "Aufteilungs-Einstellungen"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Scale and axis settings"
-msgstr ""
+msgstr "Skala- und Achsen-Einstellungen"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Scale range"
-msgstr ""
+msgstr "Skala-Spannweite"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "shared across all facets"
-msgstr ""
+msgstr "geteilt über alle Facetten"
 
 msgctxt "jaspPlotBuilder|"
 msgid "vary across X"
-msgstr ""
+msgstr "über X variieren"
 
 msgctxt "jaspPlotBuilder|"
 msgid "vary across Y"
-msgstr ""
+msgstr "über Y variieren"
 
 msgctxt "jaspPlotBuilder|"
 msgid "vary across both axes"
-msgstr ""
+msgstr "über beide Achsen variieren"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Show axis lines"
@@ -3429,15 +3438,15 @@ msgstr "Eingabe einer Beschriftung für die Y-Achse"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Grid control"
-msgstr ""
+msgstr "Raster-Einstellungen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Number of columns"
-msgstr ""
+msgstr "Anzahl von Spalten"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Number of rows"
-msgstr ""
+msgstr "Anzahl von Zeilen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Scales and strip settings"
@@ -3473,25 +3482,27 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "P value color"
-msgstr ""
+msgstr "P-Wert Farbe"
 
 msgctxt "jaspPlotBuilder|"
 msgid "P value size"
-msgstr ""
+msgstr "P-Wert Größe"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Y-Axis position of the first P value"
-msgstr ""
+msgstr "Y-Achsen-Position des ersten P-Werts"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Step distance"
-msgstr ""
+msgstr "Schrittweite"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Note: If custom Y-Axis limits are set, the starting\n"
 "position for the P value must fall within the defined interval"
 msgstr ""
+"Hinweis: Bei benutzerdefinierten Y-Achsen-Grenzen\n"
+"muss die Startposition für den P-Wert in das definierte Intervall fallen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Pairwise comparisons table"
@@ -3499,7 +3510,7 @@ msgstr "Tabelle paarweiser Vergleiche"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Bracket "
-msgstr ""
+msgstr "Klammer "
 
 msgctxt "jaspPlotBuilder|"
 msgid "Compared groups"
@@ -3515,31 +3526,32 @@ msgstr "Gruppe 2"
 
 msgctxt "jaspPlotBuilder|"
 msgid "P value and brackets"
-msgstr ""
+msgstr "P-Wert und Klammern"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Tip length"
-msgstr ""
+msgstr "Spitzen-Länge"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Bracket size"
-msgstr ""
+msgstr "Klammer-Dicke"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Group"
-msgstr ""
+msgstr "Gruppe"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Custom comparison lines"
-msgstr ""
+msgstr "Benutzerdefinierte Vergleichslinien"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Add annotation lines"
-msgstr ""
+msgstr "Annotierungslinien hinzufügen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Line "
-msgstr ""
+msgstr "Linie "
 
 msgctxt "jaspPlotBuilder|"
 msgid "X-Axis start"
@@ -3563,47 +3575,47 @@ msgstr "Beschriftungsgröße"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Label distance"
-msgstr ""
+msgstr "Beschriftungs-Distanz"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Plot layout"
-msgstr ""
+msgstr "Diagramm-Layout"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Arrange plots by column"
-msgstr ""
+msgstr "Diagramme spaltenweise arrangieren"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Relative column widths"
-msgstr ""
+msgstr "Relative Spaltenbreiten"
 
 msgctxt "jaspPlotBuilder|"
 msgid "1,1"
-msgstr ""
+msgstr "1,1"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Specify layout"
-msgstr ""
+msgstr "Layout angeben"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Column "
-msgstr ""
+msgstr "Spalte "
 
 msgctxt "jaspPlotBuilder|"
 msgid "Plot IDs"
-msgstr ""
+msgstr "Diagramm-IDs"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Plot 1, Plot 2, ..."
-msgstr ""
+msgstr "Diagramm 1, Diagramm 2, ..."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Plot heights"
-msgstr ""
+msgstr "Diagramm-Höhen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "A, B, C, ..."
-msgstr ""
+msgstr "A, B, C, ..."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Collect legend"
@@ -3611,19 +3623,19 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "Arrange plots by row"
-msgstr ""
+msgstr "Diagramme zeilenweise arrangieren"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Relative row heights"
-msgstr ""
+msgstr "Relative Zeilenhöhen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Row "
-msgstr ""
+msgstr "Zeile "
 
 msgctxt "jaspPlotBuilder|"
 msgid "Plot widths"
-msgstr ""
+msgstr "Diagramm-Breiten"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
@@ -3631,6 +3643,9 @@ msgid ""
 "the column will be the top part of the layout\n"
 "and the row will be the bottom part of the layout."
 msgstr ""
+"Hinweis: Wenn Sie Spalten- und Zeilenanordnung haben,\n"
+"wird die Spalte der obere Teil des Layouts\n"
+"und die Zeile wird der untere Teil des Layouts sein."
 
 msgctxt "jaspPlotBuilder|"
 msgid "Label settings"
@@ -3638,37 +3653,36 @@ msgstr "Beschriftungs-Einstellungen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Horizontal position"
-msgstr ""
+msgstr "Horizontale Position"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Vertical position"
-msgstr ""
+msgstr "Vertikale Position"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Additional settings"
-msgstr ""
+msgstr "Weitere Einstellungen"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Column heights/row widths"
-msgstr ""
+msgstr "Spaltenhöhen/Zeilenbreiten"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Height"
 msgstr "Höhe"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Spacing"
-msgstr ""
+msgstr "Abstand"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Collect legend across layout"
-msgstr ""
+msgstr "Legende über Layout sammeln"
 
 #, qt-format
 msgctxt "raincloudPlots|"
 msgid "This module has a %1 YouTube tutorial"
-msgstr ""
+msgstr "Zu diesem Modul gibt es ein %1 Youtube-Tutorium"
 
 #, qt-format
 msgctxt "raincloudPlots|"
@@ -3676,6 +3690,8 @@ msgid ""
 "Note: This module has a %1 YouTube tutorial %2 & requires data in long "
 "format."
 msgstr ""
+"Anmerkung: Dieses Modul verfügt über ein %1 Youtube-Tutorium %2 & benötigt "
+"Daten im Long-Format."
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
@@ -4056,7 +4072,7 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "Required: Group Variable AND X- or Y-Axis Variable"
-msgstr ""
+msgstr "Benötigt: Gruppierungsvariable UND X- oder Y-Achsen-Variable"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Stack heights show raw counts"
