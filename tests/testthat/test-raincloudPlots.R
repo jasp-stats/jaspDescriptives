@@ -47,7 +47,7 @@ test_that("plot with primary factor and no color matches", {
   options$vioOpacity <- 0.5
   options$vioOutlineWidth <- 1.5
   options$widthPlot <- 675
-  results <- jaspTools::runAnalysis("raincloudPlots", "palmerPenguins.csv", options)
+  results <- jaspTools::runAnalysis("raincloudPlots", testthat::test_path("palmerPenguins.csv"), options)
   plotName <- results[["results"]][["containerRaincloudPlots"]][["collection"]][["containerRaincloudPlots_bill_length_mm"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "primary-colorless")
@@ -374,7 +374,7 @@ test_that("plot for ID over time matches", {
   options$vioOpacity <- 0.5
   options$widthPlot <- 750
   set.seed(1)
-  results <- jaspTools::runAnalysis("raincloudPlots", "irisFertilizer.csv", options)
+  results <- jaspTools::runAnalysis("raincloudPlots", testthat::test_path("irisFertilizer.csv"), options)
   plotName <- results[["results"]][["containerRaincloudPlots"]][["collection"]][["containerRaincloudPlots_sepalWidth"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "id-over-time")
