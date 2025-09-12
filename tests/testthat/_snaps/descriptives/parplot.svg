@@ -27,11 +27,11 @@
 </defs>
 <g clip-path='url(#cpNjQuNTZ8NjYyLjk3fDI1LjY5fDUxMC4xNA==)'>
 <rect x='64.56' y='25.69' width='598.41' height='484.45' style='stroke-width: 10.67; stroke: none;' />
-<rect x='81.82' y='47.71' width='103.57' height='440.41' style='stroke-width: 0.64; stroke-linecap: butt; stroke-linejoin: miter; fill: #BEBEBE;' />
-<rect x='196.90' y='47.71' width='103.57' height='440.41' style='stroke-width: 0.64; stroke-linecap: butt; stroke-linejoin: miter; fill: #BEBEBE;' />
-<rect x='311.98' y='47.71' width='103.57' height='440.41' style='stroke-width: 0.64; stroke-linecap: butt; stroke-linejoin: miter; fill: #BEBEBE;' />
-<rect x='427.06' y='47.71' width='103.57' height='440.41' style='stroke-width: 0.64; stroke-linecap: butt; stroke-linejoin: miter; fill: #BEBEBE;' />
-<rect x='542.14' y='47.71' width='103.57' height='440.41' style='stroke-width: 0.64; stroke-linecap: butt; stroke-linejoin: miter; fill: #BEBEBE;' />
+<rect x='81.82' y='47.71' width='103.57' height='440.41' style='stroke-width: 1.07; stroke-linecap: butt; stroke-linejoin: miter; fill: #BEBEBE;' />
+<rect x='196.90' y='47.71' width='103.57' height='440.41' style='stroke-width: 1.07; stroke-linecap: butt; stroke-linejoin: miter; fill: #BEBEBE;' />
+<rect x='311.98' y='47.71' width='103.57' height='440.41' style='stroke-width: 1.07; stroke-linecap: butt; stroke-linejoin: miter; fill: #BEBEBE;' />
+<rect x='427.06' y='47.71' width='103.57' height='440.41' style='stroke-width: 1.07; stroke-linecap: butt; stroke-linejoin: miter; fill: #BEBEBE;' />
+<rect x='542.14' y='47.71' width='103.57' height='440.41' style='stroke-width: 1.07; stroke-linecap: butt; stroke-linejoin: miter; fill: #BEBEBE;' />
 <polyline points='133.61,400.04 248.69,311.96 363.77,223.87 478.84,135.79 593.92,47.71 ' style='stroke-width: 2.13; stroke-linecap: butt;' />
 <circle cx='133.61' cy='400.04' r='3.56' style='stroke-width: 0.71; stroke: #4682B4; fill: #4682B4;' />
 <circle cx='248.69' cy='311.96' r='3.56' style='stroke-width: 0.71; stroke: #4682B4; fill: #4682B4;' />
