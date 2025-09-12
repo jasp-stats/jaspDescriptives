@@ -11,7 +11,7 @@ name: coverage
 jobs:
   coverage:
     if: github.event_name != 'push' || github.event_name == 'pull_request'
-    uses: vandenman/jasp-actions/.github/workflows/coverage.yml@coverage
+    uses: jasp-stats/jasp-actions/.github/workflows/coverage.yml@master
     with:
       needs_JAGS: false
     secrets: inherit
