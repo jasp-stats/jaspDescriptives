@@ -605,7 +605,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
     # likely when the weren't already part of the computed stat. So we cannot reliably deduce the no. points
     # it's no longer 512 * no. clouds. Thus we overwrite the stat and force the no. quantiles to 0.
     # This would otherwise require fixes in ggrain and gghalves.
-    jaspBase::assignFunctionInPackage(StatHalfYdensity_custom, "StatHalfYdensity", "ggrain")
+    jaspBase::assignFunctionInPackage(StatHalfYdensity_custom, "StatHalfYdensity", "gghalves")
   }
 
   # Call geom_rain()
