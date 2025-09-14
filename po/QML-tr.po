@@ -1,15 +1,21 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2025-09-14 18:01+0000\n"
+"Last-Translator: hakan dokumuş <dokumushakan@gmail.com>\n"
+"Language-Team: Turkish <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/tr/>\n"
+"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.14-dev\n"
 "X-Language: tr\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
 msgid "Descriptives"
-msgstr "Açıklamalar"
+msgstr "Betimsel İstatistikler"
 
 msgctxt "Description|"
 msgid "Explore the data with tables and plots"
@@ -17,7 +23,7 @@ msgstr "Tablolar ve grafiklerle verileri keşfedin"
 
 msgctxt "Description|"
 msgid "Descriptive Statistics"
-msgstr "Tanımsal istatistikler"
+msgstr "Betimsel İstatistikler"
 
 msgctxt "Descriptives|"
 msgid "Variables"
@@ -650,7 +656,7 @@ msgstr ""
 
 msgctxt "Description|"
 msgid "Flexplot"
-msgstr ""
+msgstr "Flexplot (Esnek Grafikler)"
 
 #, fuzzy
 msgctxt "FlexplotForm|"
