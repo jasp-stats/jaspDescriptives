@@ -112,7 +112,7 @@ msgid "Lag"
 msgstr "Atzerapena"
 
 msgid "Association %s"
-msgstr "Asoziazioa %ak"
+msgstr "Asoziazioa %s"
 
 msgid "Frequency Tables"
 msgstr "Maiztasun Taulak"
@@ -258,7 +258,7 @@ msgid "75th percentile"
 msgstr "75. pertzentila"
 
 msgid "%gth percentile"
-msgstr "%. pertzentila"
+msgstr "%gth pertzentila"
 
 msgid "Error in Percentiles, all values should >=0 and <=100"
 msgstr "Pertzentiletan Errorea , balio guztiek >=0 eta <=100 izan behar dute"
