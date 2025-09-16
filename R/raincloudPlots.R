@@ -569,10 +569,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 
   # Violin positioning
   vioNudgeForEachCloud <- .rainNudgeForEachCloud(options[["vioNudge"]], vioSides)  # Based on default/custom orientation
-  vioPosVec <- c()
-  for (i in vioNudgeForEachCloud) {
-    vioPosVec <- c(vioPosVec, rep(i, 512))  # Each violin consists of 512 points by default
-  }
+  vioPosVec <- rep(vioNudgeForEachCloud, each = 512)
   vioArgsPos <- list(
     width = options[["vioHeight"]], position = ggplot2::position_nudge(x = vioPosVec), side = vioSides
   )
@@ -603,6 +600,14 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
             # primaryFactor condition necessary because if user input primaryFactor, then adds observationId input,
             # and then removes primaryFactor again, JASP/GUI/qml will not remove observationId input
 
+  if (jaspGraphs::getGraphOption("ggVersion") >= "4.0.0") {
+    # ggplot2 4.0.0 changed StatYdensity to add 3 quantiles. However, these 3 values are only sometimes added,
+    # likely when the weren't already part of the computed stat. So we cannot reliably deduce the no. points
+    # it's no longer 512 * no. clouds. Thus we overwrite the stat and force the no. quantiles to 0.
+    # This would otherwise require fixes in ggrain and gghalves.
+    jaspBase::assignFunctionInPackage(StatHalfYdensity_custom, "StatHalfYdensity", "gghalves")
+  }
+
   # Call geom_rain()
   output <- ggrain::geom_rain(
 
@@ -623,6 +628,27 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   return(output)
 }  # End .rainGeomRain()
 
+StatHalfYdensity_custom <- ggplot2::ggproto(
+  "StatHalfYdensity", ggplot2::StatBoxplot,
+  required_aes = c("x", "y"),
+  non_missing_aes = c("weight", "split"),
+
+  compute_group = function(
+    data, scales, width = NULL, bw = "nrd0", adjust = 1,
+    kernel = "gaussian", trim = TRUE, na.rm = FALSE) {
+    ggplot2::StatYdensity$compute_group(
+      data, scales, width = width, bw = bw, adjust = adjust,
+      kernel = kernel, trim = trim, na.rm = na.rm, quantiles = c())
+  },
+
+  compute_panel = function(
+    self, data, scales, width = NULL, bw = "nrd0", adjust = 1,
+    kernel = "gaussian", trim = TRUE, na.rm = FALSE, scale = "area") {
+    ggplot2::StatYdensity$compute_panel(
+      data, scales, width = width, bw = bw, adjust = adjust,
+      kernel = kernel, trim = trim, na.rm = na.rm, scale = scale, quantiles = c())
+  }
+)
 
 
 # .rainOutlineColor() ----

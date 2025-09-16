@@ -1,0 +1,17 @@
+ignore:
+  - "R/*Wrapper.R" # all the generated wrapper functions
+
+comment: true
+
+coverage:
+  status:
+    project:
+      default:
+        target: auto
+        threshold: 1%
+        informational: true
+    patch:
+      default:
+        target: auto
+        threshold: 1%
+        informational: true
