@@ -17,6 +17,9 @@
 
 DescriptivesInternal <- function(jaspResults, dataset, options) {
 
+  # saveRDS(dataset, "~/Downloads/dataset.rds")
+  # saveRDS(options, "~/Downloads/options.rds")
+
   variables     <- unlist(options[["variables"]])
   variableTypes <- options[["variables.types"]]
 
@@ -294,9 +297,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
   # Pareto plots
   if (options[["paretoPlot"]]) {
+
     if (is.null(jaspResults[["paretoPlots"]])) {
       jaspResults[["paretoPlots"]] <- createJaspContainer(gettext("Pareto Plots"))
-      jaspResults[["paretoPlots"]]$dependOn(c("paretoPlot", "splitBy", "paretoPlotRule", "paretoPlotRuleCi"))
+      jaspResults[["paretoPlots"]]$dependOn(c("paretoPlot", "splitBy", "paretoPlotRule", "paretoPlotRuleCi",
+                                              "paretoShiftAccumulationLine"))
       jaspResults[["paretoPlots"]]$position <- 15
     }
 
@@ -2361,6 +2366,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesParetoPlots_SubFunc <- function(dataset, variable, title, options) {
+
   parPlot <- createJaspPlot(title = title, width = options[["plotWidth"]], height = options[["plotHeight"]])
 
   errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 2")
@@ -2376,6 +2382,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesParetoPlots_Fill <- function(column, variable, options) {
+
   tb <- as.data.frame(table(column))
   tb <- tb[order(tb$Freq, decreasing = TRUE), ]
   tb$cums <- cumsum(tb$Freq)
@@ -2389,33 +2396,75 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     ggplot2::xlab(variable) +
     ggplot2::ylab(gettext("Counts"))
 
-  # Adding Pareto Line
-  if (options[["paretoPlotRule"]]) {
-    perc <- options[["paretoPlotRuleCi"]]
-    absVal <- perc * 100 # to get absolute value of percentage
-    colOrdered <- as.numeric(tb$column[order(tb$column, decreasing = FALSE)])
-    interSec <- approx(colOrdered, tb$cums, n = 1000) # Finding x axis intersection at X%
-    interY <- which.min(abs(interSec$y - absVal))
-    interX <- interSec$x[interY]
+  # --- Unified Pareto line + guides (with top-right start when shifted) ---
+  shift <- isTRUE(options[["paretoShiftAccumulationLine"]])
+  tot   <- sum(tb$Freq)
+  cumC  <- cumsum(tb$Freq)
+  cumP  <- cumC / tot * 100
+  xFac  <- factor(tb[, 1], levels = tb[, 1])  # keep sorted order from tb
 
-    p <- p + ggplot2::geom_segment(ggplot2::aes(x = interX, xend = (nrow(tb) + 0.5), y = (max(yBreaks) * perc), yend = (max(yBreaks) * perc)),
-      linetype = "dashed", color = "orange", size = 1.3
-    )
-    p <- p + ggplot2::geom_segment(ggplot2::aes(x = interX, xend = interX, y = 0, yend = (max(yBreaks) * perc)),
-      linetype = "dashed", color = "orange", size = 1.3
-    )
-  }
+  # use the same bar width as geom_bar (default 0.9)
+  barWidth  <- 0.9
+  edgeShift <- barWidth / 2                    # move to right edge of each bar
 
-  # Adding cumulative percentages
-  p <- p + ggplot2::geom_path(ggplot2::aes(y = tb[, 3] / scaleRight, group = 1), colour = "black", size = 1) +
-    ggplot2::geom_point(ggplot2::aes(y = tb[, 3] / scaleRight, group = 1), colour = "steelblue", size = 3) +
+  # line & points (counts if shift, else % mapped to left axis)
+  yLine <- if (shift) cumC else tb$cums / scaleRight
+  dfL   <- data.frame(x = xFac, y = yLine)
+
+  p <- p +
+    ggplot2::geom_line(
+      data = dfL,
+      ggplot2::aes(x = x, y = y, group = 1),
+      colour = "black", linewidth = 1, inherit.aes = FALSE,
+      position = if (shift) ggplot2::position_nudge(x = edgeShift) else "identity"
+    ) +
+    ggplot2::geom_point(
+      data = dfL,
+      ggplot2::aes(x = x, y = y),
+      colour = "steelblue", size = 3, inherit.aes = FALSE,
+      position = if (shift) ggplot2::position_nudge(x = edgeShift) else "identity"
+    ) +
     ggplot2::scale_y_continuous(
-      breaks = yBreaks, limits = range(yBreaks), oob = scales::rescale_none,
-      sec.axis = ggplot2::sec_axis(~ . * scaleRight, name = "Percentage (%)", breaks = seq(0, 100, 20))
+      name   = "Counts",
+      breaks = if (shift) scales::pretty_breaks() else yBreaks,
+      limits = if (shift) c(0, max(max(tb$Freq), tot) * 1.05) else range(yBreaks),
+      sec.axis = ggplot2::sec_axis(
+        trans = if (shift) ~ . / tot * 100 else ~ . * scaleRight,
+        name  = "Percentage (%)", breaks = seq(0, 100, 20)
+      )
     ) +
     jaspGraphs::geom_rangeframe(sides = "rbl") +
     jaspGraphs::themeJaspRaw() +
     ggplot2::theme(plot.margin = ggplot2::margin(5))
+
+  # Pareto-rule guides (e.g., 80%)
+  if (isTRUE(options[["paretoPlotRule"]])) {
+    perc   <- options[["paretoPlotRuleCi"]]       # 0.80
+    target <- perc * 100
+    k      <- which(cumP >= target)[1]
+
+    # sub-bar interpolation for precise x on the shifted line
+    xPos <- if (is.na(k) || k <= 1) {
+      edgeShift
+    } else {
+      p0 <- cumP[k - 1]; p1 <- cumP[k]
+      (k - 1) + (target - p0) / (p1 - p0) + edgeShift
+    }
+
+    yGuide <- if (shift) perc * tot else perc * max(yBreaks)
+
+    p <- p + ggplot2::geom_segment(
+        ggplot2::aes(x = xPos, xend = nrow(tb) + 0.5, y = yGuide, yend = yGuide),
+        linetype = "dashed", color = "orange", linewidth = 1.3, inherit.aes = FALSE) +
+      ggplot2::geom_segment(
+        ggplot2::aes(x = xPos, xend = xPos, y = 0, yend = yGuide),
+        linetype = "dashed", color = "orange", linewidth = 1.3, inherit.aes = FALSE)
+  }
+
+
+  return(p)
+
+
 }
 
 .descriptivesDensityPlots <- function(container, dataset, variables, options) {
