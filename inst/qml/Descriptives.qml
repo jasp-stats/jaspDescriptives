@@ -366,6 +366,8 @@ Form
 				{
 					name: "paretoShiftAccumulationLine"
 					label: qsTr("Shift accumulation line")
+					info: qsTr("Shifts the cumulative line so that it starts at the top-right corner of the first bar instead of in the middle. This corresponds to the traditional Pareto chart layout. "
+									+ "When enabled, the left y-axis shows percentages and the right y-axis shows counts; otherwise, the left y-axis shows counts and the right y-axis shows percentages.")
 				}
 
 				DropDown
@@ -376,6 +378,9 @@ Form
 					showVariableTypeIcon: true
 					addEmptyValue: true
 					allowedColumns: ["ordinal", "scale"]
+					info: qsTr("Allows you to specify an additional variable that contains the counts for each category instead of letting the analysis compute frequencies automatically. "
+										+ "This is useful when the data are already aggregated (e.g., each row represents a category with an associated frequency). "
+										+ "If left empty, counts are calculated directly from the selected variable.")
 				}
 				
 				
