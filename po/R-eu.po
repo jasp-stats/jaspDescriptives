@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2025-07-19 03:38\n"
-"PO-Revision-Date: 2025-09-17 07:01+0000\n"
+"PO-Revision-Date: 2025-09-19 16:01+0000\n"
 "Last-Translator: Jose Ramon Rueda <joseramon.rueda@ehu.eus>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/eu/>\n"
@@ -55,10 +55,10 @@ msgid "Range"
 msgstr "Heina"
 
 msgid "Minimum"
-msgstr "Gutxienekoa"
+msgstr "Minimoa"
 
 msgid "Maximum"
-msgstr "Gehienezkoa"
+msgstr "Maximoa"
 
 msgid "Start"
 msgstr "Hasi"
@@ -130,7 +130,7 @@ msgid "Boxplots"
 msgstr "Kutxa-grafikoak"
 
 msgid "Q-Q Plots"
-msgstr "Q-Q grafikoak"
+msgstr "Q-Q Grafikoak"
 
 msgid "Q-Q Plot"
 msgstr "Q-Q Grafikoa"
@@ -154,7 +154,7 @@ msgid "Dot Plots"
 msgstr "Puntu Diagramak"
 
 msgid "Heatmaps"
-msgstr "Bero mapak"
+msgstr "Bero-mapak"
 
 msgid "Pareto Plots"
 msgstr "Pareto Diagramak"
@@ -314,7 +314,7 @@ msgid "Cumulative Percent"
 msgstr "Ehuneko Metatua"
 
 msgid "Plotting not possible: %s"
-msgstr "Ezin da grafikoa egitea: %s"
+msgstr "Ezin da grafikoa egin: %s"
 
 msgid "Plotting is not possible: No plot type selected!"
 msgstr "Ezin da grafikoa egitea: Grafiko mota aukeratu gabe!"
