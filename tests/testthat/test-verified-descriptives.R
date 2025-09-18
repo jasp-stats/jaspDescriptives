@@ -14,6 +14,7 @@ test_that("Main table results match R, SPSS, SAS and MiniTab", {
   options$quartiles <- TRUE
   options$mode <- TRUE
   options$missing <- FALSE
+  options$paretoAddCountVariable <- ""
 
   # Main table
   results <- jaspTools::runAnalysis("Descriptives",
