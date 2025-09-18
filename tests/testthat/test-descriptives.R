@@ -491,6 +491,7 @@ options$variables.types <- "scale"
 options$splitBy   <- "facFive"
 options$splitBy.types <- "nominal"
 options$intervalPlot <- TRUE
+options$paretoAddCountVariable <- ""
 set.seed(1)
 results <- runAnalysis("Descriptives", "test.csv", options)
 
