@@ -23,6 +23,7 @@ test_that("Main table results match", {
   options$percentiles <- TRUE
   options$percentileValues <- c(2, 5, 8)
   options$quartiles <- TRUE
+  options$paretoAddCountVariable <- ""
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   table <- results[["results"]][["stats"]][["data"]]
 
@@ -68,6 +69,7 @@ test_that("Descriptive Statistics table results match", {
   options$meanCiMethod <- "normalModel"
   options$sdCiMethod <- "bootstrap"
   options$varianceCiMethod <- "bootstrap"
+  options$paretoAddCountVariable <- ""
   set.seed(1)
   results <- runAnalysis("Descriptives", "test.csv", options)
   table <- results[["results"]][["stats"]][["data"]]
@@ -89,6 +91,7 @@ test_that("Descriptive Statistics table results match", {
   options$maximum <- FALSE
   options$meanCi <- TRUE
   options$meanCiMethod <- "oneSampleTTest"
+  options$paretoAddCountVariable <- ""
   set.seed(1)
   results <- runAnalysis("Descriptives", "test.csv", options)
   table <- results[["results"]][["stats"]][["data"]]
@@ -108,6 +111,7 @@ test_that("Descriptive Statistics table results match", {
   options$maximum <- FALSE
   options$meanCi <- TRUE
   options$meanCiMethod <- "oneSampleTTest"
+  options$paretoAddCountVariable <- ""
   data("sleep")
   set.seed(1)
   results <- runAnalysis("Descriptives", sleep, options)
@@ -126,6 +130,7 @@ test_that("Association matrices match", {
   options$variables.types <- c("scale", "scale", "scale")
   options$covariance <- TRUE
   options$correlation <- TRUE
+  options$paretoAddCountVariable <- ""
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   table <- results[["results"]][["associationMatrix"]][["collection"]][["associationMatrix_Correlation"]][["data"]]
   jaspTools::expect_equal_tables(table,
@@ -145,6 +150,7 @@ test_that("Frequencies table matches", {
   options$splitBy <- "contBinom"
   options$splitBy.types <- "nominal"
   options$frequencyTables <- TRUE
+  options$paretoAddCountVariable <- ""
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   table <- results[["results"]][["tables"]][["collection"]][["tables_facGender"]][["data"]]
   jaspTools::expect_equal_tables(table,
@@ -168,6 +174,7 @@ test_that("Frequencies table matches with missing values", {
   options$splitBy <- "split"
   options$splitBy.types <- "nominal"
   options$frequencyTables <- TRUE
+  options$paretoAddCountVariable <- ""
   results <- jaspTools::runAnalysis("Descriptives", data, options)
   table <- results[["results"]][["tables"]][["collection"]][["tables_x"]][["data"]]
   jaspTools::expect_equal_tables(table,
@@ -186,6 +193,7 @@ test_that("Distribution plot matches", {
   options$variables <- "contNormal"
   options$variables.types <- "scale"
   options$distributionPlots <- TRUE
+  options$paretoAddCountVariable <- ""
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "distribution")
@@ -197,6 +205,7 @@ test_that("Correlation plot matches", {
   options$variables.types <- c("scale", "scale")
   options$correlationPlots <- TRUE
   options$distributionAndCorrelationPlotDensity <- TRUE
+  options$paretoAddCountVariable <- ""
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "correlation")
@@ -215,6 +224,7 @@ test_that("Boxplot matches", {
   options$boxPlotOutlierLabel <- TRUE
   options$boxPlotViolin <- TRUE
   options$boxPlot <- TRUE
+  options$paretoAddCountVariable <- ""
   options$colorPalette <- "ggplot2"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
@@ -226,6 +236,7 @@ test_that("Q-QPlot plot matches", {
   options$variables <- "contNormal"
   options$variables.types <- "scale"
   options$qqPlot <- TRUE
+  options$paretoAddCountVariable <- ""
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "qqplot")
@@ -239,6 +250,7 @@ test_that("Scatter plot matches", {
   options$correlationPlots <- FALSE
   options$scatterPlot <- TRUE
   options$colorPalette <- "ggplot2"
+  options$paretoAddCountVariable <- ""
   options$scatterPlotRegressionLineType <- "smooth"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
 
@@ -251,6 +263,7 @@ test_that("Dot plot matches", {
   options$variables <- "contNormal"
   options$variables.types <- "scale"
   options$dotPlot <- TRUE
+  options$paretoAddCountVariable <- ""
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
 
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
@@ -262,6 +275,7 @@ test_that("Pie chart matches", {
   options$variables <- "facFive"
   options$variables.types <- "nominal"
   options$pieChart <- TRUE
+  options$paretoAddCountVariable <- ""
   options$colorPalette <- "ggplot2"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
 
@@ -274,9 +288,26 @@ test_that("Pareto plot matches", {
   options$variables <- "facFive"
   options$variables.types <- "nominal"
   options$paretoPlot <- TRUE
+  options$paretoAddCountVariable <- ""
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "parPlot")
+})
+
+test_that("Pareto plot with count variable matches", {
+  options <- jaspTools::analysisOptions("Descriptives")
+  options$variables <- "Breakdown"
+  options$variables.types <- "nominal"
+  options$paretoPlot <- TRUE
+  options$paretoShiftAccumulationLine <- TRUE
+  options$paretoAddCountVariable <- "Count"
+  options$paretoAddCountVariable.types <- "ordinal"
+  dt <- structure(list(Breakdown = c("i", "o", "a", "c", "y"), Count = c(7L, 7L, 14L, 6L, 10L),
+                       Split = c("Shift A", "Shift A", "Shift B", "Shift B", "Shift B")),
+                  class = "data.frame", row.names = c(NA, -5L))
+  results <- jaspTools::runAnalysis("Descriptives", dt, options)
+  testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
+  jaspTools::expect_equal_plots(testPlot, "parPlot2")
 })
 
 test_that("Likert plot matches", {
@@ -286,6 +317,7 @@ test_that("Likert plot matches", {
   options$likertPlot <- TRUE
   options$likertPlotAssumeVariablesSameLevel <- TRUE
   options$likertPlotAdjustableFontSize <- "normal"
+  options$paretoAddCountVariable <- ""
   df <- jaspTools:::loadCorrectDataset("test.csv")
   df$facFive <- as.ordered(df$facFive)
   results <- jaspTools::runAnalysis("Descriptives", df, options)
@@ -300,6 +332,7 @@ test_that("Density plot matches", {
   options$densityPlot <- TRUE
   options$correlationPlots <- FALSE
   options$densityPlotSeparate <- "facFive"
+  options$paretoAddCountVariable <- ""
   # https://github.com/jasp-stats/jaspDescriptives/pull/216 added a reuseable QML element for colorPalette, but jaspTools doesn't understand that so we have to add the default value manually
   options$colorPalette <- "colorblind"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
@@ -315,6 +348,7 @@ test_that("Count plot matches", {
   options$densityPlot <- TRUE
   options$correlationPlots <- FALSE
   options$densityPlotSeparate <- "facFive"
+  options$paretoAddCountVariable <- ""
   # https://github.com/jasp-stats/jaspDescriptives/pull/216 added a reuseable QML element for colorPalette, but jaspTools doesn't understand that so we have to add the default value manually
   options$colorPalette <- "colorblind"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
@@ -329,6 +363,7 @@ test_that("Analysis handles identical variables", {
   options$variables.types <- c("scale", "scale")
   options$splitBy <- "facFive"
   options$splitBy.types <- "nominal"
+  options$paretoAddCountVariable <- ""
   options$shapiroWilkTest <- TRUE
   options$skewness <- TRUE
   options$kurtosis <- TRUE
@@ -383,6 +418,7 @@ test_that("Analysis explains supremum and infimum of empty sets", {
   options$variables.types <- "scale"
   options$splitBy <- "contBinom"
   options$splitBy.types <- "nominal"
+  options$paretoAddCountVariable <- ""
 
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
 
@@ -399,6 +435,7 @@ test_that("Stem and leaf tables match", {
   options$variables.types <- "scale"
   options$stemAndLeaf <- TRUE
   options$stemAndLeafScale <- 1.2
+  options$paretoAddCountVariable <- ""
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   table <- results[["results"]][["stemAndLeaf"]][["collection"]][["stemAndLeaf_stem_and_leaf_contNormal"]][["data"]]
   expect_equal_tables(
@@ -437,6 +474,7 @@ options$correlationPlots <- FALSE
 options$distributionPlots <- TRUE
 options$variables <- "facGender"
 options$variables.types <- "nominal"
+options$paretoAddCountVariable <- ""
 set.seed(1)
 results <- runAnalysis("Descriptives", "debug.csv", options)
 
