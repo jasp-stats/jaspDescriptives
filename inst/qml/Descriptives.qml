@@ -367,6 +367,18 @@ Form
 					name: "paretoShiftAccumulationLine"
 					label: qsTr("Shift accumulation line")
 				}
+
+				DropDown
+				{
+					visible: paretoAddCountVariable.checked
+					name: "paretoAddCountVariable"
+					label: qsTr("Add count variable")
+					showVariableTypeIcon: true
+					addEmptyValue: true
+					allowedColumns: ["ordinal", "scale"]
+				}
+				
+				
 			}
 
 			CheckBox
