@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-09-14 18:01+0000\n"
-"Last-Translator: hakan dokumuş <dokumushakan@gmail.com>\n"
+"PO-Revision-Date: 2025-09-19 21:02+0000\n"
+"Last-Translator: Tahir Enes Gedik <tegedik@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/tr/>\n"
 "Language: tr\n"
@@ -35,7 +35,7 @@ msgstr "Bölmek"
 
 msgctxt "Descriptives|"
 msgid "Transpose descriptives table"
-msgstr "Transpoze tanımlayıcı tablo"
+msgstr "Betimleyici tabloyu transpoze et"
 
 msgctxt "Descriptives|"
 msgid "Frequency tables"
@@ -86,7 +86,7 @@ msgstr "Renk paletini kullan"
 
 msgctxt "Descriptives|"
 msgid "Label outliers"
-msgstr ""
+msgstr "Uç değerleri etiketle"
 
 msgctxt "Descriptives|"
 msgid "Graph above scatter plot"
@@ -110,7 +110,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Add regression line"
-msgstr ""
+msgstr "Regresyon doğrusu ekle"
 
 msgctxt "Descriptives|"
 msgid "Smooth"
@@ -118,27 +118,27 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Linear"
-msgstr ""
+msgstr "Doğrusal"
 
 msgctxt "Descriptives|"
 msgid "Show confidence interval"
-msgstr ""
+msgstr "Güven aralığını göster"
 
 msgctxt "Descriptives|"
 msgid "Show legend"
-msgstr ""
+msgstr "Lejantı göster"
 
 msgctxt "Descriptives|"
 msgid "Basic Plots"
-msgstr ""
+msgstr "Temel grafikler"
 
 msgctxt "Descriptives|"
 msgid "Distribution plots"
-msgstr ""
+msgstr "Dağılım grafikleri"
 
 msgctxt "Descriptives|"
 msgid "Correlation plots"
-msgstr ""
+msgstr "Korelasyon grafikleri"
 
 msgctxt "Descriptives|"
 msgid "Display density"
@@ -178,7 +178,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Interval plots"
-msgstr ""
+msgstr "Aralık grafikleri"
 
 msgctxt "Descriptives|"
 msgid "Q-Q plots"
@@ -194,11 +194,11 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Statistics"
-msgstr ""
+msgstr "İstatistikler"
 
 msgctxt "Descriptives|"
 msgid "Quartiles"
-msgstr ""
+msgstr "Çeyrekler (kartiller)"
 
 msgctxt "Descriptives|"
 msgid "Cut points for: "
@@ -210,23 +210,23 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Percentiles:"
-msgstr ""
+msgstr "Yüzdebirlikler:"
 
 msgctxt "Descriptives|"
 msgid "Mean"
-msgstr ""
+msgstr "Ortalama"
 
 msgctxt "Descriptives|"
 msgid "Median"
-msgstr ""
+msgstr "Ortanca (medyan)"
 
 msgctxt "Descriptives|"
 msgid "Mode"
-msgstr ""
+msgstr "Mod"
 
 msgctxt "Descriptives|"
 msgid "Sum"
-msgstr ""
+msgstr "Toplam"
 
 msgctxt "Descriptives|"
 msgid "Dispersion"
@@ -238,7 +238,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Std. deviation"
-msgstr ""
+msgstr "Std. sapma"
 
 msgctxt "Descriptives|"
 msgid "Coefficient of variation"
@@ -254,39 +254,39 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "IQR"
-msgstr ""
+msgstr "IQR (Çeyrekler Aralığı)"
 
 msgctxt "Descriptives|"
 msgid "Variance"
-msgstr ""
+msgstr "Varyans"
 
 msgctxt "Descriptives|"
 msgid "Range"
-msgstr ""
+msgstr "Değişim aralığı"
 
 msgctxt "Descriptives|"
 msgid "Minimum"
-msgstr ""
+msgstr "Minimum"
 
 msgctxt "Descriptives|"
 msgid "Maximum"
-msgstr ""
+msgstr "Maksimum"
 
 msgctxt "Descriptives|"
 msgid "Distribution"
-msgstr ""
+msgstr "Dağılım"
 
 msgctxt "Descriptives|"
 msgid "Skewness"
-msgstr ""
+msgstr "Çarpıklık"
 
 msgctxt "Descriptives|"
 msgid "Kurtosis"
-msgstr ""
+msgstr "Basıklık"
 
 msgctxt "Descriptives|"
 msgid "Shapiro-Wilk test"
-msgstr ""
+msgstr "Shapiro-Wilk testi"
 
 msgctxt "Descriptives|"
 msgid "Values are group midpoints"
@@ -294,11 +294,11 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Quantiles"
-msgstr ""
+msgstr "Dilim değerleri (kantiller)"
 
 msgctxt "Descriptives|"
 msgid "Valid"
-msgstr ""
+msgstr "Geçerli"
 
 msgctxt "Descriptives|"
 msgid "Missing"
@@ -306,11 +306,11 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Horizontal axis:"
-msgstr ""
+msgstr "Yatay eksen:"
 
 msgctxt "Descriptives|"
 msgid "Vertical axis:"
-msgstr ""
+msgstr "Dikey eksen:"
 
 msgctxt "Descriptives|"
 msgid "Display legend"
@@ -350,11 +350,11 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Central tendency"
-msgstr ""
+msgstr "Merkezi eğilim"
 
 msgctxt "Descriptives|"
 msgid "Scatter plots"
-msgstr ""
+msgstr "Saçılım grafikleri"
 
 msgctxt "Descriptives|"
 msgid "Tile heatmaps for selected variables"
@@ -362,23 +362,23 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Tables"
-msgstr ""
+msgstr "Tablolar"
 
 msgctxt "Descriptives|"
 msgid "Categorical Plots"
-msgstr ""
+msgstr "Kategorik grafikler"
 
 msgctxt "Descriptives|"
 msgid "Pareto plots"
-msgstr ""
+msgstr "Pareto grafikleri"
 
 msgctxt "Descriptives|"
 msgid "Pareto rule"
-msgstr ""
+msgstr "Pareto kuralı"
 
 msgctxt "Descriptives|"
 msgid "Likert plots"
-msgstr ""
+msgstr "Likert grafikleri"
 
 msgctxt "Descriptives|"
 msgid "Assume all variables share the same levels"
@@ -410,11 +410,11 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Inference"
-msgstr ""
+msgstr "Çıkarım"
 
 msgctxt "Descriptives|"
 msgid "Confidence interval for mean"
-msgstr ""
+msgstr "Ortalama için güven aralığı"
 
 msgctxt "Descriptives|"
 msgid "Width"
@@ -454,11 +454,11 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Frequency plots"
-msgstr ""
+msgstr "Frekans grafikleri"
 
 msgctxt "Descriptives|"
 msgid "Separate frequencies:"
-msgstr ""
+msgstr "Ayrı frekanslar:"
 
 msgctxt "Descriptives|"
 msgid "How to combine separate frequencies"
@@ -488,15 +488,15 @@ msgstr ""
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Variable"
-msgstr ""
+msgstr "Değişken"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "A variable that is measured repeatedly over time."
-msgstr ""
+msgstr "Zaman içinde tekrar tekrar ölçülen bir değişken."
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time"
-msgstr ""
+msgstr "Zaman"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
@@ -527,35 +527,35 @@ msgstr ""
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Row number"
-msgstr ""
+msgstr "Sıra numarası"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Start"
-msgstr ""
+msgstr "Başlangıç"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "End"
-msgstr ""
+msgstr "Bitiş"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time index"
-msgstr ""
+msgstr "Zaman indeksi"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Date"
-msgstr ""
+msgstr "Tarih"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots"
-msgstr ""
+msgstr "Grafikler"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time series plot"
-msgstr ""
+msgstr "Zaman serisi grafiği"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the dependent variable (y-axis) over time (x-axis)."
-msgstr ""
+msgstr "Bağımlı değişkeni (y ekseni) zamana göre (x ekseni) çizer."
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Points"
@@ -605,7 +605,7 @@ msgstr ""
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Add regression line"
-msgstr ""
+msgstr "Regresyon doğrusu ekle"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Smooth"
@@ -670,7 +670,7 @@ msgstr "Bağımsız değişkenler"
 
 msgctxt "FlexplotForm|"
 msgid "Paneled Variable(s)"
-msgstr ""
+msgstr "Panel değişken(ler)i"
 
 #, fuzzy
 msgctxt "FlexplotForm|"
@@ -679,7 +679,7 @@ msgstr "Seçenekler"
 
 msgctxt "FlexplotForm|"
 msgid "Point transparency"
-msgstr ""
+msgstr "Nokta saydamlığı"
 
 msgctxt "FlexplotForm|"
 msgid "Jitter in X"
@@ -724,7 +724,7 @@ msgstr ""
 
 msgctxt "FlexplotForm|"
 msgid "Standard deviations"
-msgstr ""
+msgstr "Standart sapmalar"
 
 msgctxt "FlexplotForm|"
 msgid "Intervals (categorical predictors)"
@@ -836,7 +836,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Complete observations"
-msgstr ""
+msgstr "Eksiksiz gözlemler"
 
 msgctxt "Descriptives|"
 msgid "Pairwise compelete observations"
@@ -855,11 +855,11 @@ msgstr ""
 
 msgctxt "FlexplotForm|"
 msgid "References"
-msgstr ""
+msgstr "Referanslar"
 
 msgctxt "FlexplotForm|"
 msgid "Example"
-msgstr ""
+msgstr "Örnek"
 
 #, qt-format
 msgctxt "FlexplotForm|"
