@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2025-07-19 03:38\n"
-"PO-Revision-Date: 2025-09-05 08:02+0000\n"
+"PO-Revision-Date: 2025-09-19 16:01+0000\n"
 "Last-Translator: Jose Ramon Rueda <joseramon.rueda@ehu.eus>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/eu/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13.1-rc\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 msgid "Time Series Plot"
 msgstr "Denbora-Serieen Grafikoa"
@@ -55,10 +55,10 @@ msgid "Range"
 msgstr "Heina"
 
 msgid "Minimum"
-msgstr "Gutxienekoa"
+msgstr "Minimoa"
 
 msgid "Maximum"
-msgstr "Gehienezkoa"
+msgstr "Maximoa"
 
 msgid "Start"
 msgstr "Hasi"
@@ -154,7 +154,7 @@ msgid "Dot Plots"
 msgstr "Puntu Diagramak"
 
 msgid "Heatmaps"
-msgstr "Bero mapak"
+msgstr "Bero-mapak"
 
 msgid "Pareto Plots"
 msgstr "Pareto Diagramak"
@@ -218,7 +218,7 @@ msgid "Std. Error of Mean"
 msgstr "Batez bestekoaren Errore Estandarra"
 
 msgid "Coefficient of variation"
-msgstr "Aldakortasun-koefizientea"
+msgstr "Aldakortasun koefizientea"
 
 msgid "MAD"
 msgstr "MDA Medianaren Desbiderapen Absolutua"
@@ -314,7 +314,7 @@ msgid "Cumulative Percent"
 msgstr "Ehuneko Metatua"
 
 msgid "Plotting not possible: %s"
-msgstr "Ezin da grafikoa egitea: %s"
+msgstr "Ezin da grafikoa egin: %s"
 
 msgid "Plotting is not possible: No plot type selected!"
 msgstr "Ezin da grafikoa egitea: Grafiko mota aukeratu gabe!"
@@ -403,7 +403,7 @@ msgid "Plot Grid"
 msgstr "Irudikatu Sarea"
 
 msgid "Raincloud Plots"
-msgstr "Euri-hodei Grafikoak"
+msgstr "Euri-hodeien grafikoak"
 
 #, fuzzy
 msgid "Not shown are %s observations due to missing data."
@@ -490,9 +490,8 @@ msgstr "75. Pertzentila"
 msgid "Upper Whisker"
 msgstr "Goiko Bibotea"
 
-#, fuzzy
 msgid "%s%% CI for Mean Difference"
-msgstr "Batez besteko diferentziarako %s%% CI"
+msgstr "%s%% CI Batez bestekoen Aldearentzat"
 
 msgid "Standard Error"
 msgstr "Errore Estandarra"
