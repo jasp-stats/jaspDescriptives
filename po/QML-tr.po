@@ -1,15 +1,9 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-09-19 21:02+0000\n"
-"Last-Translator: Tahir Enes Gedik <tegedik@gmail.com>\n"
-"Language-Team: Turkish <https://hosted.weblate.org/projects/jasp/"
-"jaspdescriptives-qml/tr/>\n"
-"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.14-dev\n"
 "X-Language: tr\n"
 "X-Qt-Contexts: true\n"
 
@@ -569,9 +563,10 @@ msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Both"
 msgstr ""
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Distribution"
-msgstr ""
+msgstr "Dağılım"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Density"
@@ -611,9 +606,10 @@ msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Smooth"
 msgstr ""
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Linear"
-msgstr ""
+msgstr "Doğrusal"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Confidence interval"
@@ -718,9 +714,10 @@ msgctxt "FlexplotForm|"
 msgid "Fitted line (scatterplots)"
 msgstr ""
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Quartiles"
-msgstr ""
+msgstr "Çeyrekler (kartiller)"
 
 msgctxt "FlexplotForm|"
 msgid "Standard deviations"
@@ -994,9 +991,10 @@ msgid ""
 "tables."
 msgstr ""
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "References"
-msgstr ""
+msgstr "Referanslar"
 
 msgctxt "Descriptives|"
 msgid "R Packages"
@@ -1327,9 +1325,10 @@ msgid ""
 "present from the raincloud plot for dataset A."
 msgstr ""
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "References"
-msgstr ""
+msgstr "Referanslar"
 
 msgctxt "raincloudPlots|"
 msgid "Input"
@@ -1706,9 +1705,10 @@ msgctxt "raincloudPlots|"
 msgid "Advanced"
 msgstr ""
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Mean"
-msgstr ""
+msgstr "Ortalama"
 
 msgctxt "raincloudPlots|"
 msgid "Whether to also show a mean for each cloud."
@@ -1915,9 +1915,10 @@ msgid ""
 "Horizontal lines are displayed marking 95% confidence intervals for the mean"
 msgstr ""
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Show legend"
-msgstr ""
+msgstr "Lejantı göster"
 
 msgctxt "raincloudPlots|"
 msgid ""
@@ -2037,9 +2038,10 @@ msgctxt "Description|"
 msgid "Plot Builder (beta)"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "References"
-msgstr ""
+msgstr "Referanslar"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Plot 1"
@@ -2400,9 +2402,10 @@ msgctxt "jaspPlotBuilder|"
 msgid "Show as percentages"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Mean"
-msgstr ""
+msgstr "Ortalama"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Mean bar"
@@ -2428,9 +2431,10 @@ msgctxt "jaspPlotBuilder|"
 msgid "Mean value"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Median"
-msgstr ""
+msgstr "Ortanca (medyan)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Median bar"
@@ -2513,9 +2517,10 @@ msgctxt "jaspPlotBuilder|"
 msgid "Method"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Linear"
-msgstr ""
+msgstr "Doğrusal"
 
 msgctxt "jaspPlotBuilder|"
 msgid "LOESS"
