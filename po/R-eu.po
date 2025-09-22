@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2025-07-19 03:38\n"
-"PO-Revision-Date: 2025-09-21 06:54+0000\n"
+"PO-Revision-Date: 2025-09-22 15:01+0000\n"
 "Last-Translator: Jose Ramon Rueda <joseramon.rueda@ehu.eus>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/eu/>\n"
@@ -14,18 +14,17 @@ msgstr ""
 "X-Generator: Weblate 5.14-dev\n"
 
 msgid "Time Series Plot"
-msgstr "Denbora-Serieen Grafikoa"
+msgstr "Denborazko serieak Grafikoa"
 
 msgid "Lag Plot"
 msgstr "Atzerapen Grafikoa"
 
-#, fuzzy
 msgid ""
 "The specified lag, %1$s, is too large given the %2$s observations in the "
 "data. Please choose a smaller lag."
 msgstr ""
 "Zehaztutako atzerapena, %1$s, handiegia da datuetan dauden %2$s behaketak "
-"kontuan hartuta. Aukeratu atzerapen txiki bat."
+"kontuan hartuta. Aukeratu atzerapen txikiago bat."
 
 msgid "Autocorrelation Function"
 msgstr "Autokorrelazio funtzioa"
@@ -66,31 +65,27 @@ msgstr "Hasi"
 msgid "End"
 msgstr "Amaitu"
 
-#, fuzzy
 msgid "Lag 1 Autocorrelation"
 msgstr "Atzerapen 1 Autokorrelazioa"
 
-#, fuzzy
 msgid "The time series data should be equally-spaced."
-msgstr "Denbora-serieko datuak tarte berdinean egon behar dira."
+msgstr "Denborazko serieko data tarte berdinean egon behar dira."
 
-#, fuzzy
 msgid "The time variable should have unique values only."
 msgstr "Denbora aldagaiak balio bakarrak baino ez ditu izan behar."
 
-#, fuzzy
 msgid ""
 "The 'Time' variable has a date-like format, please filter by date instead."
-msgstr "'Ordua' aldagaiak data formatua du, mesedez, iragazi dataren arabera."
+msgstr ""
+"'Denbora' aldagaiak datu formatua du, mesedez, iragazi datuaren arabera."
 
 msgid ""
 "The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:"
 "ss). Try to filter by time index instead."
 msgstr ""
-"'Ordua' aldagaia ez dago data formatuan (adibidez, uuuu-hh-ee oo:mm:ss). "
+"'Denbora' aldagaia ez dago data formatuan (adibidez, uuuu-hh-ee oo:mm:ss). "
 "Saiatu denbora indizearen arabera iragazten."
 
-#, fuzzy
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
 msgstr "'Hasiera' data formatuan egon behar da (adibidez, uuuu-hh-ee oo:mm:ss)."
 
@@ -107,7 +102,6 @@ msgstr ""
 "Iragazkiaren 'Amaiera' balioa 'Hasiera' balioa baino handiagoa/beranduago "
 "izan behar da."
 
-#, fuzzy
 msgid "Lag"
 msgstr "Atzerapena"
 
@@ -145,7 +139,7 @@ msgid "Stem and Leaf"
 msgstr "Zurtoin eta Hosto"
 
 msgid "Scatter Plots"
-msgstr "Sakabanapen Diagramak"
+msgstr "Barreiadura-Diagramak"
 
 msgid "Interval plots"
 msgstr "Tarte-diagramak"
@@ -165,15 +159,13 @@ msgstr "Maiztasun Diagramak"
 msgid "Likert Plots"
 msgstr "Likert Grafikoak"
 
-#, fuzzy
 msgid ""
 "Excluded %1$i rows from the analysis that correspond to the missing values "
 "of the split-by variable %2$s"
 msgstr ""
 "%2$s aldagai zatituaren balio faltarekin bat datozen %1$i errenkada "
-"analisitik kanpo utzi dira."
+"analisitik kanpo utzi dira"
 
-#, fuzzy
 msgid "%s%% Confidence Interval Mean"
 msgstr "%s%% Konfiantza-Tartearen Batez bestekoa"
 
@@ -195,7 +187,6 @@ msgstr "%s%% Konfiantza-Tartearen Goikoa"
 msgid "%s%% CI Mean Lower"
 msgstr "%s%% Konfiantza-Tartearen Behekoa"
 
-#, fuzzy
 msgid "%s%% CI Std. Dev. Upper"
 msgstr "%s%% Desbideratze Estandarren Konfiantza Tartearen Goikoa"
 
@@ -220,14 +211,12 @@ msgstr "Batez bestekoaren Errore Estandarra"
 msgid "Coefficient of variation"
 msgstr "Aldakortasun koefizientea"
 
-#, fuzzy
 msgid "MAD"
-msgstr "MAD ???"
+msgstr "MAD"
 
 msgid "MAD robust"
 msgstr "MDA sendoa"
 
-#, fuzzy
 msgid "IQR"
 msgstr "KAH Kuartilen Arteko Heina"
 
@@ -270,7 +259,6 @@ msgstr "Batura"
 msgid "All values are identical"
 msgstr "Balio guztiak berdinak dira"
 
-#, fuzzy
 msgid ""
 "Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty "
 "set is %2$s."
@@ -297,7 +285,6 @@ msgstr "Aldagai guztiek %1$s balio desberdin baino gehiago dituzte"
 msgid "Frequencies"
 msgstr "Maiztasunak"
 
-#, fuzzy
 msgid "Frequencies for %s"
 msgstr "%-entzako maiztasunak"
 
@@ -310,7 +297,6 @@ msgstr "Ehunekoa"
 msgid "Valid Percent"
 msgstr "Ehuneko Baliogarria"
 
-#, fuzzy
 msgid "Cumulative Percent"
 msgstr "Ehuneko Metatua"
 
@@ -329,7 +315,6 @@ msgstr "Dentsitatea"
 msgid "No non-missing values!"
 msgstr "Ez dago baliorik-gabeko datuak!"
 
-#, fuzzy
 msgid ""
 "Association cannot be computed due to missing values. Try a different 'Use' "
 "setting."
@@ -356,17 +341,15 @@ msgstr "Zurtoina"
 msgid "Leaf"
 msgstr "Hostoa"
 
-#, fuzzy
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
 "missing observations"
 msgstr ""
 "Ezin izan da zurtoin eta hosto taula bat egin, 2 behaketen datu-falta baino "
-"gutxiago daudelako."
+"gutxiago daudelako"
 
-#, fuzzy
 msgid "The decimal point is at the |"
-msgstr "Koma hamartarra |-n dago."
+msgstr "Koma hamartarra |-n dago"
 
 msgid ""
 "There must be a unique value per combination of levels of horizontal and "
@@ -381,12 +364,10 @@ msgstr "Aldagai kategoriko guztiek maila kopuru bera izan behar dute!"
 msgid "Items must have 2 or more levels!"
 msgstr "Elementuek 2 maila edo gehiago izan behar dituzte!"
 
-#, fuzzy
 msgid "Levels within variable require at least two or more data points!"
 msgstr ""
 "Aldagai barruko mailek gutxienez bi datu-puntu edo gehiago behar dituzte!"
 
-#, fuzzy
 msgid ""
 "Please assign a variable to every RM factor (defined in Repeated Measures "
 "Factors) within Repeated Measures Cells."
@@ -406,15 +387,12 @@ msgstr "Irudikatu Sarea"
 msgid "Raincloud Plots"
 msgstr "Euri-hodeien grafikoak"
 
-#, fuzzy
 msgid "Not shown are %s observations due to missing data."
 msgstr "Ez dira erakusten %s behaketak, faltatzen datuak direlako."
 
-#, fuzzy
 msgid "Interval around mean is custom."
 msgstr "Batez bestekoaren inguruko tartea pertsonalizagarria da."
 
-#, fuzzy
 msgid ""
 "<span style = 'color: darkorange'>Error with custom interval: Specified "
 "number of clouds does not match clouds in plot.</span>"
@@ -429,14 +407,12 @@ msgid "Interval around mean represents ± 1 standard deviation"
 msgstr ""
 "Batez bestekoaren inguruko tarteak ± 1 desbideratze estandarra adierazten du"
 
-#, fuzzy
 msgid "Interval around mean represents %d%% confidence interval."
 msgstr "Batez bestekoaren inguruko tarteak %d% konfiantza-tartea adierazten du."
 
 msgid "Points are slightly jittered from their true values."
 msgstr "Puntuak apur bat desbideratuta daude beren benetako balioetatik."
 
-#, fuzzy
 msgid ""
 "<span style = 'color: darkorange'> Warning! Some data is not "
 "shown<br>because it lies outside of the interval set by the custom axis "
@@ -467,15 +443,12 @@ msgstr ""
 msgid "Statistics"
 msgstr "Estatistikoak"
 
-#, fuzzy
 msgid "Primary Factor"
 msgstr "Oinarrizko Faktorea"
 
-#, fuzzy
 msgid "Secondary Factor"
 msgstr "Faktore Sekundarioa"
 
-#, fuzzy
 msgid "<i>N</i>"
 msgstr "<i>N</i>"
 
@@ -506,15 +479,12 @@ msgstr "<i>N</i><sub>Totala</sub> = %s."
 msgid "This excludes %s observations due to missing data."
 msgstr "Honek %s behaketa baztertzen ditu datu falta direlako."
 
-#, fuzzy
 msgid "<br>Interval around mean is custom."
 msgstr "Batez bestekoaren inguruko tartea pertsonalizagarria da."
 
-#, fuzzy
 msgid "<br>Interval around mean represents %d%% confidence interval."
 msgstr "Batez bestekoaren inguruko tarteak %d% konfiantza-tartea adierazten du."
 
-#, fuzzy
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
 "The following variables have more than %1$s distinct values and are omitted: "
@@ -524,17 +494,15 @@ msgstr[1] ""
 "Hurrengo aldagaiek %1$s balio desberdin baino gehiago dituzte eta ezabatzen "
 "dira: %2$s."
 
-#, fuzzy
 msgid "The decimal point is %s digit to the right of the |"
 msgid_plural "The decimal point is %s digits to the right of the |"
-msgstr[0] "Hamartarra |-ren eskuinaldera dagoen digituaren %a da."
-msgstr[1] "Hamartarra |-ren eskuinaldera dauden digituen %a da."
+msgstr[0] "Hamartarra |-ren eskuinaldera dagoen digituaren %a da"
+msgstr[1] "Hamartarra |-ren eskuinaldera dauden digituen %a da"
 
-#, fuzzy
 msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
-msgstr[0] "Hamartarra |-ren eskualdera dagoen digituaren %a da."
-msgstr[1] "Hamartarra |-ren eskualdera dauden digituen %a da."
+msgstr[0] "Hamartarra |-ren eskualdera dagoen digituaren %a da"
+msgstr[1] "Hamartarra |-ren eskualdera dauden digituen %a da"
 
 #, fuzzy
 #~ msgid "Density Plots"
