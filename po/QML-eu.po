@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-09-02 08:02+0000\n"
+"PO-Revision-Date: 2025-09-22 13:06+0000\n"
 "Last-Translator: Jose Ramon Rueda <joseramon.rueda@ehu.eus>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/eu/>\n"
@@ -9,7 +9,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13.1-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
@@ -56,7 +56,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Create a Stem and leaf table."
-msgstr "Sortu zurtoin eta hosto taula bat"
+msgstr "Sortu Zurtoin eta Hosto taula bat."
 
 msgctxt "Descriptives|"
 msgid "Color palette"
@@ -68,7 +68,7 @@ msgstr "Daltonikoa"
 
 msgctxt "Descriptives|"
 msgid "Colorblind Alt."
-msgstr "Alt. Daltonikoa"
+msgstr "Daltonikoa"
 
 msgctxt "Descriptives|"
 msgid "Viridis"
@@ -82,10 +82,9 @@ msgctxt "Descriptives|"
 msgid "Gray"
 msgstr "Grisa"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Boxplots"
-msgstr "Kutxa-diagrama"
+msgstr "Kutxa-diagramak"
 
 msgctxt "Descriptives|"
 msgid "Boxplot element"
@@ -105,11 +104,11 @@ msgstr "Erabili kolore paleta"
 
 msgctxt "Descriptives|"
 msgid "Label outliers"
-msgstr "Etiketatu muturretako balioak"
+msgstr "Etiketatu ezohiko balioak"
 
 msgctxt "Descriptives|"
 msgid "Graph above scatter plot"
-msgstr "Erakutsi sakabanaketa-diagramaren gainean"
+msgstr "Erakutsi barreiadura-diagramaren gainean"
 
 msgctxt "Descriptives|"
 msgid "Density"
@@ -125,7 +124,7 @@ msgstr "Bat ere ez"
 
 msgctxt "Descriptives|"
 msgid "Graph right of scatter plot"
-msgstr "Erakutsi sakabanaketa-diagramaren eskuineko aldean"
+msgstr "Erakutsi barreiadura-diagramaren eskuineko aldean"
 
 msgctxt "Descriptives|"
 msgid "Add regression line"
@@ -153,7 +152,7 @@ msgstr "Oinarrizko Grafikoak"
 
 msgctxt "Descriptives|"
 msgid "Distribution plots"
-msgstr "Sakabanatze-diagramak"
+msgstr "Banaketa-diagramak"
 
 msgctxt "Descriptives|"
 msgid "Display density"
@@ -169,7 +168,7 @@ msgstr "QQ-grafikoak"
 
 msgctxt "Descriptives|"
 msgid "Pie charts"
-msgstr "Sektore-grafikoak"
+msgstr "Sektore-diagramak"
 
 msgctxt "Descriptives|"
 msgid "Statistics"
@@ -183,7 +182,6 @@ msgctxt "Descriptives|"
 msgid "Cut points for: "
 msgstr "Ebaki puntuak honetarako: "
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid " equal groups"
 msgstr " talde berdinak"
@@ -224,25 +222,22 @@ msgctxt "Descriptives|"
 msgid "Std. deviation"
 msgstr "Desbideratze estandarra"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "MAD"
-msgstr "MAD"
+msgstr "MDA (MAD)"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "MAD robust"
-msgstr "MAD sendoa"
+msgstr "MAD (MDA) sendoa"
 
 msgctxt "Descriptives|"
 msgid "IQR"
-msgstr "Koartilarteko heina"
+msgstr "KH (Koartilarteko heina)"
 
 msgctxt "Descriptives|"
 msgid "Variance"
 msgstr "Bariantza"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Range"
 msgstr "Heina"
@@ -319,17 +314,14 @@ msgctxt "Descriptives|"
 msgid "Scott"
 msgstr "Scott"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Doane"
 msgstr "Doane"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Freedman-Diaconis"
 msgstr "Freedman-Diaconis"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Manual"
 msgstr "Esku-liburua"
@@ -338,12 +330,10 @@ msgctxt "Descriptives|"
 msgid "Number of bins"
 msgstr "Zati edo tarte kopurua"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Interval plots"
 msgstr "Tarte-diagramak"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Coefficient of variation"
 msgstr "Aldakuntza-koefizientea"
@@ -372,12 +362,10 @@ msgctxt "Descriptives|"
 msgid "Sample size"
 msgstr "Laginaren tamaina"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Valid"
 msgstr "Baliozkoa"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Missing"
 msgstr "Falta da"
@@ -402,10 +390,9 @@ msgctxt "Descriptives|"
 msgid "Relative text size"
 msgstr "Testuaren tamaina erlatiboa"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Width to height ratio of tiles"
-msgstr "Teilen zabalera-altuera erlazioa"
+msgstr "Teilen zabalera-altuera ratioa"
 
 msgctxt "Descriptives|"
 msgid "Statistic to plot"
@@ -427,10 +414,9 @@ msgctxt "Descriptives|"
 msgid "For nominal and ordinal variables"
 msgstr "Aldagai nominal eta ordinaletarako"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Scatter plots"
-msgstr "Sakabanatze grafikoak"
+msgstr "Barreiadura-diagramak"
 
 msgctxt "Descriptives|"
 msgid "Tile heatmaps for selected variables"
