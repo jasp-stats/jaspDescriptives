@@ -114,17 +114,11 @@ Form
 			title: qsTr("Central tendency")
 			infoLabel: qsTr("Central Tendency (only for continuous variables)")
 
-			CheckBox { name: "mode";			label: qsTr("Mode");	info: qsTr("Mode of the data points; if more than one mode exists, only the first is reported. For nominal and ordinal data, the mode is the most frequent observed value. For continuous data, the mode is the value with highest density estimate (see 'Distribution Plots' -> 'Display density'). If a footnote about multimodality for continuous variables is reported, we recommend visualizing the data to check for multimodality.")	}
-			CheckBox { name: "median";			label: qsTr("Median");	info: qsTr("Median of the data points.")					}
-
-			Group
-			{
-				title: qsTr("Mean")
-				infoLabel: qsTr("Sample mean.")
-				CheckBox { name: "meanArithmetic";	label: qsTr("Arithmetic");	info: qsTr("Arithmetic mean of the data points; otherwise also colloquially called 'the mean' or 'the average'. Calculated as the sum of all data points divided by the number of data points.") ;	checked: true		}
-				CheckBox { name: "meanGeometric";	label: qsTr("Geometric");	info: qsTr("Geometric mean of the data points; defined only for strictly positive variables. Calculated as the product of all data points, raised to the power of 1 divided by the number of points (the n-th root of the product).");	checked: false	}
-				CheckBox { name: "meanHarmonic";	label: qsTr("Harmonic");	info: qsTr("Harmonic mean of the data points; defined only for strictly positive variables. Calculated as the number of data points divided by the sum of the reciprocals of the data points.");	checked: false	}
-			}
+			CheckBox { name: "mode";			label: qsTr("Mode");				info: qsTr("Mode of the data points; if more than one mode exists, only the first is reported. For nominal and ordinal data, the mode is the most frequent observed value. For continuous data, the mode is the value with highest density estimate (see 'Distribution Plots' -> 'Display density'). If a footnote about multimodality for continuous variables is reported, we recommend visualizing the data to check for multimodality.")	}
+			CheckBox { name: "median";			label: qsTr("Median");				info: qsTr("Median of the data points.")					}
+			CheckBox { name: "meanArithmetic";	label: qsTr("Mean (arithmetic)");	info: qsTr("Arithmetic mean of the data points; otherwise also colloquially called 'the mean' or 'the average'. Calculated as the sum of all data points divided by the number of data points.") ;	checked: true		}
+			CheckBox { name: "meanGeometric";	label: qsTr("Mean (geometric)");	info: qsTr("Geometric mean of the data points; defined only for strictly positive variables. Calculated as the product of all data points, raised to the power of 1 divided by the number of points (the n-th root of the product).");	checked: false	}
+			CheckBox { name: "meanHarmonic";	label: qsTr("Mean (harmonic)");		info: qsTr("Harmonic mean of the data points; defined only for strictly positive variables. Calculated as the number of data points divided by the sum of the reciprocals of the data points.");	checked: false	}
 
 		}
 
