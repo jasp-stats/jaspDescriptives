@@ -434,12 +434,12 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if (options$missing)                        stats$addColumnInfo(name="Missing",                     title=gettext("Missing"),                 type="integer")
   if (options$mode)                           stats$addColumnInfo(name="Mode",                        title=gettext("Mode"),                    type="mixed")
   if (options$median)                         stats$addColumnInfo(name="Median",                      title=gettext("Median"),                  type="number")
-  if (options$meanArithmetic)                 stats$addColumnInfo(name="MeanArithmetic",              title=gettext("Arithmetic Mean"), 				type="number")
-  if (options$seMean)                         stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of A. Mean"),      type="number")
+  if (options$meanArithmetic)                 stats$addColumnInfo(name="MeanArithmetic",              title=gettext("Mean (arithmetic)"),       type="number")
+  if (options$seMean)                         stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of A. Mean"),   type="number")
   if (options$meanCi) {                       stats$addColumnInfo(name="MeanCILB",                    title=meanCiLbTitle,                      type="number", overtitle = meanCiOvertitle)
                                               stats$addColumnInfo(name="MeanCIUB",                    title=meanCiUbTitle,                      type="number", overtitle = meanCiOvertitle)}
-  if (options$meanGeometric)                  stats$addColumnInfo(name="MeanGeometric",               title=gettext("Geometric Mean"),          type="number")
-  if (options$meanHarmonic)                   stats$addColumnInfo(name="MeanHarmonic",                title=gettext("Harmonic Mean"),           type="number")
+  if (options$meanGeometric)                  stats$addColumnInfo(name="MeanGeometric",               title=gettext("Mean (geometric)"),        type="number")
+  if (options$meanHarmonic)                   stats$addColumnInfo(name="MeanHarmonic",                title=gettext("Mean (harmonic)"),         type="number")
   if (options$sd)                             stats$addColumnInfo(name="Std. Deviation",              title=gettext("Std. Deviation"),          type="number")
   if (options$sdCi) {                         stats$addColumnInfo(name="SdCILB",                      title=sdCiLbTitle,                        type="number", overtitle = sdCiOvertitle)
                                               stats$addColumnInfo(name="SdCIUB",                      title=sdCiUbTitle,                        type="number", overtitle = sdCiOvertitle)}
