@@ -17,6 +17,7 @@
 
 DescriptivesInternal <- function(jaspResults, dataset, options) {
 
+
   variables     <- unlist(options[["variables"]])
   variableTypes <- options[["variables.types"]]
 
@@ -2373,11 +2374,17 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   errorMessage <- .descriptivesCheckPlotErrors(dataset, c(variable, countVar),
                                                     obsAmount = "< 2")
 
-  if (ncol(dataset) == 1) {
+  if (options[["paretoAddCountVariable"]] == "") {
     # single column as vector
     column <- dataset[[variable]]
     column <- column[!is.na(column)]
-  } else {
+  } else { # there is a count variable
+    # check error for the x avriable
+    # the x variable can only have unique values
+    if (length(unique(dataset[[variable]])) != nrow(dataset)) {
+      parPlot$setError(gettext("The variable used for categories must not have duplicated values when a count variable is specified."))
+      return(parPlot)
+    }
     # check errors for the count variable
     if (variable == options[["paretoAddCountVariable"]]) {
       parPlot$setError(gettext("The variable used for counts must be different from the variable used for categories."))
