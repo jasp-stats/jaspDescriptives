@@ -17,7 +17,6 @@
 
 DescriptivesInternal <- function(jaspResults, dataset, options) {
 
-
   variables     <- unlist(options[["variables"]])
   variableTypes <- options[["variables.types"]]
 
@@ -2519,7 +2518,8 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
   # posssible turn the x-axis labels
   if (options[["paretoPlotTurnXAxisLabels"]]) {
-    maxChars <- max(nchar(levels(tb$level)))
+    levs <- decodeColNames(levels(tb$level))
+    maxChars <- max(nchar(levs))
     titlePad <- max(10, min(40, ceiling(maxChars * 0.6)))  # space to the title
     tickPad  <- 8  # space from ticks to labels (pts) — bump to taste
 
