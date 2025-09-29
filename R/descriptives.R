@@ -2423,7 +2423,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   scaleRight <- max(tb$cums) / max(yBreaks)
 
   # --- Unified Pareto line + guides (left axis = % when shifted) ---
-  shift    <- isTRUE(options[["paretoShiftAccumulationLine"]])
+  shift    <- options[["paretoShiftAccumulationLine"]]
   tot      <- sum(tb$Freq)
   cumC     <- cumsum(tb$Freq)
   cumP     <- cumC / tot * 100
@@ -2435,12 +2435,18 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   # After you build tb (already sorted by Freq desc):
   tb$level <- factor(tb$level, levels = tb$level)  # lock global order
 
+  if (shift) {
+    yLabel <- gettext("Percentage (%)")
+  } else {
+    yLabel <- gettext("Counts")
+  }
+
   # Bars: don't use reorder() anymore
   yBar <- if (shift) tb$Freq / tot * 100 else tb$Freq
   p <- ggplot2::ggplot(tb, ggplot2::aes(x = level, y = yBar)) +
     ggplot2::geom_col(fill = "grey", col = "black", width = 0.9) +
     ggplot2::xlab(variable) +
-    ggplot2::ylab(if (shift) "Percentage (%)" else gettext("Counts")) +
+    ggplot2::ylab(yLabel) +
     ggplot2::scale_x_discrete(limits = levels(tb$level), drop = FALSE)
 
   # Line: use the same x
@@ -2461,12 +2467,12 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       position = if (shift) ggplot2::position_nudge(x = edgeShift) else "identity"
     ) +
     ggplot2::scale_y_continuous(
-      name   = if (shift) "Percentage (%)" else "Counts",
+      name   = yLabel,
       breaks = if (shift) seq(0, 100, 20) else yBreaks,
       limits = if (shift) c(0, 100) else range(yBreaks),
       sec.axis = ggplot2::sec_axis(
         transform = if (shift) ~ . * tot / 100 else ~ . * scaleRight,
-        name      = if (shift) "Counts" else "Percentage (%)",
+        name      = if (shift) gettext("Counts") else gettext("Percentage (%)"),
         breaks    = if (shift) cntBreaks else seq(0, 100, 20)
       )
     ) +
@@ -2475,7 +2481,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     ggplot2::theme(plot.margin = ggplot2::margin(5))
 
   # Pareto-rule guides (e.g., 95%) – vertical up from x-axis, then toward the % axis
-  if (isTRUE(options[["paretoPlotRule"]])) {
+  if (options[["paretoPlotRule"]]) {
     perc   <- options[["paretoPlotRuleCi"]]   # e.g., 0.95
     target <- perc * 100                      # % value
 
