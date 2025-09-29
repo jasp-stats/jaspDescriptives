@@ -302,7 +302,8 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     if (is.null(jaspResults[["paretoPlots"]])) {
       jaspResults[["paretoPlots"]] <- createJaspContainer(gettext("Pareto Plots"))
       jaspResults[["paretoPlots"]]$dependOn(c("paretoPlot", "splitBy", "paretoPlotRule", "paretoPlotRuleCi",
-                                              "paretoShiftAccumulationLine", "paretoAddCountVariable"))
+                                              "paretoShiftAccumulationLine", "paretoAddCountVariable",
+                                              "paretoPlotTurnXAxisLabels"))
       jaspResults[["paretoPlots"]]$position <- 15
     }
 
@@ -2436,7 +2437,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   tb$level <- factor(tb$level, levels = tb$level)  # lock global order
 
   if (shift) {
-    yLabel <- gettext("Percentage (%)")
+    yLabel <- gettextf("Percentage (%%)")
   } else {
     yLabel <- gettext("Counts")
   }
@@ -2472,7 +2473,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       limits = if (shift) c(0, 100) else range(yBreaks),
       sec.axis = ggplot2::sec_axis(
         transform = if (shift) ~ . * tot / 100 else ~ . * scaleRight,
-        name      = if (shift) gettext("Counts") else gettext("Percentage (%)"),
+        name      = if (shift) gettext("Counts") else gettextf("Percentage (%%)"),
         breaks    = if (shift) cntBreaks else seq(0, 100, 20)
       )
     ) +
@@ -2516,7 +2517,23 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       )
   }
 
+  # posssible turn the x-axis labels
+  if (options[["paretoPlotTurnXAxisLabels"]]) {
+    maxChars <- max(nchar(levels(tb$level)))
+    titlePad <- max(10, min(40, ceiling(maxChars * 0.6)))  # space to the title
+    tickPad  <- 8  # space from ticks to labels (pts) — bump to taste
 
+    p <- p +
+      ggplot2::theme(
+        axis.text.x  = ggplot2::element_text(
+          angle  = 45, hjust = 1, vjust = 1,
+          margin = ggplot2::margin(t = tickPad)   # <-- key line
+        ),
+        axis.title.x = ggplot2::element_text(margin = ggplot2::margin(t = titlePad)),
+        plot.margin  = ggplot2::margin(t = 5, r = 5, b = titlePad + tickPad + 6, l = 5)
+      ) +
+      ggplot2::coord_cartesian(clip = "off")
+  }
 
   return(p)
 

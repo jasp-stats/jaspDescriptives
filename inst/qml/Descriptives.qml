@@ -370,6 +370,13 @@ Form
 									+ "When enabled, the left y-axis shows percentages and the right y-axis shows counts; otherwise, the left y-axis shows counts and the right y-axis shows percentages.")
 				}
 
+				CheckBox
+				{
+					name: "paretoPlotTurnXAxisLabels"
+					label: qsTr("Turn x-axis labels")
+					info: qsTr("Turns the x-axis labels by 45 degrees to improve readability when there are many long levels.")
+				}
+
 				DropDown
 				{
 					visible: paretoAddCountVariable.checked
@@ -382,7 +389,7 @@ Form
 										+ "This is useful when the data are already aggregated (e.g., each row represents a category with an associated frequency). "
 										+ "If left empty, counts are calculated directly from the selected variable.")
 				}
-				
+
 				
 			}
 
