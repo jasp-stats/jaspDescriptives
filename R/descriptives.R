@@ -38,7 +38,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     # Actually remove missing values from the split factor
     splitFactor <- na.omit(splitFactor)
     # create a list of datasets, one for each level
+    # special case pareto plot could have a count variable
+    if (options[["paretoAddCountVariable"]] != "") variables <- c(variables, options[["paretoAddCountVariable"]])
     splitDat <- split(dataset[variables], splitFactor)
+
   }
 
   .descriptivesDescriptivesTable(dataset, options, jaspResults, numberMissingSplitBy = numberMissingSplitBy)
@@ -294,9 +297,12 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
   # Pareto plots
   if (options[["paretoPlot"]]) {
+
     if (is.null(jaspResults[["paretoPlots"]])) {
       jaspResults[["paretoPlots"]] <- createJaspContainer(gettext("Pareto Plots"))
-      jaspResults[["paretoPlots"]]$dependOn(c("paretoPlot", "splitBy", "paretoPlotRule", "paretoPlotRuleCi"))
+      jaspResults[["paretoPlots"]]$dependOn(c("paretoPlot", "splitBy", "paretoPlotRule", "paretoPlotRuleCi",
+                                              "paretoShiftAccumulationLine", "paretoAddCountVariable",
+                                              "paretoPlotTurnXAxisLabels"))
       jaspResults[["paretoPlots"]]$position <- 15
     }
 
@@ -2350,8 +2356,8 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       plotResult[[i]] <- .descriptivesParetoPlots_SubFunc(dataset[[i]], variable, i, options)
       plotResult[[i]]$dependOn(optionsFromObject = plotResult)
     }
-
     return(plotResult)
+
   } else {
     pPlot <- .descriptivesParetoPlots_SubFunc(dataset, variable, variable, options)
     pPlot$dependOn(options = "splitBy", optionContainsValue = list(variables = variable))
@@ -2363,9 +2369,30 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 .descriptivesParetoPlots_SubFunc <- function(dataset, variable, title, options) {
   parPlot <- createJaspPlot(title = title, width = options[["plotWidth"]], height = options[["plotHeight"]])
 
-  errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 2")
-  column <- dataset[[variable]]
-  column <- column[!is.na(column)]
+  countVar <- if (options[["paretoAddCountVariable"]] != "") options[["paretoAddCountVariable"]] else NULL
+
+  errorMessage <- .descriptivesCheckPlotErrors(dataset, c(variable, countVar),
+                                                    obsAmount = "< 2")
+
+  if (options[["paretoAddCountVariable"]] == "") {
+    # single column as vector
+    column <- dataset[[variable]]
+    column <- column[!is.na(column)]
+  } else { # there is a count variable
+    # check error for the x avriable
+    # the x variable can only have unique values
+    if (length(unique(dataset[[variable]])) != nrow(dataset)) {
+      parPlot$setError(gettext("The variable used for categories must not have duplicated values when a count variable is specified."))
+      return(parPlot)
+    }
+    # check errors for the count variable
+    if (variable == options[["paretoAddCountVariable"]]) {
+      parPlot$setError(gettext("The variable used for counts must be different from the variable used for categories."))
+      return(parPlot)
+    }
+    column <- dataset[c(variable, options[["paretoAddCountVariable"]])]
+    column <- column[stats::complete.cases(column), , drop = FALSE]
+  }
   if (!is.null(errorMessage)) {
     parPlot$setError(gettextf("Plotting not possible: %s", errorMessage))
   } else if (length(column) > 0) {
@@ -2376,46 +2403,141 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesParetoPlots_Fill <- function(column, variable, options) {
-  tb <- as.data.frame(table(column))
-  tb <- tb[order(tb$Freq, decreasing = TRUE), ]
-  tb$cums <- cumsum(tb$Freq)
-  tb$cums <- 100 * tb$cums / tail(tb$cums, n = 1)
-  yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(0, tb$Freq))
-  scaleRight <- tail(tb$cums, n = 1) / tail(yBreaks, n = 1) # scaling factor for 2nd y axis & cumulative line
 
-  # Ordered distribution chart
-  p <- ggplot2::ggplot(data = data.frame(x = tb[, 1], y = tb[, 2]), ggplot2::aes(x = reorder(x, -y), y = y)) +
-    ggplot2::geom_bar(stat = "identity", fill = "grey", col = "black", size = .3) +
-    ggplot2::xlab(variable) +
-    ggplot2::ylab(gettext("Counts"))
-
-  # Adding Pareto Line
-  if (options[["paretoPlotRule"]]) {
-    perc <- options[["paretoPlotRuleCi"]]
-    absVal <- perc * 100 # to get absolute value of percentage
-    colOrdered <- as.numeric(tb$column[order(tb$column, decreasing = FALSE)])
-    interSec <- approx(colOrdered, tb$cums, n = 1000) # Finding x axis intersection at X%
-    interY <- which.min(abs(interSec$y - absVal))
-    interX <- interSec$x[interY]
-
-    p <- p + ggplot2::geom_segment(ggplot2::aes(x = interX, xend = (nrow(tb) + 0.5), y = (max(yBreaks) * perc), yend = (max(yBreaks) * perc)),
-      linetype = "dashed", color = "orange", size = 1.3
-    )
-    p <- p + ggplot2::geom_segment(ggplot2::aes(x = interX, xend = interX, y = 0, yend = (max(yBreaks) * perc)),
-      linetype = "dashed", color = "orange", size = 1.3
-    )
+  # Normalize input: either a vector OR a 2-col data.frame (category, COUNT)
+  if (is.data.frame(column) && ncol(column) == 2) {
+    tb <- data.frame(level = column[[1]], Freq = as.numeric(column[[2]]))
+  } else {
+    tab <- table(column, useNA = "no")
+    tb  <- data.frame(level = names(tab), Freq = as.numeric(tab))
   }
 
-  # Adding cumulative percentages
-  p <- p + ggplot2::geom_path(ggplot2::aes(y = tb[, 3] / scaleRight, group = 1), colour = "black", size = 1) +
-    ggplot2::geom_point(ggplot2::aes(y = tb[, 3] / scaleRight, group = 1), colour = "steelblue", size = 3) +
+  # Order & cumulative %
+  tb <- tb[order(tb$Freq, decreasing = TRUE), , drop = FALSE]
+  rownames(tb) <- NULL
+  tb$cums <- cumsum(tb$Freq)
+  tb$cums <- 100 * tb$cums / tail(tb$cums, 1)
+
+  # Shared quantities
+  yBreaks    <- jaspGraphs::getPrettyAxisBreaks(c(0, tb$Freq))
+  scaleRight <- max(tb$cums) / max(yBreaks)
+
+  # --- Unified Pareto line + guides (left axis = % when shifted) ---
+  shift    <- options[["paretoShiftAccumulationLine"]]
+  tot      <- sum(tb$Freq)
+  cumC     <- cumsum(tb$Freq)
+  cumP     <- cumC / tot * 100
+  xFac     <- factor(tb$level, levels = tb$level)
+  barWidth <- 0.9
+  edgeShift <- barWidth / 2
+  cntBreaks <- scales::pretty_breaks()(c(0, tot))
+
+  # After you build tb (already sorted by Freq desc):
+  tb$level <- factor(tb$level, levels = tb$level)  # lock global order
+
+  if (shift) {
+    yLabel <- gettextf("Percentage (%%)")
+  } else {
+    yLabel <- gettext("Counts")
+  }
+
+  # Bars: don't use reorder() anymore
+  yBar <- if (shift) tb$Freq / tot * 100 else tb$Freq
+  p <- ggplot2::ggplot(tb, ggplot2::aes(x = level, y = yBar)) +
+    ggplot2::geom_col(fill = "grey", col = "black", width = 0.9) +
+    ggplot2::xlab(variable) +
+    ggplot2::ylab(yLabel) +
+    ggplot2::scale_x_discrete(limits = levels(tb$level), drop = FALSE)
+
+  # Line: use the same x
+  yLine <- if (shift) cumP else tb$cums / scaleRight
+  dfL   <- data.frame(level = tb$level, y = yLine)
+
+  p <- p +
+    ggplot2::geom_line(
+      data = dfL,
+      ggplot2::aes(x = level, y = y, group = 1),
+      colour = "black", linewidth = 1, inherit.aes = FALSE,
+      position = if (shift) ggplot2::position_nudge(x = edgeShift) else "identity"
+    ) +
+    ggplot2::geom_point(
+      data = dfL,
+      ggplot2::aes(x = level, y = y),
+      colour = "steelblue", size = 3, inherit.aes = FALSE,
+      position = if (shift) ggplot2::position_nudge(x = edgeShift) else "identity"
+    ) +
     ggplot2::scale_y_continuous(
-      breaks = yBreaks, limits = range(yBreaks), oob = scales::rescale_none,
-      sec.axis = ggplot2::sec_axis(~ . * scaleRight, name = "Percentage (%)", breaks = seq(0, 100, 20))
+      name   = yLabel,
+      breaks = if (shift) seq(0, 100, 20) else yBreaks,
+      limits = if (shift) c(0, 100) else range(yBreaks),
+      sec.axis = ggplot2::sec_axis(
+        transform = if (shift) ~ . * tot / 100 else ~ . * scaleRight,
+        name      = if (shift) gettext("Counts") else gettextf("Percentage (%%)"),
+        breaks    = if (shift) cntBreaks else seq(0, 100, 20)
+      )
     ) +
     jaspGraphs::geom_rangeframe(sides = "rbl") +
     jaspGraphs::themeJaspRaw() +
     ggplot2::theme(plot.margin = ggplot2::margin(5))
+
+  # Pareto-rule guides (e.g., 95%) – vertical up from x-axis, then toward the % axis
+  if (options[["paretoPlotRule"]]) {
+    perc   <- options[["paretoPlotRuleCi"]]   # e.g., 0.95
+    target <- perc * 100                      # % value
+
+    # find crossing on the cumulative % curve
+    k <- which(cumP >= target)[1]
+    xPos <- if (is.na(k) || k <= 1) {
+      if (shift) edgeShift else 1
+    } else {
+      p0 <- cumP[k - 1]; p1 <- cumP[k]
+      base <- (k - 1) + (target - p0) / (p1 - p0)
+      if (shift) base + edgeShift else base
+    }
+
+    # y height in *left-axis* units
+    # - shifted: left axis is %, so use target directly
+    # - normal : left axis is counts; map % -> left via scaleRight
+    yGuideLeft <- if (shift) target else perc * max(yBreaks)
+
+    # horizontal endpoint on the side where % axis lives
+    xEnd <- if (shift) 0.5 else length(levels(tb$level)) + 0.5
+
+    p <- p +
+      # vertical from x-axis up to the % height
+      ggplot2::geom_segment(
+        ggplot2::aes(x = xPos, xend = xPos, y = 0, yend = yGuideLeft),
+        linetype = "dashed", color = "orange", linewidth = 1.3, inherit.aes = FALSE
+      ) +
+      # horizontal from the crossing toward the % axis side
+      ggplot2::geom_segment(
+        ggplot2::aes(x = xPos, xend = xEnd, y = yGuideLeft, yend = yGuideLeft),
+        linetype = "dashed", color = "orange", linewidth = 1.3, inherit.aes = FALSE
+      )
+  }
+
+  # posssible turn the x-axis labels
+  if (options[["paretoPlotTurnXAxisLabels"]]) {
+    levs <- decodeColNames(levels(tb$level))
+    maxChars <- max(nchar(levs))
+    titlePad <- max(10, min(40, ceiling(maxChars * 0.6)))  # space to the title
+    tickPad  <- 8  # space from ticks to labels (pts) — bump to taste
+
+    p <- p +
+      ggplot2::theme(
+        axis.text.x  = ggplot2::element_text(
+          angle  = 45, hjust = 1, vjust = 1,
+          margin = ggplot2::margin(t = tickPad)   # <-- key line
+        ),
+        axis.title.x = ggplot2::element_text(margin = ggplot2::margin(t = titlePad)),
+        plot.margin  = ggplot2::margin(t = 5, r = 5, b = titlePad + tickPad + 6, l = 5)
+      ) +
+      ggplot2::coord_cartesian(clip = "off")
+  }
+
+  return(p)
+
+
 }
 
 .descriptivesDensityPlots <- function(container, dataset, variables, options) {
