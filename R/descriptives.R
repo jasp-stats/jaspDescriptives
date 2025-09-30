@@ -2646,3 +2646,4 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
   container[[plotName]] <- densPlot
 }
+
