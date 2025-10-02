@@ -1,0 +1,4313 @@
+msgid ""
+msgstr ""
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > "
+"19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? "
+"1 : 2);\n"
+"X-Qt-Contexts: true\n"
+
+msgctxt "Description|"
+msgid "Descriptives"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Descriptive Statistics"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Variables"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Split"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Frequency tables"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Maximum distinct values"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Stem and leaf tables"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "scale"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"The scale parameter controls how much the table is expanded. For example, "
+"scale = 2 will cause the table to be roughly twice as long as the default "
+"(scale = 1)."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Boxplots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Boxplot element"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Violin element"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Jitter element"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Use color palette"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Label outliers"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Graph above scatter plot"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Density"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Histogram"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "None"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Graph right of scatter plot"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Add regression line"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Smooth"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Linear"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Show confidence interval"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Show legend"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Basic Plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Distribution plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Display density"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Correlation plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Q-Q plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Pie charts"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Statistics"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Quartiles"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Cut points for: "
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid " equal groups"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Percentiles:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Central tendency"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Mean"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Median"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Mode"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Sum"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Dispersion"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "S.E. mean"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Std. deviation"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "MAD"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "MAD robust"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "IQR"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Variance"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Range"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Minimum"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Maximum"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Distribution"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Skewness"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Kurtosis"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Shapiro-Wilk test"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Values are group midpoints"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Display rug marks"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Bin width type"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Sturges"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Scott"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Doane"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Freedman-Diaconis"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Manual"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Number of bins"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Interval plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Coefficient of variation"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Explore the data with tables and plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Transpose descriptives table"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Customizable Plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Dot plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Quantiles"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Sample size"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Valid"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Missing"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Horizontal axis:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Vertical axis:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Display legend"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Display value"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Relative text size"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Width to height ratio of tiles"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "For scale variables"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Value itself"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Number of observations"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "For nominal and ordinal variables"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Scatter plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Tile heatmaps for selected variables"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Tables"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Categorical Plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Pareto plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Pareto rule"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Likert plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Assume all variables share the same levels"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Adjustable font size for vertical axis"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Normal"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Small"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Medium"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Large"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Transparency"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Inference"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Confidence interval for mean"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Width"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Method"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Normal model"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Bootstrap"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Confidence interval for std. deviation"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Confidence interval for variance"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Bootstrap confidence interval options"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Bootstrap samples"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "T model"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Frequency plots"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Separate frequencies:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "How to combine separate frequencies"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Stack"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Identity"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Dodge"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Time Series Descriptives"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid ""
+"Time Series Descriptives allows the user to obtain descriptive statistics "
+"and descriptive plots for univariate time-series."
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Variable"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "A variable that is measured repeatedly over time."
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Time"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid ""
+"Optional. Can either be an ordinal variable indicating the order of the "
+"observations, or a text variable indicating the date/time stamp of the "
+"observations. Combined date and time values should be in the standard format "
+"'YYYY-MM-DD HH:MM:SS', where seconds (':SS') can also be omitted. Date-only "
+"values should be in the format 'YYYY-MM-DD'. If a time variable is not "
+"supplied, the row order of the data is used."
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Transpose descriptives table"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Filter by"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid ""
+"Filters the time series so only a specific range will be used for further "
+"analyses. Row number refers to the row number in the spreadsheet. If a "
+"'Time' variable is supplied it is also possible to filter by time index or "
+"date, depending on the format of the 'Time' variable."
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Row number"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Start"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "End"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Time index"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Date"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Plots"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Time series plot"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Plots the dependent variable (y-axis) over time (x-axis)."
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Points"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Line"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Both"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Distribution"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Density"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Histogram"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "None"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Lag plot"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid ""
+"Plots the dependent variable (y-axis) against a lagged version of itself (x-"
+"axis). The lag stands for the amount of observations in between the "
+"dependent variable and the lagged version of itself. The regression line is "
+"the autoregression at the specified lag."
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Lag"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Add regression line"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Smooth"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Linear"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Confidence interval"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Autocorrelation function"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Maximum lag"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Zero lag"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid ""
+"Plots the autocorrelation for a specified number of lags. The confidence "
+"interval may be given assuming either a white noise process, or assuming for "
+"a lag q a moving average process of order q - 1."
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Based on white noise"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Based on moving average"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Partial autocorrelation function"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Plots the partial autocorrelation for a specified number of lags."
+msgstr ""
+
+msgctxt "Description|"
+msgid "Flexplot"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Dependent Variable"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Independent Variable(s)"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Paneled Variable(s)"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Options"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Point transparency"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Jitter in X"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Jitter in Y"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Plot confidence bands"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Loess"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Regression"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Quadratic"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Cubic"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "None"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Fitted line (scatterplots)"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Quartiles"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Standard deviations"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Intervals (categorical predictors)"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "JASP"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Black and white"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Minimal"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Classic"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Dark"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "GGplot theme"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "GGplot Default"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Nature"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "AAAS"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Lancet"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "JCO"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Color Palette"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Convert to grayscale"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Ghost lines"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Plot Labels"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "X Axis Label"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Y Axis Label"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Legend Label"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Column Panel Label"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Row Panel Label"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Association matrix"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Covariance"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Correlation"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Use"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Everything"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Complete observations"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Pairwise compelete observations"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Raincloud Plots"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid ""
+"Flexplot allows the user to create graphical displays of data, using "
+"barcharts and histograms for univariate data, and various different types of "
+"scatterplots for bivariate and multivariate data."
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "References"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Example"
+msgstr ""
+
+#, qt-format
+msgctxt "FlexplotForm|"
+msgid "For more details about flexplot in JASP, watch this %1videa%2"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Input"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid ""
+"The variable of interest. This is also called the outcome variable. If only "
+"an outcome variable is specified, Flexplot will produce a histogram for "
+"numeric data and a barchart for categorical data. If independent variable(s) "
+"and/or panelled variable(s) are specified, this variable will be displayed "
+"on the Y axis."
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid ""
+"The variable(s) for which we wish to visually assess relationships with the "
+"DV. The first variable chosen shows up on the X axis, either as a "
+"scatterplot (for numeric predictors) or as a beeswarm plot (for categorical "
+"variables). The second variable chosen will show up as different colors/"
+"lines/symbols. If the second varaible chosen is numeric, it will be binned "
+"first."
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid ""
+"Variables specified in these boxes will be binned (if numeric) then "
+"displayed as different subplots. The first variable specified as a panelled "
+"variable will form the column plots, while the second will form the row "
+"plots."
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Point controls"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "The degree of transparency of the dots in the graphics"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid ""
+"The maximal amount of \"jittering\" used on the X axis to remove overlap "
+"between datapoints. The maximal amount of jittering is proportional to the "
+"density of the data. In other words, the maximum jittering will occur at the "
+"mode of the dataset, and little to no jittering will occur in locations "
+"where there is no overlap."
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid ""
+"The maximal amount of \"jittering\" used on the Y axis to remove overlap "
+"between datapoints. The maximal amount of jittering is proportional to the "
+"density of the data. In other words, the maximum jittering will occur at the "
+"mode of the dataset, and little to no jittering will occur in locations "
+"where there is no overlap."
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Visual Statistics"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Should 95% confidence intervals be displayed?"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "A non-parametric loess line"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "A straight (regression) line"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid ""
+"A line that includes both a linear effect and a quadratic (squared) term"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "A line that includes a linear, squared, and cubed term"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "No line"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid ""
+"The type of fitted line displayed when the x axis is a numeric variable. "
+"These can be one of the following:"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid ""
+"Horizontal lines are displayed at the 25/75th percentiles, with a dot for "
+"the median"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid ""
+"Horizontal lines are displayed at +1/-1 standard deviations from the mean, "
+"with a dot for the mean"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Other Plot Controls"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid ""
+"the type of GGplot theme to use when displaying the data. Can be one of the "
+"following:"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid ""
+"Ghost lines are a visual aid that can be used when doing panelled plots. "
+"Ghost lines simply repeat the fitted line from one panel across the other "
+"panels to make it easier to make comparisons across panels."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Descriptives allows the user to obtain basic descriptive statistics, "
+"histograms and density plots, correlation plots, boxplots, and frequency "
+"tables."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "References"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "R Packages"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Input"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "All variables of interest."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Can be split by a categorical variable such as experimental condition."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Tranposes the main table"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Percentile Values"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Displays the 25th, 50th, and 75th percentiles of the data points."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Cut points for x equal groups"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Displays the cut points that divide the data into x equal groups; default is "
+"4 equal groups."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Displays the xth percentile; percentile values must be separated by comma."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Central Tendency (only for continuous variables)"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Mode of the data points; if more than one mode exists, only the first is "
+"reported. For nominal and ordinal data, the mode is the most frequent "
+"observed value. For continuous data, the mode is the value with highest "
+"density estimate (see 'Distribution Plots' -> 'Display density'). If a "
+"footnote about multimodality for continuous variables is reported, we "
+"recommend visualizing the data to check for multimodality."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Median of the data points."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Arithmetic mean of the data points"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Skewness of the distribution of the data points."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Kurtosis of the distribution of the data points."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Sum of the data points."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Dispersion (only for continuous variables)"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Standard deviation of the data points."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"The Coefficient of variation gives us the relative dispersion of the data, "
+"in contrast to the standard deviation, which gives the absolute dispersion. "
+"For this purpose, the standard deviation is divided by the mean value, so "
+"that the unit is truncated away."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Median absolute deviation of the data points."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Median absolute deviation of the data points, adjusted by a factor for "
+"asymptotically normal consistency."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Interquartile range of the data points; 75th percentile - 25th percentile."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Variance of the data points."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Range of the data points; maximum - minimum."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Minimum value of the data points."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Maximum value of the data points."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Standard error of the mean."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "width of the confidence interval."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"a confidence interval for the standard deviation based on bootstrap samples."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "a confidence interval for the variance based on bootstrap samples."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "the number of bootstrap samples to be used."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Covariance value."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Pearson's correlation coefficient."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "How to deal with missing values?"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "use all observations, resulting in NA when there are missing values."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"missing values are handled by casewise deletion (i.e., only use rows of the "
+"data set that are complete)."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"use all complete pairs of observations on those variables. This can result "
+"in covariance or correlation matrices which are not positive semi-definite."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"For continuous variables, displays a histogram and the fit of a "
+"nonparametric density estimator. For nominal and ordinal variables, displays "
+"a frequency distribution."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Displays a matrix of plots between continuous variables, with scatterplots "
+"between the variables in the off-diagonal entries, and histograms and "
+"density plots in the diagonal entries. The line represents the fit of a 1st, "
+"2nd, 3rd, or 4th order polynomial (the selection is based on the Bayesian "
+"information criterion; Schwarz, 1978)."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Displays the counts of each factor/level within the variable in a descending "
+"order. The y-axis represents the frequency (counts as grey bars) of each "
+"factor/level, the x-axis represents the factors/levels of the variable in an "
+"ordered sequence."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"By default, a cumulative line is drawn indicating the proportional "
+"contribution of each factor. A second vertical axis to the right side of the "
+"graph scales with this cumulative line and represents percentages to enable "
+"the description of the cumulative line."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"If \"Pareto rule\" is enabled, the two new lines enable a more precise "
+"assessment of factor/level contribution to the overall contribution (in "
+"percent) by using different input numbers."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Displays a horizontally stacked bar chart showing the contribution of levels "
+"within a variable in percent. Order of levels depends on defined order in "
+"the JASP data table. A legend below the graph provides an overview of levels "
+"and their respective colors in the graph."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"The y-axis represents the variables used, the x-axis represents the "
+"percentages. Percentage contribution of all lower-order (below the middle "
+"level) and higher-order (above the middle level) levels are displayed on "
+"their respective side of the graph."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"The graph displays percentages on the x-axis as positive in both directions. "
+"Reason for the chosen display (in two directions) is the graphs usefulness "
+"in survey research where levels often follow a Likert based order (e.g., "
+"high - low, likely - unlikely, agreement - disagreement). Therefore, the "
+"graph contains a split between levels at their median."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"The number of variable levels determines the number of layers displayed. "
+"Layers represent the percentage distribution of the levels of the variable "
+"under investigation."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"If the variables contain an uneven amount of levels, the middle level is "
+"displayed as a grey block in the middle of the stacked bar with its "
+"percentage contribution on top."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"For continuous variables, displays a boxplot. Optionally, the outliers are "
+"labelled. Outliers are based on the interquartile range (IQR), i.e., [25th "
+"percentile] - 1.5 × IQR and [75th percentile] + 1.5 × IQR. Can also display "
+"in color, and has selectable boxplot, violin, and jitter elements for "
+"displaying the distribution of the data. This can be split by a categorical "
+"variable such as experimental condition."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Frequency Tables (nominal and ordinal variables)"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Displays a frequency table for each variable."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Displays the spread of a variable."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Stem: the first digit(s)."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Leaf: the first digit after the stem."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"The output is a raincloud plot for each dependent variable. Optionally, "
+"there is a table with statistics for each plot."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"How can I re-use my elaborate, customized plot settings for a different "
+"dataset?"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"Suppose that you have two datasets A and B (in separate JASP files) for "
+"which you want to create the same raincloud plot.<br>Further, suppose that "
+"you already have a raincloud plot for dataset A and now you want the same "
+"one for dataset B.<br>There are two ways in which you can achieve this "
+"without having to specify the custom plot settings all over again."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"1) If dataset B only has a different dependent variable but is otherwise "
+"identical,<br>then you can copy and paste this variable from the JASP file "
+"for dataset B into the JASP file for dataset A (see Edit Data header menu in "
+"JASP).<br>Next, select the newly created dependent variable in dataset A as "
+"an additional dependent variable for the raincloud plot."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"2) If dataset B is rather different from dataset A<br>(e.g. primary factor "
+"has different name and additional levels or there are fewer observations "
+"with different IDs),<br>then you have to take a different approach."
+"<br>First, make a copy of the JASP file for dataset A (called target file in "
+"the following).<br>Second, open this target file. It should show the "
+"raincloud plot as specified for dataset A.<br>Third, go to the Edit Data "
+"header menu and _delete the entire dataset A_.<br>Fourth, go to the JASP "
+"file for dataset B and copy-paste its data to the target file.<br>Fifth, "
+"choose the dependent variables, primary and secondary factor, covariate, and "
+"ID for the raincloud plot.<br>Importantly, though, all the other "
+"specifications like point spread or custom interval limits should still be "
+"present from the raincloud plot for dataset A."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "References"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Input"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Dependent Variables"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Select all the variables that you want to plot."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Primary Factor"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Its levels are shown on the x-axis (y-axis for horizontal plot)."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Secondary Factor"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Its levels are color coded."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Covariate"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Points are color coded according to this."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "ID"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"Select a participant/observation ID in your dataset, to connect individual "
+"observations (points) accross the levels of the primary factor. Otherwise, "
+"you do not need this."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "General"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Color palette"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "How to color code the levels of the secondary factor."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Covariate palette"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"How to color code the covariate. 'Viridis' works good for both discrete and "
+"continuous covariates."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Apply color palette to primary factor"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"Applies the color palette to the levels of the primary factor. Otherwise, "
+"the plot stays black and white.<br>This option is superseeded by a secondary "
+"factor; then color coding is according to that."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Horizontal plot"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"Plots the dependent variable axis horizontally, at the bottom of the plot."
+"<br>This is where the raincloud plot gets its name from: It will look like "
+"the points are raining from the violin and box (cloud)."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Table with statistics"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"Shows a table under the plot with statistics per cloud, like number of "
+"observations or median.<br>If you select 'Mean' or 'Interval around "
+"mean' (see Advanced Section), they will also be shown here."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"Shows the box statistics in the table: lower whisker, 25th percentile, "
+"median, 75th percentile, upper whisker.<br>It can be helpful to un-check "
+"this if you are also working with 'Interval around mean' (see Advanced "
+"Section)."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Cloud Elements"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Show violin"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"Whether or not the violin should be shown. If un-checked, opacity is set to "
+"0 and outline to 'none'."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Show box"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"Whether or not the box should be shown. If un-checked, opacity is set to 0 "
+"and outline to 'none'.<br>An interval around the mean disables the box "
+"altogether."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"Whether or not the points of a cloud should be shown. If un-checked, opacity "
+"is set to 0.<br>If you have many, many points, it can be helpful to hide "
+"them."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Element Settings"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Nudge"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"The nudge for violin, box, and point determines how far the elements are "
+"nudged from the center (axis tick).<br>By default, the box is in the center "
+"(nudge = 0) and the violin is nudged to the right. The points are nudged to "
+"the left of the box.<br>With a custom orientation (see Advanced section), "
+"the points get centered (nudge fixed to 0). Violin and box are nudged "
+"depending on orientation: left or right."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Height, Width, and Spread"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"These settings determine the respective properties of the elements:"
+"<br><br>How high should the violin peak? (Does not change the proportions of "
+"the probability density.)<br>With a custom orientation to the left (see "
+"Advanced Section), it can be helpful to decrease the height if the violin "
+"overlaps with axis ticks.<br><br>How wide should the box be?<br><br>How wide "
+"should the points spread? I.e., how jittered should they be along the x-axis "
+"(y-axis if horizontal plot?.<br>Note, that this still correctly shows the "
+"values of the points on the dependent variable axis.<br>(If you would also "
+"like y-jitter see the 'Jitter' option for points.)"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Box Padding"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"With a secondary factor, there will be a box for each factor level. With the "
+"padding, you can change the spacing between theses boxes.<br>Increasing the "
+"padding will - visually - decrease the box width. If you want to keep box "
+"width constant, also increase the box width."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Point Size"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "We recommend a greater size, the fewer points you have."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Opacity"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Increase this to _decrease_ the transparency of the respective element."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Outline and Outline Width"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"Would you like the outline to match the 'Color palette', be 'black', or have "
+"'none' at all?<br>The width determines how thick the outline is."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Violin Smoothing"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"This percentage determines the smoothness of the probability density.<br>The "
+"lower, the stronger it is influenced by the presence/absence of individual "
+"points."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Point Jitter"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"Use this with care!<br>It slightly jitters the points along the dependent "
+"variable axis. This means that the position of the points no longer matches "
+"the values of the observations.<br>If you want to have less overlap between "
+"the points while keeping an accurate visualization, increases the point "
+"spread.<br>Using point jitter can be useful in some cases. For example, if "
+"you are working with likert data."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "ID Lines Width"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Determines how thick the lines are."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Violin"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Height"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Outline"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "black"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "none"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Outline width"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Smoothing"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Box"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Width"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Padding"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Point"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Spread"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Size"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Jitter"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "ID lines"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Axes, Caption, and Plot Size"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Custom limits for dependent variable axis:"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"Use this with care!<br>If your dataset has observations that lie outside of "
+"the specified, the plot will be truncated and it will not show these "
+"observations.<br>The limits you specify may only be applied approximately. "
+"For further fine-tuning of the axis, click the title of the plot where it "
+"says the name of dependent variable.<br>Then select 'Edit Image' in the drop "
+"down menu and then go to the headers 'x-axis' or 'y-axis'."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "from"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "to"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"Limits may only be applied approximately.\n"
+"For further fine-tuning of the axis, click the title of the plot\n"
+"where it says the name of dependent variable.\n"
+"Then select 'Edit Image' in the drop down menu and\n"
+"then go to the headers 'x-axis' or 'y-axis'."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Show caption"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"The caption provides important information about the plot such as warnings, "
+"if there are any.<br>We strongly recommend to leave this checkbox checked "
+"and to only un-check it if you are otherwise happy with the plot and want to "
+"export it."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Plot Size: Width and Height"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"This also includes the legend (if there is color coding) and the caption."
+"<br>While you can also change the size of a JASP plot with your mouse, the "
+"precise specification of width and height allows you to exactly reproduce a "
+"plot."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Plot Size"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Advanced"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Mean"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Whether to also show a mean for each cloud."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Position"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"Use a 'Custom' position to have the mean placed inside of the box - even if "
+"you do not show the box.<br>In fact, the mean nudge and distance fields are "
+"synchronized with the box nudge and box fields, respectively.<br>Use the 'On "
+"axis ticks' position to have all means for each primary factor level on top "
+"of each other.<br>This can be useful if you want to show the change of "
+"secondary factor levels (e.g. groups) across the primary factor levels (e.g. "
+"time)."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Try different values to make your plot especially pretty."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Mean Lines: Width"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "See outline width of box and violin as well as ID lines width."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Custom"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Distance"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "On axis ticks"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Connect means with lines"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Interval around mean"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"Whether to also show an interval around the mean.<br>This hides and disables "
+"the box."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Confidence interval"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Interval line width"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Determines the thickness of the interval lines."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Width of interval whiskers depends on mean distance."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Custom Cloud Orientation, Mean Interval Limits, and Cloud Color"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "How many clouds are currently shown?"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"To apply custom cloud orientation or custom mean intervals, you first must "
+"specify the number of clouds that are currently shown in the plot.<br>If the "
+"number you entered does not match the number of clouds in the plot, the plot "
+"caption will show a warning and you can correct your entry.<br>The number "
+"you specify determines the number of rows in the table."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"In the table, you can then specify the custom orientation ('L' vs. 'R') for "
+"each cloud as well as custom lower and upper interval limits for each mean."
+"<br>Make sure to also check the corresponding checkboxes 'Apply custom "
+"orientation' or 'Apply custom mean interval limits'.<br>Otherwise, your "
+"input into the table will not be applied."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"The order in which the rows of the table are mapped to the clouds in the "
+"plot is as follows:<br>Suppose, there are three times of measurement "
+"(primary factor): pre, post, and follow-up.<br>Further, there are two "
+"species (secondary factor): alpha and beta.<br>This means that there are 6 "
+"clouds, in the following order:<br>pre-alpha<br>pre-beta<br>post-"
+"alpha<br>post-beta<br>follow-up-alpha<br>follow-up-beta<br><br>In this "
+"example you could now specify the odd rows as 'L' and the even rows as 'R'."
+"<br>That way, at each time point, the left cloud would be alpha and the "
+"right cloud would be beta."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"If you have a 2x2 design (e.g. no follow-up in as primary factor), then a "
+"useful custom orientation could be LLRR.<br>That way, both the alpha and the "
+"beta cloud at time point pre would be left and at time point they would be "
+"right.<br>Combine this with ID input to connect the individual observations "
+"over time.<br>They will then run between the two clouds on the left to the "
+"two clouds on the right."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"Any custom orientation or mean intervals will be applied to the plot of "
+"every dependent variable.<br>How can you specify different custom mean "
+"intervals for two dependent variables?<br>For this, you can duplicate the "
+"analysis (see symbol: white plus on green background),<br>only select one "
+"dependent variable in each version, and specify the custom intervals "
+"separately."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"For custom cloud colors, just enter the hexcode you want. This features only "
+"works when there is no Secondary Factor."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Apply custom orientation"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Apply custom mean interval limits"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Apply custom colors"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Cloud"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Orientation"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Lower Limit"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Upper Limit"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Color"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"For customization, the cloud order is as follows:\n"
+"For each level of the Primary Factor,\n"
+"go through all levels of the Secondary Factor.\n"
+"For example, with a 2 (Primary: X, Y) x 2 (Secondary: i, ii) design,\n"
+"there are four clouds, A to D, with:\n"
+"A = Xi, B = Xii, C = Yi, D = Yii.\n"
+"\n"
+"Custom orientation:\n"
+"Per default, all violins are right of the boxes.\n"
+"To customize this, specify 'L' or 'R' for each cloud.\n"
+"Applying the custom orientation sets Point Nudge to 0.\n"
+"\n"
+"Custom Color:\n"
+"Specify a hexcode. Only works when there is no Secondary Factor."
+msgstr ""
+
+#, qt-format
+msgctxt "Descriptives|"
+msgid ""
+"How should the confidence interval be computed? By default, we use a `T "
+"model`, which yields results identical to a one-sample t-test. Alternative "
+"options are a normal model (%1), or `Bootstrap`."
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "95% confidende intervals"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid ""
+"Horizontal lines are displayed marking 95% confidence intervals for the mean"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Show legend"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"Shows the legend for the color-coding of the primary factor.<br>This option "
+"is superseeded by a secondary factor; then the legend is always added."
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Show points"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Standard error"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"How should the confidence interval be computed? By default, we use an "
+"analytical approach (chi-square). The alternative option is `Bootstrap`"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Analytical (chi-square)"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"How should the confidence interval be computed? By default, we use a "
+"analytical approach (chi-square). The alternative option is `Bootstrap`"
+msgstr ""
+
+msgctxt "FlexplotForm|"
+msgid "Tron"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"visualizes data distributions, adapting to the type of variable selected. "
+"For scale variables, it generates histograms or density plots to show "
+"continuous data distributions. For categorical variables, it creates bar "
+"plots displaying counts or proportions of each category."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Type for scale variables:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Whether to display a density plot or histogram."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Options for separate bins of the histogram"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Stack: Bars are stacked vertically, combining counts across categories "
+"within each bin."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Identity: Bars are layered on top of each other, with transparency often "
+"used to distinguish overlapping data."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Dodge: Bars are placed side-by-side, allowing for easy comparison of "
+"different categories within each bin."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Type for categorical variables:"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Counts"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Proportions"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Conditional proportions"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Display counts, proportions, or conditional proportions (conditional for "
+"each category on the x-axis)."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Number of valid observations"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "If you use this module, please cite it as:"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid ""
+"You can choose between a confidence interval, ±1 standard error, or ±1  "
+"standard deviation.<br>For the computation of the confidence interval/se/sd, "
+"within and between factors are determined based on the specifciation of the "
+"ID variable<br><h4>"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Standard deviation"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Plot Builder (beta)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "References"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Plot 1"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Repeated measurements"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "No"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Yes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "X-Axis Variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Y-Axis Variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Group Variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Split (Columns)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Split (Rows)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Grid"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Repeated Measures Factors"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "RM Factor"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Repeated Measures Cells"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Between Subject Factors"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Covariates"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Assign repeated measures components"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Repeated Measures Components"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Data and geometries"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Individual data points"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Required: X AND Y-Axis Variables"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Point size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Jitter height"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Jitter width"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Transparency"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Dodge"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Black outline"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Empty circles"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Connect data points (requires repeated measures)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Line width"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Distributions (histogram, boxplot, violin)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Required: X OR Y-Axis Variable (histogram); X AND Y-Axis Variables (boxplot, "
+"violin)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Histogram"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Check this option to create histogram for x or y variables. Histogram "
+"requires either X-Axis or X-Axis variable, but not both."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Number of bins"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Boxplot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Boxplot width"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Whiskers width"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Show outliers"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Outlier coef"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Outlier size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Violin plot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Check this option to add a violin plot to your visualization. Boxplot and "
+"violin plot require both x-axis and y-axis variables."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Scale method"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Area"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Count"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Width"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Draw quantiles"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Trim violins"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Amounts (count and sum)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Required: X OR Y-Axis Variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Count bar"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add a count bar to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Bar width"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Count dash"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add dashed lines to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Dash width"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Black dash"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Count dot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Dot size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Count line"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Black line"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Count area"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Count value"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Font size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Accuracy"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Horizontal justification"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Vertical justification"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Black text"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Sum bar"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add a sum bar to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Sum dash"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Sum dot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add sum dots to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Sum line"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add a sum line to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Sum area"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add a sum area to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Sum value"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add sum values to the plot."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Proportions"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Proportion mode"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Absolute"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Relative"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Bar stack"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Reverse order"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Area stack"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Replace N/A"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Show as percentages"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Mean"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Mean bar"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Mean dash"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Mean dot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Mean line"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Mean area"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Mean value"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Median"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Median bar"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Median dash"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Median dot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Median line"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Median area"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Median value"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Error bars and ribbons (range, SD, SEM, 95% CI)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"The optimal dodge value is 0 if both X and Y-Axis Variables are continuous"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Range error bar"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Black lines"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "SD error bar"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "SEM error bar"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Range ribbon"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "SD ribbon"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "SEM ribbon"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "95% CI ribbon"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Curve fit and reference lines"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Required: individual data points (Curve fit)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add curve fit"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Method"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Linear"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "LOESS"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "SE"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add reference line"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "X-axis intercept"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "e.g. 0.5, or c(1,2)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Y-axis intercept"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Line color"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "e.g. black, #ff5733"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add identity line"
+msgstr ""
+
+#, qt-format
+msgctxt "jaspPlotBuilder|"
+msgid "Note: For available colors, see %1this page%2"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Axis settings and annotations"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Title"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enter x-axis title"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Limits"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "From"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "To"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "By"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Labels"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Shorten"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Sort"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Order"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Rename labels"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Original label"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "New label"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enter y-axis title"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Breaks"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Rotate"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enter the plot title here"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Caption"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Annotation "
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Label"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Text"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "e.g. p = 0.1, $italic(p)==0.1$"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Position"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "X-Axis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Y-Axis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Column"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "<No Value>"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Row"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Appearance"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Color"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Theme, colors, size, and legend"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Theme and color"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Theme"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Font base size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Color settings"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Color by"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "None"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Group variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "X variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Y variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Split (column)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Split (rows)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Color schemes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "JASP colors: jaspPalette"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "JASP colors: colorblind"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "JASP colors: colorblind2"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "JASP colors: colorblind3"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "JASP colors: sportsTeamsNBA"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "JASP colors: ggplot2"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "JASP colors: grandBudapest"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "JASP colors: gray"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "JASP colors: blue"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Discrete: Friendly"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Discrete: Seaside"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Discrete: Apple"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Discrete: Friendly Long"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Discrete: Okabe Ito"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Discrete: IBM"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Discrete: Metro"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Discrete: Candy"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Discrete: Alger"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Discrete: Rainbow"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Continuous: Viridis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Continuous: Magma"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Continuous: Inferno"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Continuous: Plasma"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Continuous: Cividis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Continuous: Rocket"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Continuous: Mako"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Continuous: Turbo"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Continuous: Blue Pink Yellow"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Diverging: Blue to Red"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Diverging: Blue to Brown"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Diverging: BuRd"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Diverging: BuYlRd"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Diverging: Spectral"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Diverging: Icefire"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Custom colors"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Plot size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Width (px)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Height (px)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Margins"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Top"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Bottom"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Left"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Right"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Legend"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "No legend"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Remove title"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Split and grid control"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Split control"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Scale and axis settings"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Scale range"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "shared across all facets"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "vary across X"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "vary across Y"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "vary across both axes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Show axis lines"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "only on outer panels"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "on all X axes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "on all Y axes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "on all axes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Axis label visibility"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "show on all axes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "only on outer axes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "only on interior X axes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "only on interior Y axes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Layout settings"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Highest value at"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "bottom right"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "top right"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Panel size adjustment"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "same size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "free width (X)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "free height (Y)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "free width and height"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Include marginal plots"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "X axis title"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enter a label for the X axis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Y axis title"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enter a label for the Y axis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Grid control"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Number of columns"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Number of rows"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Scales and strip settings"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Strip position"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "top"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "bottom"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "left"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "right"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "P value and comparison lines"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "P value brackets"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "P value color"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "P value size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Y-Axis position of the first P value"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Step distance"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Note: If custom Y-Axis limits are set, the starting\n"
+"position for the P value must fall within the defined interval"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Pairwise comparisons table"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Bracket "
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Compared groups"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Group 1"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Group 2"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "P value and brackets"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Tip length"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Bracket size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Group"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Custom comparison lines"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add annotation lines"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Line "
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "X-Axis start"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "X-Axis end"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Y-Axis start"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Y-Axis end"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Label size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Label distance"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Plot layout"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Arrange plots by column"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Relative column widths"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "1,1"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Specify layout"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Column "
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Plot IDs"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Plot 1, Plot 2, ..."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Plot heights"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "A, B, C, ..."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Collect legend"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Arrange plots by row"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Relative row heights"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Row "
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Plot widths"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Note: If you have column and row arrangement,\n"
+"the column will be the top part of the layout\n"
+"and the row will be the bottom part of the layout."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Label settings"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Horizontal position"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Vertical position"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Additional settings"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Column heights/row widths"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Height"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Spacing"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Collect legend across layout"
+msgstr ""
+
+#, qt-format
+msgctxt "raincloudPlots|"
+msgid "This module has a %1 YouTube tutorial"
+msgstr ""
+
+#, qt-format
+msgctxt "raincloudPlots|"
+msgid ""
+"Note: This module has a %1 YouTube tutorial %2 & requires data in long "
+"format."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"The <b>Plot Builder (beta)</b> lets you assemble a complete figure in just a "
+"few clicks.<br/><br/><ol><li><b>Decide on design:</b> At the very top choose "
+"<i>Repeated measurements → Yes</i> if the same subjects are measured more "
+"than once (e.g., across time-points or conditions); otherwise leave <i>No</"
+"i> selected. </li><li><b>Map your variables:</b> Drag variables from the "
+"list on the left into the fields on the right (X-Axis, Y-Axis, etc). </"
+"li><li><b>Choose what to display:</b> Expand the <i>Data and geometries</i> "
+"accordion to add layers such as raw points, histograms/box-/violin plots, "
+"counts, proportions, Mean or Median summaries, etc.</li><li><b>Polish the "
+"figure:</b> Use the remaining accordions to fine-tune axes, titles, "
+"annotations, themes, colors, sizing, and legend placement.</li>"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"The basic setup: decide on the design (repeated-measures or non-repeated-"
+"measures) and select the variables"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Select whether you want to create a repeated-measures plot or a non-repeated-"
+"measures plot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Select this to create a non-repeated-measures plot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Select this to create a repeated-measures plot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"ON (listwise deletion): if a case is missing even one of the selected "
+"variables, the whole case is excluded.OFF: keep every case and ignore only "
+"the specific values that are missing"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Delete missing values listwise"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Input for non-repeated measures plot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Select the variable for the X-Axis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Select the variable for the Y-Axis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Select the variable for data grouping, which will also determine the "
+"coloring."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "You can choose a variable to split the plots into columns"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "You can choose a variable to split the plots into rows"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "You can choose a variable to make a grid"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Input for repeated measures plot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Here you can specify the factor for the repeated measures. For example, it "
+"could be time (e.g., 24 h, 48 h, 72 h) or conditions like before and after"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Assign the variables that correspond to each level of the repeated measures "
+"factor. For example, if the factor is time, assign variables like '24h', "
+"'48h', and '72h'"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Select the between-subject factors that distinguish different groups of "
+"subjects, such as treatment group, gender, or genotype. These variables must "
+"be categorical (nominal) with at least two levels"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Select continuous variables that may influence the outcome and should be "
+"included as covariates in the analysis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Select the variable for data grouping, which will also determine the coloring"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Check this option to show individual data points on the plot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Set the point size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Size by variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Choose this if you want the point size to be determined by a variable rather "
+"than a fixed constant"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Shape by variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Choose this if you want the point shape to be determined by a variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Set the transparency"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Adjusts the horizontal “dodge” spacing between subgroup geometric elements. "
+"Only takes effect when a grouping variable is mapped (e.g., male vs. female "
+"within each species). A value of 0 overlays the elements; higher values push "
+"the subgroups farther apart"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add a black outline/border to the elements"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "White outline"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add a white outline/border to the elements"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Remove the fill"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Point Size Variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Min point size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Max point size"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Point Shape Variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add ellipse"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Add a statistical ellipse around the points.'Ellipse type' controls the "
+"method:\"t\" assumes a multivariate t-distribution,\"Normal\" assumes a "
+"multivariate normal distribution,and \"Euclidean\" draws a circle whose "
+"radius equals the value of 'Level'"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Ellipse type"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "t"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Normal"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Euclidean"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Level"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Confidence level (for t and normal ellipse type) or radius (euclidean "
+"ellipse type)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Sets the number of bins used to divide the data range in histograms.More "
+"bins give finer detail, fewer bins give a more general overview"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Density"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Check this option to overlay a density estimate on the histogram. Density "
+"can be shown as scaled (0–1) or on the histogram count scale."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Density overlay mode"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Choose whether the density curve is scaled to the histogram count ('Count'), "
+"or normalized to a maximum of 1 ('Scaled')"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Show density on the histogram count scale (area under the curve equals total "
+"count)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Scaled (0–1)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Show density scaled so that the maximum of the curve is 1"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Set the transparency for the density overlay"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Set the line width for the density overlay"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Check this option to create boxplot. Boxplot and violin plot require both X-"
+"Axis and Y-Axis variables."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Sets the line width of the geometric element (e.g., boxplot, violin, error "
+"bar). Increase for thicker outlines, decrease for thinner ones"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Set the width of the boxplots"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Sets the horizontal width of the whiskers in a boxplot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Displays individual outlier points beyond the whiskers in a boxplot. "
+"Outliers are defined as values that fall outside the range of Q1 − coef × "
+"IQR and Q3 + coef × IQR"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Sets the multiplier (coef) used to define outliers in a boxplot. Outliers "
+"are values beyond Q1 − coef × IQR or Q3 + coef × IQR"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Set the size of the outliers"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Controls how the width of each violin is scaled:<b>Area</b>: all violins "
+"have the same area (default in ggplot2).<b>Count</b>: violins are scaled by "
+"the number of observations in each group.<b>Width</b>: all violins have the "
+"same maximum width, regardless of group size."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Draws horizontal lines at the specified quantiles inside each violin. Use "
+"comma-separated values between 0 and 1 (e.g., 0.25, 0.5, 0.75) to show "
+"quartiles or other custom quantiles."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"If checked, the violins are trimmed to the range of the data. If unchecked, "
+"the density tails may extend beyond the observed values."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"This section adds layers that visualise amounts. <b>Dodge</b> shifts "
+"subgroup geoms sideways so they don’t overlap. <b>Size / Width</b> sets the "
+"thickness of bars and lines or the radius of dots. <b>Transparency (alpha)</"
+"b> controls opacity: 0 = invisible, 1 = solid. <b>Outline (black / white)</"
+"b> toggles a border around the shape. "
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add dashed lines to the plot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add count dots to the plot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add count lines to the plot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add a count area to the plot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Enable to add count values to the plot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Visualise how each subgroup contributes to the whole Requires one Group "
+"variable plus either an X- or Y-axis variable Absolute mode stacks raw "
+"counts; Relative mode rescales each stack to 0-1 or 0-100 % Common controls: "
+"Transparency sets opacity, Reverse order flips the stack sequence, Line "
+"width outlines area stacks, Replace N/A turns missing groups into a separate "
+"slice"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Required: Group Variable AND X- or Y-Axis Variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Stack heights show raw counts"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Each stack is rescaled so its total height equals 100 %"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add stacked bars for each category using the selected proportion mode"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add stacked areas connected across categories"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Treat missing groups as a separate slice"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Format the relative scale from 0 % to 100 % instead of 0 to 1"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Summary layers that display the arithmetic mean of the Y variable for every "
+"X (or vice versa). Requires both X and Y axes mapped. Mean can be rendered "
+"as bar, line, dot, dash, area, or value. Common controls: <b>Dodge</b> "
+"separates sub-groups, <b>Transparency</b> sets opacity, <b>Size/width</b> "
+"changes thickness, <b>Outline</b> toggles borders"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add mean bars"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add dashed mean lines"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add mean dots"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add mean profile lines"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add filled mean areas"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add numeric mean labels"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Sets the rounding increment for the mean value; 0.1 gives one decimal, 0.01 "
+"gives two"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Summary layers that display the median of the Y variable for every X (or "
+"vice versa). Requires both X and Y axes mapped. Median can be rendered as "
+"bar, line, dot, dash, area, or value. Common controls: <b>Dodge</b> "
+"separates sub-groups, <b>Transparency</b> sets opacity, <b>Size/width</b> "
+"changes thickness, <b>Outline</b> toggles borders"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add median bars"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add dashed median lines"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add median dots"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add median profile lines"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add filled median areas"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add numeric median labels"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Sets the rounding increment for the median value; 0.1 gives one decimal, "
+"0.01 gives two"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Shows variability with vertical bars or shaded ribbons. Choose <b>Range</b> "
+"(min–max), <b>SD</b>, <b>SEM</b>, or <b>95 % CI</b>. Common controls: "
+"<b>Dodge</b> offsets overlapping groups, <b>Width/Line width</b> adjusts "
+"thickness, <b>Transparency</b> sets opacity, <b>Black lines</b> toggles "
+"outlines"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add range error bars"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add SD error bars"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add SEM error bars"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "95% CI error bar"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add 95 % CI error bars"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add range ribbons"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add SD ribbons"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add SEM ribbons"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add 95 % CI ribbons"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Fit trend lines or statistical models and add reference or identity lines "
+"for comparison. Curve fitting requires individual data points. Common "
+"controls: <b>Method</b> chooses the model, <b>Line width</b> adjusts "
+"thickness, <b>Dodge</b> separates groups, <b>Transparency</b> sets opacity, "
+"and <b>Color</b> selects the line colour"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Fit a model to the data points"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add reference lines"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Add identity line (y = x)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Reverse direction"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Fine-tune the x-axis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Adds a heading"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Sets the range"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Positions tick marks"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Handle rotation, shortening and sorting"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Shorten axis labels using K for thousand, M for million, and so on"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Lets you edit them manually"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Fine-tune the y-axis: <b>Title</b> adds a heading, <b>Limits</b> sets the "
+"range, <b>Breaks</b> positions tick marks, <b>Labels</b> handle rotation, "
+"shortening and sorting, and <b>Rename labels</b> lets you edit them manually"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Title, caption"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Use these fields to add text to your figure. <b>Title</b> appears above the "
+"plot, while <b>Caption</b> appears below"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Annotation and data label"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Label points automatically or place custom annotations anywhere. <b>Label "
+"variable</b> shows each point’s value; <b>Custom annotations</b> add free-"
+"form text with position controls. Common controls: <b>Size</b> adjusts text "
+"height, <b>White background</b> improves legibility, colour fields accept "
+"named or hex colours"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Label data by variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Label variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Variable whose values will be shown next to each point"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "White background"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Custom annotations"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Choose an overall visual style and how colours are assigned. <b>Theme</b> "
+"applies a preset look, while <b>Font base size</b> scales all text. <b>Color "
+"settings</b> lets you map colour to a variable, pick a palette, or enter "
+"custom colours"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Decide which variable drives colours and select a palette or provide custom "
+"hex/named colours"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Choose what determines element colours"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Uniform colors"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Coloring by Group variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Coloring by X variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Coloring by Y variable"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Apply separate colours in different splits"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Here you can specify custom colors separated by commas"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "e.g. red, blue, #ff5733"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Size, margins and plot orientation"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Control the canvas dimensions and whitespace. <b>Plot size</b> sets the "
+"pixel width × height, <b>Axis padding</b> adds proportional space inside the "
+"axes, <b>Margins</b> add outer whitespace, and <b>Plot orientation</b> can "
+"flip X and Y"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Width and height of the exported figure in pixels"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Axis padding"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Fraction of the data range to leave empty inside each axis (0 – 1)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Outer whitespace around the plot (pts)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Plot orientation"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Flip swaps the X and Y axes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Flip plot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Control where the legend appears and what it shows. Use <b>Position</b> to "
+"dock the legend or hide it. <b>Remove title</b> hides the legend heading"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Edit the text of individual legend entries"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Order of geometries"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"point: Point<br>histogram: Histogram<br>boxplot: Boxplot<br>violin: Violin "
+"plot<br>count_bar: Count bar<br>count_dash: Count dash<br>count_line: Count "
+"line<br>count_area: Count area<br>count_dot: Count dot<br>count_value: Count "
+"value<br>sum_bar: Sum bar<br>sum_dash: Sum dash<br>sum_line: Sum "
+"line<br>sum_area: Sum area<br>sum_dot: Sum dot<br>sum_value: Sum "
+"value<br>barstack: Bar stack<br>areastack: Area stack<br>mean_bar: Mean "
+"bar<br>mean_dash: Mean dash<br>mean_line: Mean line<br>mean_area: Mean "
+"area<br>mean_dot: Mean dot<br>mean_value: Mean value<br>median_bar: Median "
+"bar<br>median_dash: Median dash<br>median_line: Median line<br>median_area: "
+"Median area<br>median_dot: Median dot<br>median_value: Median "
+"value<br>range_errorbar: Range error bar<br>sd_errorbar: SD error "
+"bar<br>sem_errorbar: SEM error bar<br>ci95_errorbar: 95% CI error "
+"bar<br>range_ribbon: Range ribbon<br>sd_ribbon: SD ribbon<br>sem_ribbon: SEM "
+"ribbon<br>ci95_ribbon: 95% CI ribbon<br>curve_fit: Curve "
+"fit<br>stat_ellipse: Stat ellipse<br>rm_lines: RM lines<br>reference_lines: "
+"Reference lines<br>identity_line: Identity line<br>point_labels: Point labels"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"You can set the order of the added geometric/data layers here, similar to "
+"the example shown in the text field.\n"
+"The order of the layers is defined from left to right—meaning the rightmost "
+"layer will be drawn on top."
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Layer order"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "point, boxplot"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Adjust how faceted panels share scales, axes and space. <b>Scale and axis "
+"settings</b> decide whether panels use the same range, which axis lines are "
+"drawn and where labels appear. <b>Layout settings</b> control panel sizes, "
+"the position of the highest-value table, optional marginal plots and custom "
+"axis titles"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Choose whether facet panels share a common scale (<i>fixed</i>) or get "
+"individual ranges"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Decide which facet panels display axis lines"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Control which tick-label texts are shown"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Controls where the summary table of highest values is placed inside each "
+"facet"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Allow facet panels to stretch freely along X, Y or both axes"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Adds aggregated rows/columns at the edges of the facet grid"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Arrange panels when a grid variable is mapped. <b>Layout settings</b> set "
+"the facet grid’s rows, columns and where the highest-values table appears, "
+"<b>Scales and strip settings</b> decide whether panels share axes and where "
+"the facet label strip is placed"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Fixed number of facet columns; 0 lets the layout pick automatically"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Fixed number of facet rows; 0 lets the layout pick automatically"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Choose the corner where the summary table of highest values is drawn"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Fixed panels share axes; free panels get independent X and/or Y scales"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Location of the facet label strip"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Add brackets with P values to show pairwise significance.\n"
+"Set colour, text size and vertical spacing, then list each comparison in the "
+"table below"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Colour and font size of the P-value text"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Named or hex colour for the P value text"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Font size of the P value text"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Starting height and step between stacked brackets (data units)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Initial vertical position for the first bracket"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Vertical gap between successive brackets"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Labels of the two groups being compared"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Enter the P value (e.g. 0.03) or a significance symbol (*, **, ***). <b>Tip "
+"length</b> is the size of the bracket tips; <b>Bracket size</b> is the "
+"horizontal width"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "P value"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Select the facet (group/column/row/grid) where the bracket should appear"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Draw manual comparison lines (e.g., <b>min–max bars</b> or custom contrasts) "
+"with optional text labels"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Note: If custom Y-Axis limits are set, the starting\n"
+"position for the Y-Axis start and end values must fall within the defined "
+"interval"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Define one comparison line with optional label, coordinates and appearance"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Text shown near the line (leave empty for no label)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Start/end coordinates and facet location"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Line start on X axis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Line end on X axis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Line start on Y axis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Line end on Y axis"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Facet column (for split layouts)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Facet row (for split layouts)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Facet grid cell"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Facet column (RM)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Facet row (RM)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Facet grid cell (RM)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Line colour and label styling"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Named or hex colour for the line"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Font size of the label text"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Vertical offset between the line and its label (data units)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Combine multiple plots in custom grids. <b>Arrange plots by column</b> "
+"builds the top part of the layout, <b>Arrange plots by row</b> builds the "
+"bottom. Specify plot IDs, relative sizes and optional common legends"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Comma-separated numbers that set the width of each column"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Comma-separated IDs referencing earlier plots"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Relative heights of plots within this column"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Optional plot labels (A, B, …)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Merge legends of all plots in this column"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Comma-separated numbers that set the height of each row"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Relative widths of plots within this row"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Merge legends of all plots in this row"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Font size of subplot labels"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Horizontal offset of labels (0–1, relative to plot width)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Vertical offset of labels (0–1, relative to plot height)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid ""
+"Relative heights of columns or widths of rows when combining column and row "
+"layouts"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Overall width of the assembled layout (pixels)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Overall height of the assembled layout (pixels)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Gap between plots inside the layout (pixels)"
+msgstr ""
+
+msgctxt "jaspPlotBuilder|"
+msgid "Place a single shared legend for all plots in the layout"
+msgstr ""
+
+msgctxt "raincloudPlots|"
+msgid "Box statistics"
+msgstr ""
