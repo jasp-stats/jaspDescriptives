@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2025-07-19 03:38\n"
+"POT-Creation-Date: 2025-10-02 14:54\n"
 "PO-Revision-Date: 2024-09-15 09:32+0000\n"
 "Last-Translator: Koen Derks <koen-derks@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
@@ -364,6 +364,20 @@ msgstr "Alle kwalitatieve variabelen moeten hetzelfde aantal niveaus hebben!"
 
 msgid "Items must have 2 or more levels!"
 msgstr "Items moeten 2 of meer niveaus hebben!"
+
+msgid ""
+"The variable used for categories must not have duplicated values when a "
+"count variable is specified."
+msgstr ""
+
+msgid ""
+"The variable used for counts must be different from the variable used for "
+"categories."
+msgstr ""
+
+#, fuzzy
+msgid "Percentage (%%)"
+msgstr "Percentage"
 
 msgid "Levels within variable require at least two or more data points!"
 msgstr "Niveaus binnen variabele vereist minstens 2 datapunten!"

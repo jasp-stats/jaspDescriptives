@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2025-07-19 03:38\n"
+"POT-Creation-Date: 2025-10-02 14:54\n"
 "PO-Revision-Date: 2025-07-26 07:50+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
@@ -375,6 +375,20 @@ msgstr "Tódalas variables con categorías deben ter o mesmo número de niveis!"
 
 msgid "Items must have 2 or more levels!"
 msgstr "Os elementos deben ter 2 ou máis niveis!"
+
+msgid ""
+"The variable used for categories must not have duplicated values when a "
+"count variable is specified."
+msgstr ""
+
+msgid ""
+"The variable used for counts must be different from the variable used for "
+"categories."
+msgstr ""
+
+#, fuzzy
+msgid "Percentage (%%)"
+msgstr "Porcentaxe"
 
 msgid "Levels within variable require at least two or more data points!"
 msgstr ""

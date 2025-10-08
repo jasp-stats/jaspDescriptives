@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-07-19 03:38\n"
+"POT-Creation-Date: 2025-10-02 14:54\n"
 "PO-Revision-Date: 2025-10-06 19:56+0000\n"
 "Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
@@ -344,6 +344,20 @@ msgstr "所有類別變數需要有相同的水準數!"
 
 msgid "Items must have 2 or more levels!"
 msgstr "項目至少需要有兩個水準！"
+
+msgid ""
+"The variable used for categories must not have duplicated values when a "
+"count variable is specified."
+msgstr ""
+
+msgid ""
+"The variable used for counts must be different from the variable used for "
+"categories."
+msgstr ""
+
+#, fuzzy
+msgid "Percentage (%%)"
+msgstr "百分比"
 
 msgid "Levels within variable require at least two or more data points!"
 msgstr "變數的個別水準中需要至少兩個資料點！"

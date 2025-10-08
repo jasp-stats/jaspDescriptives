@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.19.0\n"
-"POT-Creation-Date: 2025-07-19 03:38\n"
+"POT-Creation-Date: 2025-10-02 14:54\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -337,6 +337,19 @@ msgid "All categorical variables must have the same number of levels!"
 msgstr ""
 
 msgid "Items must have 2 or more levels!"
+msgstr ""
+
+msgid ""
+"The variable used for categories must not have duplicated values when a "
+"count variable is specified."
+msgstr ""
+
+msgid ""
+"The variable used for counts must be different from the variable used for "
+"categories."
+msgstr ""
+
+msgid "Percentage (%%)"
 msgstr ""
 
 msgid "Levels within variable require at least two or more data points!"
