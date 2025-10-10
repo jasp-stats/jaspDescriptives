@@ -533,6 +533,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
                             colNames = "Mode",
                             rowNames = variable)
 
+        if(subReturn$shouldAddGeomHarmMeansPositiveFootnote)
+          stats$addFootnote(message = gettext("Geometric and harmonic means are defined only for strictly positive variables, but the data contain some non-positive values."),
+                            colNames = c("MeanGeometric", "MeanHarmonic"),
+                            rowNames = paste0(variable, l))
+
       }
     }
   } else { # we dont want to split
@@ -563,6 +568,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       if(subReturn$shouldAddModeMoreThanOnceFootnote)
         stats$addFootnote(message  = gettext("More than one mode exists. For nominal and ordinal data, the first mode is reported. For continuous data, the mode with the highest density estimate is reported but multiple modes may exist. We recommend visualizing the data to check for multimodality."),
                           colNames = "Mode",
+                          rowNames = variable)
+
+      if(subReturn$shouldAddGeomHarmMeansPositiveFootnote)
+        stats$addFootnote(message = gettext("Geometric and harmonic means are defined only for strictly positive variables, but the data contain some non-positive values."),
+                          colNames = c("MeanGeometric", "MeanHarmonic"),
                           rowNames = variable)
 
     }
@@ -651,6 +661,8 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
   # should explain supremum and infimum of an empty set?
   shouldAddExplainEmptySet <- (options$minimum || options$maximum) && valid == 0
+
+  shouldAddGeomHarmMeansPositiveFootnote <- (options[["meanGeometric"]] || options[["meanHarmonic"]]) && any(na.omitted <= 0)
 
   if (options$mode) {
 
@@ -767,7 +779,8 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     shouldAddNominalTextFootnote = shouldAddNominalTextFootnote,
     shouldAddModeMoreThanOnceFootnote = shouldAddModeMoreThanOnceFootnote,
     shouldAddIdenticalFootnote = shouldAddIdenticalFootnote,
-    shouldAddExplainEmptySet = shouldAddExplainEmptySet
+    shouldAddExplainEmptySet = shouldAddExplainEmptySet,
+    shouldAddGeomHarmMeansPositiveFootnote = shouldAddGeomHarmMeansPositiveFootnote
   ))
 }
 
