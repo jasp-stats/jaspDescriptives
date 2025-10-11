@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-10-02 14:54\n"
+"POT-Creation-Date: 2025-10-11 03:23\n"
 "PO-Revision-Date: 2024-05-19 20:45+0000\n"
 "Last-Translator: robachowyk <kaya.robach@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/jasp/"
@@ -180,10 +180,12 @@ msgstr "Supérieur"
 msgid "Lower"
 msgstr "Inférieur"
 
-msgid "%s%% CI Mean Upper"
+#, fuzzy
+msgid "%s%% CI A. Mean Upper"
 msgstr "IC supérieur de la moyenne %s%%"
 
-msgid "%s%% CI Mean Lower"
+#, fuzzy
+msgid "%s%% CI A. Mean Lower"
 msgstr "IC inférieur de la moyenne %s%%"
 
 msgid "%s%% CI Std. Dev. Upper"
@@ -204,8 +206,18 @@ msgstr "Mode"
 msgid "Median"
 msgstr "Médiane"
 
-msgid "Std. Error of Mean"
+msgid "Mean (arithmetic)"
+msgstr ""
+
+#, fuzzy
+msgid "Std. Error of A. Mean"
 msgstr "Erreur Type de la Moyenne"
+
+msgid "Mean (geometric)"
+msgstr ""
+
+msgid "Mean (harmonic)"
+msgstr ""
 
 msgid "Coefficient of variation"
 msgstr "Coefficient de variation"
@@ -276,6 +288,11 @@ msgstr ""
 "premier mode est rapporté. Pour les données continues, le mode ayant la plus "
 "haute densité est rapporté mais plusieurs modes peuvent exister. Nous "
 "recommandons de visualiser les données afin de vérifier les multi-modalités."
+
+msgid ""
+"Geometric and harmonic means are defined only for strictly positive "
+"variables, but the data contain some non-positive values."
+msgstr ""
 
 msgid "Total"
 msgstr "Total"

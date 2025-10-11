@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.19.2\n"
-"POT-Creation-Date: 2025-10-02 14:54\n"
+"POT-Creation-Date: 2025-10-11 03:23\n"
 "PO-Revision-Date: 2025-08-24 09:02+0000\n"
 "Last-Translator: Marko Bojović <bojovicmarko@outlook.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/jasp/"
@@ -179,10 +179,12 @@ msgstr "Горњи"
 msgid "Lower"
 msgstr "Ниже"
 
-msgid "%s%% CI Mean Upper"
+#, fuzzy
+msgid "%s%% CI A. Mean Upper"
 msgstr "%s%% CI средња (горња граница)"
 
-msgid "%s%% CI Mean Lower"
+#, fuzzy
+msgid "%s%% CI A. Mean Lower"
 msgstr "%s%% CI средња (доња граница)"
 
 msgid "%s%% CI Std. Dev. Upper"
@@ -203,8 +205,18 @@ msgstr "Мод"
 msgid "Median"
 msgstr "Медијана"
 
-msgid "Std. Error of Mean"
+msgid "Mean (arithmetic)"
+msgstr ""
+
+#, fuzzy
+msgid "Std. Error of A. Mean"
 msgstr "Стд. грешка средње вредности"
+
+msgid "Mean (geometric)"
+msgstr ""
+
+msgid "Mean (harmonic)"
+msgstr ""
 
 msgid "Coefficient of variation"
 msgstr "Коефицијент варијације"
@@ -274,6 +286,11 @@ msgstr ""
 "први мод. За континуиране податке, пријављује се мод са највећом проценом "
 "густине, али може постојати више модова. Препоручујемо визуелизацију "
 "података да би се проверило вишемодално распоређење."
+
+msgid ""
+"Geometric and harmonic means are defined only for strictly positive "
+"variables, but the data contain some non-positive values."
+msgstr ""
 
 msgid "Total"
 msgstr "Укупно"

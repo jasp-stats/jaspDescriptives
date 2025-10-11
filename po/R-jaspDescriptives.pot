@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: jaspDescriptives 0.95.0\n"
-"POT-Creation-Date: 2025-10-02 14:54\n"
+"Project-Id-Version: jaspDescriptives 0.95.1\n"
+"POT-Creation-Date: 2025-10-11 03:23\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -161,10 +161,10 @@ msgstr ""
 msgid "Lower"
 msgstr ""
 
-msgid "%s%% CI Mean Upper"
+msgid "%s%% CI A. Mean Upper"
 msgstr ""
 
-msgid "%s%% CI Mean Lower"
+msgid "%s%% CI A. Mean Lower"
 msgstr ""
 
 msgid "%s%% CI Std. Dev. Upper"
@@ -185,7 +185,16 @@ msgstr ""
 msgid "Median"
 msgstr ""
 
-msgid "Std. Error of Mean"
+msgid "Mean (arithmetic)"
+msgstr ""
+
+msgid "Std. Error of A. Mean"
+msgstr ""
+
+msgid "Mean (geometric)"
+msgstr ""
+
+msgid "Mean (harmonic)"
 msgstr ""
 
 msgid "Coefficient of variation"
@@ -243,6 +252,9 @@ msgid "Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty
 msgstr ""
 
 msgid "More than one mode exists. For nominal and ordinal data, the first mode is reported. For continuous data, the mode with the highest density estimate is reported but multiple modes may exist. We recommend visualizing the data to check for multimodality."
+msgstr ""
+
+msgid "Geometric and harmonic means are defined only for strictly positive variables, but the data contain some non-positive values."
 msgstr ""
 
 msgid "Total"

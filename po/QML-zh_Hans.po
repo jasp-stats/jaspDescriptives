@@ -409,10 +409,6 @@ msgid "Inference"
 msgstr "推断"
 
 msgctxt "Descriptives|"
-msgid "Confidence interval for mean"
-msgstr "均值的置信区间"
-
-msgctxt "Descriptives|"
 msgid "Width"
 msgstr "置信宽度"
 
@@ -1077,10 +1073,6 @@ msgid "Median of the data points."
 msgstr "数据点的中位数。"
 
 msgctxt "Descriptives|"
-msgid "Arithmetic mean of the data points"
-msgstr "数据点的算术平均值。"
-
-msgctxt "Descriptives|"
 msgid "Skewness of the distribution of the data points."
 msgstr "数据点分布的偏度。"
 
@@ -1140,10 +1132,6 @@ msgstr "数据点的最小值。"
 msgctxt "Descriptives|"
 msgid "Maximum value of the data points."
 msgstr "数据点的最大值。"
-
-msgctxt "Descriptives|"
-msgid "Standard error of the mean."
-msgstr "均值的标准差。"
 
 msgctxt "Descriptives|"
 msgid "width of the confidence interval."
@@ -4545,4 +4533,45 @@ msgid ""
 "automatically. This is useful when the data are already aggregated (e.g., "
 "each row represents a category with an associated frequency). If left empty, "
 "counts are calculated directly from the selected variable."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Mean (arithmetic)"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Arithmetic mean of the data points; otherwise also colloquially called 'the "
+"mean' or 'the average'. Calculated as the sum of all data points divided by "
+"the number of data points."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Mean (geometric)"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Geometric mean of the data points; defined only for strictly positive "
+"variables. Calculated as the product of all data points, raised to the power "
+"of 1 divided by the number of points (the n-th root of the product)."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Mean (harmonic)"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Harmonic mean of the data points; defined only for strictly positive "
+"variables. Calculated as the number of data points divided by the sum of the "
+"reciprocals of the data points."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Standard error of the arithmetic mean."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Confidence interval for the arithmetic mean"
 msgstr ""

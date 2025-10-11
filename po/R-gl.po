@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2025-10-02 14:54\n"
+"POT-Creation-Date: 2025-10-11 03:23\n"
 "PO-Revision-Date: 2025-10-09 15:07+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
@@ -192,10 +192,12 @@ msgstr "Superior"
 msgid "Lower"
 msgstr "Inferior"
 
-msgid "%s%% CI Mean Upper"
+#, fuzzy
+msgid "%s%% CI A. Mean Upper"
 msgstr "Superior da Media dos IC co %s%%"
 
-msgid "%s%% CI Mean Lower"
+#, fuzzy
+msgid "%s%% CI A. Mean Lower"
 msgstr "Inferior da Media dos IC co %s%%"
 
 msgid "%s%% CI Std. Dev. Upper"
@@ -216,8 +218,18 @@ msgstr "Moda"
 msgid "Median"
 msgstr "Mediana"
 
-msgid "Std. Error of Mean"
+msgid "Mean (arithmetic)"
+msgstr ""
+
+#, fuzzy
+msgid "Std. Error of A. Mean"
 msgstr "Erro Padrón da Media"
+
+msgid "Mean (geometric)"
+msgstr ""
+
+msgid "Mean (harmonic)"
+msgstr ""
 
 msgid "Coefficient of variation"
 msgstr "Coeficiente de variación"
@@ -287,6 +299,11 @@ msgstr ""
 "primeira moda. Para datos continuos, infórmase da moda coa estimación da "
 "densidad más alta, pero poden existir varias modas. Aconsellamos visualizar "
 "os datos para verificar a multimodalidade."
+
+msgid ""
+"Geometric and harmonic means are defined only for strictly positive "
+"variables, but the data contain some non-positive values."
+msgstr ""
 
 msgid "Total"
 msgstr "Total"

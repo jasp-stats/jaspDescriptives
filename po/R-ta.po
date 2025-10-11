@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.19.2\n"
-"POT-Creation-Date: 2025-10-02 14:54\n"
+"POT-Creation-Date: 2025-10-11 03:23\n"
 "PO-Revision-Date: 2025-09-19 16:02+0000\n"
 "Last-Translator: தமிழ்நேரம் <tamilneram247@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/jasp/"
@@ -171,10 +171,10 @@ msgstr "மேல்"
 msgid "Lower"
 msgstr "கீழ்"
 
-msgid "%s%% CI Mean Upper"
+msgid "%s%% CI A. Mean Upper"
 msgstr ""
 
-msgid "%s%% CI Mean Lower"
+msgid "%s%% CI A. Mean Lower"
 msgstr ""
 
 msgid "%s%% CI Std. Dev. Upper"
@@ -195,7 +195,16 @@ msgstr "பயன்முறை"
 msgid "Median"
 msgstr "இடைநடு"
 
-msgid "Std. Error of Mean"
+msgid "Mean (arithmetic)"
+msgstr ""
+
+msgid "Std. Error of A. Mean"
+msgstr ""
+
+msgid "Mean (geometric)"
+msgstr ""
+
+msgid "Mean (harmonic)"
 msgstr ""
 
 msgid "Coefficient of variation"
@@ -259,6 +268,11 @@ msgid ""
 "reported. For continuous data, the mode with the highest density estimate is "
 "reported but multiple modes may exist. We recommend visualizing the data to "
 "check for multimodality."
+msgstr ""
+
+msgid ""
+"Geometric and harmonic means are defined only for strictly positive "
+"variables, but the data contain some non-positive values."
 msgstr ""
 
 msgid "Total"

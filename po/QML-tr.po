@@ -407,10 +407,6 @@ msgid "Inference"
 msgstr "Çıkarım"
 
 msgctxt "Descriptives|"
-msgid "Confidence interval for mean"
-msgstr "Ortalama için güven aralığı"
-
-msgctxt "Descriptives|"
 msgid "Width"
 msgstr ""
 
@@ -1058,10 +1054,6 @@ msgid "Median of the data points."
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid "Arithmetic mean of the data points"
-msgstr ""
-
-msgctxt "Descriptives|"
 msgid "Skewness of the distribution of the data points."
 msgstr ""
 
@@ -1118,10 +1110,6 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Maximum value of the data points."
-msgstr ""
-
-msgctxt "Descriptives|"
-msgid "Standard error of the mean."
 msgstr ""
 
 msgctxt "Descriptives|"
@@ -4368,4 +4356,45 @@ msgid ""
 "automatically. This is useful when the data are already aggregated (e.g., "
 "each row represents a category with an associated frequency). If left empty, "
 "counts are calculated directly from the selected variable."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Mean (arithmetic)"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Arithmetic mean of the data points; otherwise also colloquially called 'the "
+"mean' or 'the average'. Calculated as the sum of all data points divided by "
+"the number of data points."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Mean (geometric)"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Geometric mean of the data points; defined only for strictly positive "
+"variables. Calculated as the product of all data points, raised to the power "
+"of 1 divided by the number of points (the n-th root of the product)."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Mean (harmonic)"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Harmonic mean of the data points; defined only for strictly positive "
+"variables. Calculated as the number of data points divided by the sum of the "
+"reciprocals of the data points."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Standard error of the arithmetic mean."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Confidence interval for the arithmetic mean"
 msgstr ""

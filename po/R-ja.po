@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.11.0\n"
-"POT-Creation-Date: 2025-10-02 14:54\n"
+"POT-Creation-Date: 2025-10-11 03:23\n"
 "PO-Revision-Date: 2024-07-12 14:09+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -177,10 +177,12 @@ msgstr "上限"
 msgid "Lower"
 msgstr "下限"
 
-msgid "%s%% CI Mean Upper"
+#, fuzzy
+msgid "%s%% CI A. Mean Upper"
 msgstr "%s%% 信頼区間 平均 上限"
 
-msgid "%s%% CI Mean Lower"
+#, fuzzy
+msgid "%s%% CI A. Mean Lower"
 msgstr "%s%% 信頼区間 平均 下限"
 
 msgid "%s%% CI Std. Dev. Upper"
@@ -201,8 +203,18 @@ msgstr "最頻値"
 msgid "Median"
 msgstr "中央値"
 
-msgid "Std. Error of Mean"
+msgid "Mean (arithmetic)"
+msgstr ""
+
+#, fuzzy
+msgid "Std. Error of A. Mean"
 msgstr "平均の標準誤差"
+
+msgid "Mean (geometric)"
+msgstr ""
+
+msgid "Mean (harmonic)"
+msgstr ""
 
 msgid "Coefficient of variation"
 msgstr "変動係数"
@@ -270,6 +282,11 @@ msgstr ""
 "ます。連続データでは、最も高密度の推定値が報告されます。ただし、複数のモード"
 "が存在するかもしれません。データの可視化を行い、多峰性について確認することを"
 "推奨します。"
+
+msgid ""
+"Geometric and harmonic means are defined only for strictly positive "
+"variables, but the data contain some non-positive values."
+msgstr ""
 
 msgid "Total"
 msgstr "合計"

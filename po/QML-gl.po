@@ -411,10 +411,6 @@ msgid "Inference"
 msgstr "Inferencia"
 
 msgctxt "Descriptives|"
-msgid "Confidence interval for mean"
-msgstr "Intervalo de confianza para a media"
-
-msgctxt "Descriptives|"
 msgid "Width"
 msgstr "Ancho"
 
@@ -1125,10 +1121,6 @@ msgid "Median of the data points."
 msgstr "Mediana dos puntos de datos."
 
 msgctxt "Descriptives|"
-msgid "Arithmetic mean of the data points"
-msgstr "Media aritmética dos puntos de datos."
-
-msgctxt "Descriptives|"
 msgid "Skewness of the distribution of the data points."
 msgstr "Asimetría da distribución dos puntos de datos."
 
@@ -1193,10 +1185,6 @@ msgstr "Valor mínimo dos puntos de datos."
 msgctxt "Descriptives|"
 msgid "Maximum value of the data points."
 msgstr "Valor máximo dos puntos de datos."
-
-msgctxt "Descriptives|"
-msgid "Standard error of the mean."
-msgstr "Erro padrón da media."
 
 msgctxt "Descriptives|"
 msgid "width of the confidence interval."
@@ -4930,3 +4918,44 @@ msgstr ""
 "frecuencias. Isto é útil cando os datos xa están agregados (p.e. cada fila "
 "representa unha categoría con unha frecuencia asociada). Cando se deixa "
 "baleiro, os recontos calcúlanse directamente da variable seleccionada ."
+
+msgctxt "Descriptives|"
+msgid "Mean (arithmetic)"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Arithmetic mean of the data points; otherwise also colloquially called 'the "
+"mean' or 'the average'. Calculated as the sum of all data points divided by "
+"the number of data points."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Mean (geometric)"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Geometric mean of the data points; defined only for strictly positive "
+"variables. Calculated as the product of all data points, raised to the power "
+"of 1 divided by the number of points (the n-th root of the product)."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Mean (harmonic)"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Harmonic mean of the data points; defined only for strictly positive "
+"variables. Calculated as the number of data points divided by the sum of the "
+"reciprocals of the data points."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Standard error of the arithmetic mean."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Confidence interval for the arithmetic mean"
+msgstr ""
