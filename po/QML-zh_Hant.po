@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2025-10-25 03:26+0000\n"
+"Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
+"Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
+"projects/jasp/jaspdescriptives-qml/zh_Hant/>\n"
+"Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 "X-Language: zh_Hant\n"
 "X-Qt-Contexts: true\n"
 
@@ -440,7 +446,7 @@ msgstr "表"
 
 msgctxt "Descriptives|"
 msgid "T model"
-msgstr "t分配模型"
+msgstr "t分配"
 
 msgctxt "Descriptives|"
 msgid "Frequency plots"
@@ -1904,7 +1910,7 @@ msgid ""
 "model`, which yields results identical to a one-sample t-test. Alternative "
 "options are a normal model (%1), or `Bootstrap`."
 msgstr ""
-"信賴區間應該如何計算？預設情況下，我們使用「T 模型」，其結果與單一樣本 t 檢定"
+"信賴區間應該如何計算？預設情況下，我們使用「t 分配」，其結果與單一樣本 t 檢定"
 "相同。其他選項包括「常態模型」(%1)或「拔靴法(Bootstrap)」。"
 
 msgctxt "FlexplotForm|"
@@ -4352,7 +4358,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Shift accumulation line"
-msgstr ""
+msgstr "變化累積線(Shift accumulation line)"
 
 msgctxt "Descriptives|"
 msgid ""
@@ -4365,7 +4371,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Turn x-axis labels"
-msgstr ""
+msgstr "旋轉 X 軸標籤(Turn x-axis labels)"
 
 msgctxt "Descriptives|"
 msgid ""
@@ -4375,7 +4381,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Add count variable"
-msgstr ""
+msgstr "新增計數變數"
 
 msgctxt "Descriptives|"
 msgid ""
@@ -4388,7 +4394,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Mean (arithmetic)"
-msgstr ""
+msgstr "平均數(算術平均)"
 
 msgctxt "Descriptives|"
 msgid ""
@@ -4399,7 +4405,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Mean (geometric)"
-msgstr ""
+msgstr "平均數(幾何平均)"
 
 msgctxt "Descriptives|"
 msgid ""
@@ -4410,7 +4416,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Mean (harmonic)"
-msgstr ""
+msgstr "平均數(調和平均)"
 
 msgctxt "Descriptives|"
 msgid ""
@@ -4421,8 +4427,8 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Standard error of the arithmetic mean."
-msgstr ""
+msgstr "算術平均數的標準差"
 
 msgctxt "Descriptives|"
 msgid "Confidence interval for the arithmetic mean"
-msgstr ""
+msgstr "算術平均數的信賴區間"
