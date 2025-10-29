@@ -363,7 +363,7 @@ Form
 					label: 				qsTr("Pareto rule")
 					childrenOnSameRow: 	true
 
-					CIField { name: 	"paretoPlotRuleCi" }
+					CIField { name: 	"paretoPlotRuleCi"; defaultValue: 80 }
 				}
 				CheckBox
 				{
