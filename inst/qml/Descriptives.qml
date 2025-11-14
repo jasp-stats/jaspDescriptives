@@ -46,7 +46,7 @@ Form
 	{
 		infoLabel: qsTr("Input")
 		AvailableVariablesList	{ name: "allVariablesList"								}
-		AssignedVariablesList	{ name: "variables";		title: qsTr("Variables");	info: qsTr("All variables of interest."); allowTypeChange: true }
+		AssignedVariablesList	{ name: "variables";		title: qsTr("Variables");	info: qsTr("All variables of interest."); allowTypeChange: true; allowedColumns: ["scale", "nominal"]}
 		AssignedVariablesList	{ name: "splitBy";			title: qsTr("Split");		info: qsTr("Can be split by a categorical variable such as experimental condition.") ; singleVariable: true; allowedColumns: ["nominal"];	id: splitBy; minLevels: 2; maxLevels: 256 } // without maxLevels entering a continuous variable can freeze/ crash jasp, so we need an arbitrary maximum
 	}
 
