@@ -3500,7 +3500,7 @@
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspTools",
       "RemoteRef": "master",
-      "RemoteSha": "525d7bd87fc832df731c5484582dc45af3d40f80",
+      "RemoteSha": "d1b514f6946fb1c2c270c9453a76a8ec019bb1fc",
       "RemoteHost": "api.github.com"
     },
     "jpeg": {
