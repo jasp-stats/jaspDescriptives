@@ -81,7 +81,7 @@ Form
 				name: "quantilesType"
 				label: qsTr("Type")
 				indexDefaultValue: 6
-				info: qsTr("Method used to compute quantiles (see Hyndman & Fan, 1996, for more information).")
+				info: qsTr("Method used to compute quantiles (see Hyndman & Fan, 1996, for more information). Note that the selection carries over to the inter-quartile range (IQR) and boxplot calculations.\n")
 				values:
 				[
 					{label: qsTr("1"),	                value: 1},

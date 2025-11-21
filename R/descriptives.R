@@ -585,6 +585,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 .descriptivesDescriptivesTable_subFunction <- function(column, columnType, resultsCol, options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, jaspResults) {
   equalGroupsNo          <- options$quantilesForEqualGroupsNumber
   percentilesPercentiles <- unique(options$percentileValues)
+
   rows       <- length(column)
   na.omitted <- na.omit(column)
 
@@ -595,6 +596,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
 
   shouldAddIdenticalFootnote <- all(na.omitted[1] == na.omitted) && (options$skewness || options$kurtosis || options$shapiroWilkTest)
+
   valid <- length(na.omitted)
   resultsCol[["Valid"]]                   <- if (options$valid)   valid
   resultsCol[["Missing"]]                 <- if (options$missing) rows - length(na.omitted)
