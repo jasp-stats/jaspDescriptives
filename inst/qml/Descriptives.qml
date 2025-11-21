@@ -26,6 +26,7 @@ Form
 {
 	info: qsTr("Descriptives allows the user to obtain basic descriptive statistics, histograms and density plots, correlation plots, boxplots, and frequency tables.")
 	infoBottom: "## " + qsTr("References") + "\n"
+				+ 	"- Hyndman, R. J., & Fan, Y. (1996). Sample quantiles in statistical packages. *The American Statistician, 50*(4), 361–365." + "\n"
 				+	"- Moore, D. S., McCabe, G. P., & Craig, B. A. (2012). *Introduction to the practice of statistics (7th ed.)*. New York, NY: W. H. Freeman and Company." + "\n"
 				+	"- Schwarz, G. (1978). Estimating the dimension of a model. *Annals of Statistics, 6*, 461-464." + "\n"
 				+	"- Whitlock, M. C., & Schluter, D. (2015). *The analysis of biological data (2nd ed.)*. Greenwood Village, Colorado: Roberts and Company Publishers." + "\n"
@@ -80,7 +81,7 @@ Form
 				name: "quantilesType"
 				label: qsTr("Type")
 				indexDefaultValue: 6
-				info: qsTr("Method used to compute quantiles")
+				info: qsTr("Method used to compute quantiles (see Hyndman & Fan, 1996, for more information).")
 				values:
 				[
 					{label: qsTr("1"),	                value: 1},
