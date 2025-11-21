@@ -26,7 +26,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   splitName <- options$splitBy
   makeSplit <- splitName != ""
   numberMissingSplitBy <- 0
-  saveRDS(dataset, "/Users/julian/Documents/Jasp files/dataset.rds")
 
   if (makeSplit && length(variables) > 0) {
     splitFactor <- dataset[[splitName]]
@@ -395,7 +394,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     "percentiles", "descriptivesTableTransposed", "valid", "missing", "meanCi", "meanCiLevel", "meanCiMethod",
     "sdCi", "sdCiLevel", "sdCiMethod", "varianceCiMethod", "varianceCi", "varianceCiLevel", "ciBootstrapSamples",
     "quantilesType"
-  )) # add dependency here
+  ))
 
   if (wantsSplit) {
     stats$transposeWithOvertitle <- TRUE
@@ -586,7 +585,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 .descriptivesDescriptivesTable_subFunction <- function(column, columnType, resultsCol, options, shouldAddNominalTextFootnote, shouldAddModeMoreThanOnceFootnote, jaspResults) {
   equalGroupsNo          <- options$quantilesForEqualGroupsNumber
   percentilesPercentiles <- unique(options$percentileValues)
-  saveRDS(column, "/Users/julian/Documents/Jasp files/column.rds")
   rows       <- length(column)
   na.omitted <- na.omit(column)
 
@@ -597,7 +595,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
 
   shouldAddIdenticalFootnote <- all(na.omitted[1] == na.omitted) && (options$skewness || options$kurtosis || options$shapiroWilkTest)
-  saveRDS(na.omitted, "/Users/julian/Documents/Jasp files/na.omitted.rds")
   valid <- length(na.omitted)
   resultsCol[["Valid"]]                   <- if (options$valid)   valid
   resultsCol[["Missing"]]                 <- if (options$missing) rows - length(na.omitted)
@@ -662,7 +659,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   }
 
   # should explain supremum and infimum of an empty set?
-  saveRDS(valid, "/Users/julian/Documents/Jasp files/valid.rds")
   shouldAddExplainEmptySet <- (options$minimum || options$maximum) && valid == 0
 
   shouldAddGeomHarmMeansPositiveFootnote <- (options[["meanGeometric"]] || options[["meanHarmonic"]]) && any(na.omitted <= 0)
@@ -747,7 +743,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if (columnType == "scale" || columnType == "ordinal") {
     # Type 7: default in R
     # Type 3: Nearest even order statistic (SAS default till ca. 2010).
-    saveRDS(options, "/Users/julian/Documents/Jasp files/options.rds")
     quartileType <- as.integer(options[["quantilesType"]]) # extract number from type for quantile() function
 
     if (options$quantilesForEqualGroups) {
@@ -1237,7 +1232,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     }
 
     plotDat$label <- ifelse(plotDat$outlier, row.names(plotDat), "")
-    saveRDS(plotDat, "/Users/julian/Documents/Jasp files/plotDat.rds")
 
     if (options[["boxPlotColourPalette"]]) {
       thePlot$dependOn("colorPalette") # only add color as dependency if the user wants it
@@ -1258,9 +1252,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     if (options[["boxPlotBoxPlot"]]) {
       # if we add jittered data points, don't show outlier dots
       outlierShape <- if (options[["boxPlotJitter"]]) NA else 19
-      # p <- p +
-      #   ggplot2::stat_boxplot(geom = "errorbar", size = 0.75, width = boxWidth / 2) +
-      #   ggplot2::geom_boxplot(size = 0.75, outlier.size = 2, width = boxWidth, outlier.shape = outlierShape)
 
       # create summaries per group for boxplots
       # needed to make the quantiles based on the type specified by the user
@@ -1272,8 +1263,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
         upper = quantile(y, 0.75, type = as.integer(options[["quantilesType"]])),
         ymax = max(y[!outlier]) # upper end of whiskers largest observation that is not an outlier
       )
-
-      saveRDS(boxData, "/Users/julian/Documents/Jasp files/boxData.rds")
 
       # plot boxplots with errorbars based on the computed statistics
       p <- p +
@@ -1305,7 +1294,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
                               shape = outlierShape,
                               size = 2)
       }
-      saveRDS(p, "/Users/julian/Documents/Jasp files/p.rds")
     }
 
     if (options[["boxPlotJitter"]]) {
