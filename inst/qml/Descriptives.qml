@@ -75,6 +75,26 @@ Form
 			title:	qsTr("Quantiles")
 			info:	qsTr("Percentile Values")
 
+			DropDown
+			{
+				name: "quantilesType"
+				label: qsTr("Type")
+				indexDefaultValue: 6
+				info: qsTr("Method used to compute quantiles")
+				values:
+				[
+					{label: qsTr("1"),	                value: 1},
+					{label: qsTr("2 (SAS)"),	        value: 2},
+					{label: qsTr("3"),	                value: 3},
+					{label: qsTr("4"),	                value: 4},
+					{label: qsTr("5"),	                value: 5},
+					{label: qsTr("6 (Minitab, SPSS)"),	value: 6},
+					{label: qsTr("7 (R, S)"),	        value: 7},
+					{label: qsTr("8"),	                value: 8},
+					{label: qsTr("9"),	                value: 9}
+				]
+			}
+
 			CheckBox { name: "quartiles";	label: qsTr("Quartiles"); info: qsTr("Displays the 25th, 50th, and 75th percentiles of the data points.") }
 			CheckBox
 			{
