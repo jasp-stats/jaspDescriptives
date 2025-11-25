@@ -1785,12 +1785,9 @@ addDecodedLabels <- function(p) {
 
     # Adjust Y axis (tidyplots::adjust_y_axis)----
 
-
-
     {
       adjust_args_yaxis <- list()
 
-      # --- Limit beállítások ---
       limitFromY <- suppressWarnings(as.numeric(tab[["limitFromY"]]))
       limitToY   <- suppressWarnings(as.numeric(tab[["limitToY"]]))
       user_has_limits <- !is.na(limitFromY) && !is.na(limitToY)
@@ -1799,7 +1796,6 @@ addDecodedLabels <- function(p) {
         adjust_args_yaxis$limits <- c(limitFromY, limitToY)
       }
 
-      # --- Breaks beállítása ---
       fromValueY <- suppressWarnings(as.numeric(tab[["breakFromY"]]))
       toValueY   <- suppressWarnings(as.numeric(tab[["breakToY"]]))
       byValueY   <- suppressWarnings(as.numeric(tab[["breakByY"]]))
@@ -1809,7 +1805,6 @@ addDecodedLabels <- function(p) {
         adjust_args_yaxis$breaks <- seq(fromValueY, toValueY, byValueY)
       }
 
-      # --- Padding beállítása ---
       bottom_padding <- suppressWarnings(as.numeric(tab[["YPaddingFirst"]]))
       top_padding    <- suppressWarnings(as.numeric(tab[["YPaddingSecond"]]))
 
@@ -1820,7 +1815,6 @@ addDecodedLabels <- function(p) {
         )
       }
 
-      # --- Tengely beállítása ---
       if (length(adjust_args_yaxis) > 0) {
         tidyplot_obj <- do.call(
           tidyplots::adjust_y_axis,
@@ -1828,7 +1822,6 @@ addDecodedLabels <- function(p) {
         )
       }
 
-      # --- Opcionális Y-tengelyrendezés ---
       enableSortY <- tab[["enableSortY"]]
       if (isTRUE(enableSortY)) {
         sortOrderY <- tab[["sortYLabelsOrder"]]
