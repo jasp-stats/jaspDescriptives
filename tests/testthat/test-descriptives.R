@@ -558,6 +558,7 @@ test_that("minimum and maximum return correctly show labels (not values) for ord
   options$quantilesForEqualGroupsNumber <- 5
   options$percentiles <- TRUE
   options$percentileValues <- c(2, 5, 8)
+  options$quantilesType <- 3 # unit test were written when type = 3 was the default for ordinals
 
 
   results <- jaspTools::runAnalysis("Descriptives", df, options)

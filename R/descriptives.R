@@ -706,7 +706,18 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       # Type 7: default in R
       # Type 3: Nearest even order statistic (SAS default till ca. 2010).
       quartileType <- as.integer(options[["quantilesType"]]) # extract number from type for quantile() function
-      q123 <- quantile(na.omitted, c(.25, .5, .75), names = FALSE, type = quartileType)
+
+      # Treat variable (i.e., na.omitted) as numeric to make all quantile types applicable.
+      # If we would treat ordinals as ordered factors, the quantile function would lead
+      # to an error.
+      # This is necessary because the user can specify the type from the JASP GUI now,
+      # and the type is applied across all input variables.
+      q123 <- quantile(as.numeric(na.omitted), c(.25, .5, .75), names = FALSE, type = quartileType)
+
+      # To get the labels of the ordinal as output in the table and
+      # not the numbers, index the levels of the factor
+      if(columnType == "ordinal")
+        q123 <- levels(na.omitted)[q123]
 
       resultsCol[["q1"]] <- toMixedCol(q123[1])
       resultsCol[["q2"]] <- toMixedCol(q123[2])
@@ -749,16 +760,34 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
     if (options$quantilesForEqualGroups) {
 
-      for (i in seq(equalGroupsNo - 1))
-        resultsCol[[paste0("eg", i)]] <- toMixedCol(quantile(na.omitted, c(i / equalGroupsNo), names = FALSE, type = quartileType))
+      for (i in seq(equalGroupsNo - 1)) {
+        # Treat variable (i.e., na.omitted) as numeric to make all quantile types applicable.
+        # If we would treat ordinals as ordered factors, the quantile function would lead
+        # to an error.
+        # This is necessary because the user can specify the type from the JASP GUI now,
+        # and the type is applied across all input variables.
+        quantileEst <- quantile(as.numeric(na.omitted), c(i / equalGroupsNo), names = FALSE, type = quartileType)
 
+        # To get the labels of the ordinal as output in the table and
+        # not the numbers, index the levels of the factor
+        if (columnType == "ordinal")
+          quantileEst <- levels(na.omitted)[quantileEst]
+
+        resultsCol[[paste0("eg", i)]] <- toMixedCol(quantileEst)
+      }
     }
 
     if (options$percentiles) {
 
-      for (i in percentilesPercentiles)
-        resultsCol[[paste0("pc", i)]] <- toMixedCol(quantile(na.omitted, c(i / 100), names = FALSE, type = quartileType))
+      for (i in percentilesPercentiles) {
+        # See explanation above
+        percentileEst <- quantile(as.numeric(na.omitted), c(i / 100), names = FALSE, type = quartileType)
 
+        if (columnType == "ordinal")
+          percentileEst <- levels(na.omitted)[percentileEst]
+
+        resultsCol[[paste0("pc", i)]] <- toMixedCol(percentileEst)
+      }
     }
   } else {
     if (options$quantilesForEqualGroups) {
