@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2025-10-11 03:23\n"
-"PO-Revision-Date: 2025-10-01 11:02+0000\n"
+"PO-Revision-Date: 2025-12-23 10:38+0000\n"
 "Last-Translator: Jose Ramon Rueda <joseramon.rueda@ehu.eus>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/eu/>\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.15.1\n"
 
 msgid "Time Series Plot"
 msgstr "Denborazko serieak Grafikoa"
@@ -182,13 +182,11 @@ msgstr "Goiko"
 msgid "Lower"
 msgstr "Beheko"
 
-#, fuzzy
 msgid "%s%% CI A. Mean Upper"
-msgstr "%s%% Konfiantza-Tartearen Goikoa"
+msgstr "%s%% Batez bestekoaren Konfiantza-Tartearen Goikoa"
 
-#, fuzzy
 msgid "%s%% CI A. Mean Lower"
-msgstr "%s%% Konfiantza-Tartearen Behekoa"
+msgstr "%s%% Batez bestekoaren Konfiantza-Tartearen Behekoa"
 
 msgid "%s%% CI Std. Dev. Upper"
 msgstr "%s%% Desbideratze Estandarren Konfiantza Tartearen Goikoa"
@@ -209,17 +207,16 @@ msgid "Median"
 msgstr "Mediana"
 
 msgid "Mean (arithmetic)"
-msgstr ""
+msgstr "Batez bestekoa (aritmetikoa)"
 
-#, fuzzy
 msgid "Std. Error of A. Mean"
 msgstr "Batez bestekoaren Errore Estandarra"
 
 msgid "Mean (geometric)"
-msgstr ""
+msgstr "Batez bestekoa (geometrikoa)"
 
 msgid "Mean (harmonic)"
-msgstr ""
+msgstr "Batez bestekoa (harmonikoa)"
 
 msgid "Coefficient of variation"
 msgstr "Aldakortasun koefizientea"
@@ -293,6 +290,8 @@ msgid ""
 "Geometric and harmonic means are defined only for strictly positive "
 "variables, but the data contain some non-positive values."
 msgstr ""
+"Batez besteko geometrikoak eta harmonikoak aldagai positibo hertsietarako "
+"bakarrik definitzen dira, baina datuek balio ez-positibo batzuk dituzte."
 
 msgid "Total"
 msgstr "Guztira"
@@ -386,15 +385,18 @@ msgid ""
 "The variable used for categories must not have duplicated values when a "
 "count variable is specified."
 msgstr ""
+"Kategorietarako erabilitako aldagaiak ez du balio bikoizturik izan behar "
+"zenbaketa aldagai bat zehazten denean."
 
 msgid ""
 "The variable used for counts must be different from the variable used for "
 "categories."
 msgstr ""
+"Zenbaketetarako erabilitako aldagaia kategorietarako erabilitako aldagaiaren "
+"desberdina izan behar da."
 
-#, fuzzy
 msgid "Percentage (%%)"
-msgstr "Ehunekoa"
+msgstr "Ehunekoa (%%)"
 
 msgid "Levels within variable require at least two or more data points!"
 msgstr ""
