@@ -1,12 +1,15 @@
 msgid ""
 msgstr ""
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2026-01-03 03:38+0000\n"
+"Last-Translator: Zev Oster <zevelijah@gmail.com>\n"
+"Language-Team: Tibetan <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-qml/bo/>\n"
 "Language: bo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.15.1\n"
 "X-Qt-Contexts: true\n"
 
 msgctxt "Description|"
@@ -166,7 +169,7 @@ msgstr ""
 
 msgctxt "Descriptives|"
 msgid "Median"
-msgstr ""
+msgstr "དཀྱིལ་གྲངས།"
 
 msgctxt "Descriptives|"
 msgid "Mode"
@@ -643,9 +646,10 @@ msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the partial autocorrelation for a specified number of lags."
 msgstr ""
 
+#, fuzzy
 msgctxt "Description|"
 msgid "Flexplot"
-msgstr ""
+msgstr "Flexplot"
 
 msgctxt "FlexplotForm|"
 msgid "Dependent Variable"
