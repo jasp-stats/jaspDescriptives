@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.19.2\n"
 "POT-Creation-Date: 2025-10-11 03:23\n"
-"PO-Revision-Date: 2025-09-19 16:02+0000\n"
+"PO-Revision-Date: 2026-01-01 03:01+0000\n"
 "Last-Translator: தமிழ்நேரம் <tamilneram247@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/ta/>\n"
@@ -11,39 +11,41 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.15.1\n"
 
 msgid "Time Series Plot"
-msgstr ""
+msgstr "நேரத் தொடர் சூழ்ச்சி"
 
 msgid "Lag Plot"
-msgstr ""
+msgstr "லேக் ப்ளாட்"
 
 msgid ""
 "The specified lag, %1$s, is too large given the %2$s observations in the "
 "data. Please choose a smaller lag."
 msgstr ""
+"குறிப்பிட்ட பின்னடைவு, %1$s, தரவில் உள்ள %2$s அவதானிப்புகளின் அடிப்படையில் மிகவும் "
+"பெரியதாக உள்ளது. சிறிய பின்னடைவைத் தேர்ந்தெடுக்கவும்."
 
 msgid "Autocorrelation Function"
-msgstr ""
+msgstr "தன்னியக்க தொடர்பு செயல்பாடு"
 
 msgid "Partial Autocorrelation Function"
-msgstr ""
+msgstr "பகுதி தன்னியக்க தொடர்பு செயல்பாடு"
 
 msgid "Descriptive Statistics"
-msgstr ""
+msgstr "விளக்கமான புள்ளிவிவரங்கள்"
 
 msgid "Valid"
-msgstr ""
+msgstr "செல்லுபடியாகும்"
 
 msgid "Missing"
-msgstr ""
+msgstr "காணவில்லை"
 
 msgid "Mean"
 msgstr "இடை, சராசரி"
 
 msgid "Std. Deviation"
-msgstr ""
+msgstr "படிப்பு விலகல்"
 
 msgid "Variance"
 msgstr "மாறுபாட்டெண்"
@@ -58,112 +60,122 @@ msgid "Maximum"
 msgstr "பெருமம்"
 
 msgid "Start"
-msgstr ""
+msgstr "தொடங்கு"
 
 msgid "End"
-msgstr ""
+msgstr "முடிவு"
 
 msgid "Lag 1 Autocorrelation"
-msgstr ""
+msgstr "பின்னடைவு 1 தன்னியக்க தொடர்பு"
 
 msgid "The time series data should be equally-spaced."
-msgstr ""
+msgstr "நேரத் தொடர் தரவு சம இடைவெளியில் இருக்க வேண்டும்."
 
 msgid "The time variable should have unique values only."
-msgstr ""
+msgstr "நேர மாறி தனிப்பட்ட மதிப்புகளை மட்டுமே கொண்டிருக்க வேண்டும்."
 
 msgid ""
 "The 'Time' variable has a date-like format, please filter by date instead."
 msgstr ""
+"'நேரம்' மாறி ஒரு தேதி போன்ற வடிவமைப்பைக் கொண்டுள்ளது, அதற்குப் பதிலாக தேதியின்படி "
+"வடிகட்டவும்."
 
 msgid ""
 "The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:"
 "ss). Try to filter by time index instead."
 msgstr ""
+"'நேரம்' மாறி தேதி போன்ற வடிவத்தில் இல்லை (எ.கா., yyyy-mm-dd hh:mm:ss). அதற்கு பதிலாக "
+"நேர அட்டவணை மூலம் வடிகட்ட முயற்சிக்கவும்."
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
 msgstr ""
+"'தொடங்கு' என்பது தேதி போன்ற வடிவத்தில் இருக்க வேண்டும் (எ.கா., yyyy-mm-dd hh:mm:ss)."
 
 msgid "The 'Start' value of the filter should be before last observation."
 msgstr ""
+"வடிகட்டியின் 'ச்டார்ட்' மதிப்பு கடைசியாகக் கவனிப்பதற்கு முன் இருக்க வேண்டும்."
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
 msgstr ""
+"'முடிவு' என்பது தேதி போன்ற வடிவத்தில் இருக்க வேண்டும் (எ.கா., yyyy-mm-dd hh:mm:ss)."
 
 msgid ""
 "The 'End' value of the filter should be larger/later than the 'Start' value."
 msgstr ""
+"வடிப்பானின் 'முடிவு' மதிப்பு 'தொடக்க' மதிப்பை விட பெரியதாக/பின்னாக இருக்க வேண்டும்."
 
 msgid "Lag"
 msgstr "பின்னடைவு"
 
 msgid "Association %s"
-msgstr ""
+msgstr "சங்கம் %s"
 
 msgid "Frequency Tables"
-msgstr ""
+msgstr "அதிர்வெண் அட்டவணைகள்"
 
 msgid "Correlation plots"
-msgstr ""
+msgstr "தொடர்பு அடுக்குகள்"
 
 msgid "Correlation plot"
-msgstr ""
+msgstr "தொடர்பு சூழ்ச்சி"
 
 msgid "Distribution Plots"
-msgstr ""
+msgstr "விநியோக இடங்கள்"
 
 msgid "Boxplots"
-msgstr ""
+msgstr "பாக்ச்ப்ளாட்ச்"
 
 msgid "Q-Q Plots"
-msgstr ""
+msgstr "Q-Q அடுக்குகள்"
 
 msgid "Q-Q Plot"
-msgstr ""
+msgstr "Q-Q சூழ்ச்சி"
 
 msgid "Plotting is not possible: Variable only contains NA!"
-msgstr ""
+msgstr "சூழ்ச்சி செய்வது சாத்தியமில்லை: மாறியில் நா மட்டுமே உள்ளது!"
 
 msgid "Pie charts"
-msgstr ""
+msgstr "பை விளக்கப்படங்கள்"
 
 msgid "Stem and Leaf"
-msgstr ""
+msgstr "தண்டு மற்றும் இலை"
 
 msgid "Scatter Plots"
-msgstr ""
+msgstr "சிதறல் அடுக்குகள்"
 
 msgid "Interval plots"
-msgstr ""
+msgstr "இடைவெளி அடுக்குகள்"
 
 msgid "Dot Plots"
-msgstr ""
+msgstr "புள்ளி அடுக்குகள்"
 
 msgid "Heatmaps"
-msgstr ""
+msgstr "வெப்ப வரைபடங்கள்"
 
 msgid "Pareto Plots"
-msgstr ""
+msgstr "பரேட்டோ ப்ளாட்ச்"
 
 msgid "Frequency Plots"
-msgstr ""
+msgstr "அதிர்வெண் அடுக்குகள்"
 
 msgid "Likert Plots"
-msgstr ""
+msgstr "லைக்கர்ட் ப்ளாட்ச்"
 
 msgid ""
 "Excluded %1$i rows from the analysis that correspond to the missing values "
 "of the split-by variable %2$s"
 msgstr ""
+"பகுப்பாய்விலிருந்து %1$i வரிசைகள் விலக்கப்பட்டுள்ளன, இது %2$s பிரிவின் மாறியின் விடுபட்ட "
+"மதிப்புகளுடன் தொடர்புடையது"
 
 msgid "%s%% Confidence Interval Mean"
-msgstr ""
+msgstr "%s%% நம்பிக்கை இடைவெளி சராசரி"
 
 msgid "%s%% Confidence Interval Std. Dev."
-msgstr ""
+msgstr "%s%% நம்பிக்கை இடைவெளி படிநிலை. தேவ்."
 
 msgid "%s%% Confidence Interval Variance"
-msgstr ""
+msgstr "%s%% நம்பிக்கை இடைவெளி மாறுபாடு"
 
 msgid "Upper"
 msgstr "மேல்"
@@ -172,22 +184,22 @@ msgid "Lower"
 msgstr "கீழ்"
 
 msgid "%s%% CI A. Mean Upper"
-msgstr ""
+msgstr "%s%% தொஒ A. சராசரி மேல்"
 
 msgid "%s%% CI A. Mean Lower"
-msgstr ""
+msgstr "%s%% தொஒ A. சராசரி குறைவு"
 
 msgid "%s%% CI Std. Dev. Upper"
-msgstr ""
+msgstr "%s%% தொஒ Std. தேவ். மேல்"
 
 msgid "%s%% CI Std. Dev. Lower"
-msgstr ""
+msgstr "%s%% தொஒ Std. தேவ். கீழ்"
 
 msgid "%s%% CI Variance Upper"
-msgstr ""
+msgstr "%s%% தொஒ மாறுபாடு மேல்"
 
 msgid "%s%% CI Variance Lower"
-msgstr ""
+msgstr "%s%% தொஒ மாறுபாடு குறைவு"
 
 msgid "Mode"
 msgstr "பயன்முறை"
@@ -196,72 +208,75 @@ msgid "Median"
 msgstr "இடைநடு"
 
 msgid "Mean (arithmetic)"
-msgstr ""
+msgstr "சராசரி (எண்கணிதம்)"
 
 msgid "Std. Error of A. Mean"
-msgstr ""
+msgstr "படிப்பு ஏ. மீனின் பிழை"
 
 msgid "Mean (geometric)"
-msgstr ""
+msgstr "சராசரி (வடிவியல்)"
 
 msgid "Mean (harmonic)"
-msgstr ""
+msgstr "சராசரி (ஆர்மோனிக்)"
 
 msgid "Coefficient of variation"
-msgstr ""
+msgstr "மாறுபாட்டின் குணகம்"
 
 msgid "MAD"
-msgstr ""
+msgstr "பைத்தியம்"
 
 msgid "MAD robust"
-msgstr ""
+msgstr "MAD வலுவானது"
 
 msgid "IQR"
-msgstr ""
+msgstr "IQR"
 
 msgid "Skewness"
-msgstr ""
+msgstr "வளைவு"
 
 msgid "Std. Error of Skewness"
-msgstr ""
+msgstr "படிப்பு வளைவின் பிழை"
 
 msgid "Kurtosis"
-msgstr ""
+msgstr "குர்டோசிச்"
 
 msgid "Std. Error of Kurtosis"
-msgstr ""
+msgstr "படிப்பு குர்டோசிசின் பிழை"
 
 msgid "Shapiro-Wilk"
 msgstr "சாபிரோ-வில்க்"
 
 msgid "P-value of Shapiro-Wilk"
-msgstr ""
+msgstr "சாபிரோ-வில்க்கின் பி-மதிப்பு"
 
 msgid "25th percentile"
-msgstr ""
+msgstr "25 சதவிகிதம்"
 
 msgid "50th percentile"
-msgstr ""
+msgstr "50 சதவிகிதம்"
 
 msgid "75th percentile"
-msgstr ""
+msgstr "75வது விழுக்காடு"
 
 msgid "%gth percentile"
-msgstr ""
+msgstr "%gth விழுக்காடு"
 
 msgid "Error in Percentiles, all values should >=0 and <=100"
 msgstr ""
+"சதவீதங்களில் பிழை, எல்லா மதிப்புகளும் >=0 மற்றும் <=100 ஆக இருக்க வேண்டும்"
 
 msgid "Sum"
-msgstr ""
+msgstr "தொகை"
 
 msgid "All values are identical"
-msgstr ""
+msgstr "எல்லா மதிப்புகளும் ஒரே மாதிரியானவை"
 
 msgid ""
 "Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty "
 "set is %2$s."
 msgstr ""
+"காலியான தொகுப்பின் இன்ஃபிமம் (குறைந்தபட்சம்) %1$s, காலியான தொகுப்பின் உச்சம் (அதிகபட்சம்) "
+"%2$s."
 
 msgid ""
 "More than one mode exists. For nominal and ordinal data, the first mode is "
@@ -269,60 +284,70 @@ msgid ""
 "reported but multiple modes may exist. We recommend visualizing the data to "
 "check for multimodality."
 msgstr ""
+"ஒன்றுக்கு மேற்பட்ட முறைகள் உள்ளன. பெயரளவு மற்றும் சாதாரண தரவுகளுக்கு, முதல் பயன்முறை "
+"அறிவிக்கப்படுகிறது. தொடர்ச்சியான தரவுகளுக்கு, அதிக அடர்த்தி மதிப்பீட்டைக் கொண்ட "
+"பயன்முறையைப் புகாரளிக்கலாம் ஆனால் பல முறைகள் இருக்கலாம். மல்டிமாடலிட்டியை சரிபார்க்க தரவை "
+"காட்சிப்படுத்த பரிந்துரைக்கிறோம்."
 
 msgid ""
 "Geometric and harmonic means are defined only for strictly positive "
 "variables, but the data contain some non-positive values."
 msgstr ""
+"சியோமெட்ரிக் மற்றும் ஆர்மோனிக் வழிமுறைகள் கண்டிப்பாக நேர்மறை மாறிகளுக்கு மட்டுமே "
+"வரையறுக்கப்படுகின்றன, ஆனால் தரவு சில நேர்மறை மதிப்புகளைக் கொண்டுள்ளது."
 
 msgid "Total"
 msgstr "மொத்தம்"
 
 msgid "All variables have more than %1$s distinct values"
 msgstr ""
+"அனைத்து மாறிகளும் %1$s க்கும் அதிகமான தனித்துவமான மதிப்புகளைக் கொண்டுள்ளன"
 
 msgid "Frequencies"
-msgstr ""
+msgstr "அலைவெண்கள்"
 
 msgid "Frequencies for %s"
-msgstr ""
+msgstr "%sக்கான அதிர்வெண்கள்"
 
 msgid "Frequency"
-msgstr ""
+msgstr "மீடிறன், மீள்திறன், நிகழ்வெண், நிகழ்வு"
 
 msgid "Percent"
-msgstr ""
+msgstr "விழுக்காடு"
 
 msgid "Valid Percent"
-msgstr ""
+msgstr "செல்லுபடியாகும் விழுக்காடு"
 
 msgid "Cumulative Percent"
-msgstr ""
+msgstr "ஒட்டுமொத்த விழுக்காடு"
 
 msgid "Plotting not possible: %s"
-msgstr ""
+msgstr "திட்டமிடல் சாத்தியமில்லை: %s"
 
 msgid "Plotting is not possible: No plot type selected!"
-msgstr ""
+msgstr "திட்டமிடல் சாத்தியமில்லை: சூழ்ச்சி வகை எதுவும் தேர்ந்தெடுக்கப்படவில்லை!"
 
 msgid "Counts"
-msgstr ""
+msgstr "எண்ணுகிறது"
 
 msgid "Density"
 msgstr "அடர்த்தி"
 
 msgid "No non-missing values!"
-msgstr ""
+msgstr "விடுபடாத மதிப்புகள் இல்லை!"
 
 msgid ""
 "Association cannot be computed due to missing values. Try a different 'Use' "
 "setting."
 msgstr ""
+"விடுபட்ட மதிப்புகள் காரணமாக சங்கத்தை கணக்கிட முடியாது. வேறு 'பயன்பாடு' அமைப்பை "
+"முயற்சிக்கவும்."
 
 msgid ""
 "Some associations cannot be computed due to missing values. Try a different "
 "'Use' setting."
 msgstr ""
+"மதிப்புகள் இல்லாததால் சில சங்கங்களை கணக்கிட முடியாது. வேறு 'பயன்பாடு' அமைப்பை முயற்சிக்கவும்."
 
 msgid "Theoretical Quantiles"
 msgstr "தத்துவார்த்த அளவுகள்"
@@ -331,162 +356,186 @@ msgid "Sample Quantiles"
 msgstr "மாதிரி அளவீடுகள்"
 
 msgid "Stem"
-msgstr ""
+msgstr "தண்டு"
 
 msgid "Leaf"
-msgstr ""
+msgstr "இலை"
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
 "missing observations"
 msgstr ""
+"ஒரு தண்டு மற்றும் இலை அட்டவணையை உருவாக்க முடியவில்லை, ஏனெனில் 2க்கும் குறைவாகவே காணவில்லை"
 
 msgid "The decimal point is at the |"
-msgstr ""
+msgstr "தசம புள்ளி |"
 
 msgid ""
 "There must be a unique value per combination of levels of horizontal and "
 "vertical axis!"
 msgstr ""
+"கிடைமட்ட மற்றும் செங்குத்து அச்சின் நிலைகளின் சேர்க்கைக்கு ஒரு தனிப்பட்ட மதிப்பு இருக்க "
+"வேண்டும்!"
 
 msgid "All categorical variables must have the same number of levels!"
 msgstr ""
+"அனைத்து வகை மாறிகளும் ஒரே எண்ணிக்கையிலான நிலைகளைக் கொண்டிருக்க வேண்டும்!"
 
 msgid "Items must have 2 or more levels!"
-msgstr ""
+msgstr "உருப்படிகள் 2 அல்லது அதற்கு மேற்பட்ட நிலைகளைக் கொண்டிருக்க வேண்டும்!"
 
 msgid ""
 "The variable used for categories must not have duplicated values when a "
 "count variable is specified."
 msgstr ""
+"எண்ணிக்கை மாறி குறிப்பிடப்படும் போது வகைகளுக்குப் பயன்படுத்தப்படும் மாறியில் நகல் மதிப்புகள் "
+"இருக்கக்கூடாது."
 
 msgid ""
 "The variable used for counts must be different from the variable used for "
 "categories."
 msgstr ""
+"எண்ணிக்கைகளுக்குப் பயன்படுத்தப்படும் மாறி, வகைகளுக்குப் பயன்படுத்தப்படும் மாறியிலிருந்து "
+"வேறுபட்டிருக்க வேண்டும்."
 
 msgid "Percentage (%%)"
-msgstr ""
+msgstr "விழுக்காடு (%%)"
 
 msgid "Levels within variable require at least two or more data points!"
 msgstr ""
+"மாறி உள்ள நிலைகளுக்கு குறைந்தது இரண்டு அல்லது அதற்கு மேற்பட்ட தரவு புள்ளிகள் தேவை!"
 
 msgid ""
 "Please assign a variable to every RM factor (defined in Repeated Measures "
 "Factors) within Repeated Measures Cells."
 msgstr ""
+"தயவு செய்து ஒவ்வொரு RM காரணிக்கும் ஒரு மாறியை ஒதுக்கவும் (மீண்டும் திரும்பும் அளவீடுகள் "
+"காரணிகளில் வரையறுக்கப்பட்டுள்ளது) மறுநிகழ்வு செய்யப்படும் அளவீடுகள் கலங்களுக்குள்."
 
 msgid "Plots"
-msgstr ""
+msgstr "அடுக்குகள்"
 
 msgid "Available Plot IDs"
-msgstr ""
+msgstr "கிடைக்கும் ப்ளாட் ஐடிகள்"
 
 msgid "Plot Grid"
-msgstr ""
+msgstr "ப்ளாட் கிரிட்"
 
 msgid "Raincloud Plots"
-msgstr ""
+msgstr "ரெயின்க்ளவுட் ப்ளாட்ச்"
 
 msgid "Not shown are %s observations due to missing data."
-msgstr ""
+msgstr "தரவு விடுபட்டதால் %s அவதானிப்புகள் காட்டப்படவில்லை."
 
 msgid "Interval around mean is custom."
-msgstr ""
+msgstr "சராசரியை சுற்றி இடைவெளி வழக்கமானது."
 
 msgid ""
 "<span style = 'color: darkorange'>Error with custom interval: Specified "
 "number of clouds does not match clouds in plot.</span>"
 msgstr ""
+"<span style = 'color: darkorange'>தனிப்பயன் இடைவெளியில் பிழை: குறிப்பிட்ட "
+"எண்ணிக்கையிலான மேகங்கள் சதித்திட்டத்தில் உள்ள மேகங்களுடன் பொருந்தவில்லை.</span>"
 
 msgid "Interval around mean represents ± 1 standard error"
-msgstr ""
+msgstr "சராசரியைச் சுற்றியுள்ள இடைவெளி ± 1 நிலையான பிழையைக் குறிக்கிறது"
 
 msgid "Interval around mean represents ± 1 standard deviation"
-msgstr ""
+msgstr "சராசரியைச் சுற்றியுள்ள இடைவெளி ± 1 நிலையான விலகலைக் குறிக்கிறது"
 
 msgid "Interval around mean represents %d%% confidence interval."
-msgstr ""
+msgstr "சராசரியைச் சுற்றியுள்ள இடைவெளி %d%% நம்பிக்கை இடைவெளியைக் குறிக்கிறது."
 
 msgid "Points are slightly jittered from their true values."
-msgstr ""
+msgstr "புள்ளிகள் அவற்றின் உண்மையான மதிப்புகளிலிருந்து சற்று நடுங்குகின்றன."
 
 msgid ""
 "<span style = 'color: darkorange'> Warning! Some data is not "
 "shown<br>because it lies outside of the interval set by the custom axis "
 "limits.</span>"
 msgstr ""
+"<span சூல் தண்டு = 'color: darkorange'> எச்சரிக்கை! சில தரவு காட்டப்படவில்லை<br>"
+"ஏனெனில் அது தனிப்பயன் அச்சு வரம்புகளால் அமைக்கப்பட்ட இடைவெளிக்கு வெளியே உள்ளது.</span>"
 
 msgid ""
 "<span style = 'color: darkorange'> Error with custom orientation: Specified "
 "number of clouds does not match clouds in plot.<br>Reverted to default all "
 "'R'. Point nudge set to 0.</span>"
 msgstr ""
+"<span சூல் தண்டு = 'color: darkorange'> தனிப்பயன் நோக்குநிலையில் பிழை: குறிப்பிட்ட "
+"எண்ணிக்கையிலான மேகங்கள் சதித்திட்டத்தில் உள்ள மேகங்களுடன் பொருந்தவில்லை.<br>எல்லா 'R'க்கும் "
+"இயல்புநிலையாக மாற்றப்பட்டது. புள்ளி நட்ச் 0 ஆக அமைக்கப்பட்டது.</span>"
 
 msgid ""
 "<span style = 'color: darkorange'> Error with custom color: Specified number "
 "of clouds does not match clouds in plot.<br>Ignoring custom color input.</"
 "span>"
 msgstr ""
+"<span சூல் தண்டு = 'color: darkorange'> தனிப்பயன் நிறத்தில் பிழை: குறிப்பிட்ட "
+"எண்ணிக்கையிலான மேகங்கள் ப்ளாட்டில் உள்ள மேகங்களுடன் பொருந்தவில்லை.<br>தனிப்பயன் வண்ண உள்ளீட்டைப் "
+"புறக்கணிக்கிறது.</span>"
 
 msgid "Statistics"
-msgstr ""
+msgstr "புள்ளிவிவரங்கள்"
 
 msgid "Primary Factor"
-msgstr ""
+msgstr "முதன்மை காரணி"
 
 msgid "Secondary Factor"
-msgstr ""
+msgstr "இரண்டாம் நிலை காரணி"
 
 msgid "<i>N</i>"
-msgstr ""
+msgstr "<i>N</i>"
 
 msgid "Lower Whisker"
-msgstr ""
+msgstr "கீழ் விச்கர்"
 
 msgid "25th Percentile"
-msgstr ""
+msgstr "25வது விழுக்காடு"
 
 msgid "75th Percentile"
-msgstr ""
+msgstr "75வது விழுக்காடு"
 
 msgid "Upper Whisker"
-msgstr ""
+msgstr "மேல் விச்கர்"
 
 msgid "%s%% CI for Mean Difference"
-msgstr ""
+msgstr "சராசரி வேறுபாட்டிற்கான %s%% தொஒ"
 
 msgid "Standard Error"
 msgstr "நிலையான பிழை"
 
 msgid "Standard Deviation"
-msgstr ""
+msgstr "திட்டவிலக்கல், நியம விலகல்"
 
 msgid "<i>N</i><sub>Total</sub> = %s."
-msgstr ""
+msgstr "<i>N</i><sub>மொத்தம்</sub> = %s."
 
 msgid "This excludes %s observations due to missing data."
-msgstr ""
+msgstr "தரவு விடுபட்டதால் இது %s அவதானிப்புகளை விலக்குகிறது."
 
 msgid "<br>Interval around mean is custom."
-msgstr ""
+msgstr "<br>சராசரியை சுற்றி இடைவெளி என்பது வழக்கம்."
 
 msgid "<br>Interval around mean represents %d%% confidence interval."
-msgstr ""
+msgstr "<br>சராசரி இடைவெளி %d%% நம்பிக்கை இடைவெளியைக் குறிக்கிறது."
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
 "The following variables have more than %1$s distinct values and are omitted: "
 "%2$s."
 msgstr[0] ""
+"%2$s ஆனது %1$s க்கும் அதிகமான தனித்துவமான மதிப்புகளைக் கொண்டுள்ளது மற்றும் தவிர்க்கப்பட்டது."
 msgstr[1] ""
+"பின்வரும் மாறிகள் %1$s க்கும் அதிகமான தனித்துவமான மதிப்புகளைக் கொண்டுள்ளன, மேலும் அவை "
+"தவிர்க்கப்பட்டன: %2$s."
 
 msgid "The decimal point is %s digit to the right of the |"
 msgid_plural "The decimal point is %s digits to the right of the |"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "தசமப்புள்ளியானது %s இலக்கத்தின் வலதுபுறத்தில் உள்ளது |"
+msgstr[1] "தசம புள்ளியானது |"
 
 msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "தசமப்புள்ளியானது %s இலக்கம் |"
+msgstr[1] "தசம புள்ளியானது |"
