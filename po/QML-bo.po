@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-01-03 03:38+0000\n"
+"PO-Revision-Date: 2026-01-06 14:02+0000\n"
 "Last-Translator: Zev Oster <zevelijah@gmail.com>\n"
 "Language-Team: Tibetan <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-qml/bo/>\n"
@@ -14,485 +14,606 @@ msgstr ""
 
 msgctxt "Description|"
 msgid "Descriptives"
-msgstr ""
+msgstr "འགྲེལ་བརྗོད་རང་བཞིན།"
 
+#, fuzzy
 msgctxt "Description|"
 msgid "Descriptive Statistics"
-msgstr ""
+msgstr "འགྲེལ་བརྗོད་རང་བཞིན་གྱི་སྡོམ་རྩིས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Variables"
-msgstr ""
+msgstr "འགྱུར་གྲངས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Split"
-msgstr ""
+msgstr "ཁ་འབྱེད་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Frequency tables"
-msgstr ""
+msgstr "ཟློས་ཕྱོད་ཀྱི་རེའུ་མིག"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Maximum distinct values"
-msgstr ""
+msgstr "རིན་ཐང་མི་འདྲ་བ་ཆེ་ཤོས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Stem and leaf tables"
-msgstr ""
+msgstr "རྩ་བ་དང་ལོ་མའི་རེའུ་མིག"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "scale"
-msgstr ""
+msgstr "ཚད་གཞི།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "The scale parameter controls how much the table is expanded. For example, "
 "scale = 2 will cause the table to be roughly twice as long as the default "
 "(scale = 1)."
 msgstr ""
+"ཚད་གཞིའི་ཚད་གཞིས་རེའུ་མིག་ཇི་ཙམ་རྒྱ་བསྐྱེད་དགོས་མིན་ཚོད་འཛིན་བྱེད། དཔེར་ན། ཚད་གཞི་ = 2 ཡིས་རེའུ་མིག་དེ"
+"་སོར་བཞག་ (ཚད་གཞི་ = 1) ལས་ལྡབ་གཉིས་ཙམ་རིང་དུ་གཏོང་ངེས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Boxplots"
-msgstr ""
+msgstr "སྒམ་རིས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Boxplot element"
-msgstr ""
+msgstr "སྒམ་རིས་ཀྱི་ཆ་ཤས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Violin element"
-msgstr ""
+msgstr "Violin ཆ་ཤས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Jitter element"
-msgstr ""
+msgstr "Jitter ཆ་ཤས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Use color palette"
-msgstr ""
+msgstr "ཚོན་མདོག་མཐུན་སྦྱོར་སྤྱོད་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Label outliers"
-msgstr ""
+msgstr "ཕྱིར་གྱར་བར་ཁ་བྱང་འགོད་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Graph above scatter plot"
-msgstr ""
+msgstr "scatter དཔེ་རིས་ཀྱི་སྟེང་གི་དཔེ་རིས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Density"
-msgstr ""
+msgstr "སྟུག་ཚད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Histogram"
-msgstr ""
+msgstr "Histogram"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "None"
-msgstr ""
+msgstr "མེད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Graph right of scatter plot"
-msgstr ""
+msgstr "scatter དཔེ་རིས་ཀྱི་གཡས་ཀྱི་དཔེ་རིས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Add regression line"
-msgstr ""
+msgstr "ཕྱིར་འགྲོས་ཀྱི་ཐིག་ཁ་སྣོན་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Smooth"
-msgstr ""
+msgstr "འཇམ་པོ།"
 
 msgctxt "Descriptives|"
 msgid "Linear"
 msgstr ""
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Show confidence interval"
-msgstr ""
+msgstr "ཡིད་རྟོན་བར་མཚམས་སྟོན་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Show legend"
-msgstr ""
+msgstr "འགྲེལ་བཤད་སྟོན་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Basic Plots"
-msgstr ""
+msgstr "གཞི་རྩའི་དཔེ་རིས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Distribution plots"
-msgstr ""
+msgstr "ཁྱབ་ཚུལ་གྱི་དཔེ་རིས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Display density"
-msgstr ""
+msgstr "སྟུག་ཚད་སྟོན་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Correlation plots"
-msgstr ""
+msgstr "ལྟོས་འབྲེལ་གྱི་དཔེ་རིས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Q-Q plots"
-msgstr ""
+msgstr "Q-Q དཔེ་རིས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Pie charts"
-msgstr ""
+msgstr "སྒོར་དབྱིབས་དཔེ་རིས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Statistics"
-msgstr ""
+msgstr "སྡོམ་རྩིས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Quartiles"
-msgstr ""
+msgstr "བཞི་ཆའི་གྲངས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Cut points for: "
-msgstr ""
+msgstr "གཅོད་ཚེག: "
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid " equal groups"
-msgstr ""
+msgstr " ཚོགས་པ་མཚུངས་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Percentiles:"
-msgstr ""
+msgstr "བརྒྱ་ཆའི་གྲངས།:"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Central tendency"
-msgstr ""
+msgstr "དབུས་ཕྱོགས་ཀྱི་ཁྱད་ཆོས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Mean"
-msgstr ""
+msgstr "ཆ་སྙོམས།"
 
 msgctxt "Descriptives|"
 msgid "Median"
 msgstr "དཀྱིལ་གྲངས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Mode"
-msgstr ""
+msgstr "མང་གྲངས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Sum"
-msgstr ""
+msgstr "བསྡོམས་འབོར།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Dispersion"
-msgstr ""
+msgstr "ཁྱབ་ཚད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "S.E. mean"
-msgstr ""
+msgstr "S.E. mean"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Std. deviation"
-msgstr ""
+msgstr "ཚད་ལྡན་ཁྱད་འགྱུར།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "MAD"
-msgstr ""
+msgstr "MAD"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "MAD robust"
-msgstr ""
+msgstr "MAD བརྟན་པོ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "IQR"
-msgstr ""
+msgstr "IQR"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Variance"
-msgstr ""
+msgstr "འགྱུར་ཚད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Range"
-msgstr ""
+msgstr "ཁྱབ་རྒྱ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Minimum"
-msgstr ""
+msgstr "ཆུང་ཤོས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Maximum"
-msgstr ""
+msgstr "ཆེ་ཤོས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Distribution"
-msgstr ""
+msgstr "ཁྱབ་ཚུལ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Skewness"
-msgstr ""
+msgstr "གསེག་ཚད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Kurtosis"
-msgstr ""
+msgstr "རྩེ་རྣོ་ཚད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Shapiro-Wilk test"
-msgstr ""
+msgstr "ཤ་པི་རོ་-ཝིལ་ཀ་ཚོད་ལྟ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Values are group midpoints"
-msgstr ""
+msgstr "རིན་ཐང་དག་ནི་ཚོགས་པའི་དབུས་ཚེག་ཡིན།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Display rug marks"
-msgstr ""
+msgstr "Rug རྟགས་སྟོན་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Bin width type"
-msgstr ""
+msgstr "Bin ཞེང་ཚད་ཀྱི་རིགས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Sturges"
-msgstr ""
+msgstr "Sturges"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Scott"
-msgstr ""
+msgstr "Scott"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Doane"
-msgstr ""
+msgstr "Doane"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Freedman-Diaconis"
-msgstr ""
+msgstr "Freedman-Diaconis"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Manual"
-msgstr ""
+msgstr "ལག་སྒྲིག"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Number of bins"
-msgstr ""
+msgstr "Bin གྱི་གྲངས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Interval plots"
-msgstr ""
+msgstr "བར་མཚམས་ཀྱི་དཔེ་རིས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Coefficient of variation"
-msgstr ""
+msgstr "འགྱུར་བའི་བཏགས་གྲངས།"
 
+#, fuzzy
 msgctxt "Description|"
 msgid "Explore the data with tables and plots"
-msgstr ""
+msgstr "རེའུ་མིག་དང་དཔེ་རིས་བེད་སྤྱད་ནས་གྲངས་གནས་ལ་ཞིབ་འཇུག་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Transpose descriptives table"
-msgstr ""
+msgstr "འགྲེལ་བརྗོད་རང་བཞིན་གྱི་རེའུ་མིག་གནས་སྤོ་བ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Customizable Plots"
-msgstr ""
+msgstr "རང་བཟོས་དཔེ་རིས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Dot plots"
-msgstr ""
+msgstr "ཚེག་རིས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Quantiles"
-msgstr ""
+msgstr "གྲངས་ཚད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Sample size"
-msgstr ""
+msgstr "མ་དཔེའི་ཆེ་ཆུང་།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Valid"
-msgstr ""
+msgstr "ནུས་ལྡན།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Missing"
-msgstr ""
+msgstr "ཆད་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Horizontal axis:"
-msgstr ""
+msgstr "འཕྲེད་མདའ།:"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Vertical axis:"
-msgstr ""
+msgstr "གཞུང་མདའ།:"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Display legend"
-msgstr ""
+msgstr "འགྲེལ་བཤད་སྟོན་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Display value"
-msgstr ""
+msgstr "རིན་ཐང་སྟོན་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Relative text size"
-msgstr ""
+msgstr "ཡི་གེའི་ཆེ་ཆུང་ལྟོས་བཅས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Width to height ratio of tiles"
-msgstr ""
+msgstr "Tiles གྱི་ཞེང་དང་མཐོ་ཚད་ཀྱི་བསྡུར་ཚད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "For scale variables"
-msgstr ""
+msgstr "ཚད་གཞིའི་འགྱུར་གྲངས་ཀྱི་ཆེད་དུ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Value itself"
-msgstr ""
+msgstr "རིན་ཐང་རང་ཉིད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Number of observations"
-msgstr ""
+msgstr "ལྟ་ཞིབ་གྲངས་གནས་ཀྱི་གྲངས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "For nominal and ordinal variables"
-msgstr ""
+msgstr "མིང་གི་རྣམ་པ་དང་གོ་རིམ་ལྡན་པའི་འགྱུར་གྲངས་ཀྱི་ཆེད་དུ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Scatter plots"
-msgstr ""
+msgstr "Scatter དཔེ་རིས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Tile heatmaps for selected variables"
-msgstr ""
+msgstr "བདམས་པའི་འགྱུར་གྲངས་ཀྱི་ཆེད་དུ་ Tile heatmaps"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Tables"
-msgstr ""
+msgstr "རེའུ་མིག"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Categorical Plots"
-msgstr ""
+msgstr "དབྱེ་རིགས་ཀྱི་དཔེ་རིས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Pareto plots"
-msgstr ""
+msgstr "Pareto དཔེ་རིས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Pareto rule"
-msgstr ""
+msgstr "Pareto སྒྲིག་སྲོལ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Likert plots"
-msgstr ""
+msgstr "Likert དཔེ་རིས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Assume all variables share the same levels"
-msgstr ""
+msgstr "འགྱུར་གྲངས་ཡོངས་ལ་རིམ་པ་གཅིག་མཚུངས་ཡོད་པར་ཆ་འཇོག་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Adjustable font size for vertical axis"
-msgstr ""
+msgstr "གཞུང་མདའི་ཆེད་དུ་ཡིག་གཟུགས་ཆེ་ཆུང་སྙོམ་སྒྲིག་རུང་བ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Normal"
-msgstr ""
+msgstr "རྒྱུན་ལྡན།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Small"
-msgstr ""
+msgstr "ཆུང་བ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Medium"
-msgstr ""
+msgstr "འབྲིང་བ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Large"
-msgstr ""
+msgstr "ཆེ་བ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Transparency"
-msgstr ""
+msgstr "དྭངས་གསལ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Inference"
-msgstr ""
+msgstr "རྗེས་དཔག"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Width"
-msgstr ""
+msgstr "ཞེང་ཚད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Method"
-msgstr ""
+msgstr "ཐབས་ལམ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Normal model"
-msgstr ""
+msgstr "རྒྱུན་ལྡན་དཔེ་དབྱིབས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Bootstrap"
-msgstr ""
+msgstr "Bootstrap"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Confidence interval for std. deviation"
-msgstr ""
+msgstr "ཚད་ལྡན་ཁྱད་འགྱུར་གྱི་ཡིད་རྟོན་བར་མཚམས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Confidence interval for variance"
-msgstr ""
+msgstr "འགྱུར་ཚད་ཀྱི་ཡིད་རྟོན་བར་མཚམས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Bootstrap confidence interval options"
-msgstr ""
+msgstr "Bootstrap ཡིད་རྟོན་བར་མཚམས་ཀྱི་འདེམས་ཀ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Bootstrap samples"
-msgstr ""
+msgstr "Bootstrap མ་དཔེ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "T model"
-msgstr ""
+msgstr "T དཔེ་དབྱིབས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Frequency plots"
-msgstr ""
+msgstr "ཟློས་ཕྱོད་ཀྱི་དཔེ་རིས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Separate frequencies:"
-msgstr ""
+msgstr "ཟློས་ཕྱོད་ལོགས་སུ།:"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "How to combine separate frequencies"
-msgstr ""
+msgstr "ཟློས་ཕྱོད་ལོགས་སུ་ཡོད་པ་དག་ཇི་ལྟར་མཉམ་སྦྲེལ་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Stack"
-msgstr ""
+msgstr "བརྩེགས་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Identity"
-msgstr ""
+msgstr "ངོ་བོ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Dodge"
-msgstr ""
+msgstr "ཟུར་འབུད།"
 
+#, fuzzy
 msgctxt "Description|"
 msgid "Time Series Descriptives"
-msgstr ""
+msgstr "དུས་རིམ་འགྲེལ་བརྗོད་རང་བཞིན།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Time Series Descriptives allows the user to obtain descriptive statistics "
 "and descriptive plots for univariate time-series."
 msgstr ""
+"དུས་རིམ་འགྲེལ་བརྗོད་རང་བཞིན་གྱིས་བེད་སྤྱོད་པར་ univariate དུས་རིམ་གྱི་འགྲེལ་བརྗོད་རང་བཞིན་གྱི་སྡོམ་རྩིས་"
+"དང་དཔེ་རིས་ལེན་པར་ཆོག་མཆན་སྤྲོད།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Variable"
-msgstr ""
+msgstr "འགྱུར་གྲངས།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "A variable that is measured repeatedly over time."
-msgstr ""
+msgstr "དུས་ཚོད་ནང་ཡང་བསྐྱར་འཇལ་བའི་འགྱུར་གྲངས་ཤིག"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time"
-msgstr ""
+msgstr "དུས།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Optional. Can either be an ordinal variable indicating the order of the "
@@ -502,15 +623,23 @@ msgid ""
 "values should be in the format 'YYYY-MM-DD'. If a time variable is not "
 "supplied, the row order of the data is used."
 msgstr ""
+"འདེམས་རུང་། ལྟ་ཞིབ་གྲངས་གནས་ཀྱི་གོ་རིམ་སྟོན་པའི་ ordinal variable ཡང་ན་ལྟ་ཞིབ་གྲངས་གནས་ཀྱི་ཚེས་"
+"གྲངས་/དུས་ཚོད་ཀྱི་ཐམ་ག་སྟོན་པའི་ text variable ཡིན་ཆོག ཚེས་གྲངས་དང་དུས་ཚོད་ཀྱི་རིན་ཐང་མཉམ་སྦྲེལ་"
+"བྱས་པ་དེ་ཚད་ལྡན་རྣམ་པ་ 'YYYY-MM-DD HH:MM:SS' ནང་ཡིན་དགོས་པ་དང་། སྐར་ཆ་ (':SS') འདོར་"
+"ཆོག ཚེས་གྲངས་ཁོ་ནའི་རིན་ཐང་དེ་ 'YYYY-MM-DD' རྣམ་པ་ནང་ཡིན་དགོས། གལ་ཏེ་དུས་ཚོད་ཀྱི་འགྱུར་གྲངས་མཁོ་"
+"སྤྲོད་མ་བྱས་ན། གྲངས་གནས་ཀྱི་ཐིག་ཕྲེང་གི་གོ་རིམ་བེད་སྤྱོད་བྱེད།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Transpose descriptives table"
-msgstr ""
+msgstr "འགྲེལ་བརྗོད་རང་བཞིན་གྱི་རེའུ་མིག་གནས་སྤོ་བ།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Filter by"
-msgstr ""
+msgstr "འཚག་ཆས་ཀྱིས།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Filters the time series so only a specific range will be used for further "
@@ -518,71 +647,91 @@ msgid ""
 "'Time' variable is supplied it is also possible to filter by time index or "
 "date, depending on the format of the 'Time' variable."
 msgstr ""
+"དུས་རིམ་འཚག་ནས་ཁྱབ་རྒྱ་བྱེ་བྲག་པ་ཞིག་ཁོ་ན་དབྱེ་ཞིབ་གཞན་དག་ལ་བེད་སྤྱོད་བྱེད། ཐིག་ཕྲེང་ཨང་ནི་ "
+"spreadsheet ནང་གི་ཐིག་ཕྲེང་ཨང་ལ་གོ་བ་ཡིན། གལ་ཏེ་ 'Time' འགྱུར་གྲངས་མཁོ་སྤྲོད་བྱས་ན། 'Time' "
+"འགྱུར་གྲངས་ཀྱི་རྣམ་པ་ལ་གཞིགས་ནས་དུས་ཚོད་ཀྱི་དཀར་ཆག་གམ་ཚེས་གྲངས་ཀྱིས་འཚག་ཆོག"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Row number"
-msgstr ""
+msgstr "ཐིག་ཕྲེང་ཨང་།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Start"
-msgstr ""
+msgstr "འགོ་འཛུགས།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "End"
-msgstr ""
+msgstr "མཇུག་འགྲིལ།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time index"
-msgstr ""
+msgstr "དུས་ཚོད་ཀྱི་དཀར་ཆག"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Date"
-msgstr ""
+msgstr "ཚེས་གྲངས།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots"
-msgstr ""
+msgstr "དཔེ་རིས།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Time series plot"
-msgstr ""
+msgstr "དུས་རིམ་གྱི་དཔེ་རིས།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the dependent variable (y-axis) over time (x-axis)."
-msgstr ""
+msgstr "དུས་ཚོད་ (x-axis) ཐོག་ལྟོས་བཅས་འགྱུར་གྲངས་ (y-axis) འགོད་པ།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Points"
-msgstr ""
+msgstr "ཚེག"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Line"
-msgstr ""
+msgstr "ཐིག"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Both"
-msgstr ""
+msgstr "གཉིས་ཀ།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Distribution"
-msgstr ""
+msgstr "ཁྱབ་ཚུལ།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Density"
-msgstr ""
+msgstr "སྟུག་ཚད།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Histogram"
-msgstr ""
+msgstr "Histogram"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "None"
-msgstr ""
+msgstr "མེད།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Lag plot"
-msgstr ""
+msgstr "Lag དཔེ་རིས།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Plots the dependent variable (y-axis) against a lagged version of itself (x-"
@@ -590,271 +739,342 @@ msgid ""
 "dependent variable and the lagged version of itself. The regression line is "
 "the autoregression at the specified lag."
 msgstr ""
+"ལྟོས་བཅས་འགྱུར་གྲངས་ (y-axis) དེ་དེའི་ lagged version (x-axis) དང་བསྡུར་ནས་འགོད་པ། Lag ནི"
+"་ལྟོས་བཅས་འགྱུར་གྲངས་དང་དེའི་ lagged version བར་གྱི་ལྟ་ཞིབ་གྲངས་གནས་ཀྱི་འབོར་ལ་གོ་བ་ཡིན། ཕྱིར་"
+"འགྲོས་ཀྱི་ཐིག་ནི་གསལ་བཀོད་བྱས་པའི་ lag ནང་གི་ autoregression ཡིན།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Lag"
-msgstr ""
+msgstr "Lag"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Add regression line"
-msgstr ""
+msgstr "ཕྱིར་འགྲོས་ཀྱི་ཐིག་ཁ་སྣོན་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Smooth"
-msgstr ""
+msgstr "འཇམ་པོ།"
 
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Linear"
 msgstr ""
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Confidence interval"
-msgstr ""
+msgstr "ཡིད་རྟོན་བར་མཚམས།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Autocorrelation function"
-msgstr ""
+msgstr "རང་ལྟོས་འབྲེལ་གྱི་ལས་འགན།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Maximum lag"
-msgstr ""
+msgstr "Lag ཆེ་ཤོས།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Zero lag"
-msgstr ""
+msgstr "Lag གོ་རོ།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
 "Plots the autocorrelation for a specified number of lags. The confidence "
 "interval may be given assuming either a white noise process, or assuming for "
 "a lag q a moving average process of order q - 1."
 msgstr ""
+"གསལ་བཀོད་བྱས་པའི་ lags གྲངས་ཤིག་གི་རང་ལྟོས་འབྲེལ་འགོད་པ། ཡིད་རྟོན་བར་མཚམས་ནི་ white noise "
+"process ཡིན་པར་ཆ་འཇོག་བྱས་ནས་སྤྲོད་ཆོག་པ་དང་། ཡང་ན་ lag q ཞིག་ལ་ moving average "
+"process of order q - 1 ཡིན་པར་ཆ་འཇོག་བྱས་ནས་སྤྲོད་ཆོག"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Based on white noise"
-msgstr ""
+msgstr "དཀར་པོའི་སྒྲ་སྐྱོན་ལ་གཞི་བཅོལ་བ།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Based on moving average"
-msgstr ""
+msgstr "འགུལ་བའི་ཆ་སྙོམས་ལ་གཞི་བཅོལ་བ།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Partial autocorrelation function"
-msgstr ""
+msgstr "ཆ་ཤས་རང་ལྟོས་འབྲེལ་གྱི་ལས་འགན།"
 
+#, fuzzy
 msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Plots the partial autocorrelation for a specified number of lags."
-msgstr ""
+msgstr "གསལ་བཀོད་བྱས་པའི་ lags གྲངས་ཤིག་གི་ཆ་ཤས་རང་ལྟོས་འབྲེལ་འགོད་པ།"
 
 #, fuzzy
 msgctxt "Description|"
 msgid "Flexplot"
 msgstr "Flexplot"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Dependent Variable"
-msgstr ""
+msgstr "ལྟོས་བཅས་འགྱུར་གྲངས།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Independent Variable(s)"
-msgstr ""
+msgstr "རང་དབང་ཅན་གྱི་འགྱུར་གྲངས།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Paneled Variable(s)"
-msgstr ""
+msgstr "སྒྲོམ་ཅན་གྱི་འགྱུར་གྲངས།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Options"
-msgstr ""
+msgstr "འདེམས་ཀ།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Point transparency"
-msgstr ""
+msgstr "ཚེག་གི་དྭངས་གསལ།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Jitter in X"
-msgstr ""
+msgstr "X ནང་གི་ Jitter"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Jitter in Y"
-msgstr ""
+msgstr "Y ནང་གི་ Jitter"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Plot confidence bands"
-msgstr ""
+msgstr "ཡིད་རྟོན་ཚོགས་ཐིག་འགོད་པ།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Loess"
-msgstr ""
+msgstr "Loess"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Regression"
-msgstr ""
+msgstr "ཕྱིར་འགྲོས།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Quadratic"
-msgstr ""
+msgstr "གྲུ་བཞི་མ།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Cubic"
-msgstr ""
+msgstr "དབྱིབས་གྲུ་བཞི་མ།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "None"
-msgstr ""
+msgstr "མེད།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Fitted line (scatterplots)"
-msgstr ""
+msgstr "སྒྲིག་པའི་ཐིག་ (scatterplots)"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Quartiles"
-msgstr ""
+msgstr "བཞི་ཆའི་གྲངས།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Standard deviations"
-msgstr ""
+msgstr "ཚད་ལྡན་ཁྱད་འགྱུར།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Intervals (categorical predictors)"
-msgstr ""
+msgstr "བར་མཚམས་ (དབྱེ་རིགས་ཀྱི་སྔོན་དཔག་བྱེད་པ།)"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "JASP"
-msgstr ""
+msgstr "JASP"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Black and white"
-msgstr ""
+msgstr "ནག་པོ་དང་དཀར་པོ།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Minimal"
-msgstr ""
+msgstr "ཉུང་མཐའ།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Classic"
-msgstr ""
+msgstr "སྲོལ་རྒྱུན།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Dark"
-msgstr ""
+msgstr "ནག་པོ།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "GGplot theme"
-msgstr ""
+msgstr "GGplot བརྗོད་གཞི།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "GGplot Default"
-msgstr ""
+msgstr "GGplot སོར་བཞག"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Nature"
-msgstr ""
+msgstr "རང་བྱུང་།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "AAAS"
-msgstr ""
+msgstr "AAAS"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Lancet"
-msgstr ""
+msgstr "Lancet"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "JCO"
-msgstr ""
+msgstr "JCO"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Color Palette"
-msgstr ""
+msgstr "ཚོན་མདོག་མཐུན་སྦྱོར།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Convert to grayscale"
-msgstr ""
+msgstr "ཐལ་མདོག་ཏུ་སྒྱུར་བ།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Ghost lines"
-msgstr ""
+msgstr "འདྲེ་ཐིག"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Plot Labels"
-msgstr ""
+msgstr "དཔེ་རིས་ཀྱི་ཁ་བྱང་།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "X Axis Label"
-msgstr ""
+msgstr "X མདའི་ཁ་བྱང་།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Y Axis Label"
-msgstr ""
+msgstr "Y མདའི་ཁ་བྱང་།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Legend Label"
-msgstr ""
+msgstr "འགྲེལ་བཤད་ཀྱི་ཁ་བྱང་།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Column Panel Label"
-msgstr ""
+msgstr "ཀ་ཐིག་སྒྲོམ་གྱི་ཁ་བྱང་།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Row Panel Label"
-msgstr ""
+msgstr "ཐིག་ཕྲེང་སྒྲོམ་གྱི་ཁ་བྱང་།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Association matrix"
-msgstr ""
+msgstr "འབྲེལ་བའི་མ་ཁེ་སི།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Covariance"
-msgstr ""
+msgstr "མཉམ་འགྱུར་ཚད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Correlation"
-msgstr ""
+msgstr "ལྟོས་འབྲེལ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Use"
-msgstr ""
+msgstr "སྤྱོད་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Everything"
-msgstr ""
+msgstr "ཚང་མ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Complete observations"
-msgstr ""
+msgstr "ལྟ་ཞིབ་གྲངས་གནས་ཆ་ཚང་།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Pairwise compelete observations"
-msgstr ""
+msgstr "ཆ་སྒྲིག་ལྟ་ཞིབ་གྲངས་གནས་ཆ་ཚང་།"
 
+#, fuzzy
 msgctxt "Description|"
 msgid "Raincloud Plots"
-msgstr ""
+msgstr "ཆར་སྤྲིན་དཔེ་རིས།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid ""
 "Flexplot allows the user to create graphical displays of data, using "
 "barcharts and histograms for univariate data, and various different types of "
 "scatterplots for bivariate and multivariate data."
 msgstr ""
+"Flexplot ཡིས་བེད་སྤྱོད་པར་ univariate གྲངས་གནས་ཀྱི་ཆེད་དུ་ barcharts དང་ histograms བེད་"
+"སྤྱད་ནས། bivariate དང་ multivariate གྲངས་གནས་ཀྱི་ཆེད་དུ་ scatterplots རིགས་མི་འདྲ་བ་སྣ་"
+"ཚོགས་བེད་སྤྱད་ནས་གྲངས་གནས་ཀྱི་དཔེ་རིས་བཟོ་བར་ཆོག་མཆན་སྤྲོད་ཀྱི་ཡོད།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "References"
-msgstr ""
+msgstr "ལུང་འདྲེན།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Example"
-msgstr ""
+msgstr "དཔེ་མཚོན།"
 
-#, qt-format
+#, fuzzy, qt-format
 msgctxt "FlexplotForm|"
 msgid "For more details about flexplot in JASP, watch this %1videa%2"
-msgstr ""
+msgstr "JASP ནང་གི་ flexplot སྐོར་ཞིབ་ཕྲ་ཤེས་པར་ %1videa%2 འདི་ལ་ལྟོས།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Input"
-msgstr ""
+msgstr "ནང་འཇུག"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid ""
 "The variable of interest. This is also called the outcome variable. If only "
@@ -863,7 +1083,12 @@ msgid ""
 "and/or panelled variable(s) are specified, this variable will be displayed "
 "on the Y axis."
 msgstr ""
+"དོ་སྣང་བྱེད་སའི་འགྱུར་གྲངས། འདི་ལ་གྲུབ་འབྲས་འགྱུར་གྲངས་ཀྱང་ཟེར། གལ་ཏེ་གྲུབ་འབྲས་འགྱུར་གྲངས་ཁོ་ན་གསལ་"
+"བཀོད་བྱས་ན། Flexplot ཡིས་གྲངས་ཀའི་གྲངས་གནས་ཀྱི་ཆེད་དུ་ histogram དང་དབྱེ་རིགས་ཀྱི་གྲངས་གནས་ཀྱི་"
+"ཆེད་དུ་ barchart བཟོ་ངེས། གལ་ཏེ་རང་དབང་ཅན་གྱི་འགྱུར་གྲངས་དང་/ཡང་ན་སྒྲོམ་ཅན་གྱི་འགྱུར་གྲངས་གསལ་"
+"བཀོད་བྱས་ན། འགྱུར་གྲངས་འདི་ Y མདའི་ཐོག་སྟོན་ངེས།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid ""
 "The variable(s) for which we wish to visually assess relationships with the "
@@ -873,7 +1098,12 @@ msgid ""
 "lines/symbols. If the second varaible chosen is numeric, it will be binned "
 "first."
 msgstr ""
+"DV དང་འབྲེལ་བ་མཐོང་རུང་ཞིབ་བཤེར་བྱེད་འདོད་པའི་འགྱུར་གྲངས། བདམས་པའི་འགྱུར་གྲངས་དང་པོ་དེ་ X མདའི་ཐོག"
+"་སྟོན་པ་དང་། དེ་ནི་ scatterplot (གྲངས་ཀའི་སྔོན་དཔག་བྱེད་པའི་ཆེད་དུ།) ཡང་ན་ beeswarm plot "
+"(དབྱེ་རིགས་ཀྱི་འགྱུར་གྲངས་ཀྱི་ཆེད་དུ།) ཡིན་ཆོག བདམས་པའི་འགྱུར་གྲངས་གཉིས་པ་དེ་མདོག་/ཐིག་/རྟགས་མི་འདྲ་བའི"
+"་ཚུལ་དུ་སྟོན་ངེས། གལ་ཏེ་བདམས་པའི་འགྱུར་གྲངས་གཉིས་པ་དེ་གྲངས་ཀ་ཡིན་ན། དེ་ཐོག་མར་ bin བྱེད་ངེས།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid ""
 "Variables specified in these boxes will be binned (if numeric) then "
@@ -881,15 +1111,21 @@ msgid ""
 "variable will form the column plots, while the second will form the row "
 "plots."
 msgstr ""
+"སྒྲོམ་འདི་དག་ནང་གསལ་བཀོད་བྱས་པའི་འགྱུར་གྲངས་དག་ bin བྱེད་པ་ (གལ་ཏེ་གྲངས་ཀ་ཡིན་ན།) དང་དེ་རྗེས་ "
+"subplot མི་འདྲ་བ་སྟོན་ངེས། སྒྲོམ་ཅན་གྱི་འགྱུར་གྲངས་སུ་གསལ་བཀོད་བྱས་པའི་འགྱུར་གྲངས་དང་པོ་དེ་ column "
+"plots བཟོ་བ་དང་། གཉིས་པ་དེ་ row plots བཟོ་ངེས།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Point controls"
-msgstr ""
+msgstr "ཚེག་གི་ཚོད་འཛིན།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "The degree of transparency of the dots in the graphics"
-msgstr ""
+msgstr "རིས་དབྱིབས་ནང་གི་ཚེག་གི་དྭངས་གསལ་གྱི་ཚད།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid ""
 "The maximal amount of \"jittering\" used on the X axis to remove overlap "
@@ -898,7 +1134,12 @@ msgid ""
 "mode of the dataset, and little to no jittering will occur in locations "
 "where there is no overlap."
 msgstr ""
+"གྲངས་གནས་ཀྱི་ཚེག་བར་གྱི་ overlap སེལ་བར་ X མདའི་ཐོག་བེད་སྤྱོད་བྱས་པའི་ \"jittering\" གི་མང་ཤོས"
+"་ཀྱི་འབོར། jittering གི་མང་ཤོས་ཀྱི་འབོར་ནི་གྲངས་གནས་ཀྱི་སྟུག་ཚད་དང་བསྡུར་བ་ཡིན། གཞན་དུ་ན། གྲངས་"
+"གནས་ཚོགས་པའི་ mode ནང་ jittering མང་ཤོས་འབྱུང་བ་དང་། overlap མེད་པའི་གནས་སུ་ "
+"jittering ཉུང་ངུ་ཡང་ན་མེད་པ་འབྱུང་ངེས།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid ""
 "The maximal amount of \"jittering\" used on the Y axis to remove overlap "
@@ -907,129 +1148,173 @@ msgid ""
 "mode of the dataset, and little to no jittering will occur in locations "
 "where there is no overlap."
 msgstr ""
+"གྲངས་གནས་ཀྱི་ཚེག་བར་གྱི་ overlap སེལ་བར་ Y མདའི་ཐོག་བེད་སྤྱོད་བྱས་པའི་ \"jittering\" གི་མང་ཤོས"
+"་ཀྱི་འབོར། jittering གི་མང་ཤོས་ཀྱི་འབོར་ནི་གྲངས་གནས་ཀྱི་སྟུག་ཚད་དང་བསྡུར་བ་ཡིན། གཞན་དུ་ན། གྲངས་"
+"གནས་ཚོགས་པའི་ mode ནང་ jittering མང་ཤོས་འབྱུང་བ་དང་། overlap མེད་པའི་གནས་སུ་ "
+"jittering ཉུང་ངུ་ཡང་ན་མེད་པ་འབྱུང་ངེས།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Visual Statistics"
-msgstr ""
+msgstr "མཐོང་རུང་སྡོམ་རྩིས།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Should 95% confidence intervals be displayed?"
-msgstr ""
+msgstr "95% ཡིད་རྟོན་བར་མཚམས་སྟོན་དགོས་སམ།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "A non-parametric loess line"
-msgstr ""
+msgstr "ཚད་གཞི་མེད་པའི་ loess ཐིག་ཅིག"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "A straight (regression) line"
-msgstr ""
+msgstr "ཐིག་དྲང་པོ་ (ཕྱིར་འགྲོས་ཀྱི་) ཞིག"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid ""
 "A line that includes both a linear effect and a quadratic (squared) term"
 msgstr ""
+"ཐིག་གཅིག་གི་ནང་ linear effect དང་ quadratic (squared) term གཉིས་ཀ་ཚུད་ཡོད།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "A line that includes a linear, squared, and cubed term"
-msgstr ""
+msgstr "ཐིག་གཅིག་གི་ནང་ linear, squared, དང་ cubed term ཚུད་ཡོད།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "No line"
-msgstr ""
+msgstr "ཐིག་མེད།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid ""
 "The type of fitted line displayed when the x axis is a numeric variable. "
 "These can be one of the following:"
 msgstr ""
+"x མདའ་ནི་གྲངས་ཀའི་འགྱུར་གྲངས་ཡིན་དུས་སྟོན་པའི་སྒྲིག་པའི་ཐིག་གི་རིགས། འདི་དག་གཤམ་གསལ་གྱི་གཅིག་ཡིན་ཆོག"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid ""
 "Horizontal lines are displayed at the 25/75th percentiles, with a dot for "
 "the median"
 msgstr ""
+"འཕྲེད་ཐིག་དག་ 25/75th percentiles ནང་སྟོན་པ་དང་། དཀྱིལ་གྲངས་ཀྱི་ཆེད་དུ་ཚེག་ཅིག་ཡོད།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid ""
 "Horizontal lines are displayed at +1/-1 standard deviations from the mean, "
 "with a dot for the mean"
 msgstr ""
+"འཕྲེད་ཐིག་དག་ཆ་སྙོམས་ནས་ +1/-1 ཚད་ལྡན་ཁྱད་འགྱུར་ནང་སྟོན་པ་དང་། ཆ་སྙོམས་ཀྱི་ཆེད་དུ་ཚེག་ཅིག་ཡོད།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Other Plot Controls"
-msgstr ""
+msgstr "དཔེ་རིས་ཚོད་འཛིན་གཞན་དག"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid ""
 "the type of GGplot theme to use when displaying the data. Can be one of the "
 "following:"
 msgstr ""
+"གྲངས་གནས་སྟོན་དུས་བེད་སྤྱོད་བྱེད་པའི་ GGplot བརྗོད་གཞིའི་རིགས། གཤམ་གསལ་གྱི་གཅིག་ཡིན་ཆོག"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid ""
 "Ghost lines are a visual aid that can be used when doing panelled plots. "
 "Ghost lines simply repeat the fitted line from one panel across the other "
 "panels to make it easier to make comparisons across panels."
 msgstr ""
+"འདྲེ་ཐིག་ནི་ panelled plots བྱེད་དུས་བེད་སྤྱོད་རུང་བའི་མཐོང་རུང་རོགས་རམ་ཞིག་ཡིན། འདྲེ་ཐིག་གིས་ "
+"panel གཅིག་ནས་སྒྲིག་པའི་ཐིག་དེ་ panel གཞན་དག་ཏུ་ཡང་བསྐྱར་བྱེད་པ་ཙམ་ཡིན་པས་ panel ཁག་བར་བསྡུར"
+"་བ་བྱེད་སླ་པོ་བཟོ་གི་ཡོད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "Descriptives allows the user to obtain basic descriptive statistics, "
 "histograms and density plots, correlation plots, boxplots, and frequency "
 "tables."
 msgstr ""
+"Descriptives ཡིས་བེད་སྤྱོད་པར་གཞི་རྩའི་འགྲེལ་བརྗོད་རང་བཞིན་གྱི་སྡོམ་རྩིས། histograms དང་ "
+"density plots། correlation plots། boxplots། ཟློས་ཕྱོད་ཀྱི་རེའུ་མིག་བཅས་ལེན་པར་ཆོག་མཆན་སྤྲོད"
+"་ཀྱི་ཡོད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "References"
-msgstr ""
+msgstr "ལུང་འདྲེན།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "R Packages"
-msgstr ""
+msgstr "R ཐུམ་སྒྲིག"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Input"
-msgstr ""
+msgstr "ནང་འཇུག"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "All variables of interest."
-msgstr ""
+msgstr "དོ་སྣང་བྱེད་སའི་འགྱུར་གྲངས་ཚང་མ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Can be split by a categorical variable such as experimental condition."
-msgstr ""
+msgstr "ཚོད་ལྟའི་ཆ་རྐྱེན་ལྟ་བུའི་དབྱེ་རིགས་ཀྱི་འགྱུར་གྲངས་ཀྱིས་ཁ་འབྱེད་ཆོག"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Tranposes the main table"
-msgstr ""
+msgstr "གཙོ་བོའི་རེའུ་མིག་གནས་སྤོ་བ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Percentile Values"
-msgstr ""
+msgstr "བརྒྱ་ཆའི་རིན་ཐང་།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Displays the 25th, 50th, and 75th percentiles of the data points."
-msgstr ""
+msgstr "གྲངས་གནས་ཀྱི་ཚེག་གི་ 25th, 50th, དང་ 75th percentiles སྟོན་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Cut points for x equal groups"
-msgstr ""
+msgstr "x ཚོགས་པ་མཚུངས་པའི་གཅོད་ཚེག"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "Displays the cut points that divide the data into x equal groups; default is "
 "4 equal groups."
 msgstr ""
+"གྲངས་གནས་དེ་ x ཚོགས་པ་མཚུངས་པར་དབྱེ་བའི་གཅོད་ཚེག་སྟོན་པ་དང་། སོར་བཞག་ནི་ 4 ཚོགས་པ་མཚུངས་པ་ཡིན"
+"།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "Displays the xth percentile; percentile values must be separated by comma."
-msgstr ""
+msgstr "xth percentile སྟོན་པ་དང་། percentile རིན་ཐང་དག་ comma ཡིས་དབྱེ་དགོས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Central Tendency (only for continuous variables)"
-msgstr ""
+msgstr "དབུས་ཕྱོགས་ཀྱི་ཁྱད་ཆོས་ (རྒྱུན་ཆགས་འགྱུར་གྲངས་ཁོ་ནའི་ཆེད་དུ།)"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "Mode of the data points; if more than one mode exists, only the first is "
@@ -1039,31 +1324,44 @@ msgid ""
 "footnote about multimodality for continuous variables is reported, we "
 "recommend visualizing the data to check for multimodality."
 msgstr ""
+"གྲངས་གནས་ཀྱི་ཚེག་གི་ Mode། གལ་ཏེ་ mode གཅིག་ལས་མང་བ་ཡོད་ན། དང་པོ་ཁོ་ན་སྙན་སེང་བྱེད། "
+"nominal དང་ ordinal གྲངས་གནས་ཀྱི་ཆེད་དུ། mode ནི་མང་ཤོས་ལྟ་ཞིབ་བྱས་པའི་རིན་ཐང་ཡིན། "
+"continuous གྲངས་གནས་ཀྱི་ཆེད་དུ། mode ནི་སྟུག་ཚད་ཚོད་དཔག་ཆེ་ཤོས་ཡོད་པའི་རིན་ཐང་ཡིན། "
+"('Distribution Plots' -> 'Display density' ལ་ལྟོས།) གལ་ཏེ་ continuous འགྱུར་གྲངས་ཀྱི"
+"་ multimodality སྐོར་གྱི་ footnote ཞིག་སྙན་སེང་བྱས་ན། multimodality ཞིབ་བཤེར་བྱེད་པར་གྲངས་"
+"གནས་མཐོང་རུང་བཟོ་བར་གྲོས་འགོ་འདོན།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Median of the data points."
-msgstr ""
+msgstr "གྲངས་གནས་ཀྱི་ཚེག་གི་དཀྱིལ་གྲངས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Skewness of the distribution of the data points."
-msgstr ""
+msgstr "གྲངས་གནས་ཀྱི་ཚེག་གི་ཁྱབ་ཚུལ་གྱི་གསེག་ཚད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Kurtosis of the distribution of the data points."
-msgstr ""
+msgstr "གྲངས་གནས་ཀྱི་ཚེག་གི་ཁྱབ་ཚུལ་གྱི་རྩེ་རྣོ་ཚད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Sum of the data points."
-msgstr ""
+msgstr "གྲངས་གནས་ཀྱི་ཚེག་གི་བསྡོམས་འབོར།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Dispersion (only for continuous variables)"
-msgstr ""
+msgstr "ཁྱབ་ཚད་ (རྒྱུན་ཆགས་འགྱུར་གྲངས་ཁོ་ནའི་ཆེད་དུ།)"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Standard deviation of the data points."
-msgstr ""
+msgstr "གྲངས་གནས་ཀྱི་ཚེག་གི་ཚད་ལྡན་ཁྱད་འགྱུར།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "The Coefficient of variation gives us the relative dispersion of the data, "
@@ -1071,90 +1369,122 @@ msgid ""
 "For this purpose, the standard deviation is divided by the mean value, so "
 "that the unit is truncated away."
 msgstr ""
+"Coefficient of variation ཡིས་ང་ཚོར་གྲངས་གནས་ཀྱི་ལྟོས་བཅས་ཁྱབ་ཚད་སྤྲོད་པ་དང་། ཚད་ལྡན་ཁྱད་"
+"འགྱུར་གྱིས་ཚུགས་ཐུབ་ཁྱབ་ཚད་སྤྲོད་ཀྱི་ཡོད། དེའི་ཆེད་དུ། ཚད་ལྡན་ཁྱད་འགྱུར་དེ་ཆ་སྙོམས་རིན་ཐང་གིས་བགོ་བ་ཡིན་"
+"པས་། གཅིག་འགྱུར་དེ་གཅོད་འབྲེག་བྱེད་ཀྱི་ཡོད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Median absolute deviation of the data points."
-msgstr ""
+msgstr "གྲངས་གནས་ཀྱི་ཚེག་གི་དཀྱིལ་གྲངས་ཚུགས་ཐུབ་ཁྱད་འགྱུར།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "Median absolute deviation of the data points, adjusted by a factor for "
 "asymptotically normal consistency."
 msgstr ""
+"གྲངས་གནས་ཀྱི་ཚེག་གི་དཀྱིལ་གྲངས་ཚུགས་ཐུབ་ཁྱད་འགྱུར། asymptotically normal consistency གི་ཆེད་"
+"དུ་ factor ཞིག་གིས་སྙོམ་སྒྲིག་བྱས་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "Interquartile range of the data points; 75th percentile - 25th percentile."
 msgstr ""
+"གྲངས་གནས་ཀྱི་ཚེག་གི་ Interquartile range། 75th percentile - 25th percentile།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Variance of the data points."
-msgstr ""
+msgstr "གྲངས་གནས་ཀྱི་ཚེག་གི་འགྱུར་ཚད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Range of the data points; maximum - minimum."
-msgstr ""
+msgstr "གྲངས་གནས་ཀྱི་ཚེག་གི་ཁྱབ་རྒྱ། ཆེ་ཤོས་ - ཆུང་ཤོས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Minimum value of the data points."
-msgstr ""
+msgstr "གྲངས་གནས་ཀྱི་ཚེག་གི་ཆུང་ཤོས་ཀྱི་རིན་ཐང་།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Maximum value of the data points."
-msgstr ""
+msgstr "གྲངས་གནས་ཀྱི་ཚེག་གི་ཆེ་ཤོས་ཀྱི་རིན་ཐང་།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "width of the confidence interval."
-msgstr ""
+msgstr "ཡིད་རྟོན་བར་མཚམས་ཀྱི་ཞེང་ཚད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "a confidence interval for the standard deviation based on bootstrap samples."
 msgstr ""
+"bootstrap མ་དཔེ་ལ་གཞི་བཅོལ་བའི་ཚད་ལྡན་ཁྱད་འགྱུར་གྱི་ཡིད་རྟོན་བར་མཚམས་ཤིག"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "a confidence interval for the variance based on bootstrap samples."
-msgstr ""
+msgstr "bootstrap མ་དཔེ་ལ་གཞི་བཅོལ་བའི་འགྱུར་ཚད་ཀྱི་ཡིད་རྟོན་བར་མཚམས་ཤིག"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "the number of bootstrap samples to be used."
-msgstr ""
+msgstr "བེད་སྤྱོད་བྱ་རྒྱུའི་ bootstrap མ་དཔེའི་གྲངས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Covariance value."
-msgstr ""
+msgstr "མཉམ་འགྱུར་ཚད་ཀྱི་རིན་ཐང་།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Pearson's correlation coefficient."
-msgstr ""
+msgstr "པེར་སོན་གྱི་ལྟོས་འབྲེལ་བཏགས་གྲངས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "How to deal with missing values?"
-msgstr ""
+msgstr "ཆད་པའི་རིན་ཐང་ལ་ཇི་ལྟར་བྱེད་དགོས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "use all observations, resulting in NA when there are missing values."
-msgstr ""
+msgstr "ལྟ་ཞིབ་གྲངས་གནས་ཚང་མ་སྤྱོད་པ་དང་། ཆད་པའི་རིན་ཐང་ཡོད་དུས་ NA འབྱུང་ངེས།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "missing values are handled by casewise deletion (i.e., only use rows of the "
 "data set that are complete)."
 msgstr ""
+"ཆད་པའི་རིན་ཐང་དག་ casewise deletion གྱིས་ཐག་གཅོད་བྱེད་པ་ (དཔེར་ན། གྲངས་གནས་ཚོགས་པའི་ཐིག་"
+"ཕྲེང་ཆ་ཚང་བ་ཁོ་ན་སྤྱོད་པ།) ཡིན།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "use all complete pairs of observations on those variables. This can result "
 "in covariance or correlation matrices which are not positive semi-definite."
 msgstr ""
+"འགྱུར་གྲངས་དེ་དག་གི་ལྟ་ཞིབ་གྲངས་གནས་ཀྱི་ཆ་སྒྲིག་ཆ་ཚང་བ་ཚང་མ་སྤྱོད་པ། འདིས་ covariance ཡང་ན་ "
+"correlation matrices དག་ positive semi-definite མིན་པ་འབྱུང་སྲིད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "For continuous variables, displays a histogram and the fit of a "
 "nonparametric density estimator. For nominal and ordinal variables, displays "
 "a frequency distribution."
 msgstr ""
+"continuous འགྱུར་གྲངས་ཀྱི་ཆེད་དུ། histogram དང་ nonparametric density estimator གི་སྒྲིག"
+"་པ་སྟོན་པ། nominal དང་ ordinal འགྱུར་གྲངས་ཀྱི་ཆེད་དུ། frequency distribution སྟོན་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "Displays a matrix of plots between continuous variables, with scatterplots "
@@ -1163,7 +1493,12 @@ msgid ""
 "2nd, 3rd, or 4th order polynomial (the selection is based on the Bayesian "
 "information criterion; Schwarz, 1978)."
 msgstr ""
+"continuous འགྱུར་གྲངས་བར་གྱི་དཔེ་རིས་ཀྱི་ matrix སྟོན་པ་དང་། off-diagonal entries ནང་འགྱུར"
+"་གྲངས་བར་གྱི་ scatterplots དང་། diagonal entries ནང་ histograms དང་ density "
+"plots ཡོད། ཐིག་གིས་ 1st, 2nd, 3rd, ཡང་ན་ 4th order polynomial གི་སྒྲིག་པ་མཚོན་པ་ "
+"(འདེམས་པ་ནི་ Bayesian information criterion; Schwarz, 1978 ལ་གཞི་བཅོལ་བ་ཡིན།) ཡིན།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "Displays the counts of each factor/level within the variable in a descending "
@@ -1171,7 +1506,11 @@ msgid ""
 "factor/level, the x-axis represents the factors/levels of the variable in an "
 "ordered sequence."
 msgstr ""
+"འགྱུར་གྲངས་ནང་གི་ factor/level རེ་རེའི་གྲངས་དེ་ descending order ནང་སྟོན་པ། y-axis ཡིས་ "
+"factor/level རེ་རེའི་ཟློས་ཕྱོད་ (grey bars ལྟ་བུའི་གྲངས་) མཚོན་པ་དང་། x-axis ཡིས་ ordered "
+"sequence ནང་གི་འགྱུར་གྲངས་ཀྱི་ factors/levels མཚོན་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "By default, a cumulative line is drawn indicating the proportional "
@@ -1179,14 +1518,22 @@ msgid ""
 "graph scales with this cumulative line and represents percentages to enable "
 "the description of the cumulative line."
 msgstr ""
+"སོར་བཞག་བྱས་ན། cumulative line ཞིག་འབྲི་བ་དང་། དེས་ factor རེ་རེའི་བསྡུར་བའི་ལེགས་སྐྱེས་སྟོན། "
+"དཔེ་རིས་ཀྱི་གཡས་ངོས་སུ་ཡོད་པའི་གཞུང་མདའ་གཉིས་པ་དེ་ cumulative line འདི་དང་མཉམ་དུ་ཆ་ཚད་བཟོ་བ"
+"་དང་། cumulative line གི་འགྲེལ་བརྗོད་བྱེད་པར་བརྒྱ་ཆ་མཚོན།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "If \"Pareto rule\" is enabled, the two new lines enable a more precise "
 "assessment of factor/level contribution to the overall contribution (in "
 "percent) by using different input numbers."
 msgstr ""
+"གལ་ཏེ་ \"Pareto rule\" སྤྱད་ན། ཐིག་གསར་པ་གཉིས་ཀྱིས་ input numbers མི་འདྲ་བ་བེད་སྤྱད་ནས་ "
+"factor/level གི་ལེགས་སྐྱེས་དེ་སྤྱི་ཡོངས་ཀྱི་ལེགས་སྐྱེས་ (བརྒྱ་ཆའི་ནང་) ལ་ཞིབ་ཚགས་ཆེ་བའི་ཞིབ་བཤེར་བྱེད་"
+"པར་ཆོག་མཆན་སྤྲོད་ཀྱི་ཡོད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "Displays a horizontally stacked bar chart showing the contribution of levels "
@@ -1194,7 +1541,11 @@ msgid ""
 "the JASP data table. A legend below the graph provides an overview of levels "
 "and their respective colors in the graph."
 msgstr ""
+"འགྱུར་གྲངས་ནང་གི་རིམ་པའི་ལེགས་སྐྱེས་བརྒྱ་ཆའི་ནང་སྟོན་པའི་འཕྲེད་ཀྱི་ stacked bar chart སྟོན་པ། རིམ་པའི"
+"་གོ་རིམ་ནི་ JASP གྲངས་གནས་རེའུ་མིག་ནང་གསལ་བཀོད་བྱས་པའི་གོ་རིམ་ལ་རག་ལས་ཡོད། དཔེ་རིས་འོག་གི་ "
+"legend ཡིས་རིམ་པ་དང་དཔེ་རིས་ནང་གི་དེ་དག་གི་མདོག་སོ་སོའི་སྤྱི་མཐོང་མཁོ་སྤྲོད་བྱེད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "The y-axis represents the variables used, the x-axis represents the "
@@ -1202,7 +1553,11 @@ msgid ""
 "level) and higher-order (above the middle level) levels are displayed on "
 "their respective side of the graph."
 msgstr ""
+"y-axis ཡིས་བེད་སྤྱོད་བྱས་པའི་འགྱུར་གྲངས་མཚོན་པ་དང་། x-axis ཡིས་བརྒྱ་ཆ་མཚོན། lower-order (དཀྱིལ"
+"་རིམ་འོག་) དང་ higher-order (དཀྱིལ་རིམ་སྟེང་) རིམ་པ་ཚང་མའི་བརྒྱ་ཆའི་ལེགས་སྐྱེས་དེ་དཔེ་རིས་ཀྱི་ངོས་སོ"
+"་སོར་སྟོན་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "The graph displays percentages on the x-axis as positive in both directions. "
@@ -1211,21 +1566,32 @@ msgid ""
 "high - low, likely - unlikely, agreement - disagreement). Therefore, the "
 "graph contains a split between levels at their median."
 msgstr ""
+"དཔེ་རིས་ཀྱིས་ x-axis ཐོག་བརྒྱ་ཆ་དེ་ཕྱོགས་གཉིས་ཀར་ positive ཚུལ་དུ་སྟོན། བདམས་པའི་སྟོན་སྟངས་ (ཕྱོགས"
+"་གཉིས་སུ་) ཀྱི་རྒྱུ་མཚན་ནི་ survey research ནང་དཔེ་རིས་ཀྱི་ཕན་ཐོགས་ཡིན་པ་དང་། དེར་རིམ་པ་དག་ "
+"Likert ལ་གཞི་བཅོལ་བའི་གོ་རིམ་ (དཔེར་ན། high - low, likely - unlikely, agreement - "
+"disagreement) འདྲ་བར་ཡོད། དེར་བརྟེན་དཔེ་རིས་ནང་རིམ་པ་དག་དེ་དག་གི་དཀྱིལ་གྲངས་ནང་ཁ་འབྱེད་ཡོད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "The number of variable levels determines the number of layers displayed. "
 "Layers represent the percentage distribution of the levels of the variable "
 "under investigation."
 msgstr ""
+"འགྱུར་གྲངས་ཀྱི་རིམ་པའི་གྲངས་ཀྱིས་སྟོན་པའི་ layers གྲངས་གཏན་འཁེལ་བྱེད། Layers ཡིས་ཞིབ་འཇུག་བྱེད་བཞིན་"
+"པའི་འགྱུར་གྲངས་ཀྱི་རིམ་པའི་བརྒྱ་ཆའི་ཁྱབ་ཚུལ་མཚོན།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "If the variables contain an uneven amount of levels, the middle level is "
 "displayed as a grey block in the middle of the stacked bar with its "
 "percentage contribution on top."
 msgstr ""
+"གལ་ཏེ་འགྱུར་གྲངས་ནང་རིམ་པའི་འབོར་མི་མཚུངས་པ་ཡོད་ན། དཀྱིལ་གྱི་རིམ་པ་དེ་ stacked bar གི་དཀྱིལ་དུ་ "
+"grey block ཚུལ་དུ་སྟོན་པ་དང་། དེའི་བརྒྱ་ཆའི་ལེགས་སྐྱེས་དེ་སྟེང་དུ་ཡོད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "For continuous variables, displays a boxplot. Optionally, the outliers are "
@@ -1235,39 +1601,56 @@ msgid ""
 "displaying the distribution of the data. This can be split by a categorical "
 "variable such as experimental condition."
 msgstr ""
+"continuous འགྱུར་གྲངས་ཀྱི་ཆེད་དུ། boxplot སྟོན་པ། འདེམས་རུང་། outliers ལ་ཁ་བྱང་འགོད་པ། "
+"Outliers ནི་ interquartile range (IQR) ལ་གཞི་བཅོལ་བ་ཡིན་པ་དང་། དཔེར་ན། [25th "
+"percentile] - 1.5 × IQR དང་ [75th percentile] + 1.5 × IQR། མདོག་ནང་སྟོན་ཆོག་པ་དང་"
+"། གྲངས་གནས་ཀྱི་ཁྱབ་ཚུལ་སྟོན་པར་འདེམས་རུང་ boxplot, violin, དང་ jitter elements ཡོད། འདི་"
+"ཚོད་ལྟའི་ཆ་རྐྱེན་ལྟ་བུའི་དབྱེ་རིགས་ཀྱི་འགྱུར་གྲངས་ཀྱིས་ཁ་འབྱེད་ཆོག"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Frequency Tables (nominal and ordinal variables)"
-msgstr ""
+msgstr "ཟློས་ཕྱོད་ཀྱི་རེའུ་མིག་ (nominal དང་ ordinal འགྱུར་གྲངས།)"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Displays a frequency table for each variable."
-msgstr ""
+msgstr "འགྱུར་གྲངས་རེ་རེའི་ཟློས་ཕྱོད་ཀྱི་རེའུ་མིག་སྟོན་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Displays the spread of a variable."
-msgstr ""
+msgstr "འགྱུར་གྲངས་ཤིག་གི་ཁྱབ་ཚད་སྟོན་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Stem: the first digit(s)."
-msgstr ""
+msgstr "Stem: ཨང་ཀི་དང་པོ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Leaf: the first digit after the stem."
-msgstr ""
+msgstr "Leaf: stem རྗེས་ཀྱི་ཨང་ཀི་དང་པོ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "The output is a raincloud plot for each dependent variable. Optionally, "
 "there is a table with statistics for each plot."
 msgstr ""
+"ཐོན་འབྲས་ནི་ལྟོས་བཅས་འགྱུར་གྲངས་རེ་རེའི་ཆར་སྤྲིན་དཔེ་རིས་ཤིག་ཡིན། འདེམས་རུང་། དཔེ་རིས་རེ་རེའི་སྡོམ་རྩིས་ཡོད"
+"་པའི་རེའུ་མིག་ཅིག་ཡོད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "How can I re-use my elaborate, customized plot settings for a different "
 "dataset?"
 msgstr ""
+"གྲངས་གནས་ཚོགས་པ་གཞན་ཞིག་གི་ཆེད་དུ་ངའི་ཞིབ་ཚགས་ཅན་གྱི་རང་བཟོས་དཔེ་རིས་ཀྱི་སྒྲིག་བཟོ་ཇི་ལྟར་ཡང་བསྐྱར་"
+"བེད་སྤྱོད་བྱེད་ཐུབ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "Suppose that you have two datasets A and B (in separate JASP files) for "
@@ -1276,7 +1659,13 @@ msgid ""
 "one for dataset B.<br>There are two ways in which you can achieve this "
 "without having to specify the custom plot settings all over again."
 msgstr ""
+"ཁྱེད་ལ་གྲངས་གནས་ཚོགས་པ་ A དང་ B (JASP ཡིག་ཆ་ལོགས་སུ་) གཉིས་ཡོད་པ་དང་། དེ་དག་གི་ཆེད་དུ་ཆར་"
+"སྤྲིན་དཔེ་རིས་གཅིག་པ་བཟོ་འདོད་ཡོད་པར་ཆ་འཇོག་བྱེད།<br>དེ་བཞིན་ཁྱེད་ལ་གྲངས་གནས་ཚོགས་པ་ A གི་ཆར་སྤྲིན་"
+"དཔེ་རིས་སྔ་ས་ནས་ཡོད་པ་དང་། ད་ལྟ་གྲངས་གནས་ཚོགས་པ་ B གི་ཆེད་དུ་གཅིག་པ་དེ་འདོད་པར་ཆ་འཇོག་བྱེད"
+"།<br>འདི་ཡང་བསྐྱར་རང་བཟོས་དཔེ་རིས་ཀྱི་སྒྲིག་བཟོ་ཚང་མ་གསལ་བཀོད་བྱེད་མི་དགོས་པར་བྱེད་ཐུབ་པའི་ཐབས་ལམ་"
+"གཉིས་ཡོད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "1) If dataset B only has a different dependent variable but is otherwise "
@@ -1285,7 +1674,13 @@ msgid ""
 "JASP).<br>Next, select the newly created dependent variable in dataset A as "
 "an additional dependent variable for the raincloud plot."
 msgstr ""
+"༡) གལ་ཏེ་གྲངས་གནས་ཚོགས་པ་ B ལ་ལྟོས་བཅས་འགྱུར་གྲངས་མི་འདྲ་བ་ཞིག་ཁོ་ན་ཡོད་པ་དང་། གཞན་དག་གཅིག་"
+"པ་ཡིན་ན།<br>དེ་ནས་ཁྱེད་ཀྱིས་འགྱུར་གྲངས་འདི་གྲངས་གནས་ཚོགས་པ་ B གི་ JASP ཡིག་ཆ་ནས་གྲངས་གནས་ཚོགས"
+"་པ་ A གི་ JASP ཡིག་ཆ་ནང་བཤུ་འབྲི་བྱེད་ཆོག (JASP ནང་གི་ Edit Data header menu ལ་ལྟོས།)"
+"<br>དེ་རྗེས་གྲངས་གནས་ཚོགས་པ་ A ནང་གསར་བཟོ་བྱས་པའི་ལྟོས་བཅས་འགྱུར་གྲངས་དེ་ཆར་སྤྲིན་དཔེ་རིས་ཀྱི་ཁ་སྣོན"
+"་ལྟོས་བཅས་འགྱུར་གྲངས་སུ་འདེམས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "2) If dataset B is rather different from dataset A<br>(e.g. primary factor "
@@ -1301,113 +1696,161 @@ msgid ""
 "specifications like point spread or custom interval limits should still be "
 "present from the raincloud plot for dataset A."
 msgstr ""
+"༢) གལ་ཏེ་གྲངས་གནས་ཚོགས་པ་ B དེ་གྲངས་གནས་ཚོགས་པ་ A ལས་ཅུང་མི་འདྲ་བ་ཡིན་ན།<br>(དཔེར་ན། "
+"primary factor ལ་མིང་མི་འདྲ་བ་དང་ཁ་སྣོན་རིམ་པ་ཡོད་པའམ་ཡང་ན་ ID མི་འདྲ་བ་ཡོད་པའི་ལྟ་ཞིབ་གྲངས"
+"་གནས་ཉུང་བ་ཡོད་ན།)<br>དེ་ནས་ཁྱེད་ཀྱིས་ཐབས་ལམ་གཞན་ཞིག་སྤྱོད་དགོས།<br>དང་པོ། གྲངས་གནས་ཚོགས་པ་ "
+"A གི་ JASP ཡིག་ཆ་ཞིག་ངོ་བཤུས་བྱེད། (གཤམ་དུ་ target file ཞེས་བརྗོད།)<br>གཉིས་པ། target "
+"file འདི་ཁ་ཕྱེ། དེས་གྲངས་གནས་ཚོགས་པ་ A གི་ཆེད་དུ་གསལ་བཀོད་བྱས་པའི་ཆར་སྤྲིན་དཔེ་རིས་སྟོན་དགོས།<br>"
+"གསུམ་པ། Edit Data header menu ལ་སྐྱོད་ནས་གྲངས་གནས་ཚོགས་པ་ A ཡོངས་སུ་སུབས།<br>བཞི་པ། གྲངས"
+"་གནས་ཚོགས་པ་ B གི་ JASP ཡིག་ཆ་ལ་སྐྱོད་ནས་དེའི་གྲངས་གནས་དེ་ target file ནང་བཤུ་འབྲི་བྱེད།<br>"
+"ལྔ་པ། ཆར་སྤྲིན་དཔེ་རིས་ཀྱི་ཆེད་དུ་ལྟོས་བཅས་འགྱུར་གྲངས། primary དང་ secondary factor། "
+"covariate། དང་ ID འདེམས།<br>འོན་ཀྱང་གལ་ཆེ་བ་ཞིག་ནི། point spread ཡང་ན་ custom "
+"interval limits ལྟ་བུའི་གསལ་བཀོད་གཞན་དག་ཚང་མ་གྲངས་གནས་ཚོགས་པ་ A གི་ཆར་སྤྲིན་དཔེ་རིས་ནས་ད་"
+"དུང་ཡོད་དགོས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "References"
-msgstr ""
+msgstr "ལུང་འདྲེན།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Input"
-msgstr ""
+msgstr "ནང་འཇུག"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Dependent Variables"
-msgstr ""
+msgstr "ལྟོས་བཅས་འགྱུར་གྲངས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Select all the variables that you want to plot."
-msgstr ""
+msgstr "ཁྱེད་ཀྱིས་འགོད་འདོད་པའི་འགྱུར་གྲངས་ཚང་མ་འདེམས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Primary Factor"
-msgstr ""
+msgstr "གཙོ་བོའི་རྐྱེན་ཆ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Its levels are shown on the x-axis (y-axis for horizontal plot)."
 msgstr ""
+"དེའི་རིམ་པ་དག་ x-axis (horizontal plot གི་ཆེད་དུ་ y-axis) ཐོག་སྟོན་གྱི་ཡོད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Secondary Factor"
-msgstr ""
+msgstr "གཉིས་པའི་རྐྱེན་ཆ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Its levels are color coded."
-msgstr ""
+msgstr "དེའི་རིམ་པ་དག་མདོག་གིས་བཀོད་སྒྲིག་བྱས་ཡོད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Covariate"
-msgstr ""
+msgstr "མཉམ་འགྱུར་གྲངས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Points are color coded according to this."
-msgstr ""
+msgstr "ཚེག་དག་འདི་ལ་གཞིགས་ནས་མདོག་གིས་བཀོད་སྒྲིག་བྱས་ཡོད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "Select a participant/observation ID in your dataset, to connect individual "
 "observations (points) accross the levels of the primary factor. Otherwise, "
 "you do not need this."
 msgstr ""
+"ཁྱེད་ཀྱི་གྲངས་གནས་ཚོགས་པ་ནང་གི་ participant/observation ID ཞིག་འདེམས་ནས་ primary "
+"factor གི་རིམ་པ་ཁག་བར་གྱི་ལྟ་ཞིབ་གྲངས་གནས་ (ཚེག་) རེ་རེ་སྦྲེལ་བ། གཞན་དུ་ན། འདི་དགོས་མཁོ་མེད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "General"
-msgstr ""
+msgstr "སྤྱིར་བཏང་།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Color palette"
-msgstr ""
+msgstr "ཚོན་མདོག་མཐུན་སྦྱོར།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "How to color code the levels of the secondary factor."
-msgstr ""
+msgstr "secondary factor གི་རིམ་པ་དག་ཇི་ལྟར་མདོག་གིས་བཀོད་སྒྲིག་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Covariate palette"
-msgstr ""
+msgstr "མཉམ་འགྱུར་གྲངས་ཀྱི་མཐུན་སྦྱོར།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "How to color code the covariate. 'Viridis' works good for both discrete and "
 "continuous covariates."
 msgstr ""
+"covariate ཇི་ལྟར་མདོག་གིས་བཀོད་སྒྲིག་བྱེད་པ། 'Viridis' ནི་ discrete དང་ continuous "
+"covariates གཉིས་ཀར་ཡག་པོ་ཡོད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Apply color palette to primary factor"
-msgstr ""
+msgstr "primary factor ལ་ཚོན་མདོག་མཐུན་སྦྱོར་སྤྱོད་པ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "Applies the color palette to the levels of the primary factor. Otherwise, "
 "the plot stays black and white.<br>This option is superseeded by a secondary "
 "factor; then color coding is according to that."
 msgstr ""
+"primary factor གི་རིམ་པ་དག་ལ་ཚོན་མདོག་མཐུན་སྦྱོར་སྤྱོད་པ། གཞན་དུ་ན། དཔེ་རིས་དེ་ནག་པོ་དང་དཀར་པོ"
+"་རང་དུ་གནས་ངེས།<br>འདེམས་ཀ་འདི་ secondary factor གྱིས་ superseeded བྱེད་པ་དང་། དེ་ནས་"
+"མདོག་གི་བཀོད་སྒྲིག་དེ་དེ་ལ་གཞིགས་པ་ཡིན།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Horizontal plot"
-msgstr ""
+msgstr "འཕྲེད་ཀྱི་དཔེ་རིས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "Plots the dependent variable axis horizontally, at the bottom of the plot."
 "<br>This is where the raincloud plot gets its name from: It will look like "
 "the points are raining from the violin and box (cloud)."
 msgstr ""
+"དཔེ་རིས་ཀྱི་འོག་ཏུ་ལྟོས་བཅས་འགྱུར་གྲངས་ཀྱི་མདའ་འཕྲེད་དུ་འགོད་པ།<br>འདི་ནས་ཆར་སྤྲིན་དཔེ་རིས་ཀྱི་མིང་ཐོབ་པ"
+"་ཡིན། དེས་ཚེག་དག་ violin དང་ box (སྤྲིན་) ནས་ཆར་པ་འབབ་པ་ལྟར་སྣང་ངེས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Table with statistics"
-msgstr ""
+msgstr "སྡོམ་རྩིས་ཡོད་པའི་རེའུ་མིག"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "Shows a table under the plot with statistics per cloud, like number of "
 "observations or median.<br>If you select 'Mean' or 'Interval around "
 "mean' (see Advanced Section), they will also be shown here."
 msgstr ""
+"དཔེ་རིས་འོག་ཏུ་ cloud རེ་རེའི་སྡོམ་རྩིས་ཡོད་པའི་རེའུ་མིག་ཅིག་སྟོན་པ་དང་། དཔེར་ན། ལྟ་ཞིབ་གྲངས་གནས་ཀྱི་"
+"གྲངས་སམ་དཀྱིལ་གྲངས།<br>གལ་ཏེ་ཁྱེད་ཀྱིས་ 'Mean' ཡང་ན་ 'Interval around mean' (Advanced "
+"Section ལ་ལྟོས།) འདེམས་ན། དེ་དག་ཀྱང་འདིར་སྟོན་ངེས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "Shows the box statistics in the table: lower whisker, 25th percentile, "
@@ -1415,47 +1858,67 @@ msgid ""
 "this if you are also working with 'Interval around mean' (see Advanced "
 "Section)."
 msgstr ""
+"རེའུ་མིག་ནང་ box statistics སྟོན་པ་དང་། lower whisker, 25th percentile, median, "
+"75th percentile, upper whisker།<br>གལ་ཏེ་ཁྱེད་ཀྱིས་ 'Interval around mean' "
+"(Advanced Section ལ་ལྟོས།) དང་མཉམ་དུ་ལས་ཀ་བྱེད་བཞིན་ཡོད་ན། འདི་ un-check བྱེད་པ་ཕན་ཐོགས་"
+"ཡོད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Cloud Elements"
-msgstr ""
+msgstr "Cloud ཆ་ཤས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Show violin"
-msgstr ""
+msgstr "Violin སྟོན་པ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "Whether or not the violin should be shown. If un-checked, opacity is set to "
 "0 and outline to 'none'."
 msgstr ""
+"Violin སྟོན་དགོས་མིན་གྱི་གནས་སྟངས། གལ་ཏེ་ un-checked བྱས་ན། opacity དེ་ 0 ལ་སྒྲིག་པ་དང་ "
+"outline དེ་ 'none' ལ་སྒྲིག་ངེས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Show box"
-msgstr ""
+msgstr "Box སྟོན་པ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "Whether or not the box should be shown. If un-checked, opacity is set to 0 "
 "and outline to 'none'.<br>An interval around the mean disables the box "
 "altogether."
 msgstr ""
+"box སྟོན་དགོས་མིན་གྱི་གནས་སྟངས། གལ་ཏེ་ un-checked བྱས་ན། opacity དེ་ 0 ལ་སྒྲིག་པ་དང་ "
+"outline དེ་ 'none' ལ་སྒྲིག་ངེས།<br>ཆ་སྙོམས་ཀྱི་མཐའ་འཁོར་གྱི་ interval ཞིག་གིས་ box དེ་ཡོངས་སུ་"
+"མེད་པ་བཟོ་གི་ཡོད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "Whether or not the points of a cloud should be shown. If un-checked, opacity "
 "is set to 0.<br>If you have many, many points, it can be helpful to hide "
 "them."
 msgstr ""
+"cloud གི་ཚེག་དག་སྟོན་དགོས་མིན་གྱི་གནས་སྟངས། གལ་ཏེ་ un-checked བྱས་ན། opacity དེ་ 0 ལ་སྒྲིག་"
+"ངེས།<br>གལ་ཏེ་ཁྱེད་ལ་ཚེག་མང་པོ་ཡོད་ན། དེ་དག་སྦེད་པ་ཕན་ཐོགས་ཡོད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Element Settings"
-msgstr ""
+msgstr "ཆ་ཤས་ཀྱི་སྒྲིག་བཟོ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Nudge"
-msgstr ""
+msgstr "སྤོ་བ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "The nudge for violin, box, and point determines how far the elements are "
@@ -1465,11 +1928,18 @@ msgid ""
 "the points get centered (nudge fixed to 0). Violin and box are nudged "
 "depending on orientation: left or right."
 msgstr ""
+"violin, box, དང་ point གི་ nudge ཡིས་ཆ་ཤས་དག་དབུས་ (axis tick) ནས་ཇི་ཙམ་སྤོ་དགོས་མིན་"
+"གཏན་འཁེལ་བྱེད།<br>སོར་བཞག་བྱས་ན། box དེ་དབུས་སུ་ཡོད་པ་ (nudge = 0) དང་ violin དེ་གཡས་སུ་"
+"སྤོ་གི་ཡོད། ཚེག་དག་ box གི་གཡོན་དུ་སྤོ་གི་ཡོད།<br>རང་བཟོས་ཁ་ཕྱོགས་ (Advanced section ལ་ལྟོས།) "
+"ཡོད་ན། ཚེག་དག་དབུས་སུ་འགྲོ་བ་ (nudge དེ་ 0 ལ་གཏན་འཁེལ་) ཡིན། Violin དང་ box ནི་ཁ་ཕྱོགས་ལ་"
+"གཞིགས་ནས་སྤོ་བ་ཡིན། གཡོན་ནམ་གཡས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Height, Width, and Spread"
-msgstr ""
+msgstr "མཐོ་ཚད། ཞེང་ཚད། ཁྱབ་ཚད་བཅས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "These settings determine the respective properties of the elements:"
@@ -1482,11 +1952,20 @@ msgid ""
 "values of the points on the dependent variable axis.<br>(If you would also "
 "like y-jitter see the 'Jitter' option for points.)"
 msgstr ""
+"སྒྲིག་བཟོ་འདི་དག་གིས་ཆ་ཤས་རེ་རེའི་ཁྱད་ཆོས་གཏན་འཁེལ་བྱེད།<br><br>violin peak ཇི་ཙམ་མཐོ་དགོས། "
+"(སྲིད་ཕྱོད་སྟུག་ཚད་ཀྱི་བསྡུར་ཚད་མི་བརྗེ།)<br>གཡོན་དུ་རང་བཟོས་ཁ་ཕྱོགས་ (Advanced Section ལ་ལྟོས།) "
+"ཡོད་ན། གལ་ཏེ་ violin དེ་ axis ticks དང་ overlap བྱེད་ན། མཐོ་ཚད་ཆུང་དུ་གཏོང་བ་ཕན་ཐོགས་ཡོད"
+"།<br><br>box ཇི་ཙམ་ཞེང་ཆེ་དགོས།<br><br>ཚེག་དག་ཇི་ཙམ་ཁྱབ་དགོས། དཔེར་ན། x-axis "
+"(horizontal plot ཡིན་ན་ y-axis) ཐོག་ཇི་ཙམ་ jittered ཡིན་དགོས།<br>དོ་སྣང་བྱེད་དགོས་པ་ཞིག་"
+"ནི། འདིས་ད་དུང་ལྟོས་བཅས་འགྱུར་གྲངས་ཀྱི་མདའི་ཐོག་གི་ཚེག་གི་རིན་ཐང་དག་ཡང་དག་པར་སྟོན་གྱི་ཡོད།<br>(གལ་"
+"ཏེ་ཁྱེད་ཀྱིས་ y-jitter ཀྱང་འདོད་ན། ཚེག་གི་ཆེད་དུ་ 'Jitter' འདེམས་ཀ་ལ་ལྟོས།)"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Box Padding"
-msgstr ""
+msgstr "Box བར་སྟོང་།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "With a secondary factor, there will be a box for each factor level. With the "
@@ -1494,47 +1973,64 @@ msgid ""
 "padding will - visually - decrease the box width. If you want to keep box "
 "width constant, also increase the box width."
 msgstr ""
+"secondary factor ཡོད་ན། factor level རེ་རེའི་ཆེད་དུ་ box ཞིག་ཡོད་ངེས། padding བེད་སྤྱད་ནས"
+"་ box དེ་དག་བར་གྱི་བར་སྟོང་བརྗེ་ཆོག<br>padding ཆེ་རུ་བཏང་ན་ - མཐོང་རུང་ - box ཞེང་ཚད་ཆུང་དུ་"
+"འགྲོ་ངེས། གལ་ཏེ་ཁྱེད་ཀྱིས་ box ཞེང་ཚད་རྒྱུན་སྲུང་བྱེད་འདོད་ན། box ཞེང་ཚད་ཀྱང་ཆེ་རུ་གཏོང་དགོས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Point Size"
-msgstr ""
+msgstr "ཚེག་གི་ཆེ་ཆུང་།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "We recommend a greater size, the fewer points you have."
 msgstr ""
+"ཁྱེད་ལ་ཚེག་ཉུང་བ་ཡོད་ཚེ། ཆེ་ཆུང་ཆེ་བ་ཞིག་བེད་སྤྱོད་བྱེད་པར་གྲོས་འགོ་འདོན།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Opacity"
-msgstr ""
+msgstr "དྭངས་མེད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Increase this to _decrease_ the transparency of the respective element."
-msgstr ""
+msgstr "འདི་ཆེ་རུ་བཏང་ན་ཆ་ཤས་སོ་སོའི་དྭངས་གསལ་ _ཆུང་དུ་འགྲོ་_ ངེས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Outline and Outline Width"
-msgstr ""
+msgstr "མཐའ་རིས་དང་མཐའ་རིས་ཀྱི་ཞེང་ཚད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "Would you like the outline to match the 'Color palette', be 'black', or have "
 "'none' at all?<br>The width determines how thick the outline is."
 msgstr ""
+"ཁྱེད་ཀྱིས་མཐའ་རིས་དེ་ 'Color palette' དང་མཚུངས་པའམ། 'black' ཡིན་པའམ། ཡང་ན་ 'none' ཡིན་"
+"པ་འདོད་དམ།<br>ཞེང་ཚད་ཀྱིས་མཐའ་རིས་ཇི་ཙམ་སྦོམ་མིན་གཏན་འཁེལ་བྱེད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Violin Smoothing"
-msgstr ""
+msgstr "Violin འཇམ་པོ་བཟོ་བ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "This percentage determines the smoothness of the probability density.<br>The "
 "lower, the stronger it is influenced by the presence/absence of individual "
 "points."
 msgstr ""
+"བརྒྱ་ཆ་འདིས་སྲིད་ཕྱོད་སྟུག་ཚད་ཀྱི་འཇམ་ཚད་གཏན་འཁེལ་བྱེད།<br>ཆུང་བ་ཡིན་ཚེ། ཚེག་རེ་རེ་ཡོད་མེད་ཀྱིས་ཤུགས་"
+"རྐྱེན་ཆེ་བ་ཐེབས་ངེས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Point Jitter"
-msgstr ""
+msgstr "ཚེག་གི་ Jitter"
 
 msgctxt "raincloudPlots|"
 msgid ""
@@ -1546,81 +2042,100 @@ msgid ""
 "you are working with likert data."
 msgstr ""
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "ID Lines Width"
-msgstr ""
+msgstr "ID ཐིག་གི་ཞེང་ཚད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Determines how thick the lines are."
-msgstr ""
+msgstr "ཐིག་དག་ཇི་ཙམ་སྦོམ་མིན་གཏན་འཁེལ་བྱེད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Violin"
-msgstr ""
+msgstr "Violin"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Height"
-msgstr ""
+msgstr "མཐོ་ཚད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Outline"
-msgstr ""
+msgstr "མཐའ་རིས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "black"
-msgstr ""
+msgstr "ནག་པོ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "none"
-msgstr ""
+msgstr "མེད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Outline width"
-msgstr ""
+msgstr "མཐའ་རིས་ཀྱི་ཞེང་ཚད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Smoothing"
-msgstr ""
+msgstr "འཇམ་པོ་བཟོ་བ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Box"
-msgstr ""
+msgstr "Box"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Width"
-msgstr ""
+msgstr "ཞེང་ཚད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Padding"
-msgstr ""
+msgstr "བར་སྟོང་།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Point"
-msgstr ""
+msgstr "ཚེག"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Spread"
-msgstr ""
+msgstr "ཁྱབ་ཚད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Size"
-msgstr ""
+msgstr "ཆེ་ཆུང་།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Jitter"
-msgstr ""
+msgstr "Jitter"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "ID lines"
-msgstr ""
+msgstr "ID ཐིག"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Axes, Caption, and Plot Size"
-msgstr ""
+msgstr "མདའ། མཆན་འགྲེལ། དཔེ་རིས་ཀྱི་ཆེ་ཆུང་བཅས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Custom limits for dependent variable axis:"
-msgstr ""
+msgstr "ལྟོས་བཅས་འགྱུར་གྲངས་ཀྱི་མདའི་ཆེད་དུ་རང་བཟོས་ཚད་བཀག:"
 
 msgctxt "raincloudPlots|"
 msgid ""
@@ -1632,14 +2147,17 @@ msgid ""
 "down menu and then go to the headers 'x-axis' or 'y-axis'."
 msgstr ""
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "from"
-msgstr ""
+msgstr "ནས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "to"
-msgstr ""
+msgstr "བར།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "Limits may only be applied approximately.\n"
@@ -1648,11 +2166,18 @@ msgid ""
 "Then select 'Edit Image' in the drop down menu and\n"
 "then go to the headers 'x-axis' or 'y-axis'."
 msgstr ""
+"ཚད་བཀག་དག་ཉེ་མཚུངས་ཙམ་ལས་སྤྱོད་མི་ཐུབ།\n"
+"མདའ་ཞིབ་ཚགས་སྙོམ་སྒྲིག་བྱེད་པར་དཔེ་རིས་ཀྱི་ཁ་བྱང་ལ་མནན་ནས་\n"
+"ལྟོས་བཅས་འགྱུར་གྲངས་ཀྱི་མིང་ཡོད་སར་ལྟོས།\n"
+"དེ་རྗེས་ drop down menu ནང་ 'Edit Image' འདེམས་ནས་\n"
+"headers 'x-axis' ཡང་ན་ 'y-axis' ལ་སྐྱོད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Show caption"
-msgstr ""
+msgstr "མཆན་འགྲེལ་སྟོན་པ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "The caption provides important information about the plot such as warnings, "
@@ -1660,11 +2185,16 @@ msgid ""
 "and to only un-check it if you are otherwise happy with the plot and want to "
 "export it."
 msgstr ""
+"མཆན་འགྲེལ་གྱིས་དཔེ་རིས་སྐོར་གྱི་གནས་ཚུལ་གལ་ཆེན་མཁོ་སྤྲོད་བྱེད་པ་དང་། གལ་ཏེ་ཡོད་ན། ཉེན་བརྡ་ལྟ་བུ།<br>ང"
+"་ཚོས་འདེམས་སྒྲོམ་འདི་ checked བྱས་ནས་འཇོག་པར་མཐའ་ནན་གྱིས་གྲོས་འགོ་འདོན། གལ་ཏེ་ཁྱེད་དཔེ་རིས་ལ་དགའ"
+"་པོ་ཡོད་པ་དང་དེ་ཕྱིར་འདྲེན་བྱེད་འདོད་ན། un-check བྱེད་ཆོག"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Plot Size: Width and Height"
-msgstr ""
+msgstr "དཔེ་རིས་ཀྱི་ཆེ་ཆུང་། ཞེང་ཚད་དང་མཐོ་ཚད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "This also includes the legend (if there is color coding) and the caption."
@@ -1672,27 +2202,36 @@ msgid ""
 "precise specification of width and height allows you to exactly reproduce a "
 "plot."
 msgstr ""
+"འདིའི་ནང་ legend (གལ་ཏེ་མདོག་གི་བཀོད་སྒྲིག་ཡོད་ན།) དང་ caption ཀྱང་ཚུད་ཡོད།<br>ཁྱེད་ཀྱིས་ "
+"JASP དཔེ་རིས་ཀྱི་ཆེ་ཆུང་ mouse བེད་སྤྱད་ནས་བརྗེ་ཆོག་ཀྱང་། ཞེང་ཚད་དང་མཐོ་ཚད་ཀྱི་ཞིབ་ཚགས་གསལ་བཀོད་"
+"ཀྱིས་དཔེ་རིས་ཤིག་ཡང་དག་པར་ཡང་བསྐྱར་བཟོ་བར་ཆོག་མཆན་སྤྲོད་ཀྱི་ཡོད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Plot Size"
-msgstr ""
+msgstr "དཔེ་རིས་ཀྱི་ཆེ་ཆུང་།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Advanced"
-msgstr ""
+msgstr "མཐོ་རིམ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Mean"
-msgstr ""
+msgstr "ཆ་སྙོམས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Whether to also show a mean for each cloud."
-msgstr ""
+msgstr "སྤྲིན་རེ་རེའི་ཆེད་དུ་ཆ་སྙོམས་ཤིག་ཀྱང་སྟོན་དགོས་མིན།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Position"
-msgstr ""
+msgstr "གནས་ས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "Use a 'Custom' position to have the mean placed inside of the box - even if "
@@ -1703,69 +2242,94 @@ msgid ""
 "secondary factor levels (e.g. groups) across the primary factor levels (e.g. "
 "time)."
 msgstr ""
+"'Custom' གནས་ས་བེད་སྤྱད་ནས་ཆ་སྙོམས་དེ་སྒམ་ནང་འཇོག་པ། - ཁྱེད་ཀྱིས་སྒམ་དེ་མ་བསྟན་ནའང་།<br>དོན་"
+"དངོས་སུ། ཆ་སྙོམས་ཀྱི་ nudge དང་ distance ས་མིག་དག་ནི་སྒམ་གྱི་ nudge དང་སྒམ་གྱི་ས་མིག་དང་སོ་སོར"
+"་མཉམ་འགུལ་བྱེད་ཀྱི་ཡོད།<br>'On axis ticks' གནས་ས་བེད་སྤྱད་ནས་ primary factor རིམ་པ་རེ་རེའི"
+"་ཆ་སྙོམས་ཚང་མ་གཅིག་གི་སྟེང་དུ་གཅིག་བཞག་པ།<br>འདི་ནི་ཁྱེད་ཀྱིས་ primary factor རིམ་པ་ (དཔེར་ན"
+"། དུས།) བརྒྱུད་ནས་ secondary factor རིམ་པ་ (དཔེར་ན། ཚོགས་པ།) ཡི་འགྱུར་བ་སྟོན་འདོད་ན་ཕན་ཐོགས"
+"་ཡོད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Try different values to make your plot especially pretty."
 msgstr ""
+"ཁྱེད་ཀྱི་དཔེ་རིས་དེ་ཁྱད་པར་དུ་མཛེས་པོ་བཟོ་བར་རིན་ཐང་མི་འདྲ་བ་ཚོད་ལྟ་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Mean Lines: Width"
-msgstr ""
+msgstr "ཆ་སྙོམས་ཐིག: ཞེང་ཚད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "See outline width of box and violin as well as ID lines width."
 msgstr ""
+"སྒམ་དང་ violin གྱི་མཐའ་རིས་ཀྱི་ཞེང་ཚད་དང་དེ་བཞིན་ ID ཐིག་གི་ཞེང་ཚད་ལ་ལྟོས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Custom"
-msgstr ""
+msgstr "རང་བཟོ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Distance"
-msgstr ""
+msgstr "བར་ཐག"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "On axis ticks"
-msgstr ""
+msgstr "མདའི་རྟགས་སྟེང་།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Connect means with lines"
-msgstr ""
+msgstr "ཆ་སྙོམས་དག་ཐིག་གིས་སྦྲེལ་བ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Interval around mean"
-msgstr ""
+msgstr "ཆ་སྙོམས་ཀྱི་མཐའ་འཁོར་གྱི་བར་མཚམས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "Whether to also show an interval around the mean.<br>This hides and disables "
 "the box."
 msgstr ""
+"ཆ་སྙོམས་ཀྱི་མཐའ་འཁོར་དུ་བར་མཚམས་ཤིག་ཀྱང་སྟོན་དགོས་མིན།<br>འདིས་སྒམ་དེ་སྦེད་པ་དང་མེད་པ་བཟོ་གི་ཡོད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Confidence interval"
-msgstr ""
+msgstr "ཡིད་རྟོན་བར་མཚམས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Interval line width"
-msgstr ""
+msgstr "བར་མཚམས་ཐིག་གི་ཞེང་ཚད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Determines the thickness of the interval lines."
-msgstr ""
+msgstr "བར་མཚམས་ཐིག་གི་སྦོམ་ཚད་གཏན་འཁེལ་བྱེད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Width of interval whiskers depends on mean distance."
-msgstr ""
+msgstr "བར་མཚམས་ཀྱི་ whiskers གི་ཞེང་ཚད་ནི་ཆ་སྙོམས་ཀྱི་བར་ཐག་ལ་རག་ལས་ཡོད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Custom Cloud Orientation, Mean Interval Limits, and Cloud Color"
-msgstr ""
+msgstr "རང་བཟོས་སྤྲིན་གྱི་ཁ་ཕྱོགས། ཆ་སྙོམས་བར་མཚམས་ཀྱི་ཚད་བཀག དང་སྤྲིན་གྱི་མདོག"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "How many clouds are currently shown?"
-msgstr ""
+msgstr "ད་ལྟ་སྤྲིན་ག་ཚོད་སྟོན་བཞིན་ཡོད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "To apply custom cloud orientation or custom mean intervals, you first must "
@@ -1774,7 +2338,12 @@ msgid ""
 "caption will show a warning and you can correct your entry.<br>The number "
 "you specify determines the number of rows in the table."
 msgstr ""
+"རང་བཟོས་སྤྲིན་གྱི་ཁ་ཕྱོགས་སམ་རང་བཟོས་ཆ་སྙོམས་བར་མཚམས་སྤྱོད་པར། ཁྱེད་ཀྱིས་ཐོག་མར་དཔེ་རིས་ནང་ད་ལྟ་སྟོན་"
+"བཞིན་པའི་སྤྲིན་གྱི་གྲངས་གསལ་བཀོད་བྱེད་དགོས།<br>གལ་ཏེ་ཁྱེད་ཀྱིས་བཅུག་པའི་གྲངས་དེ་དཔེ་རིས་ནང་གི་སྤྲིན་གྱི་"
+"གྲངས་དང་མི་མཐུན་ན། དཔེ་རིས་ཀྱི་མཆན་འགྲེལ་གྱིས་ཉེན་བརྡ་སྟོན་པ་དང་ཁྱེད་ཀྱིས་བཅུག་པ་དེ་ཡོ་བསྲང་བྱེད་ཐུབ"
+"།<br>ཁྱེད་ཀྱིས་གསལ་བཀོད་བྱས་པའི་གྲངས་ཀྱིས་རེའུ་མིག་ནང་གི་ཐིག་ཕྲེང་གི་གྲངས་གཏན་འཁེལ་བྱེད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "In the table, you can then specify the custom orientation ('L' vs. 'R') for "
@@ -1783,7 +2352,12 @@ msgid ""
 "orientation' or 'Apply custom mean interval limits'.<br>Otherwise, your "
 "input into the table will not be applied."
 msgstr ""
+"རེའུ་མིག་ནང་། ཁྱེད་ཀྱིས་དེ་ནས་སྤྲིན་རེ་རེའི་རང་བཟོས་ཁ་ཕྱོགས་ ('L' vs. 'R') དང་དེ་བཞིན་ཆ་སྙོམས་རེ་རེའི"
+"་རང་བཟོས་འོག་དང་གོང་གི་བར་མཚམས་ཚད་བཀག་གསལ་བཀོད་བྱེད་ཐུབ།<br>དེ་བཞིན་འབྲེལ་ཡོད་འདེམས་སྒྲོམ་ "
+"'Apply custom orientation' ཡང་ན་ 'Apply custom mean interval limits' ཞིབ་བཤེར་"
+"བྱེད་རྒྱུ་གལ་ཆེ།<br>གཞན་དུ་ན། ཁྱེད་ཀྱིས་རེའུ་མིག་ནང་བཅུག་པ་དེ་སྤྱོད་མི་ཐུབ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "The order in which the rows of the table are mapped to the clouds in the "
@@ -1796,7 +2370,15 @@ msgid ""
 "<br>That way, at each time point, the left cloud would be alpha and the "
 "right cloud would be beta."
 msgstr ""
+"རེའུ་མིག་གི་ཐིག་ཕྲེང་དག་དཔེ་རིས་ནང་གི་སྤྲིན་ལ་སྦྱོར་བའི་གོ་རིམ་ནི་གཤམ་གསལ་ལྟར་ཡིན།<br>ཆ་འཇོག་བྱས་ན། "
+"འཇལ་ཚད་ཀྱི་དུས་གསུམ་ཡོད། (primary factor): pre, post, དང་ follow-up།<br>དེ་བཞིན། རིགས"
+"་གཉིས་ཡོད། (secondary factor): alpha དང་ beta།<br>འདིའི་དོན་ནི་སྤྲིན་ 6 ཡོད་པ་དང་། གོ་རིམ"
+"་གཤམ་གསལ་ལྟར་ཡིན།<br>pre-alpha<br>pre-beta<br>post-alpha<br>post-beta<br>"
+"follow-up-alpha<br>follow-up-beta<br><br>དཔེ་མཚོན་འདིའི་ནང་ཁྱེད་ཀྱིས་ད་ལྟ་ཐིག་ཕྲེང་ཡ་གྲངས་"
+"དག་ 'L' དང་ཆ་གྲངས་དག་ 'R' ལ་གསལ་བཀོད་བྱེད་ཐུབ།<br>དེ་ལྟར་བྱས་ན། དུས་ཚོད་རེ་རེར། གཡོན་གྱི་སྤྲིན་"
+"དེ་ alpha དང་གཡས་ཀྱི་སྤྲིན་དེ་ beta ཡིན་ངེས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "If you have a 2x2 design (e.g. no follow-up in as primary factor), then a "
@@ -1806,7 +2388,13 @@ msgid ""
 "over time.<br>They will then run between the two clouds on the left to the "
 "two clouds on the right."
 msgstr ""
+"གལ་ཏེ་ཁྱེད་ལ་ 2x2 ཇུས་འགོད་ཡོད་ན། (དཔེར་ན། primary factor ནང་ follow-up མེད་པ།) དེ་ནས་"
+"ཕན་ཐོགས་ཡོད་པའི་རང་བཟོས་ཁ་ཕྱོགས་ཤིག་ LLRR ཡིན་ཆོག<br>དེ་ལྟར་བྱས་ན། དུས་ཚོད་ pre ནང་ alpha "
+"དང་ beta སྤྲིན་གཉིས་ཀ་གཡོན་དུ་ཡོད་པ་དང་། དུས་ཚོད་རྗེས་མར་དེ་དག་གཡས་སུ་ཡོད་ངེས།<br>འདི་ ID ནང་"
+"འཇུག་དང་མཉམ་སྦྲེལ་བྱས་ནས་དུས་ཚོད་བརྒྱུད་ནས་ལྟ་ཞིབ་གྲངས་གནས་རེ་རེ་སྦྲེལ་བ།<br>དེ་ནས་དེ་དག་གཡོན་གྱི་སྤྲིན"
+"་གཉིས་ཀྱི་བར་ནས་གཡས་ཀྱི་སྤྲིན་གཉིས་ཀྱི་བར་དུ་རྒྱུག་ངེས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "Any custom orientation or mean intervals will be applied to the plot of "
@@ -1816,45 +2404,62 @@ msgid ""
 "dependent variable in each version, and specify the custom intervals "
 "separately."
 msgstr ""
+"རང་བཟོས་ཁ་ཕྱོགས་སམ་ཆ་སྙོམས་བར་མཚམས་གང་རུང་དེ་ལྟོས་བཅས་འགྱུར་གྲངས་རེ་རེའི་དཔེ་རིས་ལ་སྤྱོད་ངེས།<br>"
+"ཁྱེད་ཀྱིས་ལྟོས་བཅས་འགྱུར་གྲངས་གཉིས་ལ་རང་བཟོས་ཆ་སྙོམས་བར་མཚམས་མི་འདྲ་བ་ཇི་ལྟར་གསལ་བཀོད་བྱེད་ཐུབ"
+"།<br>དེའི་ཆེད་དུ། ཁྱེད་ཀྱིས་དབྱེ་ཞིབ་དེ་ངོ་བཤུས་བྱེད་ཐུབ། (རྟགས་ལ་ལྟོས།: ལྗང་ཁུའི་རྒྱབ་ལྗོངས་སྟེང་གི་དཀར་པོའི"
+"་བསྣན་རྟགས།)<br>པར་གཞི་རེ་རེའི་ནང་ལྟོས་བཅས་འགྱུར་གྲངས་གཅིག་ཁོ་ན་འདེམས་པ་དང་། རང་བཟོས་བར་མཚམས"
+"་དག་ལོགས་སུ་གསལ་བཀོད་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "For custom cloud colors, just enter the hexcode you want. This features only "
 "works when there is no Secondary Factor."
 msgstr ""
+"རང་བཟོས་སྤྲིན་གྱི་མདོག་གི་ཆེད་དུ། ཁྱེད་ཀྱིས་འདོད་པའི་ hexcode དེ་བཅུག་པ་ཙམ་ཡིན། ཁྱད་ཆོས་འདི་ "
+"Secondary Factor མེད་དུས་ཁོ་ན་ལས་ཀ་བྱེད་ཀྱི་ཡོད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Apply custom orientation"
-msgstr ""
+msgstr "རང་བཟོས་ཁ་ཕྱོགས་སྤྱོད་པ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Apply custom mean interval limits"
-msgstr ""
+msgstr "རང་བཟོས་ཆ་སྙོམས་བར་མཚམས་ཚད་བཀག་སྤྱོད་པ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Apply custom colors"
-msgstr ""
+msgstr "རང་བཟོས་མདོག་སྤྱོད་པ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Cloud"
-msgstr ""
+msgstr "སྤྲིན།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Orientation"
-msgstr ""
+msgstr "ཁ་ཕྱོགས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Lower Limit"
-msgstr ""
+msgstr "མཚམས་དམའ་བ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Upper Limit"
-msgstr ""
+msgstr "མཚམས་མཐོ་བ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Color"
-msgstr ""
+msgstr "མདོག"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "For customization, the cloud order is as follows:\n"
@@ -1872,62 +2477,96 @@ msgid ""
 "Custom Color:\n"
 "Specify a hexcode. Only works when there is no Secondary Factor."
 msgstr ""
+"རང་བཟོས་བྱེད་པར། སྤྲིན་གྱི་གོ་རིམ་ནི་གཤམ་གསལ་ལྟར་ཡིན།\n"
+"Primary Factor གི་རིམ་པ་རེ་རེའི་ཆེད་དུ།\n"
+"Secondary Factor གི་རིམ་པ་ཚང་མ་བརྒྱུད་པ།\n"
+"དཔེར་ན། 2 (Primary: X, Y) x 2 (Secondary: i, ii) ཇུས་འགོད་ཡོད་ན།\n"
+"སྤྲིན་བཞི་ཡོད། A ནས་ D བར།\n"
+"A = Xi, B = Xii, C = Yi, D = Yii།\n"
+"\n"
+"རང་བཟོས་ཁ་ཕྱོགས།\n"
+"སོར་བཞག་བྱས་ན། violins ཚང་མ་སྒམ་གྱི་གཡས་སུ་ཡོད།\n"
+"འདི་རང་བཟོས་བྱེད་པར། སྤྲིན་རེ་རེར་ 'L' ཡང་ན་ 'R' གསལ་བཀོད་བྱེད་པ།\n"
+"རང་བཟོས་ཁ་ཕྱོགས་སྤྱད་ན་ Point Nudge དེ་ 0 ལ་སྒྲིག་གི་ཡོད།\n"
+"\n"
+"རང་བཟོས་མདོག\n"
+"hexcode ཞིག་གསལ་བཀོད་བྱེད་པ། Secondary Factor མེད་དུས་ཁོ་ན་ལས་ཀ་བྱེད་ཀྱི་ཡོད།"
 
-#, qt-format
+#, fuzzy, qt-format
 msgctxt "Descriptives|"
 msgid ""
 "How should the confidence interval be computed? By default, we use a `T "
 "model`, which yields results identical to a one-sample t-test. Alternative "
 "options are a normal model (%1), or `Bootstrap`."
 msgstr ""
+"ཡིད་རྟོན་བར་མཚམས་ཇི་ལྟར་བརྩི་དགོས། སོར་བཞག་བྱས་ན། ང་ཚོས་ `T དཔེ་དབྱིབས་` བེད་སྤྱོད་བྱེད་ཀྱི་ཡོད་པ་དང"
+"་། དེས་མ་དཔེ་གཅིག་གི་ཊི་ཚོད་ལྟ་དང་གཅིག་མཚུངས་ཀྱི་གྲུབ་འབྲས་སྤྲོད་ཀྱི་ཡོད། འདེམས་ཀ་གཞན་ནི་རྒྱུན་ལྡན་དཔེ་"
+"དབྱིབས་ (%1) ཡང་ན་ `Bootstrap` ཡིན།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "95% confidende intervals"
-msgstr ""
+msgstr "95% ཡིད་རྟོན་བར་མཚམས།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid ""
 "Horizontal lines are displayed marking 95% confidence intervals for the mean"
-msgstr ""
+msgstr "འཕྲེད་ཐིག་དག་གིས་ཆ་སྙོམས་ཀྱི་ 95% ཡིད་རྟོན་བར་མཚམས་རྟགས་རྒྱག་ནས་སྟོན་པ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Show legend"
-msgstr ""
+msgstr "འགྲེལ་བཤད་སྟོན་པ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "Shows the legend for the color-coding of the primary factor.<br>This option "
 "is superseeded by a secondary factor; then the legend is always added."
 msgstr ""
+"primary factor གི་མདོག་གི་བཀོད་སྒྲིག་གི་འགྲེལ་བཤད་སྟོན་པ།<br>འདེམས་ཀ་འདི་ secondary factor "
+"གྱིས་ superseeded བྱེད་པ་དང་། དེ་ནས་འགྲེལ་བཤད་དེ་རྟག་ཏུ་ཁ་སྣོན་བྱེད།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Show points"
-msgstr ""
+msgstr "ཚེག་སྟོན་པ།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Standard error"
-msgstr ""
+msgstr "ཚད་ལྡན་ནོར་འཁྲུལ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "How should the confidence interval be computed? By default, we use an "
 "analytical approach (chi-square). The alternative option is `Bootstrap`"
 msgstr ""
+"ཡིད་རྟོན་བར་མཚམས་ཇི་ལྟར་བརྩི་དགོས། སོར་བཞག་བྱས་ན། ང་ཚོས་དབྱེ་ཞིབ་ཐབས་ལམ་ (chi-square) བེད་སྤྱོད"
+"་བྱེད་ཀྱི་ཡོད། འདེམས་ཀ་གཞན་ནི་ `Bootstrap` ཡིན།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Analytical (chi-square)"
-msgstr ""
+msgstr "དབྱེ་ཞིབ། (chi-square)"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "How should the confidence interval be computed? By default, we use a "
 "analytical approach (chi-square). The alternative option is `Bootstrap`"
 msgstr ""
+"ཡིད་རྟོན་བར་མཚམས་ཇི་ལྟར་བརྩི་དགོས། སོར་བཞག་བྱས་ན། ང་ཚོས་དབྱེ་ཞིབ་ཐབས་ལམ་ (chi-square) བེད་སྤྱོད"
+"་བྱེད་ཀྱི་ཡོད། འདེམས་ཀ་གཞན་ནི་ `Bootstrap` ཡིན།"
 
+#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Tron"
-msgstr ""
+msgstr "Tron"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "visualizes data distributions, adapting to the type of variable selected. "
@@ -1935,67 +2574,91 @@ msgid ""
 "continuous data distributions. For categorical variables, it creates bar "
 "plots displaying counts or proportions of each category."
 msgstr ""
+"གྲངས་གནས་ཀྱི་ཁྱབ་ཚུལ་མཐོང་རུང་བཟོ་བ་དང་། བདམས་པའི་འགྱུར་གྲངས་ཀྱི་རིགས་དང་བསྟུན་ནས་འཕྲོད་སྦྱོར་བྱེད་པ"
+"། ཚད་གཞིའི་འགྱུར་གྲངས་ཀྱི་ཆེད་དུ། དེས་རྒྱུན་ཆགས་གྲངས་གནས་ཀྱི་ཁྱབ་ཚུལ་སྟོན་པར་ histograms ཡང་ན་ "
+"density plots བཟོ་གི་ཡོད། དབྱེ་རིགས་ཀྱི་འགྱུར་གྲངས་ཀྱི་ཆེད་དུ། དེས་དབྱེ་རིགས་རེ་རེའི་གྲངས་སམ་བསྡུར་ཚད་"
+"སྟོན་པའི་ bar plots བཟོ་གི་ཡོད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Type for scale variables:"
-msgstr ""
+msgstr "ཚད་གཞིའི་འགྱུར་གྲངས་ཀྱི་རིགས།:"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Whether to display a density plot or histogram."
-msgstr ""
+msgstr "density plot ཡང་ན་ histogram སྟོན་དགོས་མིན།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Options for separate bins of the histogram"
-msgstr ""
+msgstr "histogram གི་ bins ལོགས་སུ་ཡོད་པའི་འདེམས་ཀ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "Stack: Bars are stacked vertically, combining counts across categories "
 "within each bin."
 msgstr ""
+"བརྩེགས་པ།: ཀ་རིས་དག་གཞུང་དུ་བརྩེགས་པ་དང་། bin རེ་རེའི་ནང་གི་དབྱེ་རིགས་ཁག་གི་གྲངས་མཉམ་སྦྲེལ་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "Identity: Bars are layered on top of each other, with transparency often "
 "used to distinguish overlapping data."
 msgstr ""
+"ངོ་བོ།: ཀ་རིས་དག་གཅིག་གི་སྟེང་དུ་གཅིག་བརྩེགས་པ་དང་། དྭངས་གསལ་དེ་ overlap ཡོད་པའི་གྲངས་གནས་དབྱེ་"
+"འབྱེད་བྱེད་པར་སྤྱོད་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "Dodge: Bars are placed side-by-side, allowing for easy comparison of "
 "different categories within each bin."
 msgstr ""
+"Dodge: ཀ་རིས་དག་འགྲམ་དུ་བཞག་པ་དང་། bin རེ་རེའི་ནང་གི་དབྱེ་རིགས་མི་འདྲ་བ་བསྡུར་སླ་པོ་བཟོ་བ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Type for categorical variables:"
-msgstr ""
+msgstr "དབྱེ་རིགས་ཀྱི་འགྱུར་གྲངས་ཀྱི་རིགས།:"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Counts"
-msgstr ""
+msgstr "གྲངས་བཤེར།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Proportions"
-msgstr ""
+msgstr "བསྡུར་ཚད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Conditional proportions"
-msgstr ""
+msgstr "ཆ་རྐྱེན་ཅན་གྱི་བསྡུར་ཚད།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid ""
 "Display counts, proportions, or conditional proportions (conditional for "
 "each category on the x-axis)."
 msgstr ""
+"གྲངས་བཤེར། བསྡུར་ཚད། ཡང་ན་ཆ་རྐྱེན་ཅན་གྱི་བསྡུར་ཚད་ (x-axis ཐོག་གི་དབྱེ་རིགས་རེ་རེའི་ཆེད་དུ་ཆ་རྐྱེན་ཅན"
+"།) སྟོན་པ།"
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Number of valid observations"
-msgstr ""
+msgstr "ནུས་ལྡན་ལྟ་ཞིབ་གྲངས་གནས་ཀྱི་གྲངས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "If you use this module, please cite it as:"
-msgstr ""
+msgstr "གལ་ཏེ་ཁྱེད་ཀྱིས་ཁ་སྣོན་ཆ་ཤས་འདི་སྤྱད་ན། འདི་ལྟར་ལུང་འདྲེན་བྱེད་རོགས།"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid ""
 "You can choose between a confidence interval, ±1 standard error, or ±1  "
@@ -2003,457 +2666,576 @@ msgid ""
 "within and between factors are determined based on the specifciation of the "
 "ID variable<br><h4>"
 msgstr ""
+"ཁྱེད་ཀྱིས་ཡིད་རྟོན་བར་མཚམས། ±1 ཚད་ལྡན་ནོར་འཁྲུལ། ཡང་ན་ ±1 ཚད་ལྡན་ཁྱད་འགྱུར་བཅས་འདེམས་ཐུབ།<br>"
+"ཡིད་རྟོན་བར་མཚམས།/se/sd བརྩི་བར། ནང་དང་བར་གྱི་རྐྱེན་ཆ་དག་ ID འགྱུར་གྲངས་ཀྱི་གསལ་བཀོད་ལ་གཞིགས་"
+"ནས་གཏན་འཁེལ་བྱེད།<br><h4>"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Standard deviation"
-msgstr ""
+msgstr "ཚད་ལྡན་ཁྱད་འགྱུར།"
 
+#, fuzzy
 msgctxt "Description|"
 msgid "Plot Builder (beta)"
-msgstr ""
+msgstr "དཔེ་རིས་བཟོ་མཁན། (beta)"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "References"
-msgstr ""
+msgstr "ལུང་འདྲེན།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Plot 1"
-msgstr ""
+msgstr "དཔེ་རིས་ ༡"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Repeated measurements"
-msgstr ""
+msgstr "ཡང་བསྐྱར་འཇལ་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "No"
-msgstr ""
+msgstr "མིན།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Yes"
-msgstr ""
+msgstr "ཡིན།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "X-Axis Variable"
-msgstr ""
+msgstr "X-མདའི་འགྱུར་གྲངས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Y-Axis Variable"
-msgstr ""
+msgstr "Y-མདའི་འགྱུར་གྲངས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Group Variable"
-msgstr ""
+msgstr "ཚོགས་པའི་འགྱུར་གྲངས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Split (Columns)"
-msgstr ""
+msgstr "ཁ་འབྱེད་པ། (ཀ་ཐིག)"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Split (Rows)"
-msgstr ""
+msgstr "ཁ་འབྱེད་པ། (ཐིག་ཕྲེང་།)"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Grid"
-msgstr ""
+msgstr "དྲ་མིག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Repeated Measures Factors"
-msgstr ""
+msgstr "ཡང་བསྐྱར་འཇལ་ཚད་ཀྱི་རྐྱེན་ཆ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "RM Factor"
-msgstr ""
+msgstr "RM རྐྱེན་ཆ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Repeated Measures Cells"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Between Subject Factors"
-msgstr ""
+msgstr "བརྗོད་བྱ་བར་གྱི་རྐྱེན་ཆ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Covariates"
-msgstr ""
+msgstr "མཉམ་འགྱུར་གྲངས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Assign repeated measures components"
-msgstr ""
+msgstr "ཡང་བསྐྱར་འཇལ་ཚད་ཀྱི་ཆ་ཤས་བགོ་བཤའ་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Repeated Measures Components"
-msgstr ""
+msgstr "ཡང་བསྐྱར་འཇལ་ཚད་ཀྱི་ཆ་ཤས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Data and geometries"
-msgstr ""
+msgstr "གྲངས་གནས་དང་ geometries"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Individual data points"
-msgstr ""
+msgstr "གྲངས་གནས་ཀྱི་ཚེག་རེ་རེ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Required: X AND Y-Axis Variables"
-msgstr ""
+msgstr "དགོས་ངེས།: X དང་ Y-མདའི་འགྱུར་གྲངས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Point size"
-msgstr ""
+msgstr "ཚེག་གི་ཆེ་ཆུང་།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Jitter height"
-msgstr ""
+msgstr "Jitter མཐོ་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Jitter width"
-msgstr ""
+msgstr "Jitter ཞེང་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Transparency"
-msgstr ""
+msgstr "དྭངས་གསལ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Dodge"
-msgstr ""
+msgstr "ཟུར་འབུད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Black outline"
-msgstr ""
+msgstr "མཐའ་རིས་ནག་པོ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Empty circles"
-msgstr ""
+msgstr "སྒོར་ཐིག་སྟོང་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Connect data points (requires repeated measures)"
-msgstr ""
+msgstr "གྲངས་གནས་ཀྱི་ཚེག་སྦྲེལ་བ། (ཡང་བསྐྱར་འཇལ་ཚད་དགོས།)"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Line width"
-msgstr ""
+msgstr "ཐིག་གི་ཞེང་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Distributions (histogram, boxplot, violin)"
-msgstr ""
+msgstr "ཁྱབ་ཚུལ། (histogram, boxplot, violin)"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Required: X OR Y-Axis Variable (histogram); X AND Y-Axis Variables (boxplot, "
 "violin)"
 msgstr ""
+"དགོས་ངེས།: X ཡང་ན་ Y-མདའི་འགྱུར་གྲངས། (histogram); X དང་ Y-མདའི་འགྱུར་གྲངས། (boxplot, "
+"violin)"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Histogram"
-msgstr ""
+msgstr "Histogram"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Check this option to create histogram for x or y variables. Histogram "
 "requires either X-Axis or X-Axis variable, but not both."
 msgstr ""
+"x ཡང་ན་ y འགྱུར་གྲངས་ཀྱི་ཆེད་དུ་ histogram བཟོ་བར་འདེམས་ཀ་འདི་ཞིབ་བཤེར་བྱེད་པ། Histogram ལ"
+"་ X-Axis ཡང་ན་ X-Axis འགྱུར་གྲངས་གང་རུང་ཞིག་དགོས་པ་ལས་གཉིས་ཀ་མི་དགོས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Number of bins"
-msgstr ""
+msgstr "Bin གྱི་གྲངས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Boxplot"
-msgstr ""
+msgstr "སྒམ་རིས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Boxplot width"
-msgstr ""
+msgstr "སྒམ་རིས་ཀྱི་ཞེང་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Whiskers width"
-msgstr ""
+msgstr "Whiskers ཞེང་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Show outliers"
-msgstr ""
+msgstr "ཕྱིར་གྱར་བ་སྟོན་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Outlier coef"
-msgstr ""
+msgstr "ཕྱིར་གྱར་བའི་བཏགས་གྲངས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Outlier size"
-msgstr ""
+msgstr "ཕྱིར་གྱར་བའི་ཆེ་ཆུང་།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Violin plot"
-msgstr ""
+msgstr "Violin དཔེ་རིས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Check this option to add a violin plot to your visualization. Boxplot and "
 "violin plot require both x-axis and y-axis variables."
 msgstr ""
+"ཁྱེད་ཀྱི་མཐོང་རུང་བཟོ་བར་ violin དཔེ་རིས་ཤིག་ཁ་སྣོན་བྱེད་པར་འདེམས་ཀ་འདི་ཞིབ་བཤེར་བྱེད་པ། Boxplot "
+"དང་ violin དཔེ་རིས་ལ་ x-axis དང་ y-axis འགྱུར་གྲངས་གཉིས་ཀ་དགོས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Scale method"
-msgstr ""
+msgstr "ཚད་གཞིའི་ཐབས་ལམ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Area"
-msgstr ""
+msgstr "རྒྱ་ཁྱོན།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Count"
-msgstr ""
+msgstr "གྲངས་བཤེར།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Width"
-msgstr ""
+msgstr "ཞེང་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Draw quantiles"
-msgstr ""
+msgstr "གྲངས་ཚད་འབྲི་བ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Trim violins"
-msgstr ""
+msgstr "Violins གཅོད་འབྲེག་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Amounts (count and sum)"
-msgstr ""
+msgstr "འབོར་ཚད། (གྲངས་བཤེར་དང་བསྡོམས་འབོར།)"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Required: X OR Y-Axis Variable"
-msgstr ""
+msgstr "དགོས་ངེས།: X ཡང་ན་ Y-མདའི་འགྱུར་གྲངས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Count bar"
-msgstr ""
+msgstr "གྲངས་བཤེར་ཀ་རིས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a count bar to the plot."
-msgstr ""
+msgstr "དཔེ་རིས་ལ་གྲངས་བཤེར་ཀ་རིས་ཤིག་ཁ་སྣོན་བྱེད་པར་སྤྱོད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Bar width"
-msgstr ""
+msgstr "ཀ་རིས་ཀྱི་ཞེང་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Count dash"
-msgstr ""
+msgstr "གྲངས་བཤེར་ཐིག་རྟགས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add dashed lines to the plot."
-msgstr ""
+msgstr "དཔེ་རིས་ལ་ཐིག་རྟགས་ཁ་སྣོན་བྱེད་པར་སྤྱོད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Dash width"
-msgstr ""
+msgstr "ཐིག་རྟགས་ཀྱི་ཞེང་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Black dash"
-msgstr ""
+msgstr "ཐིག་རྟགས་ནག་པོ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Count dot"
-msgstr ""
+msgstr "གྲངས་བཤེར་ཚེག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Dot size"
-msgstr ""
+msgstr "ཚེག་གི་ཆེ་ཆུང་།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Count line"
-msgstr ""
+msgstr "གྲངས་བཤེར་ཐིག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Black line"
-msgstr ""
+msgstr "ཐིག་ནག་པོ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Count area"
-msgstr ""
+msgstr "གྲངས་བཤེར་རྒྱ་ཁྱོན།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Count value"
-msgstr ""
+msgstr "གྲངས་བཤེར་རིན་ཐང་།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Font size"
-msgstr ""
+msgstr "ཡིག་གཟུགས་ཆེ་ཆུང་།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Accuracy"
-msgstr ""
+msgstr "ཞིབ་ཚགས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Horizontal justification"
-msgstr ""
+msgstr "འཕྲེད་ཀྱི་རྒྱུ་མཚན་འགོད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Vertical justification"
-msgstr ""
+msgstr "གཞུང་གི་རྒྱུ་མཚན་འགོད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Black text"
-msgstr ""
+msgstr "ཡི་གེ་ནག་པོ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Sum bar"
-msgstr ""
+msgstr "བསྡོམས་འབོར་ཀ་རིས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a sum bar to the plot."
-msgstr ""
+msgstr "དཔེ་རིས་ལ་བསྡོམས་འབོར་ཀ་རིས་ཤིག་ཁ་སྣོན་བྱེད་པར་སྤྱོད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Sum dash"
-msgstr ""
+msgstr "བསྡོམས་འབོར་ཐིག་རྟགས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Sum dot"
-msgstr ""
+msgstr "བསྡོམས་འབོར་ཚེག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add sum dots to the plot."
-msgstr ""
+msgstr "དཔེ་རིས་ལ་བསྡོམས་འབོར་ཚེག་ཁ་སྣོན་བྱེད་པར་སྤྱོད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Sum line"
-msgstr ""
+msgstr "བསྡོམས་འབོར་ཐིག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a sum line to the plot."
-msgstr ""
+msgstr "དཔེ་རིས་ལ་བསྡོམས་འབོར་ཐིག་ཅིག་ཁ་སྣོན་བྱེད་པར་སྤྱོད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Sum area"
-msgstr ""
+msgstr "བསྡོམས་འབོར་རྒྱ་ཁྱོན།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add a sum area to the plot."
-msgstr ""
+msgstr "དཔེ་རིས་ལ་བསྡོམས་འབོར་རྒྱ་ཁྱོན་ཞིག་ཁ་སྣོན་བྱེད་པར་སྤྱོད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Sum value"
-msgstr ""
+msgstr "བསྡོམས་འབོར་རིན་ཐང་།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Enable to add sum values to the plot."
-msgstr ""
+msgstr "དཔེ་རིས་ལ་བསྡོམས་འབོར་རིན་ཐང་ཁ་སྣོན་བྱེད་པར་སྤྱོད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Proportions"
-msgstr ""
+msgstr "བསྡུར་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Proportion mode"
-msgstr ""
+msgstr "བསྡུར་ཚད་ཀྱི་ཐབས་ལམ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Absolute"
-msgstr ""
+msgstr "ཚུགས་ཐུབ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Relative"
-msgstr ""
+msgstr "ལྟོས་བཅས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Bar stack"
-msgstr ""
+msgstr "ཀ་རིས་བརྩེགས་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Reverse order"
-msgstr ""
+msgstr "གོ་རིམ་ཕྱིར་ལོག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Area stack"
-msgstr ""
+msgstr "རྒྱ་ཁྱོན་བརྩེགས་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Replace N/A"
-msgstr ""
+msgstr "N/A བརྗེ་བ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Show as percentages"
-msgstr ""
+msgstr "བརྒྱ་ཆའི་ཚུལ་དུ་སྟོན་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Mean"
-msgstr ""
+msgstr "ཆ་སྙོམས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Mean bar"
-msgstr ""
+msgstr "ཆ་སྙོམས་ཀ་རིས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Mean dash"
-msgstr ""
+msgstr "ཆ་སྙོམས་ཐིག་རྟགས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Mean dot"
-msgstr ""
+msgstr "ཆ་སྙོམས་ཚེག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Mean line"
-msgstr ""
+msgstr "ཆ་སྙོམས་ཐིག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Mean area"
-msgstr ""
+msgstr "ཆ་སྙོམས་རྒྱ་ཁྱོན།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Mean value"
-msgstr ""
+msgstr "ཆ་སྙོམས་རིན་ཐང་།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Median"
-msgstr ""
+msgstr "དཀྱིལ་གྲངས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Median bar"
-msgstr ""
+msgstr "དཀྱིལ་གྲངས་ཀ་རིས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Median dash"
-msgstr ""
+msgstr "དཀྱིལ་གྲངས་ཐིག་རྟགས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Median dot"
-msgstr ""
+msgstr "དཀྱིལ་གྲངས་ཚེག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Median line"
-msgstr ""
+msgstr "དཀྱིལ་གྲངས་ཐིག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Median area"
-msgstr ""
+msgstr "དཀྱིལ་གྲངས་རྒྱ་ཁྱོན།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Median value"
-msgstr ""
+msgstr "དཀྱིལ་གྲངས་རིན་ཐང་།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Error bars and ribbons (range, SD, SEM, 95% CI)"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "The optimal dodge value is 0 if both X and Y-Axis Variables are continuous"
 msgstr ""
+"གལ་ཏེ་ X དང་ Y-མདའི་འགྱུར་གྲངས་གཉིས་ཀ་རྒྱུན་ཆགས་ཡིན་ན། dodge རིན་ཐང་ལེགས་ཤོས་ནི་ 0 ཡིན།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Range error bar"
-msgstr ""
+msgstr "ཁྱབ་རྒྱའི་ནོར་འཁྲུལ་ཀ་རིས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Black lines"
-msgstr ""
+msgstr "ཐིག་ནག་པོ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "SD error bar"
-msgstr ""
+msgstr "SD ནོར་འཁྲུལ་ཀ་རིས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "SEM error bar"
-msgstr ""
+msgstr "SEM ནོར་འཁྲུལ་ཀ་རིས།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Range ribbon"
@@ -2471,696 +3253,854 @@ msgctxt "jaspPlotBuilder|"
 msgid "95% CI ribbon"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Curve fit and reference lines"
-msgstr ""
+msgstr "གུག་ཐིག་སྒྲིག་སྦྱོར་དང་ལྟ་བསྡུར་ཐིག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Required: individual data points (Curve fit)"
-msgstr ""
+msgstr "དགོས་ངེས།: གྲངས་གནས་ཀྱི་ཚེག་རེ་རེ། (གུག་ཐིག་སྒྲིག་སྦྱོར།)"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Add curve fit"
-msgstr ""
+msgstr "གུག་ཐིག་སྒྲིག་སྦྱོར་ཁ་སྣོན་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Method"
-msgstr ""
+msgstr "ཐབས་ལམ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Linear"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "LOESS"
-msgstr ""
+msgstr "LOESS"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "SE"
-msgstr ""
+msgstr "SE"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Add reference line"
-msgstr ""
+msgstr "ལྟ་བསྡུར་ཐིག་ཁ་སྣོན་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "X-axis intercept"
-msgstr ""
+msgstr "X-མདའི་བར་གཅོད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "e.g. 0.5, or c(1,2)"
-msgstr ""
+msgstr "དཔེར་ན། 0.5, ཡང་ན་ c(1,2)"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Y-axis intercept"
-msgstr ""
+msgstr "Y-མདའི་བར་གཅོད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Line color"
-msgstr ""
+msgstr "ཐིག་གི་མདོག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "e.g. black, #ff5733"
-msgstr ""
+msgstr "དཔེར་ན། black, #ff5733"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Add identity line"
-msgstr ""
+msgstr "ངོ་བོའི་ཐིག་ཁ་སྣོན་བྱེད་པ།"
 
-#, qt-format
+#, fuzzy, qt-format
 msgctxt "jaspPlotBuilder|"
 msgid "Note: For available colors, see %1this page%2"
-msgstr ""
+msgstr "དོ་སྣང་།: ཡོད་པའི་མདོག་གི་ཆེད་དུ། %1ཤོག་ངོས་འདིར%2་ལྟོས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Axis settings and annotations"
-msgstr ""
+msgstr "མདའི་སྒྲིག་བཟོ་དང་མཆན་འགྲེལ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Title"
-msgstr ""
+msgstr "ཁ་བྱང་།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Enter x-axis title"
-msgstr ""
+msgstr "x-མདའི་ཁ་བྱང་འཇུག་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Limits"
-msgstr ""
+msgstr "ཚད་བཀག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "From"
-msgstr ""
+msgstr "ནས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "To"
-msgstr ""
+msgstr "བར།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "By"
-msgstr ""
+msgstr "གིས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Labels"
-msgstr ""
+msgstr "ཁ་བྱང་།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Shorten"
-msgstr ""
+msgstr "ཐུང་དུ་གཏོང་བ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Sort"
-msgstr ""
+msgstr "རིམ་སྒྲིག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Order"
-msgstr ""
+msgstr "གོ་རིམ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Rename labels"
-msgstr ""
+msgstr "ཁ་བྱང་མིང་བརྗེ་བ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Original label"
-msgstr ""
+msgstr "ཁ་བྱང་ངོ་མ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "New label"
-msgstr ""
+msgstr "ཁ་བྱང་གསར་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Enter y-axis title"
-msgstr ""
+msgstr "y-མདའི་ཁ་བྱང་འཇུག་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Breaks"
-msgstr ""
+msgstr "བར་གཅོད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Rotate"
-msgstr ""
+msgstr "འཁོར་བ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Enter the plot title here"
-msgstr ""
+msgstr "དཔེ་རིས་ཀྱི་ཁ་བྱང་འདིར་འཇུག་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Caption"
-msgstr ""
+msgstr "མཆན་འགྲེལ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Annotation "
-msgstr ""
+msgstr "མཆན་འགྲེལ། "
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Label"
-msgstr ""
+msgstr "ཁ་བྱང་།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Text"
-msgstr ""
+msgstr "ཡི་གེ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "e.g. p = 0.1, $italic(p)==0.1$"
-msgstr ""
+msgstr "དཔེར་ན། p = 0.1, $italic(p)==0.1$"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Position"
-msgstr ""
+msgstr "གནས་ས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "X-Axis"
-msgstr ""
+msgstr "X-མདའ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Y-Axis"
-msgstr ""
+msgstr "Y-མདའ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Column"
-msgstr ""
+msgstr "ཀ་ཐིག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "<No Value>"
-msgstr ""
+msgstr "<རིན་ཐང་མེད།>"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Row"
-msgstr ""
+msgstr "ཐིག་ཕྲེང་།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Appearance"
-msgstr ""
+msgstr "ཕྱི་ཚུལ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Size"
-msgstr ""
+msgstr "ཆེ་ཆུང་།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Color"
-msgstr ""
+msgstr "མདོག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Theme, colors, size, and legend"
-msgstr ""
+msgstr "བརྗོད་གཞི། མདོག ཆེ་ཆུང་། དང་འགྲེལ་བཤད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Theme and color"
-msgstr ""
+msgstr "བརྗོད་གཞི་དང་མདོག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Theme"
-msgstr ""
+msgstr "བརྗོད་གཞི།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Font base size"
-msgstr ""
+msgstr "ཡིག་གཟུགས་ཀྱི་གཞི་རྩའི་ཆེ་ཆུང་།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Color settings"
-msgstr ""
+msgstr "མདོག་གི་སྒྲིག་བཟོ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Color by"
-msgstr ""
+msgstr "མདོག་གིས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "None"
-msgstr ""
+msgstr "མེད།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Group variable"
-msgstr ""
+msgstr "ཚོགས་སྡེའི་འགྱུར་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "X variable"
-msgstr ""
+msgstr "X འགྱུར་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Y variable"
-msgstr ""
+msgstr "Y འགྱུར་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Split (column)"
-msgstr ""
+msgstr "ཁ་འབྱེད་པ། (ཀ་ཐིག)"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Split (rows)"
-msgstr ""
+msgstr "ཁ་འབྱེད་པ། (ཕྲེང་།)"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Color schemes"
-msgstr ""
+msgstr "ཚོན་མདོག་ཇུས་འགོད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: jaspPalette"
-msgstr ""
+msgstr "JASP ཚོན་མདོག: jaspPalette"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: colorblind"
-msgstr ""
+msgstr "JASP ཚོན་མདོག: colorblind"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: colorblind2"
-msgstr ""
+msgstr "JASP ཚོན་མདོག: colorblind2"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: colorblind3"
-msgstr ""
+msgstr "JASP ཚོན་མདོག: colorblind3"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: sportsTeamsNBA"
-msgstr ""
+msgstr "JASP ཚོན་མདོག: sportsTeamsNBA"
 
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: ggplot2"
-msgstr ""
+msgstr "JASP ཚོན་མདོག: ggplot2"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: grandBudapest"
-msgstr ""
+msgstr "JASP ཚོན་མདོག: grandBudapest"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: gray"
-msgstr ""
+msgstr "JASP ཚོན་མདོག: gray"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "JASP colors: blue"
-msgstr ""
+msgstr "JASP ཚོན་མདོག: blue"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: Friendly"
-msgstr ""
+msgstr "ཁ་བྲལ།: Friendly"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: Seaside"
-msgstr ""
+msgstr "ཁ་བྲལ།: Seaside"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: Apple"
-msgstr ""
+msgstr "ཁ་བྲལ།: Apple"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: Friendly Long"
-msgstr ""
+msgstr "ཁ་བྲལ།: Friendly Long"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: Okabe Ito"
-msgstr ""
+msgstr "ཁ་བྲལ།: Okabe Ito"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: IBM"
-msgstr ""
+msgstr "ཁ་བྲལ།: IBM"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: Metro"
-msgstr ""
+msgstr "ཁ་བྲལ།: Metro"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: Candy"
-msgstr ""
+msgstr "ཁ་བྲལ།: Candy"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: Alger"
-msgstr ""
+msgstr "ཁ་བྲལ།: Alger"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Discrete: Rainbow"
-msgstr ""
+msgstr "ཁ་བྲལ།: Rainbow"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Continuous: Viridis"
-msgstr ""
+msgstr "རྒྱུན་མཐུད།: Viridis"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Continuous: Magma"
-msgstr ""
+msgstr "རྒྱུན་མཐུད།: Magma"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Continuous: Inferno"
-msgstr ""
+msgstr "རྒྱུན་མཐུད།: Inferno"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Continuous: Plasma"
-msgstr ""
+msgstr "རྒྱུན་མཐུད།: Plasma"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Continuous: Cividis"
-msgstr ""
+msgstr "རྒྱུན་མཐུད།: Cividis"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Continuous: Rocket"
-msgstr ""
+msgstr "རྒྱུན་མཐུད།: Rocket"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Continuous: Mako"
-msgstr ""
+msgstr "རྒྱུན་མཐུད།: Mako"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Continuous: Turbo"
-msgstr ""
+msgstr "རྒྱུན་མཐུད།: Turbo"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Continuous: Blue Pink Yellow"
-msgstr ""
+msgstr "རྒྱུན་མཐུད།: སྔོན་པོ་ ཟིང་སྐྱ་ སེར་པོ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Diverging: Blue to Red"
-msgstr ""
+msgstr "ཁ་འབྱེད་པ།: སྔོན་པོ་ནས་དམར་པོ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Diverging: Blue to Brown"
-msgstr ""
+msgstr "ཁ་འབྱེད་པ།: སྔོན་པོ་ནས་སྨུག་པོ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Diverging: BuRd"
-msgstr ""
+msgstr "ཁ་འབྱེད་པ།: BuRd"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Diverging: BuYlRd"
-msgstr ""
+msgstr "ཁ་འབྱེད་པ།: BuYlRd"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Diverging: Spectral"
-msgstr ""
+msgstr "ཁ་འབྱེད་པ།: Spectral"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Diverging: Icefire"
-msgstr ""
+msgstr "ཁ་འབྱེད་པ།: Icefire"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Custom colors"
-msgstr ""
+msgstr "རང་བཟོས་ཚོན་མདོག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Plot size"
-msgstr ""
+msgstr "དཔེ་རིས་ཀྱི་ཆེ་ཆུང་།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Width (px)"
-msgstr ""
+msgstr "ཞེང་ཚད། (px)"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Height (px)"
-msgstr ""
+msgstr "མཐོ་ཚད། (px)"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Margins"
-msgstr ""
+msgstr "མཐའ་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Top"
-msgstr ""
+msgstr "སྟེང་།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Bottom"
-msgstr ""
+msgstr "འོག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Left"
-msgstr ""
+msgstr "གཡོན།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Right"
-msgstr ""
+msgstr "གཡས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Legend"
-msgstr ""
+msgstr "རྟགས་འགྲེལ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "No legend"
-msgstr ""
+msgstr "རྟགས་འགྲེལ་མེད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Remove title"
-msgstr ""
+msgstr "ཁ་བྱང་སུབ་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Split and grid control"
-msgstr ""
+msgstr "ཁ་འབྱེད་པ་དང་དྲ་མིག་ཚོད་འཛིན།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Split control"
-msgstr ""
+msgstr "ཁ་འབྱེད་པའི་ཚོད་འཛིན།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Scale and axis settings"
-msgstr ""
+msgstr "ཚད་གཞི་དང་མདའ་སྒྲིག་སྟངས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Scale range"
-msgstr ""
+msgstr "ཚད་གཞིའི་ཁྱབ་རྒྱ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "shared across all facets"
-msgstr ""
+msgstr "ངོས་ཚང་མར་སྤྱི་སྤྱོད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "vary across X"
-msgstr ""
+msgstr "X ཐོག་འགྱུར་བ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "vary across Y"
-msgstr ""
+msgstr "Y ཐོག་འགྱུར་བ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "vary across both axes"
-msgstr ""
+msgstr "མདའ་གཉིས་ཀའི་ཐོག་འགྱུར་བ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Show axis lines"
-msgstr ""
+msgstr "མདའ་ཐིག་སྟོན་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "only on outer panels"
-msgstr ""
+msgstr "ཕྱི་ངོས་ཀྱི་པང་ལེབ་ཐོག་ཁོ་ན།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "on all X axes"
-msgstr ""
+msgstr "X མདའ་ཚང་མའི་ཐོག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "on all Y axes"
-msgstr ""
+msgstr "Y མདའ་ཚང་མའི་ཐོག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "on all axes"
-msgstr ""
+msgstr "མདའ་ཚང་མའི་ཐོག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Axis label visibility"
-msgstr ""
+msgstr "མདའི་ཁ་བྱང་མཐོང་ནུས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "show on all axes"
-msgstr ""
+msgstr "མདའ་ཚང་མའི་ཐོག་སྟོན་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "only on outer axes"
-msgstr ""
+msgstr "ཕྱི་ངོས་ཀྱི་མདའ་ཐོག་ཁོ་ན།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "only on interior X axes"
-msgstr ""
+msgstr "ནང་ངོས་ཀྱི་ X མདའ་ཐོག་ཁོ་ན།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "only on interior Y axes"
-msgstr ""
+msgstr "ནང་ངོས་ཀྱི་ Y མདའ་ཐོག་ཁོ་ན།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Layout settings"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Highest value at"
-msgstr ""
+msgstr "རིན་ཐང་མཐོ་ཤོས་གནས་ས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "bottom right"
-msgstr ""
+msgstr "འོག་གཡས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "top right"
-msgstr ""
+msgstr "སྟེང་གཡས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Panel size adjustment"
-msgstr ""
+msgstr "པང་ལེབ་ཆེ་ཆུང་སྙོམ་སྒྲིག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "same size"
-msgstr ""
+msgstr "ཆེ་ཆུང་གཅིག་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "free width (X)"
-msgstr ""
+msgstr "ཞེང་ཚད་རང་མོས། (X)"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "free height (Y)"
-msgstr ""
+msgstr "མཐོ་ཚད་རང་མོས། (Y)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "free width and height"
-msgstr ""
+msgstr "ཞེང་ཚད་དང་མཐོ་ཚད་རང་མོས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Include marginal plots"
-msgstr ""
+msgstr "མཐའ་འཁོར་དཔེ་རིས་ཚུད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "X axis title"
-msgstr ""
+msgstr "X མདའི་ཁ་བྱང་།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Enter a label for the X axis"
-msgstr ""
+msgstr "X མདའི་ཁ་བྱང་འགོད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Y axis title"
-msgstr ""
+msgstr "Y མདའི་ཁ་བྱང་།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Enter a label for the Y axis"
-msgstr ""
+msgstr "Y མདའི་ཁ་བྱང་འགོད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Grid control"
-msgstr ""
+msgstr "དྲ་མིག་ཚོད་འཛིན།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Number of columns"
-msgstr ""
+msgstr "ཀ་ཐིག་གྲངས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Number of rows"
-msgstr ""
+msgstr "ཕྲེང་གྲངས།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Scales and strip settings"
-msgstr ""
+msgstr "ཚད་གཞི་དང་ Strip སྒྲིག་སྟངས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Strip position"
-msgstr ""
+msgstr "Strip གནས་ས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "top"
-msgstr ""
+msgstr "སྟེང་།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "bottom"
-msgstr ""
+msgstr "འོག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "left"
-msgstr ""
+msgstr "གཡོན།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "right"
-msgstr ""
+msgstr "གཡས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "P value and comparison lines"
-msgstr ""
+msgstr "P རིན་ཐང་དང་བསྡུར་ཐིག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "P value brackets"
-msgstr ""
+msgstr "P རིན་ཐང་གུག་རྟགས།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "P value color"
-msgstr ""
+msgstr "P རིན་ཐང་གི་ཚོན་མདོག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "P value size"
-msgstr ""
+msgstr "P རིན་ཐང་གི་ཆེ་ཆུང་།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Y-Axis position of the first P value"
-msgstr ""
+msgstr "P རིན་ཐང་དང་པོའི་ Y མདའི་གནས་ས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Step distance"
-msgstr ""
+msgstr "གོམ་པའི་བར་ཐག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Note: If custom Y-Axis limits are set, the starting\n"
 "position for the P value must fall within the defined interval"
 msgstr ""
+"དོ་སྣང་།: གལ་ཏེ་ Y མདའི་ཚད་བཀག་རང་བཟོས་བྱས་ཡོད་ན། P རིན་ཐང་གི་འགོ་འཛུགས་གནས་ས་དེ་གཏན་འཁེལ་"
+"བྱས་པའི་བར་མཚམས་ནང་ཚུད་དགོས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Pairwise comparisons table"
-msgstr ""
+msgstr "ཆ་སྒྲིག་བསྡུར་བའི་རེའུ་མིག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Bracket "
-msgstr ""
+msgstr "གུག་རྟགས། "
 
 msgctxt "jaspPlotBuilder|"
 msgid "Compared groups"
-msgstr ""
+msgstr "བསྡུར་བའི་ཚོགས་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Group 1"
-msgstr ""
+msgstr "ཚོགས་པ ༡"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Group 2"
-msgstr ""
+msgstr "ཚོགས་པ ༢"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "P value and brackets"
-msgstr ""
+msgstr "P རིན་ཐང་དང་གུག་རྟགས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Tip length"
-msgstr ""
+msgstr "རྩེ་མོའི་རིང་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Bracket size"
-msgstr ""
+msgstr "གུག་རྟགས་ཀྱི་ཆེ་ཆུང་།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Group"
-msgstr ""
+msgstr "ཚོགས་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Custom comparison lines"
-msgstr ""
+msgstr "རང་བཟོས་བསྡུར་ཐིག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Add annotation lines"
-msgstr ""
+msgstr "མཆན་འགྲེལ་ཐིག་ཁ་སྣོན་པ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Line "
-msgstr ""
+msgstr "ཐིག "
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "X-Axis start"
-msgstr ""
+msgstr "X མདའི་འགོ་འཛུགས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "X-Axis end"
-msgstr ""
+msgstr "X མདའི་མཇུག་རྫོགས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Y-Axis start"
-msgstr ""
+msgstr "Y མདའི་འགོ་འཛུགས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Y-Axis end"
-msgstr ""
+msgstr "Y མདའི་མཇུག་རྫོགས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Label size"
-msgstr ""
+msgstr "ཁ་བྱང་གི་ཆེ་ཆུང་།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Label distance"
-msgstr ""
+msgstr "ཁ་བྱང་གི་བར་ཐག"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Plot layout"
@@ -3168,59 +4108,70 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "Arrange plots by column"
-msgstr ""
+msgstr "དཔེ་རིས་ཀ་ཐིག་ལྟར་སྒྲིག་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Relative column widths"
-msgstr ""
+msgstr "ཀ་ཐིག་གི་ཞེང་ཚད་ལྟོས་བཅས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "1,1"
-msgstr ""
+msgstr "༡,༡"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Specify layout"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Column "
-msgstr ""
+msgstr "ཀ་ཐིག "
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Plot IDs"
-msgstr ""
+msgstr "དཔེ་རིས་ ID"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Plot 1, Plot 2, ..."
-msgstr ""
+msgstr "དཔེ་རིས་ ༡, དཔེ་རིས་ ༢, ..."
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Plot heights"
-msgstr ""
+msgstr "དཔེ་རིས་ཀྱི་མཐོ་ཚད།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "A, B, C, ..."
-msgstr ""
+msgstr "ཀ, ཁ, ག, ..."
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Collect legend"
-msgstr ""
+msgstr "རྟགས་འགྲེལ་བསྡུ་བ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Arrange plots by row"
-msgstr ""
+msgstr "དཔེ་རིས་ཕྲེང་ལྟར་སྒྲིག་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Relative row heights"
-msgstr ""
+msgstr "ཕྲེང་གི་མཐོ་ཚད་ལྟོས་བཅས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Row "
-msgstr ""
+msgstr "ཕྲེང་། "
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Plot widths"
-msgstr ""
+msgstr "དཔེ་རིས་ཀྱི་ཞེང་ཚད།"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
@@ -3231,31 +4182,37 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "Label settings"
-msgstr ""
+msgstr "ཁ་བྱང་སྒྲིག་སྟངས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Horizontal position"
-msgstr ""
+msgstr "འཕྲེད་གནས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Vertical position"
-msgstr ""
+msgstr "གཞུང་གནས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Additional settings"
-msgstr ""
+msgstr "སྒྲིག་སྟངས་ཁ་སྣོན།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Column heights/row widths"
-msgstr ""
+msgstr "ཀ་ཐིག་གི་མཐོ་ཚད།/ཕྲེང་གི་ཞེང་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Height"
-msgstr ""
+msgstr "མཐོ་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Spacing"
-msgstr ""
+msgstr "བར་སྟོང་།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Collect legend across layout"
@@ -3288,83 +4245,107 @@ msgid ""
 "annotations, themes, colors, sizing, and legend placement.</li>"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "The basic setup: decide on the design (repeated-measures or non-repeated-"
 "measures) and select the variables"
 msgstr ""
+"གཞི་རྩའི་སྒྲིག་སྟངས།: ཇུས་འགོད་ཐག་གཅོད་པ་ (ཡང་བསྐྱར་འཇལ་བའམ་ཡང་བསྐྱར་མི་འཇལ་བ།) དང་འགྱུར་ཚད་"
+"འདེམས་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Select whether you want to create a repeated-measures plot or a non-repeated-"
 "measures plot"
 msgstr ""
+"ཡང་བསྐྱར་འཇལ་བའི་དཔེ་རིས་སམ་ཡང་བསྐྱར་མི་འཇལ་བའི་དཔེ་རིས་བཟོ་འདོད་མིན་འདེམས་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Select this to create a non-repeated-measures plot"
-msgstr ""
+msgstr "ཡང་བསྐྱར་མི་འཇལ་བའི་དཔེ་རིས་བཟོ་བར་འདི་འདེམས་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Select this to create a repeated-measures plot"
-msgstr ""
+msgstr "ཡང་བསྐྱར་འཇལ་བའི་དཔེ་རིས་བཟོ་བར་འདི་འདེམས་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "ON (listwise deletion): if a case is missing even one of the selected "
 "variables, the whole case is excluded.OFF: keep every case and ignore only "
 "the specific values that are missing"
 msgstr ""
+"ON (ཐོ་གཞུང་ལྟར་སུབ་པ།): གལ་ཏེ་གནས་ཚུལ་ཞིག་ལ་བདམས་པའི་འགྱུར་ཚད་གཅིག་ཙམ་ཆད་ཡོད་ན། གནས་ཚུལ་ཆ"
+"་ཚང་དེ་ཕུད་འགྲོ། OFF: གནས་ཚུལ་ཚང་མ་ཉར་ཚགས་བྱས་ནས་ཆད་པའི་རིན་ཐང་བྱེ་བྲག་པ་དེ་དག་ཁོ་ན་སྣང་མེད་"
+"དུ་བཞག་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Delete missing values listwise"
-msgstr ""
+msgstr "ཐོ་གཞུང་ལྟར་ཆད་པའི་རིན་ཐང་སུབ་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Input for non-repeated measures plot"
-msgstr ""
+msgstr "ཡང་བསྐྱར་མི་འཇལ་བའི་དཔེ་རིས་ཀྱི་ནང་འཇུག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Select the variable for the X-Axis"
-msgstr ""
+msgstr "X-མདའི་འགྱུར་ཚད་འདེམས་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Select the variable for the Y-Axis"
-msgstr ""
+msgstr "Y-མདའི་འགྱུར་ཚད་འདེམས་པ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Select the variable for data grouping, which will also determine the "
 "coloring."
 msgstr ""
+"གཞི་གྲངས་ཚོགས་སྡེ་བཟོ་བའི་འགྱུར་ཚད་འདེམས་པ། དེས་ཚོན་མདོག་ཀྱང་ཐག་གཅོད་བྱེད་ངེས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "You can choose a variable to split the plots into columns"
-msgstr ""
+msgstr "དཔེ་རིས་དག་ཀ་ཐིག་ཏུ་ཁ་འབྱེད་པར་འགྱུར་ཚད་ཅིག་འདེམས་ཐུབ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "You can choose a variable to split the plots into rows"
-msgstr ""
+msgstr "དཔེ་རིས་དག་ཕྲེང་དུ་ཁ་འབྱེད་པར་འགྱུར་ཚད་ཅིག་འདེམས་ཐུབ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "You can choose a variable to make a grid"
-msgstr ""
+msgstr "དྲ་མིག་བཟོ་བར་འགྱུར་ཚད་ཅིག་འདེམས་ཐུབ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Input for repeated measures plot"
-msgstr ""
+msgstr "ཡང་བསྐྱར་འཇལ་བའི་དཔེ་རིས་ཀྱི་ནང་འཇུག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Here you can specify the factor for the repeated measures. For example, it "
 "could be time (e.g., 24 h, 48 h, 72 h) or conditions like before and after"
 msgstr ""
+"འདིར་ཡང་བསྐྱར་འཇལ་བའི་རྒྱུ་རྐྱེན་གསལ་བཀོད་བྱེད་ཐུབ། དཔེར་ན། དུས་ཚོད་ (དཔེར་ན། ཆུ་ཚོད་ ༢༤, ཆུ་ཚོད་ "
+"༤༨, ཆུ་ཚོད་ ༧༢) ཡང་ན་སྔོན་དང་རྗེས་ལྟ་བུའི་ཆ་རྐྱེན།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Assign the variables that correspond to each level of the repeated measures "
 "factor. For example, if the factor is time, assign variables like '24h', "
 "'48h', and '72h'"
-msgstr ""
+msgstr "ཡང་བསྐྱར་འཇལ་བའི་རིམ་པ་རེ་རེ་དང་མཐུན་པའི་འགྱུར་ཚད་དག་བཀོད་སྒྲིག་བྱེད་པ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
@@ -3401,18 +4382,23 @@ msgid ""
 "Choose this if you want the point size to be determined by a variable rather "
 "than a fixed constant"
 msgstr ""
+"གལ་ཏེ་ཁྱེད་ཀྱིས་གནས་སའི་ཆེ་ཆུང་དེ་རྒྱུན་སྲོལ་ཞིག་ལས་འགྱུར་ཚད་ཀྱིས་ཐག་གཅོད་དགོས་འདོད་ན་འདི་འདེམས་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Shape by variable"
-msgstr ""
+msgstr "འགྱུར་ཚད་ལྟར་དབྱིབས་སྒྲིག་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Choose this if you want the point shape to be determined by a variable"
 msgstr ""
+"གལ་ཏེ་ཁྱེད་ཀྱིས་གནས་སའི་དབྱིབས་དེ་འགྱུར་ཚད་ཀྱིས་ཐག་གཅོད་དགོས་འདོད་ན་འདི་འདེམས་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Set the transparency"
-msgstr ""
+msgstr "དྭངས་གསལ་སྒྲིག་པ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
@@ -3422,37 +4408,44 @@ msgid ""
 "the subgroups farther apart"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Add a black outline/border to the elements"
-msgstr ""
+msgstr "ཆ་ཤས་དག་ལ་མཐའ་རིས་/མཐའ་སྒྲོམ་ནག་པོ་ཁ་སྣོན་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "White outline"
-msgstr ""
+msgstr "མཐའ་རིས་དཀར་པོ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Add a white outline/border to the elements"
-msgstr ""
+msgstr "ཆ་ཤས་དག་ལ་མཐའ་རིས་/མཐའ་སྒྲོམ་དཀར་པོ་ཁ་སྣོན་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Remove the fill"
-msgstr ""
+msgstr "བཀང་རྒྱུ་དེ་སུབ་པ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Point Size Variable"
-msgstr ""
+msgstr "གནས་སའི་ཆེ་ཆུང་འགྱུར་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Min point size"
-msgstr ""
+msgstr "གནས་སའི་ཆེ་ཆུང་ཆུང་ཤོས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Max point size"
-msgstr ""
+msgstr "གནས་སའི་ཆེ་ཆུང་ཆེ་ཤོས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Point Shape Variable"
-msgstr ""
+msgstr "གནས་སའི་དབྱིབས་འགྱུར་ཚད།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Add ellipse"
@@ -3470,21 +4463,25 @@ msgctxt "jaspPlotBuilder|"
 msgid "Ellipse type"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "t"
-msgstr ""
+msgstr "t"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Normal"
-msgstr ""
+msgstr "རྒྱུན་ལྡན།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Euclidean"
-msgstr ""
+msgstr "Euclidean"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Level"
-msgstr ""
+msgstr "རིམ་པ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
@@ -3492,59 +4489,78 @@ msgid ""
 "ellipse type)"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Sets the number of bins used to divide the data range in histograms.More "
 "bins give finer detail, fewer bins give a more general overview"
 msgstr ""
+"histograms ནང་གཞི་གྲངས་ཁྱབ་རྒྱ་དབྱེ་འབྱེད་བྱེད་པར་བེད་སྤྱོད་བྱས་པའི་ bins གྲངས་སྒྲིག་པ། bins མང་བས"
+"་ཞིབ་ཕྲའི་ཆ་ལག་མང་བ་སྟོན་པ་དང་། bins ཉུང་བས་སྤྱི་ཡོངས་ཀྱི་མཐོང་ཚུལ་སྟོན་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Density"
-msgstr ""
+msgstr "སྟུག་ཚད།"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Check this option to overlay a density estimate on the histogram. Density "
 "can be shown as scaled (0–1) or on the histogram count scale."
 msgstr ""
+"histogram ཐོག་སྟུག་ཚད་ཚོད་དཔག་ཅིག་སྟེང་འགེབས་པར་འདེམས་ཀ་འདི་རྟགས་རྒྱག སྟུག་ཚད་དེ་ཚད་གཞི་ལྟར་ (༠"
+"–༡) ཡང་ན་ histogram གྲངས་བཤེར་ཚད་གཞི་ཐོག་སྟོན་ཐུབ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Density overlay mode"
-msgstr ""
+msgstr "སྟུག་ཚད་སྟེང་འགེབས་པའི་ཐབས་ལམ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Choose whether the density curve is scaled to the histogram count ('Count'), "
 "or normalized to a maximum of 1 ('Scaled')"
 msgstr ""
+"སྟུག་ཚད་ཀྱི་འཁྱོག་ཐིག་དེ་ histogram གྲངས་བཤེར་ ('གྲངས་བཤེར།') དང་བསྟུན་ནས་ཚད་གཞི་བཟོ་དགོས་མིན་"
+"ནམ་ཡང་ན་མང་ཤོས་ ༡ ('ཚད་གཞི་ལྟར།') ལ་རྒྱུན་ལྡན་བཟོ་དགོས་མིན་འདེམས་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Show density on the histogram count scale (area under the curve equals total "
 "count)"
 msgstr ""
+"histogram གྲངས་བཤེར་ཚད་གཞི་ཐོག་སྟུག་ཚད་སྟོན་པ། (འཁྱོག་ཐིག་འོག་གི་ཁྱོན་དེ་ཁྱོན་བསྡོམས་གྲངས་བཤེར་དང་"
+"མཚུངས་པ།)"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Scaled (0–1)"
-msgstr ""
+msgstr "ཚད་གཞི་ལྟར། (༠–༡)"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Show density scaled so that the maximum of the curve is 1"
-msgstr ""
+msgstr "འཁྱོག་ཐིག་གི་མང་ཤོས་དེ་ ༡ ཡིན་པ་ལྟར་སྟུག་ཚད་ཚད་གཞི་བཟོས་ནས་སྟོན་པ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Set the transparency for the density overlay"
-msgstr ""
+msgstr "སྟུག་ཚད་སྟེང་འགེབས་པའི་དྭངས་གསལ་སྒྲིག་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Set the line width for the density overlay"
-msgstr ""
+msgstr "སྟུག་ཚད་སྟེང་འགེབས་པའི་ཐིག་གི་ཞེང་ཚད་སྒྲིག་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Check this option to create boxplot. Boxplot and violin plot require both X-"
 "Axis and Y-Axis variables."
 msgstr ""
+"སྒམ་རིས་བཟོ་བར་འདེམས་ཀ་འདི་རྟགས་རྒྱག སྒམ་རིས་དང་ violin དཔེ་རིས་ལ་ X-མདའ་དང་ Y-མདའི་འགྱུར་ཚད"
+"་གཉིས་ཀ་དགོས།"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
@@ -3552,13 +4568,15 @@ msgid ""
 "bar). Increase for thicker outlines, decrease for thinner ones"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Set the width of the boxplots"
-msgstr ""
+msgstr "སྒམ་རིས་ཀྱི་ཞེང་ཚད་སྒྲིག་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Sets the horizontal width of the whiskers in a boxplot"
-msgstr ""
+msgstr "སྒམ་རིས་ནང་གི་ whiskers གི་འཕྲེད་ཀྱི་ཞེང་ཚད་སྒྲིག་པ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
@@ -3572,11 +4590,15 @@ msgid ""
 "Sets the multiplier (coef) used to define outliers in a boxplot. Outliers "
 "are values beyond Q1 − coef × IQR or Q3 + coef × IQR"
 msgstr ""
+"སྒམ་རིས་ནང་ཕྱིར་གྱར་བ་མཚན་ཉིད་འཇོག་པར་བེད་སྤྱོད་བྱས་པའི་སྒྱུར་གྲངས། (coef) སྒྲིག་པ། ཕྱིར་གྱར་བ་ནི་ "
+"Q1 − coef × IQR ཡང་ན་ Q3 + coef × IQR ལས་བརྒལ་བའི་རིན་ཐང་ཡིན།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Set the size of the outliers"
-msgstr ""
+msgstr "ཕྱིར་གྱར་བའི་ཆེ་ཆུང་སྒྲིག་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Controls how the width of each violin is scaled:<b>Area</b>: all violins "
@@ -3584,19 +4606,30 @@ msgid ""
 "the number of observations in each group.<b>Width</b>: all violins have the "
 "same maximum width, regardless of group size."
 msgstr ""
+"violin རེ་རེའི་ཞེང་ཚད་ཇི་ལྟར་ཚད་གཞི་བཟོ་དགོས་མིན་ཚོད་འཛིན་བྱེད་པ།:<b>ཁྱོན།</b>: violin ཚང་མ་ལ"
+"་ཁྱོན་གཅིག་པ་ཡོད། (ggplot2 ནང་གི་སྔོན་བཀོད།)།<b>གྲངས།</b>: violin དག་ཚོགས་པ་རེ་རེའི་ནང་གི་ལྟ"
+"་ཞིབ་གྲངས་ཀྱིས་ཚད་གཞི་བཟོ་བ།<b>ཞེང་ཚད།</b>: violin ཚང་མ་ལ་ཚོགས་པའི་ཆེ་ཆུང་ལ་མ་ལྟོས་པར་ཞེང་"
+"ཚད་ཆེ་ཤོས་གཅིག་པ་ཡོད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Draws horizontal lines at the specified quantiles inside each violin. Use "
 "comma-separated values between 0 and 1 (e.g., 0.25, 0.5, 0.75) to show "
 "quartiles or other custom quantiles."
 msgstr ""
+"violin རེ་རེའི་ནང་གསལ་བཀོད་བྱས་པའི་གྲངས་ཚད་ཐོག་འཕྲེད་ཐིག་འབྲི་བ། བཞི་ཆའི་གྲངས་སམ་རང་བཟོས་གྲངས་"
+"ཚད་གཞན་དག་སྟོན་པར་ ༠ དང་ ༡ བར་གྱི་ཚེག་རྟགས་ཀྱིས་དབྱེ་བའི་རིན་ཐང་བེད་སྤྱོད་བྱེད་པ། (དཔེར་ན། "
+"༠.༢༥, ༠.༥, ༠.༧༥)།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "If checked, the violins are trimmed to the range of the data. If unchecked, "
 "the density tails may extend beyond the observed values."
 msgstr ""
+"གལ་ཏེ་རྟགས་རྒྱག་ན་ violin དག་གཞི་གྲངས་ཀྱི་ཁྱབ་རྒྱ་དང་བསྟུན་ནས་གཅོད་འབྲེག་བྱེད་ངེས། གལ་ཏེ་རྟགས་མ་རྒྱག"
+"་ན་ སྟུག་ཚད་ཀྱི་མཇུག་མ་དེ་ལྟ་ཞིབ་བྱས་པའི་རིན་ཐང་ལས་བརྒལ་སྲིད།"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
@@ -3637,33 +4670,39 @@ msgid ""
 "slice"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Required: Group Variable AND X- or Y-Axis Variable"
-msgstr ""
+msgstr "དགོས་ངེས།: Group འགྱུར་ཚད་དང་ X- ཡང་ན་ Y-མདའི་འགྱུར་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Stack heights show raw counts"
-msgstr ""
+msgstr "བརྩེགས་པའི་མཐོ་ཚད་ཀྱིས་མ་བཅོས་གྲངས་བཤེར་སྟོན་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Each stack is rescaled so its total height equals 100 %"
 msgstr ""
+"བརྩེགས་པ་རེ་རེ་བསྐྱར་དུ་ཚད་གཞི་བཟོས་ནས་དེའི་ཁྱོན་བསྡོམས་མཐོ་ཚད་དེ་ ༡༠༠ % དང་མཚུངས་པ་བཟོ་བ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Add stacked bars for each category using the selected proportion mode"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Add stacked areas connected across categories"
-msgstr ""
+msgstr "དབྱེ་རིགས་བརྒྱུད་སྦྲེལ་བའི་བརྩེགས་པའི་ཁྱོན་ཁ་སྣོན་བྱེད་པ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Treat missing groups as a separate slice"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Format the relative scale from 0 % to 100 % instead of 0 to 1"
-msgstr ""
+msgstr "ལྟོས་བཅས་ཚད་གཞི་དེ་ ༠ ནས་ ༡ གི་ཚབ་ཏུ་ ༠ % ནས་ ༡༠༠ % བར་རྣམ་གཞག་བཟོ་བ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
@@ -3678,25 +4717,29 @@ msgctxt "jaspPlotBuilder|"
 msgid "Add mean bars"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Add dashed mean lines"
-msgstr ""
+msgstr "ཆ་སྙོམས་ཐིག་རྟགས་ཅན་གྱི་ཐིག་ཁ་སྣོན་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Add mean dots"
-msgstr ""
+msgstr "ཆ་སྙོམས་གནས་ས་ཁ་སྣོན་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Add mean profile lines"
-msgstr ""
+msgstr "ཆ་སྙོམས་ profile ཐིག་ཁ་སྣོན་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Add filled mean areas"
-msgstr ""
+msgstr "བཀང་ཡོད་པའི་ཆ་སྙོམས་ཁྱོན་ཁ་སྣོན་བྱེད་པ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Add numeric mean labels"
-msgstr ""
+msgstr "ཨང་ཀིའི་ཆ་སྙོམས་ཁ་བྱང་ཁ་སྣོན་བྱེད་པ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
@@ -3717,25 +4760,29 @@ msgctxt "jaspPlotBuilder|"
 msgid "Add median bars"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Add dashed median lines"
-msgstr ""
+msgstr "དཀྱིལ་གྲངས་ཐིག་རྟགས་ཅན་གྱི་ཐིག་ཁ་སྣོན་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Add median dots"
-msgstr ""
+msgstr "དཀྱིལ་གྲངས་གནས་ས་ཁ་སྣོན་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Add median profile lines"
-msgstr ""
+msgstr "དཀྱིལ་གྲངས་ profile ཐིག་ཁ་སྣོན་བྱེད་པ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Add filled median areas"
-msgstr ""
+msgstr "བཀང་ཡོད་པའི་དཀྱིལ་གྲངས་ཁྱོན་ཁ་སྣོན་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Add numeric median labels"
-msgstr ""
+msgstr "ཨང་ཀིའི་དཀྱིལ་གྲངས་ཁ་བྱང་ཁ་སྣོན་བྱེད་པ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
@@ -3799,43 +4846,52 @@ msgstr ""
 
 msgctxt "jaspPlotBuilder|"
 msgid "Fit a model to the data points"
-msgstr ""
+msgstr "གཞི་གྲངས་གནས་ས་དག་ལ་དཔེ་དབྱིབས་ཤིག་སྒྲིག་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Add reference lines"
-msgstr ""
+msgstr "ལུང་འདྲེན་ཐིག་ཁ་སྣོན་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Add identity line (y = x)"
-msgstr ""
+msgstr "ངོ་བོ་ཐིག་ཁ་སྣོན་བྱེད་པ། (y = x)"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Reverse direction"
-msgstr ""
+msgstr "ཁ་ཕྱོགས་ཕྱིན་ཅི་ལོག་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Fine-tune the x-axis"
-msgstr ""
+msgstr "x-མདའ་ཞིབ་སྒྲིག་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Adds a heading"
-msgstr ""
+msgstr "ཁ་བྱང་ཞིག་ཁ་སྣོན་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Sets the range"
-msgstr ""
+msgstr "ཁྱབ་རྒྱ་སྒྲིག་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Positions tick marks"
-msgstr ""
+msgstr "རྟགས་ཀྱི་གནས་ས་སྒྲིག་པ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Handle rotation, shortening and sorting"
-msgstr ""
+msgstr "འཁོར་ཡུན།, ཐུང་དུ་གཏོང་བ།, དང་སྒྲིག་སྟངས་བཅས་ཐག་གཅོད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Shorten axis labels using K for thousand, M for million, and so on"
 msgstr ""
+"K ཡིས་སྟོང་ཕྲག, M ཡིས་ས་ཡ།, ལ་སོགས་པ་བེད་སྤྱད་ནས་མདའི་ཁ་བྱང་ཐུང་དུ་གཏོང་བ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Lets you edit them manually"
@@ -3848,9 +4904,10 @@ msgid ""
 "shortening and sorting, and <b>Rename labels</b> lets you edit them manually"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Title, caption"
-msgstr ""
+msgstr "ཁ་བྱང་།, མཆན་འགྲེལ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
@@ -3858,9 +4915,10 @@ msgid ""
 "plot, while <b>Caption</b> appears below"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Annotation and data label"
-msgstr ""
+msgstr "མཆན་འགྲེལ་དང་གཞི་གྲངས་ཁ་བྱང་།"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
@@ -3871,25 +4929,30 @@ msgid ""
 "named or hex colours"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Label data by variable"
-msgstr ""
+msgstr "འགྱུར་ཚད་ལྟར་གཞི་གྲངས་ཁ་བྱང་འགོད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Label variable"
-msgstr ""
+msgstr "ཁ་བྱང་འགྱུར་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Variable whose values will be shown next to each point"
-msgstr ""
+msgstr "གནས་ས་རེ་རེའི་འགྲམ་དུ་རིན་ཐང་སྟོན་རྒྱུའི་འགྱུར་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "White background"
-msgstr ""
+msgstr "རྒྱབ་ལྗོངས་དཀར་པོ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Custom annotations"
-msgstr ""
+msgstr "རང་བཟོས་མཆན་འགྲེལ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
@@ -3898,48 +4961,63 @@ msgid ""
 "settings</b> lets you map colour to a variable, pick a palette, or enter "
 "custom colours"
 msgstr ""
+"སྤྱི་ཡོངས་ཀྱི་མཐོང་རིས་བཟོ་ལྟ་དང་ཚོན་མདོག་ཇི་ལྟར་བཀོད་སྒྲིག་བྱེད་དགོས་མིན་འདེམས་པ།. <b>བརྗོད་གཞི།</b> "
+"ཡིས་སྔོན་སྒྲིག་བཟོ་ལྟ་ཞིག་སྤྱོད་པ་དང་།, <b>ཡིག་གཟུགས་གཞི་རྩའི་ཆེ་ཆུང་།</b> གིས་ཡི་གེ་ཚང་མ་ཚད་གཞི་བཟོ་"
+"བ།. <b>ཚོན་མདོག་སྒྲིག་སྟངས།</b> ཀྱིས་ཁྱེད་ལ་ཚོན་མདོག་དེ་འགྱུར་ཚད་ཅིག་ལ་རིས་སུ་འགོད་པ།, palette "
+"ཞིག་འདེམས་པ།, ཡང་ན་རང་བཟོས་ཚོན་མདོག་ནང་འཇུག་བྱེད་དུ་འཇུག"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Decide which variable drives colours and select a palette or provide custom "
 "hex/named colours"
 msgstr ""
+"འགྱུར་ཚད་གང་གིས་ཚོན་མདོག་བསྐུལ་གྱི་ཡོད་མིན་ཐག་གཅོད་པ་དང་ palette ཞིག་འདེམས་པའམ་ཡང་ན་རང་བཟོས"
+"་ hex/མིང་བཏགས་པའི་ཚོན་མདོག་མཁོ་སྤྲོད་བྱེད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Choose what determines element colours"
-msgstr ""
+msgstr "ཆ་ཤས་ཀྱི་ཚོན་མདོག་གང་གིས་ཐག་གཅོད་བྱེད་ཀྱི་ཡོད་མིན་འདེམས་པ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Uniform colors"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Coloring by Group variable"
-msgstr ""
+msgstr "Group འགྱུར་ཚད་ལྟར་ཚོན་མདོག་སྒྲིག་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Coloring by X variable"
-msgstr ""
+msgstr "X འགྱུར་ཚད་ལྟར་ཚོན་མདོག་སྒྲིག་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Coloring by Y variable"
-msgstr ""
+msgstr "Y འགྱུར་ཚད་ལྟར་ཚོན་མདོག་སྒྲིག་པ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Apply separate colours in different splits"
-msgstr ""
+msgstr "ཁ་འབྱེད་པ་མི་འདྲ་བར་ཚོན་མདོག་སོ་སོ་སྤྱོད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Here you can specify custom colors separated by commas"
 msgstr ""
+"འདིར་ཁྱེད་ཀྱིས་ཚེག་རྟགས་ཀྱིས་དབྱེ་བའི་རང་བཟོས་ཚོན་མདོག་གསལ་བཀོད་བྱེད་ཐུབ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "e.g. red, blue, #ff5733"
-msgstr ""
+msgstr "དཔེར་ན། དམར་པོ།, སྔོན་པོ།, #ff5733"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Size, margins and plot orientation"
-msgstr ""
+msgstr "ཆེ་ཆུང་།, མཐའ་ཚད།, དང་དཔེ་རིས་ཀྱི་ཁ་ཕྱོགས།"
 
 msgctxt "jaspPlotBuilder|"
 msgid ""
@@ -3949,43 +5027,53 @@ msgid ""
 "flip X and Y"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Width and height of the exported figure in pixels"
-msgstr ""
+msgstr "ཕྱིར་འདྲེན་བྱས་པའི་རིས་དབྱིབས་ཀྱི་ pixel ཞེང་ཚད་དང་མཐོ་ཚད།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Axis padding"
-msgstr ""
+msgstr "མདའི་བར་སྟོང་།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Fraction of the data range to leave empty inside each axis (0 – 1)"
-msgstr ""
+msgstr "མདའ་རེ་རེའི་ནང་སྟོང་པར་འཇོག་རྒྱུའི་གཞི་གྲངས་ཁྱབ་རྒྱའི་ཆ་ཤས། (༠ – ༡)"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Outer whitespace around the plot (pts)"
-msgstr ""
+msgstr "དཔེ་རིས་ཀྱི་མཐའ་འཁོར་གྱི་ཕྱིའི་བར་སྟོང་། (pts)"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Plot orientation"
-msgstr ""
+msgstr "དཔེ་རིས་ཀྱི་ཁ་ཕྱོགས།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Flip swaps the X and Y axes"
-msgstr ""
+msgstr "ཕྱིན་ཅི་ལོག་པས་ X དང་ Y མདའ་བརྗེ་བ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Flip plot"
-msgstr ""
+msgstr "དཔེ་རིས་ཕྱིན་ཅི་ལོག་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid ""
 "Control where the legend appears and what it shows. Use <b>Position</b> to "
 "dock the legend or hide it. <b>Remove title</b> hides the legend heading"
 msgstr ""
+"རྟགས་འགྲེལ་གང་དུ་མངོན་པ་དང་དེས་གང་སྟོན་པ་ཚོད་འཛིན་བྱེད་པ།. <b>གནས་ས།</b> བེད་སྤྱད་ནས་རྟགས་འགྲེལ"
+"་ dock བྱེད་པའམ་ཡང་ན་སྦེད་པ།. <b>ཁ་བྱང་སུབ་པ།</b> ཀྱིས་རྟགས་འགྲེལ་གྱི་ཁ་བྱང་སྦེད་པ།"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Edit the text of individual legend entries"
-msgstr ""
+msgstr "རྟགས་འགྲེལ་གྱི་ནང་དོན་རེ་རེའི་ཡི་གེ་རྩོམ་སྒྲིག་བྱེད་པ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Order of geometries"
@@ -4019,9 +5107,10 @@ msgid ""
 "layer will be drawn on top."
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Layer order"
-msgstr ""
+msgstr "རིམ་པའི་གོ་རིམ།"
 
 msgctxt "jaspPlotBuilder|"
 msgid "point, boxplot"
