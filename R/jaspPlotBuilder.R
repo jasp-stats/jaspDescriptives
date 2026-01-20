@@ -1915,7 +1915,11 @@ addDecodedLabels <- function(p) {
     # }
 
     # Extract the ggplot object from tidyplot----
-    tidyplot_obj <- tidyplot_obj[[1]]
+    tidyplot_obj <- if (ggplot2::is.ggplot(tidyplot_obj)) {
+      tidyplot_obj
+    } else {
+      tidyplot_obj <- tidyplot_obj[[1]]
+    }
 
     if (isTRUE(tab[["flipPlot"]])) {
       tidyplot_obj <- tidyplot_obj + ggplot2::coord_flip(clip = "off")
@@ -2096,7 +2100,6 @@ addDecodedLabels <- function(p) {
               thisText[[rowsVar]] <- rowAnnotLine
             }
             if (!is.null(gridVar) && nzchar(gridAnnotLine)) {
-              s
               thisText[[gridVar]] <- gridAnnotLine
             }
 
