@@ -447,7 +447,13 @@ addDecodedLabels <- function(p) {
     if (tab[["connectRMPlotBuilder"]] && tab[["addDataPoint"]]) {
       point_func <- .create_point_layer_func(tab, shapeVar)
       temp_plot <- point_func(tidyplot_obj)
-      built_temp <- ggplot2::ggplot_build(temp_plot[[1]])
+      built_temp <- if (ggplot2::is.ggplot(temp_plot)) {
+        ggplot2::ggplot_build(temp_plot)
+      } else if (is.list(temp_plot)) {
+        ggplot2::ggplot_build(temp_plot[[1]])
+      } else {
+        stop("Unexpected object returned by point_func.")
+      }
       jittered_point_data <- built_temp$data[[1]]
     }
 
