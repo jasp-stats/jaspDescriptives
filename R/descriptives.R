@@ -662,7 +662,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   # should explain supremum and infimum of an empty set?
   shouldAddExplainEmptySet <- (options$minimum || options$maximum) && valid == 0
 
-  shouldAddGeomHarmMeansPositiveFootnote <- (options[["meanGeometric"]] || options[["meanHarmonic"]]) && any(na.omitted <= 0)
+  shouldAddGeomHarmMeansPositiveFootnote <- columnType == "scale" && (options[["meanGeometric"]] || options[["meanHarmonic"]]) && any(na.omitted <= 0)
 
   if (options$mode) {
 
