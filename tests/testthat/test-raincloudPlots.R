@@ -277,7 +277,7 @@ test_that("plot with primary factor and continuous covariate matches", {
   options$vioOutline <- "black"
   options$widthPlot <- 675
   set.seed(1)
-  results <- jaspTools::runAnalysis("raincloudPlots", "palmerPenguins.csv", options)
+  results <- jaspTools::runAnalysis("raincloudPlots", testthat::test_path("palmerPenguins.csv"), options)
   plotName <- results[["results"]][["containerRaincloudPlots"]][["collection"]][["containerRaincloudPlots_flipper_length_mm"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "primary-covariate-continuous")
@@ -322,7 +322,7 @@ test_that("plot with secondary factor, discrete covariate, and means matches", {
   options$vioOpacity <- 0.5
   options$widthPlot <- 675
   set.seed(1)
-  df <- read.csv("palmerPenguins.csv")
+  df <- read.csv(testthat::test_path("palmerPenguins.csv"))
   df$sex <- as.factor(df$sex)
   results <- jaspTools::runAnalysis("raincloudPlots", df, options)
   plotName <- results[["results"]][["containerRaincloudPlots"]][["collection"]][["containerRaincloudPlots_body_mass_g"]][["data"]]

@@ -18,6 +18,7 @@ Imports:
   forecast,
   flexplot,
   ggrain,
+  ggh4x,
   ggpp,
   ggtext,
   dplyr,
