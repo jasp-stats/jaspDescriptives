@@ -2837,7 +2837,7 @@ addDecodedLabels <- function(p) {
         collectLegends <- if (getCommonLegendGlobal) FALSE else getCommonLegendRow
         layoutGuidesFull <- if (collectLegends) "collect" else "auto"
 
-        fullRowPatchwork <- patchwork::wrap_plots(plotsInFullRow, ncol = nPlots, widths = relWidths) +
+        fullRowPatchwork <- patchwork::wrap_plots(setPanelWidthAndHeightToNull(plotsInFullRow), ncol = nPlots, widths = relWidths) +
           patchwork::plot_layout(guides = layoutGuidesFull)
 
         if (collectLegends) {
@@ -2947,5 +2947,24 @@ addDecodedLabels <- function(p) {
     } else {
       plotGridContainer[["plotGrid"]]$plotObject <- finalGrid
     }
+  }
+}
+
+setPanelWidthAndHeightToNullHelper <- function(p) {
+  if (ggplot2::is.ggplot(p)) {
+    p@theme$panel.widths <- NULL
+    p@theme$panel.heights <- NULL
+  }
+  p
+}
+setPanelWidthAndHeightToNull <- function(ggplt) {
+  # until https://github.com/thomasp85/patchwork/issues/417 is fixed
+
+  if (ggplot2::is.ggplot(ggplt)) {
+    return(setPanelWidthAndHeightToNullHelper(ggplt))
+  } else if (is.list(ggplt)) {
+    return(lapply(ggplt, setPanelWidthAndHeightToNullHelper))
+  } else {
+    stop("Input must be a ggplot object or a list of ggplot objects.")
   }
 }
