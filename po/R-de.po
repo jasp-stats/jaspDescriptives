@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
 "POT-Creation-Date: 2025-10-11 03:23\n"
-"PO-Revision-Date: 2025-12-23 10:37+0000\n"
+"PO-Revision-Date: 2026-01-25 08:29+0000\n"
 "Last-Translator: Johannes Keyser <joke@fsfe.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/de/>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==0 ? 0 : n==1 ? 0 : 1;\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.16-dev\n"
 
 msgid "Time Series Plot"
 msgstr "Zeitreihendiagramm"
@@ -188,13 +188,11 @@ msgstr "Obergrenze"
 msgid "Lower"
 msgstr "Untergrenze"
 
-#, fuzzy
 msgid "%s%% CI A. Mean Upper"
-msgstr "%s%% KI Mittelwert Obergrenze"
+msgstr "%s%% KI A. Mittelwert Obergrenze"
 
-#, fuzzy
 msgid "%s%% CI A. Mean Lower"
-msgstr "%s%% KI Mittelwert Untergrenze"
+msgstr "%s%% KI A. Mittelwert Untergrenze"
 
 msgid "%s%% CI Std. Dev. Upper"
 msgstr "%s%% KI Std.-Abw. Obergrenze"
