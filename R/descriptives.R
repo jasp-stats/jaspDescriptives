@@ -16,8 +16,10 @@
 #
 
 DescriptivesInternal <- function(jaspResults, dataset, options) {
+
   # sink(file="~/Downloads/log.txt")
   # on.exit(sink(NULL))
+
   variables     <- unlist(options[["variables"]])
   variableTypes <- options[["variables.types"]]
 
@@ -45,7 +47,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
   }
 
-  # print(dataset)
 
   .descriptivesDescriptivesTable(dataset, options, jaspResults, numberMissingSplitBy = numberMissingSplitBy)
 
@@ -2427,11 +2428,13 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
   # Normalize input: either a vector OR a 2-col data.frame (category, COUNT)
   if (is.data.frame(column) && ncol(column) == 2) {
-    tb <- data.frame(level = column[[1]], Freq = as.numeric(column[[2]]))
+    tb <- data.frame(level = column[[1]], Freq = as.numeric(as.character(column[[2]])))
+
   } else {
     tab <- table(column, useNA = "no")
     tb  <- data.frame(level = names(tab), Freq = as.numeric(tab))
   }
+
 
   # Order & cumulative %
   tb <- tb[order(tb$Freq, decreasing = TRUE), , drop = FALSE]
