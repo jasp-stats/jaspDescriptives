@@ -4,7 +4,7 @@
     "Repositories": [
       {
         "Name": "CRAN",
-        "URL": "https://cloud.r-project.org"
+        "URL": "https://cran.rstudio.com"
       }
     ]
   },
@@ -2448,38 +2448,6 @@
       "Maintainer": "Teun van den Brand <tahvdbrand@gmail.com>",
       "Repository": "RSPM"
     },
-    "gghalves": {
-      "Package": "gghalves",
-      "Version": "0.1.4",
-      "Source": "Repository",
-      "Title": "Compose Half-Half Plots Using Your Favourite Geoms",
-      "Authors@R": "person(\"Frederik\", \"Tiedemann\", email = \"fj.tiedemann@googlemail.com\", role = c(\"aut\", \"cre\"))",
-      "Description": "A 'ggplot2' extension for easy plotting of half-half geom combinations. Think half boxplot and half jitterplot, or half violinplot and half dotplot.",
-      "URL": "https://github.com/erocoar/gghalves",
-      "License": "MIT + file LICENSE",
-      "Encoding": "UTF-8",
-      "Depends": [
-        "ggplot2 (>= 3.3.6)",
-        "R (>= 3.3.0)"
-      ],
-      "Imports": [
-        "grid",
-        "gtable",
-        "grDevices"
-      ],
-      "RoxygenNote": "7.2.0",
-      "Suggests": [
-        "knitr",
-        "rmarkdown",
-        "dplyr"
-      ],
-      "Collate": "'utilities.R' 'geom_half_dotplot.R' 'geom_half_boxplot.R' 'geom_half_point.R' 'geom_half_point_panel.R' 'geom_half_violin.R' 'stat-half-bindot.R' 'stat-half-point.R' 'stat-half-ydensity.R' 'ggproto-classes.R'",
-      "VignetteBuilder": "knitr",
-      "NeedsCompilation": "no",
-      "Author": "Frederik Tiedemann [aut, cre]",
-      "Maintainer": "Frederik Tiedemann <fj.tiedemann@googlemail.com>",
-      "Repository": "CRAN"
-    },
     "ggplot2": {
       "Package": "ggplot2",
       "Version": "4.0.1",
@@ -3322,41 +3290,75 @@
       "Package": "jaspBase",
       "Version": "0.20.4",
       "Source": "GitHub",
-      "Requirements": [
+      "Type": "Package",
+      "Title": "JASP Base",
+      "Author": "JASP Team",
+      "Maintainer": "Bruno Boutin <B.Boutin@uva.nl>",
+      "Description": "Package contains the JASP Bayesian and Frequentist analyses. See <https://jasp-stats.org> for more details.",
+      "License": "GPL2+",
+      "Imports": [
         "cli",
         "codetools",
+        "compiler",
         "ggplot2",
+        "grDevices",
+        "grid",
         "gridExtra",
         "gridGraphics",
         "jaspGraphs",
         "jsonlite",
         "lifecycle",
+        "methods",
         "officer",
         "pkgbuild",
         "plyr",
         "ragg",
         "R6",
-        "Rcpp",
+        "Rcpp (>= 0.12.14)",
         "rvg",
         "svglite",
         "systemfonts",
-        "withr",
-        "testthat"
+        "withr"
       ],
+      "RoxygenNote": "7.3.3",
+      "Roxygen": "list(markdown = TRUE)",
+      "Encoding": "UTF-8",
+      "LinkingTo": [
+        "Rcpp"
+      ],
+      "RcppModules": "jaspResults",
+      "NeedsCompilation": "yes",
+      "Suggests": [
+        "testthat (>= 3.0.0)"
+      ],
+      "Config/testthat/edition": "3",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspBase",
-      "RemoteSha": "cf46b53dccdb6c63d4b35f4067d0a8205bbc56dc"
+      "RemoteRef": "master",
+      "RemoteSha": "cf46b53dccdb6c63d4b35f4067d0a8205bbc56dc",
+      "Remotes": "jasp-stats/jaspGraphs"
     },
     "jaspGraphs": {
       "Package": "jaspGraphs",
       "Version": "0.20.0",
       "Source": "GitHub",
-      "Requirements": [
-        "testthat",
+      "Type": "Package",
+      "Title": "Custom Graphs for JASP",
+      "Author": "Don van den Bergh",
+      "Maintainer": "JASP-team <info@jasp-stats.nl>",
+      "Description": "Graph making functions and wrappers for JASP.",
+      "License": "GPL",
+      "Encoding": "UTF-8",
+      "LazyData": "true",
+      "RoxygenNote": "7.3.3",
+      "Suggests": [
+        "testthat"
+      ],
+      "Imports": [
         "cli",
-        "ggplot2",
+        "ggplot2 (>= 3.0.0)",
         "gridExtra",
         "gtable",
         "htmlwidgets",
@@ -3367,17 +3369,28 @@
         "rlang",
         "scales"
       ],
+      "Roxygen": "list(markdown = TRUE)",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspGraphs",
+      "RemoteRef": "master",
       "RemoteSha": "266f408db9761292050c1319c01640747bf77a0d"
     },
     "jaspTTests": {
       "Package": "jaspTTests",
       "Version": "0.95.5",
       "Source": "GitHub",
-      "Requirements": [
+      "Type": "Package",
+      "Title": "T-Tests Module for JASP",
+      "Date": "2022-10-05",
+      "Author": "JASP Team",
+      "Website": "jasp-stats.org",
+      "Maintainer": "JASP Team <info@jasp-stats.org>",
+      "Description": "Evaluate the difference between two means",
+      "License": "GPL (>= 2)",
+      "Encoding": "UTF-8",
+      "Imports": [
         "BayesFactor",
         "car",
         "ggplot2",
@@ -3391,7 +3404,9 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspTTests",
-      "RemoteSha": "5f513ecf32ea158b4c11b1aed87dc3aa74226bcb"
+      "RemoteRef": "master",
+      "RemoteSha": "5f513ecf32ea158b4c11b1aed87dc3aa74226bcb",
+      "Remotes": "jasp-stats/jaspBase, jasp-stats/jaspGraphs"
     },
     "jpeg": {
       "Package": "jpeg",

@@ -17,9 +17,6 @@
 
 DescriptivesInternal <- function(jaspResults, dataset, options) {
 
-  # sink(file="~/Downloads/log.txt")
-  # on.exit(sink(NULL))
-
   variables     <- unlist(options[["variables"]])
   variableTypes <- options[["variables.types"]]
 
@@ -2429,12 +2426,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   # Normalize input: either a vector OR a 2-col data.frame (category, COUNT)
   if (is.data.frame(column) && ncol(column) == 2) {
     tb <- data.frame(level = column[[1]], Freq = as.numeric(as.character(column[[2]])))
-
   } else {
     tab <- table(column, useNA = "no")
     tb  <- data.frame(level = names(tab), Freq = as.numeric(tab))
   }
-
 
   # Order & cumulative %
   tb <- tb[order(tb$Freq, decreasing = TRUE), , drop = FALSE]
@@ -2459,23 +2454,25 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   # After you build tb (already sorted by Freq desc):
   tb$level <- factor(tb$level, levels = tb$level)  # lock global order
 
-  if (shift) {
-    yLabel <- gettextf("Percentage (%%)")
-  } else {
-    yLabel <- gettext("Counts")
-  }
-
-  # Bars: don't use reorder() anymore
-  yBar <- if (shift) tb$Freq / tot * 100 else tb$Freq
+  yLabel <- gettext("Counts")
+  yBar <- tb$Freq
   p <- ggplot2::ggplot(tb, ggplot2::aes(x = level, y = yBar)) +
     ggplot2::geom_col(fill = "grey", col = "black", width = 0.9) +
     ggplot2::xlab(variable) +
     ggplot2::ylab(yLabel) +
     ggplot2::scale_x_discrete(limits = levels(tb$level), drop = FALSE)
 
-  # Line: use the same x
-  yLine <- if (shift) cumP else tb$cums / scaleRight
+  # Line: cumulative counts when shifted, otherwise the old scaled % line
+  yLine <- if (shift) cumC else tb$cums / scaleRight
   dfL   <- data.frame(level = tb$level, y = yLine)
+
+  # left-axis breaks
+  yBreaksLeft <- if (shift) {
+    br <- jaspGraphs::getPrettyAxisBreaks(c(0, tot))
+    sort(unique(c(br, tot)))  # make sure tot is included as a tick
+  } else {
+    yBreaks
+  }
 
   p <- p +
     ggplot2::geom_line(
@@ -2492,12 +2489,12 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     ) +
     ggplot2::scale_y_continuous(
       name   = yLabel,
-      breaks = if (shift) seq(0, 100, 20) else yBreaks,
-      limits = if (shift) c(0, 100) else range(yBreaks),
+      breaks = yBreaksLeft,
+      limits = if (shift) c(0, tot) else range(yBreaksLeft),
       sec.axis = ggplot2::sec_axis(
-        transform = if (shift) ~ . * tot / 100 else ~ . * scaleRight,
-        name      = if (shift) gettext("Counts") else gettextf("Percentage (%%)"),
-        breaks    = if (shift) cntBreaks else seq(0, 100, 20)
+        transform = if (shift) ~ . * 100 / tot else ~ . * scaleRight,
+        name      = gettextf("Percentage (%%)"),
+        breaks    = seq(0, 100, 20)
       )
     ) +
     jaspGraphs::geom_rangeframe(sides = "rbl") +
@@ -2522,7 +2519,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     # y height in *left-axis* units
     # - shifted: left axis is %, so use target directly
     # - normal : left axis is counts; map % -> left via scaleRight
-    yGuideLeft <- if (shift) target else perc * max(yBreaks)
+    yGuideLeft <- if (shift) perc * tot else perc * max(yBreaks)
 
     # horizontal endpoint on the side where % axis lives
     xEnd <- if (shift) 0.5 else length(levels(tb$level)) + 0.5
@@ -2563,7 +2560,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
 
 }
-
 .descriptivesDensityPlots <- function(container, dataset, variables, options) {
   # we are not ready to plot
   if (length(variables) == 0)
