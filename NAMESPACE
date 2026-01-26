@@ -1,4 +1,5 @@
 import(jaspBase)
+importFrom(ggplot2, after_stat)
 export(Descriptives)
 export(DescriptivesInternal)
 export(.descriptivesScatterPlots)

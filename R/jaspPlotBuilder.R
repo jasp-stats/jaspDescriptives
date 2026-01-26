@@ -447,7 +447,13 @@ addDecodedLabels <- function(p) {
     if (tab[["connectRMPlotBuilder"]] && tab[["addDataPoint"]]) {
       point_func <- .create_point_layer_func(tab, shapeVar)
       temp_plot <- point_func(tidyplot_obj)
-      built_temp <- ggplot2::ggplot_build(temp_plot[[1]])
+      built_temp <- if (ggplot2::is.ggplot(temp_plot)) {
+        ggplot2::ggplot_build(temp_plot)
+      } else if (is.list(temp_plot)) {
+        ggplot2::ggplot_build(temp_plot[[1]])
+      } else {
+        stop("Unexpected object returned by point_func.")
+      }
       jittered_point_data <- built_temp$data[[1]]
     }
 
@@ -1909,7 +1915,11 @@ addDecodedLabels <- function(p) {
     # }
 
     # Extract the ggplot object from tidyplot----
-    tidyplot_obj <- tidyplot_obj[[1]]
+    tidyplot_obj <- if (ggplot2::is.ggplot(tidyplot_obj)) {
+      tidyplot_obj
+    } else {
+      tidyplot_obj <- tidyplot_obj[[1]]
+    }
 
     if (isTRUE(tab[["flipPlot"]])) {
       tidyplot_obj <- tidyplot_obj + ggplot2::coord_flip(clip = "off")
@@ -2090,7 +2100,6 @@ addDecodedLabels <- function(p) {
               thisText[[rowsVar]] <- rowAnnotLine
             }
             if (!is.null(gridVar) && nzchar(gridAnnotLine)) {
-              s
               thisText[[gridVar]] <- gridAnnotLine
             }
 
@@ -2828,7 +2837,7 @@ addDecodedLabels <- function(p) {
         collectLegends <- if (getCommonLegendGlobal) FALSE else getCommonLegendRow
         layoutGuidesFull <- if (collectLegends) "collect" else "auto"
 
-        fullRowPatchwork <- patchwork::wrap_plots(plotsInFullRow, ncol = nPlots, widths = relWidths) +
+        fullRowPatchwork <- patchwork::wrap_plots(setPanelWidthAndHeightToNull(plotsInFullRow), ncol = nPlots, widths = relWidths) +
           patchwork::plot_layout(guides = layoutGuidesFull)
 
         if (collectLegends) {
@@ -2938,5 +2947,24 @@ addDecodedLabels <- function(p) {
     } else {
       plotGridContainer[["plotGrid"]]$plotObject <- finalGrid
     }
+  }
+}
+
+setPanelWidthAndHeightToNullHelper <- function(p) {
+  if (ggplot2::is.ggplot(p)) {
+    p@theme$panel.widths <- NULL
+    p@theme$panel.heights <- NULL
+  }
+  p
+}
+setPanelWidthAndHeightToNull <- function(ggplt) {
+  # until https://github.com/thomasp85/patchwork/issues/417 is fixed
+
+  if (ggplot2::is.ggplot(ggplt)) {
+    return(setPanelWidthAndHeightToNullHelper(ggplt))
+  } else if (is.list(ggplt)) {
+    return(lapply(ggplt, setPanelWidthAndHeightToNullHelper))
+  } else {
+    stop("Input must be a ggplot object or a list of ggplot objects.")
   }
 }

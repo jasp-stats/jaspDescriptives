@@ -260,10 +260,19 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   dataset <- dataInfo$dataset
 
   # Ggplot() with aes()
-  aesX     <- dataset$primaryFactor
-  aesFill  <- if(options[["secondaryFactor"]] != "") dataset$secondaryFactor else if (options[["colorAnyway"]]) aesX else NULL
-  aesColor <- if(options[["covariate"]]       != "") dataset$covariate       else if (options[["colorAnyway"]]) aesX else aesFill
-  aesArg   <- ggplot2::aes(y = .data[[inputVariable]], x = aesX, fill = aesFill, color = aesColor)
+  # old and bad approach
+  # aesX     <- dataset$primaryFactor
+  # aesFill  <- if(options[["secondaryFactor"]] != "") dataset$secondaryFactor else if (options[["colorAnyway"]]) aesX else NULL
+  # aesColor <- if(options[["covariate"]]       != "") dataset$covariate       else if (options[["colorAnyway"]]) aesX else aesFill
+  # aesArg   <- ggplot2::aes(y = .data[[inputVariable]], x = aesX, fill = aesFill, color = aesColor)
+  # plotInProgress <- ggplot2::ggplot(data = dataset, mapping = aesArg)
+
+  # new approach
+  aesY     <- rlang::sym(inputVariable)
+  aesX     <- rlang::sym("primaryFactor")
+  aesFill  <- if (options[["secondaryFactor"]] != "") rlang::sym("secondaryFactor") else if (options[["colorAnyway"]]) aesX else NULL
+  aesColor <- if (options[["covariate"]]       != "") rlang::sym("covariate")       else if (options[["colorAnyway"]]) aesX else aesFill
+  aesArg   <- ggplot2::aes(y = !!aesY, x = !!aesX, fill = !!aesFill, color = !!aesColor)
   plotInProgress <- ggplot2::ggplot(data = dataset, mapping = aesArg)
 
   # Palettes
@@ -318,21 +327,41 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 
   # Interval around mean
   intervalPosition <- if (options[["meanPosition"]] == "likeBox") meanPosition else "identity"
+  useColorFromFill <- (options[["secondaryFactor"]] != "" || options[["colorAnyway"]])
+
   if (options[["meanInterval"]] || options[["meanIntervalCustom"]]) {
     intervalBounds <- dataInfo$intervalBounds[[inputVariable]]
       if (intervalBounds$successfulComputation) {
         lowerBound <- intervalBounds$lowerBound
         upperBound <- intervalBounds$upperBound
-        meanInterval <- ggplot2::stat_summary(
-          ggplot2::aes(ymin = ..y.. - (..y.. - lowerBound), ymax = ..y.. + (upperBound - ..y..)),
-          fun         = mean,
-          geom        = "errorbar",
-          width       = options[["boxWidth"]],
-          lwd         = options[["boxOutlineWidth"]],
-          position    = intervalPosition,
-          color       = .rainOutlineColor(options, "colorPalette", infoFactorCombinations),
-          show.legend = FALSE
-        )
+
+        if (useColorFromFill) {
+          # Use after_scale(fill) for per-group colors
+          meanInterval <- ggplot2::stat_summary(
+            ggplot2::aes(ymin = ggplot2::after_stat(y) - (ggplot2::after_stat(y) - lowerBound),
+                         ymax = ggplot2::after_stat(y) + (upperBound - ggplot2::after_stat(y)),
+                         colour = ggplot2::after_scale(fill)),
+            fun         = mean,
+            geom        = "errorbar",
+            width       = options[["boxWidth"]],
+            lwd         = options[["boxOutlineWidth"]],
+            position    = intervalPosition,
+            show.legend = FALSE
+          )
+        } else {
+          # Use black for no coloring
+          meanInterval <- ggplot2::stat_summary(
+            ggplot2::aes(ymin = ggplot2::after_stat(y) - (ggplot2::after_stat(y) - lowerBound),
+                         ymax = ggplot2::after_stat(y) + (upperBound - ggplot2::after_stat(y))),
+            fun         = mean,
+            geom        = "errorbar",
+            width       = options[["boxWidth"]],
+            lwd         = options[["boxOutlineWidth"]],
+            position    = intervalPosition,
+            color       = "black",
+            show.legend = FALSE
+          )
+        }
       } else {
         meanInterval <- NULL
       }
@@ -392,8 +421,12 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
     } else {
       ggplot2::guide_colourbar()
     }
+  } else {
+    # When there's no covariate but we're using after_scale(fill) for colors,
+    # suppress any spurious colour legend
+    "none"
   }
-  guide <- ggplot2::guides(fill = guideFill, color = guideColor)
+  guide <- ggplot2::guides(fill = guideFill, colour = guideColor, color = guideColor)
 
   legendCloser <- ggplot2::theme(
     legend.box.spacing = ggplot2::unit(0, "pt"),
@@ -552,24 +585,46 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   # Arguments for the cloud elements: Violin, Box, Point, observationId lines
   showVioGuide    <- options[["secondaryFactor"]] == ""
   vioArgs         <- list(alpha = options[["vioOpacity"]], adjust = options[["vioSmoothing"]], lwd = options[["vioOutlineWidth"]])
-  vioOutlineColor <- .rainOutlineColor(options, options[["vioOutline"]], infoFactorCombinations)
 
-  perCloud512     <- rep(512, infoFactorCombinations$numberOfClouds)  # Each violin consists of 512 points by default
-  vioArgs$color   <- rep(vioOutlineColor, perCloud512)
+  # Determine violin outline color handling
+  # For "black" or "none", use fixed color. For "colorPalette", we'll use after_scale(fill) in mapping
+  vioOutlineOption <- options[["vioOutline"]]
+  if (vioOutlineOption == "black") {
+    vioArgs$colour <- "black"
+  } else if (vioOutlineOption == "none") {
+    vioArgs$colour <- NA
+  }
+  # For "colorPalette", color will be set via mapping later
 
-  boxArgs       <- list(outlier.shape = NA, alpha = options[["boxOpacity"]], show.legend = FALSE, lwd = options[["boxOutlineWidth"]])
-  boxArgs$color <- .rainOutlineColor(options, options[["boxOutline"]], infoFactorCombinations)
+  # Determine box outline color handling
+  boxOutlineOption <- options[["boxOutline"]]
+  boxArgs <- list(outlier.shape = NA, alpha = options[["boxOpacity"]], show.legend = FALSE, lwd = options[["boxOutlineWidth"]])
+  if (boxOutlineOption == "black") {
+    boxArgs$colour <- "black"
+  } else if (boxOutlineOption == "none") {
+    boxArgs$colour <- NA
+  }
+  # For "colorPalette", color will be set via mapping later
 
   showPointGuide <- options[["covariate"]] != ""
   pointArgs      <- list(alpha = options[["pointOpacity"]], show.legend = showPointGuide, size = options[["pointSize"]])
 
   lineArgs <- list(alpha = options[["observationIdLineOpacity"]], show.legend = FALSE, lwd = options[["observationIdLineWidth"]])
-  if (options[["secondaryFactor"]] == "") lineArgs$color <- "black"
+  if (options[["secondaryFactor"]] == "") lineArgs$colour <- "black"
   if (isFALSE(options[["showPoint"]])) lineArgs$alpha <- 0
 
   # Violin positioning
   vioNudgeForEachCloud <- .rainNudgeForEachCloud(options[["vioNudge"]], vioSides)  # Based on default/custom orientation
-  vioPosVec <- rep(vioNudgeForEachCloud, each = 512)
+  # original, but not reliable, the exact no. points per cloud is _not_ always 512
+  # vioPosVec <- rep(vioNudgeForEachCloud, each = 512)
+  tempPlot <- plotInProgress + ggrain::geom_rain(
+    violin.args = vioArgs,
+    violin.args.pos  = list(width = options[["vioHeight"]]),
+    likert      = FALSE
+  )
+  tempPlotBuild <- ggplot2::ggplot_build(tempPlot)
+  noPoints <- unclass(table(tempPlotBuild@data[[1]]$group))
+  vioPosVec <- rep(vioNudgeForEachCloud, noPoints[seq_along(vioNudgeForEachCloud)])
   vioArgsPos <- list(
     width = options[["vioHeight"]], position = ggplot2::position_nudge(x = vioPosVec), side = vioSides
   )
@@ -600,18 +655,11 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
             # primaryFactor condition necessary because if user input primaryFactor, then adds observationId input,
             # and then removes primaryFactor again, JASP/GUI/qml will not remove observationId input
 
-  if (jaspGraphs::getGraphOption("ggVersion") >= "4.0.0") {
-    # ggplot2 4.0.0 changed StatYdensity to add 3 quantiles. However, these 3 values are only sometimes added,
-    # likely when the weren't already part of the computed stat. So we cannot reliably deduce the no. points
-    # it's no longer 512 * no. clouds. Thus we overwrite the stat and force the no. quantiles to 0.
-    # This would otherwise require fixes in ggrain and gghalves.
-    jaspBase::assignFunctionInPackage(StatHalfYdensity_custom, "StatHalfYdensity", "gghalves")
-  }
-
   # Call geom_rain()
   output <- ggrain::geom_rain(
 
-    violin.args = vioArgs, boxplot.args = boxArgs, point.args = pointArgs, line.args = lineArgs,
+    violin.args = c(vioArgs, list(stat = StatHalfYdensity_custom)),
+    boxplot.args = boxArgs, point.args = pointArgs, line.args = lineArgs,
 
     rain.side        = NULL,  # Necessary for neat positioning
     violin.args.pos  = vioArgsPos,
@@ -625,6 +673,48 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
                          # instead use height argument in ggpp:position_jitternudge()
   )  # End geom_rain()
 
+  # for debugging
+  # plotInProgress + output
+
+  # For colorPalette outline option, set the colour to match fill using after_scale
+  # This allows per-group colors while avoiding length mismatch issues
+  useColorFromFill <- (options[["secondaryFactor"]] != "" || options[["colorAnyway"]])
+
+  # Determine layer indices based on whether id.long.var is set
+  # When id.long.var is NULL: layers are [1=violin, 2=boxplot, 3=point]
+  # When id.long.var is set: layers are [1=line, 2=violin, 3=boxplot, 4=point] (Lines come FIRST!)
+  hasIdLines <- !is.null(idArg)
+
+  if (hasIdLines) {
+    lineLayerIdx <- 1
+    violinLayerIdx <- 2
+    boxLayerIdx <- 3
+    pointLayerIdx <- 4
+  } else {
+    lineLayerIdx <- NULL
+    violinLayerIdx <- 1
+    boxLayerIdx <- 2
+    pointLayerIdx <- 3
+  }
+
+  if (vioOutlineOption == "colorPalette" && useColorFromFill) {
+    # Violin layer - use after_scale(fill) for color
+    # Don't suppress legend entirely - we just want to suppress the colour aesthetic from legend
+    # The fill aesthetic should still contribute to the legend
+    output[[violinLayerIdx]]$mapping <- utils::modifyList(
+      output[[violinLayerIdx]]$mapping %||% ggplot2::aes(),
+      ggplot2::aes(colour = ggplot2::after_scale(fill))
+    )
+  }
+
+  if (boxOutlineOption == "colorPalette" && useColorFromFill) {
+    # Box layer - use after_scale(fill) for color
+    output[[boxLayerIdx]]$mapping <- utils::modifyList(
+      output[[boxLayerIdx]]$mapping %||% ggplot2::aes(),
+      ggplot2::aes(colour = ggplot2::after_scale(fill))
+    )
+  }
+
   return(output)
 }  # End .rainGeomRain()
 
@@ -636,17 +726,51 @@ StatHalfYdensity_custom <- ggplot2::ggproto(
   compute_group = function(
     data, scales, width = NULL, bw = "nrd0", adjust = 1,
     kernel = "gaussian", trim = TRUE, na.rm = FALSE) {
-    ggplot2::StatYdensity$compute_group(
-      data, scales, width = width, bw = bw, adjust = adjust,
-      kernel = kernel, trim = trim, na.rm = na.rm, quantiles = c())
+
+    if (length(data$y) < 2) return(data.frame())
+
+    # Handle weights
+    weights <- if (!is.null(data$weight)) data$weight / sum(data$weight) else NULL
+
+    # Compute density using stats::density directly to guarantee n=512
+    if (trim) {
+      range <- range(data$y, na.rm = TRUE)
+      dens <- stats::density(data$y, weights = weights, bw = bw, adjust = adjust,
+                             kernel = kernel, n = 512, from = range[1], to = range[2])
+    } else {
+      dens <- stats::density(data$y, weights = weights, bw = bw, adjust = adjust,
+                             kernel = kernel, n = 512) # Default cut=3 extends range
+    }
+
+    df <- data.frame(y = dens$x, density = dens$y)
+    df$scaled <- df$density / max(df$density, na.rm = TRUE)
+    df$violinwidth <- df$scaled
+    df$n <- length(data$y)
+    df$count <- df$density * df$n
+
+    df
   },
 
   compute_panel = function(
     self, data, scales, width = NULL, bw = "nrd0", adjust = 1,
     kernel = "gaussian", trim = TRUE, na.rm = FALSE, scale = "area") {
+
+    # Use compute_group to get densities for each group
+    # Note: this simple implementation ignores 'scale' parameter (area vs count)
+    # But for raincloud plots in JASP, standard density scaling is likely sufficient.
+    # To fully support 'scale' argument would require more complex logic.
+    # Given we just need 512 points, letting compute_group handle it per group is safest.
+
+    # However, ggplot2::StatYdensity$compute_panel calls compute_group and then scales across groups
+    # If we overwrite compute_group, we might not need to overwrite compute_panel?
+    # But the original code overwrote BOTH to pass quantiles=c().
+
+    # If we revert to default compute_panel, it will call OUR compute_group?
+    # Yes, usually.
+
     ggplot2::StatYdensity$compute_panel(
       data, scales, width = width, bw = bw, adjust = adjust,
-      kernel = kernel, trim = trim, na.rm = na.rm, scale = scale, quantiles = c())
+      kernel = kernel, trim = trim, na.rm = na.rm, scale = scale)
   }
 )
 
@@ -693,19 +817,45 @@ StatHalfYdensity_custom <- ggplot2::ggproto(
   lowerEnds <- boxData$ymin
   upperEnds <- boxData$ymax
 
-  lowerWhiskers <- ggplot2::stat_summary(
-    fun = median, geom = "errorbar", width = options[["boxWidth"]], position = boxPosition,
-    ggplot2::aes(ymin = ..y.. - (..y.. - lowerEnds), ymax = ..y.. - (..y.. - lowerEnds)),
-    color = .rainOutlineColor(options, options[["boxOutline"]], infoFactorCombinations),
-    lwd = options[["boxOutlineWidth"]], show.legend = FALSE
-  )
+  # Determine whisker color based on boxOutline option
+  boxOutlineOption <- options[["boxOutline"]]
+  useColorFromFill <- (options[["secondaryFactor"]] != "" || options[["colorAnyway"]])
 
-  upperWhiskers <- ggplot2::stat_summary(
-    fun = median, geom = "errorbar", width = options[["boxWidth"]], position = boxPosition,
-    ggplot2::aes(ymin = ..y.. + abs(..y.. - upperEnds), ymax = ..y.. + abs(..y.. - upperEnds)),
-    color = .rainOutlineColor(options, options[["boxOutline"]], infoFactorCombinations),
-    lwd = options[["boxOutlineWidth"]], show.legend = FALSE
-  )
+  if (boxOutlineOption == "colorPalette" && useColorFromFill) {
+    # Use after_scale to match fill color
+    lowerWhiskers <- ggplot2::stat_summary(
+      fun = median, geom = "errorbar", width = options[["boxWidth"]], position = boxPosition,
+      ggplot2::aes(ymin = ggplot2::after_stat(y) - (ggplot2::after_stat(y) - lowerEnds),
+                   ymax = ggplot2::after_stat(y) - (ggplot2::after_stat(y) - lowerEnds),
+                   colour = ggplot2::after_scale(fill)),
+      lwd = options[["boxOutlineWidth"]], show.legend = FALSE
+    )
+
+    upperWhiskers <- ggplot2::stat_summary(
+      fun = median, geom = "errorbar", width = options[["boxWidth"]], position = boxPosition,
+      ggplot2::aes(ymin = ggplot2::after_stat(y) + abs(ggplot2::after_stat(y) - upperEnds),
+                   ymax = ggplot2::after_stat(y) + abs(ggplot2::after_stat(y) - upperEnds),
+                   colour = ggplot2::after_scale(fill)),
+      lwd = options[["boxOutlineWidth"]], show.legend = FALSE
+    )
+  } else {
+    # Use fixed color (black or NA)
+    whiskerColor <- if (boxOutlineOption == "none") NA else "black"
+
+    lowerWhiskers <- ggplot2::stat_summary(
+      fun = median, geom = "errorbar", width = options[["boxWidth"]], position = boxPosition,
+      ggplot2::aes(ymin = ggplot2::after_stat(y) - (ggplot2::after_stat(y) - lowerEnds), ymax = ggplot2::after_stat(y) - (ggplot2::after_stat(y) - lowerEnds)),
+      color = whiskerColor,
+      lwd = options[["boxOutlineWidth"]], show.legend = FALSE
+    )
+
+    upperWhiskers <- ggplot2::stat_summary(
+      fun = median, geom = "errorbar", width = options[["boxWidth"]], position = boxPosition,
+      ggplot2::aes(ymin = ggplot2::after_stat(y) + abs(ggplot2::after_stat(y) - upperEnds), ymax = ggplot2::after_stat(y) + abs(ggplot2::after_stat(y) - upperEnds)),
+      color = whiskerColor,
+      lwd = options[["boxOutlineWidth"]], show.legend = FALSE
+    )
+  }
 
   return(list(lowerWhiskers = lowerWhiskers, upperWhiskers = upperWhiskers))
 }  # End .rainWhiskers()
@@ -715,28 +865,45 @@ StatHalfYdensity_custom <- ggplot2::ggproto(
 # .rainMeansAndLines() ----
 .rainMeansAndLines <- function(options, boxPosVec, aesX, aesFill, infoFactorCombinations, meanPosition) {
 
+  # Determine if we should use per-group colors (after_scale(fill)) or fixed colors
+  useColorFromFill <- (options[["secondaryFactor"]] != "" || options[["colorAnyway"]])
+
   means <- if (options[["mean"]]) {
-    ggplot2::stat_summary(
-      fun = mean, geom = "point",
-      mapping = ggplot2::aes(x = aesX, fill = aesFill),  # No color argument, covariate will interfere with it
-      color = .rainOutlineColor(options, "colorPalette", infoFactorCombinations),  # Instead like Outlines
-      shape = 18, size = options[["meanSize"]], alpha = 1, show.legend = FALSE, position = meanPosition
-    )
+    if (useColorFromFill) {
+      # Use after_scale(fill) for per-group colors
+      ggplot2::stat_summary(
+        fun = mean, geom = "point",
+        mapping = ggplot2::aes(x = !!aesX, fill = !!aesFill, colour = ggplot2::after_scale(fill)),
+        shape = 18, size = options[["meanSize"]], alpha = 1, show.legend = FALSE, position = meanPosition
+      )
+    } else {
+      # No coloring, use black
+      ggplot2::stat_summary(
+        fun = mean, geom = "point",
+        mapping = ggplot2::aes(x = !!aesX, fill = !!aesFill),
+        color = "black",
+        shape = 18, size = options[["meanSize"]], alpha = 1, show.legend = FALSE, position = meanPosition
+      )
+    }
   }
 
   meanLinesGroupMapping <- if (options[["secondaryFactor"]] == "") 1 else aesFill
 
-  meanLinesColor <- if (options[["secondaryFactor"]] == "") {
-    "black"
-  } else {
-    .rainOutlineColor(options, "colorPalette", infoFactorCombinations)
-  }
-
   meanLines <- if (options[["mean"]] && options[["meanLines"]]) {  # Needs options$mean as qml wont uncheck options$meanLines
-    ggplot2::stat_summary(                               # if options$mean is unchecked again
-      fun = mean, geom = "line", mapping = ggplot2::aes(group = meanLinesGroupMapping),
-      color = meanLinesColor, alpha = options[["meanLinesOpacity"]], position = meanPosition, lwd = options[["meanLinesWidth"]]
-    )
+    if (useColorFromFill && options[["secondaryFactor"]] != "") {
+      # Use after_scale(fill) for per-group line colors
+      ggplot2::stat_summary(
+        fun = mean, geom = "line",
+        mapping = ggplot2::aes(group = !!meanLinesGroupMapping, colour = ggplot2::after_scale(fill)),
+        alpha = options[["meanLinesOpacity"]], position = meanPosition, lwd = options[["meanLinesWidth"]]
+      )
+    } else {
+      # Use black for lines
+      ggplot2::stat_summary(
+        fun = mean, geom = "line", mapping = ggplot2::aes(group = !!meanLinesGroupMapping),
+        color = "black", alpha = options[["meanLinesOpacity"]], position = meanPosition, lwd = options[["meanLinesWidth"]]
+      )
+    }
   }
 
   return(list(means = means, meanLines = meanLines))
