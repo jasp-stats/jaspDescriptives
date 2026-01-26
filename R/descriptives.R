@@ -16,7 +16,8 @@
 #
 
 DescriptivesInternal <- function(jaspResults, dataset, options) {
-
+  # sink(file="~/Downloads/log.txt")
+  # on.exit(sink(NULL))
   variables     <- unlist(options[["variables"]])
   variableTypes <- options[["variables.types"]]
 
@@ -43,6 +44,8 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     splitDat <- split(dataset[variables], splitFactor)
 
   }
+
+  # print(dataset)
 
   .descriptivesDescriptivesTable(dataset, options, jaspResults, numberMissingSplitBy = numberMissingSplitBy)
 
