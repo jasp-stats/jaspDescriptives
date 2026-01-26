@@ -19,6 +19,7 @@ Imports:
   flexplot,
   ggrain,
   ggh4x,
+  gghalves,
   ggpp,
   ggtext,
   dplyr,
