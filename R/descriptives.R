@@ -2398,12 +2398,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     column <- dataset[[variable]]
     column <- column[!is.na(column)]
   } else { # there is a count variable
-    # check error for the x avriable
-    # the x variable can only have unique values
-    if (length(unique(dataset[[variable]])) != nrow(dataset)) {
-      parPlot$setError(gettext("The variable used for categories must not have duplicated values when a count variable is specified."))
-      return(parPlot)
-    }
     # check errors for the count variable
     if (variable == options[["paretoAddCountVariable"]]) {
       parPlot$setError(gettext("The variable used for counts must be different from the variable used for categories."))
@@ -2423,8 +2417,14 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
 .descriptivesParetoPlots_Fill <- function(column, variable, options) {
 
+  # tableNote <- ""
   # Normalize input: either a vector OR a 2-col data.frame (category, COUNT)
   if (is.data.frame(column) && ncol(column) == 2) {
+    # does the x-variable have duplicated categories, collapse them
+    if (length(unique(column[[1]])) != nrow(column)) {
+      column <- aggregate(as.numeric(as.character(column[[2]])), by = list(column[[1]]), FUN = sum)
+      # tableNote <- gettext("Note: Categories with multiple counts have been collapsed.")
+    }
     tb <- data.frame(level = column[[1]], Freq = as.numeric(as.character(column[[2]])))
   } else {
     tab <- table(column, useNA = "no")
