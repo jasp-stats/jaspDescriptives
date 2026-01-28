@@ -903,7 +903,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if (length(omittedVariables) > 0L) {
     variableFirstTable <- setdiff(options[["variables"]], omittedVariables)
     if (length(variableFirstTable) > 0L) {
-      freqTabs[[variableFirstTable[[1L]]]]$addFootnote(
+      freqTabs[["ommissionText"]] <- createJaspHtml(text =
         sprintf(
           ngettext(
             msg1 = "%2$s has more than %1$s distinct values and is omitted.",
@@ -912,7 +912,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
           ),
           maximumDistinctValues,
           paste(omittedVariables, collapse = ", ")
-        )
+        ), position = 1
       )
       # It's actually only the footnote that introduces this dependency...
       freqTabs$dependOn(options = "variables")
