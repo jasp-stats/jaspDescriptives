@@ -91,7 +91,7 @@ Form
 						{label: qsTr("4"),	                value: 4},
 						{label: qsTr("5"),	                value: 5},
 						{label: qsTr("6 (Minitab, SPSS)"),	value: 6},
-						{label: qsTr("7 (R, S)"),	        value: 7},
+						{label: qsTr("7 (R)"),	        value: 7},
 						{label: qsTr("8"),	                value: 8},
 						{label: qsTr("9"),	                value: 9}
 					]
