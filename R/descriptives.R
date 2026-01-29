@@ -128,7 +128,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if (options$boxPlot) {
     if (is.null(jaspResults[["boxPlot"]])) {
       jaspResults[["boxPlot"]] <- createJaspContainer(gettext("Boxplots"))
-      jaspResults[["boxPlot"]]$dependOn(c("boxPlot", "splitBy"))
+      jaspResults[["boxPlot"]]$dependOn(c("boxPlot", "splitBy", "quantilesType"))
       jaspResults[["boxPlot"]]$position <- 7
     }
 
@@ -151,7 +151,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
         else # only one Q-Q Plot
           gettext("Q-Q Plot")
       )
-      jaspResults[["QQPlots"]]$dependOn(c("qqPlot", "splitBy"))
+      jaspResults[["QQPlots"]]$dependOn(c("qqPlot", "splitBy", "quantilesType"))
       jaspResults[["QQPlots"]]$position <- 8
     }
     QQPlots <- jaspResults[["QQPlots"]]
@@ -393,7 +393,8 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     "seMean", "sd", "coefficientOfVariation", "variance", "skewness", "kurtosis", "shapiroWilkTest",
     "range", "iqr", "mad", "madRobust", "minimum", "maximum", "sum", "quartiles", "quantilesForEqualGroups",
     "percentiles", "descriptivesTableTransposed", "valid", "missing", "meanCi", "meanCiLevel", "meanCiMethod",
-    "sdCi", "sdCiLevel", "sdCiMethod", "varianceCiMethod", "varianceCi", "varianceCiLevel", "ciBootstrapSamples"
+    "sdCi", "sdCiLevel", "sdCiMethod", "varianceCiMethod", "varianceCi", "varianceCiLevel", "ciBootstrapSamples",
+    "quantilesType"
   ))
 
   if (wantsSplit) {
@@ -611,7 +612,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     resultsCol[["Coefficient of Variation"]]<- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$coefficientOfVariation,      na.omitted, function(param) { sd(param) / mean(param)})
     resultsCol[["MAD"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$mad,               na.omitted, function(param) { mad(param, constant = 1) } )
     resultsCol[["MAD Robust"]]              <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$madRobust,         na.omitted, mad)
-    resultsCol[["IQR"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$iqr,               na.omitted, .descriptivesIqr)
+    resultsCol[["IQR"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$iqr,               na.omitted, .descriptivesIqr, options)
     resultsCol[["Variance"]]                <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$variance,          na.omitted, var)
     resultsCol[["Kurtosis"]]                <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$kurtosis,          na.omitted, .descriptivesKurtosis)
     resultsCol[["Std. Error of Kurtosis"]]  <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$kurtosis,          na.omitted, .descriptivesSEK)
@@ -705,8 +706,19 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     if (columnType == "scale" || columnType == "ordinal") {
       # Type 7: default in R
       # Type 3: Nearest even order statistic (SAS default till ca. 2010).
-      quartileType <- ifelse(columnType == "scale", 7, 3)
-      q123 <- quantile(na.omitted, c(.25, .5, .75), names = FALSE, type = quartileType)
+      quartileType <- as.integer(options[["quantilesType"]]) # extract number from type for quantile() function
+
+      # Treat variable (i.e., na.omitted) as numeric to make all quantile types applicable.
+      # If we would treat ordinals as ordered factors, the quantile function would lead
+      # to an error.
+      # This is necessary because the user can specify the type from the JASP GUI now,
+      # and the type is applied across all input variables.
+      q123 <- quantile(as.numeric(na.omitted), c(.25, .5, .75), names = FALSE, type = quartileType)
+
+      # To get the labels of the ordinal as output in the table and
+      # not the numbers, index the levels of the factor
+      if(columnType == "ordinal")
+        q123 <- levels(na.omitted)[q123]
 
       resultsCol[["q1"]] <- toMixedCol(q123[1])
       resultsCol[["q2"]] <- toMixedCol(q123[2])
@@ -745,19 +757,38 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if (columnType == "scale" || columnType == "ordinal") {
     # Type 7: default in R
     # Type 3: Nearest even order statistic (SAS default till ca. 2010).
-    quartileType <- ifelse(columnType == "scale", 7, 3)
+    quartileType <- as.integer(options[["quantilesType"]]) # extract number from type for quantile() function
+
     if (options$quantilesForEqualGroups) {
 
-      for (i in seq(equalGroupsNo - 1))
-        resultsCol[[paste0("eg", i)]] <- toMixedCol(quantile(na.omitted, c(i / equalGroupsNo), names = FALSE, type = quartileType))
+      for (i in seq(equalGroupsNo - 1)) {
+        # Treat variable (i.e., na.omitted) as numeric to make all quantile types applicable.
+        # If we would treat ordinals as ordered factors, the quantile function would lead
+        # to an error.
+        # This is necessary because the user can specify the type from the JASP GUI now,
+        # and the type is applied across all input variables.
+        quantileEst <- quantile(as.numeric(na.omitted), c(i / equalGroupsNo), names = FALSE, type = quartileType)
 
+        # To get the labels of the ordinal as output in the table and
+        # not the numbers, index the levels of the factor
+        if (columnType == "ordinal")
+          quantileEst <- levels(na.omitted)[quantileEst]
+
+        resultsCol[[paste0("eg", i)]] <- toMixedCol(quantileEst)
+      }
     }
 
     if (options$percentiles) {
 
-      for (i in percentilesPercentiles)
-        resultsCol[[paste0("pc", i)]] <- toMixedCol(quantile(na.omitted, c(i / 100), names = FALSE, type = quartileType))
+      for (i in percentilesPercentiles) {
+        # See explanation above
+        percentileEst <- quantile(as.numeric(na.omitted), c(i / 100), names = FALSE, type = quartileType)
 
+        if (columnType == "ordinal")
+          percentileEst <- levels(na.omitted)[percentileEst]
+
+        resultsCol[[paste0("pc", i)]] <- toMixedCol(percentileEst)
+      }
     }
   } else {
     if (options$quantilesForEqualGroups) {
@@ -786,11 +817,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 }
 
 
-.descriptivesDescriptivesTable_subFunction_OptionChecker <- function(optionToCheck, na.omitted, function_to_use) {
+.descriptivesDescriptivesTable_subFunction_OptionChecker <- function(optionToCheck, na.omitted, function_to_use, ...) {
   if (!optionToCheck)
     return(NULL)
 
-  return(function_to_use(na.omitted))
+  return(function_to_use(na.omitted, ...))
 }
 
 .descriptivesFrequencyTables <- function(dataset, options, freqTabs) {
@@ -1227,7 +1258,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
     for (level in levels(plotDat$group)) {
       v <- plotDat[plotDat$group == level, ]$y
-      quantiles <- quantile(v, probs = c(0.25, 0.75))
+      quantiles <- quantile(v, probs = c(0.25, 0.75), type = as.integer(options[["quantilesType"]]))
       obsIQR <- quantiles[2] - quantiles[1]
       plotDat[plotDat$group == level, ]$outlier <- v < (quantiles[1] - 1.5 * obsIQR) | v > (quantiles[2] + 1.5 * obsIQR)
     }
@@ -1253,9 +1284,48 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     if (options[["boxPlotBoxPlot"]]) {
       # if we add jittered data points, don't show outlier dots
       outlierShape <- if (options[["boxPlotJitter"]]) NA else 19
+
+      # create summaries per group for boxplots
+      # needed to make the quantiles based on the type specified by the user
+      boxData <- dplyr::summarise(
+        dplyr::group_by(plotDat, group),
+        ymin = min(y[!outlier]), # lower end of whiskers smallest observation that is not an outlier
+        lower = quantile(y, 0.25, type = as.integer(options[["quantilesType"]])),
+        middle = quantile(y, 0.50, type = as.integer(options[["quantilesType"]])),
+        upper = quantile(y, 0.75, type = as.integer(options[["quantilesType"]])),
+        ymax = max(y[!outlier]) # upper end of whiskers largest observation that is not an outlier
+      )
+
+      # plot boxplots with errorbars based on the computed statistics
       p <- p +
-        ggplot2::stat_boxplot(geom = "errorbar", size = 0.75, width = boxWidth / 2) +
-        ggplot2::geom_boxplot(size = 0.75, outlier.size = 2, width = boxWidth, outlier.shape = outlierShape)
+        ggplot2::geom_errorbar(data = boxData, ggplot2::aes(
+          ymin = ymin,
+          ymax = ymax,
+          x = group
+        ),
+        inherit.aes = FALSE, linewidth = 0.75, width = boxWidth / 2) +
+
+        ggplot2::geom_boxplot(data = boxData, ggplot2::aes(
+          x = group,
+          fill = group,
+          ymin = ymin,
+          lower = lower,
+          middle = middle,
+          upper = upper,
+          ymax = ymax
+        ),
+        inherit.aes = FALSE,
+        size = 0.75, width = boxWidth,
+        stat = "identity")
+
+      # add outliers if there are any
+      # since boxplot function cannot add them due to precomputed stats
+      if(any(plotDat$outlier)) {
+        p <- p +
+          ggplot2::geom_point(data = plotDat[plotDat$outlier, ],
+                              shape = outlierShape,
+                              size = 2)
+      }
     }
 
     if (options[["boxPlotJitter"]]) {
@@ -1539,9 +1609,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   return(kurtosis)
 }
 
-.descriptivesIqr <- function(x) {
-  # Interquartile range based on the stats package
-  return(stats::IQR(x))
+.descriptivesIqr <- function(x, options) {
+  # Interquartile range based on the stats package using specified quantile type
+  type <- as.integer(options[["quantilesType"]])
+  return(stats::IQR(x, type = type))
 }
 
 .descriptivesSkewness <- function(x) {
@@ -1782,7 +1853,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
       # adapted from qqline
       x <- stats::qnorm(c(0.25, 0.75))
-      y <- stats::quantile(varCol, probs = c(0.25, 0.75))
+      y <- stats::quantile(varCol, probs = c(0.25, 0.75), type = as.integer(options[["quantilesType"]]))
       slope <- diff(y) / diff(x)
       int <- y[1L] - slope * x[1L]
 

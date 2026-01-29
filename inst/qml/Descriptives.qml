@@ -26,6 +26,8 @@ Form
 {
 	info: qsTr("Descriptives allows the user to obtain basic descriptive statistics, histograms and density plots, correlation plots, boxplots, and frequency tables.")
 	infoBottom: "## " + qsTr("References") + "\n"
+				+ 	"- Hyndman, R. J., & Fan, Y. (1996). Sample quantiles in statistical packages. *The American Statistician, 50*(4), 361–365." + "\n"
+				+ 	"- Langford, E. (2006). Quartiles in elementary statistics. *Journal of Statistics Education, 14*(3)." + "\n"
 				+	"- Moore, D. S., McCabe, G. P., & Craig, B. A. (2012). *Introduction to the practice of statistics (7th ed.)*. New York, NY: W. H. Freeman and Company." + "\n"
 				+	"- Schwarz, G. (1978). Estimating the dimension of a model. *Annals of Statistics, 6*, 461-464." + "\n"
 				+	"- Whitlock, M. C., & Schluter, D. (2015). *The analysis of biological data (2nd ed.)*. Greenwood Village, Colorado: Roberts and Company Publishers." + "\n"
@@ -46,7 +48,7 @@ Form
 	{
 		infoLabel: qsTr("Input")
 		AvailableVariablesList	{ name: "allVariablesList"								}
-		AssignedVariablesList	{ name: "variables";		title: qsTr("Variables");	info: qsTr("All variables of interest."); allowTypeChange: true }
+		AssignedVariablesList	{ name: "variables"; id: variables;		title: qsTr("Variables");	info: qsTr("All variables of interest."); allowTypeChange: true}
 		AssignedVariablesList	{ name: "splitBy";			title: qsTr("Split");		info: qsTr("Can be split by a categorical variable such as experimental condition.") ; singleVariable: true; allowedColumns: ["nominal"];	id: splitBy; minLevels: 2; maxLevels: 256 } // without maxLevels entering a continuous variable can freeze/ crash jasp, so we need an arbitrary maximum
 	}
 
@@ -74,6 +76,26 @@ Form
 		{
 			title:	qsTr("Quantiles")
 			info:	qsTr("Percentile Values")
+
+			DropDown
+			{
+				name: "quantilesType"
+				label: qsTr("Type")
+				id: quantilesType	
+				indexDefaultValue: 6 // Type 7, the default in R 
+				info: qsTr("Method used to compute quantiles (see Hyndman & Fan, 1996; Langford, 2006, for more information). The selection carries over to the inter-quartile range (IQR), box- and QQ-plot calculations. Note that ordinal variables are treated as continuous for the computations.\n")
+				values: [
+						{label: qsTr("1"),	                value: 1},
+						{label: qsTr("2 (SAS)"),	        value: 2},
+						{label: qsTr("3"),	                value: 3},
+						{label: qsTr("4"),	                value: 4},
+						{label: qsTr("5"),	                value: 5},
+						{label: qsTr("6 (Minitab, SPSS)"),	value: 6},
+						{label: qsTr("7 (R)"),	        value: 7},
+						{label: qsTr("8"),	                value: 8},
+						{label: qsTr("9"),	                value: 9}
+					]
+			}
 
 			CheckBox { name: "quartiles";	label: qsTr("Quartiles"); info: qsTr("Displays the 25th, 50th, and 75th percentiles of the data points.") }
 			CheckBox
