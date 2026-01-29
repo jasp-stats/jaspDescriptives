@@ -305,7 +305,7 @@ test_that("Pareto plot with count variable matches", {
   dt <- structure(list(Breakdown = c("i", "o", "a", "c", "y"), Count = c(7L, 7L, 14L, 6L, 10L),
                        Split = c("Shift A", "Shift A", "Shift B", "Shift B", "Shift B")),
                   class = "data.frame", row.names = c(NA, -5L))
-  results <- jaspTools::runAnalysis("Descriptives", dt, options)
+  results <- jaspTools::runAnalysis("Descriptives", dt, options, makeTests = FALSE)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "parPlot2")
 })
