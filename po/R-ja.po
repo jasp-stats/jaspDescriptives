@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.11.0\n"
-"POT-Creation-Date: 2025-10-11 03:23\n"
+"POT-Creation-Date: 2026-01-31 03:55\n"
 "PO-Revision-Date: 2024-07-12 14:09+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -370,11 +370,6 @@ msgstr "すべてのカテゴリ変数は、同じ水準数でなければなり
 
 msgid "Items must have 2 or more levels!"
 msgstr "項目は、2つ以上の水準である必要があります!"
-
-msgid ""
-"The variable used for categories must not have duplicated values when a "
-"count variable is specified."
-msgstr ""
 
 msgid ""
 "The variable used for counts must be different from the variable used for "

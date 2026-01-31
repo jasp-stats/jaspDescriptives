@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2025-10-11 03:23\n"
+"POT-Creation-Date: 2026-01-31 03:55\n"
 "PO-Revision-Date: 2025-04-02 18:57+0000\n"
 "Last-Translator: Иван Рудаков <riv@polygene.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
@@ -376,11 +376,6 @@ msgstr ""
 
 msgid "Items must have 2 or more levels!"
 msgstr "Пункты должны иметь 2 или более уровней!"
-
-msgid ""
-"The variable used for categories must not have duplicated values when a "
-"count variable is specified."
-msgstr ""
 
 msgid ""
 "The variable used for counts must be different from the variable used for "

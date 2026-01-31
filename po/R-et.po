@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.95.0\n"
-"POT-Creation-Date: 2025-10-11 03:23\n"
+"POT-Creation-Date: 2026-01-31 03:55\n"
 "PO-Revision-Date: 2025-09-11 17:45+0000\n"
 "Last-Translator: Rauno Salupere <rauno.salupere@gmail.com>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/jasp/"
@@ -353,11 +353,6 @@ msgid "All categorical variables must have the same number of levels!"
 msgstr ""
 
 msgid "Items must have 2 or more levels!"
-msgstr ""
-
-msgid ""
-"The variable used for categories must not have duplicated values when a "
-"count variable is specified."
 msgstr ""
 
 msgid ""
