@@ -1845,14 +1845,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     if (!is.null(errorMessage)) {
       descriptivesQQPlot$setError(gettextf("Plotting not possible: %s", errorMessage))
     } else {
-      varCol <- dataset[[qqvar]]
-      varCol <- varCol[!is.na(varCol)]
 
-      standResid <- as.data.frame(stats::qqnorm(varCol, plot.it = FALSE))
-      standResid <- na.omit(standResid)
       ciLevel <- if (options[["qqPlotCi"]])  options[["qqPlotCiLevel"]] else NULL
 
-      descriptivesQQPlot$plotObject <- jaspGraphs::plotQQnorm(standResid,
+      descriptivesQQPlot$plotObject <- jaspGraphs::plotQQnorm(dataset[[qqvar]],
                                                              yName = "Standardized residuals",
                                                              ablineColor = "darkred",
                                                              ablineOrigin = TRUE,

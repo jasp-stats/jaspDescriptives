@@ -55,7 +55,7 @@ test_that("Main table results match", {
 
 # test confidence intervals only
 test_that("Descriptive Statistics table results match", {
-  options <- analysisOptions("Descriptives")
+  options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "contNormal"
   options$variables.types <- "scale"
   options$valid <- FALSE
@@ -71,7 +71,7 @@ test_that("Descriptive Statistics table results match", {
   options$varianceCiMethod <- "bootstrap"
   options$paretoAddCountVariable <- ""
   set.seed(1)
-  results <- runAnalysis("Descriptives", "test.csv", options)
+  results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   table <- results[["results"]][["stats"]][["data"]]
   jaspTools::expect_equal_tables(table,
                                  list(-0.18874858754, -0.396193843016565, 0.018696667936565, 0.869717253788563,
@@ -81,7 +81,7 @@ test_that("Descriptive Statistics table results match", {
 
 # test confidence intervals only
 test_that("Descriptive Statistics table results match", {
-  options <- analysisOptions("Descriptives")
+  options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- c("contNormal", "contGamma")
   options$variables.types <- c("scale", "scale")
   options$valid <- FALSE
@@ -93,7 +93,7 @@ test_that("Descriptive Statistics table results match", {
   options$meanCiMethod <- "oneSampleTTest"
   options$paretoAddCountVariable <- ""
   set.seed(1)
-  results <- runAnalysis("Descriptives", "test.csv", options)
+  results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   table <- results[["results"]][["stats"]][["data"]]
   jaspTools::expect_equal_tables(table,
                                  list(-0.18874858754, -0.398760810055083, 0.0212636349750834, 1.05841360919316,
@@ -101,7 +101,7 @@ test_that("Descriptive Statistics table results match", {
                                       1.53241112621044, "contGamma"))
 
   # compare against stats::t.test directly since these should be identical
-  options <- analysisOptions("Descriptives")
+  options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "extra"
   options$variables.types <- "scale"
   options$valid <- FALSE
@@ -114,7 +114,7 @@ test_that("Descriptive Statistics table results match", {
   options$paretoAddCountVariable <- ""
   data("sleep")
   set.seed(1)
-  results <- runAnalysis("Descriptives", sleep, options)
+  results <- jaspTools::runAnalysis("Descriptives", sleep, options)
   table <- results[["results"]][["stats"]][["data"]]
   baseR <- c(t.test(extra ~ 1, data = sleep)$conf.int)
   jasp  <- c(table[[1]][["MeanCILB"]], table[[1]][["MeanCIUB"]])
@@ -415,7 +415,7 @@ test_that("Analysis handles identical variables", {
 })
 
 test_that("Analysis explains supremum and infimum of empty sets", {
-  options <- analysisOptions("Descriptives")
+  options <- jaspTools::analysisOptions("Descriptives")
   options$variables <- "debMiss99"
   options$variables.types <- "scale"
   options$splitBy <- "contBinom"
@@ -440,7 +440,7 @@ test_that("Stem and leaf tables match", {
   options$paretoAddCountVariable <- ""
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   table <- results[["results"]][["stemAndLeaf"]][["collection"]][["stemAndLeaf_stem_and_leaf_contNormal"]][["data"]]
-  expect_equal_tables(
+  jaspTools::expect_equal_tables(
     table,
     list(-3, 0, "|", -2, 320, "|", -1, 66644444431000, "|", 0, 9.99988888877778e+41,
          "|", 0, 1.12223333334445e+27, "|", 1, 1469, "|", 2, 27, "|",
@@ -452,7 +452,7 @@ test_that("Stem and leaf tables match", {
   options$splitBy.types <- "nominal"
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   table0 <- results[["results"]][["stemAndLeaf"]][["collection"]][["stemAndLeaf_contNormal"]][["collection"]][["stemAndLeaf_contNormal_stem_and_leaf_contNormal_0"]][["data"]]
-  expect_equal_tables(
+  jaspTools::expect_equal_tables(
     table0,
     list(-2, 320, "|", -1, 6, "|", -1, 44430, "|", 0, 99988887777766672,
          "|", 0, 4441, "|", 0, 11222333333444, "|", 0, 555668, "|", 1,
@@ -461,7 +461,7 @@ test_that("Stem and leaf tables match", {
   )
 
   table1 <- results[["results"]][["stemAndLeaf"]][["collection"]][["stemAndLeaf_contNormal"]][["collection"]][["stemAndLeaf_contNormal_stem_and_leaf_contNormal_1"]][["data"]]
-  expect_equal_tables(
+  jaspTools::expect_equal_tables(
     table1,
     list(-3, 0, "|", -2, "", "|", -2, "", "|", -1, 66, "|", -1, 444100,
          "|", 0, 988777665, "|", 0, 444443221111, "|", 0, 4, "|", 0,
@@ -471,14 +471,14 @@ test_that("Stem and leaf tables match", {
 
 })
 
-options <- analysisOptions("Descriptives")
+options <- jaspTools::analysisOptions("Descriptives")
 options$correlationPlots <- FALSE
 options$distributionPlots <- TRUE
 options$variables <- "facGender"
 options$variables.types <- "nominal"
 options$paretoAddCountVariable <- ""
 set.seed(1)
-results <- runAnalysis("Descriptives", "debug.csv", options)
+results <- jaspTools::runAnalysis("Descriptives", "debug.csv", options)
 
 test_that("facGender plot matches", {
 	plotName <- results[["results"]][["distributionPlots"]][["collection"]][["distributionPlots_facGender"]][["data"]]
@@ -487,7 +487,7 @@ test_that("facGender plot matches", {
 })
 
 
-options <- analysisOptions("Descriptives")
+options <- jaspTools::analysisOptions("Descriptives")
 options$variables <- "contExpon"
 options$variables.types <- "scale"
 options$splitBy   <- "facFive"
@@ -495,7 +495,7 @@ options$splitBy.types <- "nominal"
 options$intervalPlot <- TRUE
 options$paretoAddCountVariable <- ""
 set.seed(1)
-results <- runAnalysis("Descriptives", "test.csv", options)
+results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
 
 test_that("interval plot across groups matches", {
   plotName <- results[["results"]][["IntervalPlots"]][["collection"]][["IntervalPlots_contExpon"]][["data"]]
@@ -505,11 +505,11 @@ test_that("interval plot across groups matches", {
 
 
 dat <- data.frame(factorLargeCounts = factor(rep(letters[1:8], seq(10, 80, 10))))
-options <- analysisOptions("Descriptives")
+options <- jaspTools::analysisOptions("Descriptives")
 options$variables <- "factorLargeCounts"
 options$variables.types <- "nominal"
 options$dotPlot <- TRUE
-results <- runAnalysis("Descriptives", dat, options)
+results <- jaspTools::runAnalysis("Descriptives", dat, options)
 
 test_that("dot plot with large counts is legible", {
   plotName <- results[["results"]][["DotPlots"]][["collection"]][["DotPlots_factorLargeCounts"]][["data"]]
