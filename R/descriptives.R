@@ -1848,8 +1848,8 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
       ciLevel <- if (options[["qqPlotCi"]])  options[["qqPlotCiLevel"]] else NULL
 
-      descriptivesQQPlot$plotObject <- jaspGraphs::plotQQnorm(dataset[[qqvar]],
-                                                             yName = "Standardized residuals",
+      descriptivesQQPlot$plotObject <- jaspGraphs::plotQQnorm(scale(dataset[[qqvar]]),
+                                                             yName = "Standardized sample quantiles",
                                                              ablineColor = "darkred",
                                                              ablineOrigin = TRUE,
                                                              identicalAxes = TRUE,
