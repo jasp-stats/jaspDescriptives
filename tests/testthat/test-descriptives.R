@@ -236,6 +236,8 @@ test_that("Q-QPlot plot matches", {
   options$variables <- "contNormal"
   options$variables.types <- "scale"
   options$qqPlot <- TRUE
+  options$qqPlotCi <- FALSE
+  options$qqPlotCiLevel <- NULL
   options$paretoAddCountVariable <- ""
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   testPlot <- results[["state"]][["figures"]][[1]][["obj"]]
