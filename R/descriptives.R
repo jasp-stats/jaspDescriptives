@@ -151,7 +151,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
         else # only one Q-Q Plot
           gettext("Q-Q Plot")
       )
-      jaspResults[["QQPlots"]]$dependOn(c("qqPlot", "splitBy", "quantilesType"))
+      jaspResults[["QQPlots"]]$dependOn(c("qqPlot", "qqPlotCi", "qqPlotCiLevel", "splitBy", "quantilesType"))
       jaspResults[["QQPlots"]]$position <- 8
     }
     QQPlots <- jaspResults[["QQPlots"]]
@@ -1845,46 +1845,15 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     if (!is.null(errorMessage)) {
       descriptivesQQPlot$setError(gettextf("Plotting not possible: %s", errorMessage))
     } else {
-      varCol <- dataset[[qqvar]]
-      varCol <- varCol[!is.na(varCol)]
 
-      standResid <- as.data.frame(stats::qqnorm(varCol, plot.it = FALSE))
-      standResid <- na.omit(standResid)
+      ciLevel <- if (options[["qqPlotCi"]])  options[["qqPlotCiLevel"]] else NULL
 
-      # adapted from qqline
-      x <- stats::qnorm(c(0.25, 0.75))
-      y <- stats::quantile(varCol, probs = c(0.25, 0.75), type = as.integer(options[["quantilesType"]]))
-      slope <- diff(y) / diff(x)
-      int <- y[1L] - slope * x[1L]
-
-      xVar <- standResid$x
-      yVar <- standResid$y
-
-      # Format x ticks
-      xBreaks <- jaspGraphs::getPrettyAxisBreaks(xVar)
-      xLimits <- range(xBreaks)
-
-      dfPoint <- data.frame(x = xVar, y = yVar)
-      dfLine <- data.frame(x = xLimits, y = int + xLimits * slope)
-      mapping <- ggplot2::aes(x = x, y = y)
-
-      # Format y ticks -- ensure that the abline is shown entirely
-      yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(yVar, dfLine$y))
-      yLimits <- range(yBreaks)
-
-      # format axes labels
-      xLabs <- jaspGraphs::axesLabeller(xBreaks)
-      yLabs <- jaspGraphs::axesLabeller(yBreaks)
-
-      p <- ggplot2::ggplot(data = dfPoint, mapping) +
-        ggplot2::geom_line(data = dfLine, mapping, col = "darkred", size = 1) +
-        jaspGraphs::geom_point() +
-        ggplot2::scale_x_continuous(name = gettext("Theoretical Quantiles"), breaks = xBreaks, labels = xLabs, limits = xLimits) +
-        ggplot2::scale_y_continuous(name = gettext("Sample Quantiles"), breaks = yBreaks, labels = yLabs, limits = yLimits) +
-        jaspGraphs::geom_rangeframe() +
-        jaspGraphs::themeJaspRaw(axis.title.cex = jaspGraphs::getGraphOption("axis.title.cex"))
-
-      descriptivesQQPlot$plotObject <- p
+      descriptivesQQPlot$plotObject <- jaspGraphs::plotQQnorm(scale(dataset[[qqvar]]),
+                                                             yName = "Standardized sample quantiles",
+                                                             ablineColor = "darkred",
+                                                             ablineOrigin = TRUE,
+                                                             identicalAxes = TRUE,
+                                                             ciLevel = ciLevel)
     }
   }
 

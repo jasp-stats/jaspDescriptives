@@ -90,6 +90,55 @@
       "NeedsCompilation": "yes",
       "Repository": "CRAN"
     },
+    "DBI": {
+      "Package": "DBI",
+      "Version": "1.2.3",
+      "Source": "Repository",
+      "Title": "R Database Interface",
+      "Date": "2024-06-02",
+      "Authors@R": "c( person(\"R Special Interest Group on Databases (R-SIG-DB)\", role = \"aut\"), person(\"Hadley\", \"Wickham\", role = \"aut\"), person(\"Kirill\", \"Müller\", , \"kirill@cynkra.com\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0002-1416-3412\")), person(\"R Consortium\", role = \"fnd\") )",
+      "Description": "A database interface definition for communication between R and relational database management systems.  All classes in this package are virtual and need to be extended by the various R/DBMS implementations.",
+      "License": "LGPL (>= 2.1)",
+      "URL": "https://dbi.r-dbi.org, https://github.com/r-dbi/DBI",
+      "BugReports": "https://github.com/r-dbi/DBI/issues",
+      "Depends": [
+        "methods",
+        "R (>= 3.0.0)"
+      ],
+      "Suggests": [
+        "arrow",
+        "blob",
+        "covr",
+        "DBItest",
+        "dbplyr",
+        "downlit",
+        "dplyr",
+        "glue",
+        "hms",
+        "knitr",
+        "magrittr",
+        "nanoarrow (>= 0.3.0.1)",
+        "RMariaDB",
+        "rmarkdown",
+        "rprojroot",
+        "RSQLite (>= 1.1-2)",
+        "testthat (>= 3.0.0)",
+        "vctrs",
+        "xml2"
+      ],
+      "VignetteBuilder": "knitr",
+      "Config/autostyle/scope": "line_breaks",
+      "Config/autostyle/strict": "false",
+      "Config/Needs/check": "r-dbi/DBItest",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.3.1",
+      "Config/Needs/website": "r-dbi/DBItest, r-dbi/dbitemplate, adbi, AzureKusto, bigrquery, DatabaseConnector, dittodb, duckdb, implyr, lazysf, odbc, pool, RAthena, IMSMWU/RClickhouse, RH2, RJDBC, RMariaDB, RMySQL, RPostgres, RPostgreSQL, RPresto, RSQLite, sergeant, sparklyr, withr",
+      "Config/testthat/edition": "3",
+      "NeedsCompilation": "no",
+      "Author": "R Special Interest Group on Databases (R-SIG-DB) [aut], Hadley Wickham [aut], Kirill Müller [aut, cre] (<https://orcid.org/0000-0002-1416-3412>), R Consortium [fnd]",
+      "Maintainer": "Kirill Müller <kirill@cynkra.com>",
+      "Repository": "CRAN"
+    },
     "Deriv": {
       "Package": "Deriv",
       "Version": "4.2.0",
@@ -358,6 +407,62 @@
       "Description": "Provides color schemes for maps (and other graphics) designed by Cynthia Brewer as described at http://colorbrewer2.org.",
       "License": "Apache License 2.0",
       "NeedsCompilation": "no",
+      "Repository": "CRAN"
+    },
+    "RSQLite": {
+      "Package": "RSQLite",
+      "Version": "2.4.5",
+      "Source": "Repository",
+      "Title": "SQLite Interface for R",
+      "Date": "2025-11-30",
+      "Authors@R": "c( person(\"Kirill\", \"Müller\", , \"kirill@cynkra.com\", role = c(\"aut\", \"cre\"), comment = c(ORCID = \"0000-0002-1416-3412\")), person(\"Hadley\", \"Wickham\", role = \"aut\"), person(c(\"David\", \"A.\"), \"James\", role = \"aut\"), person(\"Seth\", \"Falcon\", role = \"aut\"), person(\"D. Richard\", \"Hipp\", role = \"ctb\", comment = \"for the included SQLite sources\"), person(\"Dan\", \"Kennedy\", role = \"ctb\", comment = \"for the included SQLite sources\"), person(\"Joe\", \"Mistachkin\", role = \"ctb\", comment = \"for the included SQLite sources\"), person(, \"SQLite Authors\", role = \"ctb\", comment = \"for the included SQLite sources\"), person(\"Liam\", \"Healy\", role = \"ctb\", comment = \"for the included SQLite sources\"), person(\"R Consortium\", role = \"fnd\"), person(, \"RStudio\", role = \"cph\") )",
+      "Description": "Embeds the SQLite database engine in R and provides an interface compliant with the DBI package. The source for the SQLite engine (version 3.51.1) and for various extensions is included. System libraries will never be consulted because this package relies on static linking for the plugins it includes; this also ensures a consistent experience across all installations.",
+      "License": "LGPL (>= 2.1)",
+      "URL": "https://rsqlite.r-dbi.org, https://github.com/r-dbi/RSQLite",
+      "BugReports": "https://github.com/r-dbi/RSQLite/issues",
+      "Depends": [
+        "R (>= 3.1.0)"
+      ],
+      "Imports": [
+        "bit64",
+        "blob (>= 1.2.0)",
+        "DBI (>= 1.2.0)",
+        "memoise",
+        "methods",
+        "pkgconfig",
+        "rlang"
+      ],
+      "Suggests": [
+        "callr",
+        "cli",
+        "DBItest (>= 1.8.0)",
+        "decor",
+        "gert",
+        "gh",
+        "hms",
+        "knitr",
+        "magrittr",
+        "rmarkdown",
+        "rvest",
+        "testthat (>= 3.0.0)",
+        "withr",
+        "xml2"
+      ],
+      "LinkingTo": [
+        "plogr (>= 0.2.0)",
+        "cpp11 (>= 0.4.0)"
+      ],
+      "VignetteBuilder": "knitr",
+      "Config/Needs/website": "r-dbi/dbitemplate",
+      "Config/autostyle/scope": "line_breaks",
+      "Config/autostyle/strict": "false",
+      "Config/testthat/edition": "3",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.3.3.9000",
+      "Collate": "'SQLiteConnection.R' 'SQLKeywords_SQLiteConnection.R' 'SQLiteDriver.R' 'SQLite.R' 'SQLiteResult.R' 'coerce.R' 'compatRowNames.R' 'copy.R' 'cpp11.R' 'datasetsDb.R' 'dbAppendTable_SQLiteConnection.R' 'dbBeginTransaction.R' 'dbBegin_SQLiteConnection.R' 'dbBind_SQLiteResult.R' 'dbClearResult_SQLiteResult.R' 'dbColumnInfo_SQLiteResult.R' 'dbCommit_SQLiteConnection.R' 'dbConnect_SQLiteConnection.R' 'dbConnect_SQLiteDriver.R' 'dbDataType_SQLiteConnection.R' 'dbDataType_SQLiteDriver.R' 'dbDisconnect_SQLiteConnection.R' 'dbExistsTable_SQLiteConnection_Id.R' 'dbExistsTable_SQLiteConnection_character.R' 'dbFetch_SQLiteResult.R' 'dbGetException_SQLiteConnection.R' 'dbGetInfo_SQLiteConnection.R' 'dbGetInfo_SQLiteDriver.R' 'dbGetPreparedQuery.R' 'dbGetPreparedQuery_SQLiteConnection_character_data.frame.R' 'dbGetRowCount_SQLiteResult.R' 'dbGetRowsAffected_SQLiteResult.R' 'dbGetStatement_SQLiteResult.R' 'dbHasCompleted_SQLiteResult.R' 'dbIsValid_SQLiteConnection.R' 'dbIsValid_SQLiteDriver.R' 'dbIsValid_SQLiteResult.R' 'dbListResults_SQLiteConnection.R' 'dbListTables_SQLiteConnection.R' 'dbQuoteIdentifier_SQLiteConnection_SQL.R' 'dbQuoteIdentifier_SQLiteConnection_character.R' 'dbReadTable_SQLiteConnection_character.R' 'dbRemoveTable_SQLiteConnection_character.R' 'dbRollback_SQLiteConnection.R' 'dbSendPreparedQuery.R' 'dbSendPreparedQuery_SQLiteConnection_character_data.frame.R' 'dbSendQuery_SQLiteConnection_character.R' 'dbUnloadDriver_SQLiteDriver.R' 'dbUnquoteIdentifier_SQLiteConnection_SQL.R' 'dbWriteTable_SQLiteConnection_character_character.R' 'dbWriteTable_SQLiteConnection_character_data.frame.R' 'db_bind.R' 'deprecated.R' 'export.R' 'fetch_SQLiteResult.R' 'import-standalone-check_suggested.R' 'import-standalone-purrr.R' 'initExtension.R' 'initRegExp.R' 'isSQLKeyword_SQLiteConnection_character.R' 'make.db.names_SQLiteConnection_character.R' 'pkgconfig.R' 'show_SQLiteConnection.R' 'sqlData_SQLiteConnection.R' 'table.R' 'transactions.R' 'utils.R' 'version.R' 'zzz.R'",
+      "NeedsCompilation": "yes",
+      "Author": "Kirill Müller [aut, cre] (ORCID: <https://orcid.org/0000-0002-1416-3412>), Hadley Wickham [aut], David A. James [aut], Seth Falcon [aut], D. Richard Hipp [ctb] (for the included SQLite sources), Dan Kennedy [ctb] (for the included SQLite sources), Joe Mistachkin [ctb] (for the included SQLite sources), SQLite Authors [ctb] (for the included SQLite sources), Liam Healy [ctb] (for the included SQLite sources), R Consortium [fnd], RStudio [cph]",
+      "Maintainer": "Kirill Müller <kirill@cynkra.com>",
       "Repository": "CRAN"
     },
     "Rcpp": {
@@ -657,6 +762,42 @@
       "Author": "Tony Plate [aut, cre], Richard Heiberger [aut]",
       "Repository": "CRAN"
     },
+    "archive": {
+      "Package": "archive",
+      "Version": "1.1.12.1",
+      "Source": "Repository",
+      "Title": "Multi-Format Archive and Compression Support",
+      "Authors@R": "c( person(\"Jim\", \"Hester\", role = \"aut\", comment = c(ORCID = \"0000-0002-2739-7082\")), person(\"Gábor\", \"Csárdi\", , \"csardi.gabor@gmail.com\", role = c(\"aut\", \"cre\")), person(\"Ondrej\", \"Holy\", role = \"cph\", comment = \"archive_write_add_filter implementation\"), person(\"RStudio\", role = c(\"cph\", \"fnd\")) )",
+      "Description": "Bindings to 'libarchive' <http://www.libarchive.org> the Multi-format archive and compression library. Offers R connections and direct extraction for many archive formats including 'tar', 'ZIP', '7-zip', 'RAR', 'CAB' and compression formats including 'gzip', 'bzip2', 'compress', 'lzma' and 'xz'.",
+      "License": "MIT + file LICENSE",
+      "URL": "https://archive.r-lib.org/, https://github.com/r-lib/archive",
+      "BugReports": "https://github.com/r-lib/archive/issues",
+      "Depends": [
+        "R (>= 3.6.0)"
+      ],
+      "Imports": [
+        "cli",
+        "glue",
+        "rlang",
+        "tibble"
+      ],
+      "Suggests": [
+        "covr",
+        "testthat"
+      ],
+      "LinkingTo": [
+        "cli"
+      ],
+      "ByteCompile": "true",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.2.1.9000",
+      "SystemRequirements": "libarchive: libarchive-dev (deb), libarchive-devel (rpm), libarchive (homebrew), libarchive_dev (csw)",
+      "Biarch": "true",
+      "NeedsCompilation": "yes",
+      "Author": "Jim Hester [aut] (ORCID: <https://orcid.org/0000-0002-2739-7082>), Gábor Csárdi [aut, cre], Ondrej Holy [cph] (archive_write_add_filter implementation), RStudio [cph, fnd]",
+      "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
+      "Repository": "CRAN"
+    },
     "askpass": {
       "Package": "askpass",
       "Version": "1.2.1",
@@ -745,6 +886,105 @@
       "Maintainer": "Aron Eklund <aroneklund@gmail.com>",
       "Repository": "CRAN"
     },
+    "bit": {
+      "Package": "bit",
+      "Version": "4.6.0",
+      "Source": "Repository",
+      "Title": "Classes and Methods for Fast Memory-Efficient Boolean Selections",
+      "Authors@R": "c( person(\"Michael\", \"Chirico\", email = \"MichaelChirico4@gmail.com\", role = c(\"aut\", \"cre\")), person(\"Jens\", \"Oehlschlägel\", role = \"aut\"), person(\"Brian\", \"Ripley\", role = \"ctb\") )",
+      "Depends": [
+        "R (>= 3.4.0)"
+      ],
+      "Suggests": [
+        "testthat (>= 3.0.0)",
+        "roxygen2",
+        "knitr",
+        "markdown",
+        "rmarkdown",
+        "microbenchmark",
+        "bit64 (>= 4.0.0)",
+        "ff (>= 4.0.0)"
+      ],
+      "Description": "Provided are classes for boolean and skewed boolean vectors, fast boolean methods, fast unique and non-unique integer sorting, fast set operations on sorted and unsorted sets of integers, and foundations for ff (range index, compression, chunked processing).",
+      "License": "GPL-2 | GPL-3",
+      "LazyLoad": "yes",
+      "ByteCompile": "yes",
+      "Encoding": "UTF-8",
+      "URL": "https://github.com/r-lib/bit",
+      "VignetteBuilder": "knitr, rmarkdown",
+      "RoxygenNote": "7.3.2",
+      "Config/testthat/edition": "3",
+      "NeedsCompilation": "yes",
+      "Author": "Michael Chirico [aut, cre], Jens Oehlschlägel [aut], Brian Ripley [ctb]",
+      "Maintainer": "Michael Chirico <MichaelChirico4@gmail.com>",
+      "Repository": "CRAN"
+    },
+    "bit64": {
+      "Package": "bit64",
+      "Version": "4.6.0-1",
+      "Source": "Repository",
+      "Title": "A S3 Class for Vectors of 64bit Integers",
+      "Authors@R": "c( person(\"Michael\", \"Chirico\", email = \"michaelchirico4@gmail.com\", role = c(\"aut\", \"cre\")), person(\"Jens\", \"Oehlschlägel\", role = \"aut\"), person(\"Leonardo\", \"Silvestri\", role = \"ctb\"), person(\"Ofek\", \"Shilon\", role = \"ctb\") )",
+      "Depends": [
+        "R (>= 3.4.0)",
+        "bit (>= 4.0.0)"
+      ],
+      "Description": "Package 'bit64' provides serializable S3 atomic 64bit (signed) integers. These are useful for handling database keys and exact counting in +-2^63. WARNING: do not use them as replacement for 32bit integers, integer64 are not supported for subscripting by R-core and they have different semantics when combined with double, e.g. integer64 + double => integer64. Class integer64 can be used in vectors, matrices, arrays and data.frames. Methods are available for coercion from and to logicals, integers, doubles, characters and factors as well as many elementwise and summary functions. Many fast algorithmic operations such as 'match' and 'order' support inter- active data exploration and manipulation and optionally leverage caching.",
+      "License": "GPL-2 | GPL-3",
+      "LazyLoad": "yes",
+      "ByteCompile": "yes",
+      "URL": "https://github.com/r-lib/bit64",
+      "Encoding": "UTF-8",
+      "Imports": [
+        "graphics",
+        "methods",
+        "stats",
+        "utils"
+      ],
+      "Suggests": [
+        "testthat (>= 3.0.3)",
+        "withr"
+      ],
+      "Config/testthat/edition": "3",
+      "Config/needs/development": "testthat",
+      "RoxygenNote": "7.3.2",
+      "NeedsCompilation": "yes",
+      "Author": "Michael Chirico [aut, cre], Jens Oehlschlägel [aut], Leonardo Silvestri [ctb], Ofek Shilon [ctb]",
+      "Maintainer": "Michael Chirico <michaelchirico4@gmail.com>",
+      "Repository": "CRAN"
+    },
+    "blob": {
+      "Package": "blob",
+      "Version": "1.3.0",
+      "Source": "Repository",
+      "Title": "A Simple S3 Class for Representing Vectors of Binary Data ('BLOBS')",
+      "Authors@R": "c( person(\"Hadley\", \"Wickham\", role = \"aut\"), person(\"Kirill\", \"Müller\", , \"kirill@cynkra.com\", role = \"cre\"), person(\"RStudio\", role = c(\"cph\", \"fnd\")) )",
+      "Description": "R's raw vector is useful for storing a single binary object. What if you want to put a vector of them in a data frame? The 'blob' package provides the blob object, a list of raw vectors, suitable for use as a column in data frame.",
+      "License": "MIT + file LICENSE",
+      "URL": "https://blob.tidyverse.org, https://github.com/tidyverse/blob",
+      "BugReports": "https://github.com/tidyverse/blob/issues",
+      "Imports": [
+        "methods",
+        "rlang",
+        "vctrs (>= 0.2.1)"
+      ],
+      "Suggests": [
+        "covr",
+        "crayon",
+        "pillar (>= 1.2.1)",
+        "testthat (>= 3.0.0)"
+      ],
+      "Config/autostyle/scope": "line_breaks",
+      "Config/autostyle/strict": "false",
+      "Config/Needs/website": "tidyverse/tidytemplate",
+      "Config/testthat/edition": "3",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.3.3.9000",
+      "NeedsCompilation": "no",
+      "Author": "Hadley Wickham [aut], Kirill Müller [cre], RStudio [cph, fnd]",
+      "Maintainer": "Kirill Müller <kirill@cynkra.com>",
+      "Repository": "CRAN"
+    },
     "boot": {
       "Package": "boot",
       "Version": "1.3-32",
@@ -770,6 +1010,32 @@
       "License": "Unlimited",
       "NeedsCompilation": "no",
       "Author": "Angelo Canty [aut] (author of original code for S), Brian Ripley [aut, trl] (conversion to R, maintainer 1999--2022, author of parallel support), Alessandra R. Brazzale [ctb, cre] (minor bug fixes)",
+      "Repository": "CRAN"
+    },
+    "brio": {
+      "Package": "brio",
+      "Version": "1.1.5",
+      "Source": "Repository",
+      "Title": "Basic R Input Output",
+      "Authors@R": "c( person(\"Jim\", \"Hester\", role = \"aut\", comment = c(ORCID = \"0000-0002-2739-7082\")), person(\"Gábor\", \"Csárdi\", , \"csardi.gabor@gmail.com\", role = c(\"aut\", \"cre\")), person(given = \"Posit Software, PBC\", role = c(\"cph\", \"fnd\")) )",
+      "Description": "Functions to handle basic input output, these functions always read and write UTF-8 (8-bit Unicode Transformation Format) files and provide more explicit control over line endings.",
+      "License": "MIT + file LICENSE",
+      "URL": "https://brio.r-lib.org, https://github.com/r-lib/brio",
+      "BugReports": "https://github.com/r-lib/brio/issues",
+      "Depends": [
+        "R (>= 3.6)"
+      ],
+      "Suggests": [
+        "covr",
+        "testthat (>= 3.0.0)"
+      ],
+      "Config/Needs/website": "tidyverse/tidytemplate",
+      "Config/testthat/edition": "3",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.2.3",
+      "NeedsCompilation": "yes",
+      "Author": "Jim Hester [aut] (<https://orcid.org/0000-0002-2739-7082>), Gábor Csárdi [aut, cre], Posit Software, PBC [cph, fnd]",
+      "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
       "Repository": "CRAN"
     },
     "broom": {
@@ -1532,6 +1798,36 @@
       "Maintainer": "Davis Vaughan <davis@posit.co>",
       "Repository": "CRAN"
     },
+    "crayon": {
+      "Package": "crayon",
+      "Version": "1.5.3",
+      "Source": "Repository",
+      "Title": "Colored Terminal Output",
+      "Authors@R": "c( person(\"Gábor\", \"Csárdi\", , \"csardi.gabor@gmail.com\", role = c(\"aut\", \"cre\")), person(\"Brodie\", \"Gaslam\", , \"brodie.gaslam@yahoo.com\", role = \"ctb\"), person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\")) )",
+      "Description": "The crayon package is now superseded. Please use the 'cli' package for new projects.  Colored terminal output on terminals that support 'ANSI' color and highlight codes. It also works in 'Emacs' 'ESS'. 'ANSI' color support is automatically detected. Colors and highlighting can be combined and nested. New styles can also be created easily.  This package was inspired by the 'chalk' 'JavaScript' project.",
+      "License": "MIT + file LICENSE",
+      "URL": "https://r-lib.github.io/crayon/, https://github.com/r-lib/crayon",
+      "BugReports": "https://github.com/r-lib/crayon/issues",
+      "Imports": [
+        "grDevices",
+        "methods",
+        "utils"
+      ],
+      "Suggests": [
+        "mockery",
+        "rstudioapi",
+        "testthat",
+        "withr"
+      ],
+      "Config/Needs/website": "tidyverse/tidytemplate",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.3.1",
+      "Collate": "'aaa-rstudio-detect.R' 'aaaa-rematch2.R' 'aab-num-ansi-colors.R' 'aac-num-ansi-colors.R' 'ansi-256.R' 'ansi-palette.R' 'combine.R' 'string.R' 'utils.R' 'crayon-package.R' 'disposable.R' 'enc-utils.R' 'has_ansi.R' 'has_color.R' 'link.R' 'styles.R' 'machinery.R' 'parts.R' 'print.R' 'style-var.R' 'show.R' 'string_operations.R'",
+      "NeedsCompilation": "no",
+      "Author": "Gábor Csárdi [aut, cre], Brodie Gaslam [ctb], Posit Software, PBC [cph, fnd]",
+      "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
+      "Repository": "CRAN"
+    },
     "crosstalk": {
       "Package": "crosstalk",
       "Version": "1.2.2",
@@ -1696,6 +1992,40 @@
       "Collate": "'assertions.R' 'authors-at-r.R' 'built.R' 'classes.R' 'collate.R' 'constants.R' 'deps.R' 'desc-package.R' 'description.R' 'encoding.R' 'find-package-root.R' 'latex.R' 'non-oo-api.R' 'package-archives.R' 'read.R' 'remotes.R' 'str.R' 'syntax_checks.R' 'urls.R' 'utils.R' 'validate.R' 'version.R'",
       "NeedsCompilation": "no",
       "Author": "Gábor Csárdi [aut, cre], Kirill Müller [aut], Jim Hester [aut], Maëlle Salmon [ctb] (<https://orcid.org/0000-0002-2815-0399>), Posit Software, PBC [cph, fnd]",
+      "Repository": "CRAN"
+    },
+    "diffobj": {
+      "Package": "diffobj",
+      "Version": "0.3.6",
+      "Source": "Repository",
+      "Type": "Package",
+      "Title": "Diffs for R Objects",
+      "Description": "Generate a colorized diff of two R objects for an intuitive visualization of their differences.",
+      "Authors@R": "c( person( \"Brodie\", \"Gaslam\", email=\"brodie.gaslam@yahoo.com\", role=c(\"aut\", \"cre\")), person( \"Michael B.\", \"Allen\", email=\"ioplex@gmail.com\", role=c(\"ctb\", \"cph\"), comment=\"Original C implementation of Myers Diff Algorithm\"))",
+      "Depends": [
+        "R (>= 3.1.0)"
+      ],
+      "License": "GPL-2 | GPL-3",
+      "URL": "https://github.com/brodieG/diffobj",
+      "BugReports": "https://github.com/brodieG/diffobj/issues",
+      "RoxygenNote": "7.2.3",
+      "VignetteBuilder": "knitr",
+      "Encoding": "UTF-8",
+      "Suggests": [
+        "knitr",
+        "rmarkdown"
+      ],
+      "Collate": "'capt.R' 'options.R' 'pager.R' 'check.R' 'finalizer.R' 'misc.R' 'html.R' 'styles.R' 's4.R' 'core.R' 'diff.R' 'get.R' 'guides.R' 'hunks.R' 'layout.R' 'myerssimple.R' 'rdiff.R' 'rds.R' 'set.R' 'subset.R' 'summmary.R' 'system.R' 'text.R' 'tochar.R' 'trim.R' 'word.R'",
+      "Imports": [
+        "crayon (>= 1.3.2)",
+        "tools",
+        "methods",
+        "utils",
+        "stats"
+      ],
+      "NeedsCompilation": "yes",
+      "Author": "Brodie Gaslam [aut, cre], Michael B. Allen [ctb, cph] (Original C implementation of Myers Diff Algorithm)",
+      "Maintainer": "Brodie Gaslam <brodie.gaslam@yahoo.com>",
       "Repository": "CRAN"
     },
     "digest": {
@@ -1996,11 +2326,11 @@
       "RoxygenNote": "7.3.2",
       "VignetteBuilder": "knitr",
       "RemoteType": "github",
+      "RemoteHost": "api.github.com",
       "RemoteUsername": "dustinfife",
       "RemoteRepo": "flexplot",
       "RemoteRef": "master",
-      "RemoteSha": "cae36ba45502ce1794ad35cfeaf0155275db3056",
-      "RemoteHost": "api.github.com"
+      "RemoteSha": "cae36ba45502ce1794ad35cfeaf0155275db3056"
     },
     "fontBitstreamVera": {
       "Package": "fontBitstreamVera",
@@ -3290,41 +3620,71 @@
       "Package": "jaspBase",
       "Version": "0.20.4",
       "Source": "GitHub",
-      "Requirements": [
+      "Type": "Package",
+      "Title": "JASP Base",
+      "Author": "JASP Team",
+      "Maintainer": "Bruno Boutin <B.Boutin@uva.nl>",
+      "Description": "Package contains the JASP Bayesian and Frequentist analyses. See <https://jasp-stats.org> for more details.",
+      "License": "GPL2+",
+      "Imports": [
         "cli",
         "codetools",
+        "compiler",
         "ggplot2",
+        "grDevices",
+        "grid",
         "gridExtra",
         "gridGraphics",
         "jaspGraphs",
         "jsonlite",
         "lifecycle",
+        "methods",
         "officer",
         "pkgbuild",
         "plyr",
         "ragg",
         "R6",
-        "Rcpp",
+        "Rcpp (>= 0.12.14)",
         "rvg",
         "svglite",
         "systemfonts",
-        "withr",
-        "testthat"
+        "withr"
       ],
+      "RoxygenNote": "7.3.3",
+      "Roxygen": "list(markdown = TRUE)",
+      "Encoding": "UTF-8",
+      "LinkingTo": [
+        "Rcpp"
+      ],
+      "RcppModules": "jaspResults",
+      "NeedsCompilation": "yes",
+      "Suggests": [
+        "testthat (>= 3.0.0)"
+      ],
+      "Config/testthat/edition": "3",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspBase",
-      "RemoteSha": "836023e9f57d39427fc805fb0f4bb2e48a838d56"
+      "RemoteSha": "836023e9f57d39427fc805fb0f4bb2e48a838d56",
+      "Remotes": "jasp-stats/jaspGraphs"
     },
     "jaspGraphs": {
       "Package": "jaspGraphs",
       "Version": "0.20.0",
       "Source": "GitHub",
-      "Requirements": [
-        "testthat",
+      "Type": "Package",
+      "Title": "Custom Graphs for JASP",
+      "Author": "Don van den Bergh",
+      "Maintainer": "JASP-team <info@jasp-stats.nl>",
+      "Description": "Graph making functions and wrappers for JASP.",
+      "License": "GPL",
+      "Encoding": "UTF-8",
+      "LazyData": "true",
+      "RoxygenNote": "7.3.3",
+      "Imports": [
         "cli",
-        "ggplot2",
+        "ggplot2 (>= 3.0.0)",
         "gridExtra",
         "gtable",
         "htmlwidgets",
@@ -3335,17 +3695,32 @@
         "rlang",
         "scales"
       ],
+      "Suggests": [
+        "testthat",
+        "vdiffr"
+      ],
+      "Roxygen": "list(markdown = TRUE)",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspGraphs",
-      "RemoteSha": "1a0f11bf210637b7428f337f8598bee8a62c8495"
+      "RemoteRef": "master",
+      "RemoteSha": "c168567ea259e628ad4972c6b3a15acff1fdb8a3"
     },
     "jaspTTests": {
       "Package": "jaspTTests",
       "Version": "0.95.5",
       "Source": "GitHub",
-      "Requirements": [
+      "Type": "Package",
+      "Title": "T-Tests Module for JASP",
+      "Date": "2022-10-05",
+      "Author": "JASP Team",
+      "Website": "jasp-stats.org",
+      "Maintainer": "JASP Team <info@jasp-stats.org>",
+      "Description": "Evaluate the difference between two means",
+      "License": "GPL (>= 2)",
+      "Encoding": "UTF-8",
+      "Imports": [
         "BayesFactor",
         "car",
         "ggplot2",
@@ -3359,7 +3734,46 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspTTests",
-      "RemoteSha": "0ad1bf603c9c7e1f65af691fe73b9fee2ee53057"
+      "RemoteSha": "0ad1bf603c9c7e1f65af691fe73b9fee2ee53057",
+      "Remotes": "jasp-stats/jaspBase, jasp-stats/jaspGraphs"
+    },
+    "jaspTools": {
+      "Package": "jaspTools",
+      "Version": "0.20.1",
+      "Source": "GitHub",
+      "Type": "Package",
+      "Title": "Helps Preview and Debug JASP Analyses",
+      "Authors@R": "c( person(\"Tim\", \"de Jong\", role = \"aut\"), person(\"Don\", \"van den Bergh\", role = c(\"ctb\", \"cre\"), email = \"d.vandenbergh@uva.nl\"), person(\"František\", \"Bartoš\", role = \"ctb\"))",
+      "Maintainer": "Don van den Bergh <d.vandenbergh@uva.nl>",
+      "Description": "This package assists JASP developers when writing R code. It removes the necessity of building JASP every time a change is made. Rather, analyses can be called directly in R and be debugged interactively.",
+      "License": "GNU General Public License",
+      "Encoding": "UTF-8",
+      "Imports": [
+        "archive (>= 1.1.6)",
+        "data.table",
+        "DBI",
+        "httr",
+        "jsonlite",
+        "lifecycle",
+        "pkgload",
+        "remotes",
+        "rjson",
+        "RSQLite",
+        "stringi",
+        "stringr",
+        "testthat (>= 3.0.3)",
+        "vdiffr (>= 1.0.7)"
+      ],
+      "RoxygenNote": "7.3.3",
+      "Roxygen": "list(markdown = TRUE)",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteRepo": "jaspTools",
+      "RemoteUsername": "jasp-stats",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "46871381f5c710f21f3b69e0a2332134f4031154",
+      "NeedsCompilation": "no",
+      "Author": "Tim de Jong [aut], Don van den Bergh [ctb, cre], František Bartoš [ctb]"
     },
     "jpeg": {
       "Package": "jpeg",
@@ -4223,8 +4637,7 @@
       "NeedsCompilation": "no",
       "Author": "Torsten Hothorn [aut, cre] (ORCID: <https://orcid.org/0000-0001-8301-0471>), Frank Bretz [aut], Peter Westfall [aut], Richard M. Heiberger [ctb], Andre Schuetzenmeister [ctb], Susan Scheibe [ctb]",
       "Maintainer": "Torsten Hothorn <Torsten.Hothorn@R-project.org>",
-      "Repository": "RSPM",
-      "Encoding": "UTF-8"
+      "Repository": "CRAN"
     },
     "mvtnorm": {
       "Package": "mvtnorm",
@@ -4746,6 +5159,77 @@
       "NeedsCompilation": "no",
       "Repository": "CRAN"
     },
+    "pkgload": {
+      "Package": "pkgload",
+      "Version": "1.4.1",
+      "Source": "Repository",
+      "Title": "Simulate Package Installation and Attach",
+      "Authors@R": "c( person(\"Hadley\", \"Wickham\", role = \"aut\"), person(\"Winston\", \"Chang\", role = \"aut\"), person(\"Jim\", \"Hester\", role = \"aut\"), person(\"Lionel\", \"Henry\", , \"lionel@posit.co\", role = c(\"aut\", \"cre\")), person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\")), person(\"R Core team\", role = \"ctb\", comment = \"Some namespace and vignette code extracted from base R\") )",
+      "Description": "Simulates the process of installing a package and then attaching it. This is a key part of the 'devtools' package as it allows you to rapidly iterate while developing a package.",
+      "License": "MIT + file LICENSE",
+      "URL": "https://github.com/r-lib/pkgload, https://pkgload.r-lib.org",
+      "BugReports": "https://github.com/r-lib/pkgload/issues",
+      "Depends": [
+        "R (>= 3.4.0)"
+      ],
+      "Imports": [
+        "cli (>= 3.3.0)",
+        "desc",
+        "fs",
+        "glue",
+        "lifecycle",
+        "methods",
+        "pkgbuild",
+        "processx",
+        "rlang (>= 1.1.1)",
+        "rprojroot",
+        "utils"
+      ],
+      "Suggests": [
+        "bitops",
+        "jsonlite",
+        "mathjaxr",
+        "pak",
+        "Rcpp",
+        "remotes",
+        "rstudioapi",
+        "testthat (>= 3.2.1.1)",
+        "usethis",
+        "withr"
+      ],
+      "Config/Needs/website": "tidyverse/tidytemplate, ggplot2",
+      "Config/testthat/edition": "3",
+      "Config/testthat/parallel": "TRUE",
+      "Config/testthat/start-first": "dll",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.3.2",
+      "NeedsCompilation": "no",
+      "Author": "Hadley Wickham [aut], Winston Chang [aut], Jim Hester [aut], Lionel Henry [aut, cre], Posit Software, PBC [cph, fnd], R Core team [ctb] (Some namespace and vignette code extracted from base R)",
+      "Maintainer": "Lionel Henry <lionel@posit.co>",
+      "Repository": "CRAN"
+    },
+    "plogr": {
+      "Package": "plogr",
+      "Version": "0.2.0",
+      "Source": "Repository",
+      "Title": "The 'plog' C++ Logging Library",
+      "Date": "2018-03-24",
+      "Authors@R": "c( person(\"Kirill\", \"Müller\", role = c(\"aut\", \"cre\"), email = \"krlmlr+r@mailbox.org\"), person(\"Sergey\", \"Podobry\", role = \"cph\", comment = \"Author of the bundled plog library\"))",
+      "Description": "A simple header-only logging library for C++. Add 'LinkingTo: plogr' to 'DESCRIPTION', and '#include <plogr.h>' in your C++ modules to use it.",
+      "Suggests": [
+        "Rcpp"
+      ],
+      "License": "MIT + file LICENSE",
+      "Encoding": "UTF-8",
+      "LazyData": "true",
+      "URL": "https://github.com/krlmlr/plogr#readme",
+      "BugReports": "https://github.com/krlmlr/plogr/issues",
+      "RoxygenNote": "6.0.1.9000",
+      "NeedsCompilation": "no",
+      "Author": "Kirill Müller [aut, cre], Sergey Podobry [cph] (Author of the bundled plog library)",
+      "Maintainer": "Kirill Müller <krlmlr+r@mailbox.org>",
+      "Repository": "CRAN"
+    },
     "plotly": {
       "Package": "plotly",
       "Version": "4.12.0",
@@ -4921,6 +5405,25 @@
         "rmarkdown"
       ],
       "VignetteBuilder": "knitr",
+      "Repository": "CRAN"
+    },
+    "praise": {
+      "Package": "praise",
+      "Version": "1.0.0",
+      "Source": "Repository",
+      "Title": "Praise Users",
+      "Author": "Gabor Csardi, Sindre Sorhus",
+      "Maintainer": "Gabor Csardi <csardi.gabor@gmail.com>",
+      "Description": "Build friendly R packages that praise their users if they have done something good, or they just need it to feel better.",
+      "License": "MIT + file LICENSE",
+      "LazyData": "true",
+      "URL": "https://github.com/gaborcsardi/praise",
+      "BugReports": "https://github.com/gaborcsardi/praise/issues",
+      "Suggests": [
+        "testthat"
+      ],
+      "Collate": "'adjective.R' 'adverb.R' 'exclamation.R' 'verb.R' 'rpackage.R' 'package.R'",
+      "NeedsCompilation": "no",
       "Repository": "CRAN"
     },
     "processx": {
@@ -5316,6 +5819,53 @@
       "Maintainer": "Ben Bolker <bolker@mcmaster.ca>",
       "Repository": "CRAN"
     },
+    "remotes": {
+      "Package": "remotes",
+      "Version": "2.5.0",
+      "Source": "Repository",
+      "Title": "R Package Installation from Remote Repositories, Including 'GitHub'",
+      "Authors@R": "c( person(\"Gábor\", \"Csárdi\", , \"csardi.gabor@gmail.com\", role = c(\"aut\", \"cre\")), person(\"Jim\", \"Hester\", role = \"aut\"), person(\"Hadley\", \"Wickham\", role = \"aut\"), person(\"Winston\", \"Chang\", role = \"aut\"), person(\"Martin\", \"Morgan\", role = \"aut\"), person(\"Dan\", \"Tenenbaum\", role = \"aut\"), person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\")), person(\"Ascent Digital Services\", role = \"cph\") )",
+      "Description": "Download and install R packages stored in 'GitHub', 'GitLab', 'Bitbucket', 'Bioconductor', or plain 'subversion' or 'git' repositories.  This package provides the 'install_*' functions in 'devtools'. Indeed most of the code was copied over from 'devtools'.",
+      "License": "MIT + file LICENSE",
+      "URL": "https://remotes.r-lib.org, https://github.com/r-lib/remotes#readme",
+      "BugReports": "https://github.com/r-lib/remotes/issues",
+      "Depends": [
+        "R (>= 3.0.0)"
+      ],
+      "Imports": [
+        "methods",
+        "stats",
+        "tools",
+        "utils"
+      ],
+      "Suggests": [
+        "brew",
+        "callr",
+        "codetools",
+        "covr",
+        "curl",
+        "git2r (>= 0.23.0)",
+        "knitr",
+        "mockery",
+        "pingr",
+        "pkgbuild (>= 1.0.1)",
+        "rmarkdown",
+        "rprojroot",
+        "testthat (>= 3.0.0)",
+        "webfakes",
+        "withr"
+      ],
+      "VignetteBuilder": "knitr",
+      "Config/Needs/website": "tidyverse/tidytemplate",
+      "Config/testthat/edition": "3",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.2.3",
+      "SystemRequirements": "Subversion for install_svn, git for install_git",
+      "NeedsCompilation": "no",
+      "Author": "Gábor Csárdi [aut, cre], Jim Hester [aut], Hadley Wickham [aut], Winston Chang [aut], Martin Morgan [aut], Dan Tenenbaum [aut], Posit Software, PBC [cph, fnd], Ascent Digital Services [cph]",
+      "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
+      "Repository": "CRAN"
+    },
     "renv": {
       "Package": "renv",
       "Version": "1.1.6",
@@ -5370,6 +5920,23 @@
       "Author": "Kevin Ushey [aut, cre] (ORCID: <https://orcid.org/0000-0003-2880-7407>), Hadley Wickham [aut] (ORCID: <https://orcid.org/0000-0003-4757-117X>), Posit Software, PBC [cph, fnd]",
       "Maintainer": "Kevin Ushey <kevin@rstudio.com>",
       "Repository": "CRAN"
+    },
+    "rjson": {
+      "Package": "rjson",
+      "Version": "0.2.23",
+      "Source": "Repository",
+      "Title": "JSON for R",
+      "Author": "Alex Couture-Beil [aut, cre]",
+      "Authors@R": "person(given = \"Alex\", family = \"Couture-Beil\", role = c(\"aut\", \"cre\"), email = \"rjson_pkg@mofo.ca\")",
+      "Maintainer": "Alex Couture-Beil <rjson_pkg@mofo.ca>",
+      "Depends": [
+        "R (>= 4.0.0)"
+      ],
+      "Description": "Converts R object into JSON objects and vice-versa.",
+      "URL": "https://github.com/alexcb/rjson",
+      "License": "GPL-2",
+      "Repository": "CRAN",
+      "NeedsCompilation": "yes"
     },
     "rlang": {
       "Package": "rlang",
@@ -5505,6 +6072,40 @@
       "Repository": "CRAN",
       "URL": "https://github.com/bethatkinson/rpart, https://cran.r-project.org/package=rpart",
       "BugReports": "https://github.com/bethatkinson/rpart/issues"
+    },
+    "rprojroot": {
+      "Package": "rprojroot",
+      "Version": "2.1.1",
+      "Source": "Repository",
+      "Title": "Finding Files in Project Subdirectories",
+      "Authors@R": "person(given = \"Kirill\", family = \"M\\u00fcller\", role = c(\"aut\", \"cre\"), email = \"kirill@cynkra.com\", comment = c(ORCID = \"0000-0002-1416-3412\"))",
+      "Description": "Robust, reliable and flexible paths to files below a project root. The 'root' of a project is defined as a directory that matches a certain criterion, e.g., it contains a certain regular file.",
+      "License": "MIT + file LICENSE",
+      "URL": "https://rprojroot.r-lib.org/, https://github.com/r-lib/rprojroot",
+      "BugReports": "https://github.com/r-lib/rprojroot/issues",
+      "Depends": [
+        "R (>= 3.0.0)"
+      ],
+      "Suggests": [
+        "covr",
+        "knitr",
+        "lifecycle",
+        "rlang",
+        "rmarkdown",
+        "testthat (>= 3.2.0)",
+        "withr"
+      ],
+      "VignetteBuilder": "knitr",
+      "Config/testthat/edition": "3",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.3.2.9000",
+      "Config/autostyle/scope": "line_breaks",
+      "Config/autostyle/strict": "true",
+      "Config/Needs/website": "tidyverse/tidytemplate",
+      "NeedsCompilation": "no",
+      "Author": "Kirill Müller [aut, cre] (ORCID: <https://orcid.org/0000-0002-1416-3412>)",
+      "Maintainer": "Kirill Müller <kirill@cynkra.com>",
+      "Repository": "RSPM"
     },
     "rstatix": {
       "Package": "rstatix",
@@ -6004,6 +6605,68 @@
       "Maintainer": "Thomas Lin Pedersen <thomas.pedersen@posit.co>",
       "Repository": "CRAN"
     },
+    "testthat": {
+      "Package": "testthat",
+      "Version": "3.3.2",
+      "Source": "Repository",
+      "Title": "Unit Testing for R",
+      "Authors@R": "c( person(\"Hadley\", \"Wickham\", , \"hadley@posit.co\", role = c(\"aut\", \"cre\")), person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\")), person(\"R Core team\", role = \"ctb\", comment = \"Implementation of utils::recover()\") )",
+      "Description": "Software testing is important, but, in part because it is frustrating and boring, many of us avoid it. 'testthat' is a testing framework for R that is easy to learn and use, and integrates with your existing 'workflow'.",
+      "License": "MIT + file LICENSE",
+      "URL": "https://testthat.r-lib.org, https://github.com/r-lib/testthat",
+      "BugReports": "https://github.com/r-lib/testthat/issues",
+      "Depends": [
+        "R (>= 4.1.0)"
+      ],
+      "Imports": [
+        "brio (>= 1.1.5)",
+        "callr (>= 3.7.6)",
+        "cli (>= 3.6.5)",
+        "desc (>= 1.4.3)",
+        "evaluate (>= 1.0.4)",
+        "jsonlite (>= 2.0.0)",
+        "lifecycle (>= 1.0.4)",
+        "magrittr (>= 2.0.3)",
+        "methods",
+        "pkgload (>= 1.4.0)",
+        "praise (>= 1.0.0)",
+        "processx (>= 3.8.6)",
+        "ps (>= 1.9.1)",
+        "R6 (>= 2.6.1)",
+        "rlang (>= 1.1.6)",
+        "utils",
+        "waldo (>= 0.6.2)",
+        "withr (>= 3.0.2)"
+      ],
+      "Suggests": [
+        "covr",
+        "curl (>= 0.9.5)",
+        "diffviewer (>= 0.1.0)",
+        "digest (>= 0.6.33)",
+        "gh",
+        "knitr",
+        "otel",
+        "otelsdk",
+        "rmarkdown",
+        "rstudioapi",
+        "S7",
+        "shiny",
+        "usethis",
+        "vctrs (>= 0.1.0)",
+        "xml2"
+      ],
+      "VignetteBuilder": "knitr",
+      "Config/Needs/website": "tidyverse/tidytemplate",
+      "Config/testthat/edition": "3",
+      "Config/testthat/parallel": "true",
+      "Config/testthat/start-first": "watcher, parallel*",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.3.3",
+      "NeedsCompilation": "yes",
+      "Author": "Hadley Wickham [aut, cre], Posit Software, PBC [cph, fnd], R Core team [ctb] (Implementation of utils::recover())",
+      "Maintainer": "Hadley Wickham <hadley@posit.co>",
+      "Repository": "CRAN"
+    },
     "textshaping": {
       "Package": "textshaping",
       "Version": "1.0.4",
@@ -6485,6 +7148,49 @@
       "Maintainer": "Davis Vaughan <davis@posit.co>",
       "Repository": "CRAN"
     },
+    "vdiffr": {
+      "Package": "vdiffr",
+      "Version": "1.0.8",
+      "Source": "Repository",
+      "Title": "Visual Regression Testing and Graphical Diffing",
+      "Authors@R": "c( person(\"Lionel\", \"Henry\", , \"lionel@posit.co\", role = c(\"cre\", \"aut\")), person(\"Thomas Lin\", \"Pedersen\", , \"thomas.pedersen@posit.co\", role = \"aut\", comment = c(ORCID = \"0000-0002-5147-4711\")), person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\")), person(\"T Jake\", \"Luciani\", , \"jake@apache.org\", role = \"aut\", comment = \"svglite\"), person(\"Matthieu\", \"Decorde\", , \"matthieu.decorde@ens-lyon.fr\", role = \"aut\", comment = \"svglite\"), person(\"Vaudor\", \"Lise\", , \"lise.vaudor@ens-lyon.fr\", role = \"aut\", comment = \"svglite\"), person(\"Tony\", \"Plate\", role = \"ctb\", comment = \"svglite: Early line dashing code\"), person(\"David\", \"Gohel\", role = \"ctb\", comment = \"svglite: Line dashing code and raster code\"), person(\"Yixuan\", \"Qiu\", role = \"ctb\", comment = \"svglite: Improved styles; polypath implementation\"), person(\"Håkon\", \"Malmedal\", role = \"ctb\", comment = \"svglite: Opacity code\") )",
+      "Description": "An extension to the 'testthat' package that makes it easy to add graphical unit tests. It provides a Shiny application to manage the test cases.",
+      "License": "MIT + file LICENSE",
+      "URL": "https://vdiffr.r-lib.org/, https://github.com/r-lib/vdiffr",
+      "BugReports": "https://github.com/r-lib/vdiffr/issues",
+      "Depends": [
+        "R (>= 4.0)"
+      ],
+      "Imports": [
+        "diffobj",
+        "glue",
+        "grDevices",
+        "htmltools",
+        "lifecycle",
+        "rlang",
+        "testthat (>= 3.0.3)",
+        "xml2 (>= 1.0.0)"
+      ],
+      "Suggests": [
+        "covr",
+        "decor",
+        "ggplot2 (>= 3.2.0)",
+        "roxygen2",
+        "withr"
+      ],
+      "LinkingTo": [
+        "cpp11"
+      ],
+      "ByteCompile": "true",
+      "Config/Needs/website": "tidyverse/tidytemplate",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.3.2",
+      "SystemRequirements": "libpng",
+      "NeedsCompilation": "yes",
+      "Author": "Lionel Henry [cre, aut], Thomas Lin Pedersen [aut] (<https://orcid.org/0000-0002-5147-4711>), Posit Software, PBC [cph, fnd], T Jake Luciani [aut] (svglite), Matthieu Decorde [aut] (svglite), Vaudor Lise [aut] (svglite), Tony Plate [ctb] (svglite: Early line dashing code), David Gohel [ctb] (svglite: Line dashing code and raster code), Yixuan Qiu [ctb] (svglite: Improved styles; polypath implementation), Håkon Malmedal [ctb] (svglite: Opacity code)",
+      "Maintainer": "Lionel Henry <lionel@posit.co>",
+      "Repository": "CRAN"
+    },
     "vipor": {
       "Package": "vipor",
       "Version": "0.4.7",
@@ -6544,6 +7250,43 @@
       "NeedsCompilation": "no",
       "Author": "Simon Garnier [aut, cre], Noam Ross [ctb, cph], Bob Rudis [ctb, cph], Marco Sciaini [ctb, cph], Antônio Pedro Camargo [ctb, cph], Cédric Scherer [ctb, cph]",
       "Repository": "CRAN"
+    },
+    "waldo": {
+      "Package": "waldo",
+      "Version": "0.6.2",
+      "Source": "Repository",
+      "Title": "Find Differences Between R Objects",
+      "Authors@R": "c( person(\"Hadley\", \"Wickham\", , \"hadley@posit.co\", role = c(\"aut\", \"cre\")), person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\")) )",
+      "Description": "Compare complex R objects and reveal the key differences. Designed particularly for use in testing packages where being able to quickly isolate key differences makes understanding test failures much easier.",
+      "License": "MIT + file LICENSE",
+      "URL": "https://waldo.r-lib.org, https://github.com/r-lib/waldo",
+      "BugReports": "https://github.com/r-lib/waldo/issues",
+      "Depends": [
+        "R (>= 4.0)"
+      ],
+      "Imports": [
+        "cli",
+        "diffobj (>= 0.3.4)",
+        "glue",
+        "methods",
+        "rlang (>= 1.1.0)"
+      ],
+      "Suggests": [
+        "bit64",
+        "R6",
+        "S7",
+        "testthat (>= 3.0.0)",
+        "withr",
+        "xml2"
+      ],
+      "Config/Needs/website": "tidyverse/tidytemplate",
+      "Config/testthat/edition": "3",
+      "Encoding": "UTF-8",
+      "RoxygenNote": "7.3.2",
+      "NeedsCompilation": "no",
+      "Author": "Hadley Wickham [aut, cre], Posit Software, PBC [cph, fnd]",
+      "Maintainer": "Hadley Wickham <hadley@posit.co>",
+      "Repository": "RSPM"
     },
     "withr": {
       "Package": "withr",
