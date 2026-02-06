@@ -391,8 +391,7 @@ Form
 				{
 					name: "paretoShiftAccumulationLine"
 					label: qsTr("Shift accumulation line")
-					info: qsTr("Shifts the cumulative line so that it starts at the top-right corner of the first bar instead of in the middle. This corresponds to the traditional Pareto chart layout. "
-									+ "When enabled, the left y-axis shows percentages and the right y-axis shows counts; otherwise, the left y-axis shows counts and the right y-axis shows percentages.")
+					info: qsTr("Shifts the cumulative line so that it starts at the top-right corner of the first bar instead of in the middle. This corresponds to the traditional Pareto chart layout.")
 				}
 
 				CheckBox
