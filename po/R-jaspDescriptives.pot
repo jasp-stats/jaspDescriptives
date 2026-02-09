@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.95.5\n"
-"POT-Creation-Date: 2026-01-31 03:55\n"
+"POT-Creation-Date: 2026-02-09 12:28\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -300,12 +300,6 @@ msgid "Association cannot be computed due to missing values. Try a different 'Us
 msgstr ""
 
 msgid "Some associations cannot be computed due to missing values. Try a different 'Use' setting."
-msgstr ""
-
-msgid "Theoretical Quantiles"
-msgstr ""
-
-msgid "Sample Quantiles"
 msgstr ""
 
 msgid "Stem"

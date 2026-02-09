@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2026-01-31 03:55\n"
+"POT-Creation-Date: 2026-02-09 12:28\n"
 "PO-Revision-Date: 2021-10-30 19:47+0000\n"
 "Last-Translator: Igor Dobrača <igor.dobraca@gmail.com>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/jasp/"
@@ -338,12 +338,6 @@ msgid ""
 "'Use' setting."
 msgstr ""
 
-msgid "Theoretical Quantiles"
-msgstr "Teoretski kvantili"
-
-msgid "Sample Quantiles"
-msgstr "Kvantili uzorka"
-
 msgid "Stem"
 msgstr ""
 
@@ -515,6 +509,12 @@ msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "Decimalna točka je %s znamenka lijevo od |"
 msgstr[1] "Decimalna točka je %s znamenki lijevo od |"
 msgstr[2] "Decimalna točka je %s znamenki lijevo od |"
+
+#~ msgid "Theoretical Quantiles"
+#~ msgstr "Teoretski kvantili"
+
+#~ msgid "Sample Quantiles"
+#~ msgstr "Kvantili uzorka"
 
 #, fuzzy
 #~ msgid "Density Plots"

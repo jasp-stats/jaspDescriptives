@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2026-01-31 03:55\n"
+"POT-Creation-Date: 2026-02-09 12:28\n"
 "PO-Revision-Date: 2025-10-28 10:02+0000\n"
 "Last-Translator: Alexandre Derreumaux <alexandre.derreumaux@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/jasp/"
@@ -344,12 +344,6 @@ msgid ""
 "'Use' setting."
 msgstr ""
 
-msgid "Theoretical Quantiles"
-msgstr "Quantiles Théoriques"
-
-msgid "Sample Quantiles"
-msgstr "Quantiles de l'échantillon"
-
 msgid "Stem"
 msgstr "Tige"
 
@@ -523,6 +517,12 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "La virgule décimale se trouve à %s chiffre à gauche du |"
 msgstr[1] "La virgule décimale se trouve à %s chiffres à gauche du |"
+
+#~ msgid "Theoretical Quantiles"
+#~ msgstr "Quantiles Théoriques"
+
+#~ msgid "Sample Quantiles"
+#~ msgstr "Quantiles de l'échantillon"
 
 #~ msgid "Density Plots"
 #~ msgstr "Diagramme à points"

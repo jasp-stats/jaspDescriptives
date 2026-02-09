@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.11.0\n"
-"POT-Creation-Date: 2026-01-31 03:55\n"
+"POT-Creation-Date: 2026-02-09 12:28\n"
 "PO-Revision-Date: 2024-07-12 14:09+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -340,12 +340,6 @@ msgstr ""
 "欠測値があるためいくつかの連関が計算できません。別の「使用」設定を試してくだ"
 "さい."
 
-msgid "Theoretical Quantiles"
-msgstr "理論上の分位数"
-
-msgid "Sample Quantiles"
-msgstr "サンプル分位数"
-
 msgid "Stem"
 msgstr "幹"
 
@@ -511,6 +505,12 @@ msgstr[0] "|の右にある小数点は %s 桁です"
 msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "|の左にある小数点は %s 桁です"
+
+#~ msgid "Theoretical Quantiles"
+#~ msgstr "理論上の分位数"
+
+#~ msgid "Sample Quantiles"
+#~ msgstr "サンプル分位数"
 
 #~ msgid "Density Plots"
 #~ msgstr "密度プロット"

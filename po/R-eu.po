@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2026-01-31 03:55\n"
+"POT-Creation-Date: 2026-02-09 12:28\n"
 "PO-Revision-Date: 2025-12-23 10:38+0000\n"
 "Last-Translator: Jose Ramon Rueda <joseramon.rueda@ehu.eus>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/jasp/"
@@ -346,12 +346,6 @@ msgstr ""
 "Ezin dira asoziazio butzuk kalkulatu balio falta direlako. Saiatu beste "
 "'Erabili' ezarpen batekin."
 
-msgid "Theoretical Quantiles"
-msgstr "Kuantil Teorikoak"
-
-msgid "Sample Quantiles"
-msgstr "Lagin Kuantilak"
-
 msgid "Stem"
 msgstr "Zurtoina"
 
@@ -532,6 +526,12 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "Hamartarra |-ren eskualdera dagoen digituaren %s da"
 msgstr[1] "Hamartarra |-ren eskualdera dauden digituen %s da"
+
+#~ msgid "Theoretical Quantiles"
+#~ msgstr "Kuantil Teorikoak"
+
+#~ msgid "Sample Quantiles"
+#~ msgstr "Lagin Kuantilak"
 
 #~ msgid ""
 #~ "The variable used for categories must not have duplicated values when a "

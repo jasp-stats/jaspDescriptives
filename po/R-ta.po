@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.19.2\n"
-"POT-Creation-Date: 2026-01-31 03:55\n"
+"POT-Creation-Date: 2026-02-09 12:28\n"
 "PO-Revision-Date: 2026-01-01 03:01+0000\n"
 "Last-Translator: தமிழ்நேரம் <tamilneram247@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/jasp/"
@@ -347,12 +347,6 @@ msgstr ""
 "மதிப்புகள் இல்லாததால் சில சங்கங்களை கணக்கிட முடியாது. வேறு 'பயன்பாடு' அமைப்பை "
 "முயற்சிக்கவும்."
 
-msgid "Theoretical Quantiles"
-msgstr "தத்துவார்த்த அளவுகள்"
-
-msgid "Sample Quantiles"
-msgstr "மாதிரி அளவீடுகள்"
-
 msgid "Stem"
 msgstr "தண்டு"
 
@@ -532,6 +526,12 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "தசமப்புள்ளியானது %s இலக்கம் |"
 msgstr[1] "தசம புள்ளியானது %s இலக்கம் |"
+
+#~ msgid "Theoretical Quantiles"
+#~ msgstr "தத்துவார்த்த அளவுகள்"
+
+#~ msgid "Sample Quantiles"
+#~ msgstr "மாதிரி அளவீடுகள்"
 
 #~ msgid ""
 #~ "The variable used for categories must not have duplicated values when a "

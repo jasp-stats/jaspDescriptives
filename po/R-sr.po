@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.19.2\n"
-"POT-Creation-Date: 2026-01-31 03:55\n"
+"POT-Creation-Date: 2026-02-09 12:28\n"
 "PO-Revision-Date: 2025-12-17 23:00+0000\n"
 "Last-Translator: Marko Bojović <bojovicmarko@outlook.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/jasp/"
@@ -344,12 +344,6 @@ msgstr ""
 "Неке асоцијације не могу бити израчунате због недостајућих вредности. "
 "Покушајте са различитом поставком ‘употреба’."
 
-msgid "Theoretical Quantiles"
-msgstr "Теоријски квантили"
-
-msgid "Sample Quantiles"
-msgstr "Квантилни узорци"
-
 msgid "Stem"
 msgstr "Стем"
 
@@ -530,6 +524,12 @@ msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "Децимални зарез је %s број лево од |"
 msgstr[1] "Децимални зарез је %s бројева лево од |"
 msgstr[2] "Децимални зарез је %s бројева лево од |"
+
+#~ msgid "Theoretical Quantiles"
+#~ msgstr "Теоријски квантили"
+
+#~ msgid "Sample Quantiles"
+#~ msgstr "Квантилни узорци"
 
 #~ msgid ""
 #~ "The variable used for categories must not have duplicated values when a "

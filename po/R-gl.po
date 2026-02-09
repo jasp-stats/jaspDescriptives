@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-01-31 03:55\n"
+"POT-Creation-Date: 2026-02-09 12:28\n"
 "PO-Revision-Date: 2025-10-12 08:59+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
@@ -357,12 +357,6 @@ msgstr ""
 "Algunhas asociacións non se poden calcular debido a valores ausentes. "
 "Intenta unha configuración distinta de 'Usar'."
 
-msgid "Theoretical Quantiles"
-msgstr "Cuantiles Teóricos"
-
-msgid "Sample Quantiles"
-msgstr "Cuantiles da Mostra"
-
 msgid "Stem"
 msgstr "Talo"
 
@@ -540,6 +534,12 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "O punto decimal está no díxito %s á esquerda do |"
 msgstr[1] "O punto decimal está %s díxitos á esquerda do |"
+
+#~ msgid "Theoretical Quantiles"
+#~ msgstr "Cuantiles Teóricos"
+
+#~ msgid "Sample Quantiles"
+#~ msgstr "Cuantiles da Mostra"
 
 #~ msgid ""
 #~ "The variable used for categories must not have duplicated values when a "

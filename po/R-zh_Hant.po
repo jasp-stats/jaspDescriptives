@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2026-01-31 03:55\n"
+"POT-Creation-Date: 2026-02-09 12:28\n"
 "PO-Revision-Date: 2025-11-09 15:06+0000\n"
 "Last-Translator: 陳寬裕 <pf.kuan.yu.chen@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
@@ -328,12 +328,6 @@ msgid ""
 "'Use' setting."
 msgstr ""
 
-msgid "Theoretical Quantiles"
-msgstr "理論分位值"
-
-msgid "Sample Quantiles"
-msgstr "樣本分位数"
-
 msgid "Stem"
 msgstr "莖"
 
@@ -489,6 +483,12 @@ msgstr[0] "小數點位數為 | 右邊 %s 位數"
 msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "小數點位數為 | 左邊 %s 位數"
+
+#~ msgid "Theoretical Quantiles"
+#~ msgstr "理論分位值"
+
+#~ msgid "Sample Quantiles"
+#~ msgstr "樣本分位数"
 
 #~ msgid "Density Plots"
 #~ msgstr "密度圖"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2026-01-31 03:55\n"
+"POT-Creation-Date: 2026-02-09 12:28\n"
 "PO-Revision-Date: 2025-07-16 21:01+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
@@ -348,12 +348,6 @@ msgstr ""
 "Niektóre zależności nie mogły zostać obliczone ze względu na braki danych. "
 "Należy zmienić ustawienia opcji \"Użyj\"."
 
-msgid "Theoretical Quantiles"
-msgstr "Kwantyle teoretyczne"
-
-msgid "Sample Quantiles"
-msgstr "Kwantyle z próby"
-
 msgid "Stem"
 msgstr "Łodyga"
 
@@ -536,6 +530,12 @@ msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "Punkt dziesiętny znajduje się %s cyfrę na lewo od |"
 msgstr[1] "Punkt dziesiętny znajduje się %s cyfry na lewo od |"
 msgstr[2] "Punkt dziesiętny znajduje się %s cyfr na lewo od |"
+
+#~ msgid "Theoretical Quantiles"
+#~ msgstr "Kwantyle teoretyczne"
+
+#~ msgid "Sample Quantiles"
+#~ msgstr "Kwantyle z próby"
 
 #~ msgid "Density Plots"
 #~ msgstr "Wykresy gęstości"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2026-01-31 03:55\n"
+"POT-Creation-Date: 2026-02-09 12:28\n"
 "PO-Revision-Date: 2025-10-12 08:59+0000\n"
 "Last-Translator: Wendel Paulo Silvestre <wpsilvestre@ucs.br>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/jasp/"
@@ -349,12 +349,6 @@ msgstr ""
 "Algumas associações não puderam ser calculadas devido a valores ausentes. "
 "Tente utilizar uma configuração 'Usar' diferente."
 
-msgid "Theoretical Quantiles"
-msgstr "Quantis teóricos"
-
-msgid "Sample Quantiles"
-msgstr "Quartil da amostra"
-
 msgid "Stem"
 msgstr "Ramo"
 
@@ -539,6 +533,12 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "O ponto decimal está %s dígito à esquerda de |"
 msgstr[1] "Os pontos decimais estão %s dígitos à esquerda de |"
+
+#~ msgid "Theoretical Quantiles"
+#~ msgstr "Quantis teóricos"
+
+#~ msgid "Sample Quantiles"
+#~ msgstr "Quartil da amostra"
 
 #~ msgid ""
 #~ "The variable used for categories must not have duplicated values when a "

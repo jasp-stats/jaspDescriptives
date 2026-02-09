@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2026-01-31 03:55\n"
+"POT-Creation-Date: 2026-02-09 12:28\n"
 "PO-Revision-Date: 2025-04-02 18:57+0000\n"
 "Last-Translator: Иван Рудаков <riv@polygene.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/jasp/"
@@ -341,12 +341,6 @@ msgid ""
 "'Use' setting."
 msgstr ""
 
-msgid "Theoretical Quantiles"
-msgstr "Теоретические квантили"
-
-msgid "Sample Quantiles"
-msgstr "Выборочные квантили"
-
 msgid "Stem"
 msgstr "Ствол"
 
@@ -513,6 +507,12 @@ msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "Десятичный знак — это %s цифра слева от |"
 msgstr[1] "Десятичный знак — это %s цифры слева от |"
 msgstr[2] "Десятичный знак — это %s цифры слева от |"
+
+#~ msgid "Theoretical Quantiles"
+#~ msgstr "Теоретические квантили"
+
+#~ msgid "Sample Quantiles"
+#~ msgstr "Выборочные квантили"
 
 #~ msgid "Density Plots"
 #~ msgstr "Графики плотности"

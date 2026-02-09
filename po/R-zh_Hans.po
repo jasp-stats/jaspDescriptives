@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2026-01-31 03:55\n"
+"POT-Creation-Date: 2026-02-09 12:28\n"
 "PO-Revision-Date: 2025-12-06 03:31+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -331,12 +331,6 @@ msgid ""
 "'Use' setting."
 msgstr "由于缺失值，某些关联无法计算。请尝试使用不同的“使用”设置。"
 
-msgid "Theoretical Quantiles"
-msgstr "理论分位数( Theoretical Quantile)"
-
-msgid "Sample Quantiles"
-msgstr "样本分位数"
-
 msgid "Stem"
 msgstr "茎"
 
@@ -496,6 +490,12 @@ msgstr[0] "小数点是 | 右边的 %s 位"
 msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "小数点是 | 左边的 %s 位"
+
+#~ msgid "Theoretical Quantiles"
+#~ msgstr "理论分位数( Theoretical Quantile)"
+
+#~ msgid "Sample Quantiles"
+#~ msgstr "样本分位数"
 
 #~ msgid ""
 #~ "The variable used for categories must not have duplicated values when a "

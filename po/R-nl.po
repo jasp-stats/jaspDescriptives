@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2026-01-31 03:55\n"
+"POT-Creation-Date: 2026-02-09 12:28\n"
 "PO-Revision-Date: 2024-09-15 09:32+0000\n"
 "Last-Translator: Koen Derks <koen-derks@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
@@ -347,12 +347,6 @@ msgstr ""
 "Sommige associaties kunnen niet worden berekend omdat er waarden ontbreken. "
 "Probeer een andere instelling voor 'Gebruiken'."
 
-msgid "Theoretical Quantiles"
-msgstr "Theoretische Kwantielen"
-
-msgid "Sample Quantiles"
-msgstr "Steekproefkwantielen"
-
 msgid "Stem"
 msgstr "Stam"
 
@@ -531,6 +525,12 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "De decimale punt is %s cijfer links van de |"
 msgstr[1] "De decimale punt is %s cijfers links van de |"
+
+#~ msgid "Theoretical Quantiles"
+#~ msgstr "Theoretische Kwantielen"
+
+#~ msgid "Sample Quantiles"
+#~ msgstr "Steekproefkwantielen"
 
 #~ msgid "Density Plots"
 #~ msgstr "Verdelingsgrafieken"

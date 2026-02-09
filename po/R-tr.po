@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.18.3\n"
-"POT-Creation-Date: 2026-01-31 03:55\n"
+"POT-Creation-Date: 2026-02-09 12:28\n"
 "PO-Revision-Date: 2025-10-07 22:02+0000\n"
 "Last-Translator: Hamza Yalçin <h.yalcin08@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/jasp/"
@@ -348,12 +348,6 @@ msgstr ""
 "Eksik değerler nedeniyle bazı ilişkiler hesaplanamıyor. Farklı bir "
 "'Kullanım' ayarı deneyin."
 
-msgid "Theoretical Quantiles"
-msgstr "Teorik Kuantiller"
-
-msgid "Sample Quantiles"
-msgstr "Örneklem Kuantilleri"
-
 msgid "Stem"
 msgstr "Dal"
 
@@ -531,6 +525,12 @@ msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
 msgstr[0] "Ondalık nokta | işaretinin solundaki %s rakamıdır"
 msgstr[1] "Ondalık nokta | işaretinin solundaki %s basamaktır"
+
+#~ msgid "Theoretical Quantiles"
+#~ msgstr "Teorik Kuantiller"
+
+#~ msgid "Sample Quantiles"
+#~ msgstr "Örneklem Kuantilleri"
 
 #~ msgid "Density Plots"
 #~ msgstr "Yoğunluk Grafikleri"
