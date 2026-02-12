@@ -2489,7 +2489,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   xFac     <- factor(tb$level, levels = tb$level)
   barWidth <- 0.9
   edgeShift <- barWidth / 2
-  cntBreaks <- scales::pretty_breaks()(c(0, tot))
 
   # After you build tb (already sorted by Freq desc):
   tb$level <- factor(tb$level, levels = tb$level)  # lock global order
@@ -2556,13 +2555,12 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       if (shift) base + edgeShift else base
     }
 
-    # y height in *left-axis* units
-    # - shifted: left axis is %, so use target directly
-    # - normal : left axis is counts; map % -> left via scaleRight
+    # y height in *left-axis* units (counts)
+    # Map percentage to count scale
     yGuideLeft <- if (shift) perc * tot else perc * max(yBreaks)
 
-    # horizontal endpoint on the side where % axis lives
-    xEnd <- if (shift) 0.5 else length(levels(tb$level)) + 0.5
+    # horizontal endpoint: always to the right where percentage axis lives
+    xEnd <- length(levels(tb$level)) + 0.5
 
     p <- p +
       # vertical from x-axis up to the % height
