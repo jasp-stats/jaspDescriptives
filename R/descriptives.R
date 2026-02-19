@@ -303,7 +303,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       jaspResults[["paretoPlots"]] <- createJaspContainer(gettext("Pareto Plots"))
       jaspResults[["paretoPlots"]]$dependOn(c("paretoPlot", "splitBy", "paretoPlotRule", "paretoPlotRuleCi",
                                               "paretoShiftAccumulationLine", "paretoAddCountVariable",
-                                              "paretoPlotTurnXAxisLabels"))
+                                              "paretoPlotTiltXAxisLabels"))
       jaspResults[["paretoPlots"]]$position <- 15
     }
 
@@ -2576,7 +2576,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   }
 
   # posssible turn the x-axis labels
-  if (options[["paretoPlotTurnXAxisLabels"]]) {
+  if (options[["paretoPlotTiltXAxisLabels"]]) {
     levs <- decodeColNames(levels(tb$level))
     maxChars <- max(nchar(levs))
     titlePad <- max(10, min(40, ceiling(maxChars * 0.6)))  # space to the title
