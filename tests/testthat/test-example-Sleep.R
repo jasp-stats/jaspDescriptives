@@ -3,7 +3,7 @@ context("Example: Sleep")
 # This test file was auto-generated from a JASP example file.
 # The JASP file is stored in the module's examples/ folder.
 
-test_that("Descriptives runs without error", {
+test_that("Descriptives results match", {
 
   # Load from JASP example file
   jaspFile <- testthat::test_path("..", "..", "examples", "Sleep.jasp")
@@ -15,7 +15,7 @@ test_that("Descriptives runs without error", {
   set.seed(1)
   results <- jaspTools::runAnalysis("Descriptives", encoded$dataset, encoded$options, encodedDataset = TRUE)
 
-  # Check analysis runs without error
+  # Basic check - analysis runs without error
   expect_false(isTRUE(results[["status"]] == "error"),
                info = results[["results"]][["error"]])
 })

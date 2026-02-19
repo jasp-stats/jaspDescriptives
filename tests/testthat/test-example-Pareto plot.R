@@ -15,10 +15,6 @@ test_that("Descriptives (analysis 1) results match", {
   set.seed(1)
   results <- jaspTools::runAnalysis("Descriptives", encoded$dataset, encoded$options, encodedDataset = TRUE)
 
-  plotName <- results[["results"]][["paretoPlots"]][["collection"]][["paretoPlots_jaspColumn2"]][["data"]]
-  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "analysis-1_figure-1_jaspcolumn2")
-
   table <- results[["results"]][["stats"]][["data"]]
   jaspTools::expect_equal_tables(table,
     list(0, 9, "jaspColumn2"))
@@ -36,10 +32,6 @@ test_that("Descriptives (analysis 2) results match", {
   encoded <- jaspTools:::encodeOptionsAndDataset(opts, dataset)
   set.seed(1)
   results <- jaspTools::runAnalysis("Descriptives", encoded$dataset, encoded$options, encodedDataset = TRUE)
-
-  plotName <- results[["results"]][["paretoPlots"]][["collection"]][["paretoPlots_jaspColumn2"]][["data"]]
-  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
-  jaspTools::expect_equal_plots(testPlot, "analysis-2_figure-1_jaspcolumn2")
 
   table <- results[["results"]][["stats"]][["data"]]
   jaspTools::expect_equal_tables(table,

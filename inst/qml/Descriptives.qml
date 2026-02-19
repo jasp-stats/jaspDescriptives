@@ -396,9 +396,9 @@ Form
 
 				CheckBox
 				{
-					name: "paretoPlotTurnXAxisLabels"
-					label: qsTr("Turn x-axis labels")
-					info: qsTr("Turns the x-axis labels by 45 degrees to improve readability when there are many long levels.")
+					name: "paretoPlotTiltXAxisLabels"
+					label: qsTr("Tilt x-axis labels")
+					info: qsTr("Tilts the x-axis labels by 45 degrees to improve readability when there are many long levels.")
 				}
 
 				DropDown
