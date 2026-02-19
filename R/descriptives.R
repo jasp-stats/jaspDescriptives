@@ -310,7 +310,9 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     parPlots <- jaspResults[["paretoPlots"]]
 
     for (var in nonScaleVariables) {
-      # Only categorical variables
+      # Only categorical variables; skip the count variable — it should not get its own Pareto plot
+      if (var == options[["paretoAddCountVariable"]])
+        next
       if (is.null(parPlots[[var]])) {
         parPlots[[var]] <- if (makeSplit) {
           .descriptivesParetoPlots(splitDat, var, options)
@@ -2508,7 +2510,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   # left-axis breaks
   yBreaksLeft <- if (shift) {
     br <- jaspGraphs::getPrettyAxisBreaks(c(0, tot))
-    sort(unique(c(br, tot)))  # make sure tot is included as a tick
+    # drop any break too close to tot to avoid overlapping tick labels
+    step <- if (length(br) > 1) min(diff(br)) else tot
+    br <- br[abs(br - tot) > step * 0.5 | br == 0]
+    sort(unique(c(br, tot)))
   } else {
     yBreaks
   }
