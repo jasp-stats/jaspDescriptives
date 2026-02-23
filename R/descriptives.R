@@ -2580,7 +2580,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       )
   }
 
-  # posssible turn the x-axis labels
+  # possible turn the x-axis labels
   if (options[["paretoPlotTiltXAxisLabels"]]) {
     levs <- decodeColNames(levels(tb$level))
     maxChars <- max(nchar(levs))
