@@ -3,7 +3,7 @@ context("Example: Sleep")
 # This test file was auto-generated from a JASP example file.
 # The JASP file is stored in the module's examples/ folder.
 
-test_that("Descriptives results match", {
+test_that("Descriptives runs without error", {
 
   # Load from JASP example file
   jaspFile <- testthat::test_path("..", "..", "examples", "Sleep.jasp")
