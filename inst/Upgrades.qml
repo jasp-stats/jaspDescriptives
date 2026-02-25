@@ -89,9 +89,9 @@ Upgrades
 		fromVersion:	"0.95.1"
 		toVersion:		"0.95.5"
 
-		ChangeSetValue { name: "paretoShiftAccumulationLine";	value: false	}
+		ChangeSetValue { name: "paretoShiftAccumulationLine";	jsonValue: false	}
 		ChangeRename  { from: "paretoPlotTurnXAxisLabels";		to: "paretoPlotTiltXAxisLabels"	}
-		ChangeSetValue { name: "paretoPlotTiltXAxisLabels";		value: false	}
-		ChangeSetValue { name: "paretoAddCountVariable";		value: ""		}
+		ChangeSetValue { name: "paretoPlotTiltXAxisLabels";		jsonValue: false	}
+		ChangeSetValue { name: "paretoAddCountVariable";		jsonValue: ""		}
 	}
 }
