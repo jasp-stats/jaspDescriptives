@@ -15,7 +15,7 @@ test_that("Descriptives runs without error", {
   set.seed(1)
   results <- jaspTools::runAnalysis("Descriptives", encoded$dataset, encoded$options, encodedDataset = TRUE)
 
-  # Check analysis runs without error
+  # Basic check - analysis runs without error
   expect_false(isTRUE(results[["status"]] == "error"),
                info = results[["results"]][["error"]])
 })

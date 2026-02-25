@@ -77,9 +77,21 @@ Upgrades
 	{
 		functionName:	"Descriptives"
 		fromVersion:	"0.95.0"
-		toVersion:	"0.95.1"
+		toVersion:		"0.95.1"
 
 		// this resulted from adding geometric and harmonic means
 		ChangeRename { from: "mean";	to: "meanArithmetic" }
+	}
+
+	Upgrade
+	{
+		functionName:	"Descriptives"
+		fromVersion:	"0.95.1"
+		toVersion:		"0.95.5"
+
+		ChangeSetValue { name: "paretoShiftAccumulationLine";	value: false	}
+		ChangeRename  { from: "paretoPlotTurnXAxisLabels";		to: "paretoPlotTiltXAxisLabels"	}
+		ChangeSetValue { name: "paretoPlotTiltXAxisLabels";		value: false	}
+		ChangeSetValue { name: "paretoAddCountVariable";		value: ""		}
 	}
 }

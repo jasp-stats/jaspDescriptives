@@ -185,7 +185,7 @@ Defaults to \code{TRUE}.}
 
 \item{meanCiLevel, }{width of the confidence interval.}
 
-\item{meanCiMethod, }{How should the confidence interval be computed? By default, we use a `T model`, which yields results identical to a one-sample t-test. Alternative options are a normal model ($\bar{x} \pm z_{95} \times SE$), or `Bootstrap`.}
+\item{meanCiMethod, }{How should the confidence interval be computed? By default, we use a `T model`, which yields results identical to a one-sample t-test. Alternative options are a normal model (\eqn{\bar{x} \pm z_{95} \times SE}), or `Bootstrap`.}
 
 \item{meanGeometric, }{Geometric mean of the data points; defined only for strictly positive variables.
 Defaults to \code{FALSE}.}
