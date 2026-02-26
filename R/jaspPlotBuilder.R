@@ -1484,7 +1484,9 @@ addDecodedLabels <- function(p) {
       tidyplot_obj <- layer_calls[[lay]](tidyplot_obj)
     }
 
-    if (length(tab[["titlePlotBuilder"]]) > 0) {
+    if (!is.null(tab[["titlePlotBuilder"]]) &&
+        length(tab[["titlePlotBuilder"]]) > 0 &&
+        nchar(trimws(tab[["titlePlotBuilder"]])) > 0) {
       tidyplot_obj <- tidyplot_obj |>
         tidyplots::add_title(title = tab[["titlePlotBuilder"]])
     }
@@ -1538,7 +1540,7 @@ addDecodedLabels <- function(p) {
         tidyplot_obj <- gg
       }
 
-     #Point shape by variable ----
+      #Point shape by variable ----
       if (!is.null(shapeVar) && shapeVar %in% colnames(localData)) {
 
         if (length(unique(localData[[shapeVar]])) > 1) {
@@ -1788,83 +1790,43 @@ addDecodedLabels <- function(p) {
     }
 
     # Adjust Y axis (tidyplots::adjust_y_axis)----
+
+
+
     {
       adjust_args_yaxis <- list()
 
-      titleValueY <- tab[["titleYPlotBuilder"]]
-      if (!is.null(titleValueY) && titleValueY != "") {
-        adjust_args_yaxis$title <- titleValueY
-      }
-
+      # --- Limit beállítások ---
       limitFromY <- suppressWarnings(as.numeric(tab[["limitFromY"]]))
       limitToY   <- suppressWarnings(as.numeric(tab[["limitToY"]]))
-      fromValueY <- suppressWarnings(as.numeric(tab[["breakFromY"]]))
-      toValueY   <- suppressWarnings(as.numeric(tab[["breakToY"]]))
-      byValueY   <- suppressWarnings(as.numeric(tab[["breakByY"]]))
       user_has_limits <- !is.na(limitFromY) && !is.na(limitToY)
-      user_has_breaks <- !is.na(fromValueY) && !is.na(toValueY) && !is.na(byValueY)
-
-
-      automatic_limit_setting_active <- TRUE
 
       if (user_has_limits) {
         adjust_args_yaxis$limits <- c(limitFromY, limitToY)
-        automatic_limit_setting_active <- FALSE
       }
 
-      if (automatic_limit_setting_active) {
-
-        highest_y_from_annots <- -Inf
-        num_comparisons <- 0
-        if (!is.null(tab[["pairwiseComparisons"]])) {
-          num_comparisons <- length(tab[["pairwiseComparisons"]])
-        }
-
-        if (num_comparisons > 0 && !is.null(tab[["yPositionPValue"]])) {
-          y_pos_base <- suppressWarnings(as.numeric(tab[["yPositionPValue"]]))
-          step_inc   <- suppressWarnings(as.numeric(tab[["stepDistance"]]))
-          if (is.na(step_inc)) step_inc <- 0
-
-          if (is.finite(y_pos_base)) {
-            highest_y_from_annots <- y_pos_base + (num_comparisons - 1) * step_inc
-          }
-        }
-
-        max_y_from_data <- -Inf
-        if (!is.null(yVar) && yVar %in% colnames(localData) && is.numeric(localData[[yVar]])) {
-          max_y_from_data <- max(localData[[yVar]], na.rm = TRUE)
-        }
-
-        required_y_max <- max(max_y_from_data, highest_y_from_annots, na.rm = TRUE)
-
-        if (is.finite(required_y_max)) {
-          min_y <- min(localData[[yVar]], na.rm = TRUE)
-          adjust_args_yaxis$limits <- c(min_y, required_y_max * 1.05)
-        }
-      }
+      # --- Breaks beállítása ---
+      fromValueY <- suppressWarnings(as.numeric(tab[["breakFromY"]]))
+      toValueY   <- suppressWarnings(as.numeric(tab[["breakToY"]]))
+      byValueY   <- suppressWarnings(as.numeric(tab[["breakByY"]]))
+      user_has_breaks <- !is.na(fromValueY) && !is.na(toValueY) && !is.na(byValueY)
 
       if (user_has_breaks) {
         adjust_args_yaxis$breaks <- seq(fromValueY, toValueY, byValueY)
       }
 
-      num_comparisons_for_padding <- 0
-      if (!is.null(tab[["pairwiseComparisons"]])) {
-        num_comparisons_for_padding <- length(tab[["pairwiseComparisons"]])
-      }
-
+      # --- Padding beállítása ---
       bottom_padding <- suppressWarnings(as.numeric(tab[["YPaddingFirst"]]))
       top_padding    <- suppressWarnings(as.numeric(tab[["YPaddingSecond"]]))
 
-      if (num_comparisons_for_padding > 1) {
-        additional_padding <- (num_comparisons_for_padding - 1) * 0.15
-        top_padding <- top_padding + additional_padding
+      if (is.finite(bottom_padding) || is.finite(top_padding)) {
+        adjust_args_yaxis$padding <- c(
+          ifelse(is.finite(bottom_padding), bottom_padding, 0.05),
+          ifelse(is.finite(top_padding), top_padding, 0.05)
+        )
       }
 
-      adjust_args_yaxis$padding <- c(bottom_padding, top_padding)
-
-      adjust_args_yaxis$rotate_labels   <- isTRUE(tab[["rotateYLabel"]])
-      adjust_args_yaxis$cut_short_scale <- isTRUE(tab[["cutShortScaleY"]])
-
+      # --- Tengely beállítása ---
       if (length(adjust_args_yaxis) > 0) {
         tidyplot_obj <- do.call(
           tidyplots::adjust_y_axis,
@@ -1872,6 +1834,7 @@ addDecodedLabels <- function(p) {
         )
       }
 
+      # --- Opcionális Y-tengelyrendezés ---
       enableSortY <- tab[["enableSortY"]]
       if (isTRUE(enableSortY)) {
         sortOrderY <- tab[["sortYLabelsOrder"]]
@@ -1888,6 +1851,7 @@ addDecodedLabels <- function(p) {
         }
       }
     }
+
 
 
     # Adjust Y axis labels (tidyplots::rename_y_axis_labels)----
@@ -2332,12 +2296,12 @@ addDecodedLabels <- function(p) {
         stringsAsFactors = FALSE
       )
 
-        rmOption <- tab[["isRM"]]
+      rmOption <- tab[["isRM"]]
 
-        if (rmOption == "RM") {
-          dfComparisons$group1 <- encodeColNames(dfComparisons$group1)
-          dfComparisons$group2 <- encodeColNames(dfComparisons$group2)
-        }
+      if (rmOption == "RM") {
+        dfComparisons$group1 <- encodeColNames(dfComparisons$group1)
+        dfComparisons$group2 <- encodeColNames(dfComparisons$group2)
+      }
 
       if (!is.null(colorVar)) {
         dfComparisons$color <- as.character(
