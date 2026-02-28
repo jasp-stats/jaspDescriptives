@@ -4876,18 +4876,6 @@ msgid "Shift accumulation line"
 msgstr "Desprazar a liña de acumulación"
 
 msgctxt "Descriptives|"
-msgid "Turn x-axis labels"
-msgstr "Xira as etiquetas do eixe X"
-
-msgctxt "Descriptives|"
-msgid ""
-"Turns the x-axis labels by 45 degrees to improve readability when there are "
-"many long levels."
-msgstr ""
-"Xira as etiquetas do eixe X en 45 graos para mellorar a lexibilidade, cando "
-"hai moitos niveis longos."
-
-msgctxt "Descriptives|"
 msgid "Add count variable"
 msgstr "Engadir variable de reconto"
 
@@ -5009,4 +4997,14 @@ msgid ""
 "Shifts the cumulative line so that it starts at the top-right corner of the "
 "first bar instead of in the middle. This corresponds to the traditional "
 "Pareto chart layout."
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Tilt x-axis labels"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Tilts the x-axis labels by 45 degrees to improve readability when there are "
+"many long levels."
 msgstr ""
