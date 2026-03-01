@@ -324,6 +324,11 @@ Form
 					name: "correlationPlots";	label: qsTr("Correlation plots");	id:	correlationPlots
 					info: qsTr("Displays a matrix of plots between continuous variables, with scatterplots between the variables in the off-diagonal entries, and histograms and density plots in the diagonal entries. The line represents the fit of a 1st, 2nd, 3rd, or 4th order polynomial (the selection is based on the Bayesian information criterion; Schwarz, 1978).")
 				}
+				CheckBox
+				{
+					name: "ecdfPlot";	label: qsTr("Empirical cumulative distribution");	id:	ecdfPlot
+					info: qsTr("Displays the empirical cumulative distribution function for continuous variables.")
+				}
 			}
 
 			Group

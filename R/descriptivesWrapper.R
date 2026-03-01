@@ -149,6 +149,7 @@ Descriptives <- function(
     densityPlotType = "density",
     descriptivesTableTransposed = FALSE,
     distributionAndCorrelationPlotDensity = FALSE,
+    ecdfPlot = FALSE,
     distributionAndCorrelationPlotHistogramBinWidthType = "sturges",
     distributionAndCorrelationPlotHistogramManualNumberOfBins = 30,
     distributionAndCorrelationPlotRugMarks = FALSE,

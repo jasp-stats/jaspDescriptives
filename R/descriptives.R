@@ -124,6 +124,28 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     }
   }
 
+  # ECDF plots
+  if (options$ecdfPlot) {
+    if (is.null(jaspResults[["ecdfPlot"]])) {
+      jaspResults[["ecdfPlot"]] <- createJaspContainer(gettext("Empirical Cumulative Distribution"))
+      jaspResults[["ecdfPlot"]]$dependOn(c("ecdfPlot", "splitBy", "variables"))
+      jaspResults[["ecdfPlot"]]$position <- 5
+    }
+
+    ecdfPlots <- jaspResults[["ecdfPlot"]]
+
+    for (var in scaleVariables) {
+      if (is.null(ecdfPlots[[var]])) {
+        if (makeSplit) {
+          ecdfPlots[[var]] <- .descriptivesEcdfPlot(splitDat, options, var)
+        } else {
+          ecdfPlots[[var]] <- .descriptivesEcdfPlot(dataset, options, var)
+        }
+        ecdfPlots[[var]]$dependOn(optionContainsValue = list(variables = var))
+      }
+    }
+  }
+
   # Box plots
   if (options$boxPlot) {
     if (is.null(jaspResults[["boxPlot"]])) {
@@ -1204,6 +1226,25 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   }
 
   return(freqPlot)
+}
+
+.descriptivesEcdfPlot <- function(dataset, options, variable) {
+  ecdfPlot <- createJaspPlot(title = variable, width = options$plotWidth, height = options$plotHeight)
+
+  errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 2")
+  column <- dataset[[variable]]
+  column <- na.omit(column)
+
+  if (!is.null(errorMessage)) {
+    ecdfPlot$setError(gettextf("Plotting not possible: %s", errorMessage))
+  } else if (length(column) > 0) {
+    ecdfPlot$plotObject <- ggplot2::ggplot(data.frame(x = column), ggplot2::aes(x = x)) +
+      ggplot2::stat_ecdf(geom = "step", colour = "black") +
+      jaspGraphs::drawAxis(xName = variable, yName = gettext("Cumulative Proportion")) +
+      ggplot2::theme(panel.grid = ggplot2::element_blank())
+  }
+
+  return(ecdfPlot)
 }
 
 .descriptivesSplitPlot <- function(dataset, options, variable) {
