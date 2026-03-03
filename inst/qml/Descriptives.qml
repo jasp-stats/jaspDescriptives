@@ -362,9 +362,19 @@ Form
 		Group
 		{
 			CheckBox {				name: "intervalPlot";	label: qsTr("Interval plots")					}
-			CheckBox {				name: "qqPlot";			label: qsTr("Q-Q plots")						}
 			CheckBox {				name: "pieChart";		label: qsTr("Pie charts")						}
 			CheckBox {				name: "dotPlot";		label: qsTr("Dot plots")						}
+			CheckBox 
+			{				
+				name: "qqPlot";			label: qsTr("Q-Q plots")
+				CheckBox
+				{
+					name:               "qqPlotCi"
+					label:              qsTr("Confidence interval")
+					childrenOnSameRow:  true
+					CIField{ name: "qqPlotCiLevel" }
+				}						
+			}
 		}
 
 		Group
