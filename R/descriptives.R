@@ -1976,6 +1976,13 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
           if (isTryError(p)) {
             errorMessage <- .extractErrorMessage(p)
+          } else {
+            xBreaks <- pretty(pairwiseData[[v1]], min.n = 3)
+            yBreaks <- pretty(pairwiseData[[v2]], min.n = 3)
+
+            p$subplots$mainPlot <- p$subplots$mainPlot +
+              ggplot2::scale_x_continuous(name = v1, breaks = xBreaks, limits = range(xBreaks)) +
+              ggplot2::scale_y_continuous(name = v2, breaks = yBreaks, limits = range(yBreaks))
           }
         }
 
