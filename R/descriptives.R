@@ -142,14 +142,14 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
           for (splitLevel in names(splitDat)) {
             splitData <- splitDat[[splitLevel]]
-            ecdfPlot  <- .descriptivesEcdfPlot(splitData, options, var)
+            ecdfPlot  <- .descriptivesEcdfPlot(splitData, options, var, splitLevel)
             ecdfPlot$dependOn(optionContainsValue = list(variables = var))
             splitContainer[[splitLevel]] <- ecdfPlot
           }
 
           ecdfPlots[[var]] <- splitContainer
         } else {
-          ecdfPlots[[var]] <- .descriptivesEcdfPlot(dataset, options, var)
+          ecdfPlots[[var]] <- .descriptivesEcdfPlot(dataset, options, var, var)
           ecdfPlots[[var]]$dependOn(optionContainsValue = list(variables = var))
         }
       }
@@ -1238,8 +1238,8 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   return(freqPlot)
 }
 
-.descriptivesEcdfPlot <- function(dataset, options, variable) {
-  ecdfPlot <- createJaspPlot(title = variable, width = options$plotWidth, height = options$plotHeight)
+.descriptivesEcdfPlot <- function(dataset, options, variable, title) {
+  ecdfPlot <- createJaspPlot(title = title, width = options$plotWidth, height = options$plotHeight)
 
   errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 2")
   column <- dataset[[variable]]
