@@ -605,7 +605,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   resultsCol[["Missing"]]                 <- if (options$missing) rows - length(na.omitted)
 
   if (columnType == "scale") {
-    resultsCol[["Median"]]                  <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$median,             na.omitted, median)
     resultsCol[["MeanArithmetic"]]          <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$meanArithmetic,     na.omitted, mean)
     resultsCol[["Std. Error of Mean"]]      <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$seMean,             na.omitted, function(param) { sd(param)/sqrt(length(param))} )
     resultsCol[["MeanGeometric"]]           <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$meanGeometric,      na.omitted, .geometricMean )
@@ -614,7 +613,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     resultsCol[["Coefficient of Variation"]]<- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$coefficientOfVariation,      na.omitted, function(param) { sd(param) / mean(param)})
     resultsCol[["MAD"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$mad,               na.omitted, function(param) { mad(param, constant = 1) } )
     resultsCol[["MAD Robust"]]              <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$madRobust,         na.omitted, mad)
-    resultsCol[["IQR"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$iqr,               na.omitted, .descriptivesIqr, options)
     resultsCol[["Variance"]]                <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$variance,          na.omitted, var)
     resultsCol[["Kurtosis"]]                <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$kurtosis,          na.omitted, .descriptivesKurtosis)
     resultsCol[["Std. Error of Kurtosis"]]  <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$kurtosis,          na.omitted, .descriptivesSEK)
@@ -623,10 +621,12 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     resultsCol[["Shapiro-Wilk"]]            <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$shapiroWilkTest,   na.omitted, function(param) { res <- try(shapiro.test(param)$statistic); if(isTryError(res)) NaN else res })
     resultsCol[["P-value of Shapiro-Wilk"]] <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$shapiroWilkTest,   na.omitted, function(param) { res <- try(shapiro.test(param)$p.value);   if(isTryError(res)) NaN else res })
     resultsCol[["Sum"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$sum,               na.omitted, sum)
-    resultsCol[["Range"]]                   <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$range,             na.omitted, function(param) { range(param)[2] - range(param)[1]})
   }
-
   if (columnType == "scale" || columnType == "ordinal") {
+    numericData <- as.numeric(na.omitted)  # no-op for scale; converts factor levels to integers for ordinal
+    resultsCol[["Median"]] <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$median, numericData, median)
+    resultsCol[["IQR"]]    <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$iqr,    numericData, .descriptivesIqr, options)
+    resultsCol[["Range"]]  <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$range,  numericData, function(param) { range(param)[2] - range(param)[1] })
     if (options$minimum) resultsCol[["Minimum"]] <- toMixedCol(min(na.omitted))
     if (options$maximum) resultsCol[["Maximum"]] <- toMixedCol(max(na.omitted))
   } else {
