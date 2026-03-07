@@ -4416,3 +4416,7 @@ msgid ""
 "Tilts the x-axis labels by 45 degrees to improve readability when there are "
 "many long levels."
 msgstr ""
+
+msgctxt "Descriptives|"
+msgid "Confidence interval"
+msgstr ""
