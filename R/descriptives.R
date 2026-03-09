@@ -329,6 +329,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       jaspResults[["densityPlot"]] <- createJaspContainer(gettext("Frequency Plots"))
       jaspResults[["densityPlot"]]$dependOn(c(
         "densityPlot", "densityPlotSeparate", "densityPlotType", "customHistogramPosition",
+        "densityPlotCategoricalType", "densityPlotPercentWithLabels",
         "colorPalette", "splitBy", "variables", "densityPlotTransparency"
       ))
       jaspResults[["densityPlot"]]$position <- 17
@@ -2654,15 +2655,25 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
   } else if (variableType == "nominal" || variableType == "ordinal")  {
 
-    if (options[["densityPlotCategoricalType"]] == "condProp" && options[["densityPlotSeparate"]] != "") {
+    categoricalType       <- options[["densityPlotCategoricalType"]]
+    showPercentWithLabels <- isTRUE(options[["densityPlotPercentWithLabels"]]) && categoricalType %in% c("prop", "condProp")
+
+    if (categoricalType == "condProp" && options[["densityPlotSeparate"]] != "") {
       tb <- as.data.frame(table(data) / rowSums(table(data), na.rm = TRUE))
-      yAxeName <- "Conditional proportion"
-    } else if (options[["densityPlotCategoricalType"]] == "count") {
+      yAxeName <- gettext("Conditional proportion")
+    } else if (categoricalType == "count") {
       tb <- as.data.frame(table(data))
-      yAxeName <- "Counts"
+      yAxeName <- gettext("Counts")
     } else { # if no separator but request cond prop, then give proportions
       tb <- as.data.frame(table(data) / sum(table(data), na.rm = TRUE))
-      yAxeName <- "Proportion"
+      yAxeName <- gettext("Proportion")
+    }
+
+    if (showPercentWithLabels) {
+      tb$Freq   <- tb$Freq * 100
+      tb$labelY <- pmin(tb$Freq + 2, 100)
+      tb$label  <- gettextf("%s%%", format(round(tb$Freq, 1), trim = TRUE, nsmall = 1))
+      yAxeName  <- gettext("Percentage")
     }
 
     p <- if (options[["densityPlotSeparate"]] != "") {
@@ -2671,6 +2682,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       ggplot2::ggplot(data = tb, ggplot2::aes(x = variable, y = Freq))
     }
 
+    barPosition <- ggplot2::position_dodge(width = 0.7)
     densPlot$plotObject <- p +
       ggplot2::geom_bar(stat = "identity", col = "black", width = 0.7, size = .3, position = ggplot2::position_dodge(width = 0.7)) +
       ggplot2::xlab(axeName) +
@@ -2679,6 +2691,18 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       jaspGraphs::geom_rangeframe() +
       jaspGraphs::themeJaspRaw() +
       ggplot2::theme(plot.margin =  ggplot2::margin(5), legend.position = "right")
+
+    if (showPercentWithLabels) {
+      densPlot$plotObject <- densPlot$plotObject +
+        ggplot2::geom_text(
+          ggplot2::aes(y = labelY, label = label),
+          position = barPosition,
+          size     = 3
+        ) +
+        ggplot2::scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, 20), expand = ggplot2::expansion(mult = c(0, 0))) +
+        ggplot2::coord_cartesian(clip = "off") +
+        ggplot2::theme(plot.margin = ggplot2::margin(12, 5, 5, 5), legend.position = "right")
+    }
 
   } else if (options[["densityPlotType"]] == "density") {
 
