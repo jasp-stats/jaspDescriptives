@@ -605,7 +605,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   resultsCol[["Missing"]]                 <- if (options$missing) rows - length(na.omitted)
 
   if (columnType == "scale") {
-    resultsCol[["Median"]]                  <- if (options$median) toMixedCol(median(na.omitted))
+    resultsCol[["Median"]]                  <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$median,              na.omitted, .descriptivesMedian, options, toMixedCol)
     resultsCol[["MeanArithmetic"]]          <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$meanArithmetic,     na.omitted, mean)
     resultsCol[["Std. Error of Mean"]]      <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$seMean,             na.omitted, function(param) { sd(param)/sqrt(length(param))} )
     resultsCol[["MeanGeometric"]]           <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$meanGeometric,      na.omitted, .geometricMean )
@@ -1597,6 +1597,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 # Fall back to type 3 when the user-selected type is incompatible.
 .ordinalQuantileType <- function(type) {
   if (type %in% c(1L, 3L)) type else 3L
+}
+
+.descriptivesMedian <- function(x, options, toMixedCol) {
+  type <- as.integer(options[["quantilesType"]])
+  return(toMixedCol(quantile(x, 0.5, names = FALSE, type = type)))
 }
 
 .descriptivesIqr <- function(x, options) {
