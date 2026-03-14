@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
 "POT-Creation-Date: 2026-02-09 12:28\n"
-"PO-Revision-Date: 2026-03-06 11:56+0000\n"
+"PO-Revision-Date: 2026-03-09 00:09+0000\n"
 "Last-Translator: 陳正昌 <chencc99@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/jasp/jaspdescriptives-r/zh_Hant/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Weblate 5.17-dev\n"
 
 msgid "Time Series Plot"
-msgstr ""
+msgstr "時間序列圖"
 
 msgid "Lag Plot"
 msgstr "滯後圖"
@@ -22,13 +22,13 @@ msgstr "滯後圖"
 msgid ""
 "The specified lag, %1$s, is too large given the %2$s observations in the "
 "data. Please choose a smaller lag."
-msgstr ""
+msgstr "指定的滯後值 %1$s 相對於資料中的 %2$s 個觀測值而言過大。請選擇較小的滯後值。"
 
 msgid "Autocorrelation Function"
 msgstr "自我相關函數"
 
 msgid "Partial Autocorrelation Function"
-msgstr ""
+msgstr "偏自相關函數"
 
 msgid "Descriptive Statistics"
 msgstr "描述性統計"
@@ -58,47 +58,49 @@ msgid "Maximum"
 msgstr "最大值"
 
 msgid "Start"
-msgstr ""
+msgstr "開始"
 
 msgid "End"
-msgstr ""
+msgstr "結束"
 
 msgid "Lag 1 Autocorrelation"
-msgstr ""
+msgstr "滯後 1 期自我相關"
 
 msgid "The time series data should be equally-spaced."
-msgstr ""
+msgstr "時間序列資料應為等間隔。"
 
 msgid "The time variable should have unique values only."
-msgstr ""
+msgstr "時間變數應該只具有唯一值。"
 
 msgid ""
 "The 'Time' variable has a date-like format, please filter by date instead."
-msgstr ""
+msgstr "「Time」變數具有類似日期的格式，請改以日期篩選。"
 
 msgid ""
 "The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:"
 "ss). Try to filter by time index instead."
 msgstr ""
+"「Time」變數並非日期格式（例如 yyyy-mm-dd hh:mm:ss），請改以時間索引進行篩選"
+"。"
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
-msgstr ""
+msgstr "「開始」必須為日期格式（例如 yyyy-mm-dd hh:mm:ss）。"
 
 msgid "The 'Start' value of the filter should be before last observation."
-msgstr ""
+msgstr "篩選條件中的「開始」值應早於最後一筆觀測值。"
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
-msgstr ""
+msgstr "「結束」必須為日期格式（例如 yyyy-mm-dd hh:mm:ss）。"
 
 msgid ""
 "The 'End' value of the filter should be larger/later than the 'Start' value."
-msgstr ""
+msgstr "篩選條件中的「結束」值應大於／晚於「開始」值。"
 
 msgid "Lag"
-msgstr ""
+msgstr "滯後"
 
 msgid "Association %s"
-msgstr ""
+msgstr "關聯 %s"
 
 msgid "Frequency Tables"
 msgstr "次數表"
@@ -277,7 +279,7 @@ msgstr ""
 msgid ""
 "Geometric and harmonic means are defined only for strictly positive "
 "variables, but the data contain some non-positive values."
-msgstr ""
+msgstr "幾何平均數與調和平均數僅定義於嚴格正值變數，但資料中包含一些非正值。"
 
 msgid "Total"
 msgstr "總計"
@@ -321,12 +323,12 @@ msgstr "皆為遺漏值!"
 msgid ""
 "Association cannot be computed due to missing values. Try a different 'Use' "
 "setting."
-msgstr ""
+msgstr "因缺失值無法計算關聯。請嘗試使用不同的 「使用」 設定。"
 
 msgid ""
 "Some associations cannot be computed due to missing values. Try a different "
 "'Use' setting."
-msgstr ""
+msgstr "部分關聯無法計算，原因是資料中存在缺失值。請嘗試使用不同的 「使用」 設定。"
 
 msgid "Stem"
 msgstr "莖"
@@ -356,11 +358,10 @@ msgstr "項目至少需要有兩個水準！"
 msgid ""
 "The variable used for counts must be different from the variable used for "
 "categories."
-msgstr ""
+msgstr "用於計數的變數必須與用於分類的變數不同。"
 
-#, fuzzy
 msgid "Percentage (%%)"
-msgstr "百分比"
+msgstr "百分比 (%%)"
 
 msgid "Levels within variable require at least two or more data points!"
 msgstr "變數的個別水準中需要至少兩個資料點！"
@@ -368,76 +369,83 @@ msgstr "變數的個別水準中需要至少兩個資料點！"
 msgid ""
 "Please assign a variable to every RM factor (defined in Repeated Measures "
 "Factors) within Repeated Measures Cells."
-msgstr ""
+msgstr "請為重複測量單元格中的每個 RM 因子（在重複測量因子中定義）指派一個變數。"
 
-#, fuzzy
 msgid "Plots"
-msgstr "常態Q-Q 圖"
+msgstr "圖"
 
 msgid "Available Plot IDs"
-msgstr ""
+msgstr "可用圖表 ID"
 
 msgid "Plot Grid"
-msgstr ""
+msgstr "圖表格線"
 
 msgid "Raincloud Plots"
 msgstr "雨雲圖"
 
 msgid "Not shown are %s observations due to missing data."
-msgstr ""
+msgstr "由於資料缺失，未顯示 %s 個觀測值。"
 
 msgid "Interval around mean is custom."
-msgstr ""
+msgstr "平均數周圍的區間為自訂值"
 
 msgid ""
 "<span style = 'color: darkorange'>Error with custom interval: Specified "
 "number of clouds does not match clouds in plot.</span>"
 msgstr ""
+"<span style = 'color: darkorange'>自訂區間錯誤：指定的雲數與圖中雲的數量不符"
+"。</span>"
 
 msgid "Interval around mean represents ± 1 standard error"
-msgstr ""
+msgstr "平均數周圍的區間表示 ±1 標準誤"
 
 msgid "Interval around mean represents ± 1 standard deviation"
-msgstr ""
+msgstr "平均值周圍的區間表示 ±1 標準差"
 
 msgid "Interval around mean represents %d%% confidence interval."
-msgstr ""
+msgstr "平均數周圍的區間表示 %d%% 信賴區間。"
 
 msgid "Points are slightly jittered from their true values."
-msgstr ""
+msgstr "資料點已略微分散，以區分其真實數值。"
 
 msgid ""
 "<span style = 'color: darkorange'> Warning! Some data is not "
 "shown<br>because it lies outside of the interval set by the custom axis "
 "limits.</span>"
 msgstr ""
+"<span style = 'color: darkorange'>警告！部分資料未顯示，因其位於自訂軸範圍之"
+"外。</span>"
 
 msgid ""
 "<span style = 'color: darkorange'> Error with custom orientation: Specified "
 "number of clouds does not match clouds in plot.<br>Reverted to default all "
 "'R'. Point nudge set to 0.</span>"
 msgstr ""
+"<span style = 'color: darkorange'> 自訂方向錯誤：指定的雲數與圖中雲的數量不符"
+"。<br>已恢復為預設全部為「R」，資料點位移設為 0。</span>"
 
 msgid ""
 "<span style = 'color: darkorange'> Error with custom color: Specified number "
 "of clouds does not match clouds in plot.<br>Ignoring custom color input.</"
 "span>"
 msgstr ""
+"<span style = 'color: darkorange'> 自訂顏色錯誤：指定的雲數與圖中雲的數量不符"
+"。<br>已忽略自訂顏色設定。</span>"
 
 msgid "Statistics"
 msgstr "描述性統計量"
 
 msgid "Primary Factor"
-msgstr ""
+msgstr "主要因子"
 
 msgid "Secondary Factor"
-msgstr ""
+msgstr "次要因子"
 
 msgid "<i>N</i>"
-msgstr ""
+msgstr "<i>N</i>"
 
 msgid "Lower Whisker"
-msgstr ""
+msgstr "下鬚線"
 
 msgid "25th Percentile"
 msgstr "第25百分位數"
@@ -446,7 +454,7 @@ msgid "75th Percentile"
 msgstr "第75百分位數"
 
 msgid "Upper Whisker"
-msgstr ""
+msgstr "上鬚線"
 
 msgid "%s%% CI for Mean Difference"
 msgstr "平均數差異之%s%%信賴區間上界"
@@ -454,7 +462,6 @@ msgstr "平均數差異之%s%%信賴區間上界"
 msgid "Standard Error"
 msgstr "標準誤"
 
-#, fuzzy
 msgid "Standard Deviation"
 msgstr "標準差"
 
@@ -462,13 +469,13 @@ msgid "<i>N</i><sub>Total</sub> = %s."
 msgstr ""
 
 msgid "This excludes %s observations due to missing data."
-msgstr ""
+msgstr "由於資料缺失，因此排除了 %s 個觀測值。"
 
 msgid "<br>Interval around mean is custom."
-msgstr ""
+msgstr "<br>平均數周圍的區間是自訂的。"
 
 msgid "<br>Interval around mean represents %d%% confidence interval."
-msgstr ""
+msgstr "<br>平均數周圍的區間代表 %d%% 信賴區間。"
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
