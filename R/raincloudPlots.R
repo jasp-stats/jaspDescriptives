@@ -81,26 +81,59 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 # .rainDataInfo() ----
 .rainDataInfo <- function(dataset, options) {
 
-  # Omit NAs row-wise
-  exclusiveDataset   <- na.omit(dataset)
-  numberOfExclusions <- nrow(dataset) - nrow(exclusiveDataset)
-  sampleSize         <- nrow(exclusiveDataset)
-  dataset            <- exclusiveDataset
+  originalN <- nrow(dataset)
+
+  # First, remove rows where factor columns (not dependent variables) have missing values
+  # These are required for proper plot positioning
+  factorCols <- c("primaryFactor", "secondaryFactor", "covariate", "observationId")
+  factorCols <- factorCols[factorCols %in% names(dataset)]
+
+  if (length(factorCols) > 0) {
+    # Create complete cases for factor columns only
+    completeRows <- complete.cases(dataset[, factorCols, drop = FALSE])
+    nAfterFactorFilter <- sum(completeRows)
+    dataset <- dataset[completeRows, ]
+  } else {
+    nAfterFactorFilter <- originalN
+  }
+
+  numberOfExclusionsFactor <- originalN - nAfterFactorFilter
+  sampleSize <- nAfterFactorFilter
+
+  # Calculate per-variable exclusions and meanInterval
+  # For each dependent variable, we need to filter separately
+  numberOfExclusionsPerVariable <- list()
 
   # Calculate meanInterval
   if (options[["meanInterval"]] || options[["meanIntervalCustom"]]) {
     intervalBounds <- list()
     for (dependentVariable in options[["dependentVariables"]]) {
-      intervalBounds[[dependentVariable]] <- .rainMeanInterval(dataset, options, dependentVariable)
+      # Filter to complete cases for this specific dependent variable
+      varComplete <- complete.cases(dataset[[dependentVariable]])
+      varDataset <- dataset[varComplete, ]
+      nExcluded <- sum(!varComplete)
+      numberOfExclusionsPerVariable[[dependentVariable]] <- nExcluded
+
+      intervalBounds[[dependentVariable]] <- .rainMeanInterval(varDataset, options, dependentVariable)
     }
   } else {
     intervalBounds <- NULL
+    # Still calculate exclusions for each variable even without interval
+    for (dependentVariable in options[["dependentVariables"]]) {
+      varComplete <- complete.cases(dataset[[dependentVariable]])
+      numberOfExclusionsPerVariable[[dependentVariable]] <- sum(!varComplete)
+    }
   }
+
+  # Total exclusions reported is just from factor columns (required for all plots)
+  # Per-variable exclusions are tracked separately for table footnotes
+  numberOfExclusions <- numberOfExclusionsFactor
 
   output <- list(
     dataset            = dataset,
     sampleSize         = sampleSize,
     numberOfExclusions = numberOfExclusions,
+    numberOfExclusionsPerVariable = numberOfExclusionsPerVariable,
     intervalBounds     = intervalBounds
   )
   return(output)
@@ -257,7 +290,10 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 # Fills each inputPlot from .rainCreatePlots() with ggplot + palettes + geom_rain() + theme
 .rainFillPlot <- function(dataInfo, options, inputVariable) {
 
+  # Filter to complete cases for this specific dependent variable
+  # This ensures missing values in one variable don't affect other variables
   dataset <- dataInfo$dataset
+  dataset <- dataset[complete.cases(dataset[[inputVariable]]), ]
 
   # Ggplot() with aes()
   # old and bad approach
@@ -445,7 +481,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 
   # Caption
   if (options[["showCaption"]]) {
-    caption         <- .rainCaption(options, dataInfo, dataInfo$intervalBounds[[inputVariable]], warningAxisLimits, errorVioSides, infoFactorCombinations)
+    caption         <- .rainCaption(options, dataInfo, inputVariable, dataInfo$intervalBounds[[inputVariable]], warningAxisLimits, errorVioSides, infoFactorCombinations)
     addCaption      <- ggplot2::labs(caption = caption)
     captionPosition <- ggplot2::theme(plot.caption = ggtext::element_markdown(hjust = 0))  # Bottom left position
     plotInProgress  <- plotInProgress + addCaption + captionPosition
@@ -913,10 +949,12 @@ StatHalfYdensity_custom <- ggplot2::ggproto(
 
 # .rainCaption() ----
 # CSS formatting works through ggtext::element_markdown(); see .rainFillPlot()
-.rainCaption <- function(options, dataInfo, intervalBounds, warningAxisLimits, errorVioSides, infoFactorCombinations) {
+.rainCaption <- function(options, dataInfo, inputVariable, intervalBounds, warningAxisLimits, errorVioSides, infoFactorCombinations) {
 
-  exclusions <- if (dataInfo$numberOfExclusions > 0) {
-    gettextf("Not shown are %s observations due to missing data.", dataInfo$numberOfExclusions)
+  # Get exclusions specific to this variable (from factor columns + this dependent variable)
+  varExclusions <- dataInfo$numberOfExclusionsPerVariable[[inputVariable]]
+  exclusions <- if (!is.null(varExclusions) && varExclusions > 0) {
+    gettextf("Not shown are %s observations due to missing data.", varExclusions)
   }
 
   if (options[["meanIntervalCustom"]]) {
@@ -1103,10 +1141,12 @@ StatHalfYdensity_custom <- ggplot2::ggproto(
   # Add statistics to table
   inputTable$setData(tableStatistics)
 
-  # Footnote
+  # Footnote - use per-variable exclusions
   sampleSize <- gettextf("<i>N</i><sub>Total</sub> = %s.", dataInfo$sampleSize)
-  exclusions <- if (dataInfo$numberOfExclusions > 0) {
-    gettextf("This excludes %s observations due to missing data.", dataInfo$numberOfExclusions)
+  # Get exclusions specific to this variable (from factor columns + this dependent variable)
+  varExclusions <- dataInfo$numberOfExclusionsPerVariable[[inputVariable]]
+  exclusions <- if (!is.null(varExclusions) && varExclusions > 0) {
+    gettextf("This excludes %s observations due to missing data.", varExclusions)
   }
   sampleExclusionSpacer <- if (!is.null(exclusions)) " "
   meanInterval <- if (options[["meanIntervalCustom"]]) {
