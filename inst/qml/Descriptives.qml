@@ -604,6 +604,13 @@ Form
 				info: qsTr("Display counts, proportions, or conditional proportions (conditional for each category on the x-axis).")
 
 			}
+			CheckBox
+			{
+				name: "densityPlotPercentWithLabels"
+				label: qsTr("Use percentage scale and value labels")
+				info: qsTr("For proportional bar plots, uses a 0 to 100 y-axis and prints percentage labels above bars.")
+				enabled: densityPlotCategoricalType.value === "prop" || densityPlotCategoricalType.value === "condProp"
+			}
 			DoubleField
 			{
 				name:			"densityPlotTransparency"
