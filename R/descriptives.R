@@ -1850,7 +1850,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
       ciLevel <- if (options[["qqPlotCi"]])  options[["qqPlotCiLevel"]] else NULL
 
-      descriptivesQQPlot$plotObject <- jaspGraphs::plotQQnorm(scale(dataset[[qqvar]]),
+      descriptivesQQPlot$plotObject <- jaspGraphs::plotQQnorm(scale(na.omit(dataset[[qqvar]])),
                                                              yName = "Standardized sample quantiles",
                                                              ablineColor = "darkred",
                                                              ablineOrigin = TRUE,
