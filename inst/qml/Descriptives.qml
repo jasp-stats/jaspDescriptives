@@ -83,7 +83,7 @@ Form
 				label: qsTr("Type")
 				id: quantilesType	
 				indexDefaultValue: 6 // Type 7, the default in R 
-				info: qsTr("Method used to compute quantiles (see Hyndman & Fan, 1996; Langford, 2006, for more information). The selection carries over to the inter-quartile range (IQR), box- and QQ-plot calculations. Note that ordinal variables are treated as continuous for the computations.\n")
+				info: qsTr("Method used to compute quantiles (see Hyndman & Fan, 1996; Langford, 2006, for more information). The selection carries over to the inter-quartile range (IQR) and box-plot calculations.  For ordinal variables, only types 1 and 3 are supported; other types fall back to type 3.\n")
 				values: [
 						{label: qsTr("1"),	                value: 1},
 						{label: qsTr("2 (SAS)"),	        value: 2},
@@ -91,7 +91,7 @@ Form
 						{label: qsTr("4"),	                value: 4},
 						{label: qsTr("5"),	                value: 5},
 						{label: qsTr("6 (Minitab, SPSS)"),	value: 6},
-						{label: qsTr("7 (R)"),	        value: 7},
+						{label: qsTr("7 (R)"),	            value: 7},
 						{label: qsTr("8"),	                value: 8},
 						{label: qsTr("9"),	                value: 9}
 					]

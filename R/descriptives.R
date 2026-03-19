@@ -495,6 +495,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   # lets just add footnotes once instead of a gazillion times..
   shouldAddNominalTextFootnote <- FALSE
   shouldAddModeMoreThanOnceFootnote <- FALSE
+  shouldAddOrdinalQuantileTypeFootnote <- FALSE
 
   # Find the number of levels to loop over
   if (wantsSplit) {
@@ -542,6 +543,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
                             colNames = c("MeanGeometric", "MeanHarmonic"),
                             rowNames = paste0(variable, l))
 
+        if (!shouldAddOrdinalQuantileTypeFootnote && subReturn$shouldAddOrdinalQuantileTypeFootnote) {
+          shouldAddOrdinalQuantileTypeFootnote <- TRUE
+          stats$addFootnote(message = gettext("For ordinal variables, quantile type 3 was used because the selected type is not supported."))
+        }
+
       }
     }
   } else { # we dont want to split
@@ -578,6 +584,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
         stats$addFootnote(message = gettext("Geometric and harmonic means are defined only for strictly positive variables, but the data contain some non-positive values."),
                           colNames = c("MeanGeometric", "MeanHarmonic"),
                           rowNames = variable)
+
+      if (!shouldAddOrdinalQuantileTypeFootnote && subReturn$shouldAddOrdinalQuantileTypeFootnote) {
+        shouldAddOrdinalQuantileTypeFootnote <- TRUE
+        stats$addFootnote(message = gettext("For ordinal variables, quantile type 3 was used because the selected type is not supported."))
+      }
 
     }
   }
@@ -675,6 +686,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   shouldAddExplainEmptySet <- (options$minimum || options$maximum) && valid == 0
 
   shouldAddGeomHarmMeansPositiveFootnote <- columnType == "scale" && (options[["meanGeometric"]] || options[["meanHarmonic"]]) && any(na.omitted <= 0)
+
+  shouldAddOrdinalQuantileTypeFootnote <- columnType == "ordinal" &&
+    !(as.integer(options[["quantilesType"]]) %in% c(1L, 3L)) &&
+    (options$median || options$iqr || options$quartiles || options$quantilesForEqualGroups || options$percentiles)
 
   if (options$mode) {
 
@@ -796,7 +811,8 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     shouldAddModeMoreThanOnceFootnote = shouldAddModeMoreThanOnceFootnote,
     shouldAddIdenticalFootnote = shouldAddIdenticalFootnote,
     shouldAddExplainEmptySet = shouldAddExplainEmptySet,
-    shouldAddGeomHarmMeansPositiveFootnote = shouldAddGeomHarmMeansPositiveFootnote
+    shouldAddGeomHarmMeansPositiveFootnote = shouldAddGeomHarmMeansPositiveFootnote,
+    shouldAddOrdinalQuantileTypeFootnote = shouldAddOrdinalQuantileTypeFootnote
   ))
 }
 
