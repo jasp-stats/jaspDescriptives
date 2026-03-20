@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.95.5\n"
 "POT-Creation-Date: 2026-02-09 12:28\n"
-"PO-Revision-Date: 2026-03-18 03:09+0000\n"
+"PO-Revision-Date: 2026-03-20 12:47+0000\n"
 "Last-Translator: Zahid Rizky Fakhri <zahidrizkyfakhri@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/id/>\n"
@@ -32,13 +32,13 @@ msgid "Descriptive Statistics"
 msgstr ""
 
 msgid "Valid"
-msgstr ""
+msgstr "Valid"
 
 msgid "Missing"
 msgstr ""
 
 msgid "Mean"
-msgstr ""
+msgstr "Rerata"
 
 msgid "Std. Deviation"
 msgstr ""
@@ -50,10 +50,10 @@ msgid "Range"
 msgstr ""
 
 msgid "Minimum"
-msgstr ""
+msgstr "Minimum"
 
 msgid "Maximum"
-msgstr ""
+msgstr "Maksimum"
 
 msgid "Start"
 msgstr ""
@@ -275,7 +275,7 @@ msgid "Frequency"
 msgstr ""
 
 msgid "Percent"
-msgstr ""
+msgstr "Persen"
 
 msgid "Valid Percent"
 msgstr ""
