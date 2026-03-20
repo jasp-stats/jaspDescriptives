@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.95.5\n"
 "POT-Creation-Date: 2026-02-09 12:28\n"
-"PO-Revision-Date: 2026-03-20 12:47+0000\n"
+"PO-Revision-Date: 2026-03-21 03:51+0000\n"
 "Last-Translator: Zahid Rizky Fakhri <zahidrizkyfakhri@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/id/>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Weblate 5.17-dev\n"
 
 msgid "Time Series Plot"
-msgstr ""
+msgstr "Diagram Seri Waktu"
 
 msgid "Lag Plot"
 msgstr ""
@@ -23,10 +23,10 @@ msgid "The specified lag, %1$s, is too large given the %2$s observations in the 
 msgstr ""
 
 msgid "Autocorrelation Function"
-msgstr ""
+msgstr "Fungsi Korelasi Otomatis"
 
 msgid "Partial Autocorrelation Function"
-msgstr ""
+msgstr "Fungsi Korelasi Otomatis Parsial"
 
 msgid "Descriptive Statistics"
 msgstr ""
@@ -89,7 +89,7 @@ msgid "The 'End' value of the filter should be larger/later than the 'Start' val
 msgstr ""
 
 msgid "Lag"
-msgstr ""
+msgstr "Penundaan"
 
 msgid "Association %s"
 msgstr ""
@@ -113,7 +113,7 @@ msgid "Q-Q Plots"
 msgstr ""
 
 msgid "Q-Q Plot"
-msgstr ""
+msgstr "Diagram Q-Q"
 
 msgid "Plotting is not possible: Variable only contains NA!"
 msgstr ""
@@ -158,10 +158,10 @@ msgid "%s%% Confidence Interval Variance"
 msgstr ""
 
 msgid "Upper"
-msgstr ""
+msgstr "Atas"
 
 msgid "Lower"
-msgstr ""
+msgstr "Bawah"
 
 msgid "%s%% CI A. Mean Upper"
 msgstr ""
@@ -407,7 +407,7 @@ msgid "%s%% CI for Mean Difference"
 msgstr ""
 
 msgid "Standard Error"
-msgstr ""
+msgstr "Galat Standar"
 
 msgid "Standard Deviation"
 msgstr ""
