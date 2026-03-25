@@ -1878,11 +1878,16 @@ addDecodedLabels <- function(p) {
     #   tidyplot_obj <- tidyplot_obj |> tidyplots::flip_plot()
     # }
 
-    # Extract the ggplot object from tidyplot----
+    # Extract the ggplot object from tidyplot ----
     tidyplot_obj <- if (ggplot2::is.ggplot(tidyplot_obj)) {
+      if ("tidyplot" %in% class(tidyplot_obj)) {
+        tidyplot_obj <- tidyplots::adjust_size(tidyplot_obj, width = NA, height = NA)
+        class(tidyplot_obj) <- setdiff(class(tidyplot_obj), "tidyplot")
+        tidyplot_obj$tidyplot <- NULL
+      }
       tidyplot_obj
     } else {
-      tidyplot_obj <- tidyplot_obj[[1]]
+      stop("Object is not a ggplot/tidyplot object.")
     }
 
     if (isTRUE(tab[["flipPlot"]])) {
