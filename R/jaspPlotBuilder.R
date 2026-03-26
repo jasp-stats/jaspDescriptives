@@ -2129,7 +2129,7 @@ addDecodedLabels <- function(p) {
     # Apply theme ----
     if (plotStyle == "JASP") {
       tidyplot_obj <- tidyplot_obj +
-        jaspGraphs::themeJaspRaw(fontsize = baseFontSize, legend.position = legend_position) +
+        ggplot2::complete_theme(jaspGraphs::themeJaspRaw(fontsize = baseFontSize, legend.position = legend_position)) +
         blankLayer +
         jaspGraphs::geom_rangeframe() +
         ggplot2::theme(
