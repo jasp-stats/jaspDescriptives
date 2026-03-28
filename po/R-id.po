@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.95.5\n"
 "POT-Creation-Date: 2026-02-09 12:28\n"
-"PO-Revision-Date: 2026-03-21 03:51+0000\n"
+"PO-Revision-Date: 2026-03-28 01:09+0000\n"
 "Last-Translator: Zahid Rizky Fakhri <zahidrizkyfakhri@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/id/>\n"
@@ -29,13 +29,13 @@ msgid "Partial Autocorrelation Function"
 msgstr "Fungsi Korelasi Otomatis Parsial"
 
 msgid "Descriptive Statistics"
-msgstr ""
+msgstr "Statistik Deskriptif"
 
 msgid "Valid"
 msgstr "Valid"
 
 msgid "Missing"
-msgstr ""
+msgstr "Hilang"
 
 msgid "Mean"
 msgstr "Rerata"
@@ -44,10 +44,10 @@ msgid "Std. Deviation"
 msgstr ""
 
 msgid "Variance"
-msgstr ""
+msgstr "Varians"
 
 msgid "Range"
-msgstr ""
+msgstr "Rentang"
 
 msgid "Minimum"
 msgstr "Minimum"
@@ -182,10 +182,10 @@ msgid "%s%% CI Variance Lower"
 msgstr ""
 
 msgid "Mode"
-msgstr ""
+msgstr "Mode"
 
 msgid "Median"
-msgstr ""
+msgstr "Median"
 
 msgid "Mean (arithmetic)"
 msgstr ""
@@ -200,7 +200,7 @@ msgid "Mean (harmonic)"
 msgstr ""
 
 msgid "Coefficient of variation"
-msgstr "Koefisien variasi"
+msgstr "Koefisien dari variasi"
 
 msgid "MAD"
 msgstr ""
@@ -293,7 +293,7 @@ msgid "Counts"
 msgstr ""
 
 msgid "Density"
-msgstr ""
+msgstr "Kepadatan"
 
 msgid "No non-missing values!"
 msgstr ""
@@ -404,13 +404,13 @@ msgid "Upper Whisker"
 msgstr ""
 
 msgid "%s%% CI for Mean Difference"
-msgstr ""
+msgstr "%s%% CI untuk Perbedaan Rerata"
 
 msgid "Standard Error"
 msgstr "Galat Standar"
 
 msgid "Standard Deviation"
-msgstr ""
+msgstr "Deviasi Standar"
 
 msgid "<i>N</i><sub>Total</sub> = %s."
 msgstr ""
