@@ -2177,7 +2177,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   container[[plotName]] <- jaspPlot
 }
 
-.descriptivesHeatmapAggregateData <- function(variable, groups, fun = c("identity", "meanArithmetic", "median", "mode", "length")) {
+.descriptivesHeatmapAggregateData <- function(variable, groups, fun = c("identity", "mean", "meanArithmetic", "median", "mode", "length")) {
   fun <- match.arg(fun)
   mode <- function(x) {
     levels <- levels(x)
@@ -2185,11 +2185,12 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     factor(out, levels = levels)
   }
   data <- switch(fun,
-    identity = cbind(groups, variable = variable),
-    mean     = stats::aggregate(x = variable, by = groups, mean),
-    median   = stats::aggregate(x = variable, by = groups, median),
-    mode     = stats::aggregate(x = variable, by = groups, mode),
-    length   = stats::aggregate(x = variable, by = groups, length)
+    identity       = cbind(groups, variable = variable),
+    mean           = stats::aggregate(x = variable, by = groups, mean),
+    meanArithmetic = stats::aggregate(x = variable, by = groups, mean),
+    median         = stats::aggregate(x = variable, by = groups, median),
+    mode           = stats::aggregate(x = variable, by = groups, mode),
+    length         = stats::aggregate(x = variable, by = groups, length)
   )
 
   colnames(data) <- c("horizontal", "vertical", "value")
