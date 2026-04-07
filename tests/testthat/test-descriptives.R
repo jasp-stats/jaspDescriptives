@@ -421,6 +421,8 @@ test_that("Analysis explains supremum and infimum of empty sets", {
   options$splitBy <- "contBinom"
   options$splitBy.types <- "nominal"
   options$paretoAddCountVariable <- ""
+  options$qqPlot <- TRUE
+  options$qqPlotCi <- TRUE
 
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
 
