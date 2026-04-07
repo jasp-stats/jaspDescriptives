@@ -1846,6 +1846,8 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     errorMessage <- .descriptivesCheckPlotErrors(dataset, qqvar, obsAmount = "< 1")
     if (!is.null(errorMessage)) {
       descriptivesQQPlot$setError(gettextf("Plotting not possible: %s", errorMessage))
+    } else if (sum(!is.na(dataset[[qqvar]])) < 2) {
+      descriptivesQQPlot$setError(gettextf("Plotting not possible: Variable '%s' has fewer than 2 valid (non-missing) observations.", qqvar))
     } else {
 
       ciLevel <- if (options[["qqPlotCi"]])  options[["qqPlotCiLevel"]] else NULL
