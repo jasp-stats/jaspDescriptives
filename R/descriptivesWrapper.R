@@ -52,6 +52,8 @@
 #'   \item \code{"count"}
 #'   \item \code{"condProp"}
 #' }
+#' @param densityPlotPercentWithLabels, For proportional categorical bar plots, show percentages on a 0-100 scale and print value labels above bars.
+#'    Defaults to \code{FALSE}.
 #' @param densityPlotType, Whether to display a density plot or histogram.
 #' \itemize{
 #'   \item \code{"histogram"}
@@ -144,6 +146,7 @@ Descriptives <- function(
     customHistogramPosition = "stack",
     densityPlot = FALSE,
     densityPlotCategoricalType = "count",
+    densityPlotPercentWithLabels = FALSE,
     densityPlotSeparate = list(types = list(), value = ""),
     densityPlotTransparency = 20,
     densityPlotType = "density",
