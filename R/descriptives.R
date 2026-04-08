@@ -437,7 +437,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if (options$valid)                          stats$addColumnInfo(name="Valid",                       title=gettext("Valid"),                   type="integer")
   if (options$missing)                        stats$addColumnInfo(name="Missing",                     title=gettext("Missing"),                 type="integer")
   if (options$mode)                           stats$addColumnInfo(name="Mode",                        title=gettext("Mode"),                    type="mixed")
-  if (options$median)                         stats$addColumnInfo(name="Median",                      title=gettext("Median"),                  type="number")
+  if (options$median)                         stats$addColumnInfo(name="Median",                      title=gettext("Median"),                  type="mixed")
   if (options$meanArithmetic)                 stats$addColumnInfo(name="MeanArithmetic",              title=gettext("Mean (arithmetic)"),       type="number")
   if (options$seMean)                         stats$addColumnInfo(name="Std. Error of Mean",          title=gettext("Std. Error of A. Mean"),   type="number")
   if (options$meanCi) {                       stats$addColumnInfo(name="MeanCILB",                    title=meanCiLbTitle,                      type="number", overtitle = meanCiOvertitle)
@@ -495,6 +495,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   # lets just add footnotes once instead of a gazillion times..
   shouldAddNominalTextFootnote <- FALSE
   shouldAddModeMoreThanOnceFootnote <- FALSE
+  shouldAddOrdinalQuantileTypeFootnote <- FALSE
 
   # Find the number of levels to loop over
   if (wantsSplit) {
@@ -542,6 +543,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
                             colNames = c("MeanGeometric", "MeanHarmonic"),
                             rowNames = paste0(variable, l))
 
+        if (!shouldAddOrdinalQuantileTypeFootnote && subReturn$shouldAddOrdinalQuantileTypeFootnote) {
+          shouldAddOrdinalQuantileTypeFootnote <- TRUE
+          stats$addFootnote(message = gettext("For ordinal variables, quantile type 3 was used because the selected type is not supported."))
+        }
+
       }
     }
   } else { # we dont want to split
@@ -579,6 +585,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
                           colNames = c("MeanGeometric", "MeanHarmonic"),
                           rowNames = variable)
 
+      if (!shouldAddOrdinalQuantileTypeFootnote && subReturn$shouldAddOrdinalQuantileTypeFootnote) {
+        shouldAddOrdinalQuantileTypeFootnote <- TRUE
+        stats$addFootnote(message = gettext("For ordinal variables, quantile type 3 was used because the selected type is not supported."))
+      }
+
     }
   }
 
@@ -605,7 +616,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   resultsCol[["Missing"]]                 <- if (options$missing) rows - length(na.omitted)
 
   if (columnType == "scale") {
-    resultsCol[["Median"]]                  <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$median,             na.omitted, median)
+    resultsCol[["Median"]]                  <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$median,              na.omitted, .descriptivesMedian, options, toMixedCol)
     resultsCol[["MeanArithmetic"]]          <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$meanArithmetic,     na.omitted, mean)
     resultsCol[["Std. Error of Mean"]]      <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$seMean,             na.omitted, function(param) { sd(param)/sqrt(length(param))} )
     resultsCol[["MeanGeometric"]]           <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$meanGeometric,      na.omitted, .geometricMean )
@@ -624,6 +635,14 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     resultsCol[["P-value of Shapiro-Wilk"]] <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$shapiroWilkTest,   na.omitted, function(param) { res <- try(shapiro.test(param)$p.value);   if(isTryError(res)) NaN else res })
     resultsCol[["Sum"]]                     <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$sum,               na.omitted, sum)
     resultsCol[["Range"]]                   <- .descriptivesDescriptivesTable_subFunction_OptionChecker(options$range,             na.omitted, function(param) { range(param)[2] - range(param)[1]})
+  } else if (columnType == "ordinal") {
+    ordinalType <- .ordinalQuantileType(as.integer(options[["quantilesType"]]))
+    if (options$median) {
+      medianEst <- quantile(na.omitted, 0.5, names = FALSE, type = ordinalType)
+      resultsCol[["Median"]] <- toMixedCol(medianEst)
+    }
+    if (options$iqr)
+      resultsCol[["IQR"]] <- stats::IQR(na.omitted, type = ordinalType)
   }
 
   if (columnType == "scale" || columnType == "ordinal") {
@@ -668,6 +687,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
   shouldAddGeomHarmMeansPositiveFootnote <- columnType == "scale" && (options[["meanGeometric"]] || options[["meanHarmonic"]]) && any(na.omitted <= 0)
 
+  shouldAddOrdinalQuantileTypeFootnote <- columnType == "ordinal" &&
+    !(as.integer(options[["quantilesType"]]) %in% c(1L, 3L)) &&
+    (options$median || options$iqr || options$quartiles || options$quantilesForEqualGroups || options$percentiles)
+
   if (options$mode) {
 
     if (valid == 0 || any(is.infinite(na.omitted))) {
@@ -706,21 +729,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
   if (options$quartiles) {
     if (columnType == "scale" || columnType == "ordinal") {
-      # Type 7: default in R
-      # Type 3: Nearest even order statistic (SAS default till ca. 2010).
-      quartileType <- as.integer(options[["quantilesType"]]) # extract number from type for quantile() function
+      quartileType <- as.integer(options[["quantilesType"]])
+      if (columnType == "ordinal")
+        quartileType <- .ordinalQuantileType(quartileType)
 
-      # Treat variable (i.e., na.omitted) as numeric to make all quantile types applicable.
-      # If we would treat ordinals as ordered factors, the quantile function would lead
-      # to an error.
-      # This is necessary because the user can specify the type from the JASP GUI now,
-      # and the type is applied across all input variables.
-      q123 <- quantile(as.numeric(na.omitted), c(.25, .5, .75), names = FALSE, type = quartileType)
-
-      # To get the labels of the ordinal as output in the table and
-      # not the numbers, index the levels of the factor
-      if(columnType == "ordinal")
-        q123 <- levels(na.omitted)[q123]
+      q123 <- quantile(na.omitted, c(.25, .5, .75), names = FALSE, type = quartileType)
 
       resultsCol[["q1"]] <- toMixedCol(q123[1])
       resultsCol[["q2"]] <- toMixedCol(q123[2])
@@ -757,25 +770,14 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   }
 
   if (columnType == "scale" || columnType == "ordinal") {
-    # Type 7: default in R
-    # Type 3: Nearest even order statistic (SAS default till ca. 2010).
-    quartileType <- as.integer(options[["quantilesType"]]) # extract number from type for quantile() function
+    quartileType <- as.integer(options[["quantilesType"]])
+    if (columnType == "ordinal")
+      quartileType <- .ordinalQuantileType(quartileType)
 
     if (options$quantilesForEqualGroups) {
 
       for (i in seq(equalGroupsNo - 1)) {
-        # Treat variable (i.e., na.omitted) as numeric to make all quantile types applicable.
-        # If we would treat ordinals as ordered factors, the quantile function would lead
-        # to an error.
-        # This is necessary because the user can specify the type from the JASP GUI now,
-        # and the type is applied across all input variables.
-        quantileEst <- quantile(as.numeric(na.omitted), c(i / equalGroupsNo), names = FALSE, type = quartileType)
-
-        # To get the labels of the ordinal as output in the table and
-        # not the numbers, index the levels of the factor
-        if (columnType == "ordinal")
-          quantileEst <- levels(na.omitted)[quantileEst]
-
+        quantileEst <- quantile(na.omitted, c(i / equalGroupsNo), names = FALSE, type = quartileType)
         resultsCol[[paste0("eg", i)]] <- toMixedCol(quantileEst)
       }
     }
@@ -783,12 +785,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     if (options$percentiles) {
 
       for (i in percentilesPercentiles) {
-        # See explanation above
-        percentileEst <- quantile(as.numeric(na.omitted), c(i / 100), names = FALSE, type = quartileType)
-
-        if (columnType == "ordinal")
-          percentileEst <- levels(na.omitted)[percentileEst]
-
+        percentileEst <- quantile(na.omitted, c(i / 100), names = FALSE, type = quartileType)
         resultsCol[[paste0("pc", i)]] <- toMixedCol(percentileEst)
       }
     }
@@ -814,7 +811,8 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     shouldAddModeMoreThanOnceFootnote = shouldAddModeMoreThanOnceFootnote,
     shouldAddIdenticalFootnote = shouldAddIdenticalFootnote,
     shouldAddExplainEmptySet = shouldAddExplainEmptySet,
-    shouldAddGeomHarmMeansPositiveFootnote = shouldAddGeomHarmMeansPositiveFootnote
+    shouldAddGeomHarmMeansPositiveFootnote = shouldAddGeomHarmMeansPositiveFootnote,
+    shouldAddOrdinalQuantileTypeFootnote = shouldAddOrdinalQuantileTypeFootnote
   ))
 }
 
@@ -1609,6 +1607,17 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   kurtosis <- a * b + c
 
   return(kurtosis)
+}
+
+# R's quantile() on ordered factors only supports types 1 and 3.
+# Fall back to type 3 when the user-selected type is incompatible.
+.ordinalQuantileType <- function(type) {
+  if (type %in% c(1L, 3L)) type else 3L
+}
+
+.descriptivesMedian <- function(x, options, toMixedCol) {
+  type <- as.integer(options[["quantilesType"]])
+  return(toMixedCol(quantile(x, 0.5, names = FALSE, type = type)))
 }
 
 .descriptivesIqr <- function(x, options) {
