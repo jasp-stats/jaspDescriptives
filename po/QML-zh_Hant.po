@@ -1,9 +1,15 @@
 msgid ""
 msgstr ""
+"PO-Revision-Date: 2026-04-09 03:10+0000\n"
+"Last-Translator: 陳正昌 <chencc99@gmail.com>\n"
+"Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
+"projects/jasp/jaspdescriptives-qml/zh_Hant/>\n"
+"Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.17-dev\n"
 "X-Language: zh_Hant\n"
 "X-Qt-Contexts: true\n"
 
@@ -763,7 +769,7 @@ msgstr ""
 
 msgctxt "FlexplotForm|"
 msgid "Lancet"
-msgstr ""
+msgstr "刺胳針"
 
 msgctxt "FlexplotForm|"
 msgid "JCO"
@@ -859,7 +865,6 @@ msgctxt "FlexplotForm|"
 msgid "For more details about flexplot in JASP, watch this %1videa%2"
 msgstr "有關 JASP 中 flexplot 之更多詳細資訊，請觀看此%1影片%2"
 
-#, fuzzy
 msgctxt "FlexplotForm|"
 msgid "Input"
 msgstr "輸入"
@@ -1379,7 +1384,6 @@ msgctxt "raincloudPlots|"
 msgid "References"
 msgstr "參照"
 
-#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Input"
 msgstr "輸入"
@@ -2282,12 +2286,10 @@ msgctxt "jaspPlotBuilder|"
 msgid "Jitter width"
 msgstr "抖動寬度"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Transparency"
 msgstr "透明度"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Dodge"
 msgstr "並排"
@@ -2318,7 +2320,6 @@ msgid ""
 "violin)"
 msgstr "必填：X 軸或 Y 軸變項（直方圖）；X 軸與 Y 軸變項（盒鬚圖、小提琴圖）"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Histogram"
 msgstr "直方圖"
@@ -2331,10 +2332,9 @@ msgstr ""
 "勾選此選項以為 X 軸或 Y 軸變項建立直方圖。直方圖需要 X 軸或 Y 軸變項其中一"
 "項，但不可兩者同時選取。"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Number of bins"
-msgstr "組距數"
+msgstr "組數 (條數)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Boxplot"
@@ -2520,7 +2520,6 @@ msgctxt "jaspPlotBuilder|"
 msgid "Enable to add sum values to the plot."
 msgstr "啟用此選項以在圖形中新增總和值。"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Proportions"
 msgstr "比例"
@@ -2557,7 +2556,6 @@ msgctxt "jaspPlotBuilder|"
 msgid "Show as percentages"
 msgstr "以百分比顯示"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Mean"
 msgstr "平均數"
@@ -2586,7 +2584,6 @@ msgctxt "jaspPlotBuilder|"
 msgid "Mean value"
 msgstr "平均數值"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Median"
 msgstr "中位數"
@@ -2668,12 +2665,10 @@ msgctxt "jaspPlotBuilder|"
 msgid "Add curve fit"
 msgstr "新增曲線配適線"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Method"
 msgstr "方法"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Linear"
 msgstr "直線"
@@ -2811,7 +2806,6 @@ msgctxt "jaspPlotBuilder|"
 msgid "e.g. p = 0.1, $italic(p)==0.1$"
 msgstr "例如 p = 0.1, $italic(p)==0.1$"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Position"
 msgstr "位置"
@@ -2840,12 +2834,10 @@ msgctxt "jaspPlotBuilder|"
 msgid "Appearance"
 msgstr "外觀設定"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Size"
 msgstr "點的大小"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Color"
 msgstr "顏色"
@@ -2874,7 +2866,6 @@ msgctxt "jaspPlotBuilder|"
 msgid "Color by"
 msgstr "顏色區分依據"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "None"
 msgstr "不顯示統計圖"
@@ -3443,7 +3434,6 @@ msgctxt "jaspPlotBuilder|"
 msgid "Column heights/row widths"
 msgstr "欄高／列寬"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Height"
 msgstr "高度"
@@ -3716,7 +3706,6 @@ msgstr ""
 "設定直方圖中用於分割資料範圍之區間數。區間數越多可呈現更細緻之細節，區間數越"
 "少則提供更整體之概觀"
 
-#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Density"
 msgstr "密度"
@@ -4745,7 +4734,6 @@ msgid ""
 "many long levels."
 msgstr "將 X 軸標籤傾斜 45 度，以便在類別數量多且文字較長時提升可讀性。"
 
-#, fuzzy
 msgctxt "Descriptives|"
 msgid "Confidence interval"
 msgstr "信賴區間"
