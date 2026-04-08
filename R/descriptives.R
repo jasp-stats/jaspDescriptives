@@ -124,6 +124,38 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     }
   }
 
+  # ECDF plots
+  if (options$ecdfPlot) {
+    if (is.null(jaspResults[["ecdfPlot"]])) {
+      jaspResults[["ecdfPlot"]] <- createJaspContainer(gettext("Empirical Cumulative Distribution"))
+      jaspResults[["ecdfPlot"]]$dependOn(c("ecdfPlot", "splitBy", "variables"))
+      jaspResults[["ecdfPlot"]]$position <- 5.5
+    }
+
+    ecdfPlots <- jaspResults[["ecdfPlot"]]
+
+    for (var in scaleVariables) {
+      if (is.null(ecdfPlots[[var]])) {
+        if (makeSplit) {
+          splitContainer <- createJaspContainer(var)
+          splitContainer$dependOn(optionContainsValue = list(variables = var))
+
+          for (splitLevel in names(splitDat)) {
+            splitData <- splitDat[[splitLevel]]
+            ecdfPlot  <- .descriptivesEcdfPlot(splitData, options, var, splitLevel)
+            ecdfPlot$dependOn(optionContainsValue = list(variables = var))
+            splitContainer[[splitLevel]] <- ecdfPlot
+          }
+
+          ecdfPlots[[var]] <- splitContainer
+        } else {
+          ecdfPlots[[var]] <- .descriptivesEcdfPlot(dataset, options, var, var)
+          ecdfPlots[[var]]$dependOn(optionContainsValue = list(variables = var))
+        }
+      }
+    }
+  }
+
   # Box plots
   if (options$boxPlot) {
     if (is.null(jaspResults[["boxPlot"]])) {
@@ -1202,6 +1234,27 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   }
 
   return(freqPlot)
+}
+
+.descriptivesEcdfPlot <- function(dataset, options, variable, title) {
+  ecdfPlot <- createJaspPlot(title = title, width = options$plotWidth, height = options$plotHeight)
+
+  errorMessage <- .descriptivesCheckPlotErrors(dataset, variable, obsAmount = "< 2")
+  column <- dataset[[variable]]
+  column <- na.omit(column)
+
+  if (!is.null(errorMessage)) {
+    ecdfPlot$setError(gettextf("Plotting not possible: %s", errorMessage))
+  } else if (length(column) > 0) {
+    ecdfPlot$plotObject <- ggplot2::ggplot(data.frame(x = column), ggplot2::aes(x = x)) +
+      ggplot2::stat_ecdf(geom = "step", colour = "black") +
+      ggplot2::scale_x_continuous(name = variable) +
+      ggplot2::scale_y_continuous(name = gettext("Cumulative Proportion")) +
+      jaspGraphs::geom_rangeframe(sides = "bl") +
+      jaspGraphs::themeJaspRaw()
+  }
+
+  return(ecdfPlot)
 }
 
 .descriptivesSplitPlot <- function(dataset, options, variable) {
