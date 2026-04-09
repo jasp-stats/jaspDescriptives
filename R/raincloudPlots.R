@@ -1106,7 +1106,9 @@ StatHalfYdensity_custom <- ggplot2::ggproto(
   targetPlotObject <- targetJaspPlot[["plotObject"]]
 
   # Extract observed factor combinations and remove duplicate levels of primaryFactor for table
-  combinations <- .rainInfoFactorCombinations(dataInfo$dataset, options)$uniqueCombis
+  # Filter to complete cases for this variable so the n counts are correct
+  filteredDataset <- dataInfo$dataset[complete.cases(dataInfo$dataset[[inputVariable]]), ]
+  combinations <- .rainInfoFactorCombinations(filteredDataset, options)$uniqueCombis
   primaryLevels <- as.character(combinations$primaryFactor)
   previousLevel <- primaryLevels[1]
   tidyLevels <- c(previousLevel)
