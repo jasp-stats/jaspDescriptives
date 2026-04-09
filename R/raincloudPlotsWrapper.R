@@ -19,7 +19,7 @@
 
 #' Raincloud Plots
 #'
-#' This module has a <a href='https://www.youtube.com/watch?v=AAdXUAl_w6E'> youtube tutorial</a> <br><br>If you use this module, please cite it as:<br>Ott, V. L, van den Bergh, D., Boutin, B., van Doorn, J., Bartoš, F., Judd, N., Luke, K., Kievit, R. A., Groot, L., and Wagenmakers, E.-J. (2024). Informative Data Visualization with Raincloud Plots in JASP. OSF Preprint. <a href="https://doi.org/10.31219/osf.io/gv3ph">https://doi.org/10.31219/osf.io/gv3ph</a>
+#' This module has a <a href='https://www.youtube.com/watch?v=AAdXUAl_w6E'> YouTube tutorial</a> <br><br>If you use this module, please cite it as:<br>Ott, V. L, van den Bergh, D., Boutin, B., van Doorn, J., Bartoš, F., Judd, N., Luke, K., Kievit, R. A., Groot, L., and Wagenmakers, E.-J. (2024). Informative Data Visualization with Raincloud Plots in JASP. OSF Preprint. <a href="https://doi.org/10.31219/osf.io/gv3ph">https://doi.org/10.31219/osf.io/gv3ph</a>
 #'
 #' @param colorAnyway, Applies the color palette to the levels of the primary factor. Otherwise, the plot stays black and white.<br>This option is superseeded by a secondary factor; then color coding is according to that.
 #'    Defaults to \code{TRUE}.
@@ -55,7 +55,7 @@
 #'    Defaults to \code{TRUE}.
 raincloudPlots <- function(
           data = NULL,
-          version = "0.95",
+          version = "0.96.1",
           boxNudge = 0,
           boxOpacity = 0.5,
           boxOutline = "colorPalette",
@@ -69,7 +69,7 @@ raincloudPlots <- function(
           customAxisLimits = FALSE,
           customColors = FALSE,
           customSides = FALSE,
-          customizationTable = list(list(levels = list("Cat", "Training", "Dance"), name = "data 1", values = list("R", "R", "R")), list(levels = list("Cat", "Training", "Dance"), name = "data 2", values = list(0, 0, 0)), list(levels = list("Cat", "Training", "Dance"), name = "data 3", values = list(0, 0, 0)), list(levels = list("Cat", "Training", "Dance"), name = "data 4", values = list("#00A9E6", "#00A9E6", "#00A9E6"))),
+          customizationTable = list(list(levels = "Row 0", name = "data 1", values = "R"), list(levels = "Row 0", name = "data 2", values = 0), list(levels = "Row 0", name = "data 3", values = 0), list(levels = "Row 0", name = "data 4", values = "#00A9E6")),
           dependentVariables = list(types = list(), value = list()),
           heightPlot = 350,
           horizontal = FALSE,
