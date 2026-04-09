@@ -40,17 +40,17 @@
 #'    Defaults to \code{FALSE}.
 #' @param customHistogramPosition, Options for separate bins of the histogram
 #' \itemize{
-#'   \item \code{"identity"}: Identity: Bars are layered on top of each other, with transparency often used to distinguish overlapping data.
 #'   \item \code{"dodge"}: Dodge: Bars are placed side-by-side, allowing for easy comparison of different categories within each bin.
 #'   \item \code{"stack"}: Stack: Bars are stacked vertically, combining counts across categories within each bin.
+#'   \item \code{"identity"}: Identity: Bars are layered on top of each other, with transparency often used to distinguish overlapping data.
 #' }
 #' @param densityPlot, visualizes data distributions, adapting to the type of variable selected. For scale variables, it generates histograms or density plots to show continuous data distributions. For categorical variables, it creates bar plots displaying counts or proportions of each category.
 #'    Defaults to \code{FALSE}.
 #' @param densityPlotCategoricalType, Display counts, proportions, or conditional proportions (conditional for each category on the x-axis).
 #' \itemize{
 #'   \item \code{"prop"}
-#'   \item \code{"count"}
 #'   \item \code{"condProp"}
+#'   \item \code{"count"}
 #' }
 #' @param densityPlotType, Whether to display a density plot or histogram.
 #' \itemize{
@@ -75,13 +75,13 @@
 #'    Defaults to \code{FALSE}.
 #' @param maximum, Maximum value of the data points.
 #'    Defaults to \code{TRUE}.
-#' @param meanArithmetic, Arithmetic mean of the data points.
+#' @param meanArithmetic, Arithmetic mean of the data points; otherwise also colloquially called 'the mean' or 'the average'. Calculated as the sum of all data points divided by the number of data points.
 #'    Defaults to \code{TRUE}.
 #' @param meanCiLevel, width of the confidence interval.
 #' @param meanCiMethod, How should the confidence interval be computed? By default, we use a `T model`, which yields results identical to a one-sample t-test. Alternative options are a normal model ($\bar{x} \pm z_{95} \times SE$), or `Bootstrap`.
-#' @param meanGeometric, Geometric mean of the data points; defined only for strictly positive variables.
+#' @param meanGeometric, Geometric mean of the data points; defined only for strictly positive variables. Calculated as the product of all data points, raised to the power of 1 divided by the number of points (the n-th root of the product).
 #'    Defaults to \code{FALSE}.
-#' @param meanHarmonic, Harmonic mean of the data points; defined only for strictly positive variables.
+#' @param meanHarmonic, Harmonic mean of the data points; defined only for strictly positive variables. Calculated as the number of data points divided by the sum of the reciprocals of the data points.
 #'    Defaults to \code{FALSE}.
 #' @param median, Median of the data points.
 #'    Defaults to \code{FALSE}.
@@ -89,12 +89,18 @@
 #'    Defaults to \code{TRUE}.
 #' @param mode, Mode of the data points; if more than one mode exists, only the first is reported. For nominal and ordinal data, the mode is the most frequent observed value. For continuous data, the mode is the value with highest density estimate (see 'Distribution Plots' -> 'Display density'). If a footnote about multimodality for continuous variables is reported, we recommend visualizing the data to check for multimodality.
 #'    Defaults to \code{FALSE}.
+#' @param paretoAddCountVariable, Allows you to specify an additional variable that contains the counts for each category instead of letting the analysis compute frequencies automatically. This is useful when the data are already aggregated (e.g., each row represents a category with an associated frequency). If left empty, counts are calculated directly from the selected variable.
 #' @param paretoPlot, Displays the counts of each factor/level within the variable in a descending order. The y-axis represents the frequency (counts as grey bars) of each factor/level, the x-axis represents the factors/levels of the variable in an ordered sequence.<br>By default, a cumulative line is drawn indicating the proportional contribution of each factor. A second vertical axis to the right side of the graph scales with this cumulative line and represents percentages to enable the description of the cumulative line.<br>If "Pareto rule" is enabled, the two new lines enable a more precise assessment of factor/level contribution to the overall contribution (in percent) by using different input numbers.
+#'    Defaults to \code{FALSE}.
+#' @param paretoPlotTiltXAxisLabels, Tilts the x-axis labels by 45 degrees to improve readability when there are many long levels.
+#'    Defaults to \code{FALSE}.
+#' @param paretoShiftAccumulationLine, Shifts the cumulative line so that it starts at the top-right corner of the first bar instead of in the middle. This corresponds to the traditional Pareto chart layout.
 #'    Defaults to \code{FALSE}.
 #' @param percentiles, Displays the xth percentile; percentile values must be separated by comma.
 #'    Defaults to \code{FALSE}.
 #' @param quantilesForEqualGroups, Displays the cut points that divide the data into x equal groups; default is 4 equal groups.
 #'    Defaults to \code{FALSE}.
+#' @param quantilesType, Method used to compute quantiles (see Hyndman & Fan, 1996; Langford, 2006, for more information). The selection carries over to the inter-quartile range (IQR) and box-plot calculations.  For ordinal variables, only types 1 and 3 are supported; other types fall back to type 3.
 #' @param quartiles, Displays the 25th, 50th, and 75th percentiles of the data points.
 #'    Defaults to \code{FALSE}.
 #' @param range, Range of the data points; maximum - minimum.
@@ -125,128 +131,134 @@
 #'    Defaults to \code{FALSE}.
 #' @param varianceCiMethod, How should the confidence interval be computed? By default, we use a analytical approach (chi-square). The alternative option is `Bootstrap`
 Descriptives <- function(
-    data = NULL,
-    version = "0.95.1",
-    formula = NULL,
-    associationMatrixUse = "everything",
-    boxPlot = FALSE,
-    boxPlotBoxPlot = TRUE,
-    boxPlotColourPalette = FALSE,
-    boxPlotJitter = FALSE,
-    boxPlotOutlierLabel = FALSE,
-    boxPlotViolin = FALSE,
-    ciBootstrapSamples = 1000,
-    coefficientOfVariation = FALSE,
-    colorPalette = "colorblind",
-    correlation = FALSE,
-    correlationPlots = FALSE,
-    covariance = FALSE,
-    customHistogramPosition = "stack",
-    densityPlot = FALSE,
-    densityPlotCategoricalType = "count",
-    densityPlotSeparate = list(types = list(), value = ""),
-    densityPlotTransparency = 20,
-    densityPlotType = "density",
-    descriptivesTableTransposed = FALSE,
-    distributionAndCorrelationPlotDensity = FALSE,
-    distributionAndCorrelationPlotHistogramBinWidthType = "sturges",
-    distributionAndCorrelationPlotHistogramManualNumberOfBins = 30,
-    distributionAndCorrelationPlotRugMarks = FALSE,
-    distributionPlots = FALSE,
-    dotPlot = FALSE,
-    frequencyTables = FALSE,
-    frequencyTablesMaximumDistinctValues = 10,
-    heatmapDisplayValue = FALSE,
-    heatmapDisplayValueRelativeTextSize = 1,
-    heatmapHorizontalAxis = list(types = list(), value = ""),
-    heatmapLegend = FALSE,
-    heatmapPlot = FALSE,
-    heatmapStatisticContinuous = "mean",
-    heatmapStatisticDiscrete = "mode",
-    heatmapTileWidthHeightRatio = 1,
-    heatmapVerticalAxis = list(types = list(), value = ""),
-    intervalPlot = FALSE,
-    iqr = FALSE,
-    kurtosis = FALSE,
-    likertPlot = FALSE,
-    likertPlotAdjustableFontSize = "normal",
-    likertPlotAssumeVariablesSameLevel = FALSE,
-    mad = FALSE,
-    madRobust = FALSE,
-    maximum = TRUE,
-    meanArithmetic = TRUE,
-    meanCi = FALSE,
-    meanCiLevel = 0.95,
-    meanCiMethod = "oneSampleTTest",
-    meanGeometric = FALSE,
-    meanHarmonic = FALSE,
-    median = FALSE,
-    minimum = TRUE,
-    missing = TRUE,
-    mode = FALSE,
-    paretoPlot = FALSE,
-    paretoPlotRule = FALSE,
-    paretoPlotRuleCi = 0.95,
-    percentileValues = list(),
-    percentiles = FALSE,
-    pieChart = FALSE,
-    plotHeight = 320,
-    plotWidth = 480,
-    qqPlot = FALSE,
-    quantilesForEqualGroups = FALSE,
-    quantilesForEqualGroupsNumber = 4,
-    quartiles = FALSE,
-    range = FALSE,
-    scatterPlot = FALSE,
-    scatterPlotGraphTypeAbove = "density",
-    scatterPlotGraphTypeRight = "density",
-    scatterPlotLegend = TRUE,
-    scatterPlotRegressionLine = TRUE,
-    scatterPlotRegressionLineCi = TRUE,
-    scatterPlotRegressionLineCiLevel = 0.95,
-    scatterPlotRegressionLineType = "linear",
-    sd = TRUE,
-    sdCi = FALSE,
-    sdCiLevel = 0.95,
-    sdCiMethod = "chiSquaredModel",
-    seMean = FALSE,
-    shapiroWilkTest = FALSE,
-    skewness = FALSE,
-    splitBy = list(types = list(), value = ""),
-    statisticsValuesAreGroupMidpoints = FALSE,
-    stemAndLeaf = FALSE,
-    stemAndLeafScale = 1,
-    sum = FALSE,
-    valid = TRUE,
-    variables = list(types = list(), value = list()),
-    variance = FALSE,
-    varianceCi = FALSE,
-    varianceCiLevel = 0.95,
-    varianceCiMethod = "chiSquaredModel") {
+          data = NULL,
+          version = "0.96.1",
+          formula = NULL,
+          associationMatrixUse = "everything",
+          boxPlot = FALSE,
+          boxPlotBoxPlot = TRUE,
+          boxPlotColourPalette = FALSE,
+          boxPlotJitter = FALSE,
+          boxPlotOutlierLabel = FALSE,
+          boxPlotViolin = FALSE,
+          ciBootstrapSamples = 1000,
+          coefficientOfVariation = FALSE,
+          colorPalette = "colorblind",
+          correlation = FALSE,
+          correlationPlots = FALSE,
+          covariance = FALSE,
+          customHistogramPosition = "stack",
+          densityPlot = FALSE,
+          densityPlotCategoricalType = "count",
+          densityPlotSeparate = list(types = list(), value = ""),
+          densityPlotTransparency = 20,
+          densityPlotType = "density",
+          descriptivesTableTransposed = FALSE,
+          distributionAndCorrelationPlotDensity = FALSE,
+          distributionAndCorrelationPlotHistogramBinWidthType = "sturges",
+          distributionAndCorrelationPlotHistogramManualNumberOfBins = 30,
+          distributionAndCorrelationPlotRugMarks = FALSE,
+          distributionPlots = FALSE,
+          dotPlot = FALSE,
+          frequencyTables = FALSE,
+          frequencyTablesMaximumDistinctValues = 10,
+          heatmapDisplayValue = FALSE,
+          heatmapDisplayValueRelativeTextSize = 1,
+          heatmapHorizontalAxis = list(types = list(), value = ""),
+          heatmapLegend = FALSE,
+          heatmapPlot = FALSE,
+          heatmapStatisticContinuous = "mean",
+          heatmapStatisticDiscrete = "mode",
+          heatmapTileWidthHeightRatio = 1,
+          heatmapVerticalAxis = list(types = list(), value = ""),
+          intervalPlot = FALSE,
+          iqr = FALSE,
+          kurtosis = FALSE,
+          likertPlot = FALSE,
+          likertPlotAdjustableFontSize = "normal",
+          likertPlotAssumeVariablesSameLevel = FALSE,
+          mad = FALSE,
+          madRobust = FALSE,
+          maximum = TRUE,
+          meanArithmetic = TRUE,
+          meanCi = FALSE,
+          meanCiLevel = 0.95,
+          meanCiMethod = "oneSampleTTest",
+          meanGeometric = FALSE,
+          meanHarmonic = FALSE,
+          median = FALSE,
+          minimum = TRUE,
+          missing = TRUE,
+          mode = FALSE,
+          paretoAddCountVariable = list(types = "unknown", value = ""),
+          paretoPlot = FALSE,
+          paretoPlotRule = FALSE,
+          paretoPlotRuleCi = 0.8,
+          paretoPlotTiltXAxisLabels = FALSE,
+          paretoShiftAccumulationLine = FALSE,
+          percentileValues = list(),
+          percentiles = FALSE,
+          pieChart = FALSE,
+          plotHeight = 320,
+          plotWidth = 480,
+          qqPlot = FALSE,
+          qqPlotCi = FALSE,
+          qqPlotCiLevel = 0.95,
+          quantilesForEqualGroups = FALSE,
+          quantilesForEqualGroupsNumber = 4,
+          quantilesType = "7",
+          quartiles = FALSE,
+          range = FALSE,
+          scatterPlot = FALSE,
+          scatterPlotGraphTypeAbove = "density",
+          scatterPlotGraphTypeRight = "density",
+          scatterPlotLegend = TRUE,
+          scatterPlotRegressionLine = TRUE,
+          scatterPlotRegressionLineCi = TRUE,
+          scatterPlotRegressionLineCiLevel = 0.95,
+          scatterPlotRegressionLineType = "linear",
+          sd = TRUE,
+          sdCi = FALSE,
+          sdCiLevel = 0.95,
+          sdCiMethod = "chiSquaredModel",
+          seMean = FALSE,
+          shapiroWilkTest = FALSE,
+          skewness = FALSE,
+          splitBy = list(types = list(), value = ""),
+          statisticsValuesAreGroupMidpoints = FALSE,
+          stemAndLeaf = FALSE,
+          stemAndLeafScale = 1,
+          sum = FALSE,
+          valid = TRUE,
+          variables = list(types = list(), value = list()),
+          variance = FALSE,
+          varianceCi = FALSE,
+          varianceCiLevel = 0.95,
+          varianceCiMethod = "chiSquaredModel") {
 
-  defaultArgCalls <- formals(jaspDescriptives::Descriptives)
-  defaultArgs <- lapply(defaultArgCalls, eval)
-  options <- as.list(match.call())[-1L]
-  options <- lapply(options, eval)
-  defaults <- setdiff(names(defaultArgs), names(options))
-  options[defaults] <- defaultArgs[defaults]
-  options[["data"]] <- NULL
-  options[["version"]] <- NULL
+   defaultArgCalls <- formals(jaspDescriptives::Descriptives)
+   defaultArgs <- lapply(defaultArgCalls, eval)
+   options <- as.list(match.call())[-1L]
+   options <- lapply(options, eval)
+   defaults <- setdiff(names(defaultArgs), names(options))
+   options[defaults] <- defaultArgs[defaults]
+   options[["data"]] <- NULL
+   options[["version"]] <- NULL
 
 
-  if (!jaspBase::jaspResultsCalledFromJasp() && !is.null(data)) {
-    jaspBase::storeDataSet(data)
-  }
+   if (!jaspBase::jaspResultsCalledFromJasp() && !is.null(data)) {
+      jaspBase::storeDataSet(data)
+   }
 
-  if (!is.null(formula)) {
-    if (!inherits(formula, "formula")) {
-      formula <- as.formula(formula)
-    }
-    options$formula <- jaspBase::jaspFormula(formula, data)
-  }
-  optionsWithFormula <- c("associationMatrixUse", "colorPalette", "densityPlotSeparate", "distributionAndCorrelationPlotHistogramBinWidthType", "heatmapHorizontalAxis", "heatmapVerticalAxis", "likertPlotAdjustableFontSize", "meanCiMethod", "sdCiMethod", "splitBy", "variables", "varianceCiMethod")
-  for (name in optionsWithFormula) {
-    if ((name %in% optionsWithFormula) && inherits(options[[name]], "formula")) options[[name]] = jaspBase::jaspFormula(options[[name]], data)   }
+   if (!is.null(formula)) {
+      if (!inherits(formula, "formula")) {
+         formula <- as.formula(formula)
+      }
+      options$formula <- jaspBase::jaspFormula(formula, data)
+   }
+   optionsWithFormula <- c("associationMatrixUse", "colorPalette", "densityPlotSeparate", "distributionAndCorrelationPlotHistogramBinWidthType", "heatmapHorizontalAxis", "heatmapVerticalAxis", "likertPlotAdjustableFontSize", "meanCiMethod", "paretoAddCountVariable", "quantilesType", "sdCiMethod", "splitBy", "variables", "varianceCiMethod")
+   for (name in optionsWithFormula) {
+      if ((name %in% optionsWithFormula) && inherits(options[[name]], "formula")) options[[name]] = jaspBase::jaspFormula(options[[name]], data)   }
 
-  return(jaspBase::runWrappedAnalysis("jaspDescriptives", "Descriptives", "Descriptives.qml", options, version, TRUE))
+   return(jaspBase::runWrappedAnalysis("jaspDescriptives", "Descriptives", "Descriptives.qml", options, version, TRUE))
 }

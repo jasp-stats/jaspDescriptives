@@ -6,7 +6,7 @@
 \usage{
 flexplot(
   data = NULL,
-  version = "0.95",
+  version = "0.96.1",
   formula = NULL,
   alpha = 0.4,
   bw = FALSE,

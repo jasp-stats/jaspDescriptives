@@ -6,7 +6,7 @@
 \usage{
 DescriptivesTimeSeries(
   data = NULL,
-  version = "0.95",
+  version = "0.96.1",
   acf = FALSE,
   acfCi = TRUE,
   acfCiLevel = 0.95,
