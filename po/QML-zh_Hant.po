@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-04-09 03:10+0000\n"
+"PO-Revision-Date: 2026-04-10 09:09+0000\n"
 "Last-Translator: 陳正昌 <chencc99@gmail.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://hosted.weblate.org/"
 "projects/jasp/jaspdescriptives-qml/zh_Hant/>\n"
@@ -62,7 +62,7 @@ msgstr "箱形圖設定"
 
 msgctxt "Descriptives|"
 msgid "Violin element"
-msgstr "小提琴圖"
+msgstr "小提琴圖元素"
 
 msgctxt "Descriptives|"
 msgid "Jitter element"
@@ -665,7 +665,7 @@ msgstr "彈性的繪圖工具"
 
 msgctxt "FlexplotForm|"
 msgid "Dependent Variable"
-msgstr "依變量"
+msgstr "依變項"
 
 msgctxt "FlexplotForm|"
 msgid "Independent Variable(s)"
