@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.11.0\n"
-"POT-Creation-Date: 2026-02-09 12:28\n"
+"POT-Creation-Date: 2026-04-11 04:04\n"
 "PO-Revision-Date: 2024-07-12 14:09+0000\n"
 "Last-Translator: Daiki Hojo <dhojo.bayes@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -288,6 +288,11 @@ msgid ""
 "variables, but the data contain some non-positive values."
 msgstr ""
 
+msgid ""
+"For ordinal variables, quantile type 3 was used because the selected type is "
+"not supported."
+msgstr ""
+
 msgid "Total"
 msgstr "合計"
 
@@ -339,6 +344,12 @@ msgid ""
 msgstr ""
 "欠測値があるためいくつかの連関が計算できません。別の「使用」設定を試してくだ"
 "さい."
+
+#, fuzzy
+msgid ""
+"Plotting not possible: Variable '%s' has fewer than 2 valid (non-missing) "
+"observations."
+msgstr "欠落していない観測値が2つ未満であるため、幹葉表を作成できませんでした"
 
 msgid "Stem"
 msgstr "幹"

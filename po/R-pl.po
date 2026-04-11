@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2026-02-09 12:28\n"
+"POT-Creation-Date: 2026-04-11 04:04\n"
 "PO-Revision-Date: 2025-07-16 21:01+0000\n"
 "Last-Translator: Tomasz Misiuro <tomaszmisiuro@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/jasp/"
@@ -295,6 +295,11 @@ msgid ""
 "variables, but the data contain some non-positive values."
 msgstr ""
 
+msgid ""
+"For ordinal variables, quantile type 3 was used because the selected type is "
+"not supported."
+msgstr ""
+
 msgid "Total"
 msgstr "Całość"
 
@@ -347,6 +352,14 @@ msgid ""
 msgstr ""
 "Niektóre zależności nie mogły zostać obliczone ze względu na braki danych. "
 "Należy zmienić ustawienia opcji \"Użyj\"."
+
+#, fuzzy
+msgid ""
+"Plotting not possible: Variable '%s' has fewer than 2 valid (non-missing) "
+"observations."
+msgstr ""
+"Wykres typu łodyga i liście nie mógł zostać utworzony, ponieważ istnieją "
+"mniej niż 2 ważne obserwacje"
 
 msgid "Stem"
 msgstr "Łodyga"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: jaspDescriptives 0.96.0\n"
-"POT-Creation-Date: 2026-03-28 04:03\n"
+"Project-Id-Version: jaspDescriptives 0.96.2\n"
+"POT-Creation-Date: 2026-04-11 04:04\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -257,6 +257,9 @@ msgstr ""
 msgid "Geometric and harmonic means are defined only for strictly positive variables, but the data contain some non-positive values."
 msgstr ""
 
+msgid "For ordinal variables, quantile type 3 was used because the selected type is not supported."
+msgstr ""
+
 msgid "Total"
 msgstr ""
 
@@ -300,6 +303,9 @@ msgid "Association cannot be computed due to missing values. Try a different 'Us
 msgstr ""
 
 msgid "Some associations cannot be computed due to missing values. Try a different 'Use' setting."
+msgstr ""
+
+msgid "Plotting not possible: Variable '%s' has fewer than 2 valid (non-missing) observations."
 msgstr ""
 
 msgid "Stem"

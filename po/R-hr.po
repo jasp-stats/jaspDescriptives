@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2026-02-09 12:28\n"
+"POT-Creation-Date: 2026-04-11 04:04\n"
 "PO-Revision-Date: 2021-10-30 19:47+0000\n"
 "Last-Translator: Igor Dobrača <igor.dobraca@gmail.com>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/jasp/"
@@ -289,6 +289,11 @@ msgid ""
 "variables, but the data contain some non-positive values."
 msgstr ""
 
+msgid ""
+"For ordinal variables, quantile type 3 was used because the selected type is "
+"not supported."
+msgstr ""
+
 msgid "Total"
 msgstr "Ukupno"
 
@@ -337,6 +342,14 @@ msgid ""
 "Some associations cannot be computed due to missing values. Try a different "
 "'Use' setting."
 msgstr ""
+
+#, fuzzy
+msgid ""
+"Plotting not possible: Variable '%s' has fewer than 2 valid (non-missing) "
+"observations."
+msgstr ""
+"S-L tablica ne može biti prikazana jer postoji manje od 2 opažanja koja ne "
+"nedostaju"
 
 msgid "Stem"
 msgstr ""

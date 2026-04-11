@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.19.2\n"
-"POT-Creation-Date: 2026-02-09 12:28\n"
+"POT-Creation-Date: 2026-04-11 04:04\n"
 "PO-Revision-Date: 2025-12-17 23:00+0000\n"
 "Last-Translator: Marko Bojović <bojovicmarko@outlook.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/jasp/"
@@ -291,6 +291,11 @@ msgstr ""
 "Геометријске и хармонијске средине су дефинисане само за строго позитивне "
 "променљиве, али подаци садрже и неке негативне вредности."
 
+msgid ""
+"For ordinal variables, quantile type 3 was used because the selected type is "
+"not supported."
+msgstr ""
+
 msgid "Total"
 msgstr "Укупно"
 
@@ -343,6 +348,14 @@ msgid ""
 msgstr ""
 "Неке асоцијације не могу бити израчунате због недостајућих вредности. "
 "Покушајте са различитом поставком ‘употреба’."
+
+#, fuzzy
+msgid ""
+"Plotting not possible: Variable '%s' has fewer than 2 valid (non-missing) "
+"observations."
+msgstr ""
+"Табела стем-а и листа није могла бити направљена јер постоји мање од 2 "
+"вредности које нису недостајуће"
 
 msgid "Stem"
 msgstr "Стем"

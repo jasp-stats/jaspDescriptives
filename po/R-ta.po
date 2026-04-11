@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.19.2\n"
-"POT-Creation-Date: 2026-02-09 12:28\n"
+"POT-Creation-Date: 2026-04-11 04:04\n"
 "PO-Revision-Date: 2026-01-01 03:01+0000\n"
 "Last-Translator: தமிழ்நேரம் <tamilneram247@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/jasp/"
@@ -294,6 +294,11 @@ msgstr ""
 "சியோமெட்ரிக் மற்றும் ஆர்மோனிக் வழிமுறைகள் கண்டிப்பாக நேர்மறை மாறிகளுக்கு மட்டுமே "
 "வரையறுக்கப்படுகின்றன, ஆனால் தரவு சில நேர்மறை மதிப்புகளைக் கொண்டுள்ளது."
 
+msgid ""
+"For ordinal variables, quantile type 3 was used because the selected type is "
+"not supported."
+msgstr ""
+
 msgid "Total"
 msgstr "மொத்தம்"
 
@@ -346,6 +351,14 @@ msgid ""
 msgstr ""
 "மதிப்புகள் இல்லாததால் சில சங்கங்களை கணக்கிட முடியாது. வேறு 'பயன்பாடு' அமைப்பை "
 "முயற்சிக்கவும்."
+
+#, fuzzy
+msgid ""
+"Plotting not possible: Variable '%s' has fewer than 2 valid (non-missing) "
+"observations."
+msgstr ""
+"ஒரு தண்டு மற்றும் இலை அட்டவணையை உருவாக்க முடியவில்லை, ஏனெனில் 2க்கும் குறைவாகவே "
+"காணவில்லை"
 
 msgid "Stem"
 msgstr "தண்டு"

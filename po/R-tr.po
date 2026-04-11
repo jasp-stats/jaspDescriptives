@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.18.3\n"
-"POT-Creation-Date: 2026-02-09 12:28\n"
+"POT-Creation-Date: 2026-04-11 04:04\n"
 "PO-Revision-Date: 2025-10-07 22:02+0000\n"
 "Last-Translator: Hamza Yalçin <h.yalcin08@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/jasp/"
@@ -295,6 +295,11 @@ msgid ""
 "variables, but the data contain some non-positive values."
 msgstr ""
 
+msgid ""
+"For ordinal variables, quantile type 3 was used because the selected type is "
+"not supported."
+msgstr ""
+
 msgid "Total"
 msgstr "Toplam"
 
@@ -347,6 +352,14 @@ msgid ""
 msgstr ""
 "Eksik değerler nedeniyle bazı ilişkiler hesaplanamıyor. Farklı bir "
 "'Kullanım' ayarı deneyin."
+
+#, fuzzy
+msgid ""
+"Plotting not possible: Variable '%s' has fewer than 2 valid (non-missing) "
+"observations."
+msgstr ""
+"Eksik olmayan gözlem sayısı 2'den az olduğundan bir dal ve yaprak tablosu "
+"oluşturulamadı"
 
 msgid "Stem"
 msgstr "Dal"

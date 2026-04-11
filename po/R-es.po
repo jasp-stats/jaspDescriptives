@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: JASP 0.9.2\n"
-"POT-Creation-Date: 2026-02-09 12:28\n"
+"POT-Creation-Date: 2026-04-11 04:04\n"
 "PO-Revision-Date: 2026-02-21 03:53+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/jasp/"
@@ -298,6 +298,11 @@ msgstr ""
 "estrictamente positivas; pero los datos contienen algunos valores no "
 "positivos."
 
+msgid ""
+"For ordinal variables, quantile type 3 was used because the selected type is "
+"not supported."
+msgstr ""
+
 msgid "Total"
 msgstr "Total"
 
@@ -350,6 +355,14 @@ msgid ""
 msgstr ""
 "Algunas asociaciones no se pueden calcular debido a valores faltantes. "
 "Pruebe con una configuración de 'Usar' diferente."
+
+#, fuzzy
+msgid ""
+"Plotting not possible: Variable '%s' has fewer than 2 valid (non-missing) "
+"observations."
+msgstr ""
+"No se pudo hacer un diagrama de tallo y hojas porque hay menos de 2 "
+"observaciones no ausentes"
 
 msgid "Stem"
 msgstr "Tallo"

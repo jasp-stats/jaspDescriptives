@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2026-02-09 12:28\n"
+"POT-Creation-Date: 2026-04-11 04:04\n"
 "PO-Revision-Date: 2025-12-23 10:38+0000\n"
 "Last-Translator: Jose Ramon Rueda <joseramon.rueda@ehu.eus>\n"
 "Language-Team: Basque <https://hosted.weblate.org/projects/jasp/"
@@ -293,6 +293,11 @@ msgstr ""
 "Batez besteko geometrikoak eta harmonikoak aldagai positibo hertsietarako "
 "bakarrik definitzen dira, baina datuek balio ez-positibo batzuk dituzte."
 
+msgid ""
+"For ordinal variables, quantile type 3 was used because the selected type is "
+"not supported."
+msgstr ""
+
 msgid "Total"
 msgstr "Guztira"
 
@@ -345,6 +350,14 @@ msgid ""
 msgstr ""
 "Ezin dira asoziazio butzuk kalkulatu balio falta direlako. Saiatu beste "
 "'Erabili' ezarpen batekin."
+
+#, fuzzy
+msgid ""
+"Plotting not possible: Variable '%s' has fewer than 2 valid (non-missing) "
+"observations."
+msgstr ""
+"Ezin izan da zurtoin eta hosto taula bat egin, 2 behaketen datu-falta baino "
+"gutxiago daudelako"
 
 msgid "Stem"
 msgstr "Zurtoina"

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.15.0\n"
-"POT-Creation-Date: 2026-02-09 12:28\n"
+"POT-Creation-Date: 2026-04-11 04:04\n"
 "PO-Revision-Date: 2025-12-06 03:31+0000\n"
 "Last-Translator: Shun Wang <shuonwang@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
@@ -282,6 +282,11 @@ msgid ""
 msgstr ""
 "几何平均值和调和平均值仅对严格为正的变量有定义，但数据中包含一些非正值。"
 
+msgid ""
+"For ordinal variables, quantile type 3 was used because the selected type is "
+"not supported."
+msgstr ""
+
 msgid "Total"
 msgstr "总计"
 
@@ -330,6 +335,12 @@ msgid ""
 "Some associations cannot be computed due to missing values. Try a different "
 "'Use' setting."
 msgstr "由于缺失值，某些关联无法计算。请尝试使用不同的“使用”设置。"
+
+#, fuzzy
+msgid ""
+"Plotting not possible: Variable '%s' has fewer than 2 valid (non-missing) "
+"observations."
+msgstr "无法制作茎叶表，因为非缺失观测少于 2 个"
 
 msgid "Stem"
 msgstr "茎"

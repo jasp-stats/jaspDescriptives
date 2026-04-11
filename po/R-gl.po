@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2026-02-09 12:28\n"
+"POT-Creation-Date: 2026-04-11 04:04\n"
 "PO-Revision-Date: 2026-02-21 03:53+0000\n"
 "Last-Translator: ecadrian <ecadrian@hotmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/jasp/"
@@ -304,6 +304,11 @@ msgstr ""
 "As Medias Xeométrica e Harmónica defínense só para variables estritamente "
 "positivas; mais os datos conteñen algúns valores non positivos."
 
+msgid ""
+"For ordinal variables, quantile type 3 was used because the selected type is "
+"not supported."
+msgstr ""
+
 msgid "Total"
 msgstr "Total"
 
@@ -356,6 +361,14 @@ msgid ""
 msgstr ""
 "Algunhas asociacións non se poden calcular debido a valores ausentes. "
 "Intenta unha configuración distinta de 'Usar'."
+
+#, fuzzy
+msgid ""
+"Plotting not possible: Variable '%s' has fewer than 2 valid (non-missing) "
+"observations."
+msgstr ""
+"Non puido facerse un diagrama de talo e folla porque hai menos de 2 "
+"observacións non ausentes"
 
 msgid "Stem"
 msgstr "Talo"
