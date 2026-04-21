@@ -1987,6 +1987,18 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
           if (isTryError(p)) {
             errorMessage <- .extractErrorMessage(p)
+          } else {
+            plotMat <- if (!is.null(p$subplots$topPlot) && !is.null(p$subplots$rightPlot)) {
+              matrix(list(p$subplots$topPlot, NULL, p$subplots$mainPlot, p$subplots$rightPlot), nrow = 2, byrow = TRUE)
+            } else if (!is.null(p$subplots$topPlot)) {
+              matrix(list(p$subplots$topPlot, p$subplots$mainPlot), nrow = 2, byrow = TRUE)
+            } else if (!is.null(p$subplots$rightPlot)) {
+              matrix(list(p$subplots$mainPlot, p$subplots$rightPlot), nrow = 1, byrow = TRUE)
+            } else {
+              matrix(list(p$subplots$mainPlot), nrow = 1, byrow = TRUE)
+            }
+
+            p <- jaspGraphs::ggMatrixPlot(plotList = plotMat, removeXYlabels = "none")
           }
         }
 
