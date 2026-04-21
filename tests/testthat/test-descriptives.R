@@ -602,3 +602,4 @@ test_that("minimum and maximum return correctly show labels (not values) for ord
          0.594, "sf:4;dp:3", "number", 0.821))
 
 })
+

@@ -365,15 +365,11 @@
     jaspGraphs:::JASPScatterSubPlot(na.omit(y), group, plotRight, y.range, colorAreaUnderDensity, alphaAreaUnderDensity, flip = TRUE)
   }
 
-  plotMat <- if (!is.null(topPlot) && !is.null(rightPlot)) {
-    matrix(list(topPlot, NULL, mainPlot, rightPlot), nrow = 2, byrow = TRUE)
-  } else if (!is.null(topPlot)) {
-    matrix(list(topPlot, mainPlot), nrow = 2, byrow = TRUE)
-  } else if (!is.null(rightPlot)) {
-    matrix(list(mainPlot, rightPlot), nrow = 1, byrow = TRUE)
-  } else {
-    matrix(list(mainPlot), nrow = 1, byrow = TRUE)
-  }
-
-  jaspGraphs::ggMatrixPlot(plotList = plotMat, removeXYlabels = "none")
+  jaspGraphs::makeAlignedMatrixPlot(
+    mainPlot   = mainPlot,
+    topPlot    = topPlot,
+    rightPlot  = rightPlot,
+    size       = 5,
+    showLegend = showLegend
+  )
 }
