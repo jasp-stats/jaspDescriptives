@@ -303,6 +303,7 @@
     is.logical(showLegend),
     length(x) == length(y) && (is.null(group) || length(x) == length(group))
   )
+  plotAbove <- match.arg(plotAbove)
   plotRight <- match.arg(plotRight)
 
   tryDate <- lubridate::is.POSIXt(x)
@@ -352,16 +353,50 @@
   x.range <- scales$x$get_limits()
   y.range <- scales$y$get_limits()
 
-  rightPlot <- jaspGraphs:::JASPScatterSubPlot(na.omit(y), group, plotRight, y.range, colorAreaUnderDensity, alphaAreaUnderDensity, flip = TRUE)
+  topPlot <- if (plotAbove == "none") {
+    NULL
+  } else {
+    jaspGraphs:::JASPScatterSubPlot(na.omit(x), group, plotAbove, x.range, colorAreaUnderDensity, alphaAreaUnderDensity)
+  }
 
-  plotList <- list(mainPlot = mainPlot, rightPlot = rightPlot)
-  plotList <- plotList[lengths(plotList) > 0L]
+  rightPlot <- if (plotRight == "none") {
+    NULL
+  } else {
+    jaspGraphs:::JASPScatterSubPlot(na.omit(y), group, plotRight, y.range, colorAreaUnderDensity, alphaAreaUnderDensity, flip = TRUE)
+  }
 
-  plot <- jaspGraphs:::jaspGraphsPlot$new(
-    subplots     = plotList,
-    plotFunction = jaspGraphs:::reDrawAlignedPlot,
-    size         = 5,
-    showLegend   = showLegend
+  if (!is.null(topPlot) && !is.null(rightPlot)) {
+    plotMat <- matrix(list(topPlot, NULL, mainPlot, rightPlot), nrow = 2, byrow = TRUE)
+    widths <- c(1, .35)
+    heights <- c(.35, 1)
+  } else if (!is.null(topPlot)) {
+    plotMat <- matrix(list(topPlot, mainPlot), nrow = 2, byrow = TRUE)
+    widths <- 1
+    heights <- c(.35, 1)
+  } else if (!is.null(rightPlot)) {
+    plotMat <- matrix(list(mainPlot, rightPlot), nrow = 1, byrow = TRUE)
+    widths <- c(1, .35)
+    heights <- 1
+  } else {
+    plotMat <- matrix(list(mainPlot), nrow = 1, byrow = TRUE)
+    widths <- 1
+    heights <- 1
+  }
+
+  layout <- matrix(NA, nrow(plotMat), ncol(plotMat))
+  idx <- which(lengths(plotMat) > 0)
+  layout[idx] <- seq_along(idx)
+  layout[is.na(layout)] <- length(idx) + 1
+
+  jaspGraphs:::jaspGraphsPlot$new(
+    subplots = c(plotMat[lengths(plotMat) > 0]),
+    names = c(matrix(
+      paste0("graph-", rep(seq_len(nrow(plotMat)), ncol(plotMat)), "-", rep(seq_len(ncol(plotMat)), each = nrow(plotMat))),
+      nrow(plotMat),
+      ncol(plotMat)
+    )[lengths(plotMat) > 0]),
+    layout = layout,
+    heights = heights,
+    widths = widths
   )
-  return(plot)
 }
