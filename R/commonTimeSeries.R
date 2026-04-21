@@ -365,38 +365,15 @@
     jaspGraphs:::JASPScatterSubPlot(na.omit(y), group, plotRight, y.range, colorAreaUnderDensity, alphaAreaUnderDensity, flip = TRUE)
   }
 
-  if (!is.null(topPlot) && !is.null(rightPlot)) {
-    plotMat <- matrix(list(topPlot, NULL, mainPlot, rightPlot), nrow = 2, byrow = TRUE)
-    widths <- c(1, .35)
-    heights <- c(.35, 1)
+  plotMat <- if (!is.null(topPlot) && !is.null(rightPlot)) {
+    matrix(list(topPlot, NULL, mainPlot, rightPlot), nrow = 2, byrow = TRUE)
   } else if (!is.null(topPlot)) {
-    plotMat <- matrix(list(topPlot, mainPlot), nrow = 2, byrow = TRUE)
-    widths <- 1
-    heights <- c(.35, 1)
+    matrix(list(topPlot, mainPlot), nrow = 2, byrow = TRUE)
   } else if (!is.null(rightPlot)) {
-    plotMat <- matrix(list(mainPlot, rightPlot), nrow = 1, byrow = TRUE)
-    widths <- c(1, .35)
-    heights <- 1
+    matrix(list(mainPlot, rightPlot), nrow = 1, byrow = TRUE)
   } else {
-    plotMat <- matrix(list(mainPlot), nrow = 1, byrow = TRUE)
-    widths <- 1
-    heights <- 1
+    matrix(list(mainPlot), nrow = 1, byrow = TRUE)
   }
 
-  layout <- matrix(NA, nrow(plotMat), ncol(plotMat))
-  idx <- which(lengths(plotMat) > 0)
-  layout[idx] <- seq_along(idx)
-  layout[is.na(layout)] <- length(idx) + 1
-
-  jaspGraphs:::jaspGraphsPlot$new(
-    subplots = c(plotMat[lengths(plotMat) > 0]),
-    names = c(matrix(
-      paste0("graph-", rep(seq_len(nrow(plotMat)), ncol(plotMat)), "-", rep(seq_len(ncol(plotMat)), each = nrow(plotMat))),
-      nrow(plotMat),
-      ncol(plotMat)
-    )[lengths(plotMat) > 0]),
-    layout = layout,
-    heights = heights,
-    widths = widths
-  )
+  jaspGraphs::ggMatrixPlot(plotList = plotMat, removeXYlabels = "none")
 }

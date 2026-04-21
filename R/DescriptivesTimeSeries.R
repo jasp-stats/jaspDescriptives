@@ -102,8 +102,8 @@ DescriptivesTimeSeriesInternal <- function(jaspResults, dataset, options) {
   yLag <- c(rep(NA, options$lagPlotLag), dataset$y[1:(length(dataset$y) - options$lagPlotLag)])
 
   yName <- decodeColNames(options$dependent[1])
-  xName <- as.expression(bquote(.(yName)[t - .(options$lagPlotLag)]))
-  yName <- as.expression(bquote(.(yName)[t]))
+  xName <- paste0(yName, "<sub>t - ", options$lagPlotLag, "</sub>")
+  yName <- paste0(yName, "<sub>t</sub>")
 
   dat <- data.frame(y = dataset$y, yLag)
   dat <- na.omit(dat)
@@ -126,9 +126,13 @@ DescriptivesTimeSeriesInternal <- function(jaspResults, dataset, options) {
     ggplot2::scale_x_continuous(breaks = breaks, limits = range(breaks)) +
     ggplot2::scale_y_continuous(breaks = breaks, limits = range(breaks)) +
     jaspGraphs::geom_rangeframe() +
-    jaspGraphs::themeJaspRaw()
+    jaspGraphs::themeJaspRaw() +
+    ggplot2::theme(
+      axis.title.x = ggtext::element_markdown(),
+      axis.title.y = ggtext::element_markdown()
+    )
 
-  lagPlot$plotObject <- p
+  lagPlot$plotObject <- p$subplots$mainPlot
 
   return()
 }
