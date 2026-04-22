@@ -3,8 +3,16 @@
     "Version": "4.5.2",
     "Repositories": [
       {
+        "Name": "RSPM",
+        "URL": "https://packagemanager.posit.co/cran/2026-04-22"
+      },
+      {
+        "Name": "RPSM2",
+        "URL": "https://packagemanager.posit.co/cran/2026-03-18"
+      },
+      {
         "Name": "CRAN",
-        "URL": "https://p3m.dev/cran/latest"
+        "URL": "https://cran.rstudio.com"
       }
     ]
   },
@@ -3616,71 +3624,40 @@
       "Package": "jaspBase",
       "Version": "0.20.4",
       "Source": "GitHub",
-      "Type": "Package",
-      "Title": "JASP Base",
-      "Author": "JASP Team",
-      "Maintainer": "Bruno Boutin <B.Boutin@uva.nl>",
-      "Description": "Package contains the JASP Bayesian and Frequentist analyses. See <https://jasp-stats.org> for more details.",
-      "License": "GPL2+",
-      "Imports": [
+      "Requirements": [
         "cli",
         "codetools",
-        "compiler",
         "ggplot2",
-        "grDevices",
-        "grid",
         "gridExtra",
         "gridGraphics",
         "jaspGraphs",
         "jsonlite",
         "lifecycle",
-        "methods",
         "officer",
         "pkgbuild",
         "plyr",
         "ragg",
         "R6",
-        "Rcpp (>= 0.12.14)",
+        "Rcpp",
         "rvg",
         "svglite",
         "systemfonts",
-        "withr"
+        "withr",
+        "testthat"
       ],
-      "RoxygenNote": "7.3.3",
-      "Roxygen": "list(markdown = TRUE)",
-      "Encoding": "UTF-8",
-      "LinkingTo": [
-        "Rcpp"
-      ],
-      "RcppModules": "jaspResults",
-      "NeedsCompilation": "yes",
-      "Suggests": [
-        "testthat (>= 3.0.0)"
-      ],
-      "Config/testthat/edition": "3",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspBase",
-      "RemoteSha": "a5770b1bb36f6c5aebca3d15e5eab0dd4976602e",
-      "Remotes": "jasp-stats/jaspGraphs"
+      "RemoteSha": "93f004588f6d56b46d23210e23bff003ae7b1ff4"
     },
     "jaspGraphs": {
       "Package": "jaspGraphs",
       "Version": "0.20.0",
       "Source": "GitHub",
-      "Type": "Package",
-      "Title": "Custom Graphs for JASP",
-      "Author": "Don van den Bergh",
-      "Maintainer": "JASP-team <info@jasp-stats.nl>",
-      "Description": "Graph making functions and wrappers for JASP.",
-      "License": "GPL",
-      "Encoding": "UTF-8",
-      "LazyData": "true",
-      "RoxygenNote": "7.3.3",
-      "Imports": [
+      "Requirements": [
         "cli",
-        "ggplot2 (>= 3.0.0)",
+        "ggplot2",
         "gridExtra",
         "gtable",
         "htmlwidgets",
@@ -3689,33 +3666,21 @@
         "plotly",
         "R6",
         "rlang",
-        "scales"
-      ],
-      "Suggests": [
+        "scales",
         "testthat",
         "vdiffr"
       ],
-      "Roxygen": "list(markdown = TRUE)",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspGraphs",
-      "RemoteSha": "db3c899263a1d8d236ed0e7e3a7b6814b48c14ae"
+      "RemoteSha": "1eb48e7e0fe9559bbd15da25f30703c7cca246bb"
     },
     "jaspTTests": {
       "Package": "jaspTTests",
-      "Version": "0.95.5",
+      "Version": "0.96.5",
       "Source": "GitHub",
-      "Type": "Package",
-      "Title": "T-Tests Module for JASP",
-      "Date": "2022-10-05",
-      "Author": "JASP Team",
-      "Website": "jasp-stats.org",
-      "Maintainer": "JASP Team <info@jasp-stats.org>",
-      "Description": "Evaluate the difference between two means",
-      "License": "GPL (>= 2)",
-      "Encoding": "UTF-8",
-      "Imports": [
+      "Requirements": [
         "BayesFactor",
         "car",
         "ggplot2",
@@ -3729,50 +3694,7 @@
       "RemoteHost": "api.github.com",
       "RemoteUsername": "jasp-stats",
       "RemoteRepo": "jaspTTests",
-      "RemoteSha": "a5422e6feaa15374305456fa058d8091a415f46e",
-      "Remotes": "jasp-stats/jaspBase, jasp-stats/jaspGraphs"
-    },
-    "jaspTools": {
-      "Package": "jaspTools",
-      "Version": "0.20.1",
-      "Source": "GitHub",
-      "Type": "Package",
-      "Title": "Helps Preview and Debug JASP Analyses",
-      "Authors@R": "c( person(\"Tim\", \"de Jong\", role = \"aut\"), person(\"Don\", \"van den Bergh\", role = c(\"ctb\", \"cre\"), email = \"d.vandenbergh@uva.nl\"), person(\"František\", \"Bartoš\", role = \"ctb\"))",
-      "Maintainer": "Don van den Bergh <d.vandenbergh@uva.nl>",
-      "Description": "This package assists JASP developers when writing R code. It removes the necessity of building JASP every time a change is made. Rather, analyses can be called directly in R and be debugged interactively.",
-      "License": "GNU General Public License",
-      "Encoding": "UTF-8",
-      "LazyData": "true",
-      "Imports": [
-        "archive (>= 1.1.6)",
-        "cli",
-        "data.table",
-        "DBI",
-        "httr",
-        "jsonlite",
-        "lifecycle",
-        "pkgload",
-        "remotes",
-        "rjson",
-        "RSQLite",
-        "stringi",
-        "stringr",
-        "testthat (>= 3.2.2)",
-        "vdiffr (>= 1.0.7)"
-      ],
-      "Suggests": [
-        "ggplot2"
-      ],
-      "RoxygenNote": "7.3.3",
-      "Roxygen": "list(markdown = TRUE)",
-      "Author": "Tim de Jong [aut], Don van den Bergh [ctb, cre], František Bartoš [ctb]",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "jasp-stats",
-      "RemoteRepo": "jaspTools",
-      "RemoteRef": "master",
-      "RemoteSha": "11fb9164426d80543f6a9b2c4a2e8ace4f63d96b"
+      "RemoteSha": "36ba1f775302ff86dc4be7d3b2aef294d0a41f94"
     },
     "jpeg": {
       "Package": "jpeg",
