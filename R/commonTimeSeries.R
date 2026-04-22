@@ -303,6 +303,7 @@
     is.logical(showLegend),
     length(x) == length(y) && (is.null(group) || length(x) == length(group))
   )
+  plotAbove <- match.arg(plotAbove)
   plotRight <- match.arg(plotRight)
 
   tryDate <- lubridate::is.POSIXt(x)
@@ -352,16 +353,23 @@
   x.range <- scales$x$get_limits()
   y.range <- scales$y$get_limits()
 
-  rightPlot <- jaspGraphs:::JASPScatterSubPlot(na.omit(y), group, plotRight, y.range, colorAreaUnderDensity, alphaAreaUnderDensity, flip = TRUE)
+  topPlot <- if (plotAbove == "none") {
+    NULL
+  } else {
+    jaspGraphs:::JASPScatterSubPlot(na.omit(x), group, plotAbove, x.range, colorAreaUnderDensity, alphaAreaUnderDensity)
+  }
 
-  plotList <- list(mainPlot = mainPlot, rightPlot = rightPlot)
-  plotList <- plotList[lengths(plotList) > 0L]
+  rightPlot <- if (plotRight == "none") {
+    NULL
+  } else {
+    jaspGraphs:::JASPScatterSubPlot(na.omit(y), group, plotRight, y.range, colorAreaUnderDensity, alphaAreaUnderDensity, flip = TRUE)
+  }
 
-  plot <- jaspGraphs:::jaspGraphsPlot$new(
-    subplots     = plotList,
-    plotFunction = jaspGraphs:::reDrawAlignedPlot,
-    size         = 5,
-    showLegend   = showLegend
+  jaspGraphs::makeAlignedMatrixPlot(
+    mainPlot   = mainPlot,
+    topPlot    = topPlot,
+    rightPlot  = rightPlot,
+    size       = 5,
+    showLegend = showLegend
   )
-  return(plot)
 }
