@@ -1,15 +1,9 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-04-25 04:08+0000\n"
-"Last-Translator: Zahid Rizky Fakhri <zahidrizkyfakhri@gmail.com>\n"
-"Language-Team: Indonesian <https://hosted.weblate.org/projects/jasp/"
-"jaspdescriptives-qml/id/>\n"
-"Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.17.1-dev\n"
 "X-Language: id\n"
 "X-Qt-Contexts: true\n"
 
@@ -509,8 +503,8 @@ msgid ""
 msgstr ""
 "Opsional. Dapat baik variabel ordinal mengindikasikan urutan observasi, atau "
 "variabel teks mengindikasikan tanggal/stempel waktu observasi. Nilai tanggal "
-"dan waktu terkombinasi seharusnya dalam format standar 'YYYY-MM-DD "
-"HH:MM:SS', di mana detik (':SS') juga dapat dihilangkan. Nilai hanya tanggal "
+"dan waktu terkombinasi seharusnya dalam format standar 'YYYY-MM-DD HH:MM:"
+"SS', di mana detik (':SS') juga dapat dihilangkan. Nilai hanya tanggal "
 "seharusnya dalam format 'YYYY-MM-DD'. Jika variabel waktu tidak disertakan, "
 "urutan baris data digunakan."
 
@@ -1219,7 +1213,8 @@ msgstr "Bagaimana menangani dengan nilai hilang?"
 
 msgctxt "Descriptives|"
 msgid "use all observations, resulting in NA when there are missing values."
-msgstr "gunakan semua observasi, menghasilkan dalam NA ketida ada nilai hilang."
+msgstr ""
+"gunakan semua observasi, menghasilkan dalam NA ketida ada nilai hilang."
 
 msgctxt "Descriptives|"
 msgid ""
@@ -1447,13 +1442,15 @@ msgid ""
 "present from the raincloud plot for dataset A."
 msgstr ""
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "References"
-msgstr ""
+msgstr "Referensi"
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Input"
-msgstr ""
+msgstr "Masukan"
 
 msgctxt "raincloudPlots|"
 msgid "Dependent Variables"
@@ -1731,9 +1728,10 @@ msgctxt "raincloudPlots|"
 msgid "Box"
 msgstr ""
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Width"
-msgstr ""
+msgstr "Lebar"
 
 msgctxt "raincloudPlots|"
 msgid "Padding"
@@ -1887,9 +1885,10 @@ msgid ""
 "the box."
 msgstr ""
 
+#, fuzzy
 msgctxt "raincloudPlots|"
 msgid "Confidence interval"
-msgstr ""
+msgstr "Interval kepercayaan"
 
 msgctxt "raincloudPlots|"
 msgid "Interval line width"
@@ -2157,9 +2156,10 @@ msgctxt "Description|"
 msgid "Plot Builder (beta)"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "References"
-msgstr ""
+msgstr "Referensi"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Plot 1"
@@ -2253,13 +2253,15 @@ msgctxt "jaspPlotBuilder|"
 msgid "Jitter width"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Transparency"
-msgstr ""
+msgstr "Transparansi"
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Dodge"
-msgstr ""
+msgstr "Hindari"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Black outline"
@@ -2347,9 +2349,10 @@ msgctxt "jaspPlotBuilder|"
 msgid "Count"
 msgstr ""
 
+#, fuzzy
 msgctxt "jaspPlotBuilder|"
 msgid "Width"
-msgstr ""
+msgstr "Lebar"
 
 msgctxt "jaspPlotBuilder|"
 msgid "Draw quantiles"
@@ -4562,9 +4565,10 @@ msgid ""
 "many long levels."
 msgstr ""
 
+#, fuzzy
 msgctxt "Descriptives|"
 msgid "Confidence interval"
-msgstr ""
+msgstr "Interval kepercayaan"
 
 msgctxt "Descriptives|"
 msgid ""
