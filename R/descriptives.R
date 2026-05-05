@@ -534,7 +534,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
         }
 
         if (subReturn$shouldAddModeMoreThanOnceFootnote)
-          stats$addFootnote(message  = gettext("More than one mode exists. For nominal and ordinal data, the first mode is reported. For continuous data, the mode with the highest density estimate is reported but multiple modes may exist. We recommend visualizing the data to check for multimodality."),
+          stats$addFootnote(symbol = "\U+1D43", message  = gettext("If there is more than one mode: For nominal and ordinal data, the first mode is reported; for continuous data, the mode with the highest density estimate is reported. We recommend visualizing the data to check for multimodality."),
                             colNames = "Mode",
                             rowNames = variable)
 
