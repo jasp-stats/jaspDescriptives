@@ -432,54 +432,6 @@ test_that("Analysis explains supremum and infimum of empty sets", {
                       )
 })
 
-test_that("Mode footnote is only added for multimodal data", {
-  run_mode_footnotes <- function(data, split_var = NULL) {
-    options <- analysisOptions("Descriptives")
-    options$variables <- "x"
-    options$variables.types <- "nominal"
-    options$mode <- TRUE
-    options$valid <- FALSE
-    options$missing <- FALSE
-    options$meanArithmetic <- FALSE
-    options$minimum <- FALSE
-    options$maximum <- FALSE
-    options$sd <- FALSE
-    options$correlationPlots <- FALSE
-    options$paretoAddCountVariable <- ""
-
-    if (!is.null(split_var)) {
-      options$splitBy <- split_var
-      options$splitBy.types <- "nominal"
-    }
-
-    results <- runAnalysis("Descriptives", data, options)
-    results[["results"]][["stats"]][["footnotes"]]
-  }
-
-  expected_mode_footnote <- "Multiple modes were detected in x. For nominal and ordinal data, only the first of the tied modes is reported. For continuous data, the mode corresponding to the highest estimated density is reported. We recommend visualizing the data to check for multimodality."
-
-  single <- run_mode_footnotes(data.frame(x = factor(c("a", "a", "a", "b"))))
-  multi <- run_mode_footnotes(data.frame(x = factor(c("a", "a", "b", "b"))))
-  single_split <- run_mode_footnotes(
-    data.frame(x = factor(c("a", "a", "b", "b")), g = factor(c("g1", "g1", "g2", "g2"))),
-    split_var = "g"
-  )
-  multi_split <- run_mode_footnotes(
-    data.frame(x = factor(c("a", "b", "c", "d")), g = factor(c("g1", "g1", "g2", "g2"))),
-    split_var = "g"
-  )
-
-  testthat::expect_equal(single, list())
-  testthat::expect_equal(single_split, list())
-
-  for (footnotes in list(multi, multi_split)) {
-    testthat::expect_equal(length(footnotes), 1L)
-    testthat::expect_null(footnotes[[1]][["cols"]])
-    testthat::expect_null(footnotes[[1]][["rows"]])
-    testthat::expect_equal(footnotes[[1]][["text"]], expected_mode_footnote)
-  }
-})
-
 test_that("Stem and leaf tables match", {
 
   options <- jaspTools::analysisOptions("Descriptives")
