@@ -495,7 +495,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   # lets just add footnotes once instead of a gazillion times..
   shouldAddNominalTextFootnote <- FALSE
   shouldAddModeMoreThanOnceFootnote <- FALSE
-  shouldAddOrdinalQuantileTypeFootnote <- FALSE
+  modeMoreThanOnceVariables <- character()
 
   # Find the number of levels to loop over
   if (wantsSplit) {
@@ -517,6 +517,9 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
         stats$addRows(subReturn$resultsCol, rowNames = paste0(variable, l))
 
+        if (subReturn$shouldAddModeMoreThanOnceFootnote)
+          modeMoreThanOnceVariables <- c(modeMoreThanOnceVariables, variable)
+
         if (subReturn$shouldAddIdenticalFootnote) {
           stats$addFootnote(
             message = gettext("All values are identical"),
@@ -532,11 +535,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
             rowNames = paste0(variable, l)
           )
         }
-
-        if (subReturn$shouldAddModeMoreThanOnceFootnote)
-          stats$addFootnote(message  = gettext("More than one mode exists. For nominal and ordinal data, the first mode is reported. For continuous data, the mode with the highest density estimate is reported but multiple modes may exist. We recommend visualizing the data to check for multimodality."),
-                            colNames = "Mode",
-                            rowNames = variable)
 
         if(subReturn$shouldAddGeomHarmMeansPositiveFootnote)
           stats$addFootnote(message = gettext("Geometric and harmonic means are defined only for strictly positive variables, but the data contain some non-positive values."),
@@ -562,6 +560,9 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
       stats$addRows(subReturn$resultsCol, rowNames = variable)
 
+      if (subReturn$shouldAddModeMoreThanOnceFootnote)
+        modeMoreThanOnceVariables <- c(modeMoreThanOnceVariables, variable)
+
       if (subReturn$shouldAddIdenticalFootnote) {
         stats$addFootnote(
           message = gettext("All values are identical"),
@@ -573,11 +574,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       if (subReturn$shouldAddExplainEmptySet)
         stats$addFootnote(message  = gettextf("Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty set is %2$s.", "\u221E", "-\u221E"),
                           colNames = c("Minimum", "Maximum"),
-                          rowNames = variable)
-
-      if(subReturn$shouldAddModeMoreThanOnceFootnote)
-        stats$addFootnote(message  = gettext("More than one mode exists. For nominal and ordinal data, the first mode is reported. For continuous data, the mode with the highest density estimate is reported but multiple modes may exist. We recommend visualizing the data to check for multimodality."),
-                          colNames = "Mode",
                           rowNames = variable)
 
       if(subReturn$shouldAddGeomHarmMeansPositiveFootnote)
@@ -592,6 +588,13 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
     }
   }
+
+  if (length(modeMoreThanOnceVariables) > 0L)
+    stats$addFootnote(
+      message = gettextf("Multiple modes were detected in %s. For nominal and ordinal data, only the first of the tied modes is reported. For continuous data, the mode corresponding to the highest estimated density is reported. We recommend visualizing the data to check for multimodality.",
+                         paste(unique(modeMoreThanOnceVariables), collapse = ", ")),
+      symbol = " "
+    )
 
   return(stats)
 }
