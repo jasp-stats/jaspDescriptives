@@ -15,7 +15,8 @@
 ---
 
 # jaspDescriptives (development version)
-
+## Added
+* Update the mode footnote to be more informative and specific.
 
 
 ---
