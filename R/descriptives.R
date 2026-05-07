@@ -495,7 +495,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   # lets just add footnotes once instead of a gazillion times..
   shouldAddNominalTextFootnote <- FALSE
   shouldAddModeMoreThanOnceFootnote <- FALSE
+  shouldAddOrdinalQuantileTypeFootnote <- FALSE
   modeMoreThanOnceVariables <- character()
+  modeMoreThanOnceIncludesScale <- FALSE
+  modeMoreThanOnceIncludesNominalOrOrdinal <- FALSE
 
   # Find the number of levels to loop over
   if (wantsSplit) {
@@ -517,8 +520,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
         stats$addRows(subReturn$resultsCol, rowNames = paste0(variable, l))
 
-        if (subReturn$shouldAddModeMoreThanOnceFootnote)
+        if (subReturn$shouldAddModeMoreThanOnceFootnote) {
           modeMoreThanOnceVariables <- c(modeMoreThanOnceVariables, variable)
+          modeMoreThanOnceIncludesScale <- modeMoreThanOnceIncludesScale || columnType == "scale"
+          modeMoreThanOnceIncludesNominalOrOrdinal <- modeMoreThanOnceIncludesNominalOrOrdinal || columnType %in% c("nominal", "ordinal")
+        }
 
         if (subReturn$shouldAddIdenticalFootnote) {
           stats$addFootnote(
@@ -560,8 +566,11 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
       stats$addRows(subReturn$resultsCol, rowNames = variable)
 
-      if (subReturn$shouldAddModeMoreThanOnceFootnote)
+      if (subReturn$shouldAddModeMoreThanOnceFootnote) {
         modeMoreThanOnceVariables <- c(modeMoreThanOnceVariables, variable)
+        modeMoreThanOnceIncludesScale <- modeMoreThanOnceIncludesScale || columnType == "scale"
+        modeMoreThanOnceIncludesNominalOrOrdinal <- modeMoreThanOnceIncludesNominalOrOrdinal || columnType %in% c("nominal", "ordinal")
+      }
 
       if (subReturn$shouldAddIdenticalFootnote) {
         stats$addFootnote(
@@ -589,12 +598,22 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     }
   }
 
-  if (length(modeMoreThanOnceVariables) > 0L)
+  if (length(modeMoreThanOnceVariables) > 0L) {
+    modeFootnoteMessage <- gettextf("Multiple modes were detected in %s.", paste(unique(modeMoreThanOnceVariables), collapse = ", "))
+
+    if (modeMoreThanOnceIncludesNominalOrOrdinal)
+      modeFootnoteMessage <- paste(modeFootnoteMessage, gettext("For nominal and ordinal data, only the first of the tied modes is reported."))
+
+    if (modeMoreThanOnceIncludesScale)
+      modeFootnoteMessage <- paste(modeFootnoteMessage, gettext("For scale data, the mode corresponding to the highest estimated density is reported."))
+
+    modeFootnoteMessage <- paste(modeFootnoteMessage, gettext("We recommend visualizing the data to check for multimodality."))
+
     stats$addFootnote(
-      message = gettextf("Multiple modes were detected in %s. For nominal and ordinal data, only the first of the tied modes is reported. For continuous data, the mode corresponding to the highest estimated density is reported. We recommend visualizing the data to check for multimodality.",
-                         paste(unique(modeMoreThanOnceVariables), collapse = ", ")),
+      message = modeFootnoteMessage,
       symbol = " "
     )
+  }
 
   return(stats)
 }
