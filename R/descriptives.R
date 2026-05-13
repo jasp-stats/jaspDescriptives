@@ -496,6 +496,9 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   shouldAddNominalTextFootnote <- FALSE
   shouldAddModeMoreThanOnceFootnote <- FALSE
   shouldAddOrdinalQuantileTypeFootnote <- FALSE
+  modeMoreThanOnceVariables <- character()
+  modeMoreThanOnceIncludesScale <- FALSE
+  modeMoreThanOnceIncludesNominalOrOrdinal <- FALSE
 
   # Find the number of levels to loop over
   if (wantsSplit) {
@@ -517,6 +520,12 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
         stats$addRows(subReturn$resultsCol, rowNames = paste0(variable, l))
 
+        if (subReturn$shouldAddModeMoreThanOnceFootnote) {
+          modeMoreThanOnceVariables <- c(modeMoreThanOnceVariables, variable)
+          modeMoreThanOnceIncludesScale <- modeMoreThanOnceIncludesScale || columnType == "scale"
+          modeMoreThanOnceIncludesNominalOrOrdinal <- modeMoreThanOnceIncludesNominalOrOrdinal || columnType %in% c("nominal", "ordinal")
+        }
+
         if (subReturn$shouldAddIdenticalFootnote) {
           stats$addFootnote(
             message = gettext("All values are identical"),
@@ -532,11 +541,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
             rowNames = paste0(variable, l)
           )
         }
-
-        if (subReturn$shouldAddModeMoreThanOnceFootnote)
-          stats$addFootnote(message  = gettext("More than one mode exists. For nominal and ordinal data, the first mode is reported. For continuous data, the mode with the highest density estimate is reported but multiple modes may exist. We recommend visualizing the data to check for multimodality."),
-                            colNames = "Mode",
-                            rowNames = variable)
 
         if(subReturn$shouldAddGeomHarmMeansPositiveFootnote)
           stats$addFootnote(message = gettext("Geometric and harmonic means are defined only for strictly positive variables, but the data contain some non-positive values."),
@@ -562,6 +566,12 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
       stats$addRows(subReturn$resultsCol, rowNames = variable)
 
+      if (subReturn$shouldAddModeMoreThanOnceFootnote) {
+        modeMoreThanOnceVariables <- c(modeMoreThanOnceVariables, variable)
+        modeMoreThanOnceIncludesScale <- modeMoreThanOnceIncludesScale || columnType == "scale"
+        modeMoreThanOnceIncludesNominalOrOrdinal <- modeMoreThanOnceIncludesNominalOrOrdinal || columnType %in% c("nominal", "ordinal")
+      }
+
       if (subReturn$shouldAddIdenticalFootnote) {
         stats$addFootnote(
           message = gettext("All values are identical"),
@@ -575,11 +585,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
                           colNames = c("Minimum", "Maximum"),
                           rowNames = variable)
 
-      if(subReturn$shouldAddModeMoreThanOnceFootnote)
-        stats$addFootnote(message  = gettext("More than one mode exists. For nominal and ordinal data, the first mode is reported. For continuous data, the mode with the highest density estimate is reported but multiple modes may exist. We recommend visualizing the data to check for multimodality."),
-                          colNames = "Mode",
-                          rowNames = variable)
-
       if(subReturn$shouldAddGeomHarmMeansPositiveFootnote)
         stats$addFootnote(message = gettext("Geometric and harmonic means are defined only for strictly positive variables, but the data contain some non-positive values."),
                           colNames = c("MeanGeometric", "MeanHarmonic"),
@@ -591,6 +596,23 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       }
 
     }
+  }
+
+  if (length(modeMoreThanOnceVariables) > 0L) {
+    modeFootnoteMessage <- gettextf("Multiple modes were detected in %s.", paste(unique(modeMoreThanOnceVariables), collapse = ", "))
+
+    if (modeMoreThanOnceIncludesNominalOrOrdinal)
+      modeFootnoteMessage <- paste(modeFootnoteMessage, gettext("For nominal and ordinal data, only the first of the tied modes is reported."))
+
+    if (modeMoreThanOnceIncludesScale)
+      modeFootnoteMessage <- paste(modeFootnoteMessage, gettext("For scale data, the mode corresponding to the highest estimated density is reported."))
+
+    modeFootnoteMessage <- paste(modeFootnoteMessage, gettext("We recommend visualizing the data to check for multimodality."))
+
+    stats$addFootnote(
+      message = modeFootnoteMessage,
+      symbol = " "
+    )
   }
 
   return(stats)
