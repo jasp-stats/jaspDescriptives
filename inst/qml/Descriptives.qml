@@ -413,7 +413,6 @@ Form
 
 				DropDown
 				{
-					visible: paretoAddCountVariable.checked
 					name: "paretoAddCountVariable"
 					label: qsTr("Add count variable")
 					showVariableTypeIcon: true
