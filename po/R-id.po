@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.95.5\n"
 "POT-Creation-Date: 2026-04-11 04:04\n"
-"PO-Revision-Date: 2026-04-12 22:14+0000\n"
-"Last-Translator: Zahid Rizky Fakhri <zahidrizkyfakhri@gmail.com>\n"
+"PO-Revision-Date: 2026-05-17 06:11+0000\n"
+"Last-Translator: Arif Budiman <arifpedia@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/id/>\n"
 "Language: id\n"
@@ -11,24 +11,26 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 2026.6.dev0\n"
 
 msgid "Time Series Plot"
-msgstr "Diagram Seri Waktu"
+msgstr "Plot Deret Waktu"
 
 msgid "Lag Plot"
-msgstr ""
+msgstr "Plot Lag"
 
 msgid ""
 "The specified lag, %1$s, is too large given the %2$s observations in the "
 "data. Please choose a smaller lag."
 msgstr ""
+"Lag yang ditentukan, %1$s, terlalu besar mengingat terdapat %2$s pengamatan "
+"dalam data. Silakan pilih lag yang lebih kecil."
 
 msgid "Autocorrelation Function"
-msgstr "Fungsi Korelasi Otomatis"
+msgstr "Fungsi Autokorelasi"
 
 msgid "Partial Autocorrelation Function"
-msgstr "Fungsi Korelasi Otomatis Parsial"
+msgstr "Fungsi Autokorelasi Parsial"
 
 msgid "Descriptive Statistics"
 msgstr "Statistik Deskriptif"
@@ -40,10 +42,10 @@ msgid "Missing"
 msgstr "Hilang"
 
 msgid "Mean"
-msgstr "Rerata"
+msgstr "Rata-rata"
 
 msgid "Std. Deviation"
-msgstr ""
+msgstr "Std. Deviasi"
 
 msgid "Variance"
 msgstr "Varians"
@@ -58,210 +60,221 @@ msgid "Maximum"
 msgstr "Maksimum"
 
 msgid "Start"
-msgstr ""
+msgstr "Mulai"
 
 msgid "End"
-msgstr ""
+msgstr "Selesai"
 
 msgid "Lag 1 Autocorrelation"
-msgstr ""
+msgstr "Autokorelasi Lag 1"
 
 msgid "The time series data should be equally-spaced."
-msgstr ""
+msgstr "Data deret waktu harus berjarak sama."
 
 msgid "The time variable should have unique values only."
-msgstr ""
+msgstr "Variabel waktu harus memiliki nilai yang unik saja."
 
 msgid ""
 "The 'Time' variable has a date-like format, please filter by date instead."
 msgstr ""
+"Variabel 'Waktu' memiliki format seperti tanggal, silakan filter berdasarkan "
+"tanggal."
 
 msgid ""
 "The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:"
 "ss). Try to filter by time index instead."
 msgstr ""
+"Variabel 'Waktu' tidak dalam format seperti tanggal (misalnya, yyyy-mm-dd "
+"hh:mm:ss). Coba filter berdasarkan indeks waktu."
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
 msgstr ""
+"'Mulai' harus dalam format seperti tanggal (misalnya, yyyy-mm-dd hh:mm:ss)."
 
 msgid "The 'Start' value of the filter should be before last observation."
-msgstr ""
+msgstr "Nilai 'Mulai' pada filter harus sebelum pengamatan terakhir."
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
 msgstr ""
+"'Selesai' harus dalam format seperti tanggal (misalnya, yyyy-mm-dd hh:mm:ss)."
 
 msgid ""
 "The 'End' value of the filter should be larger/later than the 'Start' value."
 msgstr ""
+"Nilai 'Selesai' pada filter harus lebih besar/lebih akhir dari nilai 'Mulai'."
 
 msgid "Lag"
-msgstr "Penundaan"
+msgstr "Lag"
 
 msgid "Association %s"
-msgstr ""
+msgstr "Asosiasi %s"
 
 msgid "Frequency Tables"
-msgstr ""
+msgstr "Tabel Frekuensi"
 
 msgid "Correlation plots"
-msgstr ""
+msgstr "Plot korelasi"
 
 msgid "Correlation plot"
-msgstr ""
+msgstr "Plot korelasi"
 
 msgid "Distribution Plots"
-msgstr ""
+msgstr "Plot Distribusi"
 
 msgid "Boxplots"
-msgstr ""
+msgstr "Boxplot"
 
 msgid "Q-Q Plots"
-msgstr ""
+msgstr "Plot Q-Q"
 
 msgid "Q-Q Plot"
-msgstr "Diagram Q-Q"
+msgstr "Plot Q-Q"
 
 msgid "Plotting is not possible: Variable only contains NA!"
-msgstr ""
+msgstr "Pembuatan plot tidak memungkinkan: Variabel hanya memuat NA!"
 
 msgid "Pie charts"
-msgstr ""
+msgstr "Diagram lingkaran"
 
 msgid "Stem and Leaf"
-msgstr ""
+msgstr "Batang dan Daun"
 
 msgid "Scatter Plots"
-msgstr ""
+msgstr "Plot Sebar"
 
 msgid "Interval plots"
-msgstr ""
+msgstr "Plot interval"
 
 msgid "Dot Plots"
-msgstr ""
+msgstr "Plot Titik"
 
 msgid "Heatmaps"
-msgstr ""
+msgstr "Peta panas"
 
 msgid "Pareto Plots"
-msgstr ""
+msgstr "Plot Pareto"
 
 msgid "Frequency Plots"
-msgstr ""
+msgstr "Plot Frekuensi"
 
 msgid "Likert Plots"
-msgstr ""
+msgstr "Plot Likert"
 
 msgid ""
 "Excluded %1$i rows from the analysis that correspond to the missing values "
 "of the split-by variable %2$s"
 msgstr ""
+"Sebanyak %1$i baris dikecualikan dari analisis karena sesuai dengan nilai "
+"yang hilang pada variabel pemisah %2$s"
 
 msgid "%s%% Confidence Interval Mean"
-msgstr ""
+msgstr "Rata-rata Interval Kepercayaan %s%%"
 
 msgid "%s%% Confidence Interval Std. Dev."
-msgstr ""
+msgstr "Std. Dev. Interval Kepercayaan %s%%"
 
 msgid "%s%% Confidence Interval Variance"
-msgstr ""
+msgstr "Varians Interval Kepercayaan %s%%"
 
 msgid "Upper"
-msgstr "Atas"
+msgstr "Batas Atas"
 
 msgid "Lower"
-msgstr "Bawah"
+msgstr "Batas Bawah"
 
 msgid "%s%% CI A. Mean Upper"
-msgstr ""
+msgstr "%s%% CI Rata-rata A. Batas Atas"
 
 msgid "%s%% CI A. Mean Lower"
-msgstr ""
+msgstr "%s%% CI Rata-rata A. Batas Bawah"
 
 msgid "%s%% CI Std. Dev. Upper"
-msgstr ""
+msgstr "%s%% CI Std. Dev. Batas Atas"
 
 msgid "%s%% CI Std. Dev. Lower"
-msgstr ""
+msgstr "%s%% CI Std. Dev. Batas Bawah"
 
 msgid "%s%% CI Variance Upper"
-msgstr ""
+msgstr "%s%% CI Varians Batas Atas"
 
 msgid "%s%% CI Variance Lower"
-msgstr ""
+msgstr "%s%% CI Varians Batas Bawah"
 
 msgid "Mode"
-msgstr "Mode"
+msgstr "Modus"
 
 msgid "Median"
 msgstr "Median"
 
 msgid "Mean (arithmetic)"
-msgstr ""
+msgstr "Rata-rata (aritmetika)"
 
 msgid "Std. Error of A. Mean"
-msgstr ""
+msgstr "Std. Error Rata-rata A."
 
 msgid "Mean (geometric)"
-msgstr ""
+msgstr "Rata-rata (geometrik)"
 
 msgid "Mean (harmonic)"
-msgstr ""
+msgstr "Rata-rata (harmonik)"
 
 msgid "Coefficient of variation"
-msgstr "Koefisien dari variasi"
+msgstr "Koefisien variasi"
 
 msgid "MAD"
 msgstr "MAD"
 
 msgid "MAD robust"
-msgstr ""
+msgstr "MAD robust"
 
 msgid "IQR"
-msgstr ""
+msgstr "IQR"
 
 msgid "Skewness"
-msgstr ""
+msgstr "Kecondongan"
 
 msgid "Std. Error of Skewness"
-msgstr ""
+msgstr "Std. Error Kecondongan"
 
 msgid "Kurtosis"
-msgstr ""
+msgstr "Kurtosis"
 
 msgid "Std. Error of Kurtosis"
-msgstr ""
+msgstr "Std. Error Kurtosis"
 
 msgid "Shapiro-Wilk"
-msgstr ""
+msgstr "Shapiro-Wilk"
 
 msgid "P-value of Shapiro-Wilk"
-msgstr ""
+msgstr "Nilai P Shapiro-Wilk"
 
 msgid "25th percentile"
-msgstr ""
+msgstr "Persentil ke-25"
 
 msgid "50th percentile"
-msgstr ""
+msgstr "Persentil ke-50"
 
 msgid "75th percentile"
-msgstr ""
+msgstr "Persentil ke-75"
 
 msgid "%gth percentile"
-msgstr ""
+msgstr "Persentil ke-%g"
 
 msgid "Error in Percentiles, all values should >=0 and <=100"
-msgstr ""
+msgstr "Kesalahan pada Persentil, semua nilai harus >=0 dan <=100"
 
 msgid "Sum"
-msgstr ""
+msgstr "Jumlah"
 
 msgid "All values are identical"
-msgstr ""
+msgstr "Semua nilai identik"
 
 msgid ""
 "Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty "
 "set is %2$s."
 msgstr ""
+"Infimum (minimum) dari himpunan kosong adalah %1$s, supremum (maksimum) dari "
+"himpunan kosong adalah %2$s."
 
 msgid ""
 "More than one mode exists. For nominal and ordinal data, the first mode is "
@@ -269,28 +282,37 @@ msgid ""
 "reported but multiple modes may exist. We recommend visualizing the data to "
 "check for multimodality."
 msgstr ""
+"Terdapat lebih dari satu modus. Untuk data nominal dan ordinal, modus "
+"pertama yang dilaporkan. Untuk data kontinu, modus dengan estimasi densitas "
+"tertinggi yang dilaporkan, namun beberapa modus mungkin ada. Kami "
+"menyarankan untuk memvisualisasikan data guna memeriksa multimodalitas."
 
 msgid ""
 "Geometric and harmonic means are defined only for strictly positive "
 "variables, but the data contain some non-positive values."
 msgstr ""
+"Rata-rata geometrik dan harmonik hanya didefinisikan untuk variabel yang "
+"bernilai positif secara ketat, namun data memuat beberapa nilai tidak "
+"positif."
 
 msgid ""
 "For ordinal variables, quantile type 3 was used because the selected type is "
 "not supported."
 msgstr ""
+"Untuk variabel ordinal, tipe kuantil 3 digunakan karena tipe yang dipilih "
+"tidak didukung."
 
 msgid "Total"
 msgstr "Total"
 
 msgid "All variables have more than %1$s distinct values"
-msgstr ""
+msgstr "Semua variabel memiliki lebih dari %1$s nilai berbeda"
 
 msgid "Frequencies"
-msgstr ""
+msgstr "Frekuensi"
 
 msgid "Frequencies for %s"
-msgstr ""
+msgstr "Frekuensi untuk %s"
 
 msgid "Frequency"
 msgstr "Frekuensi"
@@ -299,193 +321,217 @@ msgid "Percent"
 msgstr "Persen"
 
 msgid "Valid Percent"
-msgstr ""
+msgstr "Persen Valid"
 
 msgid "Cumulative Percent"
-msgstr ""
+msgstr "Persen Kumulatif"
 
 msgid "Plotting not possible: %s"
-msgstr ""
+msgstr "Pembuatan plot tidak memungkinkan: %s"
 
 msgid "Plotting is not possible: No plot type selected!"
-msgstr ""
+msgstr "Pembuatan plot tidak memungkinkan: Tidak ada tipe plot yang dipilih!"
 
 msgid "Counts"
-msgstr ""
+msgstr "Cacah"
 
 msgid "Density"
-msgstr "Kepadatan"
+msgstr "Densitas"
 
 msgid "No non-missing values!"
-msgstr ""
+msgstr "Tidak ada nilai yang tidak hilang!"
 
 msgid ""
 "Association cannot be computed due to missing values. Try a different 'Use' "
 "setting."
 msgstr ""
+"Asosiasi tidak dapat dihitung karena nilai yang hilang. Coba pengaturan "
+"'Gunakan' yang berbeda."
 
 msgid ""
 "Some associations cannot be computed due to missing values. Try a different "
 "'Use' setting."
 msgstr ""
+"Beberapa asosiasi tidak dapat dihitung karena nilai yang hilang. Coba "
+"pengaturan 'Gunakan' yang berbeda."
 
 msgid ""
 "Plotting not possible: Variable '%s' has fewer than 2 valid (non-missing) "
 "observations."
 msgstr ""
+"Pembuatan plot tidak memungkinkan: Variabel '%s' memiliki kurang dari 2 "
+"pengamatan valid (tidak hilang)."
 
 msgid "Stem"
-msgstr ""
+msgstr "Batang"
 
 msgid "Leaf"
-msgstr ""
+msgstr "Daun"
 
 msgid ""
 "A stem and leaf table could not be made because there are fewer than 2 non-"
 "missing observations"
 msgstr ""
+"Tabel batang dan daun tidak dapat dibuat karena terdapat kurang dari 2 "
+"pengamatan yang tidak hilang"
 
 msgid "The decimal point is at the |"
-msgstr ""
+msgstr "Titik desimal berada pada |"
 
 msgid ""
 "There must be a unique value per combination of levels of horizontal and "
 "vertical axis!"
 msgstr ""
+"Harus terdapat nilai unik untuk setiap kombinasi tingkat sumbu horizontal "
+"dan vertikal!"
 
 msgid "All categorical variables must have the same number of levels!"
-msgstr ""
+msgstr "Semua variabel kategorik harus memiliki jumlah tingkat yang sama!"
 
 msgid "Items must have 2 or more levels!"
-msgstr ""
+msgstr "Item harus memiliki 2 tingkat atau lebih!"
 
 msgid ""
 "The variable used for counts must be different from the variable used for "
 "categories."
 msgstr ""
+"Variabel yang digunakan untuk cacah harus berbeda dari variabel yang "
+"digunakan untuk kategori."
 
 msgid "Percentage (%%)"
-msgstr ""
+msgstr "Persentase (%%)"
 
 msgid "Levels within variable require at least two or more data points!"
-msgstr ""
+msgstr "Tingkat dalam variabel memerlukan setidaknya dua titik data atau lebih!"
 
 msgid ""
 "Please assign a variable to every RM factor (defined in Repeated Measures "
 "Factors) within Repeated Measures Cells."
 msgstr ""
+"Harap tetapkan variabel ke setiap faktor RM (yang didefinisikan dalam Faktor "
+"Pengukuran Berulang) dalam Sel Pengukuran Berulang."
 
 msgid "Plots"
-msgstr ""
+msgstr "Plot"
 
 msgid "Available Plot IDs"
-msgstr ""
+msgstr "ID Plot yang Tersedia"
 
 msgid "Plot Grid"
-msgstr ""
+msgstr "Kisi Plot"
 
 msgid "Raincloud Plots"
-msgstr "Diagram Raincloud"
+msgstr "Plot Raincloud"
 
 msgid "Not shown are %s observations due to missing data."
-msgstr ""
+msgstr "Tidak ditampilkan sebanyak %s pengamatan karena data yang hilang."
 
 msgid "Interval around mean is custom."
-msgstr ""
+msgstr "Interval di sekitar rata-rata bersifat kustom."
 
 msgid ""
 "<span style = 'color: darkorange'>Error with custom interval: Specified "
 "number of clouds does not match clouds in plot.</span>"
 msgstr ""
+"<span style = 'color: darkorange'>Kesalahan pada interval kustom: Jumlah "
+"awan yang ditentukan tidak sesuai dengan awan dalam plot.</span>"
 
 msgid "Interval around mean represents ± 1 standard error"
-msgstr ""
+msgstr "Interval di sekitar rata-rata mewakili ± 1 kesalahan standar"
 
 msgid "Interval around mean represents ± 1 standard deviation"
-msgstr ""
+msgstr "Interval di sekitar rata-rata mewakili ± 1 standar deviasi"
 
 msgid "Interval around mean represents %d%% confidence interval."
-msgstr ""
+msgstr "Interval di sekitar rata-rata mewakili interval kepercayaan %d%%."
 
 msgid "Points are slightly jittered from their true values."
-msgstr ""
+msgstr "Titik-titik sedikit digeser dari nilai sebenarnya."
 
 msgid ""
 "<span style = 'color: darkorange'> Warning! Some data is not "
 "shown<br>because it lies outside of the interval set by the custom axis "
 "limits.</span>"
 msgstr ""
+"<span style = 'color: darkorange'> Peringatan! Beberapa data tidak "
+"ditampilkan<br>karena berada di luar interval yang ditetapkan oleh batas "
+"sumbu kustom.</span>"
 
 msgid ""
 "<span style = 'color: darkorange'> Error with custom orientation: Specified "
 "number of clouds does not match clouds in plot.<br>Reverted to default all "
 "'R'. Point nudge set to 0.</span>"
 msgstr ""
+"<span style = 'color: darkorange'> Kesalahan pada orientasi kustom: Jumlah "
+"awan yang ditentukan tidak sesuai dengan awan dalam plot.<br>Dikembalikan ke "
+"default semua 'R'. Pergeseran titik diatur ke 0.</span>"
 
 msgid ""
 "<span style = 'color: darkorange'> Error with custom color: Specified number "
 "of clouds does not match clouds in plot.<br>Ignoring custom color input.</"
 "span>"
 msgstr ""
+"<span style = 'color: darkorange'> Kesalahan pada warna kustom: Jumlah awan "
+"yang ditentukan tidak sesuai dengan awan dalam plot.<br>Masukan warna kustom "
+"diabaikan.</span>"
 
 msgid "Statistics"
-msgstr ""
+msgstr "Statistik"
 
 msgid "Primary Factor"
-msgstr ""
+msgstr "Faktor Primer"
 
 msgid "Secondary Factor"
-msgstr ""
+msgstr "Faktor Sekunder"
 
 msgid "<i>N</i>"
-msgstr ""
+msgstr "<i>N</i>"
 
 msgid "Lower Whisker"
-msgstr ""
+msgstr "Whisker Bawah"
 
 msgid "25th Percentile"
-msgstr ""
+msgstr "Persentil ke-25"
 
 msgid "75th Percentile"
-msgstr ""
+msgstr "Persentil ke-75"
 
 msgid "Upper Whisker"
-msgstr ""
+msgstr "Whisker Atas"
 
 msgid "%s%% CI for Mean Difference"
-msgstr "%s%% CI untuk Perbedaan Rerata"
+msgstr "%s%% CI untuk Selisih Rata-rata"
 
 msgid "Standard Error"
-msgstr "Galat Standar"
+msgstr "Kesalahan Standar"
 
 msgid "Standard Deviation"
-msgstr "Deviasi Standar"
+msgstr "Standar Deviasi"
 
 msgid "<i>N</i><sub>Total</sub> = %s."
-msgstr ""
+msgstr "<i>N</i><sub>Total</sub> = %s."
 
 msgid "This excludes %s observations due to missing data."
-msgstr ""
+msgstr "Ini tidak termasuk %s pengamatan karena data yang hilang."
 
 msgid "<br>Interval around mean is custom."
-msgstr ""
+msgstr "<br>Interval di sekitar rata-rata bersifat kustom."
 
 msgid "<br>Interval around mean represents %d%% confidence interval."
-msgstr ""
+msgstr "<br>Interval di sekitar rata-rata mewakili interval kepercayaan %d%%."
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
 "The following variables have more than %1$s distinct values and are omitted: "
 "%2$s."
 msgstr[0] ""
-msgstr[1] ""
+"Variabel berikut memiliki lebih dari %1$s nilai berbeda dan dihilangkan: "
+"%2$s."
 
 msgid "The decimal point is %s digit to the right of the |"
 msgid_plural "The decimal point is %s digits to the right of the |"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Titik desimal berada %s digit di sebelah kanan |"
 
 msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Titik desimal berada %s digit di sebelah kiri |"
