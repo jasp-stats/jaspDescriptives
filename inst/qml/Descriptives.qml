@@ -119,7 +119,7 @@ Form
 			{
 				name:				"percentiles"
 				label:				qsTr("Percentiles:")
-				info:				qsTr("Displays the xth percentile; percentile values must be separated by comma.")
+				info:				qsTr("Displays the xth percentile; percentile values must be separated by a blank.")
 				childrenOnSameRow:	true
 
 				TextField
