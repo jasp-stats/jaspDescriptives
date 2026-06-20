@@ -1046,11 +1046,6 @@ msgid ""
 msgstr "显示将数据分成 x 个相等组的切分点；默认是分为 4 个相等组."
 
 msgctxt "Descriptives|"
-msgid ""
-"Displays the xth percentile; percentile values must be separated by comma."
-msgstr "显示第 x 百分位数；百分位数值必须用逗号分隔。"
-
-msgctxt "Descriptives|"
 msgid "Central Tendency (only for continuous variables)"
 msgstr "集中趋势（仅适用于连续变量）"
 
@@ -2187,10 +2182,6 @@ msgstr ""
 msgctxt "raincloudPlots|"
 msgid "Standard deviation"
 msgstr "标准差"
-
-msgctxt "Description|"
-msgid "Plot Builder (beta)"
-msgstr "图形构建器(beta)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "References"
@@ -4625,4 +4616,13 @@ msgid ""
 "for more information). The selection carries over to the inter-quartile "
 "range (IQR) and box-plot calculations.  For ordinal variables, only types 1 "
 "and 3 are supported; other types fall back to type 3.\n"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Plot Builder"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Displays the xth percentile; percentile values must be separated by a blank."
 msgstr ""

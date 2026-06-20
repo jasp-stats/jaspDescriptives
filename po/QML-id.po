@@ -1086,12 +1086,6 @@ msgstr ""
 "bawaannya adalah 4 grup sama."
 
 msgctxt "Descriptives|"
-msgid ""
-"Displays the xth percentile; percentile values must be separated by comma."
-msgstr ""
-"Menampilkan persentil ke-x; nilai persentil harus dipisahkan dengan koma."
-
-msgctxt "Descriptives|"
 msgid "Central Tendency (only for continuous variables)"
 msgstr "Kecenderungan Pusat (hanya untuk variabel kontinu)"
 
@@ -2147,10 +2141,6 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Standard deviation"
-msgstr ""
-
-msgctxt "Description|"
-msgid "Plot Builder (beta)"
 msgstr ""
 
 msgctxt "jaspPlotBuilder|"
@@ -4686,3 +4676,12 @@ msgstr ""
 "Langford, 2006, untuk informasi lebih lanjut). Pemilihan dibawa pada rentang "
 "antar-kuartil (IQR) dan penghitungan diagram kotak.  Untuk variabel ordinal, "
 "hanya jenis 1 dan 3 didukung; jenis lain kembali ke 3.\n"
+
+msgctxt "Description|"
+msgid "Plot Builder"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Displays the xth percentile; percentile values must be separated by a blank."
+msgstr ""

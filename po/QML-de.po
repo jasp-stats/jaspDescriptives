@@ -1097,13 +1097,6 @@ msgstr ""
 "Standard ist 4 gleiche Gruppen."
 
 msgctxt "Descriptives|"
-msgid ""
-"Displays the xth percentile; percentile values must be separated by comma."
-msgstr ""
-"Zeigt das x-te Perzentil an; Perzentilwerte müssen durch Komma getrennt "
-"werden."
-
-msgctxt "Descriptives|"
 msgid "Central Tendency (only for continuous variables)"
 msgstr "Zentrale Tendenz (nur für kontinuierliche Variablen)"
 
@@ -2379,10 +2372,6 @@ msgstr ""
 msgctxt "raincloudPlots|"
 msgid "Standard deviation"
 msgstr "Standardabweichung"
-
-msgctxt "Description|"
-msgid "Plot Builder (beta)"
-msgstr "Diagramm-Baukasten (Beta)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "References"
@@ -5049,3 +5038,12 @@ msgstr ""
 "Berechnung des Interquartilsabstands (IQR) und des Boxplots aus. Bei "
 "ordinalen Variablen werden nur die Typen 1 und 3 unterstützt; bei anderen "
 "Typen wird auf Typ 3 zurückgegriffen.\n"
+
+msgctxt "Description|"
+msgid "Plot Builder"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Displays the xth percentile; percentile values must be separated by a blank."
+msgstr ""

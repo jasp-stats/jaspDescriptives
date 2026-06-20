@@ -1086,13 +1086,6 @@ msgstr ""
 "4 grupos iguais."
 
 msgctxt "Descriptives|"
-msgid ""
-"Displays the xth percentile; percentile values must be separated by comma."
-msgstr ""
-"Exibe o xº percentil; os valores dos percentis devem ser separados por "
-"vírgula."
-
-msgctxt "Descriptives|"
 msgid "Central Tendency (only for continuous variables)"
 msgstr "Tendência Central (apenas para variáveis contínuas)"
 
@@ -2347,10 +2340,6 @@ msgstr ""
 msgctxt "raincloudPlots|"
 msgid "Standard deviation"
 msgstr "Desvio padrão"
-
-msgctxt "Description|"
-msgid "Plot Builder (beta)"
-msgstr "Gerador de Gráficos (beta)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "References"
@@ -5016,4 +5005,13 @@ msgid ""
 "for more information). The selection carries over to the inter-quartile "
 "range (IQR) and box-plot calculations.  For ordinal variables, only types 1 "
 "and 3 are supported; other types fall back to type 3.\n"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Plot Builder"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Displays the xth percentile; percentile values must be separated by a blank."
 msgstr ""

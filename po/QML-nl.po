@@ -1091,13 +1091,6 @@ msgstr ""
 "standaard is 4 gelijke groepen."
 
 msgctxt "Descriptives|"
-msgid ""
-"Displays the xth percentile; percentile values must be separated by comma."
-msgstr ""
-"Geeft het x-percentiel weer; percentielwaarden moeten worden gescheiden door "
-"een komma."
-
-msgctxt "Descriptives|"
 msgid "Central Tendency (only for continuous variables)"
 msgstr "Centrale Tendens (alleen voor continue variabelen)"
 
@@ -2347,10 +2340,6 @@ msgstr ""
 msgctxt "raincloudPlots|"
 msgid "Standard deviation"
 msgstr "Standaardafwijking"
-
-msgctxt "Description|"
-msgid "Plot Builder (beta)"
-msgstr "Plot Builder (beta)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "References"
@@ -4785,4 +4774,13 @@ msgid ""
 "for more information). The selection carries over to the inter-quartile "
 "range (IQR) and box-plot calculations.  For ordinal variables, only types 1 "
 "and 3 are supported; other types fall back to type 3.\n"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Plot Builder"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Displays the xth percentile; percentile values must be separated by a blank."
 msgstr ""

@@ -1090,13 +1090,6 @@ msgstr ""
 "defecto, son 4 grupos iguais."
 
 msgctxt "Descriptives|"
-msgid ""
-"Displays the xth percentile; percentile values must be separated by comma."
-msgstr ""
-"Presenta o percentil X; os valores dos percentiles deben separarse mediante "
-"comas."
-
-msgctxt "Descriptives|"
 msgid "Central Tendency (only for continuous variables)"
 msgstr "Tendencia central (só para variables continuas)"
 
@@ -2350,10 +2343,6 @@ msgstr ""
 msgctxt "raincloudPlots|"
 msgid "Standard deviation"
 msgstr "Desvío padrón"
-
-msgctxt "Description|"
-msgid "Plot Builder (beta)"
-msgstr "Xerador de gráficas (beta)"
 
 msgctxt "jaspPlotBuilder|"
 msgid "References"
@@ -5021,3 +5010,12 @@ msgstr ""
 "Langford, 2006, para máis información). A selección transmítese aos cálculos "
 "do rango intercuatílico (RIC, IQR) e gráficas de caixa . Para variables "
 "ordinais, só se admiten os tipos 1 e 3; outros tipos recaen ao tipo 3.\n"
+
+msgctxt "Description|"
+msgid "Plot Builder"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Displays the xth percentile; percentile values must be separated by a blank."
+msgstr ""

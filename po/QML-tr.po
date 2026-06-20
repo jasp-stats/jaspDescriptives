@@ -1031,11 +1031,6 @@ msgid ""
 msgstr ""
 
 msgctxt "Descriptives|"
-msgid ""
-"Displays the xth percentile; percentile values must be separated by comma."
-msgstr ""
-
-msgctxt "Descriptives|"
 msgid "Central Tendency (only for continuous variables)"
 msgstr ""
 
@@ -2020,10 +2015,6 @@ msgstr ""
 
 msgctxt "raincloudPlots|"
 msgid "Standard deviation"
-msgstr ""
-
-msgctxt "Description|"
-msgid "Plot Builder (beta)"
 msgstr ""
 
 #, fuzzy
@@ -4447,4 +4438,13 @@ msgid ""
 "for more information). The selection carries over to the inter-quartile "
 "range (IQR) and box-plot calculations.  For ordinal variables, only types 1 "
 "and 3 are supported; other types fall back to type 3.\n"
+msgstr ""
+
+msgctxt "Description|"
+msgid "Plot Builder"
+msgstr ""
+
+msgctxt "Descriptives|"
+msgid ""
+"Displays the xth percentile; percentile values must be separated by a blank."
 msgstr ""
