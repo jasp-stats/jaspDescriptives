@@ -67,9 +67,8 @@ Form
 		Group
 		{
 			title: qsTr("Sample size")
-			CheckBox { name: "valid";			label: qsTr("Valid");	checked: true
-						 info: qsTr("Number of valid observations")}
-			CheckBox { name: "missing";			label: qsTr("Missing");	checked: true	}
+			CheckBox { name: "valid";			label: qsTr("Valid");	checked: true	info: qsTr("Number of valid observations")}
+			CheckBox { name: "missing";			label: qsTr("Missing");	checked: true	info: qsTr("Number of missing observations")}
 		}
 
 		Group
@@ -81,8 +80,8 @@ Form
 			{
 				name: "quantilesType"
 				label: qsTr("Type")
-				id: quantilesType	
-				indexDefaultValue: 6 // Type 7, the default in R 
+				id: quantilesType
+				indexDefaultValue: 6 // Type 7, the default in R
 				info: qsTr("Method used to compute quantiles (see Hyndman & Fan, 1996; Langford, 2006, for more information). The selection carries over to the inter-quartile range (IQR) and box-plot calculations.  For ordinal variables, only types 1 and 3 are supported; other types fall back to type 3.\n")
 				values: [
 						{label: qsTr("1"),	                value: 1},
@@ -361,11 +360,11 @@ Form
 
 		Group
 		{
-			CheckBox {				name: "intervalPlot";	label: qsTr("Interval plots")					}
-			CheckBox {				name: "pieChart";		label: qsTr("Pie charts")						}
-			CheckBox {				name: "dotPlot";		label: qsTr("Dot plots")						}
-			CheckBox 
-			{				
+			CheckBox {				name: "intervalPlot";	label: qsTr("Interval plots");	info: qsTr("Displays the arithmetic mean and 95%% confidence interval for the arithmetic mean.")	}
+			CheckBox {				name: "pieChart";		label: qsTr("Pie charts");		info: qsTr("Displays the distribution of a variable in a pie chart where each unique color an part of the pie corresponds to a unique observed value. Pie charts are not shown for scale variables.")	}
+			CheckBox {				name: "dotPlot";		label: qsTr("Dot plots");		info: qsTr("Displays a dot plot, where the width of a dot corresponds to the bin width and the height of the stacked dots represents the number of observation in each bin.")	}
+			CheckBox
+			{
 				name: "qqPlot";			label: qsTr("Q-Q plots")
 				CheckBox
 				{
@@ -373,7 +372,7 @@ Form
 					label:              qsTr("Confidence interval")
 					childrenOnSameRow:  true
 					CIField{ name: "qqPlotCiLevel" }
-				}						
+				}
 			}
 		}
 
@@ -423,7 +422,7 @@ Form
 										+ "If left empty, counts are calculated directly from the selected variable.")
 				}
 
-				
+
 			}
 
 			CheckBox
