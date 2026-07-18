@@ -1003,6 +1003,27 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       variable.statuses[[i]]$error <- ""
   }
 
+  plotRecipe <- jaspGraphs::createJaspPlotRecipe(
+    fun = "jaspDescriptives:::.plotCorrelationMatrixDescriptives",
+    args = list(
+      dataset      = dataset[variables],
+      variables    = variables,
+      errors       = vapply(variable.statuses, `[[`, character(1L), "error"),
+      displayDensity = options[["distributionAndCorrelationPlotDensity"]],
+      rugs           = options[["distributionAndCorrelationPlotRugMarks"]],
+      binWidthType   = options[["distributionAndCorrelationPlotHistogramBinWidthType"]],
+      numberOfBins   = options[["distributionAndCorrelationPlotHistogramManualNumberOfBins"]]
+    )
+  )
+
+  return(createJaspPlot(plot = plotRecipe, width = 250 * l + 20, aspectRatio = 1, title = name, dependencies = depends))
+}
+
+.plotCorrelationMatrixDescriptives <- function(dataset, variables, errors,
+                                                displayDensity, rugs,
+                                                binWidthType, numberOfBins) {
+  l <- length(variables)
+
   plotMat <- matrix(list(), l, l)
   axisBreaks <- vector("list", l)
 
@@ -1011,19 +1032,20 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
   oldFontSize <- jaspGraphs::getGraphOption("fontsize")
   jaspGraphs::setGraphOption("fontsize", .85 * oldFontSize)
+  on.exit(jaspGraphs::setGraphOption("fontsize", oldFontSize), add = TRUE)
 
   # first do the diagonal and store breaks
   for (row in seq_along(variables)) {
-    if (variable.statuses[[row]]$error != "") {
-      plotMat[[row, row]] <- .displayErrorDescriptives(errorMessage = variable.statuses[[row]]$error)
+    if (errors[[row]] != "") {
+      plotMat[[row, row]] <- .displayErrorDescriptives(errorMessage = errors[[row]])
     } else {
       plotMat[[row, row]] <- .plotMarginal(
         column         = dataset[[variables[[row]]]],
         variableName   = NULL,
-        displayDensity = options[["distributionAndCorrelationPlotDensity"]],
-        rugs           = options[["distributionAndCorrelationPlotRugMarks"]],
-        binWidthType   = options[["distributionAndCorrelationPlotHistogramBinWidthType"]],
-        numberOfBins   = options[["distributionAndCorrelationPlotHistogramManualNumberOfBins"]],
+        displayDensity = displayDensity,
+        rugs           = rugs,
+        binWidthType   = binWidthType,
+        numberOfBins   = numberOfBins,
         lwd            = .7
       )
       axisBreaks[[row]] <- jaspGraphs::getAxisBreaks(plotMat[[row, row]])
@@ -1033,10 +1055,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   # now do off-diagonal and use the same breaks
   for (row in seq_len(l - 1)) {
     for (col in seq(row + 1, l)) {
-      if (variable.statuses[[row]]$error != "") {
-        plotMat[[row, col]] <- .displayErrorDescriptives(errorMessage = variable.statuses[[row]]$error)
-      } else if (variable.statuses[[col]]$error != "") {
-        plotMat[[row, col]] <- .displayErrorDescriptives(errorMessage = variable.statuses[[col]]$error)
+      if (errors[[row]] != "") {
+        plotMat[[row, col]] <- .displayErrorDescriptives(errorMessage = errors[[row]])
+      } else if (errors[[col]] != "") {
+        plotMat[[row, col]] <- .displayErrorDescriptives(errorMessage = errors[[col]])
       } else {
         plotMat[[row, col]] <- .plotScatterDescriptives(
           xVar    = dataset[[variables[[col]]]],
@@ -1054,12 +1076,10 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   labelPos <- matrix(.5, 4, 2)
   labelPos[1, 1] <- .55
   labelPos[4, 2] <- .65
-  p <- jaspGraphs::ggMatrixPlot(
+  jaspGraphs::ggMatrixPlot(
     plotList = plotMat, leftLabels = variables, topLabels = variables,
     scaleXYlabels = NULL, labelPos = labelPos
   )
-
-  return(createJaspPlot(plot = p, width = 250 * l + 20, aspectRatio = 1, title = name, dependencies = depends))
 }
 
 .poly.predDescriptives <- function(fit, plot = NULL, line = FALSE, xMin, xMax, lwd) {
@@ -1195,10 +1215,22 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if (!is.null(errorMessage)) {
     freqPlot$setError(gettextf("Plotting not possible: %s", errorMessage))
   } else if (length(column) > 0 && variableType != "scale") {
-    freqPlot$plotObject <- .barplotJASP(column, variable)
+    freqPlot$plotObject <- jaspGraphs::createJaspPlotRecipe(
+      fun = "jaspDescriptives:::.barplotJASP",
+      args = list(column, variable)
+    )
   } else if (length(column) > 0 && variableType == "scale") {
-    freqPlot$plotObject <- .plotMarginal(column, variableName = variable, displayDensity = displayDensity,
-                                         rugs = rugs, binWidthType = binWidthType, numberOfBins = numberOfBins)
+    freqPlot$plotObject <- jaspGraphs::createJaspPlotRecipe(
+      fun = "jaspDescriptives:::.plotMarginal",
+      args = list(
+        column         = column,
+        variableName   = variable,
+        displayDensity = displayDensity,
+        rugs           = rugs,
+        binWidthType   = binWidthType,
+        numberOfBins   = numberOfBins
+      )
+    )
   }
 
   return(freqPlot)
@@ -1249,114 +1281,141 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       vioWidth  <- 0.6
     }
 
-    plotDat <- data.frame(group = group, y = y)
-    row.names(plotDat) <- yIndexToActual
-
-    # Identify outliers to label. Note that ggplot uses the unchangeable quantiles(type=7),
-    # if we ever change the quantile type then the boxplot needs to be overwritten with stat_summary(geom='boxplot')
-    plotDat$outlier <- FALSE
-
-    for (level in levels(plotDat$group)) {
-      v <- plotDat[plotDat$group == level, ]$y
-      quantiles <- quantile(v, probs = c(0.25, 0.75), type = as.integer(options[["quantilesType"]]))
-      obsIQR <- quantiles[2] - quantiles[1]
-      plotDat[plotDat$group == level, ]$outlier <- v < (quantiles[1] - 1.5 * obsIQR) | v > (quantiles[2] + 1.5 * obsIQR)
-    }
-
-    plotDat$label <- ifelse(plotDat$outlier, row.names(plotDat), "")
-
-    if (options[["boxPlotColourPalette"]]) {
+    if (options[["boxPlotColourPalette"]])
       thePlot$dependOn("colorPalette") # only add color as dependency if the user wants it
-      palette <- options[["colorPalette"]]
-      p <- ggplot2::ggplot(plotDat, ggplot2::aes(x = group, y, fill = group)) +
-        jaspGraphs::scale_JASPfill_discrete(palette) +
-        jaspGraphs::scale_JASPcolor_discrete(palette)
-    } else {
-      p <- ggplot2::ggplot(plotDat, ggplot2::aes(x = group, y, fill = group)) +
-        ggplot2::scale_fill_manual(values = rep("grey", nlevels(group))) +
-        ggplot2::scale_colour_manual(values = rep("grey", nlevels(group)))
-    }
 
-    if (options[["boxPlotViolin"]]) {
-      p <- p + ggplot2::geom_violin(trim = FALSE, size = 0.75, scale = "width", width = vioWidth)
-    }
-
-    if (options[["boxPlotBoxPlot"]]) {
-      # if we add jittered data points, don't show outlier dots
-      outlierShape <- if (options[["boxPlotJitter"]]) NA else 19
-
-      # create summaries per group for boxplots
-      # needed to make the quantiles based on the type specified by the user
-      boxData <- dplyr::summarise(
-        dplyr::group_by(plotDat, group),
-        ymin = min(y[!outlier]), # lower end of whiskers smallest observation that is not an outlier
-        lower = quantile(y, 0.25, type = as.integer(options[["quantilesType"]])),
-        middle = quantile(y, 0.50, type = as.integer(options[["quantilesType"]])),
-        upper = quantile(y, 0.75, type = as.integer(options[["quantilesType"]])),
-        ymax = max(y[!outlier]) # upper end of whiskers largest observation that is not an outlier
+    thePlot$plotObject <- jaspGraphs::createJaspPlotRecipe(
+      fun = "jaspDescriptives:::.plotBoxDescriptives",
+      args = list(
+        y                  = y,
+        yIndexToActual     = yIndexToActual,
+        group              = group,
+        xlab               = xlab,
+        boxWidth           = boxWidth,
+        vioWidth           = vioWidth,
+        variable           = variable,
+        quantilesType      = options[["quantilesType"]],
+        boxPlotColourPalette = options[["boxPlotColourPalette"]],
+        colorPalette       = options[["colorPalette"]],
+        boxPlotViolin      = options[["boxPlotViolin"]],
+        boxPlotBoxPlot     = options[["boxPlotBoxPlot"]],
+        boxPlotJitter      = options[["boxPlotJitter"]],
+        boxPlotOutlierLabel = options[["boxPlotOutlierLabel"]]
       )
-
-      # plot boxplots with errorbars based on the computed statistics
-      p <- p +
-        ggplot2::geom_errorbar(data = boxData, ggplot2::aes(
-          ymin = ymin,
-          ymax = ymax,
-          x = group
-        ),
-        inherit.aes = FALSE, linewidth = 0.75, width = boxWidth / 2) +
-
-        ggplot2::geom_boxplot(data = boxData, ggplot2::aes(
-          x = group,
-          fill = group,
-          ymin = ymin,
-          lower = lower,
-          middle = middle,
-          upper = upper,
-          ymax = ymax
-        ),
-        inherit.aes = FALSE,
-        size = 0.75, width = boxWidth,
-        stat = "identity")
-
-      # add outliers if there are any
-      # since boxplot function cannot add them due to precomputed stats
-      if(any(plotDat$outlier)) {
-        p <- p +
-          ggplot2::geom_point(data = plotDat[plotDat$outlier, ],
-                              shape = outlierShape,
-                              size = 2)
-      }
-    }
-
-    if (options[["boxPlotJitter"]]) {
-      p <- p + ggplot2::geom_jitter(ggplot2::aes(fill = group, alpha = 0.5), size = 3, shape = 21, stroke = 1, position = ggplot2::position_jitter(width = 0.05, height = 0))
-      if (options[["boxPlotColourPalette"]])
-        p <- p + jaspGraphs::scale_JASPfill_discrete(palette)
-      else
-        p <- p + ggplot2::scale_fill_manual(values = rep("grey", nlevels(group)))
-    }
-
-    if (options[["boxPlotOutlierLabel"]]) {
-      p <- p + ggrepel::geom_text_repel(ggplot2::aes(label = label), hjust = -1, min.segment.length = 99)
-    }
-
-    ### Theming & Cleaning
-    yBreaks <- if (options[["boxPlotViolin"]]) {
-      jaspGraphs::getPrettyAxisBreaks(range(unlist(tapply(y, group, function(x) range(x, density(x)$x)), use.names = FALSE)))
-    } else {
-      jaspGraphs::getPrettyAxisBreaks(p[["data"]][["y"]])
-    }
-    yLimits <- range(yBreaks)
-
-    p <- p +
-      ggplot2::xlab(xlab) +
-      ggplot2::scale_y_continuous(name = variable, breaks = yBreaks, limits = yLimits) +
-      jaspGraphs::geom_rangeframe(sides = "l") +
-      jaspGraphs::themeJaspRaw()
-
-    thePlot$plotObject <- p
+    )
   }
   return(thePlot)
+}
+
+.plotBoxDescriptives <- function(y, yIndexToActual, group, xlab, boxWidth, vioWidth, variable,
+                                 quantilesType, boxPlotColourPalette, colorPalette,
+                                 boxPlotViolin, boxPlotBoxPlot, boxPlotJitter,
+                                 boxPlotOutlierLabel) {
+  plotDat <- data.frame(group = group, y = y)
+  row.names(plotDat) <- yIndexToActual
+
+  # Identify outliers to label. Note that ggplot uses the unchangeable quantiles(type=7),
+  # if we ever change the quantile type then the boxplot needs to be overwritten with stat_summary(geom='boxplot')
+  plotDat$outlier <- FALSE
+
+  for (level in levels(plotDat$group)) {
+    v <- plotDat[plotDat$group == level, ]$y
+    quantiles <- quantile(v, probs = c(0.25, 0.75), type = as.integer(quantilesType))
+    obsIQR <- quantiles[2] - quantiles[1]
+    plotDat[plotDat$group == level, ]$outlier <- v < (quantiles[1] - 1.5 * obsIQR) | v > (quantiles[2] + 1.5 * obsIQR)
+  }
+
+  plotDat$label <- ifelse(plotDat$outlier, row.names(plotDat), "")
+
+  if (boxPlotColourPalette) {
+    palette <- colorPalette
+    p <- ggplot2::ggplot(plotDat, ggplot2::aes(x = group, y, fill = group)) +
+      jaspGraphs::scale_JASPfill_discrete(palette) +
+      jaspGraphs::scale_JASPcolor_discrete(palette)
+  } else {
+    p <- ggplot2::ggplot(plotDat, ggplot2::aes(x = group, y, fill = group)) +
+      ggplot2::scale_fill_manual(values = rep("grey", nlevels(group))) +
+      ggplot2::scale_colour_manual(values = rep("grey", nlevels(group)))
+  }
+
+  if (boxPlotViolin) {
+    p <- p + ggplot2::geom_violin(trim = FALSE, size = 0.75, scale = "width", width = vioWidth)
+  }
+
+  if (boxPlotBoxPlot) {
+    # if we add jittered data points, don't show outlier dots
+    outlierShape <- if (boxPlotJitter) NA else 19
+
+    # create summaries per group for boxplots
+    # needed to make the quantiles based on the type specified by the user
+    boxData <- dplyr::summarise(
+      dplyr::group_by(plotDat, group),
+      ymin = min(y[!outlier]), # lower end of whiskers smallest observation that is not an outlier
+      lower = quantile(y, 0.25, type = as.integer(quantilesType)),
+      middle = quantile(y, 0.50, type = as.integer(quantilesType)),
+      upper = quantile(y, 0.75, type = as.integer(quantilesType)),
+      ymax = max(y[!outlier]) # upper end of whiskers largest observation that is not an outlier
+    )
+
+    # plot boxplots with errorbars based on the computed statistics
+    p <- p +
+      ggplot2::geom_errorbar(data = boxData, ggplot2::aes(
+        ymin = ymin,
+        ymax = ymax,
+        x = group
+      ),
+      inherit.aes = FALSE, linewidth = 0.75, width = boxWidth / 2) +
+
+      ggplot2::geom_boxplot(data = boxData, ggplot2::aes(
+        x = group,
+        fill = group,
+        ymin = ymin,
+        lower = lower,
+        middle = middle,
+        upper = upper,
+        ymax = ymax
+      ),
+      inherit.aes = FALSE,
+      size = 0.75, width = boxWidth,
+      stat = "identity")
+
+    # add outliers if there are any
+    # since boxplot function cannot add them due to precomputed stats
+    if(any(plotDat$outlier)) {
+      p <- p +
+        ggplot2::geom_point(data = plotDat[plotDat$outlier, ],
+                            shape = outlierShape,
+                            size = 2)
+    }
+  }
+
+  if (boxPlotJitter) {
+    p <- p + ggplot2::geom_jitter(ggplot2::aes(fill = group, alpha = 0.5), size = 3, shape = 21, stroke = 1, position = ggplot2::position_jitter(width = 0.05, height = 0))
+    if (boxPlotColourPalette)
+      p <- p + jaspGraphs::scale_JASPfill_discrete(palette)
+    else
+      p <- p + ggplot2::scale_fill_manual(values = rep("grey", nlevels(group)))
+  }
+
+  if (boxPlotOutlierLabel) {
+    p <- p + ggrepel::geom_text_repel(ggplot2::aes(label = label), hjust = -1, min.segment.length = 99)
+  }
+
+  ### Theming & Cleaning
+  yBreaks <- if (boxPlotViolin) {
+    jaspGraphs::getPrettyAxisBreaks(range(unlist(tapply(y, group, function(x) range(x, density(x)$x)), use.names = FALSE)))
+  } else {
+    jaspGraphs::getPrettyAxisBreaks(p[["data"]][["y"]])
+  }
+  yLimits <- range(yBreaks)
+
+  p <- p +
+    ggplot2::xlab(xlab) +
+    ggplot2::scale_y_continuous(name = variable, breaks = yBreaks, limits = yLimits) +
+    jaspGraphs::geom_rangeframe(sides = "l") +
+    jaspGraphs::themeJaspRaw()
+
+  return(p)
 }
 
 .descriptivesIntervalPlot <- function(dataset, options, variable) {
@@ -1378,32 +1437,31 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     xlab <- options$splitBy
   }
 
-  plotDat <- data.frame(group = group, y = y)
+  thePlot$plotObject <- jaspGraphs::createJaspPlotRecipe(
+    fun = "jaspDescriptives:::.plotIntervalDescriptives",
+    args = list(y = y, group = group, xName = xlab, yName = variable)
+  )
 
+  return(thePlot)
+}
+
+.plotIntervalDescriptives <- function(y, group, xName, yName) {
+  plotDat <- data.frame(group = group, y = y)
   cdata <- aggregate(y ~ group, data = plotDat, function(x) {
     mu <- mean(x)
     err <- qnorm(0.975) * (sd(x) / sqrt(length(x)))
-    c(
-      mean = mu,
-      lower = mu - err,
-      upper = mu + err
-    )
+    c(mean = mu, lower = mu - err, upper = mu + err)
   })
   df <- cbind.data.frame(group = factor(cdata[["group"]]), cdata[["y"]])
-
   yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(df[["lower"]], df[["upper"]]))
 
-  p <- ggplot2::ggplot(df, ggplot2::aes(x = group, y = mean, ymin = lower, ymax = upper)) +
+  ggplot2::ggplot(df, ggplot2::aes(x = group, y = mean, ymin = lower, ymax = upper)) +
     ggplot2::geom_point(size = 3) +
     ggplot2::geom_errorbar(width = .1) +
-    ggplot2::xlab(xlab) +
-    ggplot2::scale_y_continuous(name = variable, breaks = yBreaks, limits = range(yBreaks)) +
+    ggplot2::xlab(xName) +
+    ggplot2::scale_y_continuous(name = yName, breaks = yBreaks, limits = range(yBreaks)) +
     jaspGraphs::geom_rangeframe() +
     jaspGraphs::themeJaspRaw()
-
-  thePlot$plotObject <- p
-
-  return(thePlot)
 }
 
 .plotMarginal <- function(column, variableName,
@@ -1535,34 +1593,33 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     return(dotPlot)
   }
 
+  dotPlot$plotObject <- jaspGraphs::createJaspPlotRecipe(
+    fun = "jaspDescriptives:::.plotDotDescriptives",
+    args = list(x = x, variableName = variable, variableType = variableType)
+  )
+
+  return(dotPlot)
+}
+
+.plotDotDescriptives <- function(x, variableName, variableType) {
   dotsize <- 1
 
   if (variableType == "nominal" || variableType == "ordinal") {
     tb <- as.data.frame(table(x))
     scaleX <- ggplot2::scale_x_discrete(limits = factor(tb[, 1L]))
-
-    # so the geom_dotplot is very weird and the dot sizes are independent of the y-axis.
-    # hence to avoid exceeding the y-axis, we need to make the dots smaller...
-    # see also the many issues on the ggplot repo about the dotplot...
-    # for example https://github.com/tidyverse/ggplot2/issues/2203
-    # this post provides alternatives we should consider for the current implementation
-    # https://stackoverflow.com/questions/53697235/ggplot-dotplot-what-is-the-proper-use-of-geom-dotplot
     maxFreq <- max(tb[["Freq"]])
     if (maxFreq >= 17L)
       dotsize <- 17 / maxFreq
-
   } else if (variableType == "scale") {
-
     xBreaks <- jaspGraphs::getPrettyAxisBreaks(x)
     scaleX <- ggplot2::scale_x_continuous(breaks = xBreaks, limits = range(xBreaks))
-
     if (length(unique(x)) == 1)
       dotsize <- .03
   }
 
-  p <- ggplot2::ggplot(data = data.frame(x = x), ggplot2::aes(x = x)) +
+  ggplot2::ggplot(data = data.frame(x = x), ggplot2::aes(x = x)) +
     ggplot2::geom_dotplot(binaxis = "x", stackdir = "up", fill = "grey", dotsize = dotsize) +
-    ggplot2::xlab(variable) +
+    ggplot2::xlab(variableName) +
     ggplot2::ylab(NULL) +
     scaleX +
     jaspGraphs::geom_rangeframe(sides = "b") +
@@ -1572,10 +1629,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       axis.title.y = ggplot2::element_blank(),
       axis.text.y = ggplot2::element_blank()
     )
-
-  dotPlot$plotObject <- p
-
-  return(dotPlot)
 }
 
 .barplotJASP <- function(column, variable) {
@@ -1861,12 +1914,17 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 
       ciLevel <- if (options[["qqPlotCi"]])  options[["qqPlotCiLevel"]] else NULL
 
-      descriptivesQQPlot$plotObject <- jaspGraphs::plotQQnorm(scale(na.omit(dataset[[qqvar]])),
-                                                             yName = "Standardized sample quantiles",
-                                                             ablineColor = "darkred",
-                                                             ablineOrigin = TRUE,
-                                                             identicalAxes = TRUE,
-                                                             ciLevel = ciLevel)
+      descriptivesQQPlot$plotObject <- jaspGraphs::createJaspPlotRecipe(
+        fun = "jaspGraphs::plotQQnorm",
+        args = list(
+          scale(na.omit(dataset[[qqvar]])),
+          yName = "Standardized sample quantiles",
+          ablineColor = "darkred",
+          ablineOrigin = TRUE,
+          identicalAxes = TRUE,
+          ciLevel = ciLevel
+        )
+      )
     }
   }
 
@@ -1913,18 +1971,17 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     pieChart$setError(gettextf("Plotting not possible: %s", errorMessage))
   } else if (length(column) > 0) {
     tb <- as.data.frame(table(column))
-    pieChart$plotObject <- jaspGraphs::plotPieChart(tb[, 2], tb[, 1],
-      legendName = variable,
-      palette = palette
+    pieChart$plotObject <- jaspGraphs::createJaspPlotRecipe(
+      fun = "jaspGraphs::plotPieChart",
+      args = list(tb[, 2], tb[, 1], legendName = variable, palette = palette)
     )
+
   }
 
   return(pieChart)
 }
 
 .descriptivesScatterPlots <- function(jaspContainer, dataset, variables, split, options, name = NULL, dependOnVariables = TRUE) {
-  jaspGraphs::setGraphOption("palette", options[["colorPalette"]])
-
   if (!is.null(split) && split != "") {
     # group with split will be defined later, to handle missingness
     legendTitle <- split
@@ -1969,20 +2026,24 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
                                                      obsGrouping = obsGrouping)
         if (is.null(errorMessage)) {
 
-          p <- try(jaspGraphs::JASPScatterPlot(
-            x                 = pairwiseData[[v1]],
-            y                 = pairwiseData[[v2]],
-            group             = group,
-            xName             = v1,
-            yName             = v2,
-            showLegend        = options[["scatterPlotLegend"]],
-            addSmooth         = options[["scatterPlotRegressionLine"]],
-            addSmoothCI       = options[["scatterPlotRegressionLineCi"]],
-            smoothCIValue     = options[["scatterPlotRegressionLineCiLevel"]],
-            forceLinearSmooth = options[["scatterPlotRegressionLineType"]] == "linear",
-            plotAbove         = options[["scatterPlotGraphTypeAbove"]],
-            plotRight         = options[["scatterPlotGraphTypeRight"]],
-            legendTitle       = legendTitle
+          p <- try(jaspGraphs::createJaspPlotRecipe(
+            fun = "jaspDescriptives:::.descriptivesJASPScatterPlot",
+            args = list(
+              x                 = pairwiseData[[v1]],
+              y                 = pairwiseData[[v2]],
+              group             = group,
+              xName             = v1,
+              yName             = v2,
+              showLegend        = options[["scatterPlotLegend"]],
+              addSmooth         = options[["scatterPlotRegressionLine"]],
+              addSmoothCI       = options[["scatterPlotRegressionLineCi"]],
+              smoothCIValue     = options[["scatterPlotRegressionLineCiLevel"]],
+              forceLinearSmooth = options[["scatterPlotRegressionLineType"]] == "linear",
+              plotAbove         = options[["scatterPlotGraphTypeAbove"]],
+              plotRight         = options[["scatterPlotGraphTypeRight"]],
+              legendTitle       = legendTitle,
+              palette           = options[["colorPalette"]]
+            )
           ))
 
           if (isTryError(p)) {
@@ -2000,6 +2061,17 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
       }
     }
   }
+}
+
+.descriptivesJASPScatterPlot <- function(..., palette) {
+  # perhaps somewhat over engineered, but in principle the pallette is now only accessed at rendering time
+  # not when this function is bound to the recipe.
+  # to avoid that we exctract it early here.
+  # another (perhaps better) option is to standardize this in jaspGraphs.
+  oldPalette <- jaspGraphs::getGraphOption("palette")
+  on.exit(jaspGraphs::setGraphOption("palette", oldPalette))
+  jaspGraphs::setGraphOption("palette", palette)
+  jaspGraphs::JASPScatterPlot(...)
 }
 
 .descriptivesCheckPlotErrors <- function(dataset, vars, obsAmount, additionalChecks = NULL, obsGrouping = NULL) {
@@ -2159,33 +2231,44 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     jaspPlot <- createJaspPlot(title = plotName, error = gettext("There must be a unique value per combination of levels of horizontal and vertical axis!"), position = position)
   } else {
     jaspPlot <- createJaspPlot(title = plotName, width = plotSize[1], height = plotSize[2], position = position)
-
-    plot <- ggplot2::ggplot(data = data, mapping = ggplot2::aes(x = horizontal, y = vertical, fill = value)) +
-      ggplot2::geom_tile(color = "black", size = 1) +
-      ggplot2::xlab(axesNames[1]) +
-      ggplot2::ylab(axesNames[2]) +
-      ggplot2::coord_fixed(ratio = 1 / options[["heatmapTileWidthHeightRatio"]])
-
-    if (options[["heatmapDisplayValue"]]) {
-      plot <- plot + ggplot2::geom_text(ggplot2::aes(x = horizontal, y = vertical, label = label),
-        size = 8 * options[["heatmapDisplayValueRelativeTextSize"]]
+    jaspPlot$plotObject <- jaspGraphs::createJaspPlotRecipe(
+      fun = "jaspDescriptives:::.plotHeatmapDescriptives",
+      args = list(
+        data              = data,
+        axesNames         = axesNames,
+        tileRatio         = options[["heatmapTileWidthHeightRatio"]],
+        displayValue      = options[["heatmapDisplayValue"]],
+        valueTextSize     = options[["heatmapDisplayValueRelativeTextSize"]],
+        palette           = options[["colorPalette"]],
+        showLegend        = options[["heatmapLegend"]]
       )
-    }
-
-    palette <- options[["colorPalette"]]
-    # This factor check refers to the result of the summary statistic (mode/n/etc)
-    plot <- plot + if (is.factor(data[["value"]])) {
-      jaspGraphs::scale_JASPfill_discrete(palette)
-    } else {
-      jaspGraphs::scale_JASPfill_continuous(palette)
-    }
-
-    plot <- jaspGraphs::themeJasp(plot, legend.position = if (options[["heatmapLegend"]]) "right" else "none")
-
-    jaspPlot$plotObject <- plot
+    )
   }
 
   container[[plotName]] <- jaspPlot
+}
+
+.plotHeatmapDescriptives <- function(data, axesNames, tileRatio, displayValue,
+                                     valueTextSize, palette, showLegend) {
+  plot <- ggplot2::ggplot(data, ggplot2::aes(x = horizontal, y = vertical, fill = value)) +
+    ggplot2::geom_tile(color = "black", size = 1) +
+    ggplot2::xlab(axesNames[[1L]]) +
+    ggplot2::ylab(axesNames[[2L]]) +
+    ggplot2::coord_fixed(ratio = 1 / tileRatio)
+
+  if (displayValue)
+    plot <- plot + ggplot2::geom_text(
+      ggplot2::aes(x = horizontal, y = vertical, label = label),
+      size = 8 * valueTextSize
+    )
+
+  plot <- plot + if (is.factor(data[["value"]])) {
+    jaspGraphs::scale_JASPfill_discrete(palette)
+  } else {
+    jaspGraphs::scale_JASPfill_continuous(palette)
+  }
+
+  jaspGraphs::themeJasp(plot, legend.position = if (showLegend) "right" else "none")
 }
 
 .descriptivesHeatmapAggregateData <- function(variable, groups, fun = c("identity", "meanArithmetic", "median", "mode", "length")) {
@@ -2237,12 +2320,8 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     return(likPlot)
   }
 
-  # Likert Part: Preparing & summarize data in the likert format (% of levels per variable)
   nLevels <- nlevels(dataset[, 1])
   center <- (nLevels - 1) / 2 + 1
-  lowRange <- 1:floor(center - 0.5)
-  highRange <- ceiling(center + 0.5):nLevels
-
   if (!all(sapply(dataset, function(x) nlevels(x)) == nLevels)) {
     likPlot$setError(gettext("All categorical variables must have the same number of levels!"))
     return(likPlot)
@@ -2252,8 +2331,23 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     return(likPlot)
   }
 
-  # Summarizing item contribution and get clean data
-  results <- data.frame()
+  likPlot$plotObject <- jaspGraphs::createJaspPlotRecipe(
+    fun = "jaspDescriptives:::.plotLikertDescriptives",
+    args = list(
+      dataset  = dataset,
+      fontSize = options[["likertPlotAdjustableFontSize"]]
+    )
+  )
+
+  return(likPlot)
+}
+
+.plotLikertDescriptives <- function(dataset, fontSize) {
+  nLevels <- nlevels(dataset[, 1])
+  center <- (nLevels - 1) / 2 + 1
+  lowRange <- 1:floor(center - 0.5)
+  highRange <- ceiling(center + 0.5):nLevels
+
   results <- data.frame(Response = seq_len(nLevels))
   for (i in seq_len(ncol(dataset))) {
     t <- table(dataset[, i])
@@ -2291,30 +2385,22 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   names(results)[1] <- "Item"
   row.names(results) <- seq_len(nrow(results))
 
-  # Correcting for missing values in "results"
   for (i in 2:ncol(results)) {
     narows <- which(is.na(results[, i]))
-    if (length(narows) > 0) {
+    if (length(narows) > 0)
       results[narows, i] <- 0
-    }
   }
-  # Correcting for missing values in "resultsTwo"
   narows <- which(is.na(resultsTwo$low))
-  if (length(narows) > 0) {
+  if (length(narows) > 0)
     resultsTwo[narows, ]$low <- 0
-  }
   narows <- which(is.na(resultsTwo$neutral))
-  if (length(narows) > 0) {
+  if (length(narows) > 0)
     resultsTwo[narows, ]$neutral <- 0
-  }
   narows <- which(is.na(resultsTwo$high))
-  if (length(narows) > 0) {
+  if (length(narows) > 0)
     resultsTwo[narows, ]$high <- 0
-  }
 
   lik <- list(results = results, levels = levels(dataset[, 1]), sum = resultsTwo)
-
-  # Likert Plot Part:
   textSize <- 6
   textColor <- "black"
   yMin <- -100
@@ -2405,16 +2491,14 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     ggplot2::theme(text = ggplot2::element_text(size = 22.5), axis.title.x = ggplot2::element_text(size = 18))
 
   p <- p + ggplot2::theme(axis.text.y = ggplot2::element_text(
-    size = switch(options[["likertPlotAdjustableFontSize"]],
+    size = switch(fontSize,
       "small"  = 20,
       "medium" = 22.5,
       "large"  = 25
     )
   ))
 
-  likPlot$plotObject <- p
-
-  return(likPlot)
+  p
 }
 
 .descriptivesParetoPlots <- function(dataset, variable, options) {
@@ -2462,13 +2546,24 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   if (!is.null(errorMessage)) {
     parPlot$setError(gettextf("Plotting not possible: %s", errorMessage))
   } else if (length(column) > 0) {
-    parPlot$plotObject <- .descriptivesParetoPlots_Fill(column, variable, options)
+    parPlot$plotObject <- jaspGraphs::createJaspPlotRecipe(
+      fun = "jaspDescriptives:::.descriptivesParetoPlots_Fill",
+      args = list(
+        column                = column,
+        variable              = variable,
+        shiftAccumulationLine = options[["paretoShiftAccumulationLine"]],
+        plotRule              = options[["paretoPlotRule"]],
+        plotRuleCi            = options[["paretoPlotRuleCi"]],
+        tiltXAxisLabels       = options[["paretoPlotTiltXAxisLabels"]]
+      )
+    )
   }
 
   return(parPlot)
 }
 
-.descriptivesParetoPlots_Fill <- function(column, variable, options) {
+.descriptivesParetoPlots_Fill <- function(column, variable, shiftAccumulationLine,
+                                          plotRule, plotRuleCi, tiltXAxisLabels) {
 
   # tableNote <- ""
   # Normalize input: either a vector OR a 2-col data.frame (category, COUNT)
@@ -2495,7 +2590,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   scaleRight <- max(tb$cums) / max(yBreaks)
 
   # --- Unified Pareto line + guides (left axis = % when shifted) ---
-  shift    <- options[["paretoShiftAccumulationLine"]]
+  shift    <- shiftAccumulationLine
   tot      <- sum(tb$Freq)
   cumC     <- cumsum(tb$Freq)
   cumP     <- cumC / tot * 100
@@ -2557,8 +2652,8 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     ggplot2::theme(plot.margin = ggplot2::margin(5))
 
   # Pareto-rule guides (e.g., 95%) – vertical up from x-axis, then toward the % axis
-  if (options[["paretoPlotRule"]]) {
-    perc   <- options[["paretoPlotRuleCi"]]   # e.g., 0.95
+  if (plotRule) {
+    perc   <- plotRuleCi   # e.g., 0.95
     target <- perc * 100                      # % value
 
     # find crossing on the cumulative % curve
@@ -2592,7 +2687,7 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
   }
 
   # possibly tilt the x-axis labels
-  if (options[["paretoPlotTiltXAxisLabels"]]) {
+  if (tiltXAxisLabels) {
     levs <- decodeColNames(levels(tb$level))
     maxChars <- max(nchar(levs))
     titlePad <- max(10, min(40, ceiling(maxChars * 0.6)))  # space to the title
@@ -2651,7 +2746,6 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
 }
 
 .descriptivesDensityPlotsFill <- function(container, data, plotName, axeName, position, options, variableType) {
-  jaspGraphs::graphOptions(palette = options[["colorPalette"]])
   densPlot <- createJaspPlot(title = plotName, width = 480, height = 320, position = position)
 
   errorMessage <- .descriptivesCheckPlotErrors(data, colnames(data), obsAmount = "< 2")
@@ -2664,61 +2758,99 @@ DescriptivesInternal <- function(jaspResults, dataset, options) {
     densPlot$setError(gettext("Levels within variable require at least two or more data points!"))
 
   } else if (variableType == "nominal" || variableType == "ordinal")  {
-
-    if (options[["densityPlotCategoricalType"]] == "condProp" && options[["densityPlotSeparate"]] != "") {
-      tb <- as.data.frame(table(data) / rowSums(table(data), na.rm = TRUE))
-      yAxeName <- "Conditional proportion"
-    } else if (options[["densityPlotCategoricalType"]] == "count") {
-      tb <- as.data.frame(table(data))
-      yAxeName <- "Counts"
-    } else { # if no separator but request cond prop, then give proportions
-      tb <- as.data.frame(table(data) / sum(table(data), na.rm = TRUE))
-      yAxeName <- "Proportion"
-    }
-
-    p <- if (options[["densityPlotSeparate"]] != "") {
-      ggplot2::ggplot(data = tb, ggplot2::aes(x = variable, y = Freq, fill = separator))
-    } else {
-      ggplot2::ggplot(data = tb, ggplot2::aes(x = variable, y = Freq))
-    }
-
-    densPlot$plotObject <- p +
-      ggplot2::geom_bar(stat = "identity", col = "black", width = 0.7, size = .3, position = ggplot2::position_dodge(width = 0.7)) +
-      ggplot2::xlab(axeName) +
-      ggplot2::scale_fill_manual(values = jaspGraphs::JASPcolors(options[["colorPalette"]]), name = options[["densityPlotSeparate"]]) +
-      ggplot2::ylab(yAxeName) +
-      jaspGraphs::geom_rangeframe() +
-      jaspGraphs::themeJaspRaw() +
-      ggplot2::theme(plot.margin =  ggplot2::margin(5), legend.position = "right")
+    densPlot$plotObject <- jaspGraphs::createJaspPlotRecipe(
+      fun = "jaspDescriptives:::.plotCategoricalDensityDescriptives",
+      args = list(
+        data            = data,
+        xName           = axeName,
+        groupingName    = options[["densityPlotSeparate"]],
+        categoricalType = options[["densityPlotCategoricalType"]],
+        palette         = options[["colorPalette"]]
+      )
+    )
 
   } else if (options[["densityPlotType"]] == "density") {
 
-    densPlot$plotObject <- jaspGraphs::jaspHistogram(x = data[["variable"]],
-                                                     histogram = FALSE,
-                                                     density = TRUE,
-                                                     densityColor = TRUE,
-                                                     densityShade = TRUE,
-                                                     densityShadeAlpha = 1 - (options[["densityPlotTransparency"]]/100),
-                                                     xName = axeName,
-                                                     groupingVariableName = options[["densityPlotSeparate"]],
-                                                     groupingVariable = data[["separator"]],
-                                                     histogramPosition = options[["customHistogramPosition"]])
+    densPlot$plotObject <- jaspGraphs::createJaspPlotRecipe(
+      fun = "jaspDescriptives:::.descriptivesJaspHistogram",
+      args = list(
+        x                    = data[["variable"]],
+        histogram            = FALSE,
+        density              = TRUE,
+        densityColor         = TRUE,
+        densityShade         = TRUE,
+        densityShadeAlpha    = 1 - (options[["densityPlotTransparency"]] / 100),
+        xName                = axeName,
+        groupingVariableName = options[["densityPlotSeparate"]],
+        groupingVariable     = data[["separator"]],
+        histogramPosition    = options[["customHistogramPosition"]],
+        palette              = options[["colorPalette"]]
+      )
+    )
 
 
   } else if (options[["densityPlotType"]] == "histogram") {
 
-    densPlot$plotObject <- jaspGraphs::jaspHistogram(x = data[["variable"]],
-                                                     xName = axeName,
-                                                     groupingVariableName = options[["densityPlotSeparate"]],
-                                                     groupingVariable = data[["separator"]],
-                                                     binWidthType = "sturges",
-                                                     histogramPosition = options[["customHistogramPosition"]])
-    if (options[["customHistogramPosition"]] == "identity")
-      densPlot$plotObject$layers[[1]]$aes_params$alpha <- 1 - (options[["densityPlotTransparency"]]/100)
+    densPlot$plotObject <- jaspGraphs::createJaspPlotRecipe(
+      fun = "jaspDescriptives:::.descriptivesJaspHistogram",
+      args = list(
+        x                    = data[["variable"]],
+        xName                = axeName,
+        groupingVariableName = options[["densityPlotSeparate"]],
+        groupingVariable     = data[["separator"]],
+        binWidthType         = "sturges",
+        histogramPosition    = options[["customHistogramPosition"]],
+        histogramAlpha       = if (options[["customHistogramPosition"]] == "identity") 1 - (options[["densityPlotTransparency"]] / 100) else NULL,
+        palette              = options[["colorPalette"]]
+      )
+    )
   }
 
 
   container[[plotName]] <- densPlot
+}
+
+.plotCategoricalDensityDescriptives <- function(data, xName, groupingName,
+                                                 categoricalType, palette) {
+  hasGrouping <- nzchar(groupingName)
+  if (categoricalType == "condProp" && hasGrouping) {
+    tb <- as.data.frame(table(data) / rowSums(table(data), na.rm = TRUE))
+    yName <- "Conditional proportion"
+  } else if (categoricalType == "count") {
+    tb <- as.data.frame(table(data))
+    yName <- "Counts"
+  } else {
+    tb <- as.data.frame(table(data) / sum(table(data), na.rm = TRUE))
+    yName <- "Proportion"
+  }
+
+  plot <- if (hasGrouping) {
+    ggplot2::ggplot(tb, ggplot2::aes(x = variable, y = Freq, fill = separator))
+  } else {
+    ggplot2::ggplot(tb, ggplot2::aes(x = variable, y = Freq))
+  }
+
+  plot +
+    ggplot2::geom_bar(stat = "identity", col = "black", width = 0.7, size = .3,
+                      position = ggplot2::position_dodge(width = 0.7)) +
+    ggplot2::xlab(xName) +
+    ggplot2::scale_fill_manual(values = jaspGraphs::JASPcolors(palette), name = groupingName) +
+    ggplot2::ylab(yName) +
+    jaspGraphs::geom_rangeframe() +
+    jaspGraphs::themeJaspRaw() +
+    ggplot2::theme(plot.margin = ggplot2::margin(5), legend.position = "right")
+}
+
+.descriptivesJaspHistogram <- function(..., palette, histogramAlpha = NULL) {
+  oldPalette <- jaspGraphs::getGraphOption("palette")
+  on.exit(jaspGraphs::setGraphOption("palette", oldPalette))
+  jaspGraphs::setGraphOption("palette", palette)
+
+  plot <- jaspGraphs::jaspHistogram(...)
+  if (!is.null(histogramAlpha))
+    plot$layers[[1L]]$aes_params$alpha <- histogramAlpha
+
+  plot
 }
 
 .geometricMean <- function(x) {
