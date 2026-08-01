@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.11.0\n"
 "POT-Creation-Date: 2026-04-11 04:04\n"
-"PO-Revision-Date: 2026-07-09 02:01+0000\n"
-"Last-Translator: Akira Harada <momoldo@gmail.com>\n"
+"PO-Revision-Date: 2026-08-01 04:18+0000\n"
+"Last-Translator: Koji Kosugi <kosugitti@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
 "jaspdescriptives-r/ja/>\n"
 "Language: ja\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2026.7.1.dev0\n"
+"X-Generator: Weblate 2026.8.dev0\n"
 
 msgid "Time Series Plot"
 msgstr "時系列プロット"
@@ -23,6 +23,8 @@ msgid ""
 "The specified lag, %1$s, is too large given the %2$s observations in the "
 "data. Please choose a smaller lag."
 msgstr ""
+"指定したラグ %1$s は、データの観測数 %2$s に対して大きすぎます。より小さい"
+"ラグを選んでください。"
 
 msgid "Autocorrelation Function"
 msgstr "自己相関関数"
@@ -34,7 +36,7 @@ msgid "Descriptive Statistics"
 msgstr "記述統計"
 
 msgid "Valid"
-msgstr "妥当"
+msgstr "有効"
 
 msgid "Missing"
 msgstr "欠損値"
@@ -150,9 +152,8 @@ msgstr "ヒートマップ"
 msgid "Pareto Plots"
 msgstr "パレートプロット"
 
-#, fuzzy
 msgid "Frequency Plots"
-msgstr "度数分布表"
+msgstr "度数プロット"
 
 msgid "Likert Plots"
 msgstr "リッカートプロット"
@@ -177,11 +178,9 @@ msgstr "上限"
 msgid "Lower"
 msgstr "下限"
 
-#, fuzzy
 msgid "%s%% CI A. Mean Upper"
 msgstr "%s%% 信頼区間 平均 上限"
 
-#, fuzzy
 msgid "%s%% CI A. Mean Lower"
 msgstr "%s%% 信頼区間 平均 下限"
 
@@ -206,7 +205,6 @@ msgstr "中央値"
 msgid "Mean (arithmetic)"
 msgstr "平均(算術)"
 
-#, fuzzy
 msgid "Std. Error of A. Mean"
 msgstr "平均の標準誤差"
 
@@ -294,6 +292,8 @@ msgid ""
 "For ordinal variables, quantile type 3 was used because the selected type is "
 "not supported."
 msgstr ""
+"順序変数では、選択した種類がサポートされていないため、分位点の種類3を使いまし"
+"た。"
 
 msgid "Total"
 msgstr "合計"
@@ -302,7 +302,7 @@ msgid "All variables have more than %1$s distinct values"
 msgstr "すべての変数が %1$s 個以上の異なる値を持っています"
 
 msgid "Frequencies"
-msgstr "頻度"
+msgstr "度数"
 
 msgid "Frequencies for %s"
 msgstr "%s の頻度"
@@ -347,11 +347,10 @@ msgstr ""
 "欠測値があるためいくつかの連関が計算できません。別の「使用」設定を試してくだ"
 "さい."
 
-#, fuzzy
 msgid ""
 "Plotting not possible: Variable '%s' has fewer than 2 valid (non-missing) "
 "observations."
-msgstr "欠落していない観測値が2つ未満であるため、幹葉表を作成できませんでした"
+msgstr "プロットできません: 変数 '%s' の有効な(欠測でない)観測値が2つ未満です。"
 
 msgid "Stem"
 msgstr "幹"
@@ -381,11 +380,10 @@ msgstr "項目は、2つ以上の水準である必要があります!"
 msgid ""
 "The variable used for counts must be different from the variable used for "
 "categories."
-msgstr ""
+msgstr "カウントに使う変数は、カテゴリに使う変数とは別である必要があります。"
 
-#, fuzzy
 msgid "Percentage (%%)"
-msgstr "パーセント"
+msgstr "パーセント (%%)"
 
 msgid "Levels within variable require at least two or more data points!"
 msgstr "変数内の水準は少なくとも2つ以上のデータポイントが必要です!"
@@ -394,16 +392,17 @@ msgid ""
 "Please assign a variable to every RM factor (defined in Repeated Measures "
 "Factors) within Repeated Measures Cells."
 msgstr ""
+"反復測定セルの中で、反復測定要因で定義したすべての反復測定要因に変数を割り当"
+"ててください。"
 
-#, fuzzy
 msgid "Plots"
-msgstr "Q-Qプロット"
+msgstr "プロット"
 
 msgid "Available Plot IDs"
 msgstr "有効なプロットID"
 
 msgid "Plot Grid"
-msgstr ""
+msgstr "プロットのグリッド"
 
 msgid "Raincloud Plots"
 msgstr "雨雲プロット"
@@ -421,17 +420,14 @@ msgstr ""
 "<span style = 'color: darkorange'>カスタム間隔でエラーです: 指定された雲の数"
 "が図の雲とあっていません。</span>"
 
-#, fuzzy
 msgid "Interval around mean represents ± 1 standard error"
-msgstr "平均周りの間隔は ± 1標準偏差を表示しています."
+msgstr "平均のまわりの区間は ± 1標準誤差を表します"
 
-#, fuzzy
 msgid "Interval around mean represents ± 1 standard deviation"
-msgstr "平均周りの間隔は ± 1標準偏差を表示しています."
+msgstr "平均のまわりの区間は ± 1標準偏差を表します"
 
-#, fuzzy
 msgid "Interval around mean represents %d%% confidence interval."
-msgstr "平均周りの間隔は ± 1標準偏差を表示しています."
+msgstr "平均のまわりの区間は %d%% 信頼区間を表します。"
 
 msgid "Points are slightly jittered from their true values."
 msgstr "点は真値からわずかにずれている可能性があります."
@@ -449,16 +445,20 @@ msgid ""
 "number of clouds does not match clouds in plot.<br>Reverted to default all "
 "'R'. Point nudge set to 0.</span>"
 msgstr ""
+"<span style = 'color: darkorange'> カスタムの向きのエラー: 指定した雲の数が"
+"プロット内の雲の数と一致しません。<br>既定のすべて'R'に戻しました。点のナッジ"
+"は0に設定しました。</span>"
 
 msgid ""
 "<span style = 'color: darkorange'> Error with custom color: Specified number "
 "of clouds does not match clouds in plot.<br>Ignoring custom color input.</"
 "span>"
 msgstr ""
+"<span style = 'color: darkorange'> カスタムの色のエラー: 指定した雲の数が"
+"プロット内の雲の数と一致しません。<br>カスタムの色の入力を無視します。</span>"
 
-#, fuzzy
 msgid "Statistics"
-msgstr "記述統計"
+msgstr "統計量"
 
 msgid "Primary Factor"
 msgstr "第一因子"
@@ -481,15 +481,12 @@ msgstr "75パーセンタイル"
 msgid "Upper Whisker"
 msgstr "高い方のひげ(Q3-max)"
 
-#, fuzzy
 msgid "%s%% CI for Mean Difference"
-msgstr "%s%% 信頼区間 平均 上限"
+msgstr "平均差の %s%% 信頼区間"
 
-#, fuzzy
 msgid "Standard Error"
-msgstr "標準偏差"
+msgstr "標準誤差"
 
-#, fuzzy
 msgid "Standard Deviation"
 msgstr "標準偏差"
 
@@ -502,9 +499,8 @@ msgstr "欠測値のため %s オブザベーションを除外します."
 msgid "<br>Interval around mean is custom."
 msgstr "<br>平均周りの間隔はカスタム."
 
-#, fuzzy
 msgid "<br>Interval around mean represents %d%% confidence interval."
-msgstr "平均周りの間隔は ± 1標準偏差を表示しています."
+msgstr "<br>平均のまわりの区間は %d%% 信頼区間を表します。"
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
