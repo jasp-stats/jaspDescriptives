@@ -67,8 +67,8 @@ Form
 		Group
 		{
 			title: qsTr("Sample size")
-			CheckBox { name: "valid";			label: qsTr("Valid");	checked: true	info: qsTr("Number of valid observations")}
-			CheckBox { name: "missing";			label: qsTr("Missing");	checked: true	info: qsTr("Number of missing observations")}
+			CheckBox { name: "valid";			label: qsTr("Valid");	checked: true;	info: qsTr("Number of valid observations")}
+			CheckBox { name: "missing";			label: qsTr("Missing");	checked: true;	info: qsTr("Number of missing observations")}
 		}
 
 		Group
