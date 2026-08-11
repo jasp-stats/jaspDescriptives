@@ -285,7 +285,7 @@ msgstr ""
 msgid ""
 "For ordinal variables, quantile type 3 was used because the selected type is "
 "not supported."
-msgstr ""
+msgstr "对于序数变量，由于所选类型不受支持，因此使用了分位数类型 3。"
 
 msgid "Total"
 msgstr "总计"
