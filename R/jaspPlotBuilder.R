@@ -600,7 +600,7 @@ addDecodedLabels <- function(p) {
           input_text <- paste0("c(", input_text, ")")
         }
 
-        draw_quantiles <- eval(parse(text = input_text))
+        draw_quantiles <- safe_eval_text(input_text)
 
         argList <- list(
           draw_quantiles = draw_quantiles,
@@ -741,7 +741,7 @@ addDecodedLabels <- function(p) {
       layer_calls$count_value <- function(p) {
         argList <- list(
           fontsize = tab[["fontsizeCountValue"]],
-          accuracy = eval(parse(text = tab[["accuracyCountValue"]])),
+          accuracy = safe_eval_text(tab[["accuracyCountValue"]]),
           alpha    = tab[["alphaCountValue"]],
           hjust    = tab[["hjustCountValue"]],
           vjust    = tab[["vjustCountValue"]]
@@ -804,7 +804,7 @@ addDecodedLabels <- function(p) {
       layer_calls$sum_value <- function(p) {
         argList <- list(
           fontsize = tab[["fontsizeSumValue"]],
-          accuracy = eval(parse(text = tab[["accuracySumValue"]])),
+          accuracy = safe_eval_text(tab[["accuracySumValue"]]),
           alpha    = tab[["alphaSumValue"]],
           hjust    = tab[["hjustSumValue"]],
           vjust    = tab[["vjustSumValue"]]
@@ -981,7 +981,7 @@ addDecodedLabels <- function(p) {
           dodge_width = tab[["dodgeMeanValue"]],
           alpha       = tab[["alphaMeanValue"]],
           fontsize    = tab[["fontsizeMeanValue"]],
-          accuracy    = eval(parse(text = tab[["accuracyMeanValue"]])),
+          accuracy    = safe_eval_text(tab[["accuracyMeanValue"]]),
           hjust       = tab[["hjustMeanValue"]],
           vjust       = tab[["vjustMeanValue"]]
         )
@@ -1065,7 +1065,7 @@ addDecodedLabels <- function(p) {
       layer_calls$median_value <- function(p) {
         argList <- list(
           fontsize = tab[["fontsizeMedianValue"]],
-          accuracy = eval(parse(text = tab[["accuracyMedianValue"]])),
+          accuracy = safe_eval_text(tab[["accuracyMedianValue"]]),
           alpha    = tab[["alphaMedianValue"]],
           hjust    = tab[["hjustMedianValue"]],
           vjust    = tab[["vjustMedianValue"]]
@@ -1321,7 +1321,7 @@ addDecodedLabels <- function(p) {
             x         = eval(parse(text = paste0("c(", tab[["xReferenceLine"]], ")"))),
             linetype  = "dashed",
             linewidth = tab[["linewidhtReferenceLines"]],
-            color     = eval(parse(text = paste0("\"", tab[["colorReferenceLine"]], "\"")))
+            color     = safe_eval_text(paste0("\"", tab[["colorReferenceLine"]], "\""))
           )
         )
       }
@@ -1353,7 +1353,7 @@ addDecodedLabels <- function(p) {
             xend  = x_max,
             y     = y_max,
             yend  = y_min,
-            color = eval(parse(text = paste0("\"", tab[["colorIdentityLine"]], "\"")))
+            color = safe_eval_text(paste0("\"", tab[["colorIdentityLine"]], "\""))
           )
         } else {
           tidyplots::add_annotation_line(
@@ -1362,7 +1362,7 @@ addDecodedLabels <- function(p) {
             xend  = x_max,
             y     = y_min,
             yend  = y_max,
-            color = eval(parse(text = paste0("\"", tab[["colorIdentityLine"]], "\"")))
+            color = safe_eval_text(paste0("\"", tab[["colorIdentityLine"]], "\""))
           )
         }
       }
@@ -2049,7 +2049,7 @@ addDecodedLabels <- function(p) {
             ggplot2::geom_segment(
               data = thisSegment,
               mapping = ggplot2::aes(x = x, xend = xend, y = y, yend = yend),
-              color = eval(parse(text = paste0("\"", line[["colorAnnotationLine"]], "\""))),
+              color = safe_eval_text(paste0("\"", line[["colorAnnotationLine"]], "\"")),
               inherit.aes = FALSE
             )
 
@@ -2066,7 +2066,7 @@ addDecodedLabels <- function(p) {
             thisText <- data.frame(
               x = x_mid,
               y = y_mid + offset_scaled,
-              label = eval(parse(text = paste0("\"", line[["textAnnotationline"]], "\""))),
+              label = safe_eval_text(paste0("\"", line[["textAnnotationline"]], "\"")),
               stringsAsFactors = FALSE
             )
             if (!is.null(colsVar) && nzchar(colAnnotLine)) {
@@ -2567,7 +2567,7 @@ addDecodedLabels <- function(p) {
           columnsWidth <- paste0("c(", columnsWidth, ")")
         }
         columnsWidth <- tryCatch(
-          eval(parse(text = columnsWidth)),
+          safe_eval_text(columnsWidth),
           error = function(e) {
             rep(1, ncol)
           }
@@ -2594,7 +2594,7 @@ addDecodedLabels <- function(p) {
           relativeHeight <- paste0("c(", relativeHeight, ")")
         }
         relativeHeight <- tryCatch(
-          eval(parse(text = relativeHeight)),
+          safe_eval_text(relativeHeight),
           error = function(e) {
             rep(1, ncol)
           }
@@ -2639,7 +2639,7 @@ addDecodedLabels <- function(p) {
             rowHeightsStr <- paste0("c(", rowHeightsStr, ")")
           }
           rowHeightsParsed <- tryCatch(
-            eval(parse(text = rowHeightsStr)),
+            safe_eval_text(rowHeightsStr),
             error = function(e) {
               rep(1, nRows)
             }
@@ -2756,7 +2756,7 @@ addDecodedLabels <- function(p) {
             relWidthsStr <- paste0("c(", relWidthsStr, ")")
           }
           relWidthsParsed <- tryCatch(
-            eval(parse(text = relWidthsStr)),
+            safe_eval_text(relWidthsStr),
             error = function(e) {
               rep(1, nPlots)
             }
@@ -2830,7 +2830,7 @@ addDecodedLabels <- function(p) {
           relheightWithinRowLayoutStr <- paste0("c(", relheightWithinRowLayoutStr, ")")
         }
         relheightWithinRowLayout <- tryCatch(
-          eval(parse(text = relheightWithinRowLayoutStr)),
+          safe_eval_text(relheightWithinRowLayoutStr),
           error = function(e) {
             rep(1, length(fullRowPlots))
           }
@@ -2854,7 +2854,7 @@ addDecodedLabels <- function(p) {
         relativeHeightStr <- paste0("c(", relativeHeightStr, ")")
       }
       relativeHeight <- tryCatch(
-        eval(parse(text = relativeHeightStr)),
+        safe_eval_text(relativeHeightStr),
         error = function(e) {
           c(1, 1)
         }
