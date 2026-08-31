@@ -1742,9 +1742,14 @@ addDecodedLabels <- function(p) {
     adjust_args_xaxis$cut_short_scale <- isTRUE(cutShortScale)
 
     # add padding
-    XPaddingFirst <- tab[["XPaddingFirst"]]
-    XPaddingSecond <- tab[["XPaddingSecond"]]
-    adjust_args_xaxis$padding <- c(XPaddingFirst,XPaddingSecond)
+    # Same as for the Y axis: an absent option must not end up in the padding as a zero length value.
+    XPaddingFirst  <- suppressWarnings(as.numeric(tab[["XPaddingFirst"]]))
+    XPaddingSecond <- suppressWarnings(as.numeric(tab[["XPaddingSecond"]]))
+
+    if (length(XPaddingFirst)  != 1 || !is.finite(XPaddingFirst))  XPaddingFirst  <- 0.1
+    if (length(XPaddingSecond) != 1 || !is.finite(XPaddingSecond)) XPaddingSecond <- 0.1
+
+    adjust_args_xaxis$padding <- c(XPaddingFirst, XPaddingSecond)
     if (length(adjust_args_xaxis) > 0) {
       tidyplot_obj <- do.call(
         tidyplots::adjust_x_axis,
@@ -1790,43 +1795,50 @@ addDecodedLabels <- function(p) {
     }
 
     # Adjust Y axis (tidyplots::adjust_y_axis)----
-
-
-
     {
       adjust_args_yaxis <- list()
 
-      # --- Limit beállítások ---
+      # --- Title ---
+      titleValueY <- tab[["titleYPlotBuilder"]]
+      if (!is.null(titleValueY) && titleValueY != "") {
+        adjust_args_yaxis$title <- titleValueY
+      }
+
+      # --- Limits ---
       limitFromY <- suppressWarnings(as.numeric(tab[["limitFromY"]]))
       limitToY   <- suppressWarnings(as.numeric(tab[["limitToY"]]))
-      user_has_limits <- !is.na(limitFromY) && !is.na(limitToY)
+      user_has_limits <- isTRUE(!is.na(limitFromY) && !is.na(limitToY))
 
       if (user_has_limits) {
         adjust_args_yaxis$limits <- c(limitFromY, limitToY)
       }
 
-      # --- Breaks beállítása ---
+      # --- Breaks ---
       fromValueY <- suppressWarnings(as.numeric(tab[["breakFromY"]]))
       toValueY   <- suppressWarnings(as.numeric(tab[["breakToY"]]))
       byValueY   <- suppressWarnings(as.numeric(tab[["breakByY"]]))
-      user_has_breaks <- !is.na(fromValueY) && !is.na(toValueY) && !is.na(byValueY)
+      user_has_breaks <- isTRUE(!is.na(fromValueY) && !is.na(toValueY) && !is.na(byValueY))
 
       if (user_has_breaks) {
         adjust_args_yaxis$breaks <- seq(fromValueY, toValueY, byValueY)
       }
 
-      # --- Padding beállítása ---
+      # --- Padding ---
+      # An option that is absent gives numeric(0) here, so fall back to the default the qml shows
+      # instead of feeding a zero length value to is.finite(), which would make the test below fail
+      # with "missing value where TRUE/FALSE needed".
       bottom_padding <- suppressWarnings(as.numeric(tab[["YPaddingFirst"]]))
       top_padding    <- suppressWarnings(as.numeric(tab[["YPaddingSecond"]]))
 
-      if (is.finite(bottom_padding) || is.finite(top_padding)) {
-        adjust_args_yaxis$padding <- c(
-          ifelse(is.finite(bottom_padding), bottom_padding, 0.05),
-          ifelse(is.finite(top_padding), top_padding, 0.05)
-        )
-      }
+      if (length(bottom_padding) != 1 || !is.finite(bottom_padding)) bottom_padding <- 0.1
+      if (length(top_padding)    != 1 || !is.finite(top_padding))    top_padding    <- 0.1
 
-      # --- Tengely beállítása ---
+      adjust_args_yaxis$padding <- c(bottom_padding, top_padding)
+
+      # --- Labels ---
+      adjust_args_yaxis$cut_short_scale <- isTRUE(tab[["cutShortScaleY"]])
+
+      # --- Apply ---
       if (length(adjust_args_yaxis) > 0) {
         tidyplot_obj <- do.call(
           tidyplots::adjust_y_axis,
@@ -1834,7 +1846,7 @@ addDecodedLabels <- function(p) {
         )
       }
 
-      # --- Opcionális Y-tengelyrendezés ---
+      # --- Optional sorting of the Y axis ---
       enableSortY <- tab[["enableSortY"]]
       if (isTRUE(enableSortY)) {
         sortOrderY <- tab[["sortYLabelsOrder"]]
