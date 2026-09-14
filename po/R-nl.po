@@ -23,7 +23,7 @@ msgstr "Vertragingsfiguur"
 msgid ""
 "The specified lag, %1$s, is too large given the %2$s observations in the "
 "data. Please choose a smaller lag."
-msgstr ""
+msgstr "De opgegeven vertraging, %1$s, is te groot gezien de %2$s waarnemingen in de gegevens. Kies een kleinere vertraging."
 
 msgid "Autocorrelation Function"
 msgstr "Autocorrelatiefunctie"
@@ -208,17 +208,17 @@ msgid "Median"
 msgstr "Mediaan"
 
 msgid "Mean (arithmetic)"
-msgstr ""
+msgstr "Gemiddelde (rekenkundig)"
 
 #, fuzzy
 msgid "Std. Error of A. Mean"
 msgstr "Std. fout van het gemiddelde"
 
 msgid "Mean (geometric)"
-msgstr ""
+msgstr "Gemiddelde (meetkundig)"
 
 msgid "Mean (harmonic)"
-msgstr ""
+msgstr "Gemiddelde (harmonisch)"
 
 msgid "Coefficient of variation"
 msgstr "Coefficiënt van Variatie"
@@ -292,12 +292,12 @@ msgstr ""
 msgid ""
 "Geometric and harmonic means are defined only for strictly positive "
 "variables, but the data contain some non-positive values."
-msgstr ""
+msgstr "Meetkundige en harmonische gemiddelden zijn alleen gedefinieerd voor strikt positieve variabelen, maar de gegevens bevatten enkele niet-positieve waarden."
 
 msgid ""
 "For ordinal variables, quantile type 3 was used because the selected type is "
 "not supported."
-msgstr ""
+msgstr "Voor ordinale variabelen werd kwantieltype 3 gebruikt omdat het geselecteerde type niet wordt ondersteund."
 
 msgid "Total"
 msgstr "Totaal"
@@ -392,7 +392,7 @@ msgstr "Items moeten 2 of meer niveaus hebben!"
 msgid ""
 "The variable used for counts must be different from the variable used for "
 "categories."
-msgstr ""
+msgstr "De verzameling van de variabele voor tellingen moet verschillen van de variabele voor categorieën."
 
 #, fuzzy
 msgid "Percentage (%%)"
@@ -404,17 +404,17 @@ msgstr "Niveaus binnen variabele vereist minstens 2 datapunten!"
 msgid ""
 "Please assign a variable to every RM factor (defined in Repeated Measures "
 "Factors) within Repeated Measures Cells."
-msgstr ""
+msgstr "Wijs een variabele toe aan elke RM-factor (gedefinieerd in Herhaalde Metingen Factoren) binnen Herhaalde Metingen Cellen."
 
 #, fuzzy
 msgid "Plots"
 msgstr "Q-Q Figuren"
 
 msgid "Available Plot IDs"
-msgstr ""
+msgstr "Beschikbare plot-ID's"
 
 msgid "Plot Grid"
-msgstr ""
+msgstr "Plotraster"
 
 msgid "Raincloud Plots"
 msgstr "Regenwolkfiguren"

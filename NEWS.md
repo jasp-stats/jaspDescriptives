@@ -15,9 +15,9 @@
 ---
 
 # jaspDescriptives (development version)
-## Added
-* Update the mode footnote to be more informative and specific.
 
+* Added documentation for interval plots, dotplots, and pie charts in the helpfile ([PR 516](https://github.com/jasp-stats/jaspDescriptives/pull/516)).
+* Update the mode footnote to be more informative and specific ([PR 498](https://github.com/jasp-stats/jaspDescriptives/pull/498)).
 
 ---
 

@@ -36,7 +36,7 @@ Description
 	}
 	Analysis
 	{
-		title:  qsTr("Plot Builder (beta)")
+		title:  qsTr("Plot Builder")
 		qml:   	"jaspPlotBuilder.qml"
 		func:	"jaspPlotBuilder"
 		preloadData	: false

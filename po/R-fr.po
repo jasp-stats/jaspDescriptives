@@ -14,7 +14,7 @@ msgstr ""
 "X-Generator: Weblate 5.14.1-dev\n"
 
 msgid "Time Series Plot"
-msgstr ""
+msgstr "Graphique de série temporelle"
 
 #, fuzzy
 msgid "Lag Plot"
@@ -24,13 +24,15 @@ msgid ""
 "The specified lag, %1$s, is too large given the %2$s observations in the "
 "data. Please choose a smaller lag."
 msgstr ""
+"Le décalage spécifié, %1$s, est trop grand compte tenu des %2$s observations "
+"des données. Veuillez choisir un décalage plus petit."
 
 #, fuzzy
 msgid "Autocorrelation Function"
 msgstr "Graphique de corrélation"
 
 msgid "Partial Autocorrelation Function"
-msgstr ""
+msgstr "Fonction d'autocorrélation partielle"
 
 msgid "Descriptive Statistics"
 msgstr "Statistiques descriptives"
@@ -66,17 +68,19 @@ msgid "End"
 msgstr "Fin"
 
 msgid "Lag 1 Autocorrelation"
-msgstr ""
+msgstr "Autocorrélation de décalage 1"
 
 msgid "The time series data should be equally-spaced."
-msgstr ""
+msgstr "Les données de la série temporelle doivent être équidistantes."
 
 msgid "The time variable should have unique values only."
-msgstr ""
+msgstr "La variable de temps doit contenir uniquement des valeurs uniques."
 
 msgid ""
 "The 'Time' variable has a date-like format, please filter by date instead."
 msgstr ""
+"La variable 'Temps' a un format de type date, veuillez plutôt filtrer par "
+"date."
 
 msgid ""
 "The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:"
@@ -207,17 +211,17 @@ msgid "Median"
 msgstr "Médiane"
 
 msgid "Mean (arithmetic)"
-msgstr ""
+msgstr "Moyenne (arithmétique)"
 
 #, fuzzy
 msgid "Std. Error of A. Mean"
 msgstr "Erreur Type de la Moyenne"
 
 msgid "Mean (geometric)"
-msgstr ""
+msgstr "Moyenne (géométrique)"
 
 msgid "Mean (harmonic)"
-msgstr ""
+msgstr "Moyenne (harmonique)"
 
 msgid "Coefficient of variation"
 msgstr "Coefficient de variation"
@@ -293,11 +297,16 @@ msgid ""
 "Geometric and harmonic means are defined only for strictly positive "
 "variables, but the data contain some non-positive values."
 msgstr ""
+"Les moyennes géométrique et harmonique sont définies uniquement pour des "
+"variables strictement positives, mais les données contiennent des valeurs "
+"non positives."
 
 msgid ""
 "For ordinal variables, quantile type 3 was used because the selected type is "
 "not supported."
 msgstr ""
+"Pour les variables ordinales, le type de quantile 3 a été utilisé car le type "
+"sélectionné n'est pas pris en charge."
 
 msgid "Total"
 msgstr "Total"
@@ -343,11 +352,15 @@ msgid ""
 "Association cannot be computed due to missing values. Try a different 'Use' "
 "setting."
 msgstr ""
+"L'association ne peut pas être calculée en raison de valeurs manquantes. "
+"Essayez un paramètre « Utiliser » différent."
 
 msgid ""
 "Some associations cannot be computed due to missing values. Try a different "
 "'Use' setting."
 msgstr ""
+"Certaines associations ne peuvent pas être calculées en raison de valeurs "
+"manquantes. Essayez un paramètre « Utiliser » différent."
 
 #, fuzzy
 msgid ""
@@ -392,6 +405,8 @@ msgid ""
 "The variable used for counts must be different from the variable used for "
 "categories."
 msgstr ""
+"La variable utilisée pour les effectifs doit être différente de la variable "
+"utilisée pour les catégories."
 
 #, fuzzy
 msgid "Percentage (%%)"
@@ -406,76 +421,90 @@ msgid ""
 "Please assign a variable to every RM factor (defined in Repeated Measures "
 "Factors) within Repeated Measures Cells."
 msgstr ""
+"Veuillez affecter une variable à chaque facteur MM (défini dans les Facteurs "
+"des mesures répétées) dans les Cellules des mesures répétées."
 
 #, fuzzy
 msgid "Plots"
 msgstr "Diagrammes Q-Q"
 
 msgid "Available Plot IDs"
-msgstr ""
+msgstr "Identifiants de graphique disponibles"
 
 msgid "Plot Grid"
-msgstr ""
+msgstr "Grille de graphiques"
 
 msgid "Raincloud Plots"
-msgstr ""
+msgstr "Graphiques Raincloud"
 
 msgid "Not shown are %s observations due to missing data."
-msgstr ""
+msgstr "%s observations ne sont pas représentées en raison de données manquantes."
 
 msgid "Interval around mean is custom."
-msgstr ""
+msgstr "L'intervalle autour de la moyenne est personnalisé."
 
 msgid ""
 "<span style = 'color: darkorange'>Error with custom interval: Specified "
 "number of clouds does not match clouds in plot.</span>"
 msgstr ""
+"<span style = 'color: darkorange'>Erreur avec l'intervalle personnalisé : le "
+"nombre de nuages spécifié ne correspond pas aux nuages du graphique.</span>"
 
 msgid "Interval around mean represents ± 1 standard error"
-msgstr ""
+msgstr "L'intervalle autour de la moyenne représente ± 1 erreur standard"
 
 msgid "Interval around mean represents ± 1 standard deviation"
-msgstr ""
+msgstr "L'intervalle autour de la moyenne représente ± 1 écart-type"
 
 msgid "Interval around mean represents %d%% confidence interval."
-msgstr ""
+msgstr "L'intervalle autour de la moyenne représente l'intervalle de confiance de %d%%."
 
 msgid "Points are slightly jittered from their true values."
-msgstr ""
+msgstr "Les points sont légèrement dispersés par rapport à leurs valeurs réelles."
 
 msgid ""
 "<span style = 'color: darkorange'> Warning! Some data is not "
 "shown<br>because it lies outside of the interval set by the custom axis "
 "limits.</span>"
 msgstr ""
+"<span style = 'color: darkorange'> Attention ! Certaines données ne sont pas "
+"affichées<br>car elles se situent en dehors de l'intervalle défini par les "
+"limites d'axe personnalisées.</span>"
 
 msgid ""
 "<span style = 'color: darkorange'> Error with custom orientation: Specified "
 "number of clouds does not match clouds in plot.<br>Reverted to default all "
 "'R'. Point nudge set to 0.</span>"
 msgstr ""
+"<span style = 'color: darkorange'> Erreur avec l'orientation personnalisée : "
+"le nombre de nuages spécifié ne correspond pas aux nuages du graphique.<br>"
+"Repassage à la valeur par défaut de tous les « R ». Déplacement des points "
+"réglé à 0.</span>"
 
 msgid ""
 "<span style = 'color: darkorange'> Error with custom color: Specified number "
 "of clouds does not match clouds in plot.<br>Ignoring custom color input.</"
 "span>"
 msgstr ""
+"<span style = 'color: darkorange'> Erreur avec la couleur personnalisée : le "
+"nombre de nuages spécifié ne correspond pas aux nuages du graphique.<br>La "
+"couleur personnalisée saisie est ignorée.</span>"
 
 #, fuzzy
 msgid "Statistics"
 msgstr "Statistiques descriptives"
 
 msgid "Primary Factor"
-msgstr ""
+msgstr "Facteur principal"
 
 msgid "Secondary Factor"
-msgstr ""
+msgstr "Facteur secondaire"
 
 msgid "<i>N</i>"
-msgstr ""
+msgstr "<i>N</i>"
 
 msgid "Lower Whisker"
-msgstr ""
+msgstr "Moustache inférieure"
 
 #, fuzzy
 msgid "25th Percentile"
@@ -486,7 +515,7 @@ msgid "75th Percentile"
 msgstr "75ième centile"
 
 msgid "Upper Whisker"
-msgstr ""
+msgstr "Moustache supérieure"
 
 #, fuzzy
 msgid "%s%% CI for Mean Difference"
@@ -501,16 +530,16 @@ msgid "Standard Deviation"
 msgstr "Écart type"
 
 msgid "<i>N</i><sub>Total</sub> = %s."
-msgstr ""
+msgstr "<i>N</i><sub>Total</sub> = %s."
 
 msgid "This excludes %s observations due to missing data."
-msgstr ""
+msgstr "Ceci exclut %s observations en raison de données manquantes."
 
 msgid "<br>Interval around mean is custom."
-msgstr ""
+msgstr "<br>L'intervalle autour de la moyenne est personnalisé."
 
 msgid "<br>Interval around mean represents %d%% confidence interval."
-msgstr ""
+msgstr "<br>L'intervalle autour de la moyenne représente l'intervalle de confiance de %d%%."
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
