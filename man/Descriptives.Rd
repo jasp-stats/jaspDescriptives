@@ -122,6 +122,9 @@ Descriptives(
 \item{boxPlot, }{For continuous variables, displays a boxplot. Optionally, the outliers are labelled. Outliers are based on the interquartile range (IQR), i.e., [25th percentile] - 1.5 × IQR and [75th percentile] + 1.5 × IQR. Can also display in color, and has selectable boxplot, violin, and jitter elements for displaying the distribution of the data. This can be split by a categorical variable such as experimental condition.
 Defaults to \code{FALSE}.}
 
+\item{boxPlotJitter, }{Displays the individual observations as points, jittered horizontally to reduce overlap; their vertical position is unchanged, so each point still shows its exact value.
+Defaults to \code{FALSE}.}
+
 \item{ciBootstrapSamples, }{the number of bootstrap samples to be used.}
 
 \item{coefficientOfVariation, }{The Coefficient of variation gives us the relative dispersion of the data, in contrast to the standard deviation, which gives the absolute dispersion. For this purpose, the standard deviation is divided by the mean value, so that the unit is truncated away.
