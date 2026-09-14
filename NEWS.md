@@ -16,7 +16,7 @@
 
 # jaspDescriptives (development version)
 
-* Added documentation for the boxplot jitter element in the helpfile.
+* Added documentation for the boxplot jitter element in the helpfile ([PR 534](https://github.com/jasp-stats/jaspDescriptives/pull/534)).
 * Added documentation for interval plots, dotplots, and pie charts in the helpfile ([PR 516](https://github.com/jasp-stats/jaspDescriptives/pull/516)).
 
 ---
