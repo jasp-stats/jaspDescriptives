@@ -2,443 +2,485 @@ msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.96.5\n"
 "POT-Creation-Date: 2026-04-25 04:10\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2026-09-15 03:58+0000\n"
+"Last-Translator: Sohrab Delshad <sdel4030@gmail.com>\n"
+"Language-Team: Persian <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-r/fa/>\n"
 "Language: fa\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 
 msgid "Time Series Plot"
-msgstr ""
+msgstr "نمودار سری زمانی"
 
 msgid "Lag Plot"
-msgstr ""
+msgstr "نمودار تأخیر"
 
 msgid "The specified lag, %1$s, is too large given the %2$s observations in the data. Please choose a smaller lag."
 msgstr ""
+"تأخیر مشخص‌شده، %1$s، با توجه به %2$s مشاهده در داده‌ها بسیار بزرگ است. لطفاً "
+"تأخیر کوچک‌تری را انتخاب کنید."
 
 msgid "Autocorrelation Function"
-msgstr ""
+msgstr "تابع خودهمبستگی"
 
 msgid "Partial Autocorrelation Function"
-msgstr ""
+msgstr "تابع خودهمبستگی جزئی"
 
 msgid "Descriptive Statistics"
-msgstr ""
+msgstr "آمار توصیفی"
 
 msgid "Valid"
-msgstr ""
+msgstr "معتبر"
 
 msgid "Missing"
-msgstr ""
+msgstr "گم‌شده"
 
 msgid "Mean"
-msgstr ""
+msgstr "میانگین"
 
 msgid "Std. Deviation"
-msgstr ""
+msgstr "انحراف معیار"
 
 msgid "Variance"
-msgstr ""
+msgstr "واریانس"
 
 msgid "Range"
-msgstr ""
+msgstr "دامنه"
 
 msgid "Minimum"
-msgstr ""
+msgstr "حداقل"
 
 msgid "Maximum"
-msgstr ""
+msgstr "حداکثر"
 
 msgid "Start"
-msgstr ""
+msgstr "شروع"
 
 msgid "End"
-msgstr ""
+msgstr "پایان"
 
 msgid "Lag 1 Autocorrelation"
-msgstr ""
+msgstr "خودهمبستگی تأخیر ۱"
 
 msgid "The time series data should be equally-spaced."
-msgstr ""
+msgstr "داده‌های سری زمانی باید با فواصل مساوی باشند."
 
 msgid "The time variable should have unique values only."
-msgstr ""
+msgstr "متغیر زمان باید فقط دارای مقادیر یکتا باشد."
 
 msgid "The 'Time' variable has a date-like format, please filter by date instead."
 msgstr ""
+"متغیر «زمان» قالبی شبیه به تاریخ دارد، لطفاً به جای آن بر اساس تاریخ فیلتر "
+"کنید."
 
 msgid "The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:ss). Try to filter by time index instead."
 msgstr ""
+"متغیر «زمان» در قالبی شبیه به تاریخ (مثلاً yyyy-mm-dd hh:mm:ss) نیست. سعی کنید "
+"به جای آن بر اساس نمایه زمان فیلتر کنید."
 
 msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
-msgstr ""
+msgstr "«شروع» باید در قالبی شبیه به تاریخ (مثلاً yyyy-mm-dd hh:mm:ss) باشد."
 
 msgid "The 'Start' value of the filter should be before last observation."
-msgstr ""
+msgstr "مقدار «شروع» فیلتر باید قبل از آخرین مشاهده باشد."
 
 msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
-msgstr ""
+msgstr "«پایان» باید در قالبی شبیه به تاریخ (مثلاً yyyy-mm-dd hh:mm:ss) باشد."
 
 msgid "The 'End' value of the filter should be larger/later than the 'Start' value."
-msgstr ""
+msgstr "مقدار «پایان» فیلتر باید بزرگ‌تر/دیرتر از مقدار «شروع» باشد."
 
 msgid "Lag"
-msgstr ""
+msgstr "تأخیر"
 
 msgid "Association %s"
-msgstr ""
+msgstr "پیوند %s"
 
 msgid "Frequency Tables"
-msgstr ""
+msgstr "جدول‌های فراوانی"
 
 msgid "Correlation plots"
-msgstr ""
+msgstr "نمودارهای همبستگی"
 
 msgid "Correlation plot"
-msgstr ""
+msgstr "نمودار همبستگی"
 
 msgid "Distribution Plots"
-msgstr ""
+msgstr "نمودارهای توزیع"
 
 msgid "Boxplots"
-msgstr ""
+msgstr "نمودارهای جعبه‌ای"
 
 msgid "Q-Q Plots"
-msgstr ""
+msgstr "نمودارهای Q-Q"
 
 msgid "Q-Q Plot"
-msgstr ""
+msgstr "نمودار Q-Q"
 
 msgid "Plotting is not possible: Variable only contains NA!"
-msgstr ""
+msgstr "رسم نمودار امکان‌پذیر نیست: متغیر فقط حاوی NA است!"
 
 msgid "Pie charts"
-msgstr ""
+msgstr "نمودارهای دایره‌ای"
 
 msgid "Stem and Leaf"
-msgstr ""
+msgstr "ساقه و برگ"
 
 msgid "Scatter Plots"
-msgstr ""
+msgstr "نمودارهای پراکنش"
 
 msgid "Interval plots"
-msgstr ""
+msgstr "نمودارهای بازه‌ای"
 
 msgid "Dot Plots"
-msgstr ""
+msgstr "نمودارهای نقطه‌ای"
 
 msgid "Heatmaps"
-msgstr ""
+msgstr "نقشه‌های حرارتی"
 
 msgid "Pareto Plots"
-msgstr ""
+msgstr "نمودارهای پارتو"
 
 msgid "Frequency Plots"
-msgstr ""
+msgstr "نمودارهای فراوانی"
 
 msgid "Likert Plots"
-msgstr ""
+msgstr "نمودارهای لیکرت"
 
 msgid "Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s"
 msgstr ""
+"%1$i ردیف از تحلیل که مربوط به مقادیر گم‌شده متغیر تفکیک‌کننده %2$s بودند، حذف "
+"شدند."
 
 msgid "%s%% Confidence Interval Mean"
-msgstr ""
+msgstr "میانگین بازه اطمینان %s%%"
 
 msgid "%s%% Confidence Interval Std. Dev."
-msgstr ""
+msgstr "انحراف معیار بازه اطمینان %s%%"
 
 msgid "%s%% Confidence Interval Variance"
-msgstr ""
+msgstr "واریانس بازه اطمینان %s%%"
 
 msgid "Upper"
-msgstr ""
+msgstr "بالا"
 
 msgid "Lower"
-msgstr ""
+msgstr "پایین"
 
 msgid "%s%% CI A. Mean Upper"
-msgstr ""
+msgstr "کران بالای میانگین حسابی بازه اطمینان %s%%"
 
 msgid "%s%% CI A. Mean Lower"
-msgstr ""
+msgstr "کران پایین میانگین حسابی بازه اطمینان %s%%"
 
 msgid "%s%% CI Std. Dev. Upper"
-msgstr ""
+msgstr "کران بالای انحراف معیار بازه اطمینان %s%%"
 
 msgid "%s%% CI Std. Dev. Lower"
-msgstr ""
+msgstr "کران پایین انحراف معیار بازه اطمینان %s%%"
 
 msgid "%s%% CI Variance Upper"
-msgstr ""
+msgstr "کران بالای واریانس بازه اطمینان %s%%"
 
 msgid "%s%% CI Variance Lower"
-msgstr ""
+msgstr "کران پایین واریانس بازه اطمینان %s%%"
 
 msgid "Mode"
-msgstr ""
+msgstr "مُد"
 
 msgid "Median"
-msgstr ""
+msgstr "میانه"
 
 msgid "Mean (arithmetic)"
-msgstr ""
+msgstr "میانگین (حسابی)"
 
 msgid "Std. Error of A. Mean"
-msgstr ""
+msgstr "خطای معیار میانگین حسابی"
 
 msgid "Mean (geometric)"
-msgstr ""
+msgstr "میانگین (هندسی)"
 
 msgid "Mean (harmonic)"
-msgstr ""
+msgstr "میانگین (همساز)"
 
 msgid "Coefficient of variation"
-msgstr ""
+msgstr "ضریب تغییرات"
 
 msgid "MAD"
-msgstr ""
+msgstr "انحراف مطلق از میانه (MAD)"
 
 msgid "MAD robust"
-msgstr ""
+msgstr "انحراف مطلق از میانه مقاوم"
 
 msgid "IQR"
-msgstr ""
+msgstr "دامنه میان‌چارکی (IQR)"
 
 msgid "Skewness"
-msgstr ""
+msgstr "چولگی"
 
 msgid "Std. Error of Skewness"
-msgstr ""
+msgstr "خطای معیار چولگی"
 
 msgid "Kurtosis"
-msgstr ""
+msgstr "کشیدگی"
 
 msgid "Std. Error of Kurtosis"
-msgstr ""
+msgstr "خطای معیار کشیدگی"
 
 msgid "Shapiro-Wilk"
-msgstr ""
+msgstr "شاپیرو-ویلک"
 
 msgid "P-value of Shapiro-Wilk"
-msgstr ""
+msgstr "مقدار P شاپیرو-ویلک"
 
 msgid "25th percentile"
-msgstr ""
+msgstr "صدک ۲۵ام"
 
 msgid "50th percentile"
-msgstr ""
+msgstr "صدک ۵۰ام"
 
 msgid "75th percentile"
-msgstr ""
+msgstr "صدک ۷۵ام"
 
 msgid "%gth percentile"
-msgstr ""
+msgstr "صدک %gام"
 
 msgid "Error in Percentiles, all values should >=0 and <=100"
-msgstr ""
+msgstr "خطا در صدک‌ها، همه مقادیر باید >=۰ و <=۱۰۰ باشند."
 
 msgid "Sum"
-msgstr ""
+msgstr "مجموع"
 
 msgid "All values are identical"
-msgstr ""
+msgstr "همه مقادیر یکسان هستند."
 
 msgid "Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty set is %2$s."
 msgstr ""
+"اینفیمم (حداقل) یک مجموعه تهی %1$s و سوپریمم (حداکثر) یک مجموعه تهی %2$s است."
 
 msgid "More than one mode exists. For nominal and ordinal data, the first mode is reported. For continuous data, the mode with the highest density estimate is reported but multiple modes may exist. We recommend visualizing the data to check for multimodality."
 msgstr ""
+"بیش از یک مُد وجود دارد. برای داده‌های اسمی و ترتیبی، اولین مُد گزارش می‌شود. "
+"برای داده‌های پیوسته، مودی با بالاترین برآورد چگالی گزارش می‌شود، اما ممکن است "
+"چندین مُد وجود داشته باشد. ما توصیه می‌کنیم داده‌ها را مصورسازی کنید تا چندمُدی "
+"بودن را بررسی نمایید."
 
 msgid "Geometric and harmonic means are defined only for strictly positive variables, but the data contain some non-positive values."
 msgstr ""
+"میانگین‌های هندسی و همساز فقط برای متغیرهای اکیداً مثبت تعریف می‌شوند، اما "
+"داده‌ها حاوی برخی مقادیر غیرمثبت هستند."
 
 msgid "For ordinal variables, quantile type 3 was used because the selected type is not supported."
 msgstr ""
+"برای متغیرهای ترتیبی، از نوع چندک ۳ استفاده شد، زیرا نوع انتخاب‌شده پشتیبانی "
+"نمی‌شود."
 
 msgid "Total"
-msgstr ""
+msgstr "کل"
 
 msgid "All variables have more than %1$s distinct values"
-msgstr ""
+msgstr "همه متغیرها بیش از %1$s مقدار متمایز دارند."
 
 msgid "Frequencies"
-msgstr ""
+msgstr "فراوانی‌ها"
 
 msgid "Frequencies for %s"
-msgstr ""
+msgstr "فراوانی‌های %s"
 
 msgid "Frequency"
-msgstr ""
+msgstr "فراوانی"
 
 msgid "Percent"
-msgstr ""
+msgstr "درصد"
 
 msgid "Valid Percent"
-msgstr ""
+msgstr "درصد معتبر"
 
 msgid "Cumulative Percent"
-msgstr ""
+msgstr "درصد تجمعی"
 
 msgid "Plotting not possible: %s"
-msgstr ""
+msgstr "رسم نمودار امکان‌پذیر نیست: %s"
 
 msgid "Plotting is not possible: No plot type selected!"
-msgstr ""
+msgstr "رسم نمودار امکان‌پذیر نیست: هیچ نوع نموداری انتخاب نشده است!"
 
 msgid "Counts"
-msgstr ""
+msgstr "شمارش‌ها"
 
 msgid "Density"
-msgstr ""
+msgstr "چگالی"
 
 msgid "No non-missing values!"
-msgstr ""
+msgstr "هیچ مقدار غیر گم‌شده‌ای وجود ندارد!"
 
 msgid "Association cannot be computed due to missing values. Try a different 'Use' setting."
 msgstr ""
+"به دلیل مقادیر گم‌شده، محاسبه پیوند امکان‌پذیر نیست. تنظیم «روش مدیریت» "
+"متفاوتی را امتحان کنید."
 
 msgid "Some associations cannot be computed due to missing values. Try a different 'Use' setting."
 msgstr ""
+"برخی پیوندها به دلیل مقادیر گم‌شده قابل محاسبه نیستند. تنظیم «روش مدیریت» "
+"متفاوتی را امتحان کنید."
 
 msgid "Plotting not possible: Variable '%s' has fewer than 2 valid (non-missing) observations."
 msgstr ""
+"رسم نمودار امکان‌پذیر نیست: متغیر «%s» کمتر از ۲ مشاهده معتبر (غیر گم‌شده) "
+"دارد."
 
 msgid "Stem"
-msgstr ""
+msgstr "ساقه"
 
 msgid "Leaf"
-msgstr ""
+msgstr "برگ"
 
 msgid "A stem and leaf table could not be made because there are fewer than 2 non-missing observations"
 msgstr ""
+"به دلیل وجود کمتر از ۲ مشاهده غیر گم‌شده، ساخت جدول ساقه و برگ امکان‌پذیر نبود."
 
 msgid "The decimal point is at the |"
-msgstr ""
+msgstr "نقطه اعشار در | قرار دارد."
 
 msgid "There must be a unique value per combination of levels of horizontal and vertical axis!"
 msgstr ""
+"باید به ازای هر ترکیب از سطوح محور افقی و عمودی، یک مقدار یکتا وجود داشته "
+"باشد!"
 
 msgid "All categorical variables must have the same number of levels!"
-msgstr ""
+msgstr "همه متغیرهای مقوله‌ای باید تعداد سطوح یکسانی داشته باشند!"
 
 msgid "Items must have 2 or more levels!"
-msgstr ""
+msgstr "اقلام باید دارای ۲ سطح یا بیشتر باشند!"
 
 msgid "The variable used for counts must be different from the variable used for categories."
 msgstr ""
+"متغیر استفاده‌شده برای شمارش‌ها باید با متغیر استفاده‌شده برای دسته‌ها متفاوت "
+"باشد."
 
 msgid "Percentage (%%)"
-msgstr ""
+msgstr "درصد (%%)"
 
 msgid "Levels within variable require at least two or more data points!"
-msgstr ""
+msgstr "سطوح درون متغیر نیازمند حداقل دو نقطه داده یا بیشتر هستند!"
 
 msgid "Please assign a variable to every RM factor (defined in Repeated Measures Factors) within Repeated Measures Cells."
 msgstr ""
+"لطفاً برای هر عامل اندازه‌گیری مکرر (تعریف‌شده در عامل‌های اندازه‌گیری مکرر) درون "
+"سلول‌های اندازه‌گیری مکرر، یک متغیر اختصاص دهید."
 
 msgid "Plots"
-msgstr ""
+msgstr "نمودارها"
 
 msgid "Available Plot IDs"
-msgstr ""
+msgstr "شناسه‌های نمودار موجود"
 
 msgid "Plot Grid"
-msgstr ""
+msgstr "شبکه نمودار"
 
 msgid "Raincloud Plots"
-msgstr ""
+msgstr "نمودارهای ابر بارانی"
 
 msgid "Not shown are %s observations due to missing data."
-msgstr ""
+msgstr "%s مشاهده به دلیل داده‌های گم‌شده نمایش داده نمی‌شوند."
 
 msgid "Interval around mean is custom."
-msgstr ""
+msgstr "بازه حول میانگین سفارشی است."
 
 msgid "<span style = 'color: darkorange'>Error with custom interval: Specified number of clouds does not match clouds in plot.</span>"
 msgstr ""
+"<span style = 'color: darkorange'>خطا در بازه سفارشی: تعداد مشخص‌شده ابرها با "
+"ابرهای موجود در نمودار مطابقت ندارد.</span>"
 
 msgid "Interval around mean represents ± 1 standard error"
-msgstr ""
+msgstr "بازه حول میانگین نشان‌دهنده ± ۱ خطای معیار است."
 
 msgid "Interval around mean represents ± 1 standard deviation"
-msgstr ""
+msgstr "بازه حول میانگین نشان‌دهنده ± ۱ انحراف معیار است."
 
 msgid "Interval around mean represents %d%% confidence interval."
-msgstr ""
+msgstr "بازه حول میانگین نشان‌دهنده بازه اطمینان %d%% است."
 
 msgid "Points are slightly jittered from their true values."
-msgstr ""
+msgstr "نقاط کمی از مقادیر واقعی خود لرزش دارند."
 
 msgid "<span style = 'color: darkorange'> Warning! Some data is not shown<br>because it lies outside of the interval set by the custom axis limits.</span>"
 msgstr ""
+"<span style = 'color: darkorange'> هشدار! برخی داده‌ها نمایش داده نمی‌شوند<br>"
+"زیرا خارج از بازه تعیین‌شده توسط حدود سفارشی محور قرار دارند.</span>"
 
 msgid "<span style = 'color: darkorange'> Error with custom orientation: Specified number of clouds does not match clouds in plot.<br>Reverted to default all 'R'. Point nudge set to 0.</span>"
 msgstr ""
+"<span style = 'color: darkorange'> خطا در جهت‌گیری سفارشی: تعداد مشخص‌شده "
+"ابرها با ابرهای موجود در نمودار مطابقت ندارد.<br>به حالت پیش‌فرض همه 'R' "
+"بازگشت. جابه‌جایی نقطه روی ۰ تنظیم شد.</span>"
 
 msgid "<span style = 'color: darkorange'> Error with custom color: Specified number of clouds does not match clouds in plot.<br>Ignoring custom color input.</span>"
 msgstr ""
+"<span style = 'color: darkorange'> خطا در رنگ سفارشی: تعداد مشخص‌شده ابرها با "
+"ابرهای موجود در نمودار مطابقت ندارد.<br>ورودی رنگ سفارشی نادیده گرفته "
+"می‌شود.</span>"
 
 msgid "Statistics"
-msgstr ""
+msgstr "آماره‌ها"
 
 msgid "Primary Factor"
-msgstr ""
+msgstr "عامل اصلی"
 
 msgid "Secondary Factor"
-msgstr ""
+msgstr "عامل ثانویه"
 
 msgid "<i>N</i>"
-msgstr ""
+msgstr "<i>N</i>"
 
 msgid "Lower Whisker"
-msgstr ""
+msgstr "سبیل پایین"
 
 msgid "25th Percentile"
-msgstr ""
+msgstr "صدک ۲۵ام"
 
 msgid "75th Percentile"
-msgstr ""
+msgstr "صدک ۷۵ام"
 
 msgid "Upper Whisker"
-msgstr ""
+msgstr "سبیل بالا"
 
 msgid "%s%% CI for Mean Difference"
-msgstr ""
+msgstr "بازه اطمینان %s%% برای تفاوت میانگین"
 
 msgid "Standard Error"
-msgstr ""
+msgstr "خطای معیار"
 
 msgid "Standard Deviation"
-msgstr ""
+msgstr "انحراف معیار"
 
 msgid "<i>N</i><sub>Total</sub> = %s."
-msgstr ""
+msgstr "<i>N</i><sub>کل</sub> = %s."
 
 msgid "This excludes %s observations due to missing data."
-msgstr ""
+msgstr "این مورد %s مشاهده را به دلیل داده‌های گم‌شده حذف می‌کند."
 
 msgid "<br>Interval around mean is custom."
-msgstr ""
+msgstr "<br>بازه حول میانگین سفارشی است."
 
 msgid "<br>Interval around mean represents %d%% confidence interval."
-msgstr ""
+msgstr "<br>بازه حول میانگین نشان‌دهنده بازه اطمینان %d%% است."
 
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural "The following variables have more than %1$s distinct values and are omitted: %2$s."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "متغیرهای زیر بیش از %1$s مقدار متمایز دارند و حذف می‌شوند: %2$s."
+msgstr[1] "متغیرهای زیر بیش از %1$s مقدار متمایز دارند و حذف می‌شوند: %2$s."
 
 msgid "The decimal point is %s digit to the right of the |"
 msgid_plural "The decimal point is %s digits to the right of the |"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "نقطه اعشار %s رقم به سمت راست | قرار دارد."
+msgstr[1] "نقطه اعشار %s رقم به سمت راست | قرار دارد."
 
 msgid "The decimal point is %s digit to the left of the |"
 msgid_plural "The decimal point is %s digits to the left of the |"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "نقطه اعشار %s رقم به سمت چپ | قرار دارد."
+msgstr[1] "نقطه اعشار %s رقم به سمت چپ | قرار دارد."
