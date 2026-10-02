@@ -42,28 +42,32 @@
 #'    Defaults to \code{FALSE}.
 #' @param customHistogramPosition, Options for separate bins of the histogram
 #' \itemize{
-#'   \item \code{"dodge"}: Dodge: Bars are placed side-by-side, allowing for easy comparison of different categories within each bin.
 #'   \item \code{"stack"}: Stack: Bars are stacked vertically, combining counts across categories within each bin.
 #'   \item \code{"identity"}: Identity: Bars are layered on top of each other, with transparency often used to distinguish overlapping data.
+#'   \item \code{"dodge"}: Dodge: Bars are placed side-by-side, allowing for easy comparison of different categories within each bin.
 #' }
 #' @param densityPlot, visualizes data distributions, adapting to the type of variable selected. For scale variables, it generates histograms or density plots to show continuous data distributions. For categorical variables, it creates bar plots displaying counts or proportions of each category.
 #'    Defaults to \code{FALSE}.
 #' @param densityPlotCategoricalType, Display counts, proportions, or conditional proportions (conditional for each category on the x-axis).
 #' \itemize{
+#'   \item \code{"count"}
 #'   \item \code{"prop"}
 #'   \item \code{"condProp"}
-#'   \item \code{"count"}
 #' }
 #' @param densityPlotType, Whether to display a density plot or histogram.
 #' \itemize{
-#'   \item \code{"histogram"}
 #'   \item \code{"density"}
+#'   \item \code{"histogram"}
 #' }
 #' @param descriptivesTableTransposed, Tranposes the main table
 #'    Defaults to \code{FALSE}.
 #' @param distributionPlots, For continuous variables, displays a histogram and the fit of a nonparametric density estimator. For nominal and ordinal variables, displays a frequency distribution.
 #'    Defaults to \code{FALSE}.
+#' @param dotPlot, Displays a dot plot, where the width of a dot corresponds to the bin width and the height of the stacked dots represents the number of observation in each bin.
+#'    Defaults to \code{FALSE}.
 #' @param frequencyTables, Displays a frequency table for each variable.
+#'    Defaults to \code{FALSE}.
+#' @param intervalPlot, Displays the arithmetic mean and 95%% confidence interval for the arithmetic mean.
 #'    Defaults to \code{FALSE}.
 #' @param iqr, Interquartile range of the data points; 75th percentile - 25th percentile.
 #'    Defaults to \code{FALSE}.
@@ -89,6 +93,8 @@
 #'    Defaults to \code{FALSE}.
 #' @param minimum, Minimum value of the data points.
 #'    Defaults to \code{TRUE}.
+#' @param missing, Number of missing observations
+#'    Defaults to \code{TRUE}.
 #' @param mode, Mode of the data points; if more than one mode exists, only the first is reported. For nominal and ordinal data, the mode is the most frequent observed value. For continuous data, the mode is the value with highest density estimate (see 'Distribution Plots' -> 'Display density'). If a footnote about multimodality for continuous variables is reported, we recommend visualizing the data to check for multimodality.
 #'    Defaults to \code{FALSE}.
 #' @param paretoAddCountVariable, Allows you to specify an additional variable that contains the counts for each category instead of letting the analysis compute frequencies automatically. This is useful when the data are already aggregated (e.g., each row represents a category with an associated frequency). If left empty, counts are calculated directly from the selected variable.
@@ -98,7 +104,9 @@
 #'    Defaults to \code{FALSE}.
 #' @param paretoShiftAccumulationLine, Shifts the cumulative line so that it starts at the top-right corner of the first bar instead of in the middle. This corresponds to the traditional Pareto chart layout.
 #'    Defaults to \code{FALSE}.
-#' @param percentiles, Displays the xth percentile; percentile values must be separated by comma.
+#' @param percentiles, Displays the xth percentile; percentile values must be separated by a blank.
+#'    Defaults to \code{FALSE}.
+#' @param pieChart, Displays the distribution of a variable in a pie chart where each unique color an part of the pie corresponds to a unique observed value. Pie charts are not shown for scale variables.
 #'    Defaults to \code{FALSE}.
 #' @param quantilesForEqualGroups, Displays the cut points that divide the data into x equal groups; default is 4 equal groups.
 #'    Defaults to \code{FALSE}.
@@ -134,7 +142,7 @@
 #' @param varianceCiMethod, How should the confidence interval be computed? By default, we use a analytical approach (chi-square). The alternative option is `Bootstrap`
 Descriptives <- function(
           data = NULL,
-          version = "0.96.1",
+          version = "1",
           formula = NULL,
           associationMatrixUse = "everything",
           boxPlot = FALSE,
