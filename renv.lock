@@ -228,7 +228,7 @@
         "acepack",
         "chron",
         "rms",
-|        "mice",
+        "mice",
         "rstudioapi",
         "tables",
         "plotly (>= 4.5.6)",

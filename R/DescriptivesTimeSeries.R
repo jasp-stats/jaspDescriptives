@@ -21,15 +21,10 @@ DescriptivesTimeSeriesInternal <- function(jaspResults, dataset, options) {
 
 .DescriptivesTimeSeries <- function(jaspResults, dataset, options) {
 
-  ready <- options$dependent != ""
+  ready <- options[["dependent"]] != ""
 
-  datasetRaw <- .tsReadData(jaspResults, dataset, options, ready)
-
-  datasetFiltered <- .tsDataFilterHandler(datasetRaw, options, ready)
-
-  dataset <- .tsDataWithMissingRowsHandler(datasetFiltered, options, ready)
-
-  .tsErrorHandler(dataset, ready)
+  dataset <- .tsPrepareData(jaspResults, dataset, options, ready)$data
+  ready <- ready && nrow(dataset) > 0L
 
   .tsDescriptivesTable(jaspResults, dataset, options, ready, position = 1, dependencies = c(.tsDescriptivesDependencies(), "descriptivesTableTransposed"))
 
@@ -221,24 +216,25 @@ DescriptivesTimeSeriesInternal <- function(jaspResults, dataset, options) {
     yName <- options$dependent[1]
 
     nY <- length(na.omitted)
-    minY <- min(na.omitted)
-    maxY <- max(na.omitted)
+    minY <- if (nY > 0L) min(na.omitted) else NA_real_
+    maxY <- if (nY > 0L) max(na.omitted) else NA_real_
 
-    yLag <- c(NA, dataset$y[1:(length(dataset$y) - 1)])
-    corY <- cor(dataset$y, yLag, use = "complete.obs")
+    yLag <- c(NA_real_, head(dataset$y, -1L))
+    corY <- if (sum(complete.cases(dataset$y, yLag)) >= 2L)
+      cor(dataset$y, yLag, use = "complete.obs") else NA_real_
 
     rows <- data.frame(
       variable = yName,
       valid = nY,
       missing = nrow(dataset) - nY,
-      mean = mean(na.omitted),
+      mean = if (nY > 0L) mean(na.omitted) else NA_real_,
       sd = sd(na.omitted),
       var = var(na.omitted),
       range = maxY - minY,
       min = minY,
       max = maxY,
-      start = na.omitted[1],
-      end = na.omitted[nY],
+      start = if (nY > 0L) na.omitted[1] else NA_real_,
+      end = if (nY > 0L) na.omitted[nY] else NA_real_,
       ar = corY
     )
     table$addRows(rows)
