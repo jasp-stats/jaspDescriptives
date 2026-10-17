@@ -24,6 +24,7 @@
 # With no usable Time, t is the input row position and input order is retained.
 # jaspResults may be NULL for data-only use. Visible notes describe this call;
 # stale notes are removed even when the analysis is not ready or has no rows.
+# Integer positions keep notes before other output: warnings, interpretation, ordering, ties.
 # Existing exported Time helpers remain available with their legacy behavior.
 .tsPrepareData <- function(jaspResults, dataset, options, ready, covariates = FALSE) {
   if (!is.null(jaspResults)) {
@@ -68,8 +69,8 @@
       rows <- rownames(dataset)[head(interpreted$affectedRows, 5L)]
       if (length(rows) && length(interpreted$affectedRows) < nrow(dataset))
         text <- paste(text, gettextf("Affected spreadsheet rows (first few): %s.", paste(rows, collapse = ", ")))
-      jaspResults[["timeWarning"]] <- createJaspHtml(text = text,
-        dependencies = c("dependent", "time"), position = 0)
+      jaspResults[["timeWarning"]] <- createJaspHtml(title = gettext("Warning: Time ignored"), text = text,
+        dependencies = c("dependent", "time"), position = -5)
     }
   } else if (interpreted$status %in% c("numeric", "date")) {
     if (length(interpreted$dateConventions) && !is.null(jaspResults)) {
@@ -82,21 +83,23 @@
         gettextf("Time was interpreted in %s.", description)
       else
         gettextf("Dates in Time were interpreted using these date orders: %s.", description)
-      jaspResults[["timeInterpretationNote"]] <- createJaspHtml(text = text,
-        dependencies = c("dependent", "time"), position = 0)
+      jaspResults[["timeInterpretationNote"]] <- createJaspHtml(title = gettext("Date interpretation"), text = text,
+        dependencies = c("dependent", "time"), position = -3)
     }
     if (anyDuplicated(dat$t) && !is.null(jaspResults)) {
       jaspResults[["timeTiesNote"]] <- createJaspHtml(
+        title = gettext("Repeated time values"),
         text = gettext("Time contains repeated values. Spreadsheet row order is retained within tied values. Tied observations are analysed as successive steps in that order."),
-        dependencies = c("dependent", "time"), position = 0)
+        dependencies = c("dependent", "time"), position = -1)
     }
     if (is.unsorted(dat$t)) {
       # The second key makes the ordering of tied values explicit and stable.
       dat <- dat[order(dat$t, seq_len(nrow(dat))), , drop = FALSE]
       if (!is.null(jaspResults)) {
         jaspResults[["timeSortingNote"]] <- createJaspHtml(
+          title = gettext("Time ordering"),
           text = gettext("Observations were sorted by Time for this analysis."),
-          dependencies = c("dependent", "time"), position = 0)
+          dependencies = c("dependent", "time"), position = -2)
       }
     }
   }
@@ -337,8 +340,9 @@
       !isTRUE(attr(dataset, "timeFallback")) && any(diff(which(selected)) != 1L) &&
       !is.null(jaspResults)) {
     jaspResults[["timeFilterWarning"]] <- createJaspHtml(
+      title = gettext("Warning: Filtering"),
       text = gettext("Warning: The selected spreadsheet rows skip observations within Time order. The selected observations are analysed as successive steps. Use a Time or date filter to select a continuous block in Time order."),
-      dependencies = c("dependent", "time", "filter", "filterBy", "rowStart", "rowEnd"), position = 0)
+      dependencies = c("dependent", "time", "filter", "filterBy", "rowStart", "rowEnd"), position = -4)
   }
   return(dataset[selected, , drop = FALSE])
 }

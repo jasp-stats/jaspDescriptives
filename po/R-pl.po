@@ -654,3 +654,18 @@ msgstr ""
 
 msgid "No observations have dates within the selected range. The selected Time variable ranges from %1$s to %2$s (UTC). Adjust the date limits, or choose Row number to filter spreadsheet rows."
 msgstr ""
+
+msgid "Warning: Time ignored"
+msgstr ""
+
+msgid "Date interpretation"
+msgstr ""
+
+msgid "Repeated time values"
+msgstr ""
+
+msgid "Time ordering"
+msgstr ""
+
+msgid "Warning: Filtering"
+msgstr ""
