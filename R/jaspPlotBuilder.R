@@ -600,7 +600,7 @@ addDecodedLabels <- function(p) {
           input_text <- paste0("c(", input_text, ")")
         }
 
-        draw_quantiles <- eval(parse(text = input_text))
+        draw_quantiles <- safe_eval_text(input_text)
 
         argList <- list(
           draw_quantiles = draw_quantiles,
@@ -741,7 +741,7 @@ addDecodedLabels <- function(p) {
       layer_calls$count_value <- function(p) {
         argList <- list(
           fontsize = tab[["fontsizeCountValue"]],
-          accuracy = eval(parse(text = tab[["accuracyCountValue"]])),
+          accuracy = safe_eval_text(tab[["accuracyCountValue"]]),
           alpha    = tab[["alphaCountValue"]],
           hjust    = tab[["hjustCountValue"]],
           vjust    = tab[["vjustCountValue"]]
@@ -804,7 +804,7 @@ addDecodedLabels <- function(p) {
       layer_calls$sum_value <- function(p) {
         argList <- list(
           fontsize = tab[["fontsizeSumValue"]],
-          accuracy = eval(parse(text = tab[["accuracySumValue"]])),
+          accuracy = safe_eval_text(tab[["accuracySumValue"]]),
           alpha    = tab[["alphaSumValue"]],
           hjust    = tab[["hjustSumValue"]],
           vjust    = tab[["vjustSumValue"]]
@@ -981,7 +981,7 @@ addDecodedLabels <- function(p) {
           dodge_width = tab[["dodgeMeanValue"]],
           alpha       = tab[["alphaMeanValue"]],
           fontsize    = tab[["fontsizeMeanValue"]],
-          accuracy    = eval(parse(text = tab[["accuracyMeanValue"]])),
+          accuracy    = safe_eval_text(tab[["accuracyMeanValue"]]),
           hjust       = tab[["hjustMeanValue"]],
           vjust       = tab[["vjustMeanValue"]]
         )
@@ -1065,7 +1065,7 @@ addDecodedLabels <- function(p) {
       layer_calls$median_value <- function(p) {
         argList <- list(
           fontsize = tab[["fontsizeMedianValue"]],
-          accuracy = eval(parse(text = tab[["accuracyMedianValue"]])),
+          accuracy = safe_eval_text(tab[["accuracyMedianValue"]]),
           alpha    = tab[["alphaMedianValue"]],
           hjust    = tab[["hjustMedianValue"]],
           vjust    = tab[["vjustMedianValue"]]
@@ -1321,7 +1321,7 @@ addDecodedLabels <- function(p) {
             x         = eval(parse(text = paste0("c(", tab[["xReferenceLine"]], ")"))),
             linetype  = "dashed",
             linewidth = tab[["linewidhtReferenceLines"]],
-            color     = eval(parse(text = paste0("\"", tab[["colorReferenceLine"]], "\"")))
+            color     = safe_eval_text(paste0("\"", tab[["colorReferenceLine"]], "\""))
           )
         )
       }
@@ -1353,7 +1353,7 @@ addDecodedLabels <- function(p) {
             xend  = x_max,
             y     = y_max,
             yend  = y_min,
-            color = eval(parse(text = paste0("\"", tab[["colorIdentityLine"]], "\"")))
+            color = safe_eval_text(paste0("\"", tab[["colorIdentityLine"]], "\""))
           )
         } else {
           tidyplots::add_annotation_line(
@@ -1362,7 +1362,7 @@ addDecodedLabels <- function(p) {
             xend  = x_max,
             y     = y_min,
             yend  = y_max,
-            color = eval(parse(text = paste0("\"", tab[["colorIdentityLine"]], "\"")))
+            color = safe_eval_text(paste0("\"", tab[["colorIdentityLine"]], "\""))
           )
         }
       }
@@ -1484,7 +1484,9 @@ addDecodedLabels <- function(p) {
       tidyplot_obj <- layer_calls[[lay]](tidyplot_obj)
     }
 
-    if (length(tab[["titlePlotBuilder"]]) > 0) {
+    if (!is.null(tab[["titlePlotBuilder"]]) &&
+        length(tab[["titlePlotBuilder"]]) > 0 &&
+        nchar(trimws(tab[["titlePlotBuilder"]])) > 0) {
       tidyplot_obj <- tidyplot_obj |>
         tidyplots::add_title(title = tab[["titlePlotBuilder"]])
     }
@@ -1538,7 +1540,7 @@ addDecodedLabels <- function(p) {
         tidyplot_obj <- gg
       }
 
-     #Point shape by variable ----
+      #Point shape by variable ----
       if (!is.null(shapeVar) && shapeVar %in% colnames(localData)) {
 
         if (length(unique(localData[[shapeVar]])) > 1) {
@@ -1740,9 +1742,14 @@ addDecodedLabels <- function(p) {
     adjust_args_xaxis$cut_short_scale <- isTRUE(cutShortScale)
 
     # add padding
-    XPaddingFirst <- tab[["XPaddingFirst"]]
-    XPaddingSecond <- tab[["XPaddingSecond"]]
-    adjust_args_xaxis$padding <- c(XPaddingFirst,XPaddingSecond)
+    # Same as for the Y axis: an absent option must not end up in the padding as a zero length value.
+    XPaddingFirst  <- suppressWarnings(as.numeric(tab[["XPaddingFirst"]]))
+    XPaddingSecond <- suppressWarnings(as.numeric(tab[["XPaddingSecond"]]))
+
+    if (length(XPaddingFirst)  != 1 || !is.finite(XPaddingFirst))  XPaddingFirst  <- 0.1
+    if (length(XPaddingSecond) != 1 || !is.finite(XPaddingSecond)) XPaddingSecond <- 0.1
+
+    adjust_args_xaxis$padding <- c(XPaddingFirst, XPaddingSecond)
     if (length(adjust_args_xaxis) > 0) {
       tidyplot_obj <- do.call(
         tidyplots::adjust_x_axis,
@@ -1791,80 +1798,47 @@ addDecodedLabels <- function(p) {
     {
       adjust_args_yaxis <- list()
 
+      # --- Title ---
       titleValueY <- tab[["titleYPlotBuilder"]]
       if (!is.null(titleValueY) && titleValueY != "") {
         adjust_args_yaxis$title <- titleValueY
       }
 
+      # --- Limits ---
       limitFromY <- suppressWarnings(as.numeric(tab[["limitFromY"]]))
       limitToY   <- suppressWarnings(as.numeric(tab[["limitToY"]]))
-      fromValueY <- suppressWarnings(as.numeric(tab[["breakFromY"]]))
-      toValueY   <- suppressWarnings(as.numeric(tab[["breakToY"]]))
-      byValueY   <- suppressWarnings(as.numeric(tab[["breakByY"]]))
-      user_has_limits <- !is.na(limitFromY) && !is.na(limitToY)
-      user_has_breaks <- !is.na(fromValueY) && !is.na(toValueY) && !is.na(byValueY)
-
-
-      automatic_limit_setting_active <- TRUE
+      user_has_limits <- isTRUE(!is.na(limitFromY) && !is.na(limitToY))
 
       if (user_has_limits) {
         adjust_args_yaxis$limits <- c(limitFromY, limitToY)
-        automatic_limit_setting_active <- FALSE
       }
 
-      if (automatic_limit_setting_active) {
-
-        highest_y_from_annots <- -Inf
-        num_comparisons <- 0
-        if (!is.null(tab[["pairwiseComparisons"]])) {
-          num_comparisons <- length(tab[["pairwiseComparisons"]])
-        }
-
-        if (num_comparisons > 0 && !is.null(tab[["yPositionPValue"]])) {
-          y_pos_base <- suppressWarnings(as.numeric(tab[["yPositionPValue"]]))
-          step_inc   <- suppressWarnings(as.numeric(tab[["stepDistance"]]))
-          if (is.na(step_inc)) step_inc <- 0
-
-          if (is.finite(y_pos_base)) {
-            highest_y_from_annots <- y_pos_base + (num_comparisons - 1) * step_inc
-          }
-        }
-
-        max_y_from_data <- -Inf
-        if (!is.null(yVar) && yVar %in% colnames(localData) && is.numeric(localData[[yVar]])) {
-          max_y_from_data <- max(localData[[yVar]], na.rm = TRUE)
-        }
-
-        required_y_max <- max(max_y_from_data, highest_y_from_annots, na.rm = TRUE)
-
-        if (is.finite(required_y_max)) {
-          min_y <- min(localData[[yVar]], na.rm = TRUE)
-          adjust_args_yaxis$limits <- c(min_y, required_y_max * 1.05)
-        }
-      }
+      # --- Breaks ---
+      fromValueY <- suppressWarnings(as.numeric(tab[["breakFromY"]]))
+      toValueY   <- suppressWarnings(as.numeric(tab[["breakToY"]]))
+      byValueY   <- suppressWarnings(as.numeric(tab[["breakByY"]]))
+      user_has_breaks <- isTRUE(!is.na(fromValueY) && !is.na(toValueY) && !is.na(byValueY))
 
       if (user_has_breaks) {
         adjust_args_yaxis$breaks <- seq(fromValueY, toValueY, byValueY)
       }
 
-      num_comparisons_for_padding <- 0
-      if (!is.null(tab[["pairwiseComparisons"]])) {
-        num_comparisons_for_padding <- length(tab[["pairwiseComparisons"]])
-      }
-
+      # --- Padding ---
+      # An option that is absent gives numeric(0) here, so fall back to the default the qml shows
+      # instead of feeding a zero length value to is.finite(), which would make the test below fail
+      # with "missing value where TRUE/FALSE needed".
       bottom_padding <- suppressWarnings(as.numeric(tab[["YPaddingFirst"]]))
       top_padding    <- suppressWarnings(as.numeric(tab[["YPaddingSecond"]]))
 
-      if (num_comparisons_for_padding > 1) {
-        additional_padding <- (num_comparisons_for_padding - 1) * 0.15
-        top_padding <- top_padding + additional_padding
-      }
+      if (length(bottom_padding) != 1 || !is.finite(bottom_padding)) bottom_padding <- 0.1
+      if (length(top_padding)    != 1 || !is.finite(top_padding))    top_padding    <- 0.1
 
       adjust_args_yaxis$padding <- c(bottom_padding, top_padding)
 
-      adjust_args_yaxis$rotate_labels   <- isTRUE(tab[["rotateYLabel"]])
+      # --- Labels ---
       adjust_args_yaxis$cut_short_scale <- isTRUE(tab[["cutShortScaleY"]])
 
+      # --- Apply ---
       if (length(adjust_args_yaxis) > 0) {
         tidyplot_obj <- do.call(
           tidyplots::adjust_y_axis,
@@ -1872,6 +1846,7 @@ addDecodedLabels <- function(p) {
         )
       }
 
+      # --- Optional sorting of the Y axis ---
       enableSortY <- tab[["enableSortY"]]
       if (isTRUE(enableSortY)) {
         sortOrderY <- tab[["sortYLabelsOrder"]]
@@ -1888,6 +1863,7 @@ addDecodedLabels <- function(p) {
         }
       }
     }
+
 
 
     # Adjust Y axis labels (tidyplots::rename_y_axis_labels)----
@@ -2073,7 +2049,7 @@ addDecodedLabels <- function(p) {
             ggplot2::geom_segment(
               data = thisSegment,
               mapping = ggplot2::aes(x = x, xend = xend, y = y, yend = yend),
-              color = eval(parse(text = paste0("\"", line[["colorAnnotationLine"]], "\""))),
+              color = safe_eval_text(paste0("\"", line[["colorAnnotationLine"]], "\"")),
               inherit.aes = FALSE
             )
 
@@ -2090,7 +2066,7 @@ addDecodedLabels <- function(p) {
             thisText <- data.frame(
               x = x_mid,
               y = y_mid + offset_scaled,
-              label = eval(parse(text = paste0("\"", line[["textAnnotationline"]], "\""))),
+              label = safe_eval_text(paste0("\"", line[["textAnnotationline"]], "\"")),
               stringsAsFactors = FALSE
             )
             if (!is.null(colsVar) && nzchar(colAnnotLine)) {
@@ -2332,12 +2308,12 @@ addDecodedLabels <- function(p) {
         stringsAsFactors = FALSE
       )
 
-        rmOption <- tab[["isRM"]]
+      rmOption <- tab[["isRM"]]
 
-        if (rmOption == "RM") {
-          dfComparisons$group1 <- encodeColNames(dfComparisons$group1)
-          dfComparisons$group2 <- encodeColNames(dfComparisons$group2)
-        }
+      if (rmOption == "RM") {
+        dfComparisons$group1 <- encodeColNames(dfComparisons$group1)
+        dfComparisons$group2 <- encodeColNames(dfComparisons$group2)
+      }
 
       if (!is.null(colorVar)) {
         dfComparisons$color <- as.character(
@@ -2591,7 +2567,7 @@ addDecodedLabels <- function(p) {
           columnsWidth <- paste0("c(", columnsWidth, ")")
         }
         columnsWidth <- tryCatch(
-          eval(parse(text = columnsWidth)),
+          safe_eval_text(columnsWidth),
           error = function(e) {
             rep(1, ncol)
           }
@@ -2618,7 +2594,7 @@ addDecodedLabels <- function(p) {
           relativeHeight <- paste0("c(", relativeHeight, ")")
         }
         relativeHeight <- tryCatch(
-          eval(parse(text = relativeHeight)),
+          safe_eval_text(relativeHeight),
           error = function(e) {
             rep(1, ncol)
           }
@@ -2663,7 +2639,7 @@ addDecodedLabels <- function(p) {
             rowHeightsStr <- paste0("c(", rowHeightsStr, ")")
           }
           rowHeightsParsed <- tryCatch(
-            eval(parse(text = rowHeightsStr)),
+            safe_eval_text(rowHeightsStr),
             error = function(e) {
               rep(1, nRows)
             }
@@ -2780,7 +2756,7 @@ addDecodedLabels <- function(p) {
             relWidthsStr <- paste0("c(", relWidthsStr, ")")
           }
           relWidthsParsed <- tryCatch(
-            eval(parse(text = relWidthsStr)),
+            safe_eval_text(relWidthsStr),
             error = function(e) {
               rep(1, nPlots)
             }
@@ -2854,7 +2830,7 @@ addDecodedLabels <- function(p) {
           relheightWithinRowLayoutStr <- paste0("c(", relheightWithinRowLayoutStr, ")")
         }
         relheightWithinRowLayout <- tryCatch(
-          eval(parse(text = relheightWithinRowLayoutStr)),
+          safe_eval_text(relheightWithinRowLayoutStr),
           error = function(e) {
             rep(1, length(fullRowPlots))
           }
@@ -2878,7 +2854,7 @@ addDecodedLabels <- function(p) {
         relativeHeightStr <- paste0("c(", relativeHeightStr, ")")
       }
       relativeHeight <- tryCatch(
-        eval(parse(text = relativeHeightStr)),
+        safe_eval_text(relativeHeightStr),
         error = function(e) {
           c(1, 1)
         }
