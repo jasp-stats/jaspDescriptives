@@ -261,7 +261,10 @@
   midnight <- as.POSIXct(dateText, format = "%Y-%m-%d", tz = "UTC")
   # Calendar fields were checked independently; round-trip as well to avoid
   # accepting a platform parser's normalization or unsupported finite range.
-  exact <- !is.na(midnight) & format(midnight, "%Y-%m-%d", tz = "UTC") == dateText
+  # Compare fields directly because formatted years can omit leading zeros.
+  calendar <- as.POSIXlt(midnight, tz = "UTC")
+  exact <- !is.na(midnight) & calendar$year + 1900L == year &
+    calendar$mon + 1L == month & calendar$mday == day
   epoch <- as.numeric(midnight) + hour * 3600 + minute * 60 + second - offset
   lower <- as.numeric(as.POSIXct("0001-01-01", format = "%Y-%m-%d", tz = "UTC"))
   upper <- as.numeric(as.POSIXct("9999-12-31", format = "%Y-%m-%d", tz = "UTC")) + 86400
