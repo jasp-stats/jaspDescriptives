@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: R 3.6.1\n"
 "Report-Msgid-Bugs-To: github.com/jasp-stats/jasp-issues/issues\n"
-"POT-Creation-Date: 2026-04-11 04:04\n"
+"POT-Creation-Date: 2026-10-24 03:32\n"
 "PO-Revision-Date: 2024-09-15 09:32+0000\n"
 "Last-Translator: Koen Derks <koen-derks@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/jasp/"
@@ -23,7 +23,9 @@ msgstr "Vertragingsfiguur"
 msgid ""
 "The specified lag, %1$s, is too large given the %2$s observations in the "
 "data. Please choose a smaller lag."
-msgstr "De opgegeven vertraging, %1$s, is te groot gezien de %2$s waarnemingen in de gegevens. Kies een kleinere vertraging."
+msgstr ""
+"De opgegeven vertraging, %1$s, is te groot gezien de %2$s waarnemingen in de "
+"gegevens. Kies een kleinere vertraging."
 
 msgid "Autocorrelation Function"
 msgstr "Autocorrelatiefunctie"
@@ -292,12 +294,17 @@ msgstr ""
 msgid ""
 "Geometric and harmonic means are defined only for strictly positive "
 "variables, but the data contain some non-positive values."
-msgstr "Meetkundige en harmonische gemiddelden zijn alleen gedefinieerd voor strikt positieve variabelen, maar de gegevens bevatten enkele niet-positieve waarden."
+msgstr ""
+"Meetkundige en harmonische gemiddelden zijn alleen gedefinieerd voor strikt "
+"positieve variabelen, maar de gegevens bevatten enkele niet-positieve "
+"waarden."
 
 msgid ""
 "For ordinal variables, quantile type 3 was used because the selected type is "
 "not supported."
-msgstr "Voor ordinale variabelen werd kwantieltype 3 gebruikt omdat het geselecteerde type niet wordt ondersteund."
+msgstr ""
+"Voor ordinale variabelen werd kwantieltype 3 gebruikt omdat het "
+"geselecteerde type niet wordt ondersteund."
 
 msgid "Total"
 msgstr "Totaal"
@@ -392,7 +399,9 @@ msgstr "Items moeten 2 of meer niveaus hebben!"
 msgid ""
 "The variable used for counts must be different from the variable used for "
 "categories."
-msgstr "De verzameling van de variabele voor tellingen moet verschillen van de variabele voor categorieën."
+msgstr ""
+"De verzameling van de variabele voor tellingen moet verschillen van de "
+"variabele voor categorieën."
 
 #, fuzzy
 msgid "Percentage (%%)"
@@ -404,7 +413,9 @@ msgstr "Niveaus binnen variabele vereist minstens 2 datapunten!"
 msgid ""
 "Please assign a variable to every RM factor (defined in Repeated Measures "
 "Factors) within Repeated Measures Cells."
-msgstr "Wijs een variabele toe aan elke RM-factor (gedefinieerd in Herhaalde Metingen Factoren) binnen Herhaalde Metingen Cellen."
+msgstr ""
+"Wijs een variabele toe aan elke RM-factor (gedefinieerd in Herhaalde "
+"Metingen Factoren) binnen Herhaalde Metingen Cellen."
 
 #, fuzzy
 msgid "Plots"
@@ -520,6 +531,133 @@ msgstr "<br>Interval rond gemiddelde is aangepast."
 msgid "<br>Interval around mean represents %d%% confidence interval."
 msgstr "<br>Interval rond gemiddelde staat voor %d%% betrouwbaarheidsinterval."
 
+msgid ""
+"Warning: Time could represent decimal numbers or year.month dates, giving "
+"conflicting orders or ties. Time was ignored, and the analysis used "
+"spreadsheet row order. Use a numeric (Scale) variable for decimal indices, "
+"or dates in year-month-day order (YYYY-MM-DD). Leave Time empty to use "
+"spreadsheet row order."
+msgstr ""
+
+msgid ""
+"Warning: Time contains missing or non-finite values. Time was ignored, and "
+"the analysis used spreadsheet row order. Select a complete numeric variable "
+"or one containing complete, unambiguous dates, or leave Time empty to use "
+"spreadsheet row order."
+msgstr ""
+
+msgid ""
+"Warning: Time contains inconsistent day/month ordering. Time was ignored, "
+"and the analysis used spreadsheet row order. Use dates in year-month-day "
+"order (YYYY-MM-DD), for example 2020-10-01 for 1 October 2020, or leave Time "
+"empty to use spreadsheet row order."
+msgstr ""
+
+msgid ""
+"Warning: The date format in Time is ambiguous. Time was ignored, and the "
+"analysis used spreadsheet row order. Use dates in year-month-day order (YYYY-"
+"MM-DD), for example 2020-10-01 for 1 October 2020, or leave Time empty to "
+"use spreadsheet row order."
+msgstr ""
+
+msgid ""
+"Warning: The selected Time variable contains values that cannot be "
+"interpreted as numbers or dates. Time was ignored, and the analysis used "
+"spreadsheet row order. Select a numeric variable or one containing "
+"unambiguous dates, or leave Time empty to use spreadsheet row order."
+msgstr ""
+
+msgid "Affected spreadsheet rows (first few): %s."
+msgstr ""
+
+msgid "Warning: Time ignored"
+msgstr ""
+
+msgid "year-month-day (YYYY-MM-DD), for example 2020-01-10 as 10 January 2020"
+msgstr ""
+
+msgid "day-month-year (DD-MM-YYYY), for example 10-01-2020 as 10 January 2020"
+msgstr ""
+
+msgid "month-day-year (MM-DD-YYYY), for example 01-10-2020 as 10 January 2020"
+msgstr ""
+
+msgid "Time was interpreted in %s."
+msgstr ""
+
+msgid "Dates in Time were interpreted using these date orders: %s."
+msgstr ""
+
+msgid "Date interpretation"
+msgstr ""
+
+msgid "Repeated time values"
+msgstr ""
+
+msgid ""
+"Time contains repeated values. Spreadsheet row order is retained within tied "
+"values. Tied observations are analysed as successive steps in that order."
+msgstr ""
+
+msgid "Time ordering"
+msgstr ""
+
+msgid "Observations were sorted by Time for this analysis."
+msgstr ""
+
+msgid "The selected filter contains no observations. Adjust the filter limits."
+msgstr ""
+
+msgid ""
+"Filtering by Time requires a usable numeric or date variable assigned to "
+"Time. Select an appropriate Time variable, choose Row number to filter "
+"spreadsheet rows, or disable filtering."
+msgstr ""
+
+msgid ""
+"The selected Time variable contains dates. Choose Date to filter it, or "
+"assign a numeric variable to Time."
+msgstr ""
+
+msgid ""
+"Assign a date variable to Time, or choose Time index to filter the selected "
+"numeric variable."
+msgstr ""
+
+msgid ""
+"Enter Start in year-month-day order (YYYY-MM-DD), for example 2020-10-01 for "
+"1 October 2020. For a specific time, use YYYY-MM-DD HH:MM:SS."
+msgstr ""
+
+msgid ""
+"Enter End in year-month-day order (YYYY-MM-DD), for example 2020-10-01 for 1 "
+"October 2020. For a specific time, use YYYY-MM-DD HH:MM:SS."
+msgstr ""
+
+msgid "Filter limits must be valid, finite values."
+msgstr ""
+
+msgid ""
+"No observations have Time values between %1$s and %2$s. The selected Time "
+"variable ranges from %3$s to %4$s. Adjust the limits, or choose Row number "
+"to filter spreadsheet rows."
+msgstr ""
+
+msgid ""
+"No observations have dates within the selected range. The selected Time "
+"variable ranges from %1$s to %2$s (UTC). Adjust the date limits, or choose "
+"Row number to filter spreadsheet rows."
+msgstr ""
+
+msgid "Warning: Filtering"
+msgstr ""
+
+msgid ""
+"Warning: The selected spreadsheet rows skip observations within Time order. "
+"The selected observations are analysed as successive steps. Use a Time or "
+"date filter to select a continuous block in Time order."
+msgstr ""
+
 msgid "%2$s has more than %1$s distinct values and is omitted."
 msgid_plural ""
 "The following variables have more than %1$s distinct values and are omitted: "
@@ -587,87 +725,3 @@ msgstr[1] "De decimale punt is %s cijfers links van de |"
 
 #~ msgid "Standardised Residuals"
 #~ msgstr "Gestandaardiseerde Residuen"
-
-msgid "Warning: Time could represent decimal numbers or year.month dates, giving conflicting orders or ties. Time was ignored, and the analysis used spreadsheet row order. Use a numeric (Scale) variable for decimal indices, or dates in year-month-day order (YYYY-MM-DD). Leave Time empty to use spreadsheet row order."
-msgstr ""
-
-msgid "Warning: Time contains missing or non-finite values. Time was ignored, and the analysis used spreadsheet row order. Select a complete numeric variable or one containing complete, unambiguous dates, or leave Time empty to use spreadsheet row order."
-msgstr ""
-
-msgid "Warning: Time contains inconsistent day/month ordering. Time was ignored, and the analysis used spreadsheet row order. Use dates in year-month-day order (YYYY-MM-DD), for example 2020-10-01 for 1 October 2020, or leave Time empty to use spreadsheet row order."
-msgstr ""
-
-msgid "Warning: The date format in Time is ambiguous. Time was ignored, and the analysis used spreadsheet row order. Use dates in year-month-day order (YYYY-MM-DD), for example 2020-10-01 for 1 October 2020, or leave Time empty to use spreadsheet row order."
-msgstr ""
-
-msgid "Warning: The selected Time variable contains values that cannot be interpreted as numbers or dates. Time was ignored, and the analysis used spreadsheet row order. Select a numeric variable or one containing unambiguous dates, or leave Time empty to use spreadsheet row order."
-msgstr ""
-
-msgid "Affected spreadsheet rows (first few): %s."
-msgstr ""
-
-msgid "Time contains repeated values. Spreadsheet row order is retained within tied values. Tied observations are analysed as successive steps in that order."
-msgstr ""
-
-msgid "Observations were sorted by Time for this analysis."
-msgstr ""
-
-msgid "The selected filter contains no observations. Adjust the filter limits."
-msgstr ""
-
-msgid "Filtering by Time requires a usable numeric or date variable assigned to Time. Select an appropriate Time variable, choose Row number to filter spreadsheet rows, or disable filtering."
-msgstr ""
-
-msgid "Enter Start in year-month-day order (YYYY-MM-DD), for example 2020-10-01 for 1 October 2020. For a specific time, use YYYY-MM-DD HH:MM:SS."
-msgstr ""
-
-msgid "Enter End in year-month-day order (YYYY-MM-DD), for example 2020-10-01 for 1 October 2020. For a specific time, use YYYY-MM-DD HH:MM:SS."
-msgstr ""
-
-msgid "Filter limits must be valid, finite values."
-msgstr ""
-
-msgid "Warning: The selected spreadsheet rows skip observations within Time order. The selected observations are analysed as successive steps. Use a Time or date filter to select a continuous block in Time order."
-msgstr ""
-
-msgid "year-month-day (YYYY-MM-DD), for example 2020-01-10 as 10 January 2020"
-msgstr ""
-
-msgid "day-month-year (DD-MM-YYYY), for example 10-01-2020 as 10 January 2020"
-msgstr ""
-
-msgid "month-day-year (MM-DD-YYYY), for example 01-10-2020 as 10 January 2020"
-msgstr ""
-
-msgid "Time was interpreted in %s."
-msgstr ""
-
-msgid "Dates in Time were interpreted using these date orders: %s."
-msgstr ""
-
-msgid "The selected Time variable contains dates. Choose Date to filter it, or assign a numeric variable to Time."
-msgstr ""
-
-msgid "Assign a date variable to Time, or choose Time index to filter the selected numeric variable."
-msgstr ""
-
-msgid "No observations have Time values between %1$s and %2$s. The selected Time variable ranges from %3$s to %4$s. Adjust the limits, or choose Row number to filter spreadsheet rows."
-msgstr ""
-
-msgid "No observations have dates within the selected range. The selected Time variable ranges from %1$s to %2$s (UTC). Adjust the date limits, or choose Row number to filter spreadsheet rows."
-msgstr ""
-
-msgid "Warning: Time ignored"
-msgstr ""
-
-msgid "Date interpretation"
-msgstr ""
-
-msgid "Repeated time values"
-msgstr ""
-
-msgid "Time ordering"
-msgstr ""
-
-msgid "Warning: Filtering"
-msgstr ""
