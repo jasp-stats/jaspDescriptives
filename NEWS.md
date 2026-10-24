@@ -16,6 +16,7 @@
 
 # jaspDescriptives (development version)
 
+* Time Series Descriptives uses Time to order whole observations without adding rows for gaps. Unusable or ambiguous Time falls back to spreadsheet row order with a warning; numeric Time filters accept negative values and decimals.
 * Added documentation for the boxplot jitter element in the helpfile ([PR 534](https://github.com/jasp-stats/jaspDescriptives/pull/534)).
 * Added documentation for interval plots, dotplots, and pie charts in the helpfile ([PR 516](https://github.com/jasp-stats/jaspDescriptives/pull/516)).
 
