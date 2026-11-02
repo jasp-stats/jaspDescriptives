@@ -1976,8 +1976,8 @@ addDecodedLabels <- function(p) {
         fontSize <- as.numeric(rowData$annotationSize)
 
         # Read annotation text color (default is black)
-        colorText <- if (!is.null(rowData$colorAnnotationLine) && nzchar(rowData$colorText)) {
-          rowData$colorAnnotationLine
+        colorText <- if (!is.null(rowData$colorText) && nzchar(rowData$colorText)) {
+          rowData$colorText
         } else {
           "black"
         }
