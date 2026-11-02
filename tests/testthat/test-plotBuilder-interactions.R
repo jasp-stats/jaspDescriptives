@@ -55,3 +55,15 @@ test_that("RM connections stay with their faceted and jittered points", {
     expect_equal(sort(lines$y), sort(points$y))
   }
 })
+
+test_that("sorting RM categories keeps connections on the data points", {
+  dataset <- data.frame(ID = rep(1:2, each = 2),
+                        time = factor(rep(c("a", "b"), 2)), Value = c(100, 10, 110, 20))
+  plot <- .plotBuilderTestPlot(dataset, isRM = "RM", xVarRM = "time",
+                               connectRMPlotBuilder = TRUE, enableSort = TRUE)
+  built <- ggplot2::ggplot_build(plot)
+  points <- built$data[[1]]
+  lines <- built$data[[2]]
+  expect_equal(as.numeric(points$x), c(2, 1, 2, 1))
+  expect_equal(as.numeric(lines$x[order(lines$y)]), as.numeric(points$x[order(points$y)]))
+})

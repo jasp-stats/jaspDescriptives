@@ -502,6 +502,23 @@ addDecodedLabels <- function(p) {
       }
     }
 
+    # Sort X axis labels (tidyplots::sort_x_axis_labels)----
+    enableSort <- tab[["enableSort"]]
+    if (!is.null(enableSort) && enableSort) {
+      sortOrder <- tab[["sortXLabelsOrder"]]
+      if (!is.null(sortOrder) && sortOrder %in% c("Increasing", "Decreasing")) {
+        reverse_order <- (sortOrder == "Decreasing")
+        aggFun        <- tab[["aggregationFun"]]
+        if (!is.null(aggFun) && aggFun %in% c("mean", "median")) {
+          tidyplot_obj <- tidyplots::sort_x_axis_labels(
+            tidyplot_obj,
+            .reverse = reverse_order,
+            .fun     = aggFun
+          )
+        }
+      }
+    }
+
     #Pre-calculation for determining the positions of jittered points----
     #This is necessary so that the lines connecting the RM points can be
     #ordered. Without it, they may lose their jittered position.
@@ -1842,22 +1859,6 @@ addDecodedLabels <- function(p) {
     }
 
 
-    # Sort X axis labels (tidyplots::sort_x_axis_labels)----
-    enableSort <- tab[["enableSort"]]
-    if (!is.null(enableSort) && enableSort) {
-      sortOrder <- tab[["sortXLabelsOrder"]]
-      if (!is.null(sortOrder) && sortOrder %in% c("Increasing", "Decreasing")) {
-        reverse_order <- (sortOrder == "Decreasing")
-        aggFun        <- tab[["aggregationFun"]]
-        if (!is.null(aggFun) && aggFun %in% c("mean", "median")) {
-          tidyplot_obj <- tidyplots::sort_x_axis_labels(
-            tidyplot_obj,
-            .reverse = reverse_order,
-            .fun     = aggFun
-          )
-        }
-      }
-    }
 
     # Adjust Y axis (tidyplots::adjust_y_axis)----
     {
