@@ -41,21 +41,18 @@ jaspPlotBuilder(
     "bottom-rightFacetWrap", axes = "margins", axisLabels = "all", backgroundDataLabels =
     FALSE, barwidthCountBar = 0.8, baseFontSize = 18, betweenSubjectFactors = list(types
     = list(), value = list()), binsPlotBuilder = 30, blackDensityOutline = FALSE,
-    blackHistogramOutline = FALSE, blackOutlineBoxplot = TRUE, blackOutlineCI95ErrorBar =
+    blackHistogramOutline = FALSE, outlineBoxplot = "black", blackOutlineCI95ErrorBar =
     FALSE, blackOutlineCi95Ribbon = FALSE, blackOutlineCountDash = FALSE,
-    blackOutlineCountDot = FALSE, 
+    outlineCountDot = "automatic",
      blackOutlineCountLine = FALSE,
-    blackOutlineCountValue = FALSE, blackOutlineCurveFit = FALSE, blackOutlineDataPoint =
-    FALSE, blackOutlineMeanDash = FALSE, blackOutlineMeanDot = FALSE,
+    blackOutlineCountValue = FALSE, blackOutlineCurveFit = FALSE, outlineDataPoint = "automatic", blackOutlineMeanDash = FALSE, outlineMeanDot = "automatic",
     blackOutlineMeanLine = FALSE, blackOutlineMeanValue = FALSE, blackOutlineMedianDash =
-    FALSE, blackOutlineMedianDot = FALSE, blackOutlineMedianLine = FALSE,
+    FALSE, outlineMedianDot = "automatic", blackOutlineMedianLine = FALSE,
     blackOutlineMedianValue = FALSE, blackOutlineRangeErrorBar = FALSE,
     blackOutlineRangeRibbon = FALSE, blackOutlineSDErrorBar = FALSE,
     blackOutlineSEMErrorBar = FALSE, 
      blackOutlineSdRibbon = FALSE,
-    blackOutlineSemRibbon = FALSE, blackOutlineSumDash = FALSE, blackOutlineSumDot =
-    FALSE, blackOutlineSumLine = FALSE, blackOutlineSumValue = FALSE, blackOutlineViolin
-    = FALSE, bottomMargin = 10, breakByX = "", breakByY = "", breakFromX = "", breakFromY
+    blackOutlineSemRibbon = FALSE, blackOutlineSumDash = FALSE, outlineSumDot = "automatic", blackOutlineSumLine = FALSE, blackOutlineSumValue = FALSE, outlineViolin = "automatic", bottomMargin = 10, breakByX = "", breakByY = "", breakFromX = "", breakFromY
     = "", breakToX = "", breakToY = "", captionPlotBuilder = "", colSplitRM = list(types
     = list(), value = ""), colorByGroup = "none", colorIdentityLine = "lightgray",
     colorLabelRenamer = list(), colorReferenceLine = "lightgray", 
@@ -120,10 +117,7 @@ jaspPlotBuilder(
     list(types = list(), value = ""), variableYPlotBuilder = list(types = list(), 
       
       value = ""), vjustCountValue = -0.5, vjustMeanValue = -0.5, vjustMedianValue =
-    -0.5, vjustSumValue = -0.5, whiteBorder = FALSE, whiteOutlineBoxplot = FALSE,
-    whiteOutlineCountDot = FALSE, whiteOutlineMeanDot = FALSE, whiteOutlineMedianDot =
-    FALSE, whiteOutlineSumDot = FALSE, whiteOutlineViolin = FALSE,
-    widthBoxplotPlotBuilder = 0.6, widthCI95ErrorBar = 0.3, widthLineBoxplotPlotBuilder =
+    -0.5, vjustSumValue = -0.5, widthBoxplotPlotBuilder = 0.6, widthCI95ErrorBar = 0.3, widthLineBoxplotPlotBuilder =
     0.8, widthMeanBar = 0.8, widthMedianBar = 0.8, widthPlotBuilder = 380,
     widthRangeErrorBar = 0.3, widthSDErrorBar = 0.3, 
      widthSEMErrorBar = 0.3,

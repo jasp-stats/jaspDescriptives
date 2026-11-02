@@ -231,6 +231,19 @@ addDecodedLabels <- function(p) {
   p
 }
 
+#HELPER FUNCTION: outline color ----
+
+.plotBuilderOutlineColor <- function(tab, element) {
+  outline <- tab[[paste0("outline", element)]]
+  if (!is.null(outline)) return(outline)
+
+  # Support older options supplied directly through the R interface.
+  whiteOption <- if (element == "DataPoint") "whiteBorder" else paste0("whiteOutline", element)
+  if (isTRUE(tab[[whiteOption]])) return("white")
+  if (isTRUE(tab[[paste0("blackOutline", element)]])) return("black")
+  "automatic"
+}
+
 #HELPER FUNCTION: jitter position ----
 
 .create_point_layer_func <- function(tab, shapeVar = NULL) {
@@ -243,22 +256,23 @@ addDecodedLabels <- function(p) {
       jitter_height = tab[["jitterhPlotBuilder"]],
       jitter_width  = tab[["jitterwPlotBuilder"]],
       size          = tab[["pointsizePlotBuilder"]],
-      alpha         = tab[["alphaPlotBuilder"]],
-      white_border  = tab[["whiteBorder"]]
+      alpha         = tab[["alphaPlotBuilder"]]
     )
 
-    if (isTRUE(tab[["blackOutlineDataPoint"]]))
-      argList$color <- "black"
+    outline <- .plotBuilderOutlineColor(tab, "DataPoint")
+    if (outline != "automatic")
+      argList$color <- outline
 
     if (is.null(shapeVar) || !nzchar(shapeVar)) {
-      argList$shape <- ifelse(tab[["emptyCircles"]], 1, 21)
+      argList$shape <- 21
+      if (isTRUE(tab[["emptyCircles"]])) argList$fill <- NA
     }
 
     gp <- do.call(tidyplots::add_data_points_jitter, c(list(p), argList))
 
     if (!is.null(shapeVar) && shapeVar %in% names(p$data)) {
       for (i in seq_along(gp$layers)) {
-        if (inherits(gp$layers[[i]]$geom, "GeomPoint")) {
+        if (inherits(gp$layers[[i]]$geom, "GeomPoint") && inherits(gp$layers[[i]]$stat, "StatIdentity")) {
           gp$layers[[i]]$aes_params$shape <- NULL
           gp$layers[[i]]$mapping$shape    <- rlang::sym(shapeVar)
         }
@@ -566,22 +580,7 @@ addDecodedLabels <- function(p) {
     # Add data points (tidyplots::add_data_points_jitter)----
     if (tab[["addDataPoint"]]) {
 
-      layer_calls$point <- function(p)
-      {
-        argList <- list(
-          dodge_width   = tab[["pointDodgePlotBuilder"]],
-          jitter_height = tab[["jitterhPlotBuilder"]],
-          jitter_width  = tab[["jitterwPlotBuilder"]],
-          size          = tab[["pointsizePlotBuilder"]],
-          alpha         = tab[["alphaPlotBuilder"]],
-          shape         = ifelse(tab[["emptyCircles"]], 1, 21),
-          white_border  = tab[["whiteBorder"]]
-        )
-        if (tab[["blackOutlineDataPoint"]])
-          argList$color <- "black"
-
-        do.call(tidyplots::add_data_points_jitter, c(list(p), argList))
-      }
+      layer_calls$point <- .create_point_layer_func(tab, shapeVar)
     }
 
     if (tab[["addHistogram"]]) {
@@ -691,12 +690,8 @@ addDecodedLabels <- function(p) {
           outlier.size   = tab[["outlierSizeBoxplotPlotBuilder"]],
           coef           = tab[["outlierCoefBoxplotPlotBuilder"]]
         )
-        if (tab[["blackOutlineBoxplot"]]) {
-          argList$color <- "black"
-        }
-        if (tab[["whiteOutlineBoxplot"]]) {
-          argList$color <- "white"
-        }
+        outline <- .plotBuilderOutlineColor(tab, "Boxplot")
+        if (outline != "automatic") argList$color <- outline
         do.call(tidyplots::add_boxplot, c(list(p), argList))
       }
     }
@@ -723,12 +718,8 @@ addDecodedLabels <- function(p) {
           scale          = tab[["scaleViolinPlotBuilder"]]
         )
 
-        if (tab[["blackOutlineViolin"]]) {
-          argList$color <- "black"
-        }
-        if (tab[["whiteOutlineViolin"]]) {
-          argList$color <- "white"
-        }
+        outline <- .plotBuilderOutlineColor(tab, "Violin")
+        if (outline != "automatic") argList$color <- outline
 
         do.call(tidyplots::add_violin, c(list(p), argList))
       }
@@ -1331,12 +1322,8 @@ addDecodedLabels <- function(p) {
           alpha       = tab[["alphaCountDot"]],
           shape       = 21
         )
-        if (tab[["blackOutlineCountDot"]]) {
-          argList$color <- "black"
-        }
-        if (tab[["whiteOutlineCountDot"]]) {
-          argList$color <- "white"
-        }
+        outline <- .plotBuilderOutlineColor(tab, "CountDot")
+        if (outline != "automatic") argList$color <- outline
         do.call(tidyplots::add_count_dot, c(list(p), argList))
       }
     }
@@ -1350,12 +1337,8 @@ addDecodedLabels <- function(p) {
           alpha       = tab[["alphaSumDot"]],
           shape       = 21
         )
-        if (tab[["blackOutlineSumDot"]]) {
-          argList$color <- "black"
-        }
-        if (tab[["whiteOutlineSumDot"]]) {
-          argList$color <- "white"
-        }
+        outline <- .plotBuilderOutlineColor(tab, "SumDot")
+        if (outline != "automatic") argList$color <- outline
         do.call(tidyplots::add_sum_dot, c(list(p), argList))
       }
     }
@@ -1369,12 +1352,8 @@ addDecodedLabels <- function(p) {
           size        = tab[["sizeMeanDot"]],
           shape       = 21
         )
-        if (tab[["blackOutlineMeanDot"]]) {
-          argList$color <- "black"
-        }
-        if (tab[["whiteOutlineMeanDot"]]) {
-          argList$color <- "white"
-        }
+        outline <- .plotBuilderOutlineColor(tab, "MeanDot")
+        if (outline != "automatic") argList$color <- outline
 
         do.call(tidyplots::add_mean_dot, c(list(p), argList))
       }
@@ -1389,12 +1368,8 @@ addDecodedLabels <- function(p) {
           alpha       = tab[["alphaMedianDot"]],
           shape       = 21
         )
-        if (tab[["blackOutlineMedianDot"]]) {
-          argList$color <- "black"
-        }
-        if (tab[["whiteOutlineMedianDot"]]) {
-          argList$color <- "white"
-        }
+        outline <- .plotBuilderOutlineColor(tab, "MedianDot")
+        if (outline != "automatic") argList$color <- outline
         do.call(tidyplots::add_median_dot, c(list(p), argList))
       }
     }

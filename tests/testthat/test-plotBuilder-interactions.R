@@ -20,6 +20,45 @@ context("Plot Builder interactions")
   .plotBuilderPlots(data, list(PlotBuilderTab = list(tab)))$updatedPlots[[tab$value]]
 }
 
+test_that("point outline color and empty fill are independent", {
+  dataset <- data.frame(x = 1:6, y = 2:7, group = factor(rep(c("a", "b"), each = 3)))
+  for (outline in c("automatic", "black", "white")) {
+    for (empty in c(FALSE, TRUE)) {
+      plot <- .plotBuilderTestPlot(dataset, outlineDataPoint = outline, emptyCircles = empty,
+        pointsizePlotBuilder = 3, colorByGroup = "grouping", variableColorPlotBuilder = "group",
+        colorsAll = "default")
+      points <- ggplot2::ggplot_build(plot)$data[[1]]
+      expect_true(all(points$size == 3))
+      if (outline == "automatic") expect_length(unique(points$colour), 2)
+      else expect_true(all(points$colour == outline))
+      if (empty) expect_true(all(is.na(points$fill)))
+      else expect_length(unique(points$fill), 2)
+    }
+  }
+})
+
+test_that("outline selections preserve fills and summaries for other elements", {
+  dataset <- data.frame(x = factor(rep(c("a", "b"), each = 6)), y = rep(1:6, 2),
+                        group = factor(rep(c("one", "two"), 6)))
+  for (element in c("Boxplot", "Violin", "CountDot", "SumDot", "MeanDot", "MedianDot")) {
+    layers <- lapply(c("automatic", "black", "white"), function(outline) {
+      args <- list(dataset = dataset, addDataPoint = FALSE, colorByGroup = "grouping",
+                   variableColorPlotBuilder = "group", colorsAll = "default")
+      args[[paste0("add", element)]] <- TRUE
+      args[[paste0("outline", element)]] <- outline
+      if (element == "CountDot") args$variableYPlotBuilder <- ""
+      plot <- do.call(.plotBuilderTestPlot, args)
+      ggplot2::ggplot_build(plot)$data[[1]]
+    })
+    expect_true(all(layers[[2]]$colour == "black"))
+    expect_true(all(layers[[3]]$colour == "white"))
+    for (layer in layers[-1]) {
+      expect_equal(layer$fill, layers[[1]]$fill)
+      expect_equal(layer$y, layers[[1]]$y)
+    }
+  }
+})
+
 test_that("individual point appearance does not change summary groups", {
   dataset <- data.frame(
     x = factor(rep(c("a", "b"), each = 4)),
@@ -36,6 +75,10 @@ test_that("individual point appearance does not change summary groups", {
   plot <- .plotBuilderTestPlot(dataset, sizeVariablePlotBuilder = "shape",
                                addMeanDot = TRUE)
   expect_equal(ggplot2::ggplot_build(plot)$data[[2]]$y, c(52, 52))
+
+  plot <- .plotBuilderTestPlot(dataset, pointShapeVariable = "shape",
+                               addMeanDot = TRUE, layerOrder = "mean_dot,point")
+  expect_equal(ggplot2::ggplot_build(plot)$data[[1]]$y, c(52, 52))
 })
 
 test_that("RM connections stay with their faceted and jittered points", {

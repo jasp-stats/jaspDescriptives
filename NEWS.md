@@ -16,6 +16,8 @@
 
 # jaspDescriptives (development version)
 
+* Replaced conflicting black/white outline checkboxes in Plot Builder with outline color dropdowns and made empty circles independent of outline color. Saved outline selections are migrated automatically.
+
 * Added documentation for interval plots, dotplots, and pie charts in the helpfile ([PR 516](https://github.com/jasp-stats/jaspDescriptives/pull/516)).
 
 ---

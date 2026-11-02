@@ -425,31 +425,20 @@ TabView {
 				}
 
 				Group{
-					CheckBox {
-						name: "blackOutlineDataPoint"
-						label: qsTr("Black outline")
-						checked: false
+					DropDown {
+						name: "outlineDataPoint"
+						label: qsTr("Outline color")
+						values: [
+							{ label: qsTr("Automatic"), value: "automatic" },
+							{ label: qsTr("Black"), value: "black" },
+							{ label: qsTr("White"), value: "white" }
+						]
+						startValue: "automatic"
 						enabled: !shapebyVariable.checked
-						info: qsTr("Add a black outline/border to the elements")
-						onEnabledChanged: {
-							if (!enabled) {
-								checked = false;
-							}
-						}
+						onEnabledChanged: { if (!enabled) currentIndex = 0 }
+						info: qsTr("Choose an automatic, black, or white outline")
 					}
 
-					CheckBox {
-						name: "whiteBorder"
-						label: qsTr("White outline")
-						checked: false
-						enabled: !shapebyVariable.checked
-						info: qsTr("Add a white outline/border to the elements")
-						onEnabledChanged: {
-							if (!enabled) {
-								checked = false;
-							}
-						}
-					}
 
 					CheckBox {
 						name: "emptyCircles"
@@ -851,18 +840,18 @@ TabView {
 						defaultValue: 1
 					}
 
-					CheckBox {
-						name: "blackOutlineBoxplot"
-						label: qsTr("Black outline")
-						checked: true
-						info: qsTr("Add a black outline/border to the elements")
+					DropDown {
+						name: "outlineBoxplot"
+						label: qsTr("Outline color")
+						values: [
+							{ label: qsTr("Automatic"), value: "automatic" },
+							{ label: qsTr("Black"), value: "black" },
+							{ label: qsTr("White"), value: "white" }
+						]
+						startValue: "black"
+						info: qsTr("Choose an automatic, black, or white outline")
 					}
 
-					CheckBox {
-						name: "whiteOutlineBoxplot"
-						info: qsTr("Add a white outline/border to the elements")
-						label: qsTr("White outline")
-					}
 
 
 				}
@@ -954,19 +943,18 @@ TabView {
 						checked: false
 					}
 
-					CheckBox {
-						name: "blackOutlineViolin"
-						label: qsTr("Black outline")
-						info: qsTr("Add a black outline/border to the elements")
-
+					DropDown {
+						name: "outlineViolin"
+						label: qsTr("Outline color")
+						values: [
+							{ label: qsTr("Automatic"), value: "automatic" },
+							{ label: qsTr("Black"), value: "black" },
+							{ label: qsTr("White"), value: "white" }
+						]
+						startValue: "automatic"
+						info: qsTr("Choose an automatic, black, or white outline")
 					}
 
-					CheckBox {
-						name: "whiteOutlineViolin"
-						label: qsTr("White outline")
-						info: qsTr("Add a white outline/border to the elements")
-
-					}
 
 
 				}
@@ -1116,15 +1104,18 @@ TabView {
 							max: 1
 						}
 
-						CheckBox {
-							name: "blackOutlineCountDot"
-							label: qsTr("Black outline")
+						DropDown {
+							name: "outlineCountDot"
+							label: qsTr("Outline color")
+							values: [
+								{ label: qsTr("Automatic"), value: "automatic" },
+								{ label: qsTr("Black"), value: "black" },
+								{ label: qsTr("White"), value: "white" }
+							]
+							startValue: "automatic"
+							info: qsTr("Choose an automatic, black, or white outline")
 						}
 
-						CheckBox {
-							name: "whiteOutlineCountDot"
-							label: qsTr("White outline")
-						}
 					}
 				}
 
@@ -1402,13 +1393,16 @@ TabView {
 						max: 1
 					}
 
-					CheckBox {
-						name: "blackOutlineSumDot"
-						label: qsTr("Black outline")
-					}
-					CheckBox {
-						name: "whiteOutlineSumDot"
-						label: qsTr("White outline")
+					DropDown {
+						name: "outlineSumDot"
+						label: qsTr("Outline color")
+						values: [
+							{ label: qsTr("Automatic"), value: "automatic" },
+							{ label: qsTr("Black"), value: "black" },
+							{ label: qsTr("White"), value: "white" }
+						]
+						startValue: "automatic"
+						info: qsTr("Choose an automatic, black, or white outline")
 					}
 				}
 
@@ -1721,8 +1715,17 @@ TabView {
 					DoubleField { name: "dodgeMeanDot"; label: qsTr("Dodge");    defaultValue: 0.8 }
 					DoubleField { name: "sizeMeanDot";  label: qsTr("Dot size"); defaultValue: 5 }
 					DoubleField { name: "alphaMeanDot"; label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
-					CheckBox    { name: "blackOutlineMeanDot"; label: qsTr("Black outline") }
-					CheckBox    { name: "whiteOutlineMeanDot"; label: qsTr("White outline") }
+					DropDown {
+						name: "outlineMeanDot"
+						label: qsTr("Outline color")
+						values: [
+							{ label: qsTr("Automatic"), value: "automatic" },
+							{ label: qsTr("Black"), value: "black" },
+							{ label: qsTr("White"), value: "white" }
+						]
+						startValue: "automatic"
+						info: qsTr("Choose an automatic, black, or white outline")
+					}
 				}
 
 				/* ── Mean line ── */
@@ -1851,8 +1854,17 @@ TabView {
 					DoubleField { name: "dodgeMedianDot"; label: qsTr("Dodge");    defaultValue: 0.8 }
 					DoubleField { name: "sizeMedianDot";  label: qsTr("Dot size"); defaultValue: 5 }
 					DoubleField { name: "alphaMedianDot"; label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
-					CheckBox    { name: "blackOutlineMedianDot"; label: qsTr("Black outline"); enabled: addMedianDot.checked }
-					CheckBox    { name: "whiteOutlineMedianDot"; label: qsTr("White outline") }
+					DropDown {
+						name: "outlineMedianDot"
+						label: qsTr("Outline color")
+						values: [
+							{ label: qsTr("Automatic"), value: "automatic" },
+							{ label: qsTr("Black"), value: "black" },
+							{ label: qsTr("White"), value: "white" }
+						]
+						startValue: "automatic"
+						info: qsTr("Choose an automatic, black, or white outline")
+					}
 				}
 
 				/* Median line --------------------------------------------------- */
