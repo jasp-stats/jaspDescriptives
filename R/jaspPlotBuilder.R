@@ -561,17 +561,21 @@ addDecodedLabels <- function(p) {
 
     if (tab[["addHistogram"]]) {
       layer_calls$histogram <- function(p) {
+        distributionVar <- if (nzchar(xVar)) xVar else yVar
         fillvar <- NULL
         if (!is.null(colorVar) && colorVar != "" && colorVar %in% names(localData)) {
           fillvar <- colorVar
         }
         mapping_hist <- if (!is.null(fillvar)) {
-          ggplot2::aes(x = .data[[xVar]], y = ..count.., fill = .data[[fillvar]])
+          ggplot2::aes(x = .data[[distributionVar]], y = ..count.., fill = .data[[fillvar]])
         } else {
-          ggplot2::aes(x = .data[[xVar]], y = ..count..)
+          ggplot2::aes(x = .data[[distributionVar]], y = ..count..)
         }
+        if (!nzchar(xVar))
+          mapping_hist[c("x", "y")] <- mapping_hist[c("y", "x")]
         argList <- list(
           mapping = mapping_hist,
+          orientation = if (nzchar(xVar)) "x" else "y",
           bins = tab[["binsPlotBuilder"]],
           alpha = tab[["alphaHistogramPlotBuilder"]],
           position = "identity",
@@ -600,6 +604,7 @@ addDecodedLabels <- function(p) {
 
     if (tab[["addDensity"]]) {
       layer_calls$density <- function(p) {
+        distributionVar <- if (nzchar(xVar)) xVar else yVar
         mode <- tab[["densityOverlayMode"]]
         fillvar <- NULL
         if (!is.null(colorVar) && colorVar != "" && colorVar %in% names(localData)) {
@@ -607,19 +612,22 @@ addDecodedLabels <- function(p) {
         }
         mapping_density <- if (!is.null(fillvar)) {
           if (mode == "count") {
-            ggplot2::aes(x = .data[[xVar]], y = ..count.., fill = .data[[fillvar]], color = .data[[fillvar]])
+            ggplot2::aes(x = .data[[distributionVar]], y = ..count.., fill = .data[[fillvar]], color = .data[[fillvar]])
           } else {
-            ggplot2::aes(x = .data[[xVar]], y = ..scaled.., fill = .data[[fillvar]], color = .data[[fillvar]])
+            ggplot2::aes(x = .data[[distributionVar]], y = ..scaled.., fill = .data[[fillvar]], color = .data[[fillvar]])
           }
         } else {
           if (mode == "count") {
-            ggplot2::aes(x = .data[[xVar]], y = ..count..)
+            ggplot2::aes(x = .data[[distributionVar]], y = ..count..)
           } else {
-            ggplot2::aes(x = .data[[xVar]], y = ..scaled..)
+            ggplot2::aes(x = .data[[distributionVar]], y = ..scaled..)
           }
         }
+        if (!nzchar(xVar))
+          mapping_density[c("x", "y")] <- mapping_density[c("y", "x")]
         argList <- list(
           mapping = mapping_density,
+          orientation = if (nzchar(xVar)) "x" else "y",
           linewidth = tab[["lineWidthDensity"]],
           alpha = tab[["alphaDensityPlotBuilder"]],
           position = "identity",

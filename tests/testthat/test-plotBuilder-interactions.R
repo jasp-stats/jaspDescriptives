@@ -99,3 +99,18 @@ test_that("data labels build and stay in their assigned panels", {
     expect_equal(as.numeric(built$data[[2]]$x), as.numeric(built$data[[1]]$x))
   }
 })
+
+test_that("histograms and densities accept either single axis variable", {
+  dataset <- data.frame(x = rep(11:20, 2), y = rep(11:20, 2))
+  for (axis in c("x", "y")) {
+    plot <- .plotBuilderTestPlot(dataset, addDataPoint = FALSE, addHistogram = TRUE,
+                                 addDensity = TRUE, binsPlotBuilder = 5,
+                                 variableXPlotBuilder = if (axis == "x") "x" else "",
+                                 variableYPlotBuilder = if (axis == "y") "y" else "")
+    built <- ggplot2::ggplot_build(plot)
+    expect_equal(sum(built$data[[1]]$count), nrow(dataset))
+    expect_true(all(built$data[[1]]$flipped_aes == (axis == "y")))
+    expect_true(all(is.finite(built$data[[2]][[axis]])))
+    expect_equal(range(built$data[[2]][[axis]]), c(11, 20))
+  }
+})
