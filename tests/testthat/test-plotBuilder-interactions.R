@@ -36,3 +36,22 @@ test_that("individual point appearance does not change summary groups", {
                                addMeanDot = TRUE)
   expect_equal(ggplot2::ggplot_build(plot)$data[[2]]$y, c(52, 52))
 })
+
+test_that("RM connections stay with their faceted and jittered points", {
+  dataset <- data.frame(
+    ID = rep(1:4, each = 2), time = factor(rep(c("a", "b"), 4)),
+    Value = seq(10, 80, 10), facet = factor(rep(c("one", "two"), each = 4))
+  )
+  for (split in c("colSplitRM", "rowSplitRM", "gridVarRM")) {
+    args <- list(dataset = dataset, isRM = "RM", xVarRM = "time",
+                 connectRMPlotBuilder = TRUE, jitterwPlotBuilder = 0.3,
+                 jitterhPlotBuilder = 0.3, ncolFacetWrap = 2, nrowFacetWrap = 1)
+    args[[split]] <- "facet"
+    built <- ggplot2::ggplot_build(do.call(.plotBuilderTestPlot, args))
+    points <- built$data[[1]]
+    lines <- built$data[[2]]
+    expect_equal(table(lines$PANEL), table(points$PANEL))
+    expect_equal(as.numeric(lines$x[order(lines$y)]), as.numeric(points$x[order(points$y)]))
+    expect_equal(sort(lines$y), sort(points$y))
+  }
+})

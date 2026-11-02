@@ -421,6 +421,68 @@ addDecodedLabels <- function(p) {
       tidyplot_args
     )
 
+    hasRows <- (!is.null(rowsVar) && rowsVar != "")
+    hasCols <- (!is.null(colsVar) && colsVar != "")
+    as_table_value <- tab[["asTable"]] %in% c("bottom-right", 0)
+
+    # Use backticks ONLY inside the formula:
+    if (hasRows && hasCols) {
+      tidyplot_obj <- tidyplot_obj +
+        ggplot2::facet_grid(
+          stats::as.formula(paste0("`", rowsVar, "` ~ `", colsVar, "`")),
+          scales = tab[["scales"]],
+          axes = tab[["axes"]],
+          axis.labels = tab[["axisLabels"]],
+          as.table = as_table_value,
+          space = tab[["space"]],
+          margins = tab[["margins"]]
+        )
+    } else if (hasCols) {
+      tidyplot_obj <- tidyplot_obj +
+        ggplot2::facet_grid(
+          stats::as.formula(paste0(". ~ `", colsVar, "`")),
+          scales = tab[["scales"]],
+          axes = tab[["axes"]],
+          axis.labels = tab[["axisLabels"]],
+          as.table = as_table_value,
+          space = tab[["space"]],
+          margins = tab[["margins"]]
+        )
+    } else if (hasRows) {
+      tidyplot_obj <- tidyplot_obj +
+        ggplot2::facet_grid(
+          stats::as.formula(paste0("`", rowsVar, "` ~ .")),
+          scales = tab[["scales"]],
+          axes = tab[["axes"]],
+          axis.labels = tab[["axisLabels"]],
+          as.table = as_table_value,
+          space = tab[["space"]],
+          margins = tab[["margins"]]
+        )
+    }
+
+    # Facet logic for facet_wrap using gridVariable ----
+    hasGrid <- (!is.null(gridVar) && gridVar != "")
+
+    if (hasGrid) {
+      as_table_value <- if (tab[["asTableFacetWrap"]] %in% c("bottom-rightFacetWrap", 0)) TRUE else FALSE
+
+      nrow_value <- if (!is.null(tab[["nrowFacetWrap"]]) && nchar(trimws(tab[["nrowFacetWrap"]])) > 0)
+        as.numeric(tab[["nrowFacetWrap"]]) else NULL
+      ncol_value <- if (!is.null(tab[["ncolFacetWrap"]]) && nchar(trimws(tab[["ncolFacetWrap"]])) > 0)
+        as.numeric(tab[["ncolFacetWrap"]]) else NULL
+
+      tidyplot_obj <- tidyplot_obj +
+        ggplot2::facet_wrap(
+          stats::as.formula(paste0("~ `", gridVar, "`")),
+          nrow = nrow_value,
+          ncol = ncol_value,
+          scales = tab[["scalesFacetWrap"]],
+          as.table = as_table_value,
+          strip.position = tab[["stripPosition"]]
+        )
+    }
+
     # Adjust color labels (tidyplots::rename_color_labels)----
     if (!is.null(tab[["colorLabelRenamer"]]) && length(tab[["colorLabelRenamer"]]) > 0) {
 
@@ -1390,6 +1452,9 @@ addDecodedLabels <- function(p) {
           points_data[[colorVar]] <- localData[[colorVar]]
         }
 
+        facetVars <- intersect(c(rowsVar, colsVar, gridVar), names(localData))
+        points_data[facetVars] <- localData[facetVars]
+
         lines_data <- points_data |> dplyr::arrange(ID, x)
 
         line_mapping <- if (hasColorVar) {
@@ -2219,63 +2284,6 @@ addDecodedLabels <- function(p) {
         )
     }
 
-    # Use backticks ONLY inside the formula:
-    if (hasRows && hasCols) {
-      tidyplot_obj <- tidyplot_obj +
-        ggplot2::facet_grid(
-          stats::as.formula(paste0("`", rowsVar, "` ~ `", colsVar, "`")),
-          scales = tab[["scales"]],
-          axes = tab[["axes"]],
-          axis.labels = tab[["axisLabels"]],
-          as.table = as_table_value,
-          space = tab[["space"]],
-          margins = tab[["margins"]]
-        )
-    } else if (hasCols) {
-      tidyplot_obj <- tidyplot_obj +
-        ggplot2::facet_grid(
-          stats::as.formula(paste0(". ~ `", colsVar, "`")),
-          scales = tab[["scales"]],
-          axes = tab[["axes"]],
-          axis.labels = tab[["axisLabels"]],
-          as.table = as_table_value,
-          space = tab[["space"]],
-          margins = tab[["margins"]]
-        )
-    } else if (hasRows) {
-      tidyplot_obj <- tidyplot_obj +
-        ggplot2::facet_grid(
-          stats::as.formula(paste0("`", rowsVar, "` ~ .")),
-          scales = tab[["scales"]],
-          axes = tab[["axes"]],
-          axis.labels = tab[["axisLabels"]],
-          as.table = as_table_value,
-          space = tab[["space"]],
-          margins = tab[["margins"]]
-        )
-    }
-
-    # Facet logic for facet_wrap using gridVariable ----
-    hasGrid <- (!is.null(gridVar) && gridVar != "")
-
-    if (hasGrid) {
-      as_table_value <- if (tab[["asTableFacetWrap"]] %in% c("bottom-rightFacetWrap", 0)) TRUE else FALSE
-
-      nrow_value <- if (!is.null(tab[["nrowFacetWrap"]]) && nchar(trimws(tab[["nrowFacetWrap"]])) > 0)
-        as.numeric(tab[["nrowFacetWrap"]]) else NULL
-      ncol_value <- if (!is.null(tab[["ncolFacetWrap"]]) && nchar(trimws(tab[["ncolFacetWrap"]])) > 0)
-        as.numeric(tab[["ncolFacetWrap"]]) else NULL
-
-      tidyplot_obj <- tidyplot_obj +
-        ggplot2::facet_wrap(
-          stats::as.formula(paste0("~ `", gridVar, "`")),
-          nrow = nrow_value,
-          ncol = ncol_value,
-          scales = tab[["scalesFacetWrap"]],
-          as.table = as_table_value,
-          strip.position = tab[["stripPosition"]]
-        )
-    }
 
 
 
