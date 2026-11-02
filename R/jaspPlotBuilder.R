@@ -1945,7 +1945,11 @@ addDecodedLabels <- function(p) {
     }
 
     if (isTRUE(tab[["flipPlot"]])) {
-      tidyplot_obj <- tidyplot_obj + ggplot2::coord_flip(clip = "off")
+      tidyplot_obj <- tidyplot_obj + ggplot2::coord_flip(
+        xlim = tidyplot_obj$coordinates$limits$x,
+        ylim = tidyplot_obj$coordinates$limits$y,
+        clip = "off"
+      )
     }
 
 

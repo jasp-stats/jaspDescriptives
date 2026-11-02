@@ -100,6 +100,16 @@ test_that("data labels build and stay in their assigned panels", {
   }
 })
 
+test_that("flipping a plot preserves custom axis limits", {
+  plot <- .plotBuilderTestPlot(data.frame(x = 1:4, y = 11:14), flipPlot = TRUE,
+                               limitFromX = "2", limitToX = "3",
+                               limitFromY = "11", limitToY = "13")
+  expect_equal(plot$coordinates$limits$x, c(2, 3))
+  expect_equal(plot$coordinates$limits$y, c(11, 13))
+  expect_s3_class(plot$coordinates, "CoordFlip")
+  expect_equal(nrow(ggplot2::ggplot_build(plot)$data[[1]]), 4)
+})
+
 test_that("row facets preserve numeric and categorical Y scales", {
   dataset <- data.frame(x = 1:4, y = 11:14, facet = factor(c("one", "one", "two", "two")))
   plot <- .plotBuilderTestPlot(dataset, rowsvariableSplitPlotBuilder = "facet",
