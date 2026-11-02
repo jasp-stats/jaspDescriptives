@@ -1508,7 +1508,7 @@ addDecodedLabels <- function(p) {
         gg <- tidyplot_obj
 
         for (i in seq_along(gg$layers)) {
-          if (inherits(gg$layers[[i]]$geom, "GeomPoint")) {
+          if (inherits(gg$layers[[i]]$geom, "GeomPoint") && inherits(gg$layers[[i]]$stat, "StatIdentity")) {
             gg$layers[[i]]$aes_params$size <- NULL
             gg$layers[[i]]$mapping$size    <- rlang::sym(sizeVar)
           }
@@ -1548,7 +1548,7 @@ addDecodedLabels <- function(p) {
           gg <- tidyplot_obj
 
           for (i in seq_along(gg$layers)) {
-            if (inherits(gg$layers[[i]]$geom, "GeomPoint")) {
+            if (inherits(gg$layers[[i]]$geom, "GeomPoint") && inherits(gg$layers[[i]]$stat, "StatIdentity")) {
               gg$layers[[i]]$aes_params$shape <- NULL
               gg$layers[[i]]$mapping$shape <- rlang::sym(shapeVar)
             }
