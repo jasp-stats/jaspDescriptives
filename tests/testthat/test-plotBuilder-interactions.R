@@ -101,6 +101,37 @@ test_that("data labels build and stay in their assigned panels", {
   }
 })
 
+test_that("RM annotations target encoded within-subject and raw between-subject facets", {
+  encoder <- function(x) ifelse(x %in% c("one", "two"), paste0(x, "_encoded"), x)
+  plotFunction <- .plotBuilderPlots
+  environment(plotFunction) <- list2env(list(encodeColNames = encoder),
+                                         parent = environment(.plotBuilderPlots))
+  plotHelper <- .plotBuilderTestPlot
+  environment(plotHelper) <- list2env(list(.plotBuilderPlots = plotFunction),
+                                       parent = environment(.plotBuilderTestPlot))
+  for (within in c(FALSE, TRUE)) {
+    dataset <- data.frame(ID = rep(1:4, each = 2), time = factor(rep(c("a", "b"), 4)),
+                          Value = 1:8, facet = rep(c("one", "two"), each = 4))
+    if (within) dataset$facet <- encoder(dataset$facet)
+    dataset$facet <- factor(dataset$facet)
+    factors <- list(list(name = "time", levels = c("a", "b")))
+    if (within) factors[[2]] <- list(name = "facet", levels = c("one", "two"))
+    plot <- plotHelper(dataset, isRM = "RM", xVarRM = "time", colSplitRM = "facet",
+      repeatedMeasuresFactors = factors,
+      annotationPlotBuilder = list(list(annotationText = "Text", annotationX = 1,
+        annotationY = 4, annotationSize = 4, RMColumnAnnotation = "one")),
+      annotationLineList = list(list(xAnnotation = "1", xendAnnotation = "2",
+        yAnnotation = "4", yendAnnotation = "4", colorAnnotationLine = "black",
+        RMColumnCompLine = "one")),
+      pairwiseComparisons = list(list(group1 = "a", group2 = "b", pAdj = "*",
+        RMColumnPValue = "one", RMRowPValue = "", RMGridPValue = "", RMGroupPValue = "",
+        bracketSizePValue = 0.3, tipLengthPValue = 0.03)))
+    built <- ggplot2::ggplot_build(plot)
+    expect_equal(nrow(built$layout$layout), 2)
+    for (layer in built$data[-1]) expect_true(all(as.integer(layer$PANEL) == 1))
+  }
+})
+
 test_that("each comparison retains its bracket width and symmetric tips", {
   comparison <- function(a, b, size, tip, facet) {
     list(group1 = a, group2 = b, pAdj = "*", GroupPValue = "", ColumnPValue = facet,

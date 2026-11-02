@@ -316,6 +316,12 @@ addDecodedLabels <- function(p) {
       sizeVar   <- encodeColNames(tab[["sizeVariablePlotBuilder"]])
     }
 
+    rmFactorNames <- if (identical(tab[["isRM"]], "RM"))
+      encodeColNames(vapply(tab[["repeatedMeasuresFactors"]], `[[`, character(1), "name")) else character()
+    encodeRMLevel <- function(value, variable) {
+      if (variable %in% rmFactorNames) encodeColNames(value) else value
+    }
+
     colorBy <- tab[["colorByGroup"]]
 
 
@@ -2009,7 +2015,7 @@ addDecodedLabels <- function(p) {
 
         if (!is.null(tab[["isRM"]]) && tab[["isRM"]] == "RM" && length(facetData) > 0) {
           for (field in names(facetData)) {
-            facetData[[field]] <- decodeColNames(facetData[[field]])
+            facetData[[field]] <- encodeRMLevel(facetData[[field]], field)
           }
         }
 
@@ -2080,6 +2086,10 @@ addDecodedLabels <- function(p) {
           } else {
             gridAnnotLine <- if (!is.null(line[["GridAnnotationCompLine"]])) line[["GridAnnotationCompLine"]] else ""
           }
+
+          colAnnotLine <- encodeRMLevel(colAnnotLine, colsVar)
+          rowAnnotLine <- encodeRMLevel(rowAnnotLine, rowsVar)
+          gridAnnotLine <- encodeRMLevel(gridAnnotLine, gridVar)
 
           thisSegment <- data.frame(
             x = x_val,
@@ -2312,7 +2322,7 @@ addDecodedLabels <- function(p) {
         dfComparisons$color <- as.character(
           sapply(tab[["pairwiseComparisons"]], function(x) {
             if (rmOption == "RM")
-              x$RMGroupPValue
+              encodeRMLevel(x$RMGroupPValue, colorVar)
             else
               x$GroupPValue  # Use standard value otherwise
           })
@@ -2323,7 +2333,7 @@ addDecodedLabels <- function(p) {
         dfComparisons[[colsVar]] <- as.character(
           sapply(tab[["pairwiseComparisons"]], function(x) {
             if (rmOption == "RM")
-              x$RMColumnPValue
+              encodeRMLevel(x$RMColumnPValue, colsVar)
             else
               x$ColumnPValue
           })
@@ -2334,7 +2344,7 @@ addDecodedLabels <- function(p) {
         dfComparisons[[rowsVar]] <- as.character(
           sapply(tab[["pairwiseComparisons"]], function(x) {
             if (rmOption == "RM")
-              x$RMRowPValue
+              encodeRMLevel(x$RMRowPValue, rowsVar)
             else
               x$RowPValue
           })
@@ -2345,7 +2355,7 @@ addDecodedLabels <- function(p) {
         dfComparisons[[gridVar]] <- as.character(
           sapply(tab[["pairwiseComparisons"]], function(x) {
             if (rmOption == "RM")
-              x$RMGridPValue
+              encodeRMLevel(x$RMGridPValue, gridVar)
             else
               x$GridPValue
           })
