@@ -11,7 +11,8 @@ context("Plot Builder interactions")
     addDataPoint = TRUE, jitterwPlotBuilder = 0, jitterhPlotBuilder = 0,
     plotStyle = "ggplotgray"
   ))
-  tab <- utils::modifyList(tab, list(...))
+  changes <- list(...)
+  tab[names(changes)] <- changes
   data <- list(
     datasetNonRMList = setNames(list(dataset), tab$value),
     datasetRMList = setNames(list(dataset), tab$value)
@@ -97,6 +98,26 @@ test_that("data labels build and stay in their assigned panels", {
     expect_equal(built$data[[2]]$label, dataset$label)
     expect_equal(built$data[[2]]$PANEL, built$data[[1]]$PANEL)
     expect_equal(as.numeric(built$data[[2]]$x), as.numeric(built$data[[1]]$x))
+  }
+})
+
+test_that("each comparison retains its bracket width and symmetric tips", {
+  comparison <- function(a, b, size, tip, facet) {
+    list(group1 = a, group2 = b, pAdj = "*", GroupPValue = "", ColumnPValue = facet,
+         RowPValue = "", GridPValue = "", bracketSizePValue = size, tipLengthPValue = tip)
+  }
+  dataset <- data.frame(x = factor(rep(c("a", "b", "c"), 2)), y = 1:6,
+                        facet = factor(rep(c("one", "two"), each = 3)))
+  plot <- .plotBuilderTestPlot(dataset, columnsvariableSplitPlotBuilder = "facet",
+    pairwiseComparisons = list(comparison("a", "b", 0.3, 0.03, "two"),
+                               comparison("a", "c", 0.6, 0.05, "one"),
+                               comparison("b", "c", 0.3, 0.03, "two")))
+  brackets <- ggplot2::ggplot_build(plot)$data[[2]]
+  for (group in unique(brackets$group)) {
+    bracket <- brackets[brackets$group == group, ]
+    expect_equal(as.numeric(bracket$size), rep(c(0.3, 0.6, 0.3)[group], 3))
+    expect_equal(bracket$yend[1] - bracket$y[1], bracket$y[3] - bracket$yend[3])
+    expect_equal(unique(bracket$tip.length), c(0.03, 0.05, 0.03)[group])
   }
 })
 

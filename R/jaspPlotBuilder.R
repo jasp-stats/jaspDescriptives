@@ -2354,8 +2354,8 @@ addDecodedLabels <- function(p) {
 
 
       colorBy <- tab[["colorByGroup"]]
-      bracket.size <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$bracketSizePValue))
-      tip_length   <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$tipLengthPValue))
+      dfComparisons$bracket.size <- sapply(tab[["pairwiseComparisons"]], function(x) x$bracketSizePValue)
+      dfComparisons$tip.length <- sapply(tab[["pairwiseComparisons"]], function(x) x$tipLengthPValue)
       stepDistance <- tab[["stepDistance"]]
 
       pValueColor <- labelcolor  # default
@@ -2365,20 +2365,22 @@ addDecodedLabels <- function(p) {
         }
       }
 
-      tidyplot_obj <- tidyplot_obj +
-        ggpubr::stat_pvalue_manual(
-          data          = dfComparisons,
-          label         = "p",
-          xmin          = "group1",
-          xmax          = "group2",
-          y.position    = "y.position",
-          size          = label_size,
-          bracket.size  = bracket.size,
-          tip.length    = tip_length,
-          color         = pValueColor,
-          inherit.aes   = FALSE,
-          step.increase = stepDistance
-        )
+      bracketLayer <- ggpubr::stat_pvalue_manual(
+        data          = dfComparisons,
+        label         = "p",
+        xmin          = "group1",
+        xmax          = "group2",
+        y.position    = "y.position",
+        size          = label_size,
+        color         = pValueColor,
+        inherit.aes   = FALSE,
+        step.increase = stepDistance
+      )
+      # Map per-comparison settings so they follow each bracket through faceting.
+      bracketLayer$aes_params$size <- NULL
+      bracketLayer$mapping$size <- ggplot2::aes(size = I(bracket.size))$size
+      bracketLayer$mapping$tip.length <- ggplot2::aes(tip.length = tip.length)$tip.length
+      tidyplot_obj <- tidyplot_obj + bracketLayer
     }
 
     # asPercentage axis labeling ----
