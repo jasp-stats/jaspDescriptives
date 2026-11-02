@@ -100,6 +100,17 @@ test_that("data labels build and stay in their assigned panels", {
   }
 })
 
+test_that("the identity line is independent of the observed ranges", {
+  dataset <- data.frame(x = 1:4, y = 11:14)
+  for (reverse in c(FALSE, TRUE)) {
+    plot <- .plotBuilderTestPlot(dataset, addIdentityLinePlotBuilder = TRUE,
+                                 reversedirectionIdentityLine = reverse)
+    line <- ggplot2::ggplot_build(plot)$data[[2]]
+    expect_equal(line$intercept, 0)
+    expect_equal(line$slope, if (reverse) -1 else 1)
+  }
+})
+
 test_that("histograms and densities accept either single axis variable", {
   dataset <- data.frame(x = rep(11:20, 2), y = rep(11:20, 2))
   for (axis in c("x", "y")) {

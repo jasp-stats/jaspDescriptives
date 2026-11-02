@@ -1417,41 +1417,11 @@ addDecodedLabels <- function(p) {
     # Add identity line ----
     if (!is.null(tab[["addIdentityLinePlotBuilder"]]) && tab[["addIdentityLinePlotBuilder"]]) {
       layer_calls$identity_line <- function(p) {
-        if (!is.null(xVar) && xVar %in% colnames(localData) && is.numeric(localData[[xVar]])) {
-          x_min <- min(localData[[xVar]], na.rm = TRUE)
-          x_max <- max(localData[[xVar]], na.rm = TRUE)
-        } else {
-          x_min <- 0
-          x_max <- 1
-        }
-
-        if (!is.null(yVar) && yVar %in% colnames(localData) && is.numeric(localData[[yVar]])) {
-          y_min <- min(localData[[yVar]], na.rm = TRUE)
-          y_max <- max(localData[[yVar]], na.rm = TRUE)
-        } else {
-          y_min <- 0
-          y_max <- 1
-        }
-
-        if (!is.null(tab[["reversedirectionIdentityLine"]]) && tab[["reversedirectionIdentityLine"]]) {
-          tidyplots::add_annotation_line(
-            p     = p,
-            x     = x_min,
-            xend  = x_max,
-            y     = y_max,
-            yend  = y_min,
-            color = safe_eval_text(paste0("\"", tab[["colorIdentityLine"]], "\""))
-          )
-        } else {
-          tidyplots::add_annotation_line(
-            p     = p,
-            x     = x_min,
-            xend  = x_max,
-            y     = y_min,
-            yend  = y_max,
-            color = safe_eval_text(paste0("\"", tab[["colorIdentityLine"]], "\""))
-          )
-        }
+        p + ggplot2::geom_abline(
+          slope = if (isTRUE(tab[["reversedirectionIdentityLine"]])) -1 else 1,
+          intercept = 0,
+          color = tab[["colorIdentityLine"]]
+        )
       }
     }
 
