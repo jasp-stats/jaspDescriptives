@@ -2582,7 +2582,7 @@ addDecodedLabels <- function(p) {
             rep(1, ncol)
           }
         )
-        if (length(columnsWidth) != ncol) {
+        if (!is.numeric(columnsWidth) || length(columnsWidth) != ncol || any(!is.finite(columnsWidth))) {
           columnsWidth <- rep(1, ncol)
         }
       } else {
@@ -2609,7 +2609,7 @@ addDecodedLabels <- function(p) {
             rep(1, ncol)
           }
         )
-        if (length(relativeHeight) != ncol) {
+        if (!is.numeric(relativeHeight) || length(relativeHeight) != ncol || any(!is.finite(relativeHeight))) {
           relativeHeight <- rep(1, ncol)
         }
       } else {
@@ -2654,7 +2654,7 @@ addDecodedLabels <- function(p) {
               rep(1, nRows)
             }
           )
-          if (length(rowHeightsParsed) == nRows) {
+          if (is.numeric(rowHeightsParsed) && length(rowHeightsParsed) == nRows && all(is.finite(rowHeightsParsed))) {
             rowHeights <- rowHeightsParsed
           }
         }
@@ -2771,7 +2771,7 @@ addDecodedLabels <- function(p) {
               rep(1, nPlots)
             }
           )
-          if (length(relWidthsParsed) == nPlots) {
+          if (is.numeric(relWidthsParsed) && length(relWidthsParsed) == nPlots && all(is.finite(relWidthsParsed))) {
             relWidths <- relWidthsParsed
           }
         }
@@ -2845,7 +2845,7 @@ addDecodedLabels <- function(p) {
             rep(1, length(fullRowPlots))
           }
         )
-        if (length(relheightWithinRowLayout) != length(fullRowPlots)) {
+        if (!is.numeric(relheightWithinRowLayout) || length(relheightWithinRowLayout) != length(fullRowPlots) || any(!is.finite(relheightWithinRowLayout))) {
           relheightWithinRowLayout <- rep(1, length(fullRowPlots))
         }
       } else {
@@ -2870,7 +2870,7 @@ addDecodedLabels <- function(p) {
         }
       )
       if (!is.null(columnGrid) && !is.null(fullRowGrid)) {
-        if (length(relativeHeight) != 2) {
+        if (!is.numeric(relativeHeight) || length(relativeHeight) != 2 || any(!is.finite(relativeHeight))) {
           relativeHeight <- c(1, 1)
         }
       } else {

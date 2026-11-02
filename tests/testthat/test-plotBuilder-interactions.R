@@ -101,6 +101,35 @@ test_that("data labels build and stay in their assigned panels", {
   }
 })
 
+test_that("invalid layout weights fall back to equal dimensions", {
+  output <- .plotBuilderOutputPlotGrid
+  environment(output) <- list2env(list(
+    createJaspContainer = function(...) new.env(parent = emptyenv()),
+    createJaspPlot = function(...) list2env(list(dependOn = function(...) NULL)),
+    is = function(...) FALSE
+  ), parent = environment(.plotBuilderOutputPlotGrid))
+  plot <- ggplot2::ggplot(data.frame(x = 1:4, y = 1:4), ggplot2::aes(x, y)) + ggplot2::geom_point()
+  makeGrid <- function(weight, layout) {
+    results <- new.env(parent = emptyenv())
+    options <- list(columnWidthInput = weight, relativeHeight = weight,
+                    relHeightWithinRowLayout = weight, layoutWidth = 600, layoutHeight = 600)
+    if (layout %in% c("column", "both"))
+      options$rowSpecifications <- list(list(plotIDs = "Plot 1", labels = "", rowHeightsColumn = weight))
+    if (layout %in% c("row", "both"))
+      options$fullRowSpecifications <- list(list(plotIDsFullRow = "Plot 1", labelsFullRow = "", relWidthsFullRow = weight))
+    output(results, options, list(updatedPlots = list("Plot 1" = plot)), NULL)
+    patchwork::patchworkGrob(results$plotGridContainer$plotGrid$plotObject)
+  }
+  for (layout in c("column", "row", "both")) {
+    expected <- makeGrid("1", layout)
+    for (weight in c("1e", "NA", "Inf", "\"one\",\"two\"")) {
+      actual <- makeGrid(weight, layout)
+      expect_equal(as.numeric(actual$widths), as.numeric(expected$widths))
+      expect_equal(as.numeric(actual$heights), as.numeric(expected$heights))
+    }
+  }
+})
+
 test_that("percentages label only the relative axis", {
   dataset <- data.frame(x = rep(2019:2021, 2), y = c(1, 2, 3, 3, 2, 1),
                         group = factor(rep(c("a", "b"), each = 3)))
