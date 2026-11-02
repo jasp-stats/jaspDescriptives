@@ -100,6 +100,21 @@ test_that("data labels build and stay in their assigned panels", {
   }
 })
 
+test_that("row facets preserve numeric and categorical Y scales", {
+  dataset <- data.frame(x = 1:4, y = 11:14, facet = factor(c("one", "one", "two", "two")))
+  plot <- .plotBuilderTestPlot(dataset, rowsvariableSplitPlotBuilder = "facet",
+                               titleYPlotBuilder = "Measurement", breakFromY = "10",
+                               breakToY = "16", breakByY = "2", YPaddingFirst = 0.2)
+  scale <- plot$scales$get_scales("y")
+  expect_equal(scale$name, "Measurement")
+  expect_equal(scale$breaks, seq(10, 16, 2))
+  expect_equal(scale$expand[1], 0.2)
+  dataset$y <- factor(dataset$y)
+  plot <- .plotBuilderTestPlot(dataset, rowsvariableSplitPlotBuilder = "facet")
+  expect_true(plot$scales$get_scales("y")$is_discrete())
+  expect_equal(nrow(ggplot2::ggplot_build(plot)$data[[1]]), 4)
+})
+
 test_that("the identity line is independent of the observed ranges", {
   dataset <- data.frame(x = 1:4, y = 11:14)
   for (reverse in c(FALSE, TRUE)) {

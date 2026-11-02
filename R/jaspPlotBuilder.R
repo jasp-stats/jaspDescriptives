@@ -2238,14 +2238,11 @@ addDecodedLabels <- function(p) {
         axis_name <- yAxisTitleSplit
       }
 
-      tidyplot_obj <- tidyplot_obj +
-        ggplot2::scale_y_continuous(
-          sec.axis = ggplot2::sec_axis(~.,
-                                       name   = axis_name,
-                                       breaks = NULL,
-                                       labels = NULL
-          )
-        )
+      yScale <- tidyplot_obj$scales$get_scales("y")
+      if (!yScale$is_discrete()) {
+        yScale$secondary.axis <- ggplot2::sec_axis(~., name = axis_name,
+                                                  breaks = NULL, labels = NULL)
+      }
     }
 
     if (hasCols) {
