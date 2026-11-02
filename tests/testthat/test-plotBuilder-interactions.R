@@ -101,6 +101,26 @@ test_that("data labels build and stay in their assigned panels", {
   }
 })
 
+test_that("percentages label only the relative axis", {
+  dataset <- data.frame(x = rep(2019:2021, 2), y = c(1, 2, 3, 3, 2, 1),
+                        group = factor(rep(c("a", "b"), each = 3)))
+  plot <- .plotBuilderTestPlot(dataset, addDataPoint = FALSE, addAreaStack = TRUE,
+    propMode = "relative", asPercentage = TRUE, colorByGroup = "grouping",
+    variableColorPlotBuilder = "group", titleYPlotBuilder = "Share")
+  built <- ggplot2::ggplot_build(plot)
+  expect_false(any(grepl("%", built$layout$panel_params[[1]]$x$get_labels())))
+  expect_true(any(grepl("%", built$layout$panel_params[[1]]$y$get_labels())))
+  expect_equal(plot$scales$get_scales("y")$name, "Share")
+
+  dataset$y <- factor(dataset$y)
+  plot <- .plotBuilderTestPlot(dataset, addDataPoint = FALSE, addBarStack = TRUE,
+    propMode = "relative", asPercentage = TRUE, colorByGroup = "grouping",
+    variableColorPlotBuilder = "group")
+  built <- ggplot2::ggplot_build(plot)
+  expect_true(any(grepl("%", built$layout$panel_params[[1]]$x$get_labels())))
+  expect_false(any(grepl("%", built$layout$panel_params[[1]]$y$get_labels())))
+})
+
 test_that("RM annotations target encoded within-subject and raw between-subject facets", {
   encoder <- function(x) ifelse(x %in% c("one", "two"), paste0(x, "_encoded"), x)
   plotFunction <- .plotBuilderPlots
