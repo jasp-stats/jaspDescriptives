@@ -534,6 +534,8 @@ addDecodedLabels <- function(p) {
     if (tab[["connectRMPlotBuilder"]] && tab[["addDataPoint"]]) {
       point_func <- .create_point_layer_func(tab, shapeVar)
       temp_plot <- point_func(tidyplot_obj)
+      temp_plot$data$.plotBuilderRow <- seq_len(nrow(temp_plot$data))
+      temp_plot$layers[[1]]$mapping$label <- ggplot2::aes(label = .plotBuilderRow)$label
       built_temp <- if (ggplot2::is.ggplot(temp_plot)) {
         ggplot2::ggplot_build(temp_plot)
       } else if (is.list(temp_plot)) {
@@ -545,6 +547,21 @@ addDecodedLabels <- function(p) {
     }
 
     layer_calls <- list()
+
+    addPointOverlay <- function(p, layer) {
+      if (!isTRUE(tab[["margins"]]) || hasGrid)
+        return(p + layer)
+
+      # Margins duplicate observations; keep each set of computed positions in its panel.
+      for (panel in unique(layer$data$PANEL)) {
+        panelLayer <- ggplot2::ggproto(NULL, layer,
+          data = layer$data[layer$data$PANEL == panel, , drop = FALSE],
+          layout = as.integer(panel)
+        )
+        p <- p + panelLayer
+      }
+      p
+    }
 
     # Add data points (tidyplots::add_data_points_jitter)----
     if (tab[["addDataPoint"]]) {
@@ -1444,8 +1461,9 @@ addDecodedLabels <- function(p) {
 
         points_data <- jittered_point_data
 
-        if ("ID" %in% names(localData) && nrow(points_data) == nrow(localData)) {
-          points_data$ID <- localData$ID
+        pointRows <- points_data$label
+        if ("ID" %in% names(localData) && length(pointRows) == nrow(points_data)) {
+          points_data$ID <- localData$ID[pointRows]
         } else {
           warning("Could not connect repeated measures: ID column is missing or data length mismatch.")
           return(p)
@@ -1453,11 +1471,11 @@ addDecodedLabels <- function(p) {
 
         hasColorVar <- !is.null(colorVar) && nzchar(colorVar)
         if (hasColorVar) {
-          points_data[[colorVar]] <- localData[[colorVar]]
+          points_data[[colorVar]] <- localData[[colorVar]][pointRows]
         }
 
         facetVars <- intersect(c(rowsVar, colsVar, gridVar), names(localData))
-        points_data[facetVars] <- localData[facetVars]
+        points_data[facetVars] <- localData[pointRows, facetVars, drop = FALSE]
 
         lines_data <- points_data |> dplyr::arrange(ID, x)
 
@@ -1467,13 +1485,13 @@ addDecodedLabels <- function(p) {
           ggplot2::aes(x = x, y = y, group = ID)
         }
 
-        p + ggplot2::geom_line(
+        addPointOverlay(p, ggplot2::geom_line(
           data        = lines_data,
           mapping     = line_mapping,
           inherit.aes = FALSE,
           alpha       = tab[["lineRMtransparency"]],
           linewidth   = tab[["lineRMsize"]]
-        )
+        ))
       }
     }
 
@@ -1496,6 +1514,8 @@ addDecodedLabels <- function(p) {
     jittered_point_data_lbl <- NULL
     if (hasLabelVar) {
       tmp_plot_lbl   <- .create_point_layer_func(tab)(tidyplot_obj)
+      tmp_plot_lbl$data$.plotBuilderRow <- seq_len(nrow(tmp_plot_lbl$data))
+      tmp_plot_lbl$layers[[1]]$mapping$label <- ggplot2::aes(label = .plotBuilderRow)$label
       built_lbl      <- ggplot2::ggplot_build(if (ggplot2::is.ggplot(tmp_plot_lbl)) tmp_plot_lbl else tmp_plot_lbl[[1]])
       jittered_point_data_lbl <- built_lbl$data[[1]]
     }
@@ -1504,11 +1524,15 @@ addDecodedLabels <- function(p) {
     if (hasLabelVar) {
       layer_calls$point_labels <- function(p) {
 
-        idx <- !is.na(localData[[lblVar]]) & localData[[lblVar]] != ""
-        if (!any(idx) || is.null(jittered_point_data_lbl))
+        if (is.null(jittered_point_data_lbl))
+          return(p)
+        pointRows <- jittered_point_data_lbl$label
+        keep <- !is.na(localData[[lblVar]][pointRows]) & localData[[lblVar]][pointRows] != ""
+        if (!any(keep))
           return(p)
 
-        label_df           <- jittered_point_data_lbl[idx, ]
+        idx <- pointRows[keep]
+        label_df           <- jittered_point_data_lbl[keep, ]
         label_df$label_val <- localData[[lblVar]][idx]
 
         facetVars <- intersect(c(rowsVar, colsVar, gridVar), names(localData))
@@ -1522,7 +1546,7 @@ addDecodedLabels <- function(p) {
         if (hasColor)
           aes_map$colour <- rlang::sym(colorVar)
 
-        p + ggrepel::geom_label_repel(
+        addPointOverlay(p, ggrepel::geom_label_repel(
           data         = label_df,
           mapping      = aes_map,
           size         = tab[["fontsizeDataLabels"]],
@@ -1534,7 +1558,7 @@ addDecodedLabels <- function(p) {
           max.overlaps = Inf,
           show.legend  = FALSE,
           inherit.aes  = FALSE
-        )
+        ))
       }
     }
 

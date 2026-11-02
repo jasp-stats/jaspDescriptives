@@ -57,6 +57,25 @@ test_that("RM connections stay with their faceted and jittered points", {
   }
 })
 
+test_that("RM connections and labels retain their positions in marginal panels", {
+  dataset <- data.frame(ID = rep(1:4, each = 2), time = factor(rep(c("a", "b"), 4)),
+                        Value = 1:8, facet = factor(rep(c("one", "two"), each = 4)), label = letters[1:8])
+  plot <- .plotBuilderTestPlot(dataset, isRM = "RM", xVarRM = "time", colSplitRM = "facet",
+    connectRMPlotBuilder = TRUE, margins = TRUE, jitterwPlotBuilder = 0.3, jitterhPlotBuilder = 0.3,
+    labelVariablePlotBuilder = "label")
+  built <- ggplot2::ggplot_build(plot)
+  points <- built$data[[1]]
+  lines <- do.call(rbind, built$data[2:4])
+  labels <- do.call(rbind, built$data[5:7])
+  expect_equal(nrow(points), 16)
+  for (overlay in list(lines, labels)) {
+    expect_equal(table(overlay$PANEL), table(points$PANEL))
+    expect_equal(as.numeric(overlay$x[order(overlay$y)]), as.numeric(points$x[order(points$y)]))
+    expect_equal(sort(overlay$y), sort(points$y))
+  }
+  expect_equal(sort(labels$label), sort(rep(dataset$label, 2)))
+})
+
 test_that("sorting RM categories keeps connections on the data points", {
   dataset <- data.frame(ID = rep(1:2, each = 2),
                         time = factor(rep(c("a", "b"), 2)), Value = c(100, 10, 110, 20))
