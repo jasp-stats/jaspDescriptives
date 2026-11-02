@@ -1183,7 +1183,7 @@ addDecodedLabels <- function(p) {
           dodge_width = tab[["dodgeSEMErrorBar"]],
           width       = tab[["widthSEMErrorBar"]],
           linewidth   = tab[["linewidthSEMErrorBar"]],
-          alpha       = tab[["transparencySDErrorBar"]]
+          alpha       = tab[["transparencySEMErrorBar"]]
         )
         if (tab[["blackOutlineSEMErrorBar"]]) {
           argList$color <- "black"
