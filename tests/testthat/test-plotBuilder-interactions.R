@@ -86,3 +86,16 @@ test_that("a complete 2 by 3 RM design has six cells", {
   expect_equal(nrow(data), 24)
   expect_equal(nrow(unique(data[c("A", "B")])), 6)
 })
+
+test_that("data labels build and stay in their assigned panels", {
+  dataset <- data.frame(x = 1:4, y = 11:14, label = letters[1:4],
+                        facet = factor(c("one", "one", "two", "two")))
+  for (split in c("", "facet")) {
+    plot <- .plotBuilderTestPlot(dataset, labelVariablePlotBuilder = "label",
+                                 columnsvariableSplitPlotBuilder = split, jitterwPlotBuilder = 0.3)
+    built <- ggplot2::ggplot_build(plot)
+    expect_equal(built$data[[2]]$label, dataset$label)
+    expect_equal(built$data[[2]]$PANEL, built$data[[1]]$PANEL)
+    expect_equal(as.numeric(built$data[[2]]$x), as.numeric(built$data[[1]]$x))
+  }
+})

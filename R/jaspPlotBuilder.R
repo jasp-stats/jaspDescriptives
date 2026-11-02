@@ -1509,7 +1509,7 @@ addDecodedLabels <- function(p) {
     jittered_point_data_lbl <- NULL
     if (hasLabelVar) {
       tmp_plot_lbl   <- .create_point_layer_func(tab)(tidyplot_obj)
-      built_lbl      <- ggplot2::ggplot_build(tmp_plot_lbl[[1]])
+      built_lbl      <- ggplot2::ggplot_build(if (ggplot2::is.ggplot(tmp_plot_lbl)) tmp_plot_lbl else tmp_plot_lbl[[1]])
       jittered_point_data_lbl <- built_lbl$data[[1]]
     }
 
@@ -1523,6 +1523,9 @@ addDecodedLabels <- function(p) {
 
         label_df           <- jittered_point_data_lbl[idx, ]
         label_df$label_val <- localData[[lblVar]][idx]
+
+        facetVars <- intersect(c(rowsVar, colsVar, gridVar), names(localData))
+        label_df[facetVars] <- localData[idx, facetVars, drop = FALSE]
 
         hasColor <- !is.null(colorVar) && nzchar(colorVar) && colorVar %in% names(localData)
         if (hasColor)
