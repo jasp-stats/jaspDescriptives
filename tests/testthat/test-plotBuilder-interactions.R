@@ -67,3 +67,22 @@ test_that("sorting RM categories keeps connections on the data points", {
   expect_equal(as.numeric(points$x), c(2, 1, 2, 1))
   expect_equal(as.numeric(lines$x[order(lines$y)]), as.numeric(points$x[order(points$y)]))
 })
+
+test_that("a complete 2 by 3 RM design has six cells", {
+  dataset <- as.data.frame(setNames(rep(list(1:4), 6), paste0("v", 1:6)))
+  readData <- .plotBuilderReadData
+  environment(readData) <- list2env(list(
+    .readDataSetToEnd = function(...) dataset,
+    encodeColNames = identity,
+    .quitAnalysis = function(message) stop(message)
+  ), parent = environment(.plotBuilderReadData))
+  tab <- list(value = "Plot 1", isRM = "RM", repeatedMeasuresCells = names(dataset),
+              repeatedMeasuresFactors = list(list(name = "A", levels = c("a", "b")),
+                                            list(name = "B", levels = c("c", "d", "e"))),
+              betweenSubjectFactors = character(), covariates = character(),
+              sizeVariablePlotBuilder = "", labelVariablePlotBuilder = "", pointShapeVariable = "",
+              deleteNAListwise = TRUE)
+  data <- readData(list(PlotBuilderTab = list(tab)))$datasetRMList[["Plot 1"]]
+  expect_equal(nrow(data), 24)
+  expect_equal(nrow(unique(data[c("A", "B")])), 6)
+})

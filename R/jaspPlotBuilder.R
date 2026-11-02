@@ -74,7 +74,7 @@ removeEmptyStrings <- function(x) Filter(nzchar, x)
         f
       })
 
-      expectedVars <- sum(vapply(rm.factors, function(f) length(f$levels), integer(1)))
+      expectedVars <- prod(vapply(rm.factors, function(f) length(f$levels), integer(1)))
       if (length(rm.vars) != expectedVars || any(rm.vars == ""))
         .quitAnalysis(gettext("Please assign a variable to every RM factor (defined in Repeated Measures Factors) within Repeated Measures Cells."))
 
