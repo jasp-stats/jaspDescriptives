@@ -471,6 +471,8 @@ addDecodedLabels <- function(p) {
         as.numeric(tab[["nrowFacetWrap"]]) else NULL
       ncol_value <- if (!is.null(tab[["ncolFacetWrap"]]) && nchar(trimws(tab[["ncolFacetWrap"]])) > 0)
         as.numeric(tab[["ncolFacetWrap"]]) else NULL
+      if (identical(nrow_value, 0)) nrow_value <- NULL
+      if (identical(ncol_value, 0)) ncol_value <- NULL
 
       tidyplot_obj <- tidyplot_obj +
         ggplot2::facet_wrap(

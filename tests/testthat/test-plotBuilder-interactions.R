@@ -100,6 +100,15 @@ test_that("data labels build and stay in their assigned panels", {
   }
 })
 
+test_that("zero grid dimensions select an automatic facet layout", {
+  dataset <- data.frame(x = 1:4, y = 11:14, facet = factor(letters[1:4]))
+  for (dimensions in list(c(0, 0), c(0, 2), c(2, 0))) {
+    plot <- .plotBuilderTestPlot(dataset, gridVariablePlotBuilder = "facet",
+                                 nrowFacetWrap = dimensions[1], ncolFacetWrap = dimensions[2])
+    expect_equal(nrow(ggplot2::ggplot_build(plot)$layout$layout), 4)
+  }
+})
+
 test_that("flipping a plot preserves custom axis limits", {
   plot <- .plotBuilderTestPlot(data.frame(x = 1:4, y = 11:14), flipPlot = TRUE,
                                limitFromX = "2", limitToX = "3",
