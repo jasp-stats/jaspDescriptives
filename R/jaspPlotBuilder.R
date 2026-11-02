@@ -1387,6 +1387,7 @@ addDecodedLabels <- function(p) {
       layer_calls$curve_fit <- function(p) {
         argList <- list(
           method     = tab[["curvaFitMethod"]],
+          dodge_width = tab[["dodgeCurveFit"]],
           linewidth  = tab[["linewidthCurveFit"]],
           alpha      = tab[["transparencyCurveFit"]],
           se         = tab[["seCurveFit"]]
