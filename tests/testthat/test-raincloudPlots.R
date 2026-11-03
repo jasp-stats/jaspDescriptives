@@ -530,3 +530,47 @@ test_that("plot with custom cloud color matches", {
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "custom-cloud-color")
 })
+
+# 9: Custom axis limits only zoom; they do not change the table ----
+test_that("table results do not change with custom axis limits", {
+  options <- jaspTools::analysisOptions("raincloudPlots")
+  options$boxNudge <- 0
+  options$boxOpacity <- 0.5
+  options$boxOutlineWidth <- 1.5
+  options$boxPadding <- 0.1
+  options$boxWidth <- 0.1
+  options$colorPalette <- "colorblind"
+  options$covariatePalette <- "viridis"
+  options$customAxisLimits <- TRUE
+  options$dependentVariables <- "bill_length_mm"
+  options$dependentVariables.types <- "scale"
+  options$heightPlot <- 550
+  options$lowerAxisLimit <- 38
+  options$meanLines <- FALSE
+  options$pointNudge <- 0.19
+  options$pointOpacity <- 0.5
+  options$pointSize <- 3
+  options$pointSpread <- 0.1
+  options$primaryFactor <- "island"
+  options$primaryFactor.types <- "nominal"
+  options$showBox <- TRUE
+  options$table <- TRUE
+  options$upperAxisLimit <- 52
+  options$vioNudge <- 0.09
+  options$vioOpacity <- 0.5
+  options$vioOutlineWidth <- 1.5
+  options$widthPlot <- 675
+  results <- jaspTools::runAnalysis("raincloudPlots", "palmerPenguins.csv", options)
+  table <- results[["results"]][["containerTables"]][["collection"]][["containerTables_bill_length_mm"]][["data"]]
+  # same reference as the table without custom axis limits above (observations outside 38-52 are still used)
+  jaspTools::expect_equal_tables(table,
+                                 list(42, 45.8, 167, "Biscoe", 48.7, 55.9, 34.5, 39.15, 44.65, 124,
+                                      "Dream", 49.85, 58, 32.1, 36.65, 38.9, 51, "Torgersen", 41.1,
+                                      46, 33.5))
+
+  # the plot is still limited to the custom axis limits (plus the default 5% expansion of the panel)
+  plotName <- results[["results"]][["containerRaincloudPlots"]][["collection"]][["containerRaincloudPlots_bill_length_mm"]][["data"]]
+  testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
+  panelRangeY <- ggplot2::ggplot_build(testPlot)$layout$panel_params[[1]]$y.range
+  expect_equal(panelRangeY, c(38 - 0.05 * (52 - 38), 52 + 0.05 * (52 - 38)))
+})
