@@ -407,9 +407,6 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   plotInProgress <- plotInProgress + meanInterval
 
 
-  # Horizontal plot?
-  if (options[["horizontal"]]) plotInProgress <- plotInProgress + ggplot2::coord_flip()
-
   # Theme setup
   plotInProgress <- plotInProgress + jaspGraphs::geom_rangeframe() + jaspGraphs::themeJaspRaw(legend.position = "right")
 
@@ -417,13 +414,20 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
   if (!options[["customAxisLimits"]]) {
     yBreaks <- jaspGraphs::getPrettyAxisBreaks(dataset[[inputVariable]])
     yLimits <- range(c(yBreaks, dataset[[inputVariable]], intervalBounds[["lowerBound"]], intervalBounds[["upperBound"]]))
+    yScaleLimits <- yLimits  # contain all observations
+    yZoomLimits  <- NULL
     warningAxisLimits <- FALSE
   } else {
     yBreaks <- jaspGraphs::getPrettyAxisBreaks(c(options[["lowerAxisLimit"]], options[["upperAxisLimit"]]))
     yLimits <- range(yBreaks)
+    # Custom limits only zoom: scale limits would turn the observations outside of them into NA before the boxplot and
+    # mean statistics are computed, and the table reads those statistics from the built plot.
+    yScaleLimits <- NULL
+    yZoomLimits  <- yLimits
     warningAxisLimits <- min(yBreaks) > min(dataset[[inputVariable]]) || max(yBreaks) < max(dataset[[inputVariable]])
   }
-  yAxis   <- ggplot2::scale_y_continuous(breaks = yBreaks, limits = yLimits)
+  yAxis   <- ggplot2::scale_y_continuous(breaks = yBreaks, limits = yScaleLimits)
+  yCoord  <- if (options[["horizontal"]]) ggplot2::coord_flip(ylim = yZoomLimits) else ggplot2::coord_cartesian(ylim = yZoomLimits)
 
   xTitle       <- if (options[["primaryFactor"]] == "") "Total" else options[["primaryFactor"]]
   axisTitles   <- ggplot2::labs(x = xTitle, y = inputVariable)
@@ -441,7 +445,7 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
     }
   }
 
-  plotInProgress <- plotInProgress + yAxis + axisTitles + axisFontSize + noFactorBlankAxis
+  plotInProgress <- plotInProgress + yAxis + yCoord + axisTitles + axisFontSize + noFactorBlankAxis
 
   # Legend
   guideFill <- if (options[["secondaryFactor"]] == "" && isFALSE(options[["showLegend"]])) {
