@@ -427,7 +427,7 @@ TabView {
 				Group{
 					DropDown {
 						name: "outlineDataPoint"
-						label: qsTr("Outline color")
+						label: qsTr("Outline")
 						values: [
 							{ label: qsTr("Automatic"), value: "automatic" },
 							{ label: qsTr("Black"), value: "black" },
@@ -842,7 +842,7 @@ TabView {
 
 					DropDown {
 						name: "outlineBoxplot"
-						label: qsTr("Outline color")
+						label: qsTr("Outline")
 						values: [
 							{ label: qsTr("Automatic"), value: "automatic" },
 							{ label: qsTr("Black"), value: "black" },
@@ -945,7 +945,7 @@ TabView {
 
 					DropDown {
 						name: "outlineViolin"
-						label: qsTr("Outline color")
+						label: qsTr("Outline")
 						values: [
 							{ label: qsTr("Automatic"), value: "automatic" },
 							{ label: qsTr("Black"), value: "black" },
@@ -1106,7 +1106,7 @@ TabView {
 
 						DropDown {
 							name: "outlineCountDot"
-							label: qsTr("Outline color")
+							label: qsTr("Outline")
 							values: [
 								{ label: qsTr("Automatic"), value: "automatic" },
 								{ label: qsTr("Black"), value: "black" },
@@ -1395,7 +1395,7 @@ TabView {
 
 					DropDown {
 						name: "outlineSumDot"
-						label: qsTr("Outline color")
+						label: qsTr("Outline")
 						values: [
 							{ label: qsTr("Automatic"), value: "automatic" },
 							{ label: qsTr("Black"), value: "black" },
@@ -1717,7 +1717,7 @@ TabView {
 					DoubleField { name: "alphaMeanDot"; label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
 					DropDown {
 						name: "outlineMeanDot"
-						label: qsTr("Outline color")
+						label: qsTr("Outline")
 						values: [
 							{ label: qsTr("Automatic"), value: "automatic" },
 							{ label: qsTr("Black"), value: "black" },
@@ -1856,7 +1856,7 @@ TabView {
 					DoubleField { name: "alphaMedianDot"; label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
 					DropDown {
 						name: "outlineMedianDot"
-						label: qsTr("Outline color")
+						label: qsTr("Outline")
 						values: [
 							{ label: qsTr("Automatic"), value: "automatic" },
 							{ label: qsTr("Black"), value: "black" },
