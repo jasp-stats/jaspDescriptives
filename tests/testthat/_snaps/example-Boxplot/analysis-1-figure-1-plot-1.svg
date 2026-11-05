@@ -226,7 +226,7 @@
 <text x='192.87' y='526.81' text-anchor='middle' style='font-size: 15.30px; font-family: sans;' textLength='45.09px' lengthAdjust='spacingAndGlyphs'>setosa</text>
 <text x='391.78' y='526.81' text-anchor='middle' style='font-size: 15.30px; font-family: sans;' textLength='65.48px' lengthAdjust='spacingAndGlyphs'>versicolor</text>
 <text x='590.69' y='526.81' text-anchor='middle' style='font-size: 15.30px; font-family: sans;' textLength='56.13px' lengthAdjust='spacingAndGlyphs'>virginica</text>
-<text x='391.78' y='557.32' text-anchor='middle' style='font-size: 18.00px; font-family: sans;' textLength='105.07px' lengthAdjust='spacingAndGlyphs'>jaspColumn1</text>
-<text transform='translate(27.33,266.19) rotate(-90)' text-anchor='middle' style='font-size: 18.00px; font-family: sans;' textLength='105.07px' lengthAdjust='spacingAndGlyphs'>jaspColumn2</text>
+<text x='391.78' y='557.32' text-anchor='middle' style='font-size: 18.00px; font-family: sans;' textLength='64.05px' lengthAdjust='spacingAndGlyphs'>Species</text>
+<text transform='translate(27.33,266.19) rotate(-90)' text-anchor='middle' style='font-size: 18.00px; font-family: sans;' textLength='106.10px' lengthAdjust='spacingAndGlyphs'>Sepal.Length</text>
 </g>
 </svg>
