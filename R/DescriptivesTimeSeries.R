@@ -32,9 +32,9 @@ DescriptivesTimeSeriesInternal <- function(jaspResults, dataset, options) {
 
   .tslagPlotDescriptives(jaspResults, dataset, options, ready, position = 3, dependencies = c(.tsDescriptivesDependencies(), "lagPlot", "lagPlotLag", "lagPlotRegressionType", "lagPlotRegressionLine", "lagPlotRegressionCi", "lagPlotRegressionCiLevel"))
 
-  .tsACFDescriptives(jaspResults, dataset, options, ready, position = 4, dependencies = c(.tsDescriptivesDependencies(), "acf", "acfCi", "acfCiLevel", "acfCiType", "acfZeroLag", "acfMaxLag"))
+  .tsACFDescriptives(jaspResults, dataset, options, ready, position = 4, dependencies = c(.tsDescriptivesDependencies(), "acf", "acfCi", "acfCiLevel", "acfCiType", "acfZeroLag", "acfMaxLag", "acfMissingValues"))
 
-  .tsPACFDescriptives(jaspResults, dataset, options, ready, position = 5, dependencies = c(.tsDescriptivesDependencies(), "pacf", "pacfCi", "pacfCiLevel", "pacfCiType", "pacfMaxLag"))
+  .tsPACFDescriptives(jaspResults, dataset, options, ready, position = 5, dependencies = c(.tsDescriptivesDependencies(), "pacf", "pacfCi", "pacfCiLevel", "pacfCiType", "pacfMaxLag", "pacfMissingValues"))
 }
 
 .tsDescriptivesDependencies <- function() {
@@ -148,14 +148,17 @@ DescriptivesTimeSeriesInternal <- function(jaspResults, dataset, options) {
       return()
     }
 
-    .tsFillACF(plot,
+    note <- .tsFillACF(plot,
       type = "ACF", dataset, options,
       zeroLag = options$acfZeroLag,
       maxLag = options$acfMaxLag,
       ci = options$acfCi,
       ciValue = options$acfCiLevel,
-      ciType = options$acfCiType
+      ciType = options$acfCiType,
+      missingValues = options$acfMissingValues
     )
+    if (!is.null(note))
+      jaspResults[["acfMissingNote"]] <- createJaspHtml(text = note, position = position + 0.1, dependencies = dependencies)
   }
 }
 
@@ -175,13 +178,16 @@ DescriptivesTimeSeriesInternal <- function(jaspResults, dataset, options) {
       return()
     }
 
-    .tsFillACF(plot,
+    note <- .tsFillACF(plot,
       type = "PACF", dataset, options,
       maxLag = options$pacfMaxLag,
       ci = options$pacfCi,
       ciValue = options$pacfCiLevel,
-      ciType = options$pacfCiType
+      ciType = options$pacfCiType,
+      missingValues = options$pacfMissingValues
     )
+    if (!is.null(note))
+      jaspResults[["pacfMissingNote"]] <- createJaspHtml(text = note, position = position + 0.1, dependencies = dependencies)
   }
 }
 

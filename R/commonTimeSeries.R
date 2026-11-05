@@ -220,14 +220,22 @@
   return(df)
 }
 
-.tsFillACF <- function(plot, type, dataset, options, zeroLag = FALSE, maxLag, ci, ciValue, ciType) {
-  y <- na.omit(as.numeric(dataset$y))
+.tsFillACF <- function(plot, type, dataset, options, zeroLag = FALSE, maxLag, ci, ciValue, ciType, missingValues = "error") {
+  prepared <- .tsCompleteSeries(dataset$y, missingValues)
+  if (!is.null(prepared$error)) {
+    plot$setError(prepared$error)
+    return(invisible(NULL))
+  }
+  y <- prepared$y
 
-  if (type == "ACF") {
-    ac <- stats::acf(y, plot = FALSE, lag.max = maxLag)
+  ac <- tryCatch(if (type == "ACF")
+    stats::acf(y, plot = FALSE, lag.max = maxLag) else
+    stats::pacf(y, plot = FALSE, lag.max = maxLag), error = function(e) NULL)
+  if (is.null(ac) || any(!is.finite(ac$acf))) {
+    plot$setError(gettext("Autocorrelation could not be calculated for the selected observations. Select a longer complete range with varying values."))
+    return(invisible(NULL))
   }
   if (type == "PACF") {
-    ac <- stats::pacf(y, plot = FALSE, lag.max = maxLag)
     ciType <- "whiteNoise" # PACF does not have confidence interval assuming ma
   }
 
@@ -276,7 +284,7 @@
     jaspGraphs::themeJaspRaw()
 
   plot$plotObject <- p
-  return()
+  return(invisible(prepared$note))
 }
 
 # custom JASPScatterPlot function because x may be a date...

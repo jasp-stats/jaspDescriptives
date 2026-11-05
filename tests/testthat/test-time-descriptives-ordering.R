@@ -53,7 +53,7 @@ descriptivesOrderingPlotData <- function(result) {
   list(lag = lag, acf = correlationData("acfPlot"), pacf = correlationData("pacfPlot"))
 }
 
-expectDescriptivesOrderedLike <- function(actual, reference, y) {
+expectDescriptivesOrderedLike <- function(actual, reference, y, correlationY = y) {
   table <- descriptivesOrderingTable(actual)
   expect_equal(table, descriptivesOrderingTable(reference), tolerance = 1e-12)
   expect_equal(table$valid, sum(!is.na(y)))
@@ -69,9 +69,8 @@ expectDescriptivesOrderedLike <- function(actual, reference, y) {
   plots <- descriptivesOrderingPlotData(actual)
   expect_equal(plots, descriptivesOrderingPlotData(reference), tolerance = 1e-12)
   expect_equal(plots$lag, pairs, tolerance = 1e-12)
-  completeY <- y[!is.na(y)]
-  expectedAcf <- stats::acf(completeY, lag.max = 3, plot = FALSE)
-  expectedPacf <- stats::pacf(completeY, lag.max = 3, plot = FALSE)
+  expectedAcf <- stats::acf(correlationY, lag.max = 3, plot = FALSE)
+  expectedPacf <- stats::pacf(correlationY, lag.max = 3, plot = FALSE)
   expect_equal(plots$acf$acf, as.numeric(expectedAcf$acf)[-1L], tolerance = 1e-12)
   expect_equal(plots$acf$lag, as.numeric(expectedAcf$lag)[-1L])
   expect_equal(plots$pacf$acf, as.numeric(expectedPacf$acf), tolerance = 1e-12)
@@ -114,10 +113,65 @@ test_that("Descriptives retains missing-response positions when forming lag pair
   y[c(1, 5, 12)] <- NA_real_
   input <- data.frame(y = y, Time = factor(as.character(orderingNumericTime)))[orderingPermutation, ]
   rownames(input) <- seq_len(nrow(input))
-  actual <- descriptivesOrderingRun(input)
-  reference <- descriptivesOrderingRun(data.frame(y = y), time = FALSE)
-  expectDescriptivesOrderedLike(actual, reference, y)
+  actual <- descriptivesOrderingRun(input, acfMissingValues = "longest", pacfMissingValues = "longest")
+  reference <- descriptivesOrderingRun(data.frame(y = y), time = FALSE,
+                                      acfMissingValues = "longest", pacfMissingValues = "longest")
+  expectDescriptivesOrderedLike(actual, reference, y, correlationY = y[6:11])
   expect_equal(descriptivesOrderingTable(actual)$missing, 3)
+})
+
+test_that("Descriptives gives local correlation errors and independent missing-data choices", {
+  y <- c(NA, orderingY, NA)
+  input <- data.frame(y = y, Time = seq_along(y))
+  strict <- descriptivesOrderingRun(input)
+  for (name in c("acfPlot", "pacfPlot"))
+    expect_match(paste(unlist(strict$results[[name]]), collapse = " "),
+                 "contains missing observations", fixed = TRUE)
+  expect_equal(descriptivesOrderingTable(strict)$missing, 2)
+  expect_null(strict$results$acfMissingNote)
+  expect_null(strict$results$pacfMissingNote)
+
+  mixed <- descriptivesOrderingRun(input, acfMissingValues = "trim")
+  expect_match(paste(unlist(mixed$results$pacfPlot), collapse = " "),
+               "contains missing observations", fixed = TRUE)
+  expect_match(descriptivesOrderingNote(mixed, "acfMissingNote"),
+               "12 of 14 observation steps: steps 2 to 13", fixed = TRUE)
+  expect_null(mixed$results$pacfMissingNote)
+  expect_equal(descriptivesOrderingTable(mixed), descriptivesOrderingTable(strict))
+  trimmed <- descriptivesOrderingRun(input, acfMissingValues = "trim", pacfMissingValues = "trim")
+  reference <- descriptivesOrderingRun(data.frame(y = orderingY), time = FALSE)
+  actualPlots <- descriptivesOrderingPlotData(trimmed)
+  referencePlots <- descriptivesOrderingPlotData(reference)
+  expect_equal(actualPlots$acf, referencePlots$acf, tolerance = 1e-12)
+  expect_equal(actualPlots$pacf, referencePlots$pacf, tolerance = 1e-12)
+
+  # Differing choices remain independent when gaps are internal too.
+  input$y[6] <- NA_real_
+  internal <- descriptivesOrderingRun(input, acfMissingValues = "trim", pacfMissingValues = "longest")
+  expect_match(paste(unlist(internal$results$acfPlot), collapse = " "), "remain inside", fixed = TRUE)
+  expect_null(internal$results$acfMissingNote)
+  expect_match(descriptivesOrderingNote(internal, "pacfMissingNote"),
+               "7 of 14 observation steps: steps 7 to 13", fixed = TRUE)
+  expected <- stats::pacf(input$y[7:13], lag.max = 3, plot = FALSE)
+  plot <- descriptivesOrderingPlot(internal, "pacfPlot")
+  layers <- lapply(plot$layers, function(layer) layer$data)
+  values <- Filter(function(x) is.data.frame(x) && "acf" %in% names(x), layers)[[1L]]$acf
+  expect_equal(as.numeric(values), as.numeric(expected$acf), tolerance = 1e-12)
+})
+
+test_that("isolated observations never become adjacent correlation steps", {
+  input <- data.frame(y = c(1, NA, NA, -1, NA, 1, NA, -1, NA, NA), Time = seq_len(10))
+  for (method in c("error", "trim", "longest")) {
+    result <- descriptivesOrderingRun(input, lagPlot = FALSE,
+                                      acfMissingValues = method, pacfMissingValues = method)
+    expected <- switch(method, error = "contains missing observations",
+                       trim = "remain inside", longest = "fewer than two")
+    for (name in c("acfPlot", "pacfPlot"))
+      expect_match(paste(unlist(result$results[[name]]), collapse = " "), expected, fixed = TRUE)
+    expect_equal(descriptivesOrderingTable(result)$valid, 4)
+    expect_null(result$results$acfMissingNote)
+    expect_null(result$results$pacfMissingNote)
+  }
 })
 
 test_that("Descriptives treats tied observations as successive steps in stable input order", {
