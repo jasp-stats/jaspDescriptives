@@ -409,7 +409,7 @@ test_that("plot with custom mean interval matches", {
   options$meanIntervalCustom <- TRUE
   options$meanLinesOpacity <- 0.25
   options$meanLinesWidth <- 2
-  options$meanPosition <- "onAxis"
+  options$meanPosition <- "onAxisTicks"
   options$meanSize <- 7.5
   options$numberOfClouds <- 6
   options$pointOpacity <- 0.25

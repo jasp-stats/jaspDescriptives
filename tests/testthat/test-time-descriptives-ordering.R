@@ -15,10 +15,9 @@ descriptivesOrderingRun <- function(input, time = TRUE, plots = TRUE, ...) {
   options$acfMaxLag <- options$pacfMaxLag <- 3
   options$acfZeroLag <- FALSE
   options <- utils::modifyList(options, list(...))
-  encoded <- jaspTools:::encodeOptionsAndDataset(jaspTools:::fixOptionsForVariableTypes(options), input)
-  rownames(encoded$dataset) <- rownames(input)
-  result <- jaspTools::runAnalysis("DescriptivesTimeSeries", dataset = encoded$dataset,
-                                  options = encoded$options, encodedDataset = TRUE, view = FALSE)
+  # runAnalysis encodes options and dataset through the bridge like the engine does
+  result <- jaspTools::runAnalysis("DescriptivesTimeSeries", dataset = input,
+                                  options = jaspTools:::fixOptionsForVariableTypes(options), view = FALSE)
   expect_identical(result$status, "complete")
   expect_false(isTRUE(result$results$error))
   result
