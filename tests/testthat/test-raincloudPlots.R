@@ -24,6 +24,7 @@ context("Raincloud Plots")
 # 1: Primary factor without color; with table ----
 test_that("plot with primary factor and no color matches", {
   options <- jaspTools::analysisOptions("raincloudPlots")
+  options$colorAnyway <- FALSE # the form colors the primary factor by default when there is no secondary factor
   options$boxNudge <- 0
   options$boxOpacity <- 0.5
   options$boxOutlineWidth <- 1.5
