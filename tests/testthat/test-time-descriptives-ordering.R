@@ -170,12 +170,13 @@ test_that("Descriptives filters numeric Time, UTC dates and original spreadsheet
   expectDescriptivesOrderedLike(actual, reference, expectedY)
 })
 
-test_that("unassigned dependent and zero input rows leave Descriptives unpopulated", {
+test_that("an unassigned dependent leaves Descriptives unpopulated and zero input rows are rejected", {
   input <- data.frame(y = orderingY, Time = orderingNumericTime)
   result <- descriptivesOrderingRun(input, plots = FALSE, dependent = list(types = list(), value = ""))
   expect_length(result$results$descriptivesTable$data, 0L)
-  result <- descriptivesOrderingRun(input[FALSE, ], plots = FALSE)
-  expect_length(result$results$descriptivesTable$data, 0L)
+  # As in JASP, the form does not accept a variable without any numeric value: the analysis is not run.
+  expect_error(descriptivesOrderingRun(input[FALSE, ], plots = FALSE),
+               "Minimum number of numeric values is 1")
 })
 
 test_that("a filter retaining one observation gives a valid table with unavailable dispersion and lag correlation", {
