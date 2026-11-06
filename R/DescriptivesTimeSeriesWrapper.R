@@ -24,7 +24,10 @@
 #' @param acf, Plots the autocorrelation for a specified number of lags. The confidence interval may be given assuming either a white noise process, or assuming for a lag q a moving average process of order q - 1.
 #'    Defaults to \code{FALSE}.
 #' @param acfNaAction, Applies only to this calculation. Listwise exclusion removes missing observations and treats the remaining observations as consecutive time steps, ignoring any internal gaps. Use the longest complete segment selects the longest consecutive run without missing values, using the earliest run when tied. When observations are omitted, a note reports the observations used and any effect on time spacing. The original data and saved values are unchanged.
-#'    Defaults to \code{"listwise"}.
+#' \itemize{
+#'   \item \code{"listwise"}
+#'   \item \code{"longest"}
+#' }
 #' @param dependent, A variable that is measured repeatedly over time.
 #' @param filter, Selects an inclusive range of observations for analysis. Row number refers to original spreadsheet rows, even when Time changes the analysis order. Time index filters numeric Time values, including negative values and decimals. Date filters interpreted dates and times. Date filters use UTC. A date-only End includes the entire day; an End with a time uses that exact cutoff. Time or date filtering requires a usable Time variable; otherwise, select Row number or disable filtering.
 #'    Defaults to \code{FALSE}.
@@ -33,7 +36,10 @@
 #' @param pacf, Plots the partial autocorrelation for a specified number of lags.
 #'    Defaults to \code{FALSE}.
 #' @param pacfNaAction, Applies only to this calculation. Listwise exclusion removes missing observations and treats the remaining observations as consecutive time steps, ignoring any internal gaps. Use the longest complete segment selects the longest consecutive run without missing values, using the earliest run when tied. When observations are omitted, a note reports the observations used and any effect on time spacing. The original data and saved values are unchanged.
-#'    Defaults to \code{"listwise"}.
+#' \itemize{
+#'   \item \code{"listwise"}
+#'   \item \code{"longest"}
+#' }
 #' @param time, Optional. Complete numeric values order observations from smallest to largest, regardless of gaps. Complete, unambiguous dates and times order observations chronologically. Use 'YYYY-MM-DD' for dates or 'YYYY-MM-DD HH:MM:SS' for dates with times; seconds can be omitted. All variables stay aligned, and spreadsheet row order is unchanged. Tied values retain spreadsheet row order. If any value is missing or cannot be interpreted, or dates are ambiguous, Time is ignored for the entire analysis and a warning is shown. Leave Time empty to use spreadsheet row order. Successive observations are modeled as equally spaced steps; no rows are added for gaps in Time.
 #' @param timeSeriesPlot, Plots the dependent variable (y-axis) over time (x-axis).
 #'    Defaults to \code{TRUE}.
