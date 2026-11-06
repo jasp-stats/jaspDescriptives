@@ -17,7 +17,7 @@ descriptivesOrderingRun <- function(input, time = TRUE, plots = TRUE, ...) {
   options <- utils::modifyList(options, list(...))
   # runAnalysis encodes options and dataset through the bridge like the engine does
   result <- jaspTools::runAnalysis("DescriptivesTimeSeries", dataset = input,
-                                  options = jaspTools:::fixOptionsForVariableTypes(options), view = FALSE)
+                                  options = options, view = FALSE)
   expect_identical(result$status, "complete")
   expect_false(isTRUE(result$results$error))
   result
