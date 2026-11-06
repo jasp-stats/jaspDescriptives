@@ -27,7 +27,7 @@ acfBandReference <- function(y, maxLag, ci) {
 # objects are constructed outside the supported analysis runner.
 acfBandPlot <- function(y, type = "ACF", zeroLag = FALSE, maxLag = 3,
                         ci = TRUE, ciValue = .95, ciType = "movingAverage",
-                        missingValues = "error") {
+                        missingValues = "omit") {
   collector <- new.env()
   collector$setError <- function(message) collector$error <- message
   note <- getFromNamespace(".tsFillACF", "jaspDescriptives")(
@@ -108,7 +108,7 @@ test_that("MA bands use the selected complete segment's observation count", {
 })
 
 test_that("MA bands do not bypass missing-observation validation", {
-  strict <- acfBandPlot(c(NA, acfBandY))
+  strict <- acfBandPlot(c(NA, acfBandY), missingValues = "error")
   expect_match(strict$error, "contains missing observations", fixed = TRUE)
   expect_null(strict$plot)
   trim <- acfBandPlot(c(acfBandY[1:4], NA, acfBandY[5:16]), missingValues = "trim")
@@ -145,4 +145,23 @@ test_that("disabling confidence intervals leaves autocorrelations unchanged", {
   expect_length(Filter(function(layer) inherits(layer$geom, "GeomRibbon"), result$plot$layers), 0L)
   expect_equal(acfBandLayer(result, "GeomLinerange")$acf,
                as.numeric(stats::acf(acfBandY, plot = FALSE, lag.max = 3)$acf)[-1L])
+})
+
+
+test_that("omitted observations use the retained sample size for ACF bands", {
+  input <- c(NA, acfBandY[1:5], NA, acfBandY[6:16], NaN)
+  for (type in c("ACF", "PACF")) {
+    for (ciType in c("whiteNoise", "movingAverage")) {
+      result <- acfBandPlot(input, type = type, ciType = ciType)
+      reference <- acfBandPlot(acfBandY, type = type, ciType = ciType)
+      expect_null(result$error)
+      expect_equal(acfBandLayer(result, "GeomLinerange"),
+                   acfBandLayer(reference, "GeomLinerange"))
+      expect_equal(acfBandLayer(result, "GeomRibbon"),
+                   acfBandLayer(reference, "GeomRibbon"))
+      expect_match(result$note, "16 of 19 observations retained", fixed = TRUE)
+      expect_match(result$note, "internal gaps are ignored", fixed = TRUE)
+      expect_null(reference$note)
+    }
+  }
 })

@@ -17,7 +17,7 @@
 # jaspDescriptives (development version)
 
 * Fixed moving-average confidence bands in time-series autocorrelation plots to use only preceding positive lags. Showing zero lag no longer changes the bands at other lags.
-* Time Series Descriptives autocorrelation plots now offer explicit missing-observation choices: report an error (default), omit missing values only at the ends, or use the longest complete segment. Internal gaps are never silently compressed, and the selected range is reported without changing the data or other outputs.
+* Time Series Descriptives autocorrelation plots offer two missing-observation choices: omit all missing observations (default) or use the longest complete segment. Omitting all missing observations adds a note explaining that retained observations are treated as consecutive steps and internal gaps are ignored; the data and other outputs are unchanged.
 * Time Series Descriptives uses Time to order whole observations without adding rows for gaps. Unusable or ambiguous Time falls back to spreadsheet row order with a warning; numeric Time filters accept negative values and decimals.
 * Added documentation for the boxplot jitter element in the helpfile ([PR 534](https://github.com/jasp-stats/jaspDescriptives/pull/534)).
 * Added documentation for interval plots, dotplots, and pie charts in the helpfile ([PR 516](https://github.com/jasp-stats/jaspDescriptives/pull/516)).

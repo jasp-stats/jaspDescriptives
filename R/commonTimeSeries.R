@@ -214,7 +214,7 @@
   data.frame(r = r, se = z * sqrt((1 + 2 * precedingSquares) / N))
 }
 
-.tsFillACF <- function(plot, type, dataset, options, zeroLag = FALSE, maxLag, ci, ciValue, ciType, missingValues = "error") {
+.tsFillACF <- function(plot, type, dataset, options, zeroLag = FALSE, maxLag, ci, ciValue, ciType, missingValues = "omit") {
   prepared <- .tsCompleteSeries(dataset$y, missingValues)
   if (!is.null(prepared$error)) {
     plot$setError(prepared$error)
