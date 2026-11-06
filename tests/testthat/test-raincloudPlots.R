@@ -24,6 +24,7 @@ context("Raincloud Plots")
 # 1: Primary factor without color; with table ----
 test_that("plot with primary factor and no color matches", {
   options <- jaspTools::analysisOptions("raincloudPlots")
+  options$colorAnyway <- FALSE # the form colors the primary factor by default when there is no secondary factor
   options$boxNudge <- 0
   options$boxOpacity <- 0.5
   options$boxOutlineWidth <- 1.5
@@ -497,11 +498,13 @@ test_that("plot with custom cloud color matches", {
   options$colorAnyway <- TRUE
   options$customColors <- TRUE
   options$numberOfClouds <- 3
+  # one row per cloud in every column, as the form's table has it (it rejects a table of another shape)
+  clouds <- c("Row 0", "Row 1", "Row 2")
   options$customizationTable <- list(
-    list(levels = "", name = "", values = "R"),
-    list(levels = "", name = "", values = 0),
-    list(levels = "", name = "", values = 0),
-    list(levels = list(""), name = "", values = c("#8B93FF", "#5755FE", "#FF71CD"))
+    list(levels = clouds, name = "data 1", values = c("R", "R", "R")),
+    list(levels = clouds, name = "data 2", values = c(0, 0, 0)),
+    list(levels = clouds, name = "data 3", values = c(0, 0, 0)),
+    list(levels = clouds, name = "data 4", values = c("#8B93FF", "#5755FE", "#FF71CD"))
   )
   options$dependentVariables <- "bill_length_mm"
   options$dependentVariables.types <- "scale"

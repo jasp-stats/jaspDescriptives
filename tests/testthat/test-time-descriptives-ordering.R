@@ -17,7 +17,7 @@ descriptivesOrderingRun <- function(input, time = TRUE, plots = TRUE, ...) {
   options <- utils::modifyList(options, list(...))
   # runAnalysis encodes options and dataset through the bridge like the engine does
   result <- jaspTools::runAnalysis("DescriptivesTimeSeries", dataset = input,
-                                  options = jaspTools:::fixOptionsForVariableTypes(options), view = FALSE)
+                                  options = options, view = FALSE)
   expect_identical(result$status, "complete")
   expect_false(isTRUE(result$results$error))
   result
@@ -144,15 +144,15 @@ test_that("unusable Time produces the same Descriptives output as cleared Time",
 
 test_that("Descriptives filters numeric Time, UTC dates and original spreadsheet rows", {
   input <- data.frame(y = orderingY, Time = orderingNumericTime)[orderingPermutation, ]
-  rownames(input) <- as.character(seq(2, 24, 2))
   actual <- descriptivesOrderingRun(input, filter = TRUE, filterBy = "time", timeStart = -1.2, timeEnd = .2)
   expectedY <- orderingY[4:11]
   reference <- descriptivesOrderingRun(data.frame(y = expectedY), time = FALSE)
   expectDescriptivesOrderedLike(actual, reference, expectedY)
 
-  # Physical rows 4..12 are input positions 2..6, whose Time ranks are
-  # 2, 9, 1, 8, 3. This also represents a dataset with a global row filter.
-  actual <- descriptivesOrderingRun(input, filter = TRUE, filterBy = "row", rowStart = 4, rowEnd = 12)
+  # Rows 2..6 are input positions 2..6, whose Time ranks are 2, 9, 1, 8, 3.
+  # (runAnalysis loads the data.frame like JASP loads a data file, numbering its rows 1..n:
+  # row names cannot stand for the original rows of a dataset with a global row filter any more.)
+  actual <- descriptivesOrderingRun(input, filter = TRUE, filterBy = "row", rowStart = 2, rowEnd = 6)
   expectedY <- orderingY[c(1, 2, 3, 8, 9)]
   reference <- descriptivesOrderingRun(data.frame(y = expectedY), time = FALSE)
   expectDescriptivesOrderedLike(actual, reference, expectedY)
@@ -170,12 +170,13 @@ test_that("Descriptives filters numeric Time, UTC dates and original spreadsheet
   expectDescriptivesOrderedLike(actual, reference, expectedY)
 })
 
-test_that("unassigned dependent and zero input rows leave Descriptives unpopulated", {
+test_that("an unassigned dependent leaves Descriptives unpopulated and zero input rows are rejected", {
   input <- data.frame(y = orderingY, Time = orderingNumericTime)
   result <- descriptivesOrderingRun(input, plots = FALSE, dependent = list(types = list(), value = ""))
   expect_length(result$results$descriptivesTable$data, 0L)
-  result <- descriptivesOrderingRun(input[FALSE, ], plots = FALSE)
-  expect_length(result$results$descriptivesTable$data, 0L)
+  # As in JASP, the form does not accept a variable without any numeric value: the analysis is not run.
+  expect_error(descriptivesOrderingRun(input[FALSE, ], plots = FALSE),
+               "Minimum number of numeric values is 1")
 })
 
 test_that("a filter retaining one observation gives a valid table with unavailable dispersion and lag correlation", {
@@ -191,12 +192,9 @@ test_that("a filter retaining one observation gives a valid table with unavailab
 })
 
 test_that("all-missing responses and absent adjacent pairs do not terminate table-only output", {
-  result <- descriptivesOrderingRun(data.frame(y = rep(NA_real_, 4), Time = 1:4), plots = FALSE)
-  table <- descriptivesOrderingTable(result)
-  expect_equal(table$valid, 0)
-  expect_equal(table$missing, 4)
-  for (name in c("mean", "sd", "var", "range", "min", "max", "start", "end", "ar"))
-    expectUnavailableDescriptivesCell(table[[name]])
+  # The form does not accept a variable without any numeric value, as in JASP: the analysis is not run.
+  expect_error(descriptivesOrderingRun(data.frame(y = rep(NA_real_, 4), Time = 1:4), plots = FALSE),
+               "Minimum number of numeric values is 1")
 
   result <- descriptivesOrderingRun(data.frame(y = c(2, NA, 7, NA, 11, NA), Time = 1:6), plots = FALSE)
   table <- descriptivesOrderingTable(result)
