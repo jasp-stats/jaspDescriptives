@@ -41,16 +41,18 @@ descriptivesOrderingPlot <- function(result, name) {
 descriptivesOrderingPlotData <- function(result) {
   lag <- descriptivesOrderingPlot(result, "lagPlot")$data[, c("x", "y")]
   rownames(lag) <- NULL
-  correlationData <- function(name) {
-    plot <- descriptivesOrderingPlot(result, name)
-    layers <- lapply(plot$layers, function(layer) layer$data)
-    candidates <- Filter(function(data) is.data.frame(data) && all(c("acf", "lag") %in% names(data)), layers)
-    expect_gt(length(candidates), 0L)
-    data <- candidates[[1L]]
-    rownames(data) <- NULL
-    data
-  }
-  list(lag = lag, acf = correlationData("acfPlot"), pacf = correlationData("pacfPlot"))
+  list(lag = lag, acf = descriptivesOrderingCorrelationData(result, "acfPlot"),
+       pacf = descriptivesOrderingCorrelationData(result, "pacfPlot"))
+}
+
+descriptivesOrderingCorrelationData <- function(result, name) {
+  plot <- descriptivesOrderingPlot(result, name)
+  layers <- lapply(plot$layers, function(layer) layer$data)
+  candidates <- Filter(function(data) is.data.frame(data) && all(c("acf", "lag") %in% names(data)), layers)
+  expect_gt(length(candidates), 0L)
+  data <- candidates[[1L]]
+  rownames(data) <- NULL
+  data
 }
 
 expectDescriptivesOrderedLike <- function(actual, reference, y, correlationY = y) {
@@ -120,58 +122,66 @@ test_that("Descriptives retains missing-response positions when forming lag pair
   expect_equal(descriptivesOrderingTable(actual)$missing, 3)
 })
 
-test_that("Descriptives gives local correlation errors and independent missing-data choices", {
+test_that("Descriptives uses both current policies for missing ends and independent internal-gap choices", {
   y <- c(NA, orderingY, NA)
   input <- data.frame(y = y, Time = seq_along(y))
-  strict <- descriptivesOrderingRun(input, acfNaAction = "error", pacfNaAction = "error")
-  for (name in c("acfPlot", "pacfPlot"))
-    expect_match(paste(unlist(strict$results[[name]]), collapse = " "),
-                 "contains missing observations", fixed = TRUE)
-  expect_equal(descriptivesOrderingTable(strict)$missing, 2)
-  expect_null(strict$results$acfMissingNote)
-  expect_null(strict$results$pacfMissingNote)
-
-  mixed <- descriptivesOrderingRun(input, acfNaAction = "trim", pacfNaAction = "error")
-  expect_match(paste(unlist(mixed$results$pacfPlot), collapse = " "),
-               "contains missing observations", fixed = TRUE)
-  expect_match(descriptivesOrderingNote(mixed, "acfMissingNote"),
-               "12 of 14 observation steps: steps 2 to 13", fixed = TRUE)
-  expect_null(mixed$results$pacfMissingNote)
-  expect_equal(descriptivesOrderingTable(mixed), descriptivesOrderingTable(strict))
-  trimmed <- descriptivesOrderingRun(input, acfNaAction = "trim", pacfNaAction = "trim")
+  original <- input
   reference <- descriptivesOrderingRun(data.frame(y = orderingY), time = FALSE)
-  actualPlots <- descriptivesOrderingPlotData(trimmed)
   referencePlots <- descriptivesOrderingPlotData(reference)
-  expect_equal(actualPlots$acf, referencePlots$acf, tolerance = 1e-12)
-  expect_equal(actualPlots$pacf, referencePlots$pacf, tolerance = 1e-12)
+  for (method in c("listwise", "longest")) {
+    actual <- descriptivesOrderingRun(input, acfNaAction = method, pacfNaAction = method)
+    plots <- descriptivesOrderingPlotData(actual)
+    expect_equal(plots$acf, referencePlots$acf, tolerance = 1e-12)
+    expect_equal(plots$pacf, referencePlots$pacf, tolerance = 1e-12)
+    expect_equal(descriptivesOrderingTable(actual)$valid, 12)
+    expect_equal(descriptivesOrderingTable(actual)$missing, 2)
+    for (name in c("acfMissingNote", "pacfMissingNote"))
+      expect_match(descriptivesOrderingNote(actual, name),
+                   if (method == "listwise") "12 of 14 observations retained" else
+                     "12 of 14 observation steps: steps 2 to 13", fixed = TRUE)
+    expect_identical(input, original)
+  }
 
-  # Differing choices remain independent when gaps are internal too.
-  input$y[6] <- NA_real_
-  internal <- descriptivesOrderingRun(input, acfNaAction = "trim", pacfNaAction = "longest")
-  expect_match(paste(unlist(internal$results$acfPlot), collapse = " "), "remain inside", fixed = TRUE)
-  expect_null(internal$results$acfMissingNote)
-  expect_match(descriptivesOrderingNote(internal, "pacfMissingNote"),
-               "7 of 14 observation steps: steps 7 to 13", fixed = TRUE)
-  expected <- stats::pacf(input$y[7:13], lag.max = 3, plot = FALSE)
-  plot <- descriptivesOrderingPlot(internal, "pacfPlot")
-  layers <- lapply(plot$layers, function(layer) layer$data)
-  values <- Filter(function(x) is.data.frame(x) && "acf" %in% names(x), layers)[[1L]]$acf
-  expect_equal(as.numeric(values), as.numeric(expected$acf), tolerance = 1e-12)
+  input$y[6L] <- NA_real_
+  original <- input
+  reference <- descriptivesOrderingRun(input)
+  for (acfMethod in c("listwise", "longest")) {
+    pacfMethod <- if (acfMethod == "listwise") "longest" else "listwise"
+    actual <- descriptivesOrderingRun(input, acfNaAction = acfMethod, pacfNaAction = pacfMethod)
+    expect_equal(descriptivesOrderingTable(actual), descriptivesOrderingTable(reference))
+    expect_equal(descriptivesOrderingTable(actual)$valid, 11)
+    expect_equal(descriptivesOrderingTable(actual)$missing, 3)
+    expect_equal(descriptivesOrderingPlot(actual, "lagPlot")$data,
+                 descriptivesOrderingPlot(reference, "lagPlot")$data)
+    for (type in c("acf", "pacf")) {
+      method <- if (type == "acf") acfMethod else pacfMethod
+      selected <- if (method == "listwise") input$y[!is.na(input$y)] else input$y[7:13]
+      expected <- if (type == "acf") stats::acf(selected, lag.max = 3L, plot = FALSE) else
+        stats::pacf(selected, lag.max = 3L, plot = FALSE)
+      values <- descriptivesOrderingCorrelationData(actual, paste0(type, "Plot"))
+      expect_equal(values$acf, if (type == "acf") as.numeric(expected$acf)[-1L] else
+                     as.numeric(expected$acf), tolerance = 1e-12)
+      expect_match(descriptivesOrderingNote(actual, paste0(type, "MissingNote")),
+                   if (method == "listwise") "11 of 14 observations retained" else
+                     "7 of 14 observation steps: steps 7 to 13", fixed = TRUE)
+    }
+    expect_identical(input, original)
+  }
 })
 
-test_that("non-omission policies do not join isolated observations", {
+test_that("longest-segment errors stay local and do not join isolated observations", {
   input <- data.frame(y = c(1, NA, NA, -1, NA, 1, NA, -1, NA, NA), Time = seq_len(10))
-  for (method in c("error", "trim", "longest")) {
-    result <- descriptivesOrderingRun(input, lagPlot = FALSE,
-                                      acfNaAction = method, pacfNaAction = method)
-    expected <- switch(method, error = "contains missing observations",
-                       trim = "remain inside", longest = "fewer than two")
-    for (name in c("acfPlot", "pacfPlot"))
-      expect_match(paste(unlist(result$results[[name]]), collapse = " "), expected, fixed = TRUE)
-    expect_equal(descriptivesOrderingTable(result)$valid, 4)
-    expect_null(result$results$acfMissingNote)
-    expect_null(result$results$pacfMissingNote)
-  }
+  original <- input
+  result <- descriptivesOrderingRun(input, lagPlot = FALSE,
+                                    acfNaAction = "longest", pacfNaAction = "longest")
+  for (name in c("acfPlot", "pacfPlot"))
+    expect_match(paste(unlist(result$results[[name]]), collapse = " "),
+                 "fewer than two", fixed = TRUE)
+  expect_equal(descriptivesOrderingTable(result)$valid, 4)
+  expect_equal(descriptivesOrderingTable(result)$missing, 6)
+  expect_null(result$results$acfMissingNote)
+  expect_null(result$results$pacfMissingNote)
+  expect_identical(input, original)
 })
 
 test_that("Descriptives treats tied observations as successive steps in stable input order", {
@@ -301,22 +311,29 @@ test_that("default omission reports compression below correlations without chang
   expect_null(complete$results$pacfMissingNote)
 })
 
-test_that("default omission and legacy trimming remain independent across ACF and PACF", {
-  input <- data.frame(y = orderingY, Time = seq_along(orderingY))
-  input$y[5L] <- NA_real_
-  actual <- descriptivesOrderingRun(input, acfNaAction = "trim")
-  expect_match(paste(unlist(actual$results$acfPlot), collapse = " "),
-               "remain inside", fixed = TRUE)
-  expect_null(actual$results$acfMissingNote)
-  expect_match(descriptivesOrderingNote(actual, "pacfMissingNote"),
-               "11 of 12 observations retained", fixed = TRUE)
-  plot <- descriptivesOrderingPlot(actual, "pacfPlot")
-  layers <- lapply(plot$layers, function(layer) layer$data)
-  values <- Filter(function(x) is.data.frame(x) && "acf" %in% names(x), layers)[[1L]]$acf
-  expected <- stats::pacf(input$y[!is.na(input$y)], lag.max = 3L, plot = FALSE)
-  expect_equal(as.numeric(values), as.numeric(expected$acf), tolerance = 1e-12)
+test_that("default omission remains independent of an unusable longest segment in either correlation", {
+  input <- data.frame(y = c(4, 4, 4, NA, 1, 2), Time = seq_len(6))
+  original <- input
+  for (unusable in c("acf", "pacf")) {
+    valid <- if (unusable == "acf") "pacf" else "acf"
+    actual <- if (unusable == "acf") descriptivesOrderingRun(input, acfNaAction = "longest") else
+      descriptivesOrderingRun(input, pacfNaAction = "longest")
+    expect_match(paste(unlist(actual$results[[paste0(unusable, "Plot")]]), collapse = " "),
+                 "no variation", fixed = TRUE)
+    expect_null(actual$results[[paste0(unusable, "MissingNote")]])
+    expect_match(descriptivesOrderingNote(actual, paste0(valid, "MissingNote")),
+                 "5 of 6 observations retained", fixed = TRUE)
+    selected <- input$y[!is.na(input$y)]
+    expected <- if (valid == "acf") stats::acf(selected, lag.max = 3L, plot = FALSE) else
+      stats::pacf(selected, lag.max = 3L, plot = FALSE)
+    values <- descriptivesOrderingCorrelationData(actual, paste0(valid, "Plot"))
+    expect_equal(values$acf, if (valid == "acf") as.numeric(expected$acf)[-1L] else
+                   as.numeric(expected$acf), tolerance = 1e-12)
+    expect_equal(descriptivesOrderingTable(actual)$valid, 5)
+    expect_equal(descriptivesOrderingTable(actual)$missing, 1)
+    expect_identical(input, original)
+  }
 })
-
 
 test_that("wrapper and shared form agree on the omission default", {
   wrapper <- getFromNamespace("DescriptivesTimeSeries", "jaspDescriptives")

@@ -2,7 +2,7 @@ timeMissingSeries <- getFromNamespace(".tsCompleteSeries", "jaspDescriptives")
 
 test_that("complete series are identical under every missing-observation policy", {
   y <- c(4, 2, 8, 1, 9, 6)
-  for (method in c("listwise", "error", "trim", "longest")) {
+  for (method in c("listwise", "longest")) {
     actual <- timeMissingSeries(y, method)
     expect_identical(actual$y, y)
     expect_identical(actual$indices, seq_along(y))
@@ -12,30 +12,38 @@ test_that("complete series are identical under every missing-observation policy"
   expect_identical(timeMissingSeries(y, NULL), timeMissingSeries(y, "listwise"))
 })
 
-test_that("strict handling rejects all missing positions without compressing gaps", {
-  for (y in list(c(NA, 1, 4), c(1, NA, 4), c(1, 4, NA), c(1, NaN, 4))) {
-    original <- y
-    actual <- timeMissingSeries(y, "error")
-    expect_identical(actual$error,
-      "The series used for this calculation contains missing observations. Choose Exclude cases listwise or Use the longest complete segment under Missing values.")
-    expect_length(actual$y, 0)
-    expect_null(actual$note)
-    expect_identical(y, original)
+test_that("current policies select observations at every missing position without changing input", {
+  cases <- list(
+    list(y = c(NA, 1, 4, 2), longest = 2:4),
+    list(y = c(1, NA, 4, 2), longest = 3:4),
+    list(y = c(1, 4, 2, NA), longest = 1:3),
+    list(y = c(1, NaN, 4, 2), longest = 3:4)
+  )
+  for (case in cases) {
+    original <- case$y
+    for (method in c("listwise", "longest")) {
+      actual <- timeMissingSeries(case$y, method)
+      indices <- if (method == "listwise") which(!is.na(case$y)) else case$longest
+      expect_identical(actual$indices, indices)
+      expect_identical(actual$y, case$y[indices])
+      expect_null(actual$error)
+      expect_type(actual$note, "character")
+      expect_identical(case$y, original)
+    }
   }
 })
 
-test_that("legacy end trimming retains every internal step and reports the calculation range", {
+test_that("current policies agree on complete observations between missing ends", {
   y <- c(NA, NA, 7, 3, 9, 2, NA)
-  actual <- timeMissingSeries(y, "trim")
-  expect_identical(actual$y, c(7, 3, 9, 2))
-  expect_identical(actual$indices, 3:6)
-  expect_null(actual$error)
-  expect_match(actual$note, "4 of 7 observation steps: steps 3 to 6", fixed = TRUE)
-  for (y in list(c(NA, 7, NA, 9, NA), c(7, NA, 9))) {
-    actual <- timeMissingSeries(y, "trim")
-    expect_match(actual$error, "remain inside", fixed = TRUE)
-    expect_length(actual$y, 0)
-    expect_null(actual$note)
+  for (method in c("listwise", "longest")) {
+    actual <- timeMissingSeries(y, method)
+    expect_identical(actual$y, c(7, 3, 9, 2))
+    expect_identical(actual$indices, 3:6)
+    expect_null(actual$error)
+    if (method == "listwise")
+      expect_match(actual$note, "4 of 7 observations retained", fixed = TRUE)
+    else
+      expect_match(actual$note, "4 of 7 observation steps: steps 3 to 6", fixed = TRUE)
   }
 })
 
@@ -53,7 +61,7 @@ test_that("the longest contiguous segment is explicit and earliest ties win", {
 })
 
 test_that("unusable segments and infinite values have controlled errors", {
-  for (method in c("listwise", "error", "trim", "longest")) {
+  for (method in c("listwise", "longest")) {
     for (y in list(numeric(), c(NA_real_, NaN)))
       expect_match(timeMissingSeries(y, method)$error, "no observed values", fixed = TRUE)
     for (y in list(c(1, Inf, 4), c(-Inf, 1, 4)))
@@ -66,7 +74,13 @@ test_that("unusable segments and infinite values have controlled errors", {
   # A constant longest segment must not silently be replaced by a shorter one.
   expect_match(timeMissingSeries(c(4, 4, 4, NA, 1, 2), "longest")$error,
                "no variation", fixed = TRUE)
-  expect_error(timeMissingSeries(1:4, "unknown"), "Unknown missing-observation")
+})
+
+test_that("removed and unknown missing-observation methods are rejected", {
+  for (method in c("error", "trim", "unknown")) {
+    for (y in list(1:4, c(1, NA, 4, 2)))
+      expect_error(timeMissingSeries(y, method), "Unknown missing-observation handling option.", fixed = TRUE)
+  }
 })
 
 test_that("calculation selection leaves row identity and model input untouched", {
@@ -74,13 +88,16 @@ test_that("calculation selection leaves row identity and model input untouched",
                         t = seq(2001.5, by = .1, length.out = 8),
                         covariate = seq_len(8), row.names = as.character(seq(2, 16, 2)))
   original <- dataset
-  selected <- timeMissingSeries(dataset$y, "longest")
-  expect_identical(selected$indices, 5:7)
-  expect_identical(dataset, original)
-  expect_identical(dataset$t, original$t)
-  expect_identical(rownames(dataset), original |> rownames())
+  for (method in c("listwise", "longest")) {
+    selected <- timeMissingSeries(dataset$y, method)
+    indices <- if (method == "listwise") c(2L, 3L, 5L, 6L, 7L) else 5:7
+    expect_identical(selected$indices, indices)
+    expect_identical(selected$y, dataset$y[indices])
+    expect_identical(dataset, original)
+    expect_identical(dataset$t, original$t)
+    expect_identical(rownames(dataset), original |> rownames())
+  }
 })
-
 
 test_that("omission is the default and joins only the selected calculation input", {
   for (y in list(c(NA, 3, 1, 5, NA), c(3, NA, 1, NaN, 5),
@@ -101,7 +118,7 @@ test_that("omission is the default and joins only the selected calculation input
   }
 })
 
-test_that("omission validates the remaining observations without relaxing other policies", {
+test_that("omission validates retained observations and longest keeps isolated observations separate", {
   expect_match(timeMissingSeries(c(NA, 4, NA), "listwise")$error,
                "fewer than two", fixed = TRUE)
   expect_match(timeMissingSeries(c(4, NA, 4), "listwise")$error,
@@ -112,7 +129,5 @@ test_that("omission validates the remaining observations without relaxing other 
   actual <- timeMissingSeries(y, "listwise")
   expect_identical(actual$indices, c(1L, 4L, 6L, 8L))
   expect_identical(actual$y, c(1, -1, 1, -1))
-  expect_match(timeMissingSeries(y, "error")$error, "contains missing", fixed = TRUE)
-  expect_match(timeMissingSeries(y, "trim")$error, "remain inside", fixed = TRUE)
   expect_match(timeMissingSeries(y, "longest")$error, "fewer than two", fixed = TRUE)
 })

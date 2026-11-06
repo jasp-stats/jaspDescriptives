@@ -4,7 +4,7 @@
   # Older saved analyses may not yet contain the option. Use the current default.
   if (is.null(missingValues)) missingValues <- "listwise"
   if (length(missingValues) != 1L || is.na(missingValues) ||
-      !missingValues %in% c("listwise", "error", "trim", "longest"))
+      !missingValues %in% c("listwise", "longest"))
     stop("Unknown missing-observation handling option.")
 
   y <- as.numeric(y)
@@ -21,19 +21,8 @@
 
   indices <- seq_along(y)
   if (anyNA(y)) {
-    # Retain strict handling for explicit values saved by earlier development builds.
-    if (missingValues == "error") {
-      result$error <- gettext("The series used for this calculation contains missing observations. Choose Exclude cases listwise or Use the longest complete segment under Missing values.")
-      return(result)
-    }
     if (missingValues == "listwise") {
       indices <- observed
-    } else if (missingValues == "trim") {
-      indices <- seq.int(observed[1L], tail(observed, 1L))
-      if (anyNA(y[indices])) {
-        result$error <- gettext("Missing observations remain inside the series after omitting those at the ends. Choose Use the longest complete segment, or use Filter by to select a continuous range without missing observations.")
-        return(result)
-      }
     } else {
       runs <- rle(!is.na(y))
       ends <- cumsum(runs$lengths)

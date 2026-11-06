@@ -89,8 +89,8 @@ test_that("a single positive lag has the white-noise null band", {
   expect_identical(empty, data.frame(r = numeric(), se = numeric()))
 })
 
-test_that("MA bands use the selected complete segment's observation count", {
-  inputs <- list(trim = c(NA, NA, acfBandY, NA),
+test_that("MA bands use the observation count selected by each current policy", {
+  inputs <- list(listwise = c(NA, acfBandY[1:5], NA, acfBandY[6:16], NA),
                  longest = c(2, 8, NA, acfBandY, NA, 6, 3, 9))
   for (method in names(inputs)) {
     input <- inputs[[method]]
@@ -98,22 +98,41 @@ test_that("MA bands use the selected complete segment's observation count", {
     for (ci in c(.8, .95)) {
       result <- acfBandPlot(input, ciValue = ci, missingValues = method)
       expect_null(result$error)
-      expect_match(result$note, paste0("16 of ", length(input), " observation steps"), fixed = TRUE)
+      expect_match(result$note, if (method == "listwise") "16 of 19 observations retained" else
+                     "16 of 23 observation steps: steps 4 to 19", fixed = TRUE)
       bands <- acfBandLayer(result, "GeomRibbon")
       expect_equal(bands[c("lag", "upper", "lower")],
                    acfBandReference(acfBandY, 3, ci), tolerance = 1e-12)
+      expect_equal(acfBandLayer(result, "GeomLinerange")$acf,
+                   as.numeric(stats::acf(acfBandY, plot = FALSE, lag.max = 3)$acf)[-1L],
+                   tolerance = 1e-12)
       expect_identical(input, original)
     }
   }
 })
 
-test_that("MA bands do not bypass missing-observation validation", {
-  strict <- acfBandPlot(c(NA, acfBandY), missingValues = "error")
-  expect_match(strict$error, "contains missing observations", fixed = TRUE)
-  expect_null(strict$plot)
-  trim <- acfBandPlot(c(acfBandY[1:4], NA, acfBandY[5:16]), missingValues = "trim")
-  expect_match(trim$error, "remain inside", fixed = TRUE)
-  expect_null(trim$plot)
+test_that("MA bands preserve validation of unusable observations under current policies", {
+  cases <- list(
+    list(y = c(NA_real_, NaN), error = "no observed values"),
+    list(y = c(1, Inf, 4), error = "infinite values"),
+    list(y = c(NA, 4, NA), error = "fewer than two"),
+    list(y = c(NA, 4, 4, NA), error = "no variation")
+  )
+  for (method in c("listwise", "longest")) {
+    for (case in cases) {
+      result <- acfBandPlot(case$y, missingValues = method)
+      expect_match(result$error, case$error, fixed = TRUE)
+      expect_null(result$plot)
+      expect_null(result$note)
+    }
+  }
+  for (case in list(list(y = c(1, NA, 4, NA, 2), error = "fewer than two"),
+                   list(y = c(4, 4, 4, NA, 1, 2), error = "no variation"))) {
+    result <- acfBandPlot(case$y, missingValues = "longest")
+    expect_match(result$error, case$error, fixed = TRUE)
+    expect_null(result$plot)
+    expect_null(result$note)
+  }
 })
 
 test_that("white-noise and PACF bands keep their existing formulas", {
@@ -123,7 +142,7 @@ test_that("white-noise and PACF bands keep their existing formulas", {
       for (zeroLag in c(FALSE, TRUE)) {
         for (ciType in if (type == "ACF") "whiteNoise" else c("whiteNoise", "movingAverage")) {
           result <- acfBandPlot(input, type = type, zeroLag = zeroLag, ciValue = ci,
-                                ciType = ciType, missingValues = "trim")
+                                ciType = ciType, missingValues = "longest")
           expect_null(result$error)
           bands <- acfBandLayer(result, "GeomRibbon")
           bound <- stats::qnorm((1 + ci) / 2) / sqrt(length(acfBandY))
