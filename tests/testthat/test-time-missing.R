@@ -2,14 +2,14 @@ timeMissingSeries <- getFromNamespace(".tsCompleteSeries", "jaspDescriptives")
 
 test_that("complete series are identical under every missing-observation policy", {
   y <- c(4, 2, 8, 1, 9, 6)
-  for (method in c("omit", "error", "trim", "longest")) {
+  for (method in c("listwise", "error", "trim", "longest")) {
     actual <- timeMissingSeries(y, method)
     expect_identical(actual$y, y)
     expect_identical(actual$indices, seq_along(y))
     expect_null(actual$error)
     expect_null(actual$note)
   }
-  expect_identical(timeMissingSeries(y, NULL), timeMissingSeries(y, "omit"))
+  expect_identical(timeMissingSeries(y, NULL), timeMissingSeries(y, "listwise"))
 })
 
 test_that("strict handling rejects all missing positions without compressing gaps", {
@@ -17,7 +17,7 @@ test_that("strict handling rejects all missing positions without compressing gap
     original <- y
     actual <- timeMissingSeries(y, "error")
     expect_identical(actual$error,
-      "The series used for this calculation contains missing observations. Choose Omit all missing observations or Use the longest complete segment under Missing observations.")
+      "The series used for this calculation contains missing observations. Choose Exclude cases listwise or Use the longest complete segment under Missing values.")
     expect_length(actual$y, 0)
     expect_null(actual$note)
     expect_identical(y, original)
@@ -53,7 +53,7 @@ test_that("the longest contiguous segment is explicit and earliest ties win", {
 })
 
 test_that("unusable segments and infinite values have controlled errors", {
-  for (method in c("omit", "error", "trim", "longest")) {
+  for (method in c("listwise", "error", "trim", "longest")) {
     for (y in list(numeric(), c(NA_real_, NaN)))
       expect_match(timeMissingSeries(y, method)$error, "no observed values", fixed = TRUE)
     for (y in list(c(1, Inf, 4), c(-Inf, 1, 4)))
@@ -88,7 +88,7 @@ test_that("omission is the default and joins only the selected calculation input
     original <- y
     expectedIndices <- which(!is.na(y))
     actual <- timeMissingSeries(y)
-    expect_identical(actual, timeMissingSeries(y, "omit"))
+    expect_identical(actual, timeMissingSeries(y, "listwise"))
     expect_identical(actual, timeMissingSeries(y, NULL))
     expect_identical(actual$indices, expectedIndices)
     expect_identical(actual$y, y[expectedIndices])
@@ -102,14 +102,14 @@ test_that("omission is the default and joins only the selected calculation input
 })
 
 test_that("omission validates the remaining observations without relaxing other policies", {
-  expect_match(timeMissingSeries(c(NA, 4, NA), "omit")$error,
+  expect_match(timeMissingSeries(c(NA, 4, NA), "listwise")$error,
                "fewer than two", fixed = TRUE)
-  expect_match(timeMissingSeries(c(4, NA, 4), "omit")$error,
+  expect_match(timeMissingSeries(c(4, NA, 4), "listwise")$error,
                "no variation", fixed = TRUE)
-  expect_null(timeMissingSeries(c(NA, 4, NA), "omit")$note)
-  expect_null(timeMissingSeries(c(4, NA, 4), "omit")$note)
+  expect_null(timeMissingSeries(c(NA, 4, NA), "listwise")$note)
+  expect_null(timeMissingSeries(c(4, NA, 4), "listwise")$note)
   y <- c(1, NA, NA, -1, NA, 1, NA, -1, NA, NA)
-  actual <- timeMissingSeries(y, "omit")
+  actual <- timeMissingSeries(y, "listwise")
   expect_identical(actual$indices, c(1L, 4L, 6L, 8L))
   expect_identical(actual$y, c(1, -1, 1, -1))
   expect_match(timeMissingSeries(y, "error")$error, "contains missing", fixed = TRUE)

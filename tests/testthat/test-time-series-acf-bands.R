@@ -27,7 +27,7 @@ acfBandReference <- function(y, maxLag, ci) {
 # objects are constructed outside the supported analysis runner.
 acfBandPlot <- function(y, type = "ACF", zeroLag = FALSE, maxLag = 3,
                         ci = TRUE, ciValue = .95, ciType = "movingAverage",
-                        missingValues = "omit") {
+                        missingValues = "listwise") {
   collector <- new.env()
   collector$setError <- function(message) collector$error <- message
   note <- getFromNamespace(".tsFillACF", "jaspDescriptives")(

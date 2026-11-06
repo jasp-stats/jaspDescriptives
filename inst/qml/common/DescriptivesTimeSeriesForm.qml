@@ -178,14 +178,11 @@ Form
             label: qsTr("Autocorrelation function")
             RadioButtonGroup
             {
-                id: acfMissingValuesChoice
-                name: "acfMissingValues"
-                title: qsTr("Missing observations")
-                info: qsTr("Applies only to this calculation. Omit all missing observations removes missing values and treats the remaining observations as consecutive time steps, ignoring any internal gaps. Use the longest complete segment selects the longest consecutive run without missing values, using the earliest run when tied. When observations are omitted, a note reports the observations used and any effect on time spacing. The original data and saved values are unchanged.")
-                RadioButton { value: "omit"; label: qsTr("Omit all missing observations"); checked: true }
+                name: "acfNaAction"
+                title: qsTr("Missing values")
+                info: qsTr("Applies only to this calculation. Listwise exclusion removes missing observations and treats the remaining observations as consecutive time steps, ignoring any internal gaps. Use the longest complete segment selects the longest consecutive run without missing values, using the earliest run when tied. When observations are omitted, a note reports the observations used and any effect on time spacing. The original data and saved values are unchanged.")
+                RadioButton { value: "listwise"; label: qsTr("Exclude cases listwise"); checked: true }
                 RadioButton { value: "longest"; label: qsTr("Use the longest complete segment") }
-                RadioButton { value: "trim"; label: qsTr("Omit missing observations at the ends"); visible: acfMissingValuesChoice.value === "trim" }
-                RadioButton { value: "error"; label: qsTr("Report an error"); visible: acfMissingValuesChoice.value === "error" }
             }
             IntegerField { name: "acfMaxLag"; label: qsTr("Maximum lag"); min: 1; defaultValue: 10 }
             CheckBox { name: "acfZeroLag"; label: qsTr("Zero lag") }
@@ -226,14 +223,11 @@ Form
             info: qsTr("Plots the partial autocorrelation for a specified number of lags.")
             RadioButtonGroup
             {
-                id: pacfMissingValuesChoice
-                name: "pacfMissingValues"
-                title: qsTr("Missing observations")
-                info: qsTr("Applies only to this calculation. Omit all missing observations removes missing values and treats the remaining observations as consecutive time steps, ignoring any internal gaps. Use the longest complete segment selects the longest consecutive run without missing values, using the earliest run when tied. When observations are omitted, a note reports the observations used and any effect on time spacing. The original data and saved values are unchanged.")
-                RadioButton { value: "omit"; label: qsTr("Omit all missing observations"); checked: true }
+                name: "pacfNaAction"
+                title: qsTr("Missing values")
+                info: qsTr("Applies only to this calculation. Listwise exclusion removes missing observations and treats the remaining observations as consecutive time steps, ignoring any internal gaps. Use the longest complete segment selects the longest consecutive run without missing values, using the earliest run when tied. When observations are omitted, a note reports the observations used and any effect on time spacing. The original data and saved values are unchanged.")
+                RadioButton { value: "listwise"; label: qsTr("Exclude cases listwise"); checked: true }
                 RadioButton { value: "longest"; label: qsTr("Use the longest complete segment") }
-                RadioButton { value: "trim"; label: qsTr("Omit missing observations at the ends"); visible: pacfMissingValuesChoice.value === "trim" }
-                RadioButton { value: "error"; label: qsTr("Report an error"); visible: pacfMissingValuesChoice.value === "error" }
             }
             IntegerField { name: "pacfMaxLag"; label: qsTr("Maximum lag"); min: 1; defaultValue: 10 }
             CheckBox

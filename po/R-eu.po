@@ -726,6 +726,6 @@ msgstr ""
 
 msgid ""
 "The series used for this calculation contains missing observations. Choose "
-"Omit all missing observations or Use the longest complete segment under "
-"Missing observations."
+"Exclude cases listwise or Use the longest complete segment under Missing "
+"values."
 msgstr ""

@@ -32,9 +32,9 @@ DescriptivesTimeSeriesInternal <- function(jaspResults, dataset, options) {
 
   .tslagPlotDescriptives(jaspResults, dataset, options, ready, position = 3, dependencies = c(.tsDescriptivesDependencies(), "lagPlot", "lagPlotLag", "lagPlotRegressionType", "lagPlotRegressionLine", "lagPlotRegressionCi", "lagPlotRegressionCiLevel"))
 
-  .tsACFDescriptives(jaspResults, dataset, options, ready, position = 4, dependencies = c(.tsDescriptivesDependencies(), "acf", "acfCi", "acfCiLevel", "acfCiType", "acfZeroLag", "acfMaxLag", "acfMissingValues"))
+  .tsACFDescriptives(jaspResults, dataset, options, ready, position = 4, dependencies = c(.tsDescriptivesDependencies(), "acf", "acfCi", "acfCiLevel", "acfCiType", "acfZeroLag", "acfMaxLag", "acfNaAction"))
 
-  .tsPACFDescriptives(jaspResults, dataset, options, ready, position = 5, dependencies = c(.tsDescriptivesDependencies(), "pacf", "pacfCi", "pacfCiLevel", "pacfCiType", "pacfMaxLag", "pacfMissingValues"))
+  .tsPACFDescriptives(jaspResults, dataset, options, ready, position = 5, dependencies = c(.tsDescriptivesDependencies(), "pacf", "pacfCi", "pacfCiLevel", "pacfCiType", "pacfMaxLag", "pacfNaAction"))
 }
 
 .tsDescriptivesDependencies <- function() {
@@ -155,7 +155,7 @@ DescriptivesTimeSeriesInternal <- function(jaspResults, dataset, options) {
       ci = options$acfCi,
       ciValue = options$acfCiLevel,
       ciType = options$acfCiType,
-      missingValues = options$acfMissingValues
+      missingValues = options[["acfNaAction"]]
     )
     if (!is.null(note))
       jaspResults[["acfMissingNote"]] <- createJaspHtml(text = note, position = position + 0.1, dependencies = dependencies)
@@ -184,7 +184,7 @@ DescriptivesTimeSeriesInternal <- function(jaspResults, dataset, options) {
       ci = options$pacfCi,
       ciValue = options$pacfCiLevel,
       ciType = options$pacfCiType,
-      missingValues = options$pacfMissingValues
+      missingValues = options[["pacfNaAction"]]
     )
     if (!is.null(note))
       jaspResults[["pacfMissingNote"]] <- createJaspHtml(text = note, position = position + 0.1, dependencies = dependencies)

@@ -113,9 +113,9 @@ test_that("Descriptives retains missing-response positions when forming lag pair
   y[c(1, 5, 12)] <- NA_real_
   input <- data.frame(y = y, Time = factor(as.character(orderingNumericTime)))[orderingPermutation, ]
   rownames(input) <- seq_len(nrow(input))
-  actual <- descriptivesOrderingRun(input, acfMissingValues = "longest", pacfMissingValues = "longest")
+  actual <- descriptivesOrderingRun(input, acfNaAction = "longest", pacfNaAction = "longest")
   reference <- descriptivesOrderingRun(data.frame(y = y), time = FALSE,
-                                      acfMissingValues = "longest", pacfMissingValues = "longest")
+                                      acfNaAction = "longest", pacfNaAction = "longest")
   expectDescriptivesOrderedLike(actual, reference, y, correlationY = y[6:11])
   expect_equal(descriptivesOrderingTable(actual)$missing, 3)
 })
@@ -123,7 +123,7 @@ test_that("Descriptives retains missing-response positions when forming lag pair
 test_that("Descriptives gives local correlation errors and independent missing-data choices", {
   y <- c(NA, orderingY, NA)
   input <- data.frame(y = y, Time = seq_along(y))
-  strict <- descriptivesOrderingRun(input, acfMissingValues = "error", pacfMissingValues = "error")
+  strict <- descriptivesOrderingRun(input, acfNaAction = "error", pacfNaAction = "error")
   for (name in c("acfPlot", "pacfPlot"))
     expect_match(paste(unlist(strict$results[[name]]), collapse = " "),
                  "contains missing observations", fixed = TRUE)
@@ -131,14 +131,14 @@ test_that("Descriptives gives local correlation errors and independent missing-d
   expect_null(strict$results$acfMissingNote)
   expect_null(strict$results$pacfMissingNote)
 
-  mixed <- descriptivesOrderingRun(input, acfMissingValues = "trim", pacfMissingValues = "error")
+  mixed <- descriptivesOrderingRun(input, acfNaAction = "trim", pacfNaAction = "error")
   expect_match(paste(unlist(mixed$results$pacfPlot), collapse = " "),
                "contains missing observations", fixed = TRUE)
   expect_match(descriptivesOrderingNote(mixed, "acfMissingNote"),
                "12 of 14 observation steps: steps 2 to 13", fixed = TRUE)
   expect_null(mixed$results$pacfMissingNote)
   expect_equal(descriptivesOrderingTable(mixed), descriptivesOrderingTable(strict))
-  trimmed <- descriptivesOrderingRun(input, acfMissingValues = "trim", pacfMissingValues = "trim")
+  trimmed <- descriptivesOrderingRun(input, acfNaAction = "trim", pacfNaAction = "trim")
   reference <- descriptivesOrderingRun(data.frame(y = orderingY), time = FALSE)
   actualPlots <- descriptivesOrderingPlotData(trimmed)
   referencePlots <- descriptivesOrderingPlotData(reference)
@@ -147,7 +147,7 @@ test_that("Descriptives gives local correlation errors and independent missing-d
 
   # Differing choices remain independent when gaps are internal too.
   input$y[6] <- NA_real_
-  internal <- descriptivesOrderingRun(input, acfMissingValues = "trim", pacfMissingValues = "longest")
+  internal <- descriptivesOrderingRun(input, acfNaAction = "trim", pacfNaAction = "longest")
   expect_match(paste(unlist(internal$results$acfPlot), collapse = " "), "remain inside", fixed = TRUE)
   expect_null(internal$results$acfMissingNote)
   expect_match(descriptivesOrderingNote(internal, "pacfMissingNote"),
@@ -163,7 +163,7 @@ test_that("non-omission policies do not join isolated observations", {
   input <- data.frame(y = c(1, NA, NA, -1, NA, 1, NA, -1, NA, NA), Time = seq_len(10))
   for (method in c("error", "trim", "longest")) {
     result <- descriptivesOrderingRun(input, lagPlot = FALSE,
-                                      acfMissingValues = method, pacfMissingValues = method)
+                                      acfNaAction = method, pacfNaAction = method)
     expected <- switch(method, error = "contains missing observations",
                        trim = "remain inside", longest = "fewer than two")
     for (name in c("acfPlot", "pacfPlot"))
@@ -283,7 +283,7 @@ test_that("default omission reports compression below correlations without chang
   original <- input
   actual <- descriptivesOrderingRun(input)
   reference <- descriptivesOrderingRun(data.frame(y = y), time = FALSE,
-    acfMissingValues = "omit", pacfMissingValues = "omit")
+    acfNaAction = "listwise", pacfNaAction = "listwise")
   expectDescriptivesOrderedLike(actual, reference, y, correlationY = y[!is.na(y)])
   expect_identical(input, original)
   outputNames <- vapply(actual$results$.meta, `[[`, "", "name")
@@ -304,7 +304,7 @@ test_that("default omission reports compression below correlations without chang
 test_that("default omission and legacy trimming remain independent across ACF and PACF", {
   input <- data.frame(y = orderingY, Time = seq_along(orderingY))
   input$y[5L] <- NA_real_
-  actual <- descriptivesOrderingRun(input, acfMissingValues = "trim")
+  actual <- descriptivesOrderingRun(input, acfNaAction = "trim")
   expect_match(paste(unlist(actual$results$acfPlot), collapse = " "),
                "remain inside", fixed = TRUE)
   expect_null(actual$results$acfMissingNote)
@@ -322,21 +322,21 @@ test_that("wrapper and shared form agree on the omission default", {
   wrapper <- getFromNamespace("DescriptivesTimeSeries", "jaspDescriptives")
   qml <- system.file("qml", "common", "DescriptivesTimeSeriesForm.qml", package = "jaspDescriptives")
   options <- jaspTools:::readQML(qml)
-  for (name in c("acfMissingValues", "pacfMissingValues")) {
-    expect_identical(formals(wrapper)[[name]], "omit")
-    expect_identical(options[[name]], "omit")
-    # Only the two current choices are visible for new analyses; old development
-    # choices stay representable and visible while explicitly selected.
+  previousNames <- c("acfMissingValues", "pacfMissingValues")
+  expect_false(any(previousNames %in% names(formals(wrapper))))
+  expect_false(any(previousNames %in% names(options)))
+  for (name in c("acfNaAction", "pacfNaAction")) {
+    expect_identical(formals(wrapper)[[name]], "listwise")
+    expect_identical(options[[name]], "listwise")
+    # Only the two current missing-data policies are offered.
     form <- readLines(qml, warn = FALSE)
-    start <- grep(paste0("id: ", name, "Choice"), form, fixed = TRUE)
+    start <- grep(paste0('name: "', name, '"'), form, fixed = TRUE)
     expect_length(start, 1L)
     end <- start + which(trimws(form[seq.int(start + 1L, length(form))]) == "}")[1L]
     buttons <- grep("RadioButton {", form[seq.int(start, end)], value = TRUE, fixed = TRUE)
-    expect_length(buttons, 4L)
+    expect_length(buttons, 2L)
     values <- sub('.*value: "([^"]+)".*', "\\1", buttons)
-    expect_identical(values, c("omit", "longest", "trim", "error"))
-    expect_false(any(grepl("visible:", buttons[1:2], fixed = TRUE)))
-    expect_match(buttons[3L], paste0('visible: ', name, 'Choice.value === "trim"'), fixed = TRUE)
-    expect_match(buttons[4L], paste0('visible: ', name, 'Choice.value === "error"'), fixed = TRUE)
+    expect_identical(values, c("listwise", "longest"))
+    expect_false(any(grepl("visible:", buttons, fixed = TRUE)))
   }
 })

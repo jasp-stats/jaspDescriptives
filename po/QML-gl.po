@@ -5083,32 +5083,24 @@ msgstr ""
 "noutro caso, selecciona un número de Fila ou inhabilita o filtrado."
 
 msgctxt "DescriptivesTimeSeriesForm|"
-msgid "Missing observations"
-msgstr ""
-
-msgctxt "DescriptivesTimeSeriesForm|"
-msgid "Omit missing observations at the ends"
-msgstr ""
-
-msgctxt "DescriptivesTimeSeriesForm|"
-msgid "Report an error"
-msgstr ""
-
-msgctxt "DescriptivesTimeSeriesForm|"
 msgid "Use the longest complete segment"
 msgstr ""
 
 msgctxt "DescriptivesTimeSeriesForm|"
-msgid "Omit all missing observations"
-msgstr ""
-
-msgctxt "DescriptivesTimeSeriesForm|"
 msgid ""
-"Applies only to this calculation. Omit all missing observations removes "
-"missing values and treats the remaining observations as consecutive time "
+"Applies only to this calculation. Listwise exclusion removes missing "
+"observations and treats the remaining observations as consecutive time "
 "steps, ignoring any internal gaps. Use the longest complete segment selects "
 "the longest consecutive run without missing values, using the earliest run "
 "when tied. When observations are omitted, a note reports the observations "
 "used and any effect on time spacing. The original data and saved values are "
 "unchanged."
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Exclude cases listwise"
+msgstr ""
+
+msgctxt "DescriptivesTimeSeriesForm|"
+msgid "Missing values"
 msgstr ""
