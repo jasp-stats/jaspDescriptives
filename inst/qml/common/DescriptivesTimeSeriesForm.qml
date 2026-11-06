@@ -176,6 +176,14 @@ Form
             name: "acf"
             id: acf
             label: qsTr("Autocorrelation function")
+            RadioButtonGroup
+            {
+                name: "acfNaAction"
+                title: qsTr("Missing values")
+                info: qsTr("Applies only to this calculation. Listwise exclusion removes missing observations and treats the remaining observations as consecutive time steps, ignoring any internal gaps. Use the longest complete segment selects the longest consecutive run without missing values, using the earliest run when tied. When observations are omitted, a note reports the observations used and any effect on time spacing. The original data and saved values are unchanged.")
+                RadioButton { value: "listwise"; label: qsTr("Exclude cases listwise"); checked: true }
+                RadioButton { value: "longest"; label: qsTr("Use the longest complete segment") }
+            }
             IntegerField { name: "acfMaxLag"; label: qsTr("Maximum lag"); min: 1; defaultValue: 10 }
             CheckBox { name: "acfZeroLag"; label: qsTr("Zero lag") }
             info: qsTr("Plots the autocorrelation for a specified number of lags. The confidence interval may be given assuming either a white noise process, or assuming for a lag q a moving average process of order q - 1.")
@@ -213,6 +221,14 @@ Form
             id: pacf
             label: qsTr("Partial autocorrelation function")
             info: qsTr("Plots the partial autocorrelation for a specified number of lags.")
+            RadioButtonGroup
+            {
+                name: "pacfNaAction"
+                title: qsTr("Missing values")
+                info: qsTr("Applies only to this calculation. Listwise exclusion removes missing observations and treats the remaining observations as consecutive time steps, ignoring any internal gaps. Use the longest complete segment selects the longest consecutive run without missing values, using the earliest run when tied. When observations are omitted, a note reports the observations used and any effect on time spacing. The original data and saved values are unchanged.")
+                RadioButton { value: "listwise"; label: qsTr("Exclude cases listwise"); checked: true }
+                RadioButton { value: "longest"; label: qsTr("Use the longest complete segment") }
+            }
             IntegerField { name: "pacfMaxLag"; label: qsTr("Maximum lag"); min: 1; defaultValue: 10 }
             CheckBox
             {

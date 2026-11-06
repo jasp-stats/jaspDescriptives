@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: jaspDescriptives 0.11.0\n"
-"POT-Creation-Date: 2026-10-24 03:32\n"
+"POT-Creation-Date: 2026-11-05 11:45+0100\n"
 "PO-Revision-Date: 2026-10-24 09:10+0000\n"
 "Last-Translator: Koji Kosugi <kosugitti@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/jasp/"
@@ -717,3 +717,37 @@ msgstr[0] "|の左にある小数点は %s 桁です"
 
 #~ msgid "Standardised Residuals"
 #~ msgstr "標準化された残差"
+
+msgid ""
+"The series contains infinite values. Resolve these values before calculating "
+"this output."
+msgstr ""
+
+msgid "The selected series contains no observed values."
+msgstr ""
+
+msgid ""
+"This calculation uses %1$s of %2$s observation steps: steps %3$s to %4$s in "
+"analysis order. The data and saved values are unchanged."
+msgstr ""
+
+msgid ""
+"Autocorrelation could not be calculated for the selected observations. "
+"Select a longer complete range with varying values."
+msgstr ""
+
+msgid ""
+"Missing observations were omitted for this calculation (%1$s of %2$s "
+"observations retained), so the remaining observations are treated as "
+"consecutive time steps and any internal gaps are ignored."
+msgstr ""
+
+msgid ""
+"The selected observations contain fewer than two values. Select a range with"
+" more observed values."
+msgstr ""
+
+msgid ""
+"The selected observations contain no variation. This calculation requires "
+"varying observations."
+msgstr ""
