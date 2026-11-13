@@ -406,8 +406,8 @@ TabView {
 					DoubleField {
 						name: "alphaPlotBuilder"
 						id: alphaPlotBuilder
-						label: qsTr("Transparency")
-						info: qsTr("Set the transparency")
+						label: qsTr("Opacity")
+						info: qsTr("Set the opacity (0 = invisible, 1 = opaque)")
 						value: 0.5
 						min: 0
 						max: 1
@@ -568,7 +568,7 @@ TabView {
 
 				DoubleField {
 					name: "fillEllipse"
-					label: qsTr("Transparency")
+					label: qsTr("Opacity")
 					value: 0.20
 					min: 0
 					max: 1
@@ -601,7 +601,7 @@ TabView {
 
 				DoubleField {
 					name: "lineRMtransparency"
-					label: qsTr("Transparency")
+					label: qsTr("Opacity")
 					value: 0.5
 				}
 
@@ -663,10 +663,10 @@ TabView {
 
 						DoubleField {
 							name: "alphaHistogramPlotBuilder"
-							label: qsTr("Transparency")
+							label: qsTr("Opacity")
 							id: alphaHistogramPlotBuilder
 							defaultValue: 0.8
-							info: qsTr("Set the transparency")
+							info: qsTr("Set the opacity (0 = invisible, 1 = opaque)")
 							min: 0
 							max: 1
 						}
@@ -714,10 +714,10 @@ TabView {
 
 						DoubleField {
 							name: "alphaDensityPlotBuilder"
-							label: qsTr("Transparency")
+							label: qsTr("Opacity")
 							id: alphaDensityPlotBuilder
 							defaultValue: 0.8
-							info: qsTr("Set the transparency for the density overlay")
+							info: qsTr("Set the opacity for the density overlay (0 = invisible, 1 = opaque)")
 							min: 0
 							max: 1
 						}
@@ -781,9 +781,9 @@ TabView {
 
 					DoubleField {
 						name: "alphaBoxplotPlotBuilder"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						id: alphaBoxplotPlotBuilder
-						info: qsTr("Set the transparency")
+						info: qsTr("Set the opacity (0 = invisible, 1 = opaque)")
 						defaultValue: 0.8
 						min: 0
 						max: 1
@@ -893,10 +893,10 @@ TabView {
 
 					DoubleField {
 						name: "alphaViolinPlotBuilder"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						id: alphaViolinPlotBuilder
 						defaultValue: 0.8
-						info: qsTr("Set the transparency")
+						info: qsTr("Set the opacity (0 = invisible, 1 = opaque)")
 						min: 0
 						max: 1
 					}
@@ -973,7 +973,7 @@ TabView {
 			info: qsTr("This section adds layers that visualise amounts. "
 					 + "<b>Dodge</b> shifts subgroup geoms sideways so they don’t overlap. "
 					 + "<b>Size / Width</b> sets the thickness of bars and lines or the radius of dots. "
-					 + "<b>Transparency (alpha)</b> controls opacity: 0 = invisible, 1 = solid. "
+					 + "<b>Opacity (alpha)</b> controls opacity: 0 = invisible, 1 = solid. "
 					 + "<b>Outline (black / white)</b> toggles a border around the shape. ")
 
 
@@ -1018,7 +1018,7 @@ TabView {
 					}
 					DoubleField {
 						name: "alphaCountBar"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1057,7 +1057,7 @@ TabView {
 					}
 					DoubleField {
 						name: "alphaCountDash"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1098,7 +1098,7 @@ TabView {
 					Group {
 						DoubleField {
 							name: "alphaCountDot"
-							label: qsTr("Transparency")
+							label: qsTr("Opacity")
 							defaultValue: 1
 							min: 0
 							max: 1
@@ -1147,7 +1147,7 @@ TabView {
 
 					DoubleField {
 						name: "alphaCountLine"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1180,7 +1180,7 @@ TabView {
 					}
 					DoubleField {
 						name: "alphaCountArea"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1212,7 +1212,7 @@ TabView {
 
 					DoubleField {
 						name: "alphaCountValue"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1289,7 +1289,7 @@ TabView {
 					}
 					DoubleField {
 						name: "alphaSumBar"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1338,7 +1338,7 @@ TabView {
 					}
 					DoubleField {
 						name: "alphaSumDash"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1387,7 +1387,7 @@ TabView {
 					}
 					DoubleField {
 						name: "alphaSumDot"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1443,7 +1443,7 @@ TabView {
 					}
 					DoubleField {
 						name: "alphaSumLine"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1487,7 +1487,7 @@ TabView {
 					}
 					DoubleField {
 						name: "alphaSumArea"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1532,7 +1532,7 @@ TabView {
 					}
 					DoubleField {
 						name: "alphaSumValue"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1568,7 +1568,7 @@ TabView {
 			info: qsTr("Visualise how each subgroup contributes to the whole "
 					 + "Requires one Group variable plus either an X- or Y-axis variable "
 					 + "Absolute mode stacks raw counts; Relative mode rescales each stack to 0-1 or 0-100 % "
-					 + "Common controls: Transparency sets opacity, Reverse order flips the stack sequence, "
+					 + "Common controls: Opacity sets opacity, Reverse order flips the stack sequence, "
 					 + "Line width outlines area stacks, Fill missing combinations with zero completes absent X/group combinations; observations with missing grouping values are excluded")
 			columns: 2
 
@@ -1617,7 +1617,7 @@ TabView {
 							   groupVarRM.count > 0 )
 					onEnabledChanged: { if (!enabled) checked = false }
 
-					DoubleField { name: "alphaBarStack";   label: qsTr("Transparency"); defaultValue: 0.8; min: 0; max: 1 }
+					DoubleField { name: "alphaBarStack";   label: qsTr("Opacity"); defaultValue: 0.8; min: 0; max: 1 }
 					CheckBox    { name: "reverseBarStack"; label: qsTr("Reverse order") }
 				}
 
@@ -1633,7 +1633,7 @@ TabView {
 							   groupVarRM.count > 0 )
 					onEnabledChanged: { if (!enabled) checked = false }
 
-					DoubleField { name: "alphaAreaStack";     label: qsTr("Transparency"); defaultValue: 0.4; min: 0; max: 1 }
+					DoubleField { name: "alphaAreaStack";     label: qsTr("Opacity"); defaultValue: 0.4; min: 0; max: 1 }
 					DoubleField { name: "linewidthAreaStack"; label: qsTr("Line width");  defaultValue: 0.25; min: 0 }
 					CheckBox    { name: "reverseAreaStack";   label: qsTr("Reverse order") }
 					CheckBox    { name: "replaceNaAreaStack"; label: qsTr("Fill missing combinations with zero"); info: qsTr("Fill absent combinations of X and group with zero. This does not create a group for missing values.") }
@@ -1660,7 +1660,7 @@ TabView {
 			info: qsTr("Summary layers that display the arithmetic mean of the Y variable for every X (or vice versa). "
 					 + "Requires both X and Y axes mapped. "
 					 + "Mean can be rendered as bar, line, dot, dash, area, or value. "
-					 + "Common controls: <b>Dodge</b> separates sub-groups, <b>Transparency</b> sets opacity, <b>Size/width</b> changes thickness, <b>Outline</b> toggles borders")
+					 + "Common controls: <b>Dodge</b> separates sub-groups, <b>Opacity</b> sets opacity, <b>Size/width</b> changes thickness, <b>Outline</b> toggles borders")
 
 			Label {
 				text: qsTr("Required: X AND Y-Axis Variables")
@@ -1683,7 +1683,7 @@ TabView {
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMeanBar";  label: qsTr("Dodge");        defaultValue: 0.8 }
-					DoubleField { name: "alphaMeanBar";  label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField { name: "alphaMeanBar";  label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					DoubleField { name: "widthMeanBar";  label: qsTr("Bar width");    defaultValue: 0.8 }
 				}
 
@@ -1699,7 +1699,7 @@ TabView {
 					DoubleField { name: "dodgeMeanDash";     label: qsTr("Dodge");       defaultValue: 0.8 }
 					DoubleField { name: "dashwidthMeanDash"; label: qsTr("Dash width");  defaultValue: 0.8 }
 					DoubleField { name: "linewidthMeanDash"; label: qsTr("Line width");  defaultValue: 1 }
-					DoubleField { name: "alphaMeanDash";     label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField { name: "alphaMeanDash";     label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					CheckBox    { name: "blackOutlineMeanDash"; label: qsTr("Black dash") }
 				}
 
@@ -1714,7 +1714,7 @@ TabView {
 
 					DoubleField { name: "dodgeMeanDot"; label: qsTr("Dodge");    defaultValue: 0.8 }
 					DoubleField { name: "sizeMeanDot";  label: qsTr("Dot size"); defaultValue: 5 }
-					DoubleField { name: "alphaMeanDot"; label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField { name: "alphaMeanDot"; label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					DropDown {
 						name: "outlineMeanDot"
 						label: qsTr("Outline")
@@ -1739,7 +1739,7 @@ TabView {
 
 					DoubleField { name: "dodgeMeanLine";   label: qsTr("Dodge");      defaultValue: 0.8 }
 					DoubleField { name: "linewidthMeanLine"; label: qsTr("Line width"); defaultValue: 1 }
-					DoubleField { name: "alphaMeanLine";   label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField { name: "alphaMeanLine";   label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					CheckBox    { name: "blackOutlineMeanLine"; label: qsTr("Black line") }
 				}
 
@@ -1753,7 +1753,7 @@ TabView {
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMeanArea"; label: qsTr("Dodge");        defaultValue: 0.8 }
-					DoubleField { name: "alphaMeanArea"; label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField { name: "alphaMeanArea"; label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 				}
 
 				/* ── Mean value ── */
@@ -1772,7 +1772,7 @@ TabView {
 						info: qsTr("Sets the rounding increment for the mean value; 0.1 gives one decimal, 0.01 gives two")
 						defaultValue: "0.1"
 					}
-					DoubleField  { name: "alphaMeanValue";     label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField  { name: "alphaMeanValue";     label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					DoubleField  { name: "hjustMeanValue";     label: qsTr("Horizontal justification"); defaultValue: 0.5; min: -Infinity }
 					DoubleField  { name: "vjustMeanValue";     label: qsTr("Vertical justification");   defaultValue: -0.5; min: -Infinity }
 					CheckBox     { name: "blackOutlineMeanValue"; label: qsTr("Black text") }
@@ -1791,7 +1791,7 @@ TabView {
 			info: qsTr("Summary layers that display the median of the Y variable for every X (or vice versa). "
 					 + "Requires both X and Y axes mapped. "
 					 + "Median can be rendered as bar, line, dot, dash, area, or value. "
-					 + "Common controls: <b>Dodge</b> separates sub-groups, <b>Transparency</b> sets opacity, <b>Size/width</b> changes thickness, <b>Outline</b> toggles borders")
+					 + "Common controls: <b>Dodge</b> separates sub-groups, <b>Opacity</b> sets opacity, <b>Size/width</b> changes thickness, <b>Outline</b> toggles borders")
 
 			Label {
 				text: qsTr("Required: X AND Y-Axis Variables")
@@ -1816,7 +1816,7 @@ TabView {
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMedianBar";  label: qsTr("Dodge");        defaultValue: 0.8 }
-					DoubleField { name: "alphaMedianBar";  label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField { name: "alphaMedianBar";  label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					DoubleField { name: "widthMedianBar";  label: qsTr("Bar width");    defaultValue: 0.8 }
 				}
 
@@ -1835,7 +1835,7 @@ TabView {
 					DoubleField { name: "dodgeMedianDash";     label: qsTr("Dodge");       defaultValue: 0.8 }
 					DoubleField { name: "dashwidthMedianDash"; label: qsTr("Dash width");  defaultValue: 0.8 }
 					DoubleField { name: "linewidthMedianDash"; label: qsTr("Line width");  defaultValue: 1 }
-					DoubleField { name: "alphaMedianDash";     label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField { name: "alphaMedianDash";     label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					CheckBox    { name: "blackOutlineMedianDash"; label: qsTr("Black dash"); enabled: addMedianDash.checked }
 				}
 
@@ -1853,7 +1853,7 @@ TabView {
 
 					DoubleField { name: "dodgeMedianDot"; label: qsTr("Dodge");    defaultValue: 0.8 }
 					DoubleField { name: "sizeMedianDot";  label: qsTr("Dot size"); defaultValue: 5 }
-					DoubleField { name: "alphaMedianDot"; label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField { name: "alphaMedianDot"; label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					DropDown {
 						name: "outlineMedianDot"
 						label: qsTr("Outline")
@@ -1881,7 +1881,7 @@ TabView {
 
 					DoubleField { name: "dodgeMedianLine";   label: qsTr("Dodge");      defaultValue: 0.8 }
 					DoubleField { name: "linewidthMedianLine"; label: qsTr("Line width"); defaultValue: 1 }
-					DoubleField { name: "alphaMedianLine";   label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField { name: "alphaMedianLine";   label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					CheckBox    { name: "blackOutlineMedianLine"; label: qsTr("Black line"); enabled: addMedianLine.checked }
 				}
 
@@ -1897,7 +1897,7 @@ TabView {
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMedianArea"; label: qsTr("Dodge");        defaultValue: 0.8 }
-					DoubleField { name: "alphaMedianArea"; label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField { name: "alphaMedianArea"; label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 				}
 
 				/* Median value -------------------------------------------------- */
@@ -1918,7 +1918,7 @@ TabView {
 						info: qsTr("Sets the rounding increment for the median value; 0.1 gives one decimal, 0.01 gives two")
 						defaultValue: "0.1"
 					}
-					DoubleField  { name: "alphaMedianValue";     label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField  { name: "alphaMedianValue";     label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					DoubleField  { name: "hjustMedianValue";     label: qsTr("Horizontal justification"); defaultValue: 0.5; min: -Infinity }
 					DoubleField  { name: "vjustMedianValue";     label: qsTr("Vertical justification");   defaultValue: -0.5; min: -Infinity }
 					CheckBox     { name: "blackOutlineMedianValue"; label: qsTr("Black text") }
@@ -1937,7 +1937,7 @@ TabView {
 			info: qsTr("Shows variability with vertical bars or shaded ribbons. "
 					 + "Choose <b>Range</b> (min–max), <b>SD</b>, <b>SEM</b>, or <b>95 % CI</b>. "
 					 + "Common controls: <b>Dodge</b> offsets overlapping groups, <b>Width/Line width</b> adjusts thickness, "
-					 + "<b>Transparency</b> sets opacity, <b>Black lines</b> toggles outlines")
+					 + "<b>Opacity</b> sets opacity, <b>Black lines</b> toggles outlines")
 
 			Label {
 				text: qsTr("Required: X AND Y-Axis Variables")
@@ -1971,7 +1971,7 @@ TabView {
 					DoubleField { name: "dodgeRangeErrorBar";   label: qsTr("Dodge");        defaultValue: 0.8 }
 					DoubleField { name: "widthRangeErrorBar";   label: qsTr("Width");        defaultValue: 0.3 }
 					DoubleField { name: "linewidthRangeErrorBar"; label: qsTr("Line width"); defaultValue: 1 }
-					DoubleField { name: "transparencyRangeErrorBar"; label: qsTr("Transparency"); defaultValue: 1 }
+					DoubleField { name: "transparencyRangeErrorBar"; label: qsTr("Opacity"); defaultValue: 1 }
 					CheckBox    { name: "blackOutlineRangeErrorBar"; label: qsTr("Black lines") }
 				}
 
@@ -1990,7 +1990,7 @@ TabView {
 					DoubleField { name: "dodgeSDErrorBar";   label: qsTr("Dodge");        defaultValue: 0.8 }
 					DoubleField { name: "widthSDErrorBar";   label: qsTr("Width");        defaultValue: 0.3 }
 					DoubleField { name: "linewidthSDErrorBar"; label: qsTr("Line width"); defaultValue: 1 }
-					DoubleField { name: "transparencySDErrorBar"; label: qsTr("Transparency"); defaultValue: 1 }
+					DoubleField { name: "transparencySDErrorBar"; label: qsTr("Opacity"); defaultValue: 1 }
 					CheckBox    { name: "blackOutlineSDErrorBar"; label: qsTr("Black lines"); enabled: addSDErrorBar.checked }
 				}
 
@@ -2009,7 +2009,7 @@ TabView {
 					DoubleField { name: "dodgeSEMErrorBar";   label: qsTr("Dodge");        defaultValue: 0.8 }
 					DoubleField { name: "widthSEMErrorBar";   label: qsTr("Width");        defaultValue: 0.3 }
 					DoubleField { name: "linewidthSEMErrorBar"; label: qsTr("Line width"); defaultValue: 1 }
-					DoubleField { name: "transparencySEMErrorBar"; label: qsTr("Transparency"); defaultValue: 1 }
+					DoubleField { name: "transparencySEMErrorBar"; label: qsTr("Opacity"); defaultValue: 1 }
 					CheckBox    { name: "blackOutlineSEMErrorBar"; label: qsTr("Black lines"); enabled: addSEMErrorBar.checked }
 				}
 
@@ -2027,7 +2027,7 @@ TabView {
 					DoubleField { name: "dodgeCI95ErrorBar";   label: qsTr("Dodge");        defaultValue: 0.8 }
 					DoubleField { name: "widthCI95ErrorBar";   label: qsTr("Width");        defaultValue: 0.3 }
 					DoubleField { name: "linewidthCI95ErrorBar"; label: qsTr("Line width"); defaultValue: 1 }
-					DoubleField { name: "transparencyCI95ErrorBar"; label: qsTr("Transparency"); defaultValue: 1 }
+					DoubleField { name: "transparencyCI95ErrorBar"; label: qsTr("Opacity"); defaultValue: 1 }
 					CheckBox    { name: "blackOutlineCI95ErrorBar"; label: qsTr("Black lines") }
 				}
 			}
@@ -2048,7 +2048,7 @@ TabView {
 							 )
 					onEnabledChanged: { if (!enabled) checked = false }
 
-					DoubleField { name: "alphaRangeRibbon"; label: qsTr("Transparency"); defaultValue: 0.4; min: 0; max: 1 }
+					DoubleField { name: "alphaRangeRibbon"; label: qsTr("Opacity"); defaultValue: 0.4; min: 0; max: 1 }
 					CheckBox    { name: "blackOutlineRangeRibbon"; label: qsTr("Black lines") }
 				}
 
@@ -2064,7 +2064,7 @@ TabView {
 							 )
 					onEnabledChanged: { if (!enabled) checked = false }
 
-					DoubleField { name: "alphaSdRibbon"; label: qsTr("Transparency"); defaultValue: 0.4; min: 0; max: 1 }
+					DoubleField { name: "alphaSdRibbon"; label: qsTr("Opacity"); defaultValue: 0.4; min: 0; max: 1 }
 					CheckBox    { name: "blackOutlineSdRibbon"; label: qsTr("Black lines"); enabled: addSdRibbon.checked }
 				}
 
@@ -2079,7 +2079,7 @@ TabView {
 							 )
 					onEnabledChanged: { if (!enabled) checked = false }
 
-					DoubleField { name: "alphaSemRibbon"; label: qsTr("Transparency"); defaultValue: 0.4; min: 0; max: 1 }
+					DoubleField { name: "alphaSemRibbon"; label: qsTr("Opacity"); defaultValue: 0.4; min: 0; max: 1 }
 					CheckBox    { name: "blackOutlineSemRibbon"; label: qsTr("Black lines") }
 				}
 
@@ -2094,7 +2094,7 @@ TabView {
 							 )
 					onEnabledChanged: { if (!enabled) checked = false }
 
-					DoubleField { name: "alphaCi95Ribbon"; label: qsTr("Transparency"); defaultValue: 0.4; min: 0; max: 1 }
+					DoubleField { name: "alphaCi95Ribbon"; label: qsTr("Opacity"); defaultValue: 0.4; min: 0; max: 1 }
 					CheckBox    { name: "blackOutlineCi95Ribbon"; label: qsTr("Black lines") }
 				}
 			}
@@ -2110,7 +2110,7 @@ TabView {
 			info: qsTr("Fit trend lines or statistical models and add reference or identity lines for comparison. "
 					 + "Curve fitting requires individual data points. "
 					 + "Common controls: <b>Method</b> chooses the model, <b>Line width</b> adjusts thickness, "
-					 + "<b>Dodge</b> separates groups, <b>Transparency</b> sets opacity, and <b>Color</b> selects the line colour")
+					 + "<b>Dodge</b> separates groups, <b>Opacity</b> sets opacity, and <b>Color</b> selects the line colour")
 
 			Label {
 				text: qsTr("Required: individual data points (Curve fit)")
@@ -2146,7 +2146,7 @@ TabView {
 
 				Group {
 					DoubleField { name: "dodgeCurveFit";        label: qsTr("Dodge");        defaultValue: 0.8; min: 0; max: 1 }
-					DoubleField { name: "transparencyCurveFit"; label: qsTr("Transparency"); defaultValue: 0.2; min: 0; max: 1 }
+					DoubleField { name: "transparencyCurveFit"; label: qsTr("Opacity"); defaultValue: 0.2; min: 0; max: 1 }
 				}
 
 				Group {
