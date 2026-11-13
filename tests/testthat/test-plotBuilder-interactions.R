@@ -322,3 +322,24 @@ test_that("histograms and densities accept either single axis variable", {
     expect_equal(range(built$data[[2]][[axis]]), c(11, 20))
   }
 })
+
+test_that("black ribbon and fitted-curve outlines preserve fills and estimates", {
+  dataset <- expand.grid(x = 1:5, group = factor(c("a", "b")), replicate = 1:4)
+  dataset$y <- dataset$x + as.numeric(dataset$group) * 10 + dataset$replicate
+  for (element in c("RangeRibbon", "SdRibbon", "SemRibbon", "Ci95Ribbon", "CurveFit")) {
+    args <- list(dataset = dataset, addDataPoint = FALSE, colorByGroup = "grouping",
+                 variableColorPlotBuilder = "group", colorsAll = "default", curvaFitMethod = "lm")
+    args[[if (element == "CurveFit") "addCurveFitPlotBuilder" else paste0("add", element)]] <- TRUE
+    args[[paste0("blackOutline", element)]] <- FALSE
+    set.seed(1)
+    original <- ggplot2::ggplot_build(do.call(.plotBuilderTestPlot, args))$data[[1]]
+    args[[paste0("blackOutline", element)]] <- TRUE
+    set.seed(1)
+    plot <- do.call(.plotBuilderTestPlot, args)
+    outlined <- ggplot2::ggplot_build(plot)$data[[1]]
+    expect_true(all(outlined$colour == "black"))
+    expect_equal(outlined$fill, original$fill)
+    expect_equal(outlined[c("ymin", "ymax", "group")], original[c("ymin", "ymax", "group")])
+    expect_s3_class(ggplot2::ggplotGrob(plot), "gtable")
+  }
+})

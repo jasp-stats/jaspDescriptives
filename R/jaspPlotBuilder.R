@@ -1261,7 +1261,6 @@ addDecodedLabels <- function(p) {
         )
         if (tab[["blackOutlineSemRibbon"]]) {
           argList$color <- "black"
-          argList$fill  <- "black"
         }
         do.call(tidyplots::add_sem_ribbon, c(list(p), argList))
       }
@@ -1276,7 +1275,6 @@ addDecodedLabels <- function(p) {
         )
         if (tab[["blackOutlineRangeRibbon"]]) {
           argList$color <- "black"
-          argList$fill  <- "black"
         }
         do.call(tidyplots::add_range_ribbon, c(list(p), argList))
       }
@@ -1291,7 +1289,6 @@ addDecodedLabels <- function(p) {
         )
         if (tab[["blackOutlineSdRibbon"]]) {
           argList$color <- "black"
-          argList$fill  <- "black"
         }
         do.call(tidyplots::add_sd_ribbon, c(list(p), argList))
       }
@@ -1306,7 +1303,6 @@ addDecodedLabels <- function(p) {
         )
         if (tab[["blackOutlineCi95Ribbon"]]) {
           argList$color <- "black"
-          argList$fill  <- "black"
         }
         do.call(tidyplots::add_ci95_ribbon, c(list(p), argList))
       }
@@ -1387,7 +1383,6 @@ addDecodedLabels <- function(p) {
 
         if (tab[["blackOutlineCurveFit"]]) {
           argList$color <- "black"
-          argList$fill  <- "black"
         }
 
         if (colorBy %in% c("x", "y")) {
