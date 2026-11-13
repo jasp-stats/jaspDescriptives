@@ -525,3 +525,30 @@ test_that("negative annotation coordinates work on continuous and categorical ax
     expect_s3_class(ggplot2::ggplotGrob(plot), "gtable")
   }
 })
+
+
+test_that("Y-only count lines retain counts when colored or black", {
+  dataset <- data.frame(x = 1:9, y = factor(rep(letters[1:3], c(2, 3, 4))))
+  plots <- lapply(c(FALSE, TRUE), function(black) {
+    plot <- .plotBuilderTestPlot(dataset, variableXPlotBuilder = "", addDataPoint = FALSE,
+      addCountLine = TRUE, colorByGroup = "y", colorsAll = "default", blackOutlineCountLine = black)
+    expect_s3_class(ggplot2::ggplotGrob(plot), "gtable")
+    ggplot2::ggplot_build(plot)$data[[1]]
+  })
+  expect_equal(plots[[1]]$count, c(2, 3, 4))
+  expect_length(unique(plots[[1]]$colour), 3)
+  expect_true(all(plots[[2]]$colour == "black"))
+  expect_equal(plots[[1]][c("x", "y", "count")], plots[[2]][c("x", "y", "count")])
+})
+
+test_that("scaled densities are independent of histogram bins and layer order", {
+  dataset <- data.frame(x = seq(1, 10, length.out = 40), y = 1:40)
+  densities <- lapply(c(10, 20), function(bins) {
+    plot <- .plotBuilderTestPlot(dataset, variableYPlotBuilder = "", addDataPoint = FALSE,
+      addHistogram = TRUE, addDensity = TRUE, densityOverlayMode = "scaled", binsPlotBuilder = bins,
+      layerOrder = "density,histogram")
+    ggplot2::ggplot_build(plot)$data[[1]]
+  })
+  expect_equal(densities[[1]]$y, densities[[2]]$y)
+  expect_equal(max(densities[[1]]$y), 1)
+})

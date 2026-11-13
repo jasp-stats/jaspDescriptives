@@ -16,6 +16,8 @@
 
 # jaspDescriptives (development version)
 
+* Fixed Plot Builder outline and summary-line colors, histogram count-density scaling, distribution eligibility, ellipse bounds, and negative annotation coordinates. Clarified opacity, facet ordering, missing-combination filling, and annotation spacing labels and help.
+
 * Plot Builder now selects Grid or Rows and columns explicitly, retaining inactive assignments and migrating saved layouts.
 
 * Plot Builder now offers explicit custom or group colors for P-value brackets, preserving group coloring in saved analyses.
