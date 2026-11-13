@@ -2981,7 +2981,7 @@ TabView {
 			/* section-level help */
 			info: qsTr("Adjust how faceted panels share scales, axes and space. "
 					 + "<b>Scale and axis settings</b> decide whether panels use the same range, which axis lines are drawn and where labels appear. "
-					 + "<b>Layout settings</b> control panel sizes, the position of the highest-value table, optional marginal plots and custom axis titles")
+					 + "<b>Layout settings</b> control panel sizes, facet ordering, optional marginal plots and custom axis titles")
 
 			GridLayout {
 				columns: 2
@@ -3045,8 +3045,8 @@ TabView {
 					RadioButtonGroup {
 						id: asTableGroup
 						name: "asTable"
-						title: qsTr("Highest value at")
-						info: qsTr("Controls where the summary table of highest values is placed inside each facet")
+						title: qsTr("Highest factor level at")
+						info: qsTr("Place the last factor levels at the bottom right or top right of the panel layout. This changes panel order, not the data.")
 						radioButtonsOnSameRow: true
 
 						RadioButton {
@@ -3102,7 +3102,7 @@ TabView {
 
 			/* section-level help */
 			info: qsTr("Arrange panels when a grid variable is mapped. "
-					 + "<b>Layout settings</b> set the facet grid’s rows, columns and where the highest-values table appears, "
+					 + "<b>Layout settings</b> set the facet grid’s rows, columns and the order of factor levels, "
 					 + "<b>Scales and strip settings</b> decide whether panels share axes and where the facet label strip is placed")
 
 			GridLayout {
@@ -3132,8 +3132,8 @@ TabView {
 
 					RadioButtonGroup {
 						name: "asTableFacetWrap"
-						title: qsTr("Highest value at")
-						info: qsTr("Choose the corner where the summary table of highest values is drawn")
+						title: qsTr("Highest factor level at")
+						info: qsTr("Place the last factor levels at the bottom right or top right of the panel layout. This changes panel order, not the data.")
 						radioButtonsOnSameRow: true
 
 						RadioButton {
