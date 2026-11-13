@@ -7,6 +7,26 @@ Upgrades
 	Upgrade
 	{
 		functionName: "jaspPlotBuilder"
+		fromVersion: "0.96.6"
+		toVersion: "0.96.7"
+		ChangeJS
+		{
+			name: "PlotBuilderTab"
+			jsFunction: function(options)
+			{
+				var tabs = options["PlotBuilderTab"];
+				for (var i = 0; i < tabs.length; i++) {
+					if (tabs[i].pValueColorMode === undefined)
+						tabs[i].pValueColorMode = ["grouping", "splitColumn", "splitRow"].indexOf(tabs[i].colorByGroup) >= 0 ? "group" : "custom";
+				}
+				return tabs;
+			}
+		}
+	}
+
+	Upgrade
+	{
+		functionName: "jaspPlotBuilder"
 		fromVersion: "0.96.5"
 		toVersion: "0.96.6"
 

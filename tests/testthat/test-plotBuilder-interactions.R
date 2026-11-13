@@ -428,3 +428,19 @@ test_that("count density uses the histogram bin width in each panel and orientat
   d <- ggplot2::ggplot_build(standalone)$data[[1]]
   expect_equal(d$count, d$density * d$n)
 })
+
+
+test_that("p-value colors can be custom or follow groups without moving brackets", {
+  dataset <- data.frame(x = factor(rep(c("a", "b"), 4)), y = 1:8, group = factor(rep(c("one", "two"), each = 4)))
+  comparison <- list(group1 = "a", group2 = "b", pAdj = "*", GroupPValue = "one",
+                     ColumnPValue = "", RowPValue = "", GridPValue = "", bracketSizePValue = 0.3, tipLengthPValue = 0.03)
+  args <- list(dataset = dataset, colorByGroup = "grouping", variableColorPlotBuilder = "group",
+               labelcolor = "magenta", pairwiseComparisons = list(comparison))
+  custom <- ggplot2::ggplot_build(do.call(.plotBuilderTestPlot, c(args, list(pValueColorMode = "custom"))))$data[[2]]
+  grouped <- ggplot2::ggplot_build(do.call(.plotBuilderTestPlot, c(args, list(pValueColorMode = "group"))))$data[[2]]
+  legacy <- ggplot2::ggplot_build(do.call(.plotBuilderTestPlot, c(args, list(pValueColorMode = NULL))))$data[[2]]
+  expect_true(all(custom$colour == "magenta"))
+  expect_false(any(grouped$colour == "magenta"))
+  expect_equal(grouped$colour, legacy$colour)
+  expect_equal(custom[c("x", "xend", "y", "yend")], grouped[c("x", "xend", "y", "yend")])
+})

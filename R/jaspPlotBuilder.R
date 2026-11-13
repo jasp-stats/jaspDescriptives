@@ -2378,12 +2378,10 @@ addDecodedLabels <- function(p) {
       dfComparisons$tip.length <- sapply(tab[["pairwiseComparisons"]], function(x) x$tipLengthPValue)
       stepDistance <- tab[["stepDistance"]]
 
-      pValueColor <- labelcolor  # default
-      if (!is.null(colorVar) && nchar(colorVar) > 0) {
-        if (!colorBy %in% c("x", "y")) {
-          pValueColor <- "color"
-        }
-      }
+      pValueColor <- labelcolor
+      # Missing modes retain the appearance of older saved analyses.
+      if (!identical(tab[["pValueColorMode"]], "custom") && hasColor && !colorBy %in% c("x", "y"))
+        pValueColor <- "color"
 
       bracketLayer <- ggpubr::stat_pvalue_manual(
         data          = dfComparisons,

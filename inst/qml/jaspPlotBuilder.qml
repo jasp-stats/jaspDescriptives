@@ -2665,6 +2665,7 @@ TabView {
 
 				RadioButtonGroup {
 					name: "colorByGroup"
+					id: colorByGroup
 					title: qsTr("Color by")
 					info: qsTr("Choose what determines element colours")
 					radioButtonsOnSameRow: true
@@ -3220,8 +3221,22 @@ TabView {
 					columns: 1
 					info: qsTr("Colour and font size of the P-value text")
 
+					DropDown {
+						name: "pValueColorMode"
+						id: pValueColorMode
+						label: qsTr("Color by")
+						values: [
+							{ label: qsTr("Custom color"), value: "custom" },
+							{ label: qsTr("Group color"), value: "group" }
+						]
+						startValue: "custom"
+						enabled: ["grouping", "splitColumn", "splitRow"].includes(colorByGroup.value)
+						info: qsTr("Use a custom color for brackets and text, or the plot color of the group selected for each comparison.")
+					}
+
 					TextField {
 						name: "labelcolor"
+						enabled: !pValueColorMode.enabled || pValueColorMode.currentValue === "custom"
 						label: qsTr("P value color")
 						info: qsTr("Named or hex colour for the P value text")
 						fieldWidth: 70

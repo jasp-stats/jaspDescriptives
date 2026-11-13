@@ -94,7 +94,7 @@ jaspPlotBuilder(
     ncolFacetWrap = 1, nrowFacetWrap = 1, outlierBoxplotPlotBuilder = FALSE,
     outlierCoefBoxplotPlotBuilder = 1.5, outlierSizeBoxplotPlotBuilder = 1, 
     
-    pairwiseComparisons = list(), plotStyle = "JASP", pointDodgePlotBuilder = 0.8,
+    pairwiseComparisons = list(), pValueColorMode = "custom", plotStyle = "JASP", pointDodgePlotBuilder = 0.8,
     pointShapeVariable = list(types = list(), value = ""), pointSizeMax = 4, pointSizeMin
     = 1, pointsizePlotBuilder = 3, propMode = "absolute", removeLegendTitle = FALSE,
     repeatedMeasuresCells = list("", ""), repeatedMeasuresFactors = list(list(levels =
