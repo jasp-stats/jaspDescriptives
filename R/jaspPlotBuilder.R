@@ -790,16 +790,13 @@ addDecodedLabels <- function(p) {
           alpha       = tab[["alphaCountLine"]]
         )
 
-        if ((exists("colorBy") && colorBy %in% c("x", "y")) || tab[["blackOutlineCountLine"]]) {
+        if (tab[["blackOutlineCountLine"]]) {
           argList$color <- "black"
-          argList$fill  <- "black"
-        }
-
-        if (exists("colorBy") && colorBy %in% c("x", "y")) {
-          argList$group <- 1
         }
 
         p <- do.call(tidyplots::add_count_line, c(list(p), argList))
+        if (colorBy %in% c("x", "y"))
+          p$layers[[length(p$layers)]]$mapping$group <- ggplot2::aes(group = ggplot2::after_stat(1))$group
 
         titleValueY <- tab[["titleYPlotBuilder"]]
         if (!is.null(titleValueY) && titleValueY != "") {
@@ -931,9 +928,8 @@ addDecodedLabels <- function(p) {
           alpha       = tab[["alphaSumLine"]]
         )
 
-        if ((exists("colorBy") && colorBy %in% c("x", "y")) || tab[["blackOutlineSumLine"]]) {
+        if (tab[["blackOutlineSumLine"]]) {
           argList$color <- "black"
-          argList$fill  <- "black"
         }
 
         if (exists("colorBy") && colorBy %in% c("x", "y")) {
@@ -1052,9 +1048,8 @@ addDecodedLabels <- function(p) {
           linewidth   = tab[["linewidthMeanLine"]]
         )
 
-        if ((exists("colorBy") && colorBy %in% c("x", "y")) || tab[["blackOutlineMeanLine"]]) {
+        if (tab[["blackOutlineMeanLine"]]) {
           argList$color <- "black"
-          argList$fill  <- "black"
         }
 
         if (exists("colorBy") && colorBy %in% c("x", "y")) {
@@ -1138,9 +1133,8 @@ addDecodedLabels <- function(p) {
           alpha       = tab[["alphaMedianLine"]]
         )
 
-        if ((exists("colorBy") && colorBy %in% c("x", "y")) || tab[["blackOutlineMedianLine"]]) {
+        if (tab[["blackOutlineMedianLine"]]) {
           argList$color <- "black"
-          argList$fill  <- "black"
         }
 
         if (exists("colorBy") && colorBy %in% c("x", "y")) {

@@ -343,3 +343,22 @@ test_that("black ribbon and fitted-curve outlines preserve fills and estimates",
     expect_s3_class(ggplot2::ggplotGrob(plot), "gtable")
   }
 })
+
+
+test_that("summary line color honors the checkbox without changing the summaries", {
+  dataset <- data.frame(x = factor(rep(letters[1:3], each = 4)), y = 1:12)
+  for (element in c("Count", "Sum", "Mean", "Median")) {
+    args <- list(dataset = dataset, addDataPoint = FALSE, colorByGroup = "x", colorsAll = "default")
+    args[[paste0("add", element, "Line")]] <- TRUE
+    if (element == "Count") args$variableYPlotBuilder <- ""
+    args[[paste0("blackOutline", element, "Line")]] <- FALSE
+    plot <- do.call(.plotBuilderTestPlot, args)
+    colored <- ggplot2::ggplot_build(plot)$data[[1]]
+    expect_length(unique(colored$colour), 3)
+    expect_s3_class(ggplot2::ggplotGrob(plot), "gtable")
+    args[[paste0("blackOutline", element, "Line")]] <- TRUE
+    black <- ggplot2::ggplot_build(do.call(.plotBuilderTestPlot, args))$data[[1]]
+    expect_true(all(black$colour == "black"))
+    expect_equal(black[c("x", "y", "group")], colored[c("x", "y", "group")])
+  }
+})
