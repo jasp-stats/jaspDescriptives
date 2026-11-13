@@ -2507,12 +2507,14 @@ TabView {
 							Group {
 								DoubleField {
 									name: "annotationX"
+									negativeValues: true
 									label: qsTr("X-Axis")
 									defaultValue: 3
 									fieldWidth: 60
 								}
 								DoubleField {
 									name: "annotationY"
+									negativeValues: true
 									label: qsTr("Y-Axis")
 									defaultValue: 3
 									fieldWidth: 60
@@ -3236,6 +3238,7 @@ TabView {
 
 					DoubleField {
 						name: "yPositionPValue"
+						negativeValues: true
 						label: qsTr("Y-Axis position of the first P value")
 						info: qsTr("Initial vertical position for the first bracket")
 						decimals: 2
@@ -3455,12 +3458,12 @@ TabView {
 							info: qsTr("Start/end coordinates and facet location")
 
 							Group {
-								DoubleField { name: "xAnnotation";  label: qsTr("X-Axis start"); info: qsTr("Line start on X axis") }
-								DoubleField { name: "xendAnnotation"; label: qsTr("X-Axis end");  info: qsTr("Line end on X axis") }
+								DoubleField { name: "xAnnotation"; negativeValues: true;  label: qsTr("X-Axis start"); info: qsTr("Line start on X axis") }
+								DoubleField { name: "xendAnnotation"; negativeValues: true; label: qsTr("X-Axis end");  info: qsTr("Line end on X axis") }
 							}
 							Group {
-								DoubleField { name: "yAnnotation";  label: qsTr("Y-Axis start"); info: qsTr("Line start on Y axis") }
-								DoubleField { name: "yendAnnotation"; label: qsTr("Y-Axis end"); info: qsTr("Line end on Y axis") }
+								DoubleField { name: "yAnnotation"; negativeValues: true;  label: qsTr("Y-Axis start"); info: qsTr("Line start on Y axis") }
+								DoubleField { name: "yendAnnotation"; negativeValues: true; label: qsTr("Y-Axis end"); info: qsTr("Line end on Y axis") }
 							}
 
 							Group {columns: 1
