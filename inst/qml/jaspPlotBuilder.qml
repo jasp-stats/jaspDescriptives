@@ -1569,7 +1569,7 @@ TabView {
 					 + "Requires one Group variable plus either an X- or Y-axis variable "
 					 + "Absolute mode stacks raw counts; Relative mode rescales each stack to 0-1 or 0-100 % "
 					 + "Common controls: Transparency sets opacity, Reverse order flips the stack sequence, "
-					 + "Line width outlines area stacks, Replace N/A turns missing groups into a separate slice")
+					 + "Line width outlines area stacks, Fill missing combinations with zero completes absent X/group combinations; observations with missing grouping values are excluded")
 			columns: 2
 
 			Label {
@@ -1636,7 +1636,7 @@ TabView {
 					DoubleField { name: "alphaAreaStack";     label: qsTr("Transparency"); defaultValue: 0.4; min: 0; max: 1 }
 					DoubleField { name: "linewidthAreaStack"; label: qsTr("Line width");  defaultValue: 0.25; min: 0 }
 					CheckBox    { name: "reverseAreaStack";   label: qsTr("Reverse order") }
-					CheckBox    { name: "replaceNaAreaStack"; label: qsTr("Replace N/A"); info: qsTr("Treat missing groups as a separate slice") }
+					CheckBox    { name: "replaceNaAreaStack"; label: qsTr("Fill missing combinations with zero"); info: qsTr("Fill absent combinations of X and group with zero. This does not create a group for missing values.") }
 				}
 
 				CheckBox {
