@@ -508,3 +508,20 @@ test_that("summary lines colored by Y retain their values and render", {
     expect_equal(black[c("x", "y", "group")], colored[c("x", "y", "group")])
   }
 })
+
+test_that("negative annotation coordinates work on continuous and categorical axes", {
+  dataset <- data.frame(x = -4:-1, y = -8:-5)
+  for (categorical in c(FALSE, TRUE)) {
+    data <- dataset
+    if (categorical) data$x <- factor(letters[1:4])
+    plot <- .plotBuilderTestPlot(data,
+      annotationPlotBuilder = list(list(annotationText = "Negative", annotationX = if (categorical) 1 else -3,
+        annotationY = -6, annotationSize = 4)),
+      annotationLineList = list(list(xAnnotation = if (categorical) "1" else "-4", xendAnnotation = if (categorical) "2" else "-1",
+        yAnnotation = "-7", yendAnnotation = "-7", colorAnnotationLine = "black")))
+    built <- ggplot2::ggplot_build(plot)
+    expect_equal(built$data[[2]]$y, -6)
+    expect_equal(built$data[[3]]$y, -7)
+    expect_s3_class(ggplot2::ggplotGrob(plot), "gtable")
+  }
+})

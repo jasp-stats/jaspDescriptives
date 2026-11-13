@@ -2087,12 +2087,12 @@ addDecodedLabels <- function(p) {
 
     if (!is.null(tab[["annotationLineList"]]) && length(tab[["annotationLineList"]]) > 0) {
 
-      if (!is.null(xVar) && xVar %in% colnames(localData) && !is.factor(localData[[xVar]])) {
-        stop("The X-Axis variable can only be a factor variable. The Y-Axis variable must be either continuous or ordinal.", call. = FALSE)
+      if (!is.null(xVar) && xVar %in% colnames(localData) && !(is.factor(localData[[xVar]]) || is.numeric(localData[[xVar]]))) {
+        stop("The X-Axis variable must be categorical or continuous. The Y-Axis variable must be either continuous or ordinal.", call. = FALSE)
       }
 
       if (!is.null(yVar) && yVar %in% colnames(localData) && !(is.numeric(localData[[yVar]]) || is.ordered(localData[[yVar]]))) {
-        stop("The X-Axis variable can only be a factor variable. The Y-Axis variable must be either continuous or ordinal.", call. = FALSE)
+        stop("The X-Axis variable must be categorical or continuous. The Y-Axis variable must be either continuous or ordinal.", call. = FALSE)
       }
 
 
