@@ -379,3 +379,17 @@ test_that("ellipse radii can exceed one while confidence levels remain finite", 
   for (level in c(0, 1))
     expect_error(.plotBuilderTestPlot(dataset, addStatEllipse = TRUE, ellipseType = "norm", levelEllipse = level), "strictly between")
 })
+
+
+test_that("distribution layers reject categorical axes without restricting other layers", {
+  dataset <- data.frame(x = factor(rep(letters[1:3], 3)), y = 1:9)
+  for (layer in c("addHistogram", "addDensity")) {
+    args <- list(dataset = dataset, addDataPoint = FALSE, variableYPlotBuilder = "")
+    args[[layer]] <- TRUE
+    expect_error(do.call(.plotBuilderTestPlot, args), "exactly one scale variable")
+    args$variableYPlotBuilder <- "y"
+    expect_error(do.call(.plotBuilderTestPlot, args), "exactly one scale variable")
+  }
+  plot <- .plotBuilderTestPlot(dataset, addBoxplot = TRUE)
+  expect_equal(nrow(ggplot2::ggplot_build(plot)$data[[1]]), nrow(dataset))
+})

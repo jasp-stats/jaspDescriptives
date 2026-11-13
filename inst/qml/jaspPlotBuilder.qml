@@ -646,9 +646,9 @@ TabView {
 						name: "addHistogram"
 						id: addHistogram
 						label: qsTr("Histogram")
-						info: qsTr("Check this option to create histogram for x or y variables. Histogram requires either X-Axis or X-Axis variable, but not both.")
-						enabled: (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0)
-								 && !(variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+						info: qsTr("A histogram requires one scale variable, assigned to either the X or Y axis, but not both.")
+						enabled: noRM.checked && ((variableXPlotBuilder.columnsTypes.includes("scale") && variableYPlotBuilder.count === 0)
+								 || (variableYPlotBuilder.columnsTypes.includes("scale") && variableXPlotBuilder.count === 0))
 
 						onEnabledChanged: {
 							if (!enabled) {
@@ -688,8 +688,9 @@ TabView {
 						id: addDensity
 						label: qsTr("Density")
 						info: qsTr("Check this option to overlay a density estimate on the histogram. Density can be shown as scaled (0–1) or on the histogram count scale.")
-						enabled: (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0)
-								 && !(variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+						enabled: noRM.checked && ((variableXPlotBuilder.columnsTypes.includes("scale") && variableYPlotBuilder.count === 0)
+								 || (variableYPlotBuilder.columnsTypes.includes("scale") && variableXPlotBuilder.count === 0))
+						onEnabledChanged: { if (!enabled) checked = false }
 
 						// Density overlay mode radiobutton
 						RadioButtonGroup {

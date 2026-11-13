@@ -408,6 +408,13 @@ addDecodedLabels <- function(p) {
       }
     } # end of ordinal/nominal problem section
 
+    if (isTRUE(tab[["addHistogram"]]) || isTRUE(tab[["addDensity"]])) {
+      distributionVars <- c(xVar, yVar)
+      distributionVars <- distributionVars[nzchar(distributionVars)]
+      if (length(distributionVars) != 1 || !is.numeric(localData[[distributionVars[1]]]))
+        .quitAnalysis(gettext("Histograms and densities require exactly one scale variable, assigned to either the X or Y axis."))
+    }
+
     # extract plot id
     plotId <- as.character(tab$value)
 
