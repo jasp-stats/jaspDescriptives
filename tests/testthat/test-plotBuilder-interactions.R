@@ -491,3 +491,20 @@ test_that("unused facet assignments do not exclude observations", {
   tab$facetLayout <- "rowsColumns"
   expect_equal(nrow(readData(list(PlotBuilderTab = list(tab)))$datasetNonRMList[[1]]), 3)
 })
+
+
+test_that("summary lines colored by Y retain their values and render", {
+  dataset <- data.frame(x = factor(rep(letters[1:3], each = 4)), y = 1:12)
+  for (element in c("Sum", "Mean", "Median")) {
+    args <- list(dataset = dataset, addDataPoint = FALSE, colorByGroup = "y", colorsAll = "default")
+    args[[paste0("add", element, "Line")]] <- TRUE
+    args[[paste0("blackOutline", element, "Line")]] <- FALSE
+    plot <- do.call(.plotBuilderTestPlot, args)
+    colored <- ggplot2::ggplot_build(plot)$data[[1]]
+    expect_length(unique(colored$colour), 3)
+    expect_s3_class(ggplot2::ggplotGrob(plot), "gtable")
+    args[[paste0("blackOutline", element, "Line")]] <- TRUE
+    black <- ggplot2::ggplot_build(do.call(.plotBuilderTestPlot, args))$data[[1]]
+    expect_equal(black[c("x", "y", "group")], colored[c("x", "y", "group")])
+  }
+})

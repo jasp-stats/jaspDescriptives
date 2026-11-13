@@ -974,7 +974,10 @@ addDecodedLabels <- function(p) {
           argList$group <- 1
         }
 
-        do.call(tidyplots::add_sum_line, c(list(p), argList))
+        p <- do.call(tidyplots::add_sum_line, c(list(p), argList))
+        if (colorBy == "y" && is.numeric(localData[[yVar]]) && !tab[["blackOutlineSumLine"]])
+          p$layers[[length(p$layers)]]$mapping$colour <- ggplot2::aes(colour = ggplot2::after_stat(y))$colour
+        p
       }
     }
 
@@ -1094,7 +1097,10 @@ addDecodedLabels <- function(p) {
           argList$group <- 1
         }
 
-        do.call(tidyplots::add_mean_line, c(list(p), argList))
+        p <- do.call(tidyplots::add_mean_line, c(list(p), argList))
+        if (colorBy == "y" && is.numeric(localData[[yVar]]) && !tab[["blackOutlineMeanLine"]])
+          p$layers[[length(p$layers)]]$mapping$colour <- ggplot2::aes(colour = ggplot2::after_stat(y))$colour
+        p
       }
     }
 
@@ -1179,7 +1185,10 @@ addDecodedLabels <- function(p) {
           argList$group <- 1
         }
 
-        do.call(tidyplots::add_median_line, c(list(p), argList))
+        p <- do.call(tidyplots::add_median_line, c(list(p), argList))
+        if (colorBy == "y" && is.numeric(localData[[yVar]]) && !tab[["blackOutlineMedianLine"]])
+          p$layers[[length(p$layers)]]$mapping$colour <- ggplot2::aes(colour = ggplot2::after_stat(y))$colour
+        p
       }
     }
 

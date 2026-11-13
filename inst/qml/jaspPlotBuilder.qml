@@ -2718,7 +2718,7 @@ TabView {
 						id: colorYRadio
 						value: "y"
 						label: qsTr("Y variable")
-						info: qsTr("Coloring by Y variable")
+						info: qsTr("Color by the Y variable. For sum, mean, and median lines on a numeric Y axis, colors follow the summarized Y values.")
 						enabled: (variableYPlotBuilder.count > 0 && variableColorPlotBuilder.count === 0) || (groupVarRM.count === 0)
 						checked: false
 						onEnabledChanged: { if (!enabled && checked) checked = false }
