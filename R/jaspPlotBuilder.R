@@ -667,6 +667,17 @@ addDecodedLabels <- function(p) {
         if (tab[["blackDensityOutline"]]) {
           argList$color <- "black"
         }
+        if (mode == "count" && isTRUE(tab[["addHistogram"]])) {
+          # Use the histogram's own bin calculation, including free panel scales.
+          bins <- tab[["binsPlotBuilder"]]
+          argList$stat <- ggplot2::ggproto(NULL, ggplot2::StatDensity,
+            compute_group = function(data, scales, flipped_aes = FALSE) {
+              density <- ggplot2::StatDensity$compute_group(data, scales, flipped_aes = flipped_aes)
+              histogram <- ggplot2::StatBin$compute_group(data, scales, bins = bins, flipped_aes = flipped_aes)
+              density$count <- density$count * histogram$width[1]
+              density
+            })
+        }
         argList <- argList[!sapply(argList, is.null)]
         ggcall <- p + do.call(ggplot2::geom_density, argList)
 

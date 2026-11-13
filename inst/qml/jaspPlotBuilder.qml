@@ -703,7 +703,7 @@ TabView {
 
 							RadioButton {
 								label: qsTr("Count")
-								info: qsTr("Show density on the histogram count scale (area under the curve equals total count)")
+								info: qsTr("With a histogram, scale density by the group sample size and histogram bin width. Without a histogram, show counts per unit of the variable.")
 								value: "count"
 								id: densityCount
 								checked: true

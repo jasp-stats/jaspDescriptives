@@ -393,3 +393,38 @@ test_that("distribution layers reject categorical axes without restricting other
   plot <- .plotBuilderTestPlot(dataset, addBoxplot = TRUE)
   expect_equal(nrow(ggplot2::ggplot_build(plot)$data[[1]]), nrow(dataset))
 })
+
+
+test_that("count density uses the histogram bin width in each panel and orientation", {
+  dataset <- data.frame(x = rep(seq(0, 10, length.out = 40), 4),
+                        group = factor(rep(c("a", "b"), c(40, 120))),
+                        facet = factor(rep(c("one", "two"), each = 80)))
+  dataset$x[dataset$facet == "two"] <- dataset$x[dataset$facet == "two"] * 10
+  dataset$y <- dataset$x
+  for (axis in c("x", "y")) {
+    for (bins in c(10, 20)) {
+      for (scales in c("fixed", "free")) {
+        args <- list(dataset = dataset, addDataPoint = FALSE, addHistogram = TRUE, addDensity = TRUE,
+          binsPlotBuilder = bins, colorByGroup = "grouping", variableColorPlotBuilder = "group",
+          gridVariablePlotBuilder = "facet", ncolFacetWrap = 2, nrowFacetWrap = 1, scalesFacetWrap = scales,
+          variableXPlotBuilder = if (axis == "x") "x" else "",
+          variableYPlotBuilder = if (axis == "y") "y" else "")
+        plot <- do.call(.plotBuilderTestPlot, args)
+        built <- ggplot2::ggplot_build(plot)
+        histogram <- built$data[[1]]
+        density <- built$data[[2]]
+        expect_gt(nrow(density), 0)
+        for (panel in unique(density$PANEL)) {
+          h <- histogram[histogram$PANEL == panel, ]
+          d <- density[density$PANEL == panel, ]
+          width <- h[[paste0(axis, "max")]][1] - h[[paste0(axis, "min")]][1]
+          expect_equal(d$count, d$density * d$n * width)
+        }
+        expect_s3_class(ggplot2::ggplotGrob(plot), "gtable")
+      }
+    }
+  }
+  standalone <- .plotBuilderTestPlot(dataset, variableYPlotBuilder = "", addDataPoint = FALSE, addDensity = TRUE)
+  d <- ggplot2::ggplot_build(standalone)$data[[1]]
+  expect_equal(d$count, d$density * d$n)
+})
