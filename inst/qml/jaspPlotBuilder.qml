@@ -3232,7 +3232,7 @@ TabView {
 				/* ── Vertical placement ── */
 				Group {
 					columns: 1
-					info: qsTr("Starting height and step between stacked brackets (data units)")
+					info: qsTr("Set the starting height in Y-axis data units and the step as a fraction of the panel’s Y range.")
 
 					DoubleField {
 						name: "yPositionPValue"
@@ -3246,7 +3246,7 @@ TabView {
 					DoubleField {
 						name: "stepDistance"
 						label: qsTr("Step distance")
-						info: qsTr("Vertical gap between successive brackets")
+						info: qsTr("Vertical gap as a fraction of the panel’s Y range, including bracket heights (0.15 = 15%).")
 						decimals: 2
 						fieldWidth: 70
 						value: 0.15
@@ -3531,7 +3531,7 @@ TabView {
 							DoubleField {
 								name: "textDistanceAnnotationLine"
 								label: qsTr("Label distance")
-								info: qsTr("Vertical offset between the line and its label (data units)")
+								info: qsTr("Vertical offset in tenths of the overall observed Y range (1 = 10% of that range).")
 								defaultValue: 0.5
 								fieldWidth: 60
 							}
