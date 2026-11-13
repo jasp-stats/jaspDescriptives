@@ -362,3 +362,20 @@ test_that("summary line color honors the checkbox without changing the summaries
     expect_equal(black[c("x", "y", "group")], colored[c("x", "y", "group")])
   }
 })
+
+
+test_that("ellipse radii can exceed one while confidence levels remain finite", {
+  dataset <- data.frame(x = c(0, 2, 3, 1, 4, 5), y = c(3, 1, 5, 4, 2, 6))
+  for (type in c("euclid", "norm", "t")) {
+    for (level in if (type == "euclid") c(0.5, 1, 5) else c(0.001, 0.95, 0.999)) {
+      plot <- .plotBuilderTestPlot(dataset, addStatEllipse = TRUE, ellipseType = type, levelEllipse = level)
+      ellipse <- ggplot2::ggplot_build(plot)$data[[2]]
+      expect_true(all(is.finite(ellipse$x) & is.finite(ellipse$y)))
+      expect_gt(nrow(ellipse), 3)
+      if (type == "euclid")
+        expect_equal(sqrt((ellipse$x - mean(dataset$x))^2 + (ellipse$y - mean(dataset$y))^2), rep(level, nrow(ellipse)))
+    }
+  }
+  for (level in c(0, 1))
+    expect_error(.plotBuilderTestPlot(dataset, addStatEllipse = TRUE, ellipseType = "norm", levelEllipse = level), "strictly between")
+})

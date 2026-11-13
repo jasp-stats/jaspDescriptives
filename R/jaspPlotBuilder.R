@@ -1461,6 +1461,9 @@ addDecodedLabels <- function(p) {
 
     # Add stat ellipse ----
     if(tab[["addStatEllipse"]]) {
+      level <- tab[["levelEllipse"]]
+      if (!is.finite(level) || level <= 0 || (tab[["ellipseType"]] != "euclid" && level >= 1))
+        .quitAnalysis(gettext("Ellipse confidence levels must be strictly between 0 and 1; a Euclidean radius must be positive."))
       layer_calls$stat_ellipse <- function(p) {
         p + ggplot2::stat_ellipse(
           geom    = "polygon",

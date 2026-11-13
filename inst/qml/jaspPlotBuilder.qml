@@ -548,7 +548,7 @@ TabView {
 				+ "'Ellipse type' controls the method:"
 				+ "\"t\" assumes a multivariate t-distribution,"
 				+ "\"Normal\" assumes a multivariate normal distribution,"
-				+ "and \"Euclidean\" draws a circle whose radius equals the value of 'Level'")
+				+ "and \"Euclidean\" draws a circle whose radius equals the value of 'Radius'")
 				onEnabledChanged: {
 					if (!enabled) {
 						checked = false;
@@ -557,6 +557,7 @@ TabView {
 
 				DropDown {
 					name: "ellipseType"
+					id: ellipseType
 					label: qsTr("Ellipse type")
 					values: [
 						{ label: qsTr("t"), value: "t" },
@@ -576,11 +577,14 @@ TabView {
 
 				DoubleField {
 					name: "levelEllipse"
-					label: qsTr("Level")
+					label: ellipseType.currentValue === "euclid" ? qsTr("Radius") : qsTr("Level")
 					value: 0.95
 					min: 0
-					max: 1
-					info: qsTr("Confidence level (for t and normal ellipse type) or radius (euclidean ellipse type)")
+					max: ellipseType.currentValue === "euclid" ? Infinity : 1
+					inclusive: JASP.None
+					info: ellipseType.currentValue === "euclid"
+						? qsTr("Positive radius in data units.")
+						: qsTr("Confidence level strictly between 0 and 1.")
 				}
 
 			} /////////////////////////////////////////
