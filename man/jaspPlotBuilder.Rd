@@ -73,7 +73,7 @@ jaspPlotBuilder(
     0.8, 
      drawQuantilesViolinPlotBuilder = "0.25, 0.5, 0.75", ellipseType = "t",
     emptyCircles = FALSE, enableSort = FALSE, enableSortY = FALSE, fillEllipse = 0.2,
-    flipPlot = FALSE, fontsizeCountValue = 14, fontsizeDataLabels = 4, fontsizeMeanValue
+    facetLayout = "rowsColumns", flipPlot = FALSE, fontsizeCountValue = 14, fontsizeDataLabels = 4, fontsizeMeanValue
     = 14, fontsizeMedianValue = 14, fontsizeSumValue = 14, gridVarRM = list(types =
     list(), value = ""), gridVariablePlotBuilder = list(types = list(), value = ""),
     groupVarRM = list(types = list(), value = ""), heightPlotBuilder = 300,

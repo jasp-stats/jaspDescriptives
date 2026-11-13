@@ -16,6 +16,12 @@ Upgrades
 			{
 				var tabs = options["PlotBuilderTab"];
 				for (var i = 0; i < tabs.length; i++) {
+					if (tabs[i].facetLayout === undefined) {
+						var grid = tabs[i].isRM === "RM" ? tabs[i].gridVarRM : tabs[i].gridVariablePlotBuilder;
+						if (grid && grid.value !== undefined) grid = grid.value;
+						if (Array.isArray(grid)) grid = grid.length > 0 ? grid[0] : "";
+						tabs[i].facetLayout = grid ? "grid" : "rowsColumns";
+					}
 					if (tabs[i].pValueColorMode === undefined)
 						tabs[i].pValueColorMode = ["grouping", "splitColumn", "splitRow"].indexOf(tabs[i].colorByGroup) >= 0 ? "group" : "custom";
 				}

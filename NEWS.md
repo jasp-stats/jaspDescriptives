@@ -16,6 +16,8 @@
 
 # jaspDescriptives (development version)
 
+* Plot Builder now selects Grid or Rows and columns explicitly, retaining inactive assignments and migrating saved layouts.
+
 * Plot Builder now offers explicit custom or group colors for P-value brackets, preserving group coloring in saved analyses.
 
 * Replaced conflicting black/white outline checkboxes in Plot Builder with outline color dropdowns and made empty circles independent of outline color. Saved outline selections are migrated automatically.

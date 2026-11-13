@@ -98,6 +98,18 @@ TabView {
 			}
 		}
 
+		DropDown {
+			name: "facetLayout"
+			id: facetLayout
+			label: qsTr("Layout")
+			values: [
+				{ label: qsTr("Rows and columns"), value: "rowsColumns" },
+				{ label: qsTr("Grid"), value: "grid" }
+			]
+			startValue: "rowsColumns"
+			info: qsTr("Choose the panel layout. Assignments for the other layout are retained so you can switch back.")
+		}
+
 		Group {
 			VariablesForm {
 
@@ -152,6 +164,7 @@ TabView {
 
 				AssignedVariablesList {
 					name: "columnsvariableSplitPlotBuilder"
+					enabled: facetLayout.currentValue === "rowsColumns"
 					title: qsTr("Split (Columns)")
 					id: columnsvariableSplitPlotBuilder
 					allowedColumns: ["ordinal", "nominal"]
@@ -161,6 +174,7 @@ TabView {
 
 				AssignedVariablesList {
 					name: "rowsvariableSplitPlotBuilder"
+					enabled: facetLayout.currentValue === "rowsColumns"
 					title: qsTr("Split (Rows)")
 					id: rowsvariableSplitPlotBuilder
 					allowedColumns: ["ordinal", "nominal"]
@@ -171,6 +185,7 @@ TabView {
 
 				AssignedVariablesList {
 					name: "gridVariablePlotBuilder"
+					enabled: facetLayout.currentValue === "grid"
 					title: qsTr("Grid")
 					id: gridVariablePlotBuilder
 					allowedColumns: ["ordinal", "nominal"]
@@ -279,6 +294,7 @@ TabView {
 
 				AssignedVariablesList {
 					name: "colSplitRM"
+					enabled: facetLayout.currentValue === "rowsColumns"
 					title: qsTr("Split (Columns)")
 					id: colSplitRM
 					allowedColumns: ["ordinal", "nominal"]
@@ -288,6 +304,7 @@ TabView {
 
 				AssignedVariablesList {
 					name: "rowSplitRM"
+					enabled: facetLayout.currentValue === "rowsColumns"
 					title: qsTr("Split (Rows)")
 					id: rowSplitRM
 					allowedColumns: ["ordinal", "nominal"]
@@ -297,6 +314,7 @@ TabView {
 
 				AssignedVariablesList {
 					name: "gridVarRM"
+					enabled: facetLayout.currentValue === "grid"
 					title: qsTr("Grid")
 					id: gridVarRM
 					allowedColumns: ["ordinal", "nominal"]
@@ -2995,8 +3013,8 @@ TabView {
 				columns: 2
 				rowSpacing: 10
 				columnSpacing: 20
-				enabled: columnsvariableSplitPlotBuilder.count > 0 || colSplitRM.count > 0
-					  || rowsvariableSplitPlotBuilder.count > 0    || rowSplitRM.count > 0
+				enabled: facetLayout.currentValue === "rowsColumns" && (columnsvariableSplitPlotBuilder.count > 0 || colSplitRM.count > 0
+					  || rowsvariableSplitPlotBuilder.count > 0 || rowSplitRM.count > 0)
 
 				/* ────────── Scale and axis settings ────────── */
 				Label { text: qsTr("Scale and axis settings") }
@@ -3114,7 +3132,7 @@ TabView {
 					 + "<b>Scales and strip settings</b> decide whether panels share axes and where the facet label strip is placed")
 
 			GridLayout {
-				enabled: gridVariablePlotBuilder.count > 0 || gridVarRM.count > 0
+				enabled: facetLayout.currentValue === "grid" && (gridVariablePlotBuilder.count > 0 || gridVarRM.count > 0)
 				columns: 2
 				rowSpacing: 10
 				columnSpacing: 20

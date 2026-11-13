@@ -49,6 +49,21 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
 # ──────────────────────────────────────────────────────────────────────────────
 removeEmptyStrings <- function(x) Filter(nzchar, x)
+
+.plotBuilderActiveFacets <- function(tab) {
+  facets <- if (identical(tab$isRM, "RM"))
+    list(rows = tab$rowSplitRM, columns = tab$colSplitRM, grid = tab$gridVarRM)
+  else
+    list(rows = tab$rowsvariableSplitPlotBuilder, columns = tab$columnsvariableSplitPlotBuilder,
+         grid = tab$gridVariablePlotBuilder)
+  # Grid took precedence in saved analyses without an explicit layout choice.
+  layout <- tab$facetLayout
+  if (is.null(layout)) layout <- if (length(facets$grid) && nzchar(facets$grid)) "grid" else "rowsColumns"
+  if (layout == "grid") facets[c("rows", "columns")] <- list("", "")
+  else facets$grid <- ""
+  facets
+}
+
 .plotBuilderReadData <- function(options) {
 
   datasetRMList    <- list()
@@ -125,9 +140,9 @@ removeEmptyStrings <- function(x) Filter(nzchar, x)
         tab$variableXPlotBuilder,
         tab$variableYPlotBuilder,
         tab$variableColorPlotBuilder,
-        tab$columnsvariableSplitPlotBuilder,
-        tab$gridVariablePlotBuilder,
-        tab$rowsvariableSplitPlotBuilder,
+        unlist(.plotBuilderActiveFacets(tab)),
+        if (identical(tab$colorByGroup, "splitColumn")) tab$columnsvariableSplitPlotBuilder,
+        if (identical(tab$colorByGroup, "splitRow")) tab$rowsvariableSplitPlotBuilder,
         tab$sizeVariablePlotBuilder,
         tab$labelVariablePlotBuilder,
         tab$pointShapeVariable
@@ -371,6 +386,11 @@ addDecodedLabels <- function(p) {
         colorVar <- rowsVar
       }
     }
+
+    facets <- lapply(.plotBuilderActiveFacets(tab), encodeColNames)
+    rowsVar <- facets$rows
+    colsVar <- facets$columns
+    gridVar <- facets$grid
 
     # The next section is necessary because some functions do not work if the
     # variable is defined as ordinal within JASP.
@@ -2005,21 +2025,21 @@ addDecodedLabels <- function(p) {
         facetData <- list()
 
         # Column facet: first check the standard drop-down; if empty, check the RM-specific one.
-        if (!is.null(rowData$ColumnAnnotation) && nzchar(rowData$ColumnAnnotation)) {
+        if (!is.null(colsVar) && nzchar(colsVar) && !is.null(rowData$ColumnAnnotation) && nzchar(rowData$ColumnAnnotation)) {
           facetData[[colsVar]] <- rowData$ColumnAnnotation
-        } else if (!is.null(rowData$RMColumnAnnotation) && nzchar(rowData$RMColumnAnnotation)) {
+        } else if (!is.null(colsVar) && nzchar(colsVar) && !is.null(rowData$RMColumnAnnotation) && nzchar(rowData$RMColumnAnnotation)) {
           facetData[[colsVar]] <- rowData$RMColumnAnnotation
         }
 
-        if (!is.null(rowData$RowAnnotation) && nzchar(rowData$RowAnnotation)) {
+        if (!is.null(rowsVar) && nzchar(rowsVar) && !is.null(rowData$RowAnnotation) && nzchar(rowData$RowAnnotation)) {
           facetData[[rowsVar]] <- rowData$RowAnnotation
-        } else if (!is.null(rowData$RMRowAnnotation) && nzchar(rowData$RMRowAnnotation)) {
+        } else if (!is.null(rowsVar) && nzchar(rowsVar) && !is.null(rowData$RMRowAnnotation) && nzchar(rowData$RMRowAnnotation)) {
           facetData[[rowsVar]] <- rowData$RMRowAnnotation
         }
 
-        if (!is.null(rowData$GridAnnotation) && nzchar(rowData$GridAnnotation)) {
+        if (!is.null(gridVar) && nzchar(gridVar) && !is.null(rowData$GridAnnotation) && nzchar(rowData$GridAnnotation)) {
           facetData[[gridVar]] <- rowData$GridAnnotation
-        } else if (!is.null(rowData$RMGridAnnotation) && nzchar(rowData$RMGridAnnotation)) {
+        } else if (!is.null(gridVar) && nzchar(gridVar) && !is.null(rowData$RMGridAnnotation) && nzchar(rowData$RMGridAnnotation)) {
           facetData[[gridVar]] <- rowData$RMGridAnnotation
         }
 
@@ -2108,13 +2128,13 @@ addDecodedLabels <- function(p) {
             yend = yend_val,
             stringsAsFactors = FALSE
           )
-          if (!is.null(colsVar) && nzchar(colAnnotLine)) {
+          if (!is.null(colsVar) && nzchar(colsVar) && nzchar(colAnnotLine)) {
             thisSegment[[colsVar]] <- colAnnotLine
           }
-          if (!is.null(rowsVar) && nzchar(rowAnnotLine)) {
+          if (!is.null(rowsVar) && nzchar(rowsVar) && nzchar(rowAnnotLine)) {
             thisSegment[[rowsVar]] <- rowAnnotLine
           }
-          if (!is.null(gridVar) && nzchar(gridAnnotLine)) {
+          if (!is.null(gridVar) && nzchar(gridVar) && nzchar(gridAnnotLine)) {
             thisSegment[[gridVar]] <- gridAnnotLine
           }
 
@@ -2142,13 +2162,13 @@ addDecodedLabels <- function(p) {
               label = safe_eval_text(paste0("\"", line[["textAnnotationline"]], "\"")),
               stringsAsFactors = FALSE
             )
-            if (!is.null(colsVar) && nzchar(colAnnotLine)) {
+            if (!is.null(colsVar) && nzchar(colsVar) && nzchar(colAnnotLine)) {
               thisText[[colsVar]] <- colAnnotLine
             }
-            if (!is.null(rowsVar) && nzchar(rowAnnotLine)) {
+            if (!is.null(rowsVar) && nzchar(rowsVar) && nzchar(rowAnnotLine)) {
               thisText[[rowsVar]] <- rowAnnotLine
             }
-            if (!is.null(gridVar) && nzchar(gridAnnotLine)) {
+            if (!is.null(gridVar) && nzchar(gridVar) && nzchar(gridAnnotLine)) {
               thisText[[gridVar]] <- gridAnnotLine
             }
 
@@ -2339,7 +2359,7 @@ addDecodedLabels <- function(p) {
         )
       }
 
-      if (!is.null(colsVar)) {
+      if (!is.null(colsVar) && nzchar(colsVar)) {
         dfComparisons[[colsVar]] <- as.character(
           sapply(tab[["pairwiseComparisons"]], function(x) {
             if (rmOption == "RM")
@@ -2350,7 +2370,7 @@ addDecodedLabels <- function(p) {
         )
       }
 
-      if (!is.null(rowsVar)) {
+      if (!is.null(rowsVar) && nzchar(rowsVar)) {
         dfComparisons[[rowsVar]] <- as.character(
           sapply(tab[["pairwiseComparisons"]], function(x) {
             if (rmOption == "RM")
@@ -2361,7 +2381,7 @@ addDecodedLabels <- function(p) {
         )
       }
 
-      if (!is.null(gridVar)) {
+      if (!is.null(gridVar) && nzchar(gridVar)) {
         dfComparisons[[gridVar]] <- as.character(
           sapply(tab[["pairwiseComparisons"]], function(x) {
             if (rmOption == "RM")

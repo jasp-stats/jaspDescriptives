@@ -13,6 +13,8 @@ context("Plot Builder interactions")
   ))
   changes <- list(...)
   tab[names(changes)] <- changes
+  if (!"facetLayout" %in% names(changes))
+    tab$facetLayout <- if (nzchar(tab$gridVariablePlotBuilder) || nzchar(tab$gridVarRM)) "grid" else "rowsColumns"
   data <- list(
     datasetNonRMList = setNames(list(dataset), tab$value),
     datasetRMList = setNames(list(dataset), tab$value)
@@ -443,4 +445,49 @@ test_that("p-value colors can be custom or follow groups without moving brackets
   expect_false(any(grouped$colour == "magenta"))
   expect_equal(grouped$colour, legacy$colour)
   expect_equal(custom[c("x", "xend", "y", "yend")], grouped[c("x", "xend", "y", "yend")])
+})
+
+
+test_that("explicit facet layouts retain assignments and target only active annotation panels", {
+  dataset <- expand.grid(x = factor(c("a", "b")), row = factor(c("r1", "r2")),
+                         column = factor(c("c1", "c2")), facet = factor(c("g1", "g2", "g3")))
+  dataset$y <- seq_len(nrow(dataset))
+  for (rm in c(FALSE, TRUE)) {
+    data <- dataset
+    if (rm) { data$Value <- data$y; data$ID <- rep(seq_len(nrow(data) / 2), each = 2) }
+    args <- list(dataset = data, isRM = if (rm) "RM" else "noRM", xVarRM = "x",
+      rowsvariableSplitPlotBuilder = "row", columnsvariableSplitPlotBuilder = "column", gridVariablePlotBuilder = "facet",
+      rowSplitRM = "row", colSplitRM = "column", gridVarRM = "facet", nrowFacetWrap = 0, ncolFacetWrap = 0,
+      annotationPlotBuilder = list(list(annotationText = "Target", annotationX = 1, annotationY = -2, annotationSize = 4,
+        ColumnAnnotation = "c1", RowAnnotation = "r1", GridAnnotation = "g1",
+        RMColumnAnnotation = "c1", RMRowAnnotation = "r1", RMGridAnnotation = "g1")))
+    for (layout in c("rowsColumns", "grid")) {
+      built <- ggplot2::ggplot_build(do.call(.plotBuilderTestPlot, c(args, list(facetLayout = layout))))
+      expect_equal(nrow(built$layout$layout), if (layout == "grid") 3 else 4)
+      expect_equal(nrow(built$data[[1]]), nrow(dataset))
+      expect_equal(nrow(built$data[[2]]), 1)
+      expect_equal(built$data[[2]]$y, -2)
+    }
+    legacy <- ggplot2::ggplot_build(do.call(.plotBuilderTestPlot, c(args, list(facetLayout = NULL))))
+    expect_equal(nrow(legacy$layout$layout), 3)
+  }
+})
+
+test_that("unused facet assignments do not exclude observations", {
+  dataset <- data.frame(x = 1:4, y = 5:8, column = c(NA, "a", "b", "b"), facet = c("a", "a", "b", "b"))
+  readData <- .plotBuilderReadData
+  environment(readData) <- list2env(list(
+    .readDataSetToEnd = function(columns) dataset[, columns, drop = FALSE], encodeColNames = identity
+  ), parent = environment(.plotBuilderReadData))
+  tab <- list(value = "Plot 1", isRM = "noRM", facetLayout = "grid", colorByGroup = "none",
+    variableXPlotBuilder = "x", variableYPlotBuilder = "y", variableColorPlotBuilder = "",
+    columnsvariableSplitPlotBuilder = "column", rowsvariableSplitPlotBuilder = "", gridVariablePlotBuilder = "facet",
+    sizeVariablePlotBuilder = "", labelVariablePlotBuilder = "", pointShapeVariable = "")
+  expect_equal(nrow(readData(list(PlotBuilderTab = list(tab)))$datasetNonRMList[[1]]), 4)
+  # An inactive facet can still supply colors, so it is read when explicitly used.
+  tab$colorByGroup <- "splitColumn"
+  expect_equal(nrow(readData(list(PlotBuilderTab = list(tab)))$datasetNonRMList[[1]]), 3)
+  tab$colorByGroup <- "none"
+  tab$facetLayout <- "rowsColumns"
+  expect_equal(nrow(readData(list(PlotBuilderTab = list(tab)))$datasetNonRMList[[1]]), 3)
 })
