@@ -1,0 +1,642 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: jaspDescriptives 0.98.1\n"
+"POT-Creation-Date: 2026-11-07 03:18\n"
+"PO-Revision-Date: 2026-11-11 19:07+0000\n"
+"Last-Translator: Fahad Mahfouz Al-Subhi "
+"<fahadalsubhi@users.noreply.hosted.weblate.org>\n"
+"Language-Team: Arabic <https://hosted.weblate.org/projects/jasp/"
+"jaspdescriptives-r/ar/>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 2026.11.2.dev0\n"
+
+msgid "Time Series Plot"
+msgstr "مخطط السلسلة الزمنية"
+
+msgid "Lag Plot"
+msgstr "مخطط الإبطاء"
+
+msgid "The specified lag, %1$s, is too large given the %2$s observations in the data. Please choose a smaller lag."
+msgstr ""
+"الإبطاء المحدد، %1$s، كبير جدًا بالنسبة إلى عدد المشاهدات %2$s في البيانات. "
+"يرجى اختيار إبطاء أصغر."
+
+msgid "Autocorrelation Function"
+msgstr "دالة الارتباط الذاتي"
+
+msgid "Partial Autocorrelation Function"
+msgstr "دالة الارتباط الذاتي الجزئي"
+
+msgid "Descriptive Statistics"
+msgstr "الإحصاءات الوصفية"
+
+msgid "Valid"
+msgstr "صالح"
+
+msgid "Missing"
+msgstr "مفقود"
+
+msgid "Mean"
+msgstr "المتوسط"
+
+msgid "Std. Deviation"
+msgstr "الانحراف المعياري"
+
+msgid "Variance"
+msgstr "التباين"
+
+msgid "Range"
+msgstr "المدى"
+
+msgid "Minimum"
+msgstr "القيمة الصغرى"
+
+msgid "Maximum"
+msgstr "القيمة العظمى"
+
+msgid "Start"
+msgstr "بدء"
+
+msgid "End"
+msgstr "النهاية"
+
+msgid "Lag 1 Autocorrelation"
+msgstr "الارتباط الذاتي عند الإبطاء 1"
+
+msgid "The time series data should be equally-spaced."
+msgstr "يجب أن تكون الفواصل بين نقاط بيانات السلسلة الزمنية متساوية."
+
+msgid "The time variable should have unique values only."
+msgstr "يجب أن يكون للمتغير الزمني قيم فريدة فقط."
+
+msgid "The 'Time' variable has a date-like format, please filter by date instead."
+msgstr ""
+"تنسيق متغير 'الزمن' يشبه التاريخ؛ يرجى إجراء التصفية بحسب التاريخ بدلًا من ذلك."
+
+msgid "The 'Time' variable is not in a date-like format (e.g., yyyy-mm-dd hh:mm:ss). Try to filter by time index instead."
+msgstr ""
+"متغير 'الزمن' ليس بتنسيق تاريخ/وقت (مثل yyyy-mm-dd hh:mm:ss). جرّب التصفية "
+"بفهرس الزمن بدلًا منه."
+
+msgid "'Start' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
+msgstr "يجب أن تكون «البداية» بتنسيق تاريخ/وقت (مثل yyyy-mm-dd hh:mm:ss)."
+
+msgid "The 'Start' value of the filter should be before last observation."
+msgstr "يجب أن تسبق قيمة 'البداية' في عامل التصفية آخر مشاهدة."
+
+msgid "'End' must be in a date-like format (e.g., yyyy-mm-dd hh:mm:ss)."
+msgstr "يجب أن تكون «النهاية» بتنسيق تاريخ/وقت (مثل yyyy-mm-dd hh:mm:ss)."
+
+msgid "The 'End' value of the filter should be larger/later than the 'Start' value."
+msgstr ""
+"يجب أن تكون قيمة 'النهاية' في عامل التصفية أكبر من قيمة 'البداية' أو لاحقة "
+"لها زمنيًا."
+
+msgid "Autocorrelation could not be calculated for the selected observations. Select a longer complete range with varying values."
+msgstr ""
+"تعذر حساب الارتباط الذاتي للمشاهدات المحددة. اختر نطاقًا مكتملًا أطول تتباين فيه "
+"القيم."
+
+msgid "Lag"
+msgstr "الإبطاء"
+
+msgid "Association %s"
+msgstr "الاقتران %s"
+
+msgid "Frequency Tables"
+msgstr "جداول التكرارات"
+
+msgid "Correlation plots"
+msgstr "مخططات الارتباط"
+
+msgid "Correlation plot"
+msgstr "مخطط الارتباط"
+
+msgid "Distribution Plots"
+msgstr "مخططات التوزيع"
+
+msgid "Boxplots"
+msgstr "مخططات الصندوق"
+
+msgid "Q-Q Plots"
+msgstr "مخططات Q–Q"
+
+msgid "Q-Q Plot"
+msgstr "مخطط Q–Q"
+
+msgid "Plotting is not possible: Variable only contains NA!"
+msgstr "لا يمكن الرسم: يحتوي المتغير على قيم NA فقط!"
+
+msgid "Pie charts"
+msgstr "رسوم القطاعات الدائرية"
+
+msgid "Stem and Leaf"
+msgstr "الساق والأوراق"
+
+msgid "Scatter Plots"
+msgstr "مخططات التشتت"
+
+msgid "Interval plots"
+msgstr "مخططات الفترات"
+
+msgid "Dot Plots"
+msgstr "المخططات النقطية"
+
+msgid "Heatmaps"
+msgstr "الخرائط الحرارية"
+
+msgid "Pareto Plots"
+msgstr "مخططات باريتو"
+
+msgid "Frequency Plots"
+msgstr "مخططات التكرار"
+
+msgid "Likert Plots"
+msgstr "رسوم ليكرت"
+
+msgid "Excluded %1$i rows from the analysis that correspond to the missing values of the split-by variable %2$s"
+msgstr ""
+"استُبعدت %1$i من صفوف التحليل التي تقابل قيمًا مفقودة في متغير التقسيم %2$s"
+
+msgid "%s%% Confidence Interval Mean"
+msgstr "فترة الثقة %s%% للمتوسط"
+
+msgid "%s%% Confidence Interval Std. Dev."
+msgstr "فترة الثقة %s%% للانحراف المعياري"
+
+msgid "%s%% Confidence Interval Variance"
+msgstr "فترة الثقة %s%% للتباين"
+
+msgid "Upper"
+msgstr "الحد الأعلى"
+
+msgid "Lower"
+msgstr "الحد الأدنى"
+
+msgid "%s%% CI A. Mean Upper"
+msgstr "الحد الأعلى لفترة الثقة %s%% للمتوسط الحسابي"
+
+msgid "%s%% CI A. Mean Lower"
+msgstr "الحد الأدنى لفترة الثقة %s%% للمتوسط الحسابي"
+
+msgid "%s%% CI Std. Dev. Upper"
+msgstr "الحد الأعلى لفترة الثقة %s%% للانحراف المعياري"
+
+msgid "%s%% CI Std. Dev. Lower"
+msgstr "الحد الأدنى لفترة الثقة %s%% للانحراف المعياري"
+
+msgid "%s%% CI Variance Upper"
+msgstr "الحد الأعلى لفترة الثقة %s%% للتباين"
+
+msgid "%s%% CI Variance Lower"
+msgstr "الحد الأدنى لفترة الثقة %s%% للتباين"
+
+msgid "Mode"
+msgstr "المنوال"
+
+msgid "Median"
+msgstr "الوسيط"
+
+msgid "Mean (arithmetic)"
+msgstr "المتوسط الحسابي"
+
+msgid "Std. Error of A. Mean"
+msgstr "الخطأ المعياري للمتوسط الحسابي"
+
+msgid "Mean (geometric)"
+msgstr "المتوسط الهندسي"
+
+msgid "Mean (harmonic)"
+msgstr "المتوسط التوافقي"
+
+msgid "Coefficient of variation"
+msgstr "معامل الاختلاف"
+
+msgid "MAD"
+msgstr "متوسط الانحراف المطلق (MAD)"
+
+msgid "MAD robust"
+msgstr "مقياس MAD المتين"
+
+msgid "IQR"
+msgstr "IQR"
+
+msgid "Skewness"
+msgstr "الالتواء"
+
+msgid "Std. Error of Skewness"
+msgstr "الخطأ المعياري للالتواء"
+
+msgid "Kurtosis"
+msgstr "التفرطح"
+
+msgid "Std. Error of Kurtosis"
+msgstr "الخطأ المعياري للتفرطح"
+
+msgid "Shapiro-Wilk"
+msgstr "شابيرو–ويلك"
+
+msgid "P-value of Shapiro-Wilk"
+msgstr "قيمة p لاختبار شابيرو–ويلك"
+
+msgid "25th percentile"
+msgstr "المئين 25"
+
+msgid "50th percentile"
+msgstr "المئين 50"
+
+msgid "75th percentile"
+msgstr "المئين 75"
+
+msgid "%gth percentile"
+msgstr "المئين %g"
+
+msgid "Error in Percentiles, all values should >=0 and <=100"
+msgstr "خطأ في المئينات؛ يجب أن تكون جميع القيم >=0 و<=100"
+
+msgid "Sum"
+msgstr "المجموع"
+
+msgid "All values are identical"
+msgstr "جميع القيم متطابقة"
+
+msgid "Infimum (minimum) of an empty set is %1$s, supremum (maximum) of an empty set is %2$s."
+msgstr ""
+"أكبر حد سفلي (الحد الأدنى) للمجموعة الفارغة هو %1$s، وأصغر حد علوي (الحد "
+"الأقصى) للمجموعة الفارغة هو %2$s."
+
+msgid "More than one mode exists. For nominal and ordinal data, the first mode is reported. For continuous data, the mode with the highest density estimate is reported but multiple modes may exist. We recommend visualizing the data to check for multimodality."
+msgstr ""
+"يوجد أكثر من منوال. للبيانات الاسمية والرتبية، يُعرض المنوال الأول. وللبيانات "
+"المستمرة، يُعرض المنوال ذو أعلى تقدير للكثافة، لكن قد توجد منوالات متعددة. "
+"نوصي بعرض البيانات بيانيًا للتحقق من تعدد المنوالات."
+
+msgid "Geometric and harmonic means are defined only for strictly positive variables, but the data contain some non-positive values."
+msgstr ""
+"لا يُعرَّف المتوسطان الهندسي والتوافقي إلا للمتغيرات الموجبة تمامًا، لكن البيانات "
+"تتضمن بعض القيم غير الموجبة."
+
+msgid "For ordinal variables, quantile type 3 was used because the selected type is not supported."
+msgstr "استُخدم نوع الكميات 3 للمتغيرات الرتبية لأن النوع المحدد غير مدعوم."
+
+msgid "Total"
+msgstr "الإجمالي"
+
+msgid "All variables have more than %1$s distinct values"
+msgstr "تحتوي جميع المتغيرات على أكثر من %1$s من القيم المتميزة"
+
+msgid "Frequencies"
+msgstr "التكرارات"
+
+msgid "Frequencies for %s"
+msgstr "تكرارات %s"
+
+msgid "Frequency"
+msgstr "التكرار"
+
+msgid "Percent"
+msgstr "النسبة المئوية"
+
+msgid "Valid Percent"
+msgstr "النسبة المئوية للحالات الصالحة"
+
+msgid "Cumulative Percent"
+msgstr "النسبة المئوية التراكمية"
+
+msgid "Plotting not possible: %s"
+msgstr "الرسم غير ممكن: %s"
+
+msgid "Plotting is not possible: No plot type selected!"
+msgstr "لا يمكن الرسم: لم يُحدَّد نوع المخطط!"
+
+msgid "Counts"
+msgstr "الأعداد"
+
+msgid "Density"
+msgstr "الكثافة"
+
+msgid "No non-missing values!"
+msgstr "لا توجد أي قيم غير مفقودة!"
+
+msgid "Association cannot be computed due to missing values. Try a different 'Use' setting."
+msgstr ""
+"يتعذّر حساب الاقتران بسبب القيم المفقودة. جرّب إعدادًا مختلفًا لـ«استخدام»."
+
+msgid "Some associations cannot be computed due to missing values. Try a different 'Use' setting."
+msgstr ""
+"لا يمكن حساب بعض الرابطات بسبب القيم الناقصة. جرب إعدادات مختلفة لـ "
+"'الاستخدام'."
+
+msgid "Plotting not possible: Variable '%s' has fewer than 2 valid (non-missing) observations."
+msgstr ""
+"لا يمكن الرسم: يحتوي المتغير '%s' على أقل من مشاهدتين صالحتين (غير مفقودتين)."
+
+msgid "Stem"
+msgstr "الساق"
+
+msgid "Leaf"
+msgstr "الورقة"
+
+msgid "A stem and leaf table could not be made because there are fewer than 2 non-missing observations"
+msgstr "تعذر إنشاء جدول الساق والورقة لوجود أقل من مشاهدتين غير مفقودتين"
+
+msgid "The decimal point is at the |"
+msgstr "الفاصل العشري عند الرمز |"
+
+msgid "There must be a unique value per combination of levels of horizontal and vertical axis!"
+msgstr ""
+"يجب أن تكون هناك قيمة فريدة لكل تركيبة من مستويات المحور الأفقي والرأسي!"
+
+msgid "All categorical variables must have the same number of levels!"
+msgstr "يجب أن يكون لجميع المتغيرات الفئوية العدد نفسه من المستويات!"
+
+msgid "Items must have 2 or more levels!"
+msgstr "يجب أن يكون عدد مستويات الفقرات 2 أو أكثر!"
+
+msgid "The variable used for counts must be different from the variable used for categories."
+msgstr ""
+"ويجب أن يكون المتغير المستخدم في عمليات العد مختلفاً عن المتغير المستخدم "
+"للفئات."
+
+msgid "Percentage (%%)"
+msgstr "النسبة المئوية (%%)"
+
+msgid "Levels within variable require at least two or more data points!"
+msgstr "المستويات داخل المتغير تتطلب على الأقل اثنين أو أكثر من نقاط البيانات!"
+
+msgid "Please assign a variable to every RM factor (defined in Repeated Measures Factors) within Repeated Measures Cells."
+msgstr ""
+"يرجى إسناد متغير إلى كل عامل قياسات متكررة (المعرّف ضمن عوامل القياسات "
+"المتكررة) داخل خلايا القياسات المتكررة."
+
+msgid "Plots"
+msgstr "المخططات"
+
+msgid "Available Plot IDs"
+msgstr "معرّفات المخططات المتاحة"
+
+msgid "Plot Grid"
+msgstr "شبكة الرسم"
+
+msgid "Raincloud Plots"
+msgstr "مخططات سحابة المطر"
+
+msgid "Not shown are %s observations due to missing data."
+msgstr "لم تُعرض %s من المشاهدات بسبب بيانات مفقودة."
+
+msgid "Interval around mean is custom."
+msgstr "الفترة حول المتوسط مخصصة."
+
+msgid "<span style = 'color: darkorange'>Error with custom interval: Specified number of clouds does not match clouds in plot.</span>"
+msgstr ""
+"<span style = 'color: darkorange'>خطأ في الفترة المخصصة: عدد السحب المحدد لا "
+"يطابق عددها في المخطط.</span>"
+
+msgid "Interval around mean represents ± 1 standard error"
+msgstr "تمثل الفترة المحيطة بالمتوسط ± 1 خطأ معياري"
+
+msgid "Interval around mean represents ± 1 standard deviation"
+msgstr "تمثل الفترة المحيطة بالمتوسط ± 1 انحراف معياري"
+
+msgid "Interval around mean represents %d%% confidence interval."
+msgstr "تمثل الفترة المحيطة بالمتوسط فترة ثقة بنسبة %d%%."
+
+msgid "Points are slightly jittered from their true values."
+msgstr "تُزاح النقاط عشوائيًا قليلًا عن قيمها الحقيقية."
+
+msgid "<span style = 'color: darkorange'> Warning! Some data is not shown<br>because it lies outside of the interval set by the custom axis limits.</span>"
+msgstr ""
+"<span style = 'color: darkorange'> تحذير! بعض البيانات لم تظهر<br>لأنه يقع "
+"خارج الفترة المحددة من خلال حدود المحور المخصصة.</span>"
+
+msgid "<span style = 'color: darkorange'> Error with custom orientation: Specified number of clouds does not match clouds in plot.<br>Reverted to default all 'R'. Point nudge set to 0.</span>"
+msgstr ""
+"<span style = 'color: darkorange'> خطأ في الاتجاه المخصص: عدد السحب المحدد لا "
+"يطابق عددها في المخطط.<br>أُعيد الافتراضي 'R' للجميع، وضُبطت إزاحة النقاط على "
+"0.</span>"
+
+msgid "<span style = 'color: darkorange'> Error with custom color: Specified number of clouds does not match clouds in plot.<br>Ignoring custom color input.</span>"
+msgstr ""
+"<span style = 'color: darkorange'> خطأ في اللون المخصص: عدد السحب المحدد لا "
+"يطابق عددها في المخطط.<br>تُتجاهل الألوان المخصصة المدخلة.</span>"
+
+msgid "Statistics"
+msgstr "الإحصاءات"
+
+msgid "Primary Factor"
+msgstr "العامل الرئيسي"
+
+msgid "Secondary Factor"
+msgstr "العامل الثانوي"
+
+msgid "<i>N</i>"
+msgstr "<i>N</i>"
+
+msgid "Lower Whisker"
+msgstr "الشعيرة السفلى"
+
+msgid "25th Percentile"
+msgstr "المئين 25"
+
+msgid "75th Percentile"
+msgstr "المئين 75"
+
+msgid "Upper Whisker"
+msgstr "الشعيرة العليا"
+
+msgid "%s%% CI for Mean Difference"
+msgstr "فترة ثقة %s%% لفرق المتوسطين"
+
+msgid "Standard Error"
+msgstr "الخطأ المعياري"
+
+msgid "Standard Deviation"
+msgstr "الانحراف المعياري"
+
+msgid "<i>N</i><sub>Total</sub> = %s."
+msgstr "<i>N</i><sub>Total</sub> = %s."
+
+msgid "This excludes %s observations due to missing data."
+msgstr "هذا يستبعد %s المشاهدات بسبب البيانات الناقصة."
+
+msgid "<br>Interval around mean is custom."
+msgstr "<br>الفترة حول المتوسط مخصصة."
+
+msgid "<br>Interval around mean represents %d%% confidence interval."
+msgstr "<br>تمثل الفترة حول المتوسط فترة ثقة بنسبة %d%%."
+
+msgid "Warning: Time could represent decimal numbers or year.month dates, giving conflicting orders or ties. Time was ignored, and the analysis used spreadsheet row order. Use a numeric (Scale) variable for decimal indices, or dates in year-month-day order (YYYY-MM-DD). Leave Time empty to use spreadsheet row order."
+msgstr ""
+"تحذير: قد يمثل متغير الزمن أعدادًا عشرية أو تواريخ بصيغة سنة.شهر، مما يعطي "
+"ترتيبًا متعارضًا أو تعادلات. جرى تجاهله واستخدام ترتيب صفوف جدول البيانات. "
+"استخدم متغيرًا عدديًا (كميًا) للمؤشرات العشرية، أو تواريخ السنة–الشهر–اليوم "
+"(YYYY-MM-DD). اترك الزمن فارغًا لاستخدام ترتيب الصفوف."
+
+msgid "Warning: Time contains missing or non-finite values. Time was ignored, and the analysis used spreadsheet row order. Select a complete numeric variable or one containing complete, unambiguous dates, or leave Time empty to use spreadsheet row order."
+msgstr ""
+"تحذير: يتضمن متغير الزمن قيمًا مفقودة أو غير منتهية. جرى تجاهله واستخدام "
+"ترتيب صفوف جدول البيانات. حدّد متغيرًا عدديًا مكتملًا أو متغيرًا بتواريخ مكتملة "
+"وواضحة، أو اترك الزمن فارغًا لاستخدام ترتيب الصفوف."
+
+msgid "Warning: Time contains inconsistent day/month ordering. Time was ignored, and the analysis used spreadsheet row order. Use dates in year-month-day order (YYYY-MM-DD), for example 2020-10-01 for 1 October 2020, or leave Time empty to use spreadsheet row order."
+msgstr ""
+"تحذير: ترتيب اليوم والشهر غير متسق في متغير الزمن. جرى تجاهله واستخدام ترتيب "
+"صفوف جدول البيانات. استخدم ترتيب السنة–الشهر–اليوم (YYYY-MM-DD)، مثل 2020-10-"
+"01 للدلالة على 1 أكتوبر 2020، أو اترك الزمن فارغًا لاستخدام ترتيب الصفوف."
+
+msgid "Warning: The date format in Time is ambiguous. Time was ignored, and the analysis used spreadsheet row order. Use dates in year-month-day order (YYYY-MM-DD), for example 2020-10-01 for 1 October 2020, or leave Time empty to use spreadsheet row order."
+msgstr ""
+"تحذير: صيغة التاريخ في متغير الزمن ملتبسة. جرى تجاهله واستخدام ترتيب صفوف "
+"جدول البيانات. استخدم ترتيب السنة–الشهر–اليوم (YYYY-MM-DD)، مثل 2020-10-01 "
+"للدلالة على 1 أكتوبر 2020، أو اترك الزمن فارغًا لاستخدام ترتيب الصفوف."
+
+msgid "Warning: The selected Time variable contains values that cannot be interpreted as numbers or dates. Time was ignored, and the analysis used spreadsheet row order. Select a numeric variable or one containing unambiguous dates, or leave Time empty to use spreadsheet row order."
+msgstr ""
+"تحذير: يتضمن متغير الزمن قيمًا لا يمكن تفسيرها كأعداد أو تواريخ. جرى تجاهله "
+"واستخدام ترتيب صفوف جدول البيانات. حدّد متغيرًا عدديًا أو متغيرًا بتواريخ واضحة، "
+"أو اترك الزمن فارغًا لاستخدام ترتيب الصفوف."
+
+msgid "Affected spreadsheet rows (first few): %s."
+msgstr "صفوف ورقة البيانات المتأثرة (أول بضعة صفوف): %s."
+
+msgid "Warning: Time ignored"
+msgstr "تحذير: تم تجاهل الوقت"
+
+msgid "year-month-day (YYYY-MM-DD), for example 2020-01-10 as 10 January 2020"
+msgstr "سنة-شهر-يوم (YYYY-MM-DD)، مثل 2020-01-10 بمعنى 10 يناير 2020"
+
+msgid "day-month-year (DD-MM-YYYY), for example 10-01-2020 as 10 January 2020"
+msgstr "يوم-شهر-سنة (DD-MM-YYYY)، مثل 10-01-2020 بمعنى 10 يناير 2020"
+
+msgid "month-day-year (MM-DD-YYYY), for example 01-10-2020 as 10 January 2020"
+msgstr "شهر-يوم-سنة (MM-DD-YYYY)، مثل 01-10-2020 بمعنى 10 يناير 2020"
+
+msgid "Time was interpreted in %s."
+msgstr "تم تفسير الوقت في %s."
+
+msgid "Dates in Time were interpreted using these date orders: %s."
+msgstr "فُسّرت التواريخ في «الوقت» وفق ترتيب مكونات التاريخ التالي: %s."
+
+msgid "Date interpretation"
+msgstr "تفسير التاريخ"
+
+msgid "Repeated time values"
+msgstr "قيم زمنية متكررة"
+
+msgid "Time contains repeated values. Spreadsheet row order is retained within tied values. Tied observations are analysed as successive steps in that order."
+msgstr ""
+"يتضمن الزمن قيمًا متكررة. يُحتفظ بترتيب صفوف البيانات داخل القيم المتعادلة، "
+"وتُحلَّل مشاهداتها كخطوات متتابعة بهذا الترتيب."
+
+msgid "Time ordering"
+msgstr "الترتيب الزمني"
+
+msgid "Observations were sorted by Time for this analysis."
+msgstr "رُتبت المشاهدات بحسب الزمن في هذا التحليل."
+
+msgid "The selected filter contains no observations. Adjust the filter limits."
+msgstr "لا يتضمن عامل التصفية المحدد أي مشاهدات. اضبط حدود التصفية."
+
+msgid "Filtering by Time requires a usable numeric or date variable assigned to Time. Select an appropriate Time variable, choose Row number to filter spreadsheet rows, or disable filtering."
+msgstr ""
+"تتطلب التصفية بحسب الزمن متغيرًا عدديًا أو تاريخيًا صالحًا مسندًا إلى 'الزمن'. "
+"حدد متغير زمن مناسبًا، أو اختر 'رقم الصف' لتصفية صفوف البيانات، أو عطّل "
+"التصفية."
+
+msgid "The selected Time variable contains dates. Choose Date to filter it, or assign a numeric variable to Time."
+msgstr ""
+"يتضمن متغير الزمن المحدد تواريخ. اختر 'التاريخ' لتصفيته، أو أسند متغيرًا "
+"عدديًا إلى 'الزمن'."
+
+msgid "Assign a date variable to Time, or choose Time index to filter the selected numeric variable."
+msgstr ""
+"عيّن متغير تاريخ لحقل الزمن، أو اختر فهرس الزمن لتصفية المتغير العددي المحدد."
+
+msgid "Enter Start in year-month-day order (YYYY-MM-DD), for example 2020-10-01 for 1 October 2020. For a specific time, use YYYY-MM-DD HH:MM:SS."
+msgstr ""
+"أدخل البداية بترتيب سنة-شهر-يوم (YYYY-MM-DD)، مثل 2020-10-01 للدلالة على 1 "
+"أكتوبر 2020. لتحديد الوقت، استخدم YYYY-MM-DD HH:MM:SS."
+
+msgid "Enter End in year-month-day order (YYYY-MM-DD), for example 2020-10-01 for 1 October 2020. For a specific time, use YYYY-MM-DD HH:MM:SS."
+msgstr ""
+"أدخل النهاية بترتيب سنة-شهر-يوم (YYYY-MM-DD)، مثل 2020-10-01 للدلالة على 1 "
+"أكتوبر 2020. لتحديد الوقت، استخدم YYYY-MM-DD HH:MM:SS."
+
+msgid "Filter limits must be valid, finite values."
+msgstr "يجب أن تكون حدود المرشّح قيمًا صالحة ومحدودة."
+
+msgid "No observations have Time values between %1$s and %2$s. The selected Time variable ranges from %3$s to %4$s. Adjust the limits, or choose Row number to filter spreadsheet rows."
+msgstr ""
+"لا توجد مشاهدات بقيم زمن بين %1$s و%2$s. يتراوح متغير الزمن المحدد من %3$s "
+"إلى %4$s. عدّل الحدود، أو اختر رقم الصف لتصفية صفوف البيانات."
+
+msgid "No observations have dates within the selected range. The selected Time variable ranges from %1$s to %2$s (UTC). Adjust the date limits, or choose Row number to filter spreadsheet rows."
+msgstr ""
+"لا توجد مشاهدات بتواريخ ضمن النطاق المحدد. يتراوح متغير الزمن المحدد من %1$s "
+"إلى %2$s (UTC). عدّل حدود التاريخ، أو اختر رقم الصف لتصفية صفوف البيانات."
+
+msgid "Warning: Filtering"
+msgstr "تحذير: التصفية"
+
+msgid "Warning: The selected spreadsheet rows skip observations within Time order. The selected observations are analysed as successive steps. Use a Time or date filter to select a continuous block in Time order."
+msgstr ""
+"تحذير: تتخطى صفوف جدول البيانات المحددة مشاهدات ضمن ترتيب الزمن. تُحلَّل "
+"المشاهدات المحددة كخطوات متتابعة. استخدم مرشحًا للزمن أو التاريخ لتحديد كتلة "
+"متصلة حسب ترتيب الزمن."
+
+msgid "The series contains infinite values. Resolve these values before calculating this output."
+msgstr "تتضمن السلسلة قيمًا لا نهائية. عالج هذه القيم قبل حساب هذه المخرجات."
+
+msgid "The selected series contains no observed values."
+msgstr "لا تتضمن السلسلة المحددة قيمًا مشاهدة."
+
+msgid "The selected observations contain fewer than two values. Select a range with more observed values."
+msgstr ""
+"المشاهدات المنتقاة تحتوي على أقل من قيمتين. انتقِ a مدى مع المزيد من القيم "
+"الملحوظة."
+
+msgid "The selected observations contain no variation. This calculation requires varying observations."
+msgstr ""
+"المشاهدات المنتقاة لا تحتوي على أي تباين. هذا الحساب يتطلب مشاهدات متباينة."
+
+msgid "Missing observations were omitted for this calculation (%1$s of %2$s observations retained), so the remaining observations are treated as consecutive time steps and any internal gaps are ignored."
+msgstr ""
+"حُذفت المشاهدات المفقودة لهذا الحساب (احتُفظ بـ %1$s من أصل %2$s)، فتُعامل "
+"المشاهدات المتبقية كخطوات زمنية متتالية وتُتجاهل الفجوات الداخلية."
+
+msgid "This calculation uses %1$s of %2$s observation steps: steps %3$s to %4$s in analysis order. The data and saved values are unchanged."
+msgstr ""
+"يستخدم هذا الحساب %1$s من أصل %2$s خطوة مشاهدة: من الخطوة %3$s إلى %4$s "
+"بترتيب التحليل. لا تتغير البيانات أو القيم المحفوظة."
+
+msgid "%2$s has more than %1$s distinct values and is omitted."
+msgid_plural "The following variables have more than %1$s distinct values and are omitted: %2$s."
+msgstr[0] "استُبعد %2$s لأن عدد القيم المتميزة يتجاوز %1$s."
+msgstr[1] "استُبعد %2$s لأن عدد القيم المتميزة يتجاوز %1$s."
+msgstr[2] "استُبعد %2$s لأن عدد القيم المتميزة يتجاوز %1$s."
+msgstr[3] "استُبعد %2$s لأن عدد القيم المتميزة يتجاوز %1$s."
+msgstr[4] "استُبعد %2$s لأن عدد القيم المتميزة يتجاوز %1$s."
+msgstr[5] "استُبعد %2$s لأن عدد القيم المتميزة يتجاوز %1$s."
+
+msgid "The decimal point is %s digit to the right of the |"
+msgid_plural "The decimal point is %s digits to the right of the |"
+msgstr[0] "تبعد الفاصلة العشرية عن الرمز | إلى اليمين بعدد خانات مقداره %s."
+msgstr[1] "تبعد الفاصلة العشرية عن الرمز | إلى اليمين بعدد خانات مقداره %s."
+msgstr[2] "تبعد الفاصلة العشرية عن الرمز | إلى اليمين بعدد خانات مقداره %s."
+msgstr[3] "تبعد الفاصلة العشرية عن الرمز | إلى اليمين بعدد خانات مقداره %s."
+msgstr[4] "تبعد الفاصلة العشرية عن الرمز | إلى اليمين بعدد خانات مقداره %s."
+msgstr[5] "تبعد الفاصلة العشرية عن الرمز | إلى اليمين بعدد خانات مقداره %s."
+
+msgid "The decimal point is %s digit to the left of the |"
+msgid_plural "The decimal point is %s digits to the left of the |"
+msgstr[0] "تبعد الفاصلة العشرية عن الرمز | إلى اليسار بعدد خانات مقداره %s."
+msgstr[1] "تبعد الفاصلة العشرية عن الرمز | إلى اليسار بعدد خانات مقداره %s."
+msgstr[2] "تبعد الفاصلة العشرية عن الرمز | إلى اليسار بعدد خانات مقداره %s."
+msgstr[3] "تبعد الفاصلة العشرية عن الرمز | إلى اليسار بعدد خانات مقداره %s."
+msgstr[4] "تبعد الفاصلة العشرية عن الرمز | إلى اليسار بعدد خانات مقداره %s."
+msgstr[5] "تبعد الفاصلة العشرية عن الرمز | إلى اليسار بعدد خانات مقداره %s."
