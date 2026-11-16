@@ -2406,55 +2406,32 @@ TabView {
 					 + "<b>Label variable</b> shows each point’s value; <b>Custom annotations</b> add free-form text with position controls. "
 					 + "Common controls: <b>Size</b> adjusts text height, <b>White background</b> improves legibility, colour fields accept named or hex colours")
 
-			Label {
-				text: qsTr("Label data by variable")
-				wrapMode: Text.Wrap
-				color: "black"
-			}
-
-			VariablesForm {
+			Row {
 				enabled: addDataPoint.checked
-				preferredWidth: jaspForm.width - 2 * jaspTheme.contentMargin
-				preferredHeight: 100 * preferencesModel.uiScale
+				spacing: jaspTheme.columnGroupSpacing
 
-				AvailableVariablesList {
-					name: "labelVars"
-					source: [
-						{ name: "allVariablesList",   use: ["type=scale","type=ordinal","type=nominal"] },
-						{ name: "allVariablesListRM", use: ["type=scale","type=ordinal","type=nominal"] }
-					]
-				}
-
-				AssignedVariablesList {
-					name:           "labelVariablePlotBuilder"
-					title:          qsTr("Label variable")
+				DropDown {
+					name: "labelVariablePlotBuilder"
+					label: qsTr("Label by variable")
+					showVariableTypeIcon: true
+					addEmptyValue: true
+					placeholderText: qsTr("<Select Variable>")
+					fieldWidth: 150 * preferencesModel.uiScale
 					allowedColumns: ["scale","ordinal","nominal"]
-					singleVariable: true
-					enabled: addDataPoint.checked
-					onEnabledChanged: {
-						if (!enabled) {
-							while (count > 0) {
-								itemDoubleClicked(0)
-							}
-						}
-					}
+					onEnabledChanged: { if (!enabled) currentIndex = 0 }
 					info: qsTr("Variable whose values will be shown next to each point")
 				}
 
-				Group {
-					columns: 2
-					DoubleField {
-						name:  "fontsizeDataLabels"
-						label: qsTr("Size")
-						value: 4
-						fieldWidth: 50
-					}
-					CheckBox {
-						name:  "backgroundDataLabels"
-						label: qsTr("White background")
-						checked: false
-						Layout.fillWidth: false
-					}
+				DoubleField {
+					name:  "fontsizeDataLabels"
+					label: qsTr("Size")
+					value: 4
+					fieldWidth: 50
+				}
+				CheckBox {
+					name:  "backgroundDataLabels"
+					label: qsTr("White background")
+					checked: false
 				}
 			}
 
