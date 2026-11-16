@@ -83,6 +83,44 @@ test_that("individual point appearance does not change summary groups", {
   expect_equal(ggplot2::ggplot_build(plot)$data[[1]]$y, c(52, 52))
 })
 
+test_that("point legends preserve mapped shapes and sizes", {
+  dataset <- data.frame(x = 1:10, y = 11:20,
+                        shape = factor(rep(1:5, 2)), size = rep(1:5, 2))
+  legendPoints <- function(grob) {
+    if (inherits(grob, "points"))
+      return(list(data.frame(shape = grob$pch, size = grob$gp$fontsize)))
+    unlist(lapply(c(grob$grobs, grob$children), legendPoints), recursive = FALSE)
+  }
+
+  for (mode in c("shape", "size", "shared", "separate", "cast", "color")) {
+    plot <- .plotBuilderTestPlot(dataset,
+      pointShapeVariable = if (mode == "size") "" else "shape",
+      sizeVariablePlotBuilder = switch(mode, shape = "", shared = "shape", color = "shape", "size"),
+      colorByGroup = "grouping", variableColorPlotBuilder = if (mode == "color") "shape" else "")
+    if (mode == "cast") {
+      # The same GUI variable cast as scale and nominal has one decoded legend title.
+      sizeScale <- plot$scales$get_scales("size")
+      sizeScale$name <- "shape"
+    }
+    built <- ggplot2::ggplot_build(plot)
+    points <- built$data[[1]][1:5, ]
+    grob <- ggplot2::ggplot_gtable(built)
+    boxes <- grob$grobs[grepl("guide-box", grob$layout$name)]
+    guides <- unlist(lapply(boxes, function(box) box$grobs[box$layout$name == "guides"]), recursive = FALSE)
+    keys <- lapply(guides, function(guide) do.call(rbind, legendPoints(guide)))
+
+    if (mode != "size")
+      expect_true(any(vapply(keys, function(key) isTRUE(all.equal(key$shape, points$shape)), logical(1))), info = mode)
+    if (mode != "shape") {
+      expectedSizes <- vapply(seq_len(nrow(points)), function(i)
+        ggplot2::draw_key_point(points[i, ], list(), 5)$gp$fontsize, numeric(1))
+      expect_true(any(vapply(keys, function(key) isTRUE(all.equal(key$size, expectedSizes)), logical(1))), info = mode)
+    }
+    if (mode %in% c("shared", "cast", "color")) expect_length(keys, 1)
+    if (mode == "separate") expect_length(keys, 2)
+  }
+})
+
 test_that("RM connections stay with their faceted and jittered points", {
   dataset <- data.frame(
     ID = rep(1:4, each = 2), time = factor(rep(c("a", "b"), 4)),

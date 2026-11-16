@@ -1641,12 +1641,6 @@ addDecodedLabels <- function(p) {
           )
         }
 
-        gg <- gg + ggplot2::guides(
-          size = ggplot2::guide_legend(
-            override.aes = list(shape = 19, fill = "grey70")
-          )
-        )
-
         tidyplot_obj <- gg
       }
 
@@ -1666,12 +1660,6 @@ addDecodedLabels <- function(p) {
 
           gg <- gg + ggplot2::scale_shape_discrete(
             name = decodeColNames(shapeVar)
-          )
-
-          gg <- gg + ggplot2::guides(
-            shape = ggplot2::guide_legend(
-              override.aes = list(fill = "grey70")
-            )
           )
 
           tidyplot_obj <- gg
@@ -1769,34 +1757,6 @@ addDecodedLabels <- function(p) {
           legend.position = legend_position
         ))
     }
-
-    size_range <- c(tab[["pointSizeMin"]], tab[["pointSizeMax"]])
-    mid_size <- mean(size_range)
-
-    if (!is.null(sizeVar) && sizeVar %in% colnames(localData)) {
-      guides_list <- list()
-
-      if (!is.null(colorVar) && colorVar %in% colnames(localData)) {
-        guides_list$fill <- ggplot2::guide_legend(
-          override.aes = list(size = mid_size)
-        )
-      }
-
-      if (!is.null(shapeVar) && shapeVar %in% colnames(localData)) {
-        guides_list$shape <- ggplot2::guide_legend(
-          override.aes = list(size = mid_size)
-        )
-      }
-
-      if (length(guides_list) > 0) {
-        tidyplot_obj <- tidyplot_obj |>
-          tidyplots::add(
-            do.call(ggplot2::guides, guides_list)
-          )
-      }
-    }
-
-
 
     # Read style choice
     plotStyle    <- tab[["plotStyle"]]
