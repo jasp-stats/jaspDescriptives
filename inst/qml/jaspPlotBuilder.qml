@@ -382,20 +382,6 @@ TabView {
 						min: 0
 						max: 10
 					}
-
-					CheckBox{
-					name:"sizeByVariable"
-					id: sizeByVariable
-					label: qsTr("Size by variable")
-					info: qsTr("Choose this if you want the point size to be determined by a variable rather than a fixed constant")
-					}
-
-					CheckBox{
-					name:"shapebyVariable"
-					id: shapebyVariable
-					label: qsTr("Shape by variable")
-					info: qsTr("Choose this if you want the point shape to be determined by a variable")
-					}
 				}
 
 				Group {
@@ -472,87 +458,69 @@ TabView {
 					}
 				}
 
-			}
+				Row {
+					Layout.columnSpan: 4
+					spacing: jaspTheme.columnGroupSpacing
 
-			VariablesForm{
-				visible: sizeByVariable.checked
-				enabled: sizeByVariable.checked
-				preferredWidth: jaspForm.width - 2 * jaspTheme.contentMargin
-				preferredHeight: 100 * preferencesModel.uiScale
+					CheckBox {
+						name: "sizeByVariable"
+						id: sizeByVariable
+						label: qsTr("Size by variable")
+						info: qsTr("Choose this if you want the point size to be determined by a variable rather than a fixed constant")
+					}
 
-				AvailableVariablesList {
-					name: "sizeVars"
-					source: [
-						{ name: "allVariablesList", use: "type=scale|ordinal" },
-						{ name: "allVariablesListRM", use: "type=scale|ordinal" }
-					]
-				}
+					DropDown {
+						name: "sizeVariablePlotBuilder"
+						id: sizeVariablePlotBuilder
+						showVariableTypeIcon: true
+						addEmptyValue: true
+						placeholderText: qsTr("<Select Variable>")
+						fieldWidth: 150 * preferencesModel.uiScale
+						allowedColumns: ["scale"]
+						enabled: sizeByVariable.checked
+						onEnabledChanged: { if (!enabled) currentIndex = 0 }
+						info: qsTr("Select a variable to determine point size. The variable is treated as scale.")
+					}
 
-				AssignedVariablesList {
-					id: sizeVariablePlotBuilder
-					allowedColumns: ["scale", "ordinal"]
-					enabled: sizeByVariable.checked
-					name: "sizeVariablePlotBuilder"
-					title: qsTr("Point Size Variable")
-					singleVariable: true
-					onEnabledChanged: {
-						if (!enabled) {
-							while (count > 0) {
-								itemDoubleClicked(0)
-							}
-						}
+					DoubleField {
+						name: "pointSizeMin"
+						label: qsTr("Minimum size")
+						value: 1
+						enabled: sizeByVariable.checked
+					}
+
+					DoubleField {
+						name: "pointSizeMax"
+						label: qsTr("Maximum size")
+						value: 4
+						enabled: sizeByVariable.checked
 					}
 				}
 
-				Group{
-				columns:2
-				DoubleField {
-					name: "pointSizeMin"
-					label: qsTr("Min point size")
-					value: 1
+				Row {
+					Layout.columnSpan: 4
+					spacing: jaspTheme.columnGroupSpacing
 
-				}
-				DoubleField {
-					name: "pointSizeMax"
-					label: qsTr("Max point size")
-					value: 4
+					CheckBox {
+						name: "shapebyVariable"
+						id: shapebyVariable
+						label: qsTr("Shape by variable")
+						info: qsTr("Choose this if you want the point shape to be determined by a variable")
+					}
 
-				}
-				}
-			}
-
-			VariablesForm{
-				preferredWidth: jaspForm.width - 2 * jaspTheme.contentMargin
-				preferredHeight: 100 * preferencesModel.uiScale
-				visible: shapebyVariable.checked
-				enabled: shapebyVariable.checked
-
-				AvailableVariablesList {
-					name: "shapeVars"
-					source: [
-						{ name: "allVariablesList",   use: "type=nominal|ordinal" },
-						{ name: "allVariablesListRM", use: "type=nominal|ordinal" }
-					]
-				}
-
-
-
-				AssignedVariablesList {
-					id: pointShapeVariable
-					allowedColumns: ["nominal", "ordinal"]
-					name: "pointShapeVariable"
-					title: qsTr("Point Shape Variable")
-					singleVariable: true
-					enabled: shapebyVariable.checked
-					onEnabledChanged: {
-						if (!enabled) {
-							while (count > 0) {
-								itemDoubleClicked(0)
-							}
-						}
+					DropDown {
+						name: "pointShapeVariable"
+						id: pointShapeVariable
+						showVariableTypeIcon: true
+						addEmptyValue: true
+						placeholderText: qsTr("<Select Variable>")
+						fieldWidth: 150 * preferencesModel.uiScale
+						allowedColumns: ["nominal"]
+						enabled: shapebyVariable.checked
+						onEnabledChanged: { if (!enabled) currentIndex = 0 }
+						info: qsTr("Select a variable to determine point shape. The variable is treated as nominal.")
 					}
 				}
-
 			}
 
 
