@@ -26,6 +26,14 @@ import JASP.Controls
 Form {
 columns: 1
 
+component ContentSizedComponentsList: ComponentsList {
+	// Include all rows, the add button, viewport margins, and scrollbar space.
+	preferredHeight: Math.ceil(itemTitle.height + itemGrid.y + itemGrid.height
+		+ (addIconItem.visible ? addIconItem.height : 0)
+		+ 2 * jaspTheme.contentMargin + jaspTheme.scrollbarBoxWidth)
+	Layout.minimumHeight: preferredHeight
+}
+
 info: qsTr("The <b>Plot Builder (beta)</b> lets you assemble a complete figure in just a few clicks.<br/><br/>"
 		+ "<ol><li><b>Decide on design:</b> At the very top choose <i>Repeated measurements → Yes</i> if the same subjects are measured more than once "
 		+ "(e.g., across time-points or conditions); otherwise leave <i>No</i> selected. </li>"
@@ -2272,7 +2280,7 @@ TabView {
 				}
 			}
 
-			ComponentsList {
+			ContentSizedComponentsList {
 				name: "xAxisLabelRenamer"
 				title: qsTr("Rename labels")
 				info: qsTr("Lets you edit them manually")
@@ -2356,7 +2364,7 @@ TabView {
 				}
 			}
 
-			ComponentsList {
+			ContentSizedComponentsList {
 				name: "yAxisLabelRenamer"
 				title: qsTr("Rename labels")
 				info: qsTr("Lets you edit them manually")
@@ -2435,7 +2443,7 @@ TabView {
 				}
 			}
 
-			ComponentsList {
+			ContentSizedComponentsList {
 				name: "annotationPlotBuilder"
 				id: annotationPlotBuilder
 				title: qsTr("Custom annotations")
@@ -2848,7 +2856,7 @@ TabView {
 				}
 			}
 
-			ComponentsList {
+			ContentSizedComponentsList {
 				name: "colorLabelRenamer"
 				title: qsTr("Rename labels")
 				info: qsTr("Edit the text of individual legend entries")
@@ -3247,7 +3255,7 @@ TabView {
 				}
 			}
 
-			ComponentsList {
+			ContentSizedComponentsList {
 				name: "pairwiseComparisons"
 				title: qsTr("Pairwise comparisons table")
 				id: pairwiseComparisons
@@ -3397,7 +3405,7 @@ TabView {
 				color: "black"
 			}
 
-			ComponentsList {
+			ContentSizedComponentsList {
 				name: "annotationLineList"
 				id: annotationLineList
 				title: qsTr("Add annotation lines")
@@ -3551,7 +3559,7 @@ Section {
 			placeholderText: qsTr("1,1")
 		}
 
-		ComponentsList {
+		ContentSizedComponentsList {
 			id: rowSpecifications
 			name: "rowSpecifications"
 			title: qsTr("Specify layout")
@@ -3608,7 +3616,7 @@ Section {
 			placeholderText: "1,1"
 		}
 
-		ComponentsList {
+		ContentSizedComponentsList {
 			id: fullRowSpecifications
 			name: "fullRowSpecifications"
 			title: qsTr("Specify layout")
