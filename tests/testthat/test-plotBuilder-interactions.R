@@ -428,7 +428,7 @@ test_that("distribution layers reject categorical axes without restricting other
     args[[layer]] <- TRUE
     expect_error(do.call(.plotBuilderTestPlot, args), "exactly one scale variable")
     args$variableYPlotBuilder <- "y"
-    expect_error(do.call(.plotBuilderTestPlot, args), "exactly one scale variable")
+    expect_gt(nrow(ggplot2::ggplot_build(do.call(.plotBuilderTestPlot, args))$data[[1]]), 0)
   }
   plot <- .plotBuilderTestPlot(dataset, addBoxplot = TRUE)
   expect_equal(nrow(ggplot2::ggplot_build(plot)$data[[1]]), nrow(dataset))
@@ -589,4 +589,246 @@ test_that("scaled densities are independent of histogram bins and layer order", 
   })
   expect_equal(densities[[1]]$y, densities[[2]]$y)
   expect_equal(max(densities[[1]]$y), 1)
+})
+
+test_that("joint centers differ from conditional summaries and retain explicit groups", {
+  data <- data.frame(x = c(1, 1, 3, 5, 5, 9), y = c(2, 6, 7, 20, 22, 40),
+                     group = factor(rep(c("a", "b"), each = 3)))
+  for (statistic in c("Mean", "Median")) {
+    args <- list(dataset = data, addDataPoint = FALSE, variableColorPlotBuilder = "group",
+                 colorByGroup = "none")
+    args[[paste0("add", statistic, "Dot")]] <- TRUE
+    args[[paste0(tolower(statistic), "DotMode")]] <- "center"
+    plot <- do.call(.plotBuilderTestPlot, args)
+    centers <- ggplot2::ggplot_build(plot)$data[[1]]
+    fun <- if (statistic == "Mean") mean else median
+    expect_equal(centers$x, as.numeric(tapply(data$x, data$group, fun)))
+    expect_equal(centers$y, as.numeric(tapply(data$y, data$group, fun)))
+    expect_no_error(ggplot2::ggplotGrob(plot))
+    args[[paste0(tolower(statistic), "DotMode")]] <- "position"
+    conditional <- ggplot2::ggplot_build(do.call(.plotBuilderTestPlot, args))$data[[1]]
+    expect_equal(nrow(conditional), 4)
+  }
+})
+
+test_that("single-axis distributions and summaries preserve their numeric orientation", {
+  data <- data.frame(x = c(1, 2, 4, 8, 10), y = c(10, 20, 40, 80, 100))
+  for (axis in c("x", "y")) {
+    for (geometry in c("DataPoint", "Boxplot", "Violin", "MeanDot", "MedianDot", "SumDot", "MeanBar", "MedianBar", "SumBar", "SEMErrorBar")) {
+      args <- list(dataset = data, addDataPoint = FALSE)
+      args[[if (axis == "x") "variableYPlotBuilder" else "variableXPlotBuilder"]] <- ""
+      args[[paste0("add", geometry)]] <- TRUE
+      plot <- do.call(.plotBuilderTestPlot, args)
+      built <- ggplot2::ggplot_build(plot)$data[[1]]
+      expect_gt(nrow(built), 0)
+      if (geometry == "MeanDot") expect_equal(built[[axis]], mean(data[[axis]]))
+      if (geometry == "MedianDot") expect_equal(built[[axis]], median(data[[axis]]))
+      if (geometry == "SumDot") expect_equal(built[[axis]], sum(data[[axis]]))
+      expect_no_error(ggplot2::ggplotGrob(plot))
+    }
+  }
+})
+
+test_that("categorical distribution positions retain panels and normalized depth", {
+  data <- expand.grid(category = factor(c("a", "b")), group = factor(c("g1", "g2")),
+                      facet = factor(c("f1", "f2")), replicate = 1:10)
+  data$value <- data$replicate + as.numeric(data$category) * 20
+  for (horizontal in c(FALSE, TRUE)) {
+    plot <- .plotBuilderTestPlot(data, addDataPoint = FALSE, addHistogram = TRUE, addDensity = TRUE,
+      variableXPlotBuilder = if (horizontal) "value" else "category",
+      variableYPlotBuilder = if (horizontal) "category" else "value",
+      variableColorPlotBuilder = "group", colorByGroup = "none", distributionHeight = 0.6,
+      columnsvariableSplitPlotBuilder = "facet")
+    built <- ggplot2::ggplot_build(plot)
+    for (layer in built$data) {
+      expect_length(unique(layer$PANEL), 2)
+      expect_length(unique(layer$group), 4)
+      depth <- if (horizontal) layer$ymax - layer$ymin else layer$xmax - layer$xmin
+      expect_equal(max(depth), 0.6)
+      expect_true(all(depth >= 0 & depth <= 0.6 + 1e-10))
+      panelRange <- built$layout$panel_params[[1]][[if (horizontal) "y.range" else "x.range"]]
+      expect_gt(max(panelRange), max(layer[[if (horizontal) "ymax" else "xmax"]]))
+    }
+    expect_no_error(ggplot2::ggplotGrob(plot))
+  }
+})
+
+test_that("histogram grouping supports stacking and side-by-side bins", {
+  data <- data.frame(x = rep(1:10, 2), group = factor(rep(c("a", "b"), each = 10)))
+  totals <- numeric()
+  for (position in c("identity", "stack", "dodge")) {
+    plot <- .plotBuilderTestPlot(data, variableYPlotBuilder = "", addDataPoint = FALSE,
+      addHistogram = TRUE, variableColorPlotBuilder = "group", colorByGroup = "none",
+      histogramPosition = position, binsPlotBuilder = 5)
+    built <- ggplot2::ggplot_build(plot)$data[[1]]
+    expect_length(unique(built$group), 2)
+    totals <- c(totals, sum(built$count))
+    expect_no_error(ggplot2::ggplotGrob(plot))
+  }
+  expect_equal(totals, rep(nrow(data), 3))
+})
+
+test_that("RM means and uncertainty use one average per subject and position", {
+  data <- data.frame(ID = c(1, 1, 1, 2, 3), time = factor("a"), Value = c(0, 3, 6, 9, 12))
+  plot <- .plotBuilderTestPlot(data, isRM = "RM", xVarRM = "time", addDataPoint = FALSE,
+    addMeanDot = TRUE, addSEMErrorBar = TRUE, addCI95ErrorBar = TRUE,
+    layerOrder = "mean_dot,sem_errorbar,ci95_errorbar")
+  built <- ggplot2::ggplot_build(plot)
+  subjectMeans <- c(3, 9, 12)
+  expect_equal(built$data[[1]]$y, mean(subjectMeans))
+  expect_equal(built$data[[2]]$y, mean(subjectMeans))
+  expect_equal(built$data[[2]]$ymax - built$data[[2]]$y, sd(subjectMeans) / sqrt(3))
+  expect_equal(built$data[[3]]$y, mean(subjectMeans))
+})
+
+test_that("uncertainty omits insufficient groups but retains valid means", {
+  data <- data.frame(x = factor(c("a", "a", "b")), y = c(1, 3, 7))
+  plot <- .plotBuilderTestPlot(data, addDataPoint = FALSE,
+    addMeanDot = TRUE, addSEMErrorBar = TRUE, layerOrder = "mean_dot,sem_errorbar")
+  expect_warning(built <- ggplot2::ggplot_build(plot), "at least two")
+  expect_equal(built$data[[1]]$y, c(2, 7))
+  expect_equal(built$data[[2]]$y, 2)
+})
+
+test_that("stack measures preserve totals, facets, and absolute signed sums", {
+  data <- expand.grid(x = 1:3, group = factor(c("a", "b")), facet = factor(c("f1", "f2")))
+  data$y <- rep(c(1, 2, 4), 4)
+  for (area in c(FALSE, TRUE)) {
+    for (measure in c("count", "sum")) {
+      args <- list(dataset = data, addDataPoint = FALSE, stackMeasure = measure,
+        variableColorPlotBuilder = "group", colorByGroup = "none",
+        columnsvariableSplitPlotBuilder = "facet", replaceNaAreaStack = TRUE)
+      args[[if (area) "addAreaStack" else "addBarStack"]] <- TRUE
+      plot <- do.call(.plotBuilderTestPlot, args)
+      layer <- plot$layers[[1]]$data
+      value <- if (measure == "count") ".plotBuilderCount" else "y"
+      expect_equal(sum(layer[[value]]), if (measure == "count") nrow(data) else sum(data$y))
+      expect_length(unique(layer$facet), 2)
+      expect_no_error(ggplot2::ggplotGrob(plot))
+    }
+  }
+  data$y[1] <- -1
+  args <- list(dataset = data, addDataPoint = FALSE, stackMeasure = "sum", addBarStack = TRUE,
+    variableColorPlotBuilder = "group", columnsvariableSplitPlotBuilder = "facet")
+  expect_no_error(ggplot2::ggplotGrob(do.call(.plotBuilderTestPlot, args)))
+  args$propMode <- "relative"
+  expect_error(do.call(.plotBuilderTestPlot, args), "nonnegative")
+  args$dataset$y <- 0
+  expect_error(do.call(.plotBuilderTestPlot, args), "positive total")
+})
+
+test_that("count dashes and categorical annotations support horizontal positions", {
+  data <- data.frame(x = c(1, 2, 3, 4), y = factor(c("a", "a", "b", "b")))
+  plot <- .plotBuilderTestPlot(data, variableXPlotBuilder = "", addDataPoint = FALSE, addCountDash = TRUE)
+  dash <- ggplot2::ggplot_build(plot)$data[[1]]
+  expect_equal(dash$x, c(2, 2))
+  expect_no_error(ggplot2::ggplotGrob(plot))
+  plot <- .plotBuilderTestPlot(data,
+    annotationLineList = list(list(xAnnotation = "1", xendAnnotation = "3", yAnnotation = "1", yendAnnotation = "2", colorAnnotationLine = "black")))
+  expect_no_error(ggplot2::ggplotGrob(plot))
+})
+
+test_that("shape palettes preserve observations beyond six levels", {
+  data <- data.frame(x = 1:12, y = 12:1, shape = factor(1:12))
+  plot <- .plotBuilderTestPlot(data, pointShapeVariable = "shape")
+  points <- ggplot2::ggplot_build(plot)$data[[1]]
+  expect_equal(nrow(points), 12)
+  expect_false(anyNA(points$shape))
+  expect_length(unique(points$shape), 12)
+  data$shape <- factor(data$shape, levels = 1:15)
+  data$Value <- data$y
+  data$ID <- seq_len(nrow(data))
+  rmPlot <- .plotBuilderTestPlot(data, isRM = "RM", xVarRM = "x", pointShapeVariable = "shape")
+  expect_no_error(ggplot2::ggplotGrob(rmPlot))
+})
+
+test_that("RM marginal panels recompute subject averages from the original rows", {
+  data <- data.frame(ID = c(1, 1, 2, 3, 1, 2, 2), time = factor("a"),
+                     facet = factor(c("A", "A", "A", "A", "B", "B", "B")),
+                     Value = c(0, 2, 4, 10, 10, 10, 30))
+  plot <- .plotBuilderTestPlot(data, isRM = "RM", xVarRM = "time", colSplitRM = "facet",
+    margins = TRUE, addDataPoint = FALSE, addMeanDot = TRUE, addSEMErrorBar = TRUE,
+    layerOrder = "mean_dot,sem_errorbar")
+  built <- ggplot2::ggplot_build(plot)
+  expected <- list(c(1, 4, 10), c(10, 20), c(4, 44/3, 10))
+  expect_equal(built$data[[1]]$y, vapply(expected, mean, numeric(1)))
+  expect_equal(built$data[[2]]$ymax - built$data[[2]]$y,
+    vapply(expected, function(x) sd(x) / sqrt(length(x)), numeric(1)))
+  expect_no_error(ggplot2::ggplotGrob(plot))
+})
+
+test_that("RM trajectories do not cross other within-subject conditions", {
+  data <- expand.grid(time = factor(c("a", "b")), condition = factor(c("one", "two")), ID = 1:2)
+  data$Value <- seq_len(nrow(data))
+  plot <- .plotBuilderTestPlot(data, isRM = "RM", xVarRM = "time", connectRMPlotBuilder = TRUE,
+    repeatedMeasuresFactors = list(list(name = "time", levels = c("a", "b")),
+                                  list(name = "condition", levels = c("one", "two"))))
+  lines <- ggplot2::ggplot_build(plot)$data[[2]]
+  expect_length(unique(lines$group), 4)
+  expect_true(all(table(lines$group) == 2))
+})
+
+test_that("single-axis stack totals and relative percentages retain orientation", {
+  data <- data.frame(x = c(1, 2, 3, 4), group = factor(c("a", "a", "b", "b")))
+  for (axis in c("x", "y")) {
+    for (measure in c("count", "sum", "auto")) {
+      args <- list(dataset = data, addDataPoint = FALSE, addBarStack = TRUE,
+        variableXPlotBuilder = if (axis == "x") "x" else "",
+        variableYPlotBuilder = if (axis == "y") "x" else "",
+        variableColorPlotBuilder = "group", colorByGroup = "grouping",
+        stackMeasure = measure, propMode = "relative", asPercentage = TRUE)
+      plot <- do.call(.plotBuilderTestPlot, args)
+      built <- ggplot2::ggplot_build(plot)
+      countAxis <- if (measure == "count") { if (axis == "x") "y" else "x" } else axis
+      expect_equal(max(built$data[[1]][[paste0(countAxis, "max")]]), 1)
+      expect_match(built$plot$scales$get_scales(countAxis)$labels(1), "100")
+      expect_no_error(ggplot2::ggplotGrob(plot))
+    }
+  }
+})
+
+test_that("manual P-value brackets retain ordinal and count-axis use cases", {
+  comparison <- list(group1 = "a", group2 = "b", pAdj = "*", GroupPValue = "",
+    ColumnPValue = "", RowPValue = "", GridPValue = "", bracketSizePValue = 0.3, tipLengthPValue = 0.03)
+  for (type in c("ordinal", "nominal", "count")) {
+    data <- data.frame(x = factor(c("a", "a", "b", "b")),
+                       y = factor(c("low", "high", "low", "high"), ordered = type == "ordinal"))
+    plot <- .plotBuilderTestPlot(data, variableYPlotBuilder = if (type == "count") "" else "y",
+      addDataPoint = type != "count", addCountBar = type == "count",
+      yPositionPValue = 3, pairwiseComparisons = list(comparison))
+    expect_no_error(ggplot2::ggplotGrob(plot))
+    if (type == "ordinal") expect_true(is.ordered(plot$data$y))
+  }
+})
+
+test_that("RM distributions and exact-value counts work without an X assignment", {
+  data <- data.frame(ID = rep(1:4, each = 2), Value = rep(1:4, 2))
+  for (geometry in c("Histogram", "Density", "Boxplot", "Violin", "CountBar", "CountDash", "CountDot", "CountLine", "CountArea", "CountValue")) {
+    args <- list(dataset = data, isRM = "RM", xVarRM = "", addDataPoint = FALSE)
+    args[[paste0("add", geometry)]] <- TRUE
+    plot <- do.call(.plotBuilderTestPlot, args)
+    expect_no_error(ggplot2::ggplotGrob(plot))
+  }
+})
+
+test_that("multiple plot tabs retain independent statistic parameters", {
+  data <- data.frame(value = rep(1:12, 2), category = factor(rep(c("a", "b"), each = 12)))
+  first <- eval(formals(jaspPlotBuilder)$PlotBuilderTab)[[1]]
+  for (name in names(first)) {
+    if (is.list(first[[name]]) && "types" %in% names(first[[name]]))
+      first[[name]] <- unlist(first[[name]]$value)
+  }
+  first <- utils::modifyList(first, list(value = "first", variableXPlotBuilder = "category",
+    variableYPlotBuilder = "value", addHistogram = TRUE, addDensity = TRUE,
+    binsPlotBuilder = 5, distributionHeight = 0.4, plotStyle = "ggplotgray"))
+  second <- utils::modifyList(first, list(value = "second", variableXPlotBuilder = "value",
+    variableYPlotBuilder = "category", binsPlotBuilder = 9, distributionHeight = 0.8))
+  datasets <- list(datasetNonRMList = list(first = data, second = data), datasetRMList = list())
+  plots <- .plotBuilderPlots(datasets, list(PlotBuilderTab = list(first, second)))$updatedPlots
+  firstBuilt <- ggplot2::ggplot_build(plots$first)
+  secondBuilt <- ggplot2::ggplot_build(plots$second)
+  expect_equal(nrow(firstBuilt$data[[1]]), 10)
+  expect_equal(nrow(secondBuilt$data[[1]]), 18)
+  for (layer in firstBuilt$data) expect_equal(max(layer$xmax - layer$xmin), 0.4)
+  for (layer in secondBuilt$data) expect_equal(max(layer$ymax - layer$ymin), 0.8)
 })

@@ -64,6 +64,16 @@ TabView {
 	name: "PlotBuilderTab"
 	newItemName: qsTr("Plot 1")
 	rowComponent: Group {
+		id: plotOptions
+		readonly property bool hasX: yesRM.checked ? xVarRM.count > 0 : variableXPlotBuilder.count > 0
+		readonly property bool hasY: yesRM.checked ? repeatedMeasuresFactors.count > 0 : variableYPlotBuilder.count > 0
+		readonly property bool scaleX: yesRM.checked ? xVarRM.columnsTypes.includes("scale") : variableXPlotBuilder.columnsTypes.includes("scale")
+		readonly property bool scaleY: yesRM.checked || variableYPlotBuilder.columnsTypes.includes("scale")
+		readonly property bool hasGroup: yesRM.checked ? groupVarRM.columnsTypes.some(t => t === "nominal" || t === "ordinal") : variableColorPlotBuilder.columnsTypes.some(t => t === "nominal" || t === "ordinal")
+		readonly property bool canSummarize: scaleX || scaleY
+		readonly property bool categoryDistribution: hasX && hasY && scaleX !== scaleY
+		readonly property bool canDistribution: scaleX !== scaleY
+		readonly property bool canBoxViolin: canDistribution || (scaleX && scaleY && hasGroup)
 
 		childControlsArea.anchors.leftMargin: jaspTheme.contentMargin
 
@@ -348,7 +358,7 @@ TabView {
 			title: qsTr("Individual data points")
 
 			Label {
-				text: qsTr("Required: X AND Y-Axis Variables")
+				text: qsTr("Required: X or Y-Axis Variable")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
@@ -359,20 +369,7 @@ TabView {
 				id: addDataPoint
 				info: qsTr("Check this option to show individual data points on the plot")
 				columns: 4
-				enabled: (
-							 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
-							 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-
-							 ||
-
-							 // 2. If repeated measures (yesRM) and at least one of the following is true:
-							 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
-
-								  xVarRM.count > 0
-
-								  ))
-							 )
-
+				enabled: plotOptions.hasX || plotOptions.hasY
 				onEnabledChanged: {
 					if (!enabled) {
 						checked = false;
@@ -535,14 +532,9 @@ TabView {
 			CheckBox { ///////////////////////
 				name: "addStatEllipse"
 				label: qsTr("Add ellipse")
+				info: qsTr("Draw a data ellipse for each group and panel. The estimator requires at least four usable pairs and a nondegenerate spread on both scale axes.")
 				checked: false
-				enabled: addDataPoint.checked
-				columns: 3
-				info: qsTr("Add a statistical ellipse around the points."
-				+ "'Ellipse type' controls the method:"
-				+ "\"t\" assumes a multivariate t-distribution,"
-				+ "\"Normal\" assumes a multivariate normal distribution,"
-				+ "and \"Euclidean\" draws a circle whose radius equals the value of 'Radius'")
+				enabled: plotOptions.scaleX && plotOptions.scaleY
 				onEnabledChanged: {
 					if (!enabled) {
 						checked = false;
@@ -621,9 +613,19 @@ TabView {
 			title: qsTr("Distributions (histogram, boxplot, violin)")
 
 			Label {
-				text: qsTr("Required: X OR Y-Axis Variable (histogram); X AND Y-Axis Variables (boxplot, violin)")
+				text: qsTr("Required: a scale variable; optional categorical positions or groups")
 				wrapMode: Text.Wrap
 				color: "black"
+			}
+
+			DoubleField {
+				name: "distributionHeight"
+				label: qsTr("Distribution height")
+				value: 0.8
+				min: 0
+				inclusive: JASP.None
+				visible: plotOptions.categoryDistribution
+				info: qsTr("Height of each histogram or density ridge in category-spacing units. Each group is normalized to the same maximum height; this is not a count axis.")
 			}
 
 			GridLayout {
@@ -640,16 +642,26 @@ TabView {
 						name: "addHistogram"
 						id: addHistogram
 						label: qsTr("Histogram")
-						info: qsTr("A histogram requires one scale variable, assigned to either the X or Y axis, but not both.")
-						enabled: noRM.checked && ((variableXPlotBuilder.columnsTypes.includes("scale") && variableYPlotBuilder.count === 0)
-								 || (variableYPlotBuilder.columnsTypes.includes("scale") && variableXPlotBuilder.count === 0))
-
+						info: qsTr("A histogram requires a scale variable. A categorical second axis positions separate normalized histograms; otherwise groups can overlap, stack, or appear side by side.")
+						enabled: plotOptions.canDistribution
 						onEnabledChanged: {
 							if (!enabled) {
 								checked = false;
 							}
 						}
 
+						DropDown {
+							name: "histogramPosition"
+							label: qsTr("Groups")
+							values: [
+								{ label: qsTr("Overlay"), value: "identity" },
+								{ label: qsTr("Stack"), value: "stack" },
+								{ label: qsTr("Side by side"), value: "dodge" }
+							]
+							startValue: "identity"
+							enabled: !plotOptions.categoryDistribution
+							info: qsTr("Arrange groups within shared histogram bins. With a categorical second axis, each distribution instead starts at its category position.")
+						}
 						DoubleField {
 							name: "binsPlotBuilder"
 							label: qsTr("Number of bins")
@@ -681,14 +693,14 @@ TabView {
 						name: "addDensity"
 						id: addDensity
 						label: qsTr("Density")
-						info: qsTr("Check this option to overlay a density estimate on the histogram. Density can be shown as scaled (0–1) or on the histogram count scale.")
-						enabled: noRM.checked && ((variableXPlotBuilder.columnsTypes.includes("scale") && variableYPlotBuilder.count === 0)
-								 || (variableYPlotBuilder.columnsTypes.includes("scale") && variableXPlotBuilder.count === 0))
+						info: qsTr("Estimate a distribution from at least two usable observations in each group and panel. With one scale axis, show scaled (0–1) or count density curves. With a categorical second axis, show normalized ridges along its categories.")
+						enabled: plotOptions.canDistribution
 						onEnabledChanged: { if (!enabled) checked = false }
 
 						// Density overlay mode radiobutton
 						RadioButtonGroup {
 							id: densityOverlayMode
+							enabled: !plotOptions.categoryDistribution
 							name: "densityOverlayMode"
 							title: qsTr("Density overlay mode")
 							radioButtonsOnSameRow: false
@@ -747,21 +759,8 @@ TabView {
 					name: "addBoxplot"
 					id: addBoxplot
 					label: qsTr("Boxplot")
-					info: qsTr("Check this option to create boxplot. Boxplot and violin plot require both X-Axis and Y-Axis variables.")
-					enabled: (
-								 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-
-								 ||
-
-								 // 2. If repeated measures (yesRM) and at least one of the following is true:
-								 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
-
-									  xVarRM.count > 0
-
-									  ))
-								 )
-
+					info: qsTr("Check this option to create boxplot. A single scale axis is sufficient. Categorical positions or explicit groups produce separate distributions.")
+					enabled: plotOptions.canBoxViolin
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -860,21 +859,8 @@ TabView {
 					name: "addViolin"
 					id: addViolin
 					label: qsTr("Violin plot")
-					info: qsTr("Check this option to add a violin plot to your visualization. Boxplot and violin plot require both x-axis and y-axis variables.")
-					enabled: (
-								 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-
-								 ||
-
-								 // 2. If repeated measures (yesRM) and at least one of the following is true:
-								 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
-
-									  xVarRM.count > 0
-
-									  ))
-								 )
-
+					info: qsTr("Check this option to add a violin plot to your visualization. A single scale axis is sufficient. Categorical positions or explicit groups produce separate distributions.")
+					enabled: plotOptions.canBoxViolin
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -969,7 +955,7 @@ TabView {
 
 		Section {
 			title: qsTr("Amounts (count and sum)")
-			info: qsTr("This section adds layers that visualise amounts. "
+			info: qsTr("Count layers count observations at each distinct value, including exact numeric values; they do not bin continuous data. Repeated-measures counts count observations, not subjects. "
 					 + "<b>Dodge</b> shifts subgroup geoms sideways so they don’t overlap. "
 					 + "<b>Size / Width</b> sets the thickness of bars and lines or the radius of dots. "
 					 + "<b>Opacity (alpha)</b> controls opacity: 0 = invisible, 1 = solid. "
@@ -995,9 +981,8 @@ TabView {
 					name: "addCountBar"
 					label: qsTr("Count bar")
 					info: qsTr("Enable to add a count bar to the plot.")
-					enabled: isRM.value === "noRM" && // can't use if RM
-							 ((variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
-							  (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0))
+					enabled: plotOptions.hasX !== plotOptions.hasY
+
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1029,9 +1014,8 @@ TabView {
 					name: "addCountDash"
 					label: qsTr("Count dash")
 					info: qsTr("Enable to add dashed lines to the plot")
-					enabled: isRM.value === "noRM" && // can't use if RM
-							 ((variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
-							  (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0))
+					enabled: plotOptions.hasX !== plotOptions.hasY
+
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1073,9 +1057,8 @@ TabView {
 					name: "addCountDot"
 					label: qsTr("Count dot")
 					info: qsTr("Enable to add count dots to the plot")
-					enabled: isRM.value === "noRM" && // can't use if RM
-							 ((variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
-							  (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0))
+					enabled: plotOptions.hasX !== plotOptions.hasY
+
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1123,9 +1106,8 @@ TabView {
 					name: "addCountLine"
 					label: qsTr("Count line")
 					info: qsTr("Enable to add count lines to the plot")
-					enabled: isRM.value === "noRM" && // can't use if RM
-							 ((variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
-							  (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0))
+					enabled: plotOptions.hasX !== plotOptions.hasY
+
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1163,9 +1145,8 @@ TabView {
 					name: "addCountArea"
 					label: qsTr("Count area")
 					info: qsTr("Enable to add a count area to the plot")
-					enabled: isRM.value === "noRM" && // can't use if RM
-							 ((variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
-							  (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0))
+					enabled: plotOptions.hasX !== plotOptions.hasY
+
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1191,11 +1172,8 @@ TabView {
 					name: "addCountValue"
 					label: qsTr("Count value")
 					info: qsTr("Enable to add count values to the plot")
-					enabled: isRM.value === "noRM" &&
-							 (
-								 (variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
-								 (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0)
-								 )
+					enabled: plotOptions.hasX !== plotOptions.hasY
+
 
 					DoubleField {
 						name: "fontsizeCountValue"
@@ -1240,7 +1218,7 @@ TabView {
 
 
 			Label {
-				text: qsTr("Required: X AND Y-Axis Variables")
+				text: qsTr("Required: a scale response; lines and areas also need a positioning axis")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
@@ -1256,20 +1234,7 @@ TabView {
 					name: "addSumBar"
 					label: qsTr("Sum bar")
 					info: qsTr("Enable to add a sum bar to the plot.")
-					enabled: (
-								 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-
-								 ||
-
-								 // 2. If repeated measures (yesRM) and at least one of the following is true:
-								 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
-
-									  xVarRM.count > 0
-
-									  ))
-								 )
-
+					enabled: plotOptions.canSummarize
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1300,20 +1265,7 @@ TabView {
 					name: "addSumDash"
 					label: qsTr("Sum dash")
 					info: qsTr("Enable to add dashed lines to the plot.")
-					enabled: (
-								 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-
-								 ||
-
-								 // 2. If repeated measures (yesRM) and at least one of the following is true:
-								 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
-
-									  xVarRM.count > 0
-
-									  ))
-								 )
-
+					enabled: plotOptions.canSummarize
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1354,20 +1306,7 @@ TabView {
 					name: "addSumDot"
 					label: qsTr("Sum dot")
 					info: qsTr("Enable to add sum dots to the plot.")
-					enabled: (
-								 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-
-								 ||
-
-								 // 2. If repeated measures (yesRM) and at least one of the following is true:
-								 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
-
-									  xVarRM.count > 0
-
-									  ))
-								 )
-
+					enabled: plotOptions.canSummarize
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1410,20 +1349,7 @@ TabView {
 					name: "addSumLine"
 					label: qsTr("Sum line")
 					info: qsTr("Enable to add a sum line to the plot.")
-					enabled: (
-								 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-
-								 ||
-
-								 // 2. If repeated measures (yesRM) and at least one of the following is true:
-								 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
-
-									  xVarRM.count > 0
-
-									  ))
-								 )
-
+					enabled: plotOptions.canSummarize && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1459,20 +1385,7 @@ TabView {
 					name: "addSumArea"
 					label: qsTr("Sum area")
 					info: qsTr("Enable to add a sum area to the plot.")
-					enabled: (
-								 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-
-								 ||
-
-								 // 2. If repeated measures (yesRM) and at least one of the following is true:
-								 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
-
-									  xVarRM.count > 0
-
-									  ))
-								 )
-
+					enabled: plotOptions.canSummarize && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1499,20 +1412,7 @@ TabView {
 					name: "addSumValue"
 					label: qsTr("Sum value")
 					info: qsTr("Enable to add sum values to the plot.")
-					enabled: (
-								 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-
-								 ||
-
-								 // 2. If repeated measures (yesRM) and at least one of the following is true:
-								 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
-
-									  xVarRM.count > 0
-
-									  ))
-								 )
-
+					enabled: plotOptions.canSummarize
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1566,7 +1466,7 @@ TabView {
 
 			info: qsTr("Visualise how each subgroup contributes to the whole "
 					 + "Requires one Group variable plus either an X- or Y-axis variable "
-					 + "Absolute mode stacks raw counts; Relative mode rescales each stack to 0-1 or 0-100 % "
+					 + "Absolute mode stacks counts or sums; Relative mode rescales each stack to 0-1 or 0-100 % "
 					 + "Common controls: Opacity sets opacity, Reverse order flips the stack sequence, "
 					 + "Line width outlines area stacks, Fill missing combinations with zero completes absent X/group combinations; observations with missing grouping values are excluded")
 			columns: 2
@@ -1576,6 +1476,21 @@ TabView {
 				wrapMode: Text.Wrap
 				color: "black"
 				Layout.columnSpan: 2
+			}
+
+			DropDown {
+				name: "stackMeasure"
+				label: qsTr("Measure")
+				values: plotOptions.canSummarize ? [
+					{ label: qsTr("Automatic (by variable types)"), value: "auto" },
+					{ label: qsTr("Count"), value: "count" },
+					{ label: qsTr("Sum"), value: "sum" }
+				] : [
+					{ label: qsTr("Automatic (by variable types)"), value: "auto" },
+					{ label: qsTr("Count"), value: "count" }
+				]
+				startValue: "auto"
+				info: qsTr("Count stacks counts at each position (X, or Y for horizontal plots). Sum stacks scale-variable totals. Automatic uses sums for bars with a scale axis and for areas with two axes, and counts otherwise. Relative stacks require nonnegative contributions and positive totals.")
 			}
 
 			RadioButtonGroup {
@@ -1590,7 +1505,7 @@ TabView {
 					value: "absolute"
 					label: qsTr("Absolute")
 					checked: true
-					info: qsTr("Stack heights show raw counts")
+					info: qsTr("Stack heights show counts or sums")
 				}
 				RadioButton {
 					id: relative
@@ -1608,12 +1523,7 @@ TabView {
 					name: "addBarStack"
 					label: qsTr("Bar stack")
 					info: qsTr("Add stacked bars for each category using the selected proportion mode")
-					enabled: ( noRM.checked &&
-							   (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0) &&
-							   variableColorPlotBuilder.count > 0 )
-						  || ( yesRM.checked &&
-							   repeatedMeasuresFactors.count > 0 &&
-							   groupVarRM.count > 0 )
+					enabled: plotOptions.hasGroup && (plotOptions.hasX || plotOptions.hasY) && (!(plotOptions.hasX && plotOptions.hasY) || plotOptions.canSummarize)
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "alphaBarStack";   label: qsTr("Opacity"); defaultValue: 0.8; min: 0; max: 1 }
@@ -1624,12 +1534,7 @@ TabView {
 					name: "addAreaStack"
 					label: qsTr("Area stack")
 					info: qsTr("Add stacked areas connected across categories")
-					enabled: ( noRM.checked &&
-							   (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0) &&
-							   variableColorPlotBuilder.count > 0 )
-						  || ( yesRM.checked &&
-							   repeatedMeasuresFactors.count > 0 &&
-							   groupVarRM.count > 0 )
+					enabled: plotOptions.hasGroup && (plotOptions.hasX || plotOptions.hasY) && (!(plotOptions.hasX && plotOptions.hasY) || plotOptions.canSummarize)
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "alphaAreaStack";     label: qsTr("Opacity"); defaultValue: 0.4; min: 0; max: 1 }
@@ -1657,12 +1562,12 @@ TabView {
 			title: qsTr("Mean")
 
 			info: qsTr("Summary layers that display the arithmetic mean of the Y variable for every X (or vice versa). "
-					 + "Requires both X and Y axes mapped. "
+					 + "A single scale axis is sufficient for bars, dots, dashes, values, and error bars. "
 					 + "Mean can be rendered as bar, line, dot, dash, area, or value. "
 					 + "Common controls: <b>Dodge</b> separates sub-groups, <b>Opacity</b> sets opacity, <b>Size/width</b> changes thickness, <b>Outline</b> toggles borders")
 
 			Label {
-				text: qsTr("Required: X AND Y-Axis Variables")
+				text: qsTr("Required: a scale response; lines and ribbons also need a positioning axis")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
@@ -1677,8 +1582,7 @@ TabView {
 					name: "addMeanBar"
 					label: qsTr("Mean bar")
 					info: qsTr("Add mean bars")
-					enabled: (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-						   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
+					enabled: plotOptions.canSummarize
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMeanBar";  label: qsTr("Dodge");        defaultValue: 0.8 }
@@ -1691,8 +1595,7 @@ TabView {
 					name: "addMeanDash"
 					label: qsTr("Mean dash")
 					info: qsTr("Add dashed mean lines")
-					enabled: (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-						   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
+					enabled: plotOptions.canSummarize
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMeanDash";     label: qsTr("Dodge");       defaultValue: 0.8 }
@@ -1707,11 +1610,23 @@ TabView {
 					name: "addMeanDot"
 					label: qsTr("Mean dot")
 					info: qsTr("Add mean dots")
-					enabled: (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-						   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
+					enabled: plotOptions.canSummarize
 					onEnabledChanged: { if (!enabled) checked = false }
 
-					DoubleField { name: "dodgeMeanDot"; label: qsTr("Dodge");    defaultValue: 0.8 }
+					DropDown {
+						name: "meanDotMode"
+						id: meanDotMode
+						label: qsTr("Summarize")
+						values: [
+							{ label: qsTr("At each position"), value: "position" },
+							{ label: qsTr("Both coordinates"), value: "center" }
+						]
+						startValue: "position"
+						enabled: plotOptions.scaleX && plotOptions.scaleY
+						onEnabledChanged: { if (!enabled) currentIndex = 0 }
+						info: qsTr("At each position summarizes the response at each position. Both coordinates draws one point at (mean(X), mean(Y)) per group and panel. Error bars remain summaries at each position.")
+					}
+					DoubleField { name: "dodgeMeanDot"; enabled: meanDotMode.currentValue === "position"; label: qsTr("Dodge");    defaultValue: 0.8 }
 					DoubleField { name: "sizeMeanDot";  label: qsTr("Dot size"); defaultValue: 5 }
 					DoubleField { name: "alphaMeanDot"; label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					DropDown {
@@ -1732,8 +1647,7 @@ TabView {
 					name: "addMeanLine"
 					label: qsTr("Mean line")
 					info: qsTr("Add mean profile lines")
-					enabled: (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-						   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
+					enabled: plotOptions.canSummarize && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMeanLine";   label: qsTr("Dodge");      defaultValue: 0.8 }
@@ -1747,8 +1661,7 @@ TabView {
 					name: "addMeanArea"
 					label: qsTr("Mean area")
 					info: qsTr("Add filled mean areas")
-					enabled: (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-						   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
+					enabled: plotOptions.canSummarize && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMeanArea"; label: qsTr("Dodge");        defaultValue: 0.8 }
@@ -1760,8 +1673,7 @@ TabView {
 					name: "addMeanValue"
 					label: qsTr("Mean value")
 					info: qsTr("Add numeric mean labels")
-					enabled: (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-						   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
+					enabled: plotOptions.canSummarize
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField  { name: "fontsizeMeanValue";  label: qsTr("Font size"); defaultValue: 14 }
@@ -1788,12 +1700,12 @@ TabView {
 			title: qsTr("Median")
 
 			info: qsTr("Summary layers that display the median of the Y variable for every X (or vice versa). "
-					 + "Requires both X and Y axes mapped. "
+					 + "A single scale axis is sufficient for bars, dots, dashes, values, and error bars. "
 					 + "Median can be rendered as bar, line, dot, dash, area, or value. "
 					 + "Common controls: <b>Dodge</b> separates sub-groups, <b>Opacity</b> sets opacity, <b>Size/width</b> changes thickness, <b>Outline</b> toggles borders")
 
 			Label {
-				text: qsTr("Required: X AND Y-Axis Variables")
+				text: qsTr("Required: a scale response; lines and ribbons also need a positioning axis")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
@@ -1808,10 +1720,7 @@ TabView {
 					name: "addMedianBar"
 					label: qsTr("Median bar")
 					info: qsTr("Add median bars")
-					enabled: (
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							  || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canSummarize
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMedianBar";  label: qsTr("Dodge");        defaultValue: 0.8 }
@@ -1825,10 +1734,7 @@ TabView {
 					name: "addMedianDash"
 					label: qsTr("Median dash")
 					info: qsTr("Add dashed median lines")
-					enabled: (
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							  || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canSummarize
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMedianDash";     label: qsTr("Dodge");       defaultValue: 0.8 }
@@ -1844,13 +1750,23 @@ TabView {
 					name: "addMedianDot"
 					label: qsTr("Median dot")
 					info: qsTr("Add median dots")
-					enabled: (
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							  || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canSummarize
 					onEnabledChanged: { if (!enabled) checked = false }
 
-					DoubleField { name: "dodgeMedianDot"; label: qsTr("Dodge");    defaultValue: 0.8 }
+					DropDown {
+						name: "medianDotMode"
+						id: medianDotMode
+						label: qsTr("Summarize")
+						values: [
+							{ label: qsTr("At each position"), value: "position" },
+							{ label: qsTr("Both coordinates"), value: "center" }
+						]
+						startValue: "position"
+						enabled: plotOptions.scaleX && plotOptions.scaleY
+						onEnabledChanged: { if (!enabled) currentIndex = 0 }
+						info: qsTr("At each position summarizes the response at each position. Both coordinates draws one coordinate-wise median point per group and panel; it is not a spatial median.")
+					}
+					DoubleField { name: "dodgeMedianDot"; enabled: medianDotMode.currentValue === "position"; label: qsTr("Dodge");    defaultValue: 0.8 }
 					DoubleField { name: "sizeMedianDot";  label: qsTr("Dot size"); defaultValue: 5 }
 					DoubleField { name: "alphaMedianDot"; label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					DropDown {
@@ -1872,10 +1788,7 @@ TabView {
 					name: "addMedianLine"
 					label: qsTr("Median line")
 					info: qsTr("Add median profile lines")
-					enabled: (
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							  || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canSummarize && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMedianLine";   label: qsTr("Dodge");      defaultValue: 0.8 }
@@ -1889,10 +1802,7 @@ TabView {
 					name: "addMedianArea"
 					label: qsTr("Median area")
 					info: qsTr("Add filled median areas")
-					enabled: (
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							  || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canSummarize && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMedianArea"; label: qsTr("Dodge");        defaultValue: 0.8 }
@@ -1904,10 +1814,7 @@ TabView {
 					name: "addMedianValue"
 					label: qsTr("Median value")
 					info: qsTr("Add numeric median labels")
-					enabled: (
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							  || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canSummarize
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField  { name: "fontsizeMedianValue";  label: qsTr("Font size"); defaultValue: 14 }
@@ -1935,11 +1842,13 @@ TabView {
 
 			info: qsTr("Shows variability with vertical bars or shaded ribbons. "
 					 + "Choose <b>Range</b> (min–max), <b>SD</b>, <b>SEM</b>, or <b>95 % CI</b>. "
+					 + "SD and SEM are centered on the mean; the 95% CI is a bootstrap interval for the mean. "
+					 + "In repeated measures, means, SEM, and 95% CI first average observations within each subject at each position within each group and panel. SD describes the original observations. Groups with fewer than two usable observations (subjects for repeated-measures SEM/CI) are omitted from uncertainty layers. "
 					 + "Common controls: <b>Dodge</b> offsets overlapping groups, <b>Width/Line width</b> adjusts thickness, "
 					 + "<b>Opacity</b> sets opacity, <b>Black lines</b> toggles outlines")
 
 			Label {
-				text: qsTr("Required: X AND Y-Axis Variables")
+				text: qsTr("Required: a scale response; lines and ribbons also need a positioning axis")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
@@ -1948,6 +1857,14 @@ TabView {
 				text: qsTr("The optimal dodge value is 0 if both X and Y-Axis Variables are continuous")
 				wrapMode: Text.Wrap
 				color: "black"
+			}
+
+			DoubleField {
+				name: "ribbonDodge"
+				label: qsTr("Ribbon dodge")
+				defaultValue: 0.8
+				min: 0
+				info: qsTr("Match the dodge of the corresponding summary line. Use zero to retain numerical positions on a continuous axis.")
 			}
 
 			GridLayout {
@@ -1961,10 +1878,7 @@ TabView {
 					name: "addRangeErrorBar"
 					label: qsTr("Range error bar")
 					info: qsTr("Add range error bars")
-					enabled: (
-								  (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canSummarize
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeRangeErrorBar";   label: qsTr("Dodge");        defaultValue: 0.8 }
@@ -1980,10 +1894,7 @@ TabView {
 					name: "addSDErrorBar"
 					label: qsTr("SD error bar")
 					info: qsTr("Add SD error bars")
-					enabled: (
-								  (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canSummarize
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeSDErrorBar";   label: qsTr("Dodge");        defaultValue: 0.8 }
@@ -1999,10 +1910,7 @@ TabView {
 					name: "addSEMErrorBar"
 					label: qsTr("SEM error bar")
 					info: qsTr("Add SEM error bars")
-					enabled: (
-								  (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canSummarize
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeSEMErrorBar";   label: qsTr("Dodge");        defaultValue: 0.8 }
@@ -2017,10 +1925,7 @@ TabView {
 					name: "addCI95ErrorBar"
 					label: qsTr("95% CI error bar")
 					info: qsTr("Add 95 % CI error bars")
-					enabled: (
-								  (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canSummarize
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeCI95ErrorBar";   label: qsTr("Dodge");        defaultValue: 0.8 }
@@ -2041,10 +1946,7 @@ TabView {
 					name: "addRangeRibbon"
 					label: qsTr("Range ribbon")
 					info: qsTr("Add range ribbons")
-					enabled: (
-								  (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canSummarize && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "alphaRangeRibbon"; label: qsTr("Opacity"); defaultValue: 0.4; min: 0; max: 1 }
@@ -2057,10 +1959,7 @@ TabView {
 					name: "addSdRibbon"
 					label: qsTr("SD ribbon")
 					info: qsTr("Add SD ribbons")
-					enabled: (
-								  (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canSummarize && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "alphaSdRibbon"; label: qsTr("Opacity"); defaultValue: 0.4; min: 0; max: 1 }
@@ -2072,10 +1971,7 @@ TabView {
 					name: "addSemRibbon"
 					label: qsTr("SEM ribbon")
 					info: qsTr("Add SEM ribbons")
-					enabled: (
-								  (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canSummarize && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "alphaSemRibbon"; label: qsTr("Opacity"); defaultValue: 0.4; min: 0; max: 1 }
@@ -2087,10 +1983,7 @@ TabView {
 					name: "addCi95Ribbon"
 					label: qsTr("95% CI ribbon")
 					info: qsTr("Add 95 % CI ribbons")
-					enabled: (
-								  (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canSummarize && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "alphaCi95Ribbon"; label: qsTr("Opacity"); defaultValue: 0.4; min: 0; max: 1 }
@@ -2107,12 +2000,12 @@ TabView {
 			title: qsTr("Curve fit and reference lines")
 
 			info: qsTr("Fit trend lines or statistical models and add reference or identity lines for comparison. "
-					 + "Curve fitting requires individual data points. "
+					 + "Curve fitting requires two scale axes; displaying individual points is optional. "
 					 + "Common controls: <b>Method</b> chooses the model, <b>Line width</b> adjusts thickness, "
 					 + "<b>Dodge</b> separates groups, <b>Opacity</b> sets opacity, and <b>Color</b> selects the line colour")
 
 			Label {
-				text: qsTr("Required: individual data points (Curve fit)")
+				text: qsTr("Required: two scale axes (curve fit)")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
@@ -2121,7 +2014,7 @@ TabView {
 				name: "addCurveFitPlotBuilder"
 				label: qsTr("Add curve fit")
 				info: qsTr("Fit a model to the data points")
-				enabled: addDataPoint.checked
+				enabled: plotOptions.scaleX && plotOptions.scaleY
 				onEnabledChanged: { if (!enabled) checked = false }
 				columns: 3
 
@@ -2149,7 +2042,7 @@ TabView {
 				}
 
 				Group {
-					CheckBox { name: "seCurveFit";           label: qsTr("SE");          checked: true }
+					CheckBox { name: "seCurveFit";           label: qsTr("SE");          checked: true; info: qsTr("Show the fitted model’s confidence band. The model treats rows as independent; this is not the subject-level SEM/CI from the summary layers.") }
 					CheckBox { name: "blackOutlineCurveFit"; label: qsTr("Black lines") }
 				}
 			}
@@ -2183,7 +2076,7 @@ TabView {
 			CheckBox {
 				name: "addIdentityLinePlotBuilder"
 				label: qsTr("Add identity line")
-				info: qsTr("Add identity line (y = x)")
+				info: qsTr("Add identity line (y = x). This comparison is meaningful when both axes have numerical values in comparable units.")
 				CheckBox { name: "reversedirectionIdentityLine"; label: qsTr("Reverse direction") }
 				TextField {
 					name: "colorIdentityLine"; label: qsTr("Line color");
@@ -3179,7 +3072,7 @@ TabView {
 					 + "Set colour, text size and vertical spacing, then list each comparison in the table below")
 
 			Label {
-				text: qsTr("Required: X AND Y-Axis Variables")
+				text: qsTr("Required: categorical X; use Flip plot for horizontal brackets")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
@@ -3231,7 +3124,7 @@ TabView {
 						name: "yPositionPValue"
 						negativeValues: true
 						label: qsTr("Y-Axis position of the first P value")
-						info: qsTr("Initial vertical position for the first bracket")
+						info: qsTr("Initial position on the Y axis. For categorical Y, use category positions 1, 2, and so on.")
 						decimals: 2
 						fieldWidth: 70
 						value: 70
@@ -3263,10 +3156,7 @@ TabView {
 				minimumItems: 0
 				maximumItems: -1
 
-				enabled: (
-							 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-						  || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-						 )
+				enabled: plotOptions.hasX && !plotOptions.scaleX
 
 				onEnabledChanged: {
 					if (!enabled) {
@@ -3393,7 +3283,7 @@ TabView {
 			info: qsTr("Draw manual comparison lines (e.g., <b>min–max bars</b> or custom contrasts) with optional text labels")
 
 			Label {
-				text: qsTr("Required: X AND Y-Axis Variables")
+				text: qsTr("Required: X or Y-Axis Variable")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
@@ -3412,10 +3302,7 @@ TabView {
 				addItemManually: true
 				minimumItems: 0
 
-				enabled: (
-							 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-						  || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-						 )
+				enabled: plotOptions.hasX || plotOptions.hasY
 
 				onEnabledChanged: {
 					if (!enabled) {

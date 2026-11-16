@@ -274,6 +274,8 @@ addDecodedLabels <- function(p) {
       alpha         = tab[["alphaPlotBuilder"]]
     )
 
+    if (is.null(p$mapping$x)) argList$mapping <- ggplot2::aes(x = 1)
+    if (is.null(p$mapping$y)) argList$mapping <- ggplot2::aes(y = 1)
     outline <- .plotBuilderOutlineColor(tab, "DataPoint")
     if (outline != "automatic")
       argList$color <- outline
@@ -402,8 +404,8 @@ addDecodedLabels <- function(p) {
           # Save the existing order of levels.
           # This preserves any specific ordering already defined (e.g., from JASP settings).
           lvls <- levels(localData[[xVar]])
-          # Convert to a regular factor with the preserved level order.
-          localData[[xVar]] <- factor(as.character(localData[[xVar]]), levels = lvls)
+          # Preserve ordered factors as well as their level order.
+          localData[[xVar]] <- factor(as.character(localData[[xVar]]), levels = lvls, ordered = is.ordered(localData[[xVar]]))
         } else {
           # If xVar is not already a factor (e.g., a character vector),
           # convert it to a factor using the order of first appearance.
@@ -420,7 +422,7 @@ addDecodedLabels <- function(p) {
         if (is.factor(localData[[yVar]])) {
           # Preserve the current factor level order.
           lvls <- levels(localData[[yVar]])
-          localData[[yVar]] <- factor(as.character(localData[[yVar]]), levels = lvls)
+          localData[[yVar]] <- factor(as.character(localData[[yVar]]), levels = lvls, ordered = is.ordered(localData[[yVar]]))
         } else {
           # Convert to a factor using the unique order from the data.
           localData[[yVar]] <- factor(localData[[yVar]], levels = unique(localData[[yVar]]))
@@ -428,12 +430,24 @@ addDecodedLabels <- function(p) {
       }
     } # end of ordinal/nominal problem section
 
-    if (isTRUE(tab[["addHistogram"]]) || isTRUE(tab[["addDensity"]])) {
-      distributionVars <- c(xVar, yVar)
-      distributionVars <- distributionVars[nzchar(distributionVars)]
-      if (length(distributionVars) != 1 || !is.numeric(localData[[distributionVars[1]]]))
-        .quitAnalysis(gettext("Histograms and densities require exactly one scale variable, assigned to either the X or Y axis."))
+    hasX <- nzchar(xVar) && xVar %in% names(localData)
+    hasY <- nzchar(yVar) && yVar %in% names(localData)
+    scaleX <- hasX && is.numeric(localData[[xVar]])
+    scaleY <- hasY && is.numeric(localData[[yVar]])
+    groupVar <- encodeColNames(if (identical(tab$isRM, "RM")) tab$groupVarRM else tab$variableColorPlotBuilder)
+    hasGroup <- length(groupVar) == 1 && nzchar(groupVar) && groupVar %in% names(localData) && is.factor(localData[[groupVar]])
+    summaryOptions <- grep("^add(Sum|Mean|Median|Range|SD|SEM|CI95|Sd|Sem|Ci95)", names(tab), value = TRUE)
+    if (any(vapply(tab[summaryOptions], isTRUE, logical(1))) && !scaleX && !scaleY)
+      .quitAnalysis(gettext("Summary layers require a scale variable on at least one axis."))
+    distributionPositions <- hasX && hasY && xor(scaleX, scaleY)
+    if ((isTRUE(tab$addHistogram) || isTRUE(tab$addDensity)) && !xor(scaleX, scaleY))
+      .quitAnalysis(gettext("Histograms and densities require exactly one scale variable, optionally positioned along a categorical axis."))
+    if (isTRUE(tab$addBoxplot) || isTRUE(tab$addViolin)) {
+      if ((!scaleX && !scaleY) || (scaleX && scaleY && !hasGroup))
+        .quitAnalysis(gettext("Boxplots and violins require a scale variable and optional categorical positions or explicit categorical groups."))
     }
+    if ((isTRUE(tab$addCurveFitPlotBuilder) || isTRUE(tab$addStatEllipse)) && !(scaleX && scaleY))
+      .quitAnalysis(gettext("Fitted curves and ellipses require scale variables on both axes."))
 
     # extract plot id
     plotId <- as.character(tab$value)
@@ -467,6 +481,15 @@ addDecodedLabels <- function(p) {
       tidyplots::tidyplot,
       tidyplot_args
     )
+
+    if (hasGroup) {
+      statGroupVars <- unique(c(groupVar, if (hasColor && is.factor(localData[[colorVar]])) colorVar))
+      groupMapping <- ggplot2::aes(group = interaction(!!!rlang::syms(statGroupVars), drop = TRUE))$group
+      positionVars <- c(if (hasX && !scaleX) xVar, if (hasY && !scaleY) yVar)
+      pointGroupVars <- unique(c(statGroupVars, positionVars))
+      pointGroupMapping <- ggplot2::aes(group = interaction(!!!rlang::syms(pointGroupVars), drop = TRUE))$group
+      tidyplot_obj$mapping$group <- pointGroupMapping
+    }
 
     hasRows <- (!is.null(rowsVar) && rowsVar != "")
     hasCols <- (!is.null(colsVar) && colsVar != "")
@@ -612,6 +635,13 @@ addDecodedLabels <- function(p) {
 
     if (tab[["addHistogram"]]) {
       layer_calls$histogram <- function(p) {
+        if (distributionPositions) {
+          return(p + ggplot2::geom_rect(
+            stat = .plotBuilderDistributionStat(TRUE, scaleX, tab$binsPlotBuilder,
+              if (is.null(tab$distributionHeight)) 0.8 else tab$distributionHeight, FALSE),
+            alpha = tab$alphaHistogramPlotBuilder,
+            colour = if (isTRUE(tab$blackHistogramOutline)) "black" else NA))
+        }
         distributionVar <- if (nzchar(xVar)) xVar else yVar
         fillvar <- NULL
         if (!is.null(colorVar) && colorVar != "" && colorVar %in% names(localData)) {
@@ -629,7 +659,7 @@ addDecodedLabels <- function(p) {
           orientation = if (nzchar(xVar)) "x" else "y",
           bins = tab[["binsPlotBuilder"]],
           alpha = tab[["alphaHistogramPlotBuilder"]],
-          position = "identity",
+          position = if (is.null(tab$histogramPosition)) "identity" else tab$histogramPosition,
           inherit.aes = TRUE
         )
         if (isTRUE(tab[["blackHistogramOutline"]])) {
@@ -655,6 +685,14 @@ addDecodedLabels <- function(p) {
 
     if (tab[["addDensity"]]) {
       layer_calls$density <- function(p) {
+        if (distributionPositions) {
+          return(p + ggplot2::geom_ribbon(
+            stat = .plotBuilderDistributionStat(FALSE, scaleX, tab$binsPlotBuilder,
+              if (is.null(tab$distributionHeight)) 0.8 else tab$distributionHeight, FALSE),
+            orientation = if (scaleX) "x" else "y", alpha = tab$alphaDensityPlotBuilder,
+            linewidth = tab$lineWidthDensity,
+            colour = if (isTRUE(tab$blackDensityOutline)) "black" else NA))
+        }
         distributionVar <- if (nzchar(xVar)) xVar else yVar
         mode <- tab[["densityOverlayMode"]]
         fillvar <- NULL
@@ -689,14 +727,7 @@ addDecodedLabels <- function(p) {
         }
         if (mode == "count" && isTRUE(tab[["addHistogram"]])) {
           # Use the histogram's own bin calculation, including free panel scales.
-          bins <- tab[["binsPlotBuilder"]]
-          argList$stat <- ggplot2::ggproto(NULL, ggplot2::StatDensity,
-            compute_group = function(data, scales, flipped_aes = FALSE) {
-              density <- ggplot2::StatDensity$compute_group(data, scales, flipped_aes = flipped_aes)
-              histogram <- ggplot2::StatBin$compute_group(data, scales, bins = bins, flipped_aes = flipped_aes)
-              density$count <- density$count * histogram$width[1]
-              density
-            })
+          argList$stat <- .plotBuilderCountDensityStat(tab[["binsPlotBuilder"]])
         }
         argList <- argList[!sapply(argList, is.null)]
         ggcall <- p + do.call(ggplot2::geom_density, argList)
@@ -803,7 +834,16 @@ addDecodedLabels <- function(p) {
           argList$fill  <- "black"
         }
 
-        p <- do.call(tidyplots::add_count_dash, c(list(p), argList))
+        if (!hasX && hasY) {
+          p <- p + ggplot2::geom_errorbar(
+            ggplot2::aes(xmin = ggplot2::after_stat(count), xmax = ggplot2::after_stat(count)),
+            stat = "count", orientation = "y", linewidth = argList$linewidth,
+            width = argList$width, alpha = argList$alpha,
+            position = ggplot2::position_dodge(width = argList$dodge_width))
+          if (isTRUE(tab$blackOutlineCountDash)) p$layers[[length(p$layers)]]$aes_params$colour <- "black"
+        } else {
+          p <- do.call(tidyplots::add_count_dash, c(list(p), argList))
+        }
 
         titleValueY <- tab[["titleYPlotBuilder"]]
         if (!is.null(titleValueY) && titleValueY != "") {
@@ -914,6 +954,10 @@ addDecodedLabels <- function(p) {
           width       = tab[["widthSumBar"]],
           alpha       = tab[["alphaSumBar"]]
         )
+        if (xor(hasX, hasY)) {
+          argList$mapping <- if (hasX) ggplot2::aes(y = 1) else ggplot2::aes(x = 1)
+          argList$orientation <- if (hasX) "y" else "x"
+        }
         do.call(tidyplots::add_sum_bar, c(list(p), argList))
       }
     }
@@ -996,58 +1040,17 @@ addDecodedLabels <- function(p) {
 
     # Add proportion bar and area ####
 
-    # For Bar Stack, use the single "addBarStack" option.
-    if (tab[["addBarStack"]]) {
-      layer_calls$barstack <- function(p) {
-        mode <- tab[["propMode"]]
-
-        argList <- list(
-          reverse = tab[["reverseBarStack"]],
-          alpha   = tab[["alphaBarStack"]]
-        )
-
-        if (mode == "absolute") {
-          p <- do.call(tidyplots::add_barstack_absolute, c(list(p), argList))
-        } else if (mode == "relative") {
-          p <- do.call(tidyplots::add_barstack_relative, c(list(p), argList))
-        }
-
-        titleValueY <- tab[["titleYPlotBuilder"]]
-        if (!is.null(titleValueY) && titleValueY != "") {
-          p <- p |> tidyplots::adjust_y_axis_title(title = titleValueY)
-        }
-
-        titleValueX <- tab[["titleXPlotBuilder"]]
-        if (!is.null(titleValueX) && titleValueX != "") {
-          p <- p |> tidyplots::adjust_x_axis_title(title = titleValueX)
-        }
-
-        p
-      }
+    if (tab[["addBarStack"]] || tab[["addAreaStack"]]) {
+      if (!hasGroup)
+        .quitAnalysis(gettext("Stacked plots require a categorical Group variable."))
+      facetVars <- intersect(c(rowsVar, colsVar, gridVar), names(localData))
+      if (tab[["addBarStack"]])
+        layer_calls$barstack <- function(p)
+          .plotBuilderStack(p, tab, FALSE, xVar, yVar, groupVar, colorVar, facetVars)
+      if (tab[["addAreaStack"]])
+        layer_calls$areastack <- function(p)
+          .plotBuilderStack(p, tab, TRUE, xVar, yVar, groupVar, colorVar, facetVars)
     }
-
-    # For Area Stack, use the single "addAreaStack" option.
-    if (tab[["addAreaStack"]]) {
-      layer_calls$areastack <- function(p) {
-        mode <- tab[["propMode"]]
-
-        argList <- list(
-          reverse    = tab[["reverseAreaStack"]],
-          alpha      = tab[["alphaAreaStack"]],
-          linewidth  = tab[["linewidthAreaStack"]],
-          replace_na = tab[["replaceNaAreaStack"]]
-        )
-
-        if (mode == "absolute") {
-          do.call(tidyplots::add_areastack_absolute, c(list(p), argList))
-        } else if (mode == "relative") {
-          do.call(tidyplots::add_areastack_relative, c(list(p), argList))
-        } else {
-          p  # fallback: return unchanged if invalid mode
-        }
-      }
-    }
-
 
     # Add Mean Bar (tidyplots::add_mean_bar)----
     if (tab[["addMeanBar"]]) {
@@ -1057,6 +1060,10 @@ addDecodedLabels <- function(p) {
           alpha       = tab[["alphaMeanBar"]],
           width       = tab[["widthMeanBar"]]
         )
+        if (xor(hasX, hasY)) {
+          argList$mapping <- if (hasX) ggplot2::aes(y = 1) else ggplot2::aes(x = 1)
+          argList$orientation <- if (hasX) "y" else "x"
+        }
         do.call(tidyplots::add_mean_bar, c(list(p), argList))
       }
     }
@@ -1145,6 +1152,10 @@ addDecodedLabels <- function(p) {
           alpha       = tab[["alphaMedianBar"]],
           width       = tab[["widthMedianBar"]]
         )
+        if (xor(hasX, hasY)) {
+          argList$mapping <- if (hasX) ggplot2::aes(y = 1) else ggplot2::aes(x = 1)
+          argList$orientation <- if (hasX) "y" else "x"
+        }
         do.call(tidyplots::add_median_bar, c(list(p), argList))
       }
     }
@@ -1297,7 +1308,7 @@ addDecodedLabels <- function(p) {
     if (tab[["addSemRibbon"]]) {
       layer_calls$sem_ribbon <- function(p) {
         argList <- list(
-          dodge_width = 0.8,
+          dodge_width = if (is.null(tab$ribbonDodge)) 0.8 else tab$ribbonDodge,
           alpha       = tab[["alphaSemRibbon"]]
         )
         if (tab[["blackOutlineSemRibbon"]]) {
@@ -1311,7 +1322,7 @@ addDecodedLabels <- function(p) {
     if (tab[["addRangeRibbon"]]) {
       layer_calls$range_ribbon <- function(p) {
         argList <- list(
-          dodge_width = 0.8,
+          dodge_width = if (is.null(tab$ribbonDodge)) 0.8 else tab$ribbonDodge,
           alpha       = tab[["alphaRangeRibbon"]]
         )
         if (tab[["blackOutlineRangeRibbon"]]) {
@@ -1325,7 +1336,7 @@ addDecodedLabels <- function(p) {
     if (tab[["addSdRibbon"]]) {
       layer_calls$sd_ribbon <- function(p) {
         argList <- list(
-          dodge_width = 0.8,
+          dodge_width = if (is.null(tab$ribbonDodge)) 0.8 else tab$ribbonDodge,
           alpha       = tab[["alphaSdRibbon"]]
         )
         if (tab[["blackOutlineSdRibbon"]]) {
@@ -1339,7 +1350,7 @@ addDecodedLabels <- function(p) {
     if (tab[["addCi95Ribbon"]]) {
       layer_calls$ci95_ribbon <- function(p) {
         argList <- list(
-          dodge_width = 0.8,
+          dodge_width = if (is.null(tab$ribbonDodge)) 0.8 else tab$ribbonDodge,
           alpha       = tab[["alphaCi95Ribbon"]]
         )
         if (tab[["blackOutlineCi95Ribbon"]]) {
@@ -1392,6 +1403,14 @@ addDecodedLabels <- function(p) {
         outline <- .plotBuilderOutlineColor(tab, "MeanDot")
         if (outline != "automatic") argList$color <- outline
 
+        if (identical(tab$meanDotMode, "center")) {
+          if (!(scaleX && scaleY))
+            .quitAnalysis(gettext("A two-dimensional center requires scale variables on both axes."))
+          pointArgs <- list(stat = .plotBuilderCenterStat(mean),
+            size = argList$size, alpha = argList$alpha, shape = 21)
+          if (!is.null(argList$color)) pointArgs$colour <- argList$color
+          return(p + do.call(ggplot2::geom_point, pointArgs))
+        }
         do.call(tidyplots::add_mean_dot, c(list(p), argList))
       }
     }
@@ -1407,6 +1426,14 @@ addDecodedLabels <- function(p) {
         )
         outline <- .plotBuilderOutlineColor(tab, "MedianDot")
         if (outline != "automatic") argList$color <- outline
+        if (identical(tab$medianDotMode, "center")) {
+          if (!(scaleX && scaleY))
+            .quitAnalysis(gettext("A two-dimensional center requires scale variables on both axes."))
+          pointArgs <- list(stat = .plotBuilderCenterStat(stats::median),
+            size = argList$size, alpha = argList$alpha, shape = 21)
+          if (!is.null(argList$color)) pointArgs$colour <- argList$color
+          return(p + do.call(ggplot2::geom_point, pointArgs))
+        }
         do.call(tidyplots::add_median_dot, c(list(p), argList))
       }
     }
@@ -1488,12 +1515,16 @@ addDecodedLabels <- function(p) {
         facetVars <- intersect(c(rowsVar, colsVar, gridVar), names(localData))
         points_data[facetVars] <- localData[pointRows, facetVars, drop = FALSE]
 
-        lines_data <- points_data |> dplyr::arrange(ID, x)
+        trajectoryVars <- intersect(setdiff(rmFactorNames, xVar), names(localData))
+        points_data[trajectoryVars] <- localData[pointRows, trajectoryVars, drop = FALSE]
+        trajectoryVars <- unique(c("ID", trajectoryVars, if (hasGroup) groupVar))
+        points_data$.trajectory <- interaction(points_data[trajectoryVars], drop = TRUE)
+        lines_data <- points_data |> dplyr::arrange(.trajectory, x)
 
         line_mapping <- if (hasColorVar) {
-          ggplot2::aes(x = x, y = y, group = ID, color = .data[[colorVar]])
+          ggplot2::aes(x = x, y = y, group = .trajectory, color = .data[[colorVar]])
         } else {
-          ggplot2::aes(x = x, y = y, group = ID)
+          ggplot2::aes(x = x, y = y, group = .trajectory)
         }
 
         addPointOverlay(p, ggplot2::geom_line(
@@ -1591,7 +1622,35 @@ addDecodedLabels <- function(p) {
     }
 
     for (lay in (ordered_layers)) {
+      layerCount <- length(tidyplot_obj$layers)
       tidyplot_obj <- layer_calls[[lay]](tidyplot_obj)
+      if (length(tidyplot_obj$layers) <= layerCount) next
+      for (i in seq.int(layerCount + 1L, length(tidyplot_obj$layers))) {
+        layer <- tidyplot_obj$layers[[i]]
+        if (!isTRUE(layer$inherit.aes)) next
+        if (hasGroup) {
+          layer$aes_params$group <- NULL
+          connected <- grepl("_line$|_area$|_ribbon$|curve_fit", lay)
+          center <- (lay == "mean_dot" && identical(tab$meanDotMode, "center")) ||
+            (lay == "median_dot" && identical(tab$medianDotMode, "center"))
+          layer$mapping$group <- if (connected || center) groupMapping else pointGroupMapping
+        }
+        singleAxisLayer <- lay %in% c("point", "boxplot", "violin") ||
+          grepl("^(sum|mean|median)_|_errorbar$|_ribbon$", lay)
+        if (singleAxisLayer && xor(hasX, hasY)) {
+          if (!hasX) layer$mapping$x <- 1 else layer$mapping$y <- 1
+          layer$stat_params$orientation <- if (hasX) "y" else "x"
+          layer$geom_params$orientation <- if (hasX) "y" else "x"
+        }
+        averageSubjects <- identical(tab$isRM, "RM") && grepl("^(mean|sem|ci95)_", lay)
+        uncertainty <- grepl("^(sd|sem|ci95)_", lay)
+        if (averageSubjects || uncertainty) {
+          if (averageSubjects)
+            layer$mapping$.subject <- ggplot2::aes(.subject = as.numeric(factor(ID)))$.subject
+          jointCenter <- lay == "mean_dot" && identical(tab$meanDotMode, "center")
+          layer$stat <- .plotBuilderSummaryStat(layer$stat, averageSubjects, jointCenter, uncertainty)
+        }
+      }
     }
 
     if (!is.null(tab[["titlePlotBuilder"]]) &&
@@ -1658,8 +1717,13 @@ addDecodedLabels <- function(p) {
             }
           }
 
-          gg <- gg + ggplot2::scale_shape_discrete(
-            name = decodeColNames(shapeVar)
+          shapeCount <- if (is.factor(localData[[shapeVar]])) nlevels(localData[[shapeVar]]) else
+            length(unique(stats::na.omit(localData[[shapeVar]])))
+          shapes <- c(16, 17, 15, 3, 7, 8, setdiff(0:25, c(16, 17, 15, 3, 7, 8)))
+          if (shapeCount > length(shapes))
+            warning(gettext("There are more shape groups than distinct symbols; symbols are repeated."), call. = FALSE)
+          gg <- gg + ggplot2::scale_shape_manual(
+            name = decodeColNames(shapeVar), values = rep(shapes, length.out = shapeCount)
           )
 
           tidyplot_obj <- gg
@@ -2047,16 +2111,6 @@ addDecodedLabels <- function(p) {
 
     if (!is.null(tab[["annotationLineList"]]) && length(tab[["annotationLineList"]]) > 0) {
 
-      if (!is.null(xVar) && xVar %in% colnames(localData) && !(is.factor(localData[[xVar]]) || is.numeric(localData[[xVar]]))) {
-        stop("The X-Axis variable must be categorical or continuous. The Y-Axis variable must be either continuous or ordinal.", call. = FALSE)
-      }
-
-      if (!is.null(yVar) && yVar %in% colnames(localData) && !(is.numeric(localData[[yVar]]) || is.ordered(localData[[yVar]]))) {
-        stop("The X-Axis variable must be categorical or continuous. The Y-Axis variable must be either continuous or ordinal.", call. = FALSE)
-      }
-
-
-
       for (line in tab[["annotationLineList"]]) {
         if (!is.null(line[["xAnnotation"]]) && nzchar(line[["xAnnotation"]]) &&
             !is.null(line[["xendAnnotation"]]) && nzchar(line[["xendAnnotation"]]) &&
@@ -2286,16 +2340,8 @@ addDecodedLabels <- function(p) {
 
     if (!is.null(tab[["pairwiseComparisons"]]) && length(tab[["pairwiseComparisons"]]) > 0) {
 
-      if (!is.null(xVar) && xVar %in% colnames(localData) && !is.factor(localData[[xVar]])) {
-        .quitAnalysis("The X-Axis variable can only be a factor variable.
-             The Y-Axis variable must be either continuous or ordinal.")
-      }
-
-      if (!is.null(yVar) && yVar %in% colnames(localData) && !(is.numeric(localData[[yVar]]) ||
-                                                               is.ordered(localData[[yVar]]))) {
-        .quitAnalysis("The X-Axis variable can only be a factor variable.
-             The Y-Axis variable must be either continuous or ordinal.")
-      }
+      if (!hasX || scaleX)
+        .quitAnalysis(gettext("P-value brackets require a categorical X variable. Use Flip plot for horizontal brackets."))
 
       # universal settings for the p value
       label_size <- tab[["labelSizePValue"]]
@@ -2383,11 +2429,18 @@ addDecodedLabels <- function(p) {
         inherit.aes   = FALSE,
         step.increase = stepDistance
       )
+      bracketLayer$stat <- .plotBuilderBracketStat(bracketLayer$stat)
       # Map per-comparison settings so they follow each bracket through faceting.
       bracketLayer$aes_params$size <- NULL
       bracketLayer$mapping$size <- ggplot2::aes(size = I(bracket.size))$size
       bracketLayer$mapping$tip.length <- ggplot2::aes(tip.length = tip.length)$tip.length
       tidyplot_obj <- tidyplot_obj + bracketLayer
+    }
+
+    if (distributionPositions && (isTRUE(tab$addHistogram) || isTRUE(tab$addDensity))) {
+      categoryScale <- tidyplot_obj$scales$get_scales(if (scaleX) "y" else "x")
+      height <- if (is.null(tab$distributionHeight)) 0.8 else tab$distributionHeight
+      categoryScale$expand <- ggplot2::expansion(add = c(0.6, height + 0.1))
     }
 
     # asPercentage axis labeling ----
@@ -2401,7 +2454,10 @@ addDecodedLabels <- function(p) {
         for (i in relativeLayers) {
           axis <- if (isTRUE(built$data[[i]]$flipped_aes[1])) "x" else "y"
           axisScale <- tidyplot_obj$scales$get_scales(axis)
-          axisScale$labels <- scales::percent_format(accuracy = 1)
+          if (is.null(axisScale)) {
+            scaleFunction <- if (axis == "x") ggplot2::scale_x_continuous else ggplot2::scale_y_continuous
+            tidyplot_obj <- tidyplot_obj + scaleFunction(labels = scales::percent_format(accuracy = 1))
+          } else axisScale$labels <- scales::percent_format(accuracy = 1)
         }
       }
     }
@@ -2409,6 +2465,22 @@ addDecodedLabels <- function(p) {
     if (!hasColor) {
       tidyplot_obj <- tidyplot_obj +
         ggplot2::guides(color = "none", fill = "none")
+    }
+
+    usesCountAxis <- any(vapply(tab[grep("^add(Count|Histogram|Density|BarStack|AreaStack)", names(tab))], isTRUE, logical(1)))
+    if (xor(hasX, hasY) && !usesCountAxis) {
+      axis <- if (hasX) "y" else "x"
+      title <- tab[[if (hasX) "titleYPlotBuilder" else "titleXPlotBuilder"]]
+      if (is.null(title) || !nzchar(title))
+        tidyplot_obj <- tidyplot_obj + do.call(ggplot2::labs, stats::setNames(list(NULL), axis))
+      breaks <- tab[[if (hasX) "breakFromY" else "breakFromX"]]
+      if (is.null(breaks) || !nzchar(breaks)) {
+        axisScale <- tidyplot_obj$scales$get_scales(axis)
+        if (is.null(axisScale)) {
+          scaleFunction <- if (hasX) ggplot2::scale_y_continuous else ggplot2::scale_x_continuous
+          tidyplot_obj <- tidyplot_obj + scaleFunction(breaks = NULL)
+        } else axisScale$breaks <- NULL
+      }
     }
 
     # --- Y-Axis Title Centering Logic ------
