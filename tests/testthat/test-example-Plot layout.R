@@ -10,10 +10,9 @@ test_that("jaspPlotBuilder results match", {
   opts <- jaspTools::analysisOptions(jaspFile)
   dataset <- jaspTools::extractDatasetFromJASPFile(jaspFile)
 
-  # Encode and run analysis
-  encoded <- jaspTools:::encodeOptionsAndDataset(opts, dataset)
+  # Run analysis
   set.seed(1)
-  results <- jaspTools::runAnalysis("jaspPlotBuilder", encoded$dataset, encoded$options, encodedDataset = TRUE)
+  results <- jaspTools::runAnalysis("jaspPlotBuilder", dataset, opts)
 
   plotName <- results[["results"]][["plotGridContainer"]][["collection"]][["plotGridContainer_plotGrid"]][["data"]]
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]

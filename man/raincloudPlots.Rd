@@ -6,7 +6,7 @@
 \usage{
 raincloudPlots(
   data = NULL,
-  version = "0.96.1",
+  version = "1",
   boxNudge = 0,
   boxOpacity = 0.5,
   boxOutline = "colorPalette",

@@ -7,14 +7,15 @@ Upgrades
 	Upgrade
 	{
 		functionName: "jaspPlotBuilder"
-		fromVersion: "0.96.6"
-		toVersion: "0.96.7"
+		fromVersion: "0.98.1"
+		toVersion: "0.98.2"
 		ChangeJS
 		{
 			name: "PlotBuilderTab"
 			jsFunction: function(options)
 			{
 				var tabs = options["PlotBuilderTab"];
+				var elements = ["DataPoint", "Boxplot", "Violin", "CountDot", "SumDot", "MeanDot", "MedianDot"];
 				for (var i = 0; i < tabs.length; i++) {
 					if (tabs[i].facetLayout === undefined) {
 						var grid = tabs[i].isRM === "RM" ? tabs[i].gridVarRM : tabs[i].gridVariablePlotBuilder;
@@ -24,26 +25,6 @@ Upgrades
 					}
 					if (tabs[i].pValueColorMode === undefined)
 						tabs[i].pValueColorMode = ["grouping", "splitColumn", "splitRow"].indexOf(tabs[i].colorByGroup) >= 0 ? "group" : "custom";
-				}
-				return tabs;
-			}
-		}
-	}
-
-	Upgrade
-	{
-		functionName: "jaspPlotBuilder"
-		fromVersion: "0.96.5"
-		toVersion: "0.96.6"
-
-		ChangeJS
-		{
-			name: "PlotBuilderTab"
-			jsFunction: function(options)
-			{
-				var tabs = options["PlotBuilderTab"];
-				var elements = ["DataPoint", "Boxplot", "Violin", "CountDot", "SumDot", "MeanDot", "MedianDot"];
-				for (var i = 0; i < tabs.length; i++) {
 					for (var j = 0; j < elements.length; j++) {
 						var element = elements[j];
 						var black = "blackOutline" + element;

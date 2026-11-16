@@ -206,28 +206,30 @@
 }
 
 .tsAcfBartlett <- function(r, N, ci = 0.95) {
-  # calculate confidence interval for ACF assuming moving average process
-  # using Bartlett's formula
+  # r contains only positive-lag autocorrelations. At lag k, the MA(k - 1)
+  # approximation uses correlations at lags 1, ..., k - 1, excluding lag k.
   z <- qnorm((1 + ci) / 2)
+  precedingSquares <- c(0, cumsum(r^2))[seq_along(r)]
 
-  lag <- length(r)
-  df <- data.frame(r = r, se = numeric(lag))
-
-  for (i in 1:lag) {
-    df$se[i] <- z * sqrt((1 / N) * (1 + 2 * sum(r[1:i]^2)))
-  }
-
-  return(df)
+  data.frame(r = r, se = z * sqrt((1 + 2 * precedingSquares) / N))
 }
 
-.tsFillACF <- function(plot, type, dataset, options, zeroLag = FALSE, maxLag, ci, ciValue, ciType) {
-  y <- na.omit(as.numeric(dataset$y))
+.tsFillACF <- function(plot, type, dataset, options, zeroLag = FALSE, maxLag, ci, ciValue, ciType, missingValues = "listwise") {
+  prepared <- .tsCompleteSeries(dataset$y, missingValues)
+  if (!is.null(prepared$error)) {
+    plot$setError(prepared$error)
+    return(invisible(NULL))
+  }
+  y <- prepared$y
 
-  if (type == "ACF") {
-    ac <- stats::acf(y, plot = FALSE, lag.max = maxLag)
+  ac <- tryCatch(if (type == "ACF")
+    stats::acf(y, plot = FALSE, lag.max = maxLag) else
+    stats::pacf(y, plot = FALSE, lag.max = maxLag), error = function(e) NULL)
+  if (is.null(ac) || any(!is.finite(ac$acf))) {
+    plot$setError(gettext("Autocorrelation could not be calculated for the selected observations. Select a longer complete range with varying values."))
+    return(invisible(NULL))
   }
   if (type == "PACF") {
-    ac <- stats::pacf(y, plot = FALSE, lag.max = maxLag)
     ciType <- "whiteNoise" # PACF does not have confidence interval assuming ma
   }
 
@@ -250,17 +252,21 @@
       clim <- qnorm((1 + ciValue) / 2) / sqrt(ac$n.used)
       dat$upper <- rep(clim, nrow(dat))
       dat$lower <- -dat$upper
+      bandData <- dat
     } else {
-      clim <- .tsAcfBartlett(dat$acf, ac$n.used, ciValue)
-      dat$upper <- clim$se
-      dat$lower <- -dat$upper
+      # Lag zero is identically one and has no MA confidence band. Selecting
+      # positive lags also makes these bands independent of its display option.
+      bandData <- dat[dat$lag > 0, , drop = FALSE]
+      clim <- .tsAcfBartlett(bandData$acf, ac$n.used, ciValue)
+      bandData$upper <- clim$se
+      bandData$lower <- -bandData$upper
     }
 
-    yRange <- c(yRange, dat$upper, dat$lower)
+    yRange <- c(yRange, bandData$upper, bandData$lower)
 
     p <- p +
       ggplot2::geom_ribbon(
-        data = dat,
+        data = bandData,
         ggplot2::aes(x = lag, ymin = lower, ymax = upper), alpha = 0.15
       )
   }
@@ -276,7 +282,7 @@
     jaspGraphs::themeJaspRaw()
 
   plot$plotObject <- p
-  return()
+  return(invisible(prepared$note))
 }
 
 # custom JASPScatterPlot function because x may be a date...

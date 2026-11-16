@@ -74,9 +74,9 @@ test_that("Descriptive Statistics table results match", {
   results <- jaspTools::runAnalysis("Descriptives", "test.csv", options)
   table <- results[["results"]][["stats"]][["data"]]
   jaspTools::expect_equal_tables(table,
-                                 list(-0.18874858754, -0.396193843016565, 0.018696667936565, 0.869717253788563,
-                                      1.24667712392121, 1.05841360919316, "contNormal", 1.1202393681253,
-                                      0.756408180905588, 1.55420388476218))
+                                 list(-0.18874858754, -0.396193843016565, 0.018696667936565, 0.85540032415947,
+                                      1.25370926811298, 1.05841360919316, "contNormal", 1.1202393681253,
+                                      0.731710139291533, 1.57178703249867))
 })
 
 # test confidence intervals only

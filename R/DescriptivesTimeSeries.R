@@ -21,15 +21,10 @@ DescriptivesTimeSeriesInternal <- function(jaspResults, dataset, options) {
 
 .DescriptivesTimeSeries <- function(jaspResults, dataset, options) {
 
-  ready <- options$dependent != ""
+  ready <- options[["dependent"]] != ""
 
-  datasetRaw <- .tsReadData(jaspResults, dataset, options, ready)
-
-  datasetFiltered <- .tsDataFilterHandler(datasetRaw, options, ready)
-
-  dataset <- .tsDataWithMissingRowsHandler(datasetFiltered, options, ready)
-
-  .tsErrorHandler(dataset, ready)
+  dataset <- .tsPrepareData(jaspResults, dataset, options, ready)$data
+  ready <- ready && nrow(dataset) > 0L
 
   .tsDescriptivesTable(jaspResults, dataset, options, ready, position = 1, dependencies = c(.tsDescriptivesDependencies(), "descriptivesTableTransposed"))
 
@@ -37,9 +32,9 @@ DescriptivesTimeSeriesInternal <- function(jaspResults, dataset, options) {
 
   .tslagPlotDescriptives(jaspResults, dataset, options, ready, position = 3, dependencies = c(.tsDescriptivesDependencies(), "lagPlot", "lagPlotLag", "lagPlotRegressionType", "lagPlotRegressionLine", "lagPlotRegressionCi", "lagPlotRegressionCiLevel"))
 
-  .tsACFDescriptives(jaspResults, dataset, options, ready, position = 4, dependencies = c(.tsDescriptivesDependencies(), "acf", "acfCi", "acfCiLevel", "acfCiType", "acfZeroLag", "acfMaxLag"))
+  .tsACFDescriptives(jaspResults, dataset, options, ready, position = 4, dependencies = c(.tsDescriptivesDependencies(), "acf", "acfCi", "acfCiLevel", "acfCiType", "acfZeroLag", "acfMaxLag", "acfNaAction"))
 
-  .tsPACFDescriptives(jaspResults, dataset, options, ready, position = 5, dependencies = c(.tsDescriptivesDependencies(), "pacf", "pacfCi", "pacfCiLevel", "pacfCiType", "pacfMaxLag"))
+  .tsPACFDescriptives(jaspResults, dataset, options, ready, position = 5, dependencies = c(.tsDescriptivesDependencies(), "pacf", "pacfCi", "pacfCiLevel", "pacfCiType", "pacfMaxLag", "pacfNaAction"))
 }
 
 .tsDescriptivesDependencies <- function() {
@@ -153,14 +148,17 @@ DescriptivesTimeSeriesInternal <- function(jaspResults, dataset, options) {
       return()
     }
 
-    .tsFillACF(plot,
+    note <- .tsFillACF(plot,
       type = "ACF", dataset, options,
       zeroLag = options$acfZeroLag,
       maxLag = options$acfMaxLag,
       ci = options$acfCi,
       ciValue = options$acfCiLevel,
-      ciType = options$acfCiType
+      ciType = options$acfCiType,
+      missingValues = options[["acfNaAction"]]
     )
+    if (!is.null(note))
+      jaspResults[["acfMissingNote"]] <- createJaspHtml(text = note, position = position + 0.1, dependencies = dependencies)
   }
 }
 
@@ -180,13 +178,16 @@ DescriptivesTimeSeriesInternal <- function(jaspResults, dataset, options) {
       return()
     }
 
-    .tsFillACF(plot,
+    note <- .tsFillACF(plot,
       type = "PACF", dataset, options,
       maxLag = options$pacfMaxLag,
       ci = options$pacfCi,
       ciValue = options$pacfCiLevel,
-      ciType = options$pacfCiType
+      ciType = options$pacfCiType,
+      missingValues = options[["pacfNaAction"]]
     )
+    if (!is.null(note))
+      jaspResults[["pacfMissingNote"]] <- createJaspHtml(text = note, position = position + 0.1, dependencies = dependencies)
   }
 }
 
@@ -221,24 +222,25 @@ DescriptivesTimeSeriesInternal <- function(jaspResults, dataset, options) {
     yName <- options$dependent[1]
 
     nY <- length(na.omitted)
-    minY <- min(na.omitted)
-    maxY <- max(na.omitted)
+    minY <- if (nY > 0L) min(na.omitted) else NA_real_
+    maxY <- if (nY > 0L) max(na.omitted) else NA_real_
 
-    yLag <- c(NA, dataset$y[1:(length(dataset$y) - 1)])
-    corY <- cor(dataset$y, yLag, use = "complete.obs")
+    yLag <- c(NA_real_, head(dataset$y, -1L))
+    corY <- if (sum(complete.cases(dataset$y, yLag)) >= 2L)
+      cor(dataset$y, yLag, use = "complete.obs") else NA_real_
 
     rows <- data.frame(
       variable = yName,
       valid = nY,
       missing = nrow(dataset) - nY,
-      mean = mean(na.omitted),
+      mean = if (nY > 0L) mean(na.omitted) else NA_real_,
       sd = sd(na.omitted),
       var = var(na.omitted),
       range = maxY - minY,
       min = minY,
       max = maxY,
-      start = na.omitted[1],
-      end = na.omitted[nY],
+      start = if (nY > 0L) na.omitted[1] else NA_real_,
+      end = if (nY > 0L) na.omitted[nY] else NA_real_,
       ar = corY
     )
     table$addRows(rows)

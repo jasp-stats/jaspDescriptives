@@ -2,11 +2,11 @@
 % Please edit documentation in R/jaspPlotBuilderWrapper.R
 \name{jaspPlotBuilder}
 \alias{jaspPlotBuilder}
-\title{Plot Builder (beta)}
+\title{Plot Builder}
 \usage{
 jaspPlotBuilder(
   data = NULL,
-  version = "0.96.1",
+  version = "1",
   PlotBuilderTab = list(list(XPaddingFirst = 0.05, XPaddingSecond = 0.05, YPaddingFirst =
     0.04, YPaddingSecond = 0.05, accuracyCountValue = 0.1, accuracyMeanValue = 0.1,
     accuracyMedianValue = 0.1, accuracySumValue = 0.1, addAreaStack = FALSE, addBarStack

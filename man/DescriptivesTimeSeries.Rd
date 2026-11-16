@@ -6,12 +6,13 @@
 \usage{
 DescriptivesTimeSeries(
   data = NULL,
-  version = "0.96.1",
+  version = "1",
   acf = FALSE,
   acfCi = TRUE,
   acfCiLevel = 0.95,
   acfCiType = "whiteNoise",
   acfMaxLag = 10,
+  acfNaAction = "listwise",
   acfZeroLag = FALSE,
   dateEnd = "",
   dateStart = "",
@@ -29,6 +30,7 @@ DescriptivesTimeSeries(
   pacfCi = TRUE,
   pacfCiLevel = 0.95,
   pacfMaxLag = 10,
+  pacfNaAction = "listwise",
   plotHeight = 320,
   plotWidth = 480,
   rowEnd = 100,
@@ -45,9 +47,15 @@ DescriptivesTimeSeries(
 \item{acf, }{Plots the autocorrelation for a specified number of lags. The confidence interval may be given assuming either a white noise process, or assuming for a lag q a moving average process of order q - 1.
 Defaults to \code{FALSE}.}
 
+\item{acfNaAction, }{Applies only to this calculation. Listwise exclusion removes missing observations and treats the remaining observations as consecutive time steps, ignoring any internal gaps. Use the longest complete segment selects the longest consecutive run without missing values, using the earliest run when tied. When observations are omitted, a note reports the observations used and any effect on time spacing. The original data and saved values are unchanged.
+\itemize{
+  \item \code{"listwise"}
+  \item \code{"longest"}
+}}
+
 \item{dependent, }{A variable that is measured repeatedly over time.}
 
-\item{filter, }{Filters the time series so only a specific range will be used for further analyses. Row number refers to the row number in the spreadsheet. If a 'Time' variable is supplied it is also possible to filter by time index or date, depending on the format of the 'Time' variable.
+\item{filter, }{Selects an inclusive range of observations for analysis. Row number refers to original spreadsheet rows, even when Time changes the analysis order. Time index filters numeric Time values, including negative values and decimals. Date filters interpreted dates and times. Date filters use UTC. A date-only End includes the entire day; an End with a time uses that exact cutoff. Time or date filtering requires a usable Time variable; otherwise, select Row number or disable filtering.
 Defaults to \code{FALSE}.}
 
 \item{lagPlot, }{Plots the dependent variable (y-axis) against a lagged version of itself (x-axis). The lag stands for the amount of observations in between the dependent variable and the lagged version of itself. The regression line is the autoregression at the specified lag.
@@ -56,7 +64,13 @@ Defaults to \code{FALSE}.}
 \item{pacf, }{Plots the partial autocorrelation for a specified number of lags.
 Defaults to \code{FALSE}.}
 
-\item{time, }{Optional. Can either be an ordinal variable indicating the order of the observations, or a text variable indicating the date/time stamp of the observations. Combined date and time values should be in the standard format 'YYYY-MM-DD HH:MM:SS', where seconds (':SS') can also be omitted. Date-only values should be in the format 'YYYY-MM-DD'. If a time variable is not supplied, the row order of the data is used.}
+\item{pacfNaAction, }{Applies only to this calculation. Listwise exclusion removes missing observations and treats the remaining observations as consecutive time steps, ignoring any internal gaps. Use the longest complete segment selects the longest consecutive run without missing values, using the earliest run when tied. When observations are omitted, a note reports the observations used and any effect on time spacing. The original data and saved values are unchanged.
+\itemize{
+  \item \code{"listwise"}
+  \item \code{"longest"}
+}}
+
+\item{time, }{Optional. Complete numeric values order observations from smallest to largest, regardless of gaps. Complete, unambiguous dates and times order observations chronologically. Use 'YYYY-MM-DD' for dates or 'YYYY-MM-DD HH:MM:SS' for dates with times; seconds can be omitted. All variables stay aligned, and spreadsheet row order is unchanged. Tied values retain spreadsheet row order. If any value is missing or cannot be interpreted, or dates are ambiguous, Time is ignored for the entire analysis and a warning is shown. Leave Time empty to use spreadsheet row order. Successive observations are modeled as equally spaced steps; no rows are added for gaps in Time.}
 
 \item{timeSeriesPlot, }{Plots the dependent variable (y-axis) over time (x-axis).
 Defaults to \code{TRUE}.}

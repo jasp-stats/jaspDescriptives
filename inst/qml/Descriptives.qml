@@ -480,7 +480,9 @@ Form
 				Group {
 					CheckBox {	name: "boxPlotBoxPlot";			label: qsTr("Boxplot element"); checked: true	}
 					CheckBox {	name: "boxPlotViolin";			label: qsTr("Violin element")					}
-					CheckBox {	name: "boxPlotJitter";			label: qsTr("Jitter element")					}
+					CheckBox {	name: "boxPlotJitter";			label: qsTr("Jitter element")
+						info: qsTr("Displays the individual observations as points, jittered horizontally to reduce overlap; their vertical position is unchanged, so each point still shows its exact value.")
+					}
 				}
 				Group {
 					CheckBox {  name: "boxPlotColourPalette";		label: qsTr("Use color palette")				}

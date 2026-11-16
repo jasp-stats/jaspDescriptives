@@ -42,7 +42,7 @@
 #' @param variables, The variable(s) for which we wish to visually assess relationships with the DV. The first variable chosen shows up on the X axis, either as a scatterplot (for numeric predictors) or as a beeswarm plot (for categorical variables). The second variable chosen will show up as different colors/lines/symbols. If the second varaible chosen is numeric, it will be binned first.
 flexplot <- function(
           data = NULL,
-          version = "0.96.1",
+          version = "1",
           formula = NULL,
           alpha = 0.4,
           bw = FALSE,
@@ -65,12 +65,7 @@ flexplot <- function(
           type = "Loess",
           variables = list(types = list(), value = list())) {
 
-   defaultArgCalls <- formals(jaspDescriptives::flexplot)
-   defaultArgs <- lapply(defaultArgCalls, eval)
-   options <- as.list(match.call())[-1L]
-   options <- lapply(options, eval)
-   defaults <- setdiff(names(defaultArgs), names(options))
-   options[defaults] <- defaultArgs[defaults]
+   options <- mget(names(formals(sys.function())), envir = environment(), inherits = FALSE)
    options[["data"]] <- NULL
    options[["version"]] <- NULL
 
@@ -89,5 +84,7 @@ flexplot <- function(
    for (name in optionsWithFormula) {
       if ((name %in% optionsWithFormula) && inherits(options[[name]], "formula")) options[[name]] = jaspBase::jaspFormula(options[[name]], data)   }
 
+   # Options not given in the call get their default from the form, which can depend on the other options.
+   options <- options[names(options) %in% names(match.call())[-1L]]
    return(jaspBase::runWrappedAnalysis("jaspDescriptives", "flexplot", "Flexplot.qml", options, version, FALSE))
 }

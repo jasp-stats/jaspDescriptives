@@ -10,14 +10,13 @@ test_that("Descriptives (analysis 1) results match", {
   opts <- jaspTools::analysisOptions(jaspFile)[[1]]
   dataset <- jaspTools::extractDatasetFromJASPFile(jaspFile)
 
-  # Encode and run analysis
-  encoded <- jaspTools:::encodeOptionsAndDataset(opts, dataset)
+  # Run analysis
   set.seed(1)
-  results <- jaspTools::runAnalysis("Descriptives", encoded$dataset, encoded$options, encodedDataset = TRUE)
+  results <- jaspTools::runAnalysis("Descriptives", dataset, opts)
 
   table <- results[["results"]][["stats"]][["data"]]
   jaspTools::expect_equal_tables(table,
-    list(0, 9, "jaspColumn2"))
+    list(0, 9, "Complaint"))
 
 })
 
@@ -28,14 +27,13 @@ test_that("Descriptives (analysis 2) results match", {
   opts <- jaspTools::analysisOptions(jaspFile)[[2]]
   dataset <- jaspTools::extractDatasetFromJASPFile(jaspFile)
 
-  # Encode and run analysis
-  encoded <- jaspTools:::encodeOptionsAndDataset(opts, dataset)
+  # Run analysis
   set.seed(1)
-  results <- jaspTools::runAnalysis("Descriptives", encoded$dataset, encoded$options, encodedDataset = TRUE)
+  results <- jaspTools::runAnalysis("Descriptives", dataset, opts)
 
   table <- results[["results"]][["stats"]][["data"]]
   jaspTools::expect_equal_tables(table,
-    list(0, 9, "jaspColumn2"))
+    list(0, 9, "Complaint"))
 
 })
 

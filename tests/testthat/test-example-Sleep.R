@@ -10,10 +10,9 @@ test_that("Descriptives runs without error", {
   opts <- jaspTools::analysisOptions(jaspFile)
   dataset <- jaspTools::extractDatasetFromJASPFile(jaspFile)
 
-  # Encode and run analysis
-  encoded <- jaspTools:::encodeOptionsAndDataset(opts, dataset)
+  # Run analysis
   set.seed(1)
-  results <- jaspTools::runAnalysis("Descriptives", encoded$dataset, encoded$options, encodedDataset = TRUE)
+  results <- jaspTools::runAnalysis("Descriptives", dataset, opts)
 
   # Basic check - analysis runs without error
   expect_false(isTRUE(results[["status"]] == "error"),

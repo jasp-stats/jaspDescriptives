@@ -55,7 +55,7 @@
 #'    Defaults to \code{TRUE}.
 raincloudPlots <- function(
           data = NULL,
-          version = "0.96.1",
+          version = "1",
           boxNudge = 0,
           boxOpacity = 0.5,
           boxOutline = "colorPalette",
@@ -121,12 +121,7 @@ raincloudPlots <- function(
           vioSmoothing = 1,
           widthPlot = 600) {
 
-   defaultArgCalls <- formals(jaspDescriptives::raincloudPlots)
-   defaultArgs <- lapply(defaultArgCalls, eval)
-   options <- as.list(match.call())[-1L]
-   options <- lapply(options, eval)
-   defaults <- setdiff(names(defaultArgs), names(options))
-   options[defaults] <- defaultArgs[defaults]
+   options <- mget(names(formals(sys.function())), envir = environment(), inherits = FALSE)
    options[["data"]] <- NULL
    options[["version"]] <- NULL
 
@@ -139,5 +134,7 @@ raincloudPlots <- function(
    for (name in optionsWithFormula) {
       if ((name %in% optionsWithFormula) && inherits(options[[name]], "formula")) options[[name]] = jaspBase::jaspFormula(options[[name]], data)   }
 
+   # Options not given in the call get their default from the form, which can depend on the other options.
+   options <- options[names(options) %in% names(match.call())[-1L]]
    return(jaspBase::runWrappedAnalysis("jaspDescriptives", "raincloudPlots", "raincloudPlots.qml", options, version, TRUE))
 }
