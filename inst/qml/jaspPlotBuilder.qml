@@ -1667,6 +1667,7 @@ TabView {
 				/* ── Mean area ── */
 				CheckBox {
 					name: "addMeanArea"
+					visible: !plotOptions.jointSummary
 					label: qsTr("Mean area")
 					info: qsTr("Add filled mean areas")
 					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
@@ -1674,6 +1675,41 @@ TabView {
 
 					DoubleField { name: "dodgeMeanArea"; label: qsTr("Dodge");        defaultValue: 0.8 }
 					DoubleField { name: "alphaMeanArea"; label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
+				}
+
+				/* ── Mean ellipse (replaces area for joint summaries) ── */
+				CheckBox {
+					name: "addMeanEllipse"
+					label: qsTr("Mean ellipse")
+					info: qsTr("For two scale axes and independent observations, draw an ellipse centered on the arithmetic means, separately per group and panel. SD shows data spread using the sample covariance; SEM uses covariance divided by the number of complete pairs. A radius multiplier of one is not a 95% region. Confidence uses a joint Hotelling T-squared region for the population mean, assuming independent bivariate-normal observations. SD and SEM require at least two complete pairs; confidence requires at least three and a nonsingular covariance. This is not uncertainty around a median. Existing data ellipses under Individual data points remain separate.")
+					visible: plotOptions.jointSummary
+					enabled: plotOptions.jointSummary
+					onEnabledChanged: { if (!enabled) checked = false }
+					DropDown {
+						name: "meanEllipseType"
+						id: meanEllipseType
+						label: qsTr("Type")
+						values: [
+							{ label: qsTr("SD (data spread)"), value: "sd" },
+							{ label: qsTr("SEM (mean uncertainty)"), value: "sem" },
+							{ label: qsTr("Confidence region"), value: "ci" }
+						]
+						startValue: "sd"
+					}
+					DoubleField { name: "meanEllipseMultiplier"; label: qsTr("Radius multiplier"); defaultValue: 1; min: 0; inclusive: JASP.None; visible: meanEllipseType.currentValue !== "ci" }
+					DoubleField { name: "meanEllipseLevel"; label: qsTr("Confidence level"); defaultValue: 0.95; min: 0; max: 1; inclusive: JASP.None; visible: meanEllipseType.currentValue === "ci" }
+					DoubleField { name: "meanEllipseLinewidth"; label: qsTr("Line width"); defaultValue: 0.8 }
+					DoubleField { name: "meanEllipseOpacity"; label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
+					DropDown {
+						name: "meanEllipseOutline"
+						label: qsTr("Outline")
+						values: [
+							{ label: qsTr("Automatic"), value: "automatic" },
+							{ label: qsTr("Black"), value: "black" },
+							{ label: qsTr("White"), value: "white" }
+						]
+						startValue: "automatic"
+					}
 				}
 
 				/* ── Mean value ── */
@@ -1695,44 +1731,6 @@ TabView {
 					DoubleField  { name: "hjustMeanValue";     label: qsTr("Horizontal justification"); defaultValue: 0.5; min: -Infinity }
 					DoubleField  { name: "vjustMeanValue";     label: qsTr("Vertical justification");   defaultValue: -0.5; min: -Infinity }
 					CheckBox     { name: "blackOutlineMeanValue"; label: qsTr("Black text") }
-				}
-			}
-		}
-
-
-
-		Section {
-			title: qsTr("Mean ellipse")
-			info: qsTr("For two scale axes and independent observations, draw an ellipse centered on the arithmetic means, separately per group and panel. SD shows data spread using the sample covariance; SEM uses covariance divided by the number of complete pairs. A radius multiplier of one is not a 95% region. Confidence uses a joint Hotelling T-squared region for the population mean, assuming independent bivariate-normal observations. SD and SEM require at least two complete pairs; confidence requires at least three and a nonsingular covariance. This is not uncertainty around a median. Existing data ellipses under Individual data points remain separate.")
-			CheckBox {
-				name: "addMeanEllipse"
-				label: qsTr("Mean ellipse")
-				enabled: plotOptions.jointSummary
-				onEnabledChanged: { if (!enabled) checked = false }
-				DropDown {
-					name: "meanEllipseType"
-					id: meanEllipseType
-					label: qsTr("Type")
-					values: [
-						{ label: qsTr("SD (data spread)"), value: "sd" },
-						{ label: qsTr("SEM (mean uncertainty)"), value: "sem" },
-						{ label: qsTr("Confidence region"), value: "ci" }
-					]
-					startValue: "sd"
-				}
-				DoubleField { name: "meanEllipseMultiplier"; label: qsTr("Radius multiplier"); defaultValue: 1; min: 0; inclusive: JASP.None; visible: meanEllipseType.currentValue !== "ci" }
-				DoubleField { name: "meanEllipseLevel"; label: qsTr("Confidence level"); defaultValue: 0.95; min: 0; max: 1; inclusive: JASP.None; visible: meanEllipseType.currentValue === "ci" }
-				DoubleField { name: "meanEllipseLinewidth"; label: qsTr("Line width"); defaultValue: 0.8 }
-				DoubleField { name: "meanEllipseOpacity"; label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
-				DropDown {
-					name: "meanEllipseOutline"
-					label: qsTr("Outline")
-					values: [
-						{ label: qsTr("Automatic"), value: "automatic" },
-						{ label: qsTr("Black"), value: "black" },
-						{ label: qsTr("White"), value: "white" }
-					]
-					startValue: "automatic"
 				}
 			}
 		}
