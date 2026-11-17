@@ -304,26 +304,42 @@ addDecodedLabels <- function(p) {
 
 .plotBuilderPlots <- function(dataset, options) {
 
-  datasetRMList <- dataset$datasetRMList
-  datasetNonRMList <- dataset$datasetNonRMList
-
-  # Initialize the list to store plots
+  # Each tab is built on its own: an invalid layer combination (or any other
+  # error) is reported on that plot instead of aborting the other plots and the
+  # plot layout.
   updatedPlots <- list()
+  plotErrors <- list()
 
   for (tab in options[["PlotBuilderTab"]]) {
+    plotId <- as.character(tab$value)
+    plot <- tryCatch(
+      .plotBuilderTabPlot(tab, dataset),
+      error = function(e) {
+        plotErrors[[plotId]] <<- conditionMessage(e)
+        NULL
+      }
+    )
+    if (!is.null(plot))
+      updatedPlots[[plotId]] <- plot
+  }
+
+  return(list(updatedPlots = updatedPlots, plotErrors = plotErrors))
+}
+
+.plotBuilderTabPlot <- function(tab, dataset) {
 
     plotId <- as.character(tab$value)
 
     localData <- if (identical(tab[["isRM"]], "RM")) {
-      datasetRMList[[plotId]]
+      dataset$datasetRMList[[plotId]]
     } else {
-      datasetNonRMList[[plotId]]
+      dataset$datasetNonRMList[[plotId]]
     }
 
     if (is.null(localData) ||
         !is.data.frame(localData) ||
         nrow(localData) == 0) {
-      next
+      return(NULL)
     }
 
 
@@ -1503,9 +1519,24 @@ addDecodedLabels <- function(p) {
     # Add identity line ----
     if (!is.null(tab[["addIdentityLinePlotBuilder"]]) && tab[["addIdentityLinePlotBuilder"]]) {
       layer_calls$identity_line <- function(p) {
-        p + ggplot2::geom_abline(
-          slope = if (isTRUE(tab[["reversedirectionIdentityLine"]])) -1 else 1,
-          intercept = 0,
+        if (!isTRUE(tab[["reversedirectionIdentityLine"]]))
+          return(p + ggplot2::geom_abline(slope = 1, intercept = 0, color = tab[["colorIdentityLine"]]))
+        # The reversed line is the anti-diagonal of the data range; y = -x through
+        # the origin would lie outside the panel for positive data.
+        axisRange <- function(var) {
+          if (!is.null(var) && var %in% colnames(localData) && is.numeric(localData[[var]]))
+            range(localData[[var]], na.rm = TRUE)
+          else
+            c(0, 1)
+        }
+        xRange <- axisRange(xVar)
+        yRange <- axisRange(yVar)
+        tidyplots::add_annotation_line(
+          p     = p,
+          x     = xRange[1],
+          xend  = xRange[2],
+          y     = yRange[2],
+          yend  = yRange[1],
           color = tab[["colorIdentityLine"]]
         )
       }
@@ -2555,11 +2586,7 @@ addDecodedLabels <- function(p) {
       tidyplot_obj <- addDecodedLabels(tidyplot_obj)
     }
 
-    # Save the plot in our results list
-    updatedPlots[[plotId]] <- tidyplot_obj
-  }
-
-  return(list(updatedPlots = updatedPlots))
+    return(tidyplot_obj)
 }
 
 
@@ -2593,7 +2620,9 @@ addDecodedLabels <- function(p) {
       tidyPlot <- tidyPlotsContainer[[plotKey]]
     }
 
-    if (!is.null(updatedPlots[[plotId]])) {
+    if (!is.null(plotResults$plotErrors[[plotId]])) {
+      tidyPlot$setError(plotResults$plotErrors[[plotId]])
+    } else if (!is.null(updatedPlots[[plotId]])) {
       tidyPlot$plotObject <- updatedPlots[[plotId]]
     } else {
       tidyPlot$plotObject <- ggplot2::ggplot() + ggplot2::theme_void()
@@ -2611,7 +2640,8 @@ addDecodedLabels <- function(p) {
     jaspResults[["availablePlotIDs"]] <- availablePlotIDsContainer
   }
 
-  availablePlotIDsDisplay <- names(updatedPlots)
+  # Plots that failed still exist; listing them keeps their IDs usable in the layout.
+  availablePlotIDsDisplay <- c(names(updatedPlots), names(plotResults$plotErrors))
   availablePlotIDsText    <- paste0(
     "Available Plot IDs: ",
     paste(availablePlotIDsDisplay, collapse = ", ")

@@ -16,6 +16,8 @@
 
 # jaspDescriptives (development version)
 
+* Invalid Plot Builder layer combinations now show an error on the affected plot only, so other plots and the plot layout still render. The reversed identity line again spans the data range.
+
 * Fixed confidence-ellipse rank checks, Plot Builder upgrades for nested saved-variable formats, and sorting after switching an axis to scale.
 
 * Plot Builder summarizes independent two-scale data with per-group mean/median centers (dots, crosshairs, or reference lines). Added separate mean SD, SEM, and Hotelling confidence ellipses. Position-based summaries remain available for categorical axes, single-axis plots, and repeated measures.

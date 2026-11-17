@@ -1,5 +1,25 @@
 context("Plot Builder interactions")
 
+# jaspTools runs the tests against the installed package without attaching it.
+jaspPlotBuilder <- jaspDescriptives::jaspPlotBuilder
+.plotBuilderPlots <- jaspDescriptives:::.plotBuilderPlots
+.plotBuilderTabPlot <- jaspDescriptives:::.plotBuilderTabPlot
+.plotBuilderReadData <- jaspDescriptives:::.plotBuilderReadData
+.plotBuilderOutputIndividualPlots <- jaspDescriptives:::.plotBuilderOutputIndividualPlots
+.plotBuilderOutputPlotGrid <- jaspDescriptives:::.plotBuilderOutputPlotGrid
+.plotBuilderMeanEllipseStat <- jaspDescriptives:::.plotBuilderMeanEllipseStat
+
+# jaspTools::runAnalysis() in earlier test files leaves the column-name encoders
+# of the last dataset in the global environment (e.g., "group" from the Sleep
+# example). These tests use raw column names, so hide the encoders for this file.
+leakedEncoders <- intersect(
+  c(".encodeColNamesLax", ".encodeColNamesStrict", ".decodeColNamesLax", ".decodeColNamesStrict"),
+  ls(globalenv(), all.names = TRUE)
+)
+savedEncoders <- mget(leakedEncoders, envir = globalenv())
+rm(list = leakedEncoders, envir = globalenv())
+withr::defer(list2env(savedEncoders, envir = globalenv()))
+
 .plotBuilderTestPlot <- function(dataset, ...) {
   tab <- eval(formals(jaspPlotBuilder)$PlotBuilderTab)[[1]]
   for (name in names(tab)) {
@@ -19,7 +39,11 @@ context("Plot Builder interactions")
     datasetNonRMList = setNames(list(dataset), tab$value),
     datasetRMList = setNames(list(dataset), tab$value)
   )
-  .plotBuilderPlots(data, list(PlotBuilderTab = list(tab)))$updatedPlots[[tab$value]]
+  results <- .plotBuilderPlots(data, list(PlotBuilderTab = list(tab)))
+  # Invalid layer combinations are reported per plot; surface them for expect_error().
+  if (!is.null(results$plotErrors[[tab$value]]))
+    stop(results$plotErrors[[tab$value]], call. = FALSE)
+  results$updatedPlots[[tab$value]]
 }
 
 test_that("point outline color and empty fill are independent", {
@@ -254,8 +278,11 @@ test_that("percentages label only the relative axis", {
 
 test_that("RM annotations target encoded within-subject and raw between-subject facets", {
   encoder <- function(x) ifelse(x %in% c("one", "two"), paste0(x, "_encoded"), x)
+  tabPlotFunction <- .plotBuilderTabPlot
+  environment(tabPlotFunction) <- list2env(list(encodeColNames = encoder),
+                                            parent = environment(.plotBuilderTabPlot))
   plotFunction <- .plotBuilderPlots
-  environment(plotFunction) <- list2env(list(encodeColNames = encoder),
+  environment(plotFunction) <- list2env(list(.plotBuilderTabPlot = tabPlotFunction),
                                          parent = environment(.plotBuilderPlots))
   plotHelper <- .plotBuilderTestPlot
   environment(plotHelper) <- list2env(list(.plotBuilderPlots = plotFunction),
@@ -337,15 +364,17 @@ test_that("row facets preserve numeric and categorical Y scales", {
   expect_equal(nrow(ggplot2::ggplot_build(plot)$data[[1]]), 4)
 })
 
-test_that("the identity line is independent of the observed ranges", {
+test_that("the identity line is y = x and the reversed line spans the data range", {
   dataset <- data.frame(x = 1:4, y = 11:14)
-  for (reverse in c(FALSE, TRUE)) {
-    plot <- .plotBuilderTestPlot(dataset, addIdentityLinePlotBuilder = TRUE,
-                                 reversedirectionIdentityLine = reverse)
-    line <- ggplot2::ggplot_build(plot)$data[[2]]
-    expect_equal(line$intercept, 0)
-    expect_equal(line$slope, if (reverse) -1 else 1)
-  }
+  plot <- .plotBuilderTestPlot(dataset, addIdentityLinePlotBuilder = TRUE)
+  line <- ggplot2::ggplot_build(plot)$data[[2]]
+  expect_equal(line$intercept, 0)
+  expect_equal(line$slope, 1)
+
+  plot <- .plotBuilderTestPlot(dataset, addIdentityLinePlotBuilder = TRUE,
+                               reversedirectionIdentityLine = TRUE)
+  line <- ggplot2::ggplot_build(plot)$data[[2]]
+  expect_equal(c(line$x, line$xend, line$y, line$yend), c(1, 4, 14, 11))
 })
 
 test_that("histograms and densities accept either single axis variable", {
@@ -834,6 +863,55 @@ test_that("multiple plot tabs retain independent statistic parameters", {
   expect_equal(nrow(secondBuilt$data[[1]]), 18)
   for (layer in firstBuilt$data) expect_equal(max(layer$xmax - layer$xmin), 0.4)
   for (layer in secondBuilt$data) expect_equal(max(layer$ymax - layer$ymin), 0.8)
+})
+
+test_that("an invalid layer combination fails only its own plot", {
+  data <- data.frame(x = 1:12, y = rep(1:6, 2))
+  valid <- eval(formals(jaspPlotBuilder)$PlotBuilderTab)[[1]]
+  for (name in names(valid)) {
+    if (is.list(valid[[name]]) && "types" %in% names(valid[[name]]))
+      valid[[name]] <- unlist(valid[[name]]$value)
+  }
+  valid <- utils::modifyList(valid, list(value = "valid", variableXPlotBuilder = "x",
+    variableYPlotBuilder = "y", addDataPoint = TRUE, plotStyle = "ggplotgray"))
+  invalid <- utils::modifyList(valid, list(value = "invalid", addHistogram = TRUE))
+  datasets <- list(datasetNonRMList = list(valid = data, invalid = data), datasetRMList = list())
+  options <- list(PlotBuilderTab = list(invalid, valid))
+  results <- .plotBuilderPlots(datasets, options)
+  expect_s3_class(results$updatedPlots$valid, "ggplot")
+  expect_null(results$updatedPlots$invalid)
+  expect_match(results$plotErrors$invalid, "exactly one scale variable")
+  expect_null(results$plotErrors$valid)
+
+  plotObjects <- list()
+  errors <- list()
+  output <- .plotBuilderOutputIndividualPlots
+  environment(output) <- list2env(list(
+    createJaspContainer = function(...) new.env(parent = emptyenv()),
+    createJaspPlot = function(title, ...) {
+      plot <- new.env()
+      plot$dependOn <- function(...) NULL
+      plot$setError <- function(message) errors[[title]] <<- message
+      makeActiveBinding("plotObject", function(value) plotObjects[[title]] <<- value, plot)
+      plot
+    },
+    is = function(...) FALSE
+  ), parent = environment(.plotBuilderOutputIndividualPlots))
+  output(new.env(parent = emptyenv()), options, results)
+  expect_match(errors$invalid, "exactly one scale variable")
+  expect_null(errors$valid)
+  expect_s3_class(plotObjects$valid, "ggplot")
+  expect_null(plotObjects$invalid)
+
+  # Unexpected errors are also confined to their own plot.
+  failing <- .plotBuilderPlots
+  environment(failing) <- list2env(list(.plotBuilderTabPlot = function(tab, dataset) {
+    if (tab$value == "invalid") stop("unexpected failure")
+    .plotBuilderTabPlot(tab, dataset)
+  }), parent = environment(.plotBuilderPlots))
+  results <- failing(datasets, list(PlotBuilderTab = list(valid, utils::modifyList(invalid, list(addHistogram = FALSE)))))
+  expect_s3_class(results$updatedPlots$valid, "ggplot")
+  expect_equal(results$plotErrors$invalid, "unexpected failure")
 })
 
 test_that("area stacks aggregate marginal panels before stacking", {
