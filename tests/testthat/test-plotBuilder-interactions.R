@@ -832,3 +832,134 @@ test_that("multiple plot tabs retain independent statistic parameters", {
   for (layer in firstBuilt$data) expect_equal(max(layer$xmax - layer$xmin), 0.4)
   for (layer in secondBuilt$data) expect_equal(max(layer$ymax - layer$ymin), 0.8)
 })
+
+test_that("area stacks aggregate marginal panels before stacking", {
+  dataset <- expand.grid(x = 1:3, group = factor(c("a", "b")), facet = factor(c("A", "B")))
+  dataset$y <- c(1:6, 11:16)
+  for (horizontal in c(FALSE, TRUE)) {
+    data <- dataset
+    if (horizontal) data$x <- factor(data$x)
+    for (measure in c("sum", "count")) {
+      for (mode in c("absolute", "relative")) {
+        plot <- .plotBuilderTestPlot(data, addDataPoint = FALSE, addAreaStack = TRUE,
+          variableXPlotBuilder = if (horizontal) "y" else "x",
+          variableYPlotBuilder = if (horizontal) "x" else "y",
+          variableColorPlotBuilder = "group", colorByGroup = "grouping",
+          columnsvariableSplitPlotBuilder = "facet", margins = TRUE,
+          stackMeasure = measure, propMode = mode, plotStyle = "JASP")
+        built <- ggplot2::ggplot_build(plot)
+        margin <- built$layout$layout$PANEL[built$layout$layout$facet == "(all)"]
+        layer <- built$data[[1]]
+        layer <- layer[layer$PANEL == margin, ]
+        responseAxis <- if (horizontal) "x" else "y"
+        positionAxis <- if (horizontal) "y" else "x"
+        layer <- layer[layer[[positionAxis]] %in% 1:3, ]
+        heights <- layer[[paste0(responseAxis, "max")]] - layer[[paste0(responseAxis, "min")]]
+        firstGroup <- layer$group == 1
+        actual <- heights[firstGroup][order(layer[[positionAxis]][firstGroup])]
+        expected <- if (measure == "sum") c(12, 14, 16) else rep(2, 3)
+        totals <- if (measure == "sum") c(30, 34, 38) else rep(4, 3)
+        if (mode == "relative") expected <- expected / totals
+        expect_equal(actual, expected)
+        expect_warning(ggplot2::ggplotGrob(plot), NA)
+      }
+    }
+  }
+})
+
+test_that("area stacks retain interpolation and optional zero filling", {
+  data <- data.frame(x = c(1, 3, 1, 2, 3), y = c(2, 6, 1, 1, 1),
+                     group = factor(c("a", "a", "b", "b", "b")))
+  data <- rbind(transform(data, facet = "A"), transform(data, facet = "B"))
+  data$facet <- factor(data$facet)
+  for (fillMissing in c(FALSE, TRUE)) {
+    plot <- .plotBuilderTestPlot(data, addDataPoint = FALSE, addAreaStack = TRUE,
+      variableColorPlotBuilder = "group", colorByGroup = "grouping",
+      columnsvariableSplitPlotBuilder = "facet", margins = TRUE,
+      replaceNaAreaStack = fillMissing, stackMeasure = "sum")
+    built <- ggplot2::ggplot_build(plot)
+    margin <- built$layout$layout$PANEL[built$layout$layout$facet == "(all)"]
+    layer <- built$data[[1]]
+    middle <- layer[layer$PANEL == margin & layer$group == 1 & layer$x == 2, ]
+    expect_equal(middle$ymax - middle$ymin, if (fillMissing) 0 else 8)
+    expect_warning(ggplot2::ggplotGrob(plot), NA)
+  }
+})
+
+test_that("JASP count-stack limits follow visible layers", {
+  data <- data.frame(x = rep(1:4, 4), y = seq_len(16) * 100,
+                     group = factor(rep(c("a", "b"), each = 8)))
+  for (area in c(FALSE, TRUE)) {
+    for (points in c(FALSE, TRUE)) {
+      args <- list(dataset = data, addDataPoint = points, stackMeasure = "count",
+        variableColorPlotBuilder = "group", colorByGroup = "grouping")
+      args[[if (area) "addAreaStack" else "addBarStack"]] <- TRUE
+      gray <- do.call(.plotBuilderTestPlot, args)
+      jasp <- do.call(.plotBuilderTestPlot, c(args, list(plotStyle = "JASP")))
+      grayBuilt <- ggplot2::ggplot_build(gray)
+      jaspBuilt <- ggplot2::ggplot_build(jasp)
+      expect_equal(jaspBuilt$layout$panel_params[[1]]$y.range,
+                   grayBuilt$layout$panel_params[[1]]$y.range)
+      if (points) expect_gt(max(jaspBuilt$layout$panel_params[[1]]$y.range), 1500)
+      else expect_lt(max(jaspBuilt$layout$panel_params[[1]]$y.range), 5)
+      expect_warning(ggplot2::ggplotGrob(jasp), NA)
+    }
+  }
+})
+
+test_that("single-axis sum stacks hide their synthetic positioning axis", {
+  data <- data.frame(value = 1:6, group = factor(rep(c("a", "b"), 3)))
+  for (axis in c("x", "y")) {
+    for (measure in c("auto", "sum")) {
+      plot <- .plotBuilderTestPlot(data, addDataPoint = FALSE, addBarStack = TRUE,
+        variableXPlotBuilder = if (axis == "x") "value" else "",
+        variableYPlotBuilder = if (axis == "y") "value" else "",
+        variableColorPlotBuilder = "group", colorByGroup = "grouping",
+        stackMeasure = measure, plotStyle = "JASP")
+      built <- ggplot2::ggplot_build(plot)
+      positionAxis <- if (axis == "x") "y" else "x"
+      expect_null(built$plot$labels[[positionAxis]])
+      expect_length(built$layout$panel_params[[1]][[positionAxis]]$get_breaks(), 0)
+      expect_equal(max(built$data[[1]][[paste0(axis, "max")]]), sum(data$value))
+      expect_warning(ggplot2::ggplotGrob(plot), NA)
+    }
+  }
+})
+
+test_that("single-axis JASP frames omit hidden axes and respect flipping", {
+  data <- data.frame(value = c(1, 2, 4, 5, 7))
+  for (axis in c("x", "y")) {
+    for (flip in c(FALSE, TRUE)) {
+      for (geometry in c("DataPoint", "Boxplot", "Violin", "MeanDot")) {
+        args <- list(dataset = data, addDataPoint = FALSE, flipPlot = flip, plotStyle = "JASP",
+          variableXPlotBuilder = if (axis == "x") "value" else "",
+          variableYPlotBuilder = if (axis == "y") "value" else "")
+        args[[paste0("add", geometry)]] <- TRUE
+        plot <- do.call(.plotBuilderTestPlot, args)
+        frames <- Filter(function(layer) inherits(layer$geom, "GeomRangeFrame"), plot$layers)
+        expect_length(frames, 1)
+        expect_equal(frames[[1]]$geom_params$sides, if (xor(axis == "x", flip)) "b" else "l")
+        expect_warning(ggplot2::ggplotGrob(plot), NA)
+      }
+    }
+  }
+  plot <- .plotBuilderTestPlot(data, variableXPlotBuilder = "value", variableYPlotBuilder = "",
+    addDataPoint = FALSE, addMeanDot = TRUE, plotStyle = "JASP", titleYPlotBuilder = "Custom position",
+    breakFromY = "0", breakToY = "2", breakByY = "1")
+  frames <- Filter(function(layer) inherits(layer$geom, "GeomRangeFrame"), plot$layers)
+  expect_equal(frames[[1]]$geom_params$sides, "bl")
+  expect_equal(plot$scales$get_scales("y")$name, "Custom position")
+  expect_warning(ggplot2::ggplotGrob(plot), NA)
+})
+
+test_that("RM joint means do not leak subject aesthetics", {
+  data <- data.frame(ID = c(1, 1, 2, 3, 3, 4), x = c(2, 2, 4, 10, 10, 14),
+    Value = c(0, 4, 6, 8, 12, 14), group = factor(c("a", "a", "a", "b", "b", "b")))
+  plot <- .plotBuilderTestPlot(data, isRM = "RM", xVarRM = "x", groupVarRM = "group",
+    colorByGroup = "grouping", addDataPoint = FALSE, addMeanDot = TRUE, meanDotMode = "center")
+  expect_warning(built <- ggplot2::ggplot_build(plot), NA)
+  expect_equal(built$data[[1]]$x, c(3, 12))
+  expect_equal(built$data[[1]]$y, c(4, 12))
+  expect_false(".subject" %in% names(built$data[[1]]))
+  expect_warning(ggplot2::ggplotGrob(plot), NA)
+})

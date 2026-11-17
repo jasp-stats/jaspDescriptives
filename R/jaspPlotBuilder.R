@@ -1040,16 +1040,21 @@ addDecodedLabels <- function(p) {
 
     # Add proportion bar and area ####
 
+    barStackMeasure <- .plotBuilderStackMeasure(tab$stackMeasure, FALSE, localData[[xVar]], localData[[yVar]])
+    areaStackMeasure <- .plotBuilderStackMeasure(tab$stackMeasure, TRUE, localData[[xVar]], localData[[yVar]])
+    hasCountStack <- (isTRUE(tab$addBarStack) && barStackMeasure == "count") ||
+      (isTRUE(tab$addAreaStack) && areaStackMeasure == "count")
+
     if (tab[["addBarStack"]] || tab[["addAreaStack"]]) {
       if (!hasGroup)
         .quitAnalysis(gettext("Stacked plots require a categorical Group variable."))
       facetVars <- intersect(c(rowsVar, colsVar, gridVar), names(localData))
       if (tab[["addBarStack"]])
         layer_calls$barstack <- function(p)
-          .plotBuilderStack(p, tab, FALSE, xVar, yVar, groupVar, colorVar, facetVars)
+          .plotBuilderStack(p, tab, FALSE, barStackMeasure, xVar, yVar, groupVar, colorVar, facetVars)
       if (tab[["addAreaStack"]])
         layer_calls$areastack <- function(p)
-          .plotBuilderStack(p, tab, TRUE, xVar, yVar, groupVar, colorVar, facetVars)
+          .plotBuilderStack(p, tab, TRUE, areaStackMeasure, xVar, yVar, groupVar, colorVar, facetVars)
     }
 
     # Add Mean Bar (tidyplots::add_mean_bar)----
@@ -1832,6 +1837,8 @@ addDecodedLabels <- function(p) {
 
     # Adjust X axis (tidyplots::adjust_x_axis)----
     adjust_args_xaxis <- list()
+    # An unassigned axis can still contain numeric positions or computed counts.
+    adjust_args_xaxis$force_continuous <- !hasX
 
     titleValueX <- tab[["titleXPlotBuilder"]]
     if (!is.null(titleValueX) && titleValueX != "") {
@@ -1915,6 +1922,7 @@ addDecodedLabels <- function(p) {
     # Adjust Y axis (tidyplots::adjust_y_axis)----
     {
       adjust_args_yaxis <- list()
+      adjust_args_yaxis$force_continuous <- !hasY
 
       # --- Title ---
       titleValueY <- tab[["titleYPlotBuilder"]]
@@ -2209,7 +2217,8 @@ addDecodedLabels <- function(p) {
     }
 
 
-    if (tab[["propMode"]] == "relative") {
+    # Count stacks replace the response axis; raw response values must not set its limits.
+    if (tab[["propMode"]] == "relative" || hasCountStack) {
       blankLayer <- ggplot2::geom_blank(
         inherit.aes = FALSE
       )
@@ -2220,10 +2229,11 @@ addDecodedLabels <- function(p) {
 
     # Apply theme ----
     if (plotStyle == "JASP") {
+      rangeFrame <- jaspGraphs::geom_rangeframe()
       tidyplot_obj <- tidyplot_obj +
         ggplot2::complete_theme(jaspGraphs::themeJaspRaw(fontsize = baseFontSize, legend.position = legend_position)) +
         blankLayer +
-        jaspGraphs::geom_rangeframe() +
+        rangeFrame +
         ggplot2::theme(
           strip.text = ggplot2::element_text(size = baseFontSize)
         )
@@ -2467,7 +2477,8 @@ addDecodedLabels <- function(p) {
         ggplot2::guides(color = "none", fill = "none")
     }
 
-    usesCountAxis <- any(vapply(tab[grep("^add(Count|Histogram|Density|BarStack|AreaStack)", names(tab))], isTRUE, logical(1)))
+    usesCountAxis <- hasCountStack ||
+      any(vapply(tab[grep("^add(Count|Histogram|Density)", names(tab))], isTRUE, logical(1)))
     if (xor(hasX, hasY) && !usesCountAxis) {
       axis <- if (hasX) "y" else "x"
       title <- tab[[if (hasX) "titleYPlotBuilder" else "titleXPlotBuilder"]]
@@ -2480,6 +2491,9 @@ addDecodedLabels <- function(p) {
           scaleFunction <- if (hasX) ggplot2::scale_y_continuous else ggplot2::scale_x_continuous
           tidyplot_obj <- tidyplot_obj + scaleFunction(breaks = NULL)
         } else axisScale$breaks <- NULL
+        # A hidden axis has no ticks for the JASP range frame to join.
+        if (plotStyle == "JASP")
+          rangeFrame$geom_params$sides <- if (xor(hasX, isTRUE(tab$flipPlot))) "b" else "l"
       }
     }
 

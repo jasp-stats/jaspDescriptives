@@ -17,6 +17,7 @@
           dplyr::group_by(dplyr::across(dplyr::all_of(by))) |>
           dplyr::summarise(dplyr::across(dplyr::all_of(valueVars), ~ mean(.x, na.rm = TRUE)),
             dplyr::across(dplyr::all_of(otherVars), ~ .x[1]), .groups = "drop")
+        data$.subject <- NULL
       }
       if (uncertainty)
         data <- .plotBuilderUncertaintyData(data, valueVars, c("group", positionVars))
@@ -47,16 +48,35 @@
   )
 }
 
-.plotBuilderStack <- function(plot, tab, area, xVar, yVar, groupVar, colorVar, facetVars) {
+.plotBuilderStackMeasure <- function(measure, area, x, y) {
+  if (!is.null(measure) && measure != "auto") return(measure)
+  if (area) return(if (!is.null(x) && !is.null(y)) "sum" else "count")
+  if (is.numeric(x) || is.numeric(y)) "sum" else "count"
+}
+
+.plotBuilderAreaStackStat <- function() {
+  ggplot2::ggproto(NULL, ggplot2::StatAlign,
+    compute_panel = function(data, scales, flipped_aes = FALSE) {
+      # Facet margins combine panels: sum their contributions before aligning groups.
+      positionVar <- if (flipped_aes) "y" else "x"
+      valueVar <- if (flipped_aes) "x" else "y"
+      by <- c("group", positionVar)
+      otherVars <- setdiff(names(data), c(by, valueVar))
+      data <- data |>
+        dplyr::group_by(dplyr::across(dplyr::all_of(by))) |>
+        dplyr::summarise("{valueVar}" := sum(.data[[valueVar]]),
+          dplyr::across(dplyr::all_of(otherVars), ~ .x[1]), .groups = "drop")
+      ggplot2::StatAlign$compute_panel(data, scales, flipped_aes = flipped_aes)
+    }
+  )
+}
+
+.plotBuilderStack <- function(plot, tab, area, measure, xVar, yVar, groupVar, colorVar, facetVars) {
   data <- plot$data
   hasX <- nzchar(xVar)
   hasY <- nzchar(yVar)
   scaleX <- hasX && is.numeric(data[[xVar]])
   scaleY <- hasY && is.numeric(data[[yVar]])
-  measure <- tab$stackMeasure
-  if (is.null(measure) || measure == "auto")
-    measure <- if (area) { if (hasX && hasY) "sum" else "count" } else
-      if (scaleX || scaleY) "sum" else "count"
   if (measure == "sum" && !scaleX && !scaleY)
     .quitAnalysis(gettext("Sum stacks require a scale variable."))
   if (hasX && hasY && !scaleX && !scaleY)
@@ -102,7 +122,10 @@
   args <- list(data = data, mapping = mapping, inherit.aes = FALSE, position = position,
                orientation = if (horizontal) "y" else "x",
                alpha = if (area) tab$alphaAreaStack else tab$alphaBarStack)
-  if (area) args$linewidth <- tab$linewidthAreaStack else args$width <- 0.8
+  if (area) {
+    args$stat <- .plotBuilderAreaStackStat()
+    args$linewidth <- tab$linewidthAreaStack
+  } else args$width <- 0.8
   plot <- plot + do.call(if (area) ggplot2::geom_area else ggplot2::geom_col, args)
   if (measure == "count")
     plot <- plot + do.call(ggplot2::labs, stats::setNames(list("count"), if (horizontal) "x" else "y"))

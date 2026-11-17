@@ -16,6 +16,8 @@
 
 # jaspDescriptives (development version)
 
+* Fixed Plot Builder marginal area-stack totals, count-stack axis limits under the JASP theme, and single-axis sum-stack labels. Removed spurious warnings from single-axis JASP frames and repeated-measures joint means.
+
 * Plot Builder supports single-axis points, boxplots, violins, and summaries; categorical histogram/density ridges; grouped histogram layouts; and optional mean/median centers across both coordinates. Geometry availability and help now follow variable types.
 * Plot Builder separates statistical grouping from coloring, provides explicit stack measures, and preserves shape mappings beyond six categories. Repeated-measures means and SEM/CI use subject averages within each plotted position, group, and panel, including margins; trajectories stay within other repeated-measures conditions.
 
