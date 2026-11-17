@@ -16,6 +16,8 @@
 
 # jaspDescriptives (development version)
 
+* Plot Builder summarizes independent two-scale data with per-group mean/median centers (dots, crosshairs, or reference lines). Added separate mean SD, SEM, and Hotelling confidence ellipses. Position-based summaries remain available for categorical axes, single-axis plots, and repeated measures.
+
 * Fixed Plot Builder marginal area-stack totals, count-stack axis limits under the JASP theme, and single-axis sum-stack labels. Removed spurious warnings from single-axis JASP frames and repeated-measures joint means.
 
 * Plot Builder supports single-axis points, boxplots, violins, and summaries; categorical histogram/density ridges; grouped histogram layouts; and optional mean/median centers across both coordinates. Geometry availability and help now follow variable types.

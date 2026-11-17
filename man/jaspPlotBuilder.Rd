@@ -9,7 +9,11 @@ jaspPlotBuilder(
   version = "1",
   PlotBuilderTab = list(list(XPaddingFirst = 0.05, XPaddingSecond = 0.05, YPaddingFirst =
     0.04, YPaddingSecond = 0.05, distributionHeight = 0.8, histogramPosition =
-    "identity", meanDotMode = "position", medianDotMode = "position", ribbonDodge = 0.8,
+    "identity", meanCenterStyle = "dot", medianCenterStyle = "dot",
+    meanCenterLinewidth = 0.5, medianCenterLinewidth = 0.5, addMeanEllipse = FALSE,
+    meanEllipseType = "sd", meanEllipseMultiplier = 1, meanEllipseLevel = 0.95,
+    meanEllipseLinewidth = 0.8, meanEllipseOpacity = 1, meanEllipseOutline = "automatic",
+    ribbonDodge = 0.8,
     stackMeasure = "auto", accuracyCountValue = 0.1, accuracyMeanValue = 0.1,
     accuracyMedianValue = 0.1, accuracySumValue = 0.1, addAreaStack = FALSE, addBarStack
     = FALSE, addBoxplot = FALSE, addCI95ErrorBar = FALSE, addCi95Ribbon = FALSE,

@@ -1,14 +1,13 @@
 # Geometry helpers shared by the Plot Builder layers.
 
-.plotBuilderSummaryStat <- function(stat, averageSubjects, jointCenter, uncertainty) {
+.plotBuilderSummaryStat <- function(stat, averageSubjects, uncertainty) {
   force(averageSubjects)
-  force(jointCenter)
   force(uncertainty)
   ggplot2::ggproto(NULL, stat,
     required_aes = unique(c(stat$required_aes, if (averageSubjects) ".subject")),
     compute_panel = function(data, scales, fun = NULL, na.rm = FALSE, flipped_aes = FALSE) {
-      valueVars <- if (jointCenter) c("x", "y") else if (flipped_aes) "x" else "y"
-      positionVars <- if (jointCenter) character() else if (flipped_aes) "y" else "x"
+      valueVars <- if (flipped_aes) "x" else "y"
+      positionVars <- if (flipped_aes) "y" else "x"
       if (averageSubjects) {
         by <- c("group", ".subject", positionVars)
         otherVars <- setdiff(names(data), c(by, valueVars))
@@ -22,8 +21,7 @@
       if (uncertainty)
         data <- .plotBuilderUncertaintyData(data, valueVars, c("group", positionVars))
       if (!nrow(data)) return(data.frame())
-      if (jointCenter) stat$compute_panel(data, scales)
-      else stat$compute_panel(data, scales, fun = fun, na.rm = na.rm, flipped_aes = flipped_aes)
+      stat$compute_panel(data, scales, fun = fun, na.rm = na.rm, flipped_aes = flipped_aes)
     }
   )
 }
@@ -39,11 +37,69 @@
   data[data$.plotBuilderUsable >= 2, setdiff(names(data), ".plotBuilderUsable"), drop = FALSE]
 }
 
-.plotBuilderCenterStat <- function(fun) {
+.plotBuilderCenterStat <- function(fun, referenceLines = FALSE) {
+  force(fun)
+  force(referenceLines)
   ggplot2::ggproto(NULL, ggplot2::Stat,
     required_aes = c("x", "y"),
     compute_group = function(data, scales) {
-      data.frame(x = fun(data$x), y = fun(data$y))
+      x <- fun(data$x)
+      y <- fun(data$y)
+      result <- if (referenceLines)
+        data.frame(x = c(-Inf, x), y = c(y, -Inf), xend = c(Inf, x), yend = c(y, Inf)) else
+        data.frame(x = x, y = y)
+      for (aesthetic in intersect(c("colour", "fill"), names(data)))
+        if (is.numeric(data[[aesthetic]])) result[[aesthetic]] <- fun(data[[aesthetic]])
+      result
+    }
+  )
+}
+
+.plotBuilderCenterLayer <- function(fun, style, size, linewidth, alpha, outline) {
+  args <- list(stat = .plotBuilderCenterStat(fun, referenceLines = style == "lines"), alpha = alpha)
+  if (outline != "automatic") args$colour <- outline
+  if (style == "lines") {
+    args$mapping <- ggplot2::aes(xend = ggplot2::after_stat(xend), yend = ggplot2::after_stat(yend))
+    args$linewidth <- linewidth
+    do.call(ggplot2::geom_segment, args)
+  } else {
+    args$shape <- if (style == "crosshair") 3 else 21
+    args$size <- size
+    args$stroke <- linewidth
+    do.call(ggplot2::geom_point, args)
+  }
+}
+
+.plotBuilderMeanEllipseStat <- function(type, multiplier, level) {
+  force(type)
+  force(multiplier)
+  force(level)
+  ggplot2::ggproto(NULL, ggplot2::Stat,
+    required_aes = c("x", "y"),
+    compute_group = function(data, scales) {
+      n <- nrow(data)
+      if (n < if (type == "ci") 3 else 2) {
+        warning(gettext("Mean ellipses require at least two complete observations per group and panel (three for confidence ellipses). Insufficient groups are omitted."), call. = FALSE)
+        return(data.frame())
+      }
+      covariance <- stats::cov(data[c("x", "y")])
+      if (type == "ci" && (any(diag(covariance) <= 0) ||
+          abs(stats::cov2cor(covariance)[1, 2]) >= 1)) {
+        warning(gettext("A confidence ellipse requires variation in both coordinates without perfect correlation. Degenerate groups are omitted."), call. = FALSE)
+        return(data.frame())
+      }
+      # Hotelling's T-squared region for a bivariate mean; SD/SEM use a radius multiplier.
+      radiusSquared <- switch(type, sd = multiplier^2, sem = multiplier^2 / n,
+        ci = 2 * (n - 1) / (n * (n - 2)) * stats::qf(level, 2, n - 2))
+      decomposition <- eigen(covariance, symmetric = TRUE)
+      angle <- seq(0, 2 * pi, length.out = 121)
+      ellipse <- cbind(cos(angle), sin(angle)) %*%
+        diag(sqrt(pmax(decomposition$values, 0) * radiusSquared)) %*% t(decomposition$vectors)
+      ellipse <- sweep(ellipse, 2, colMeans(data[c("x", "y")]), "+")
+      result <- data.frame(x = ellipse[, 1], y = ellipse[, 2])
+      for (aesthetic in intersect(c("colour", "fill"), names(data)))
+        if (is.numeric(data[[aesthetic]])) result[[aesthetic]] <- mean(data[[aesthetic]])
+      result
     }
   )
 }

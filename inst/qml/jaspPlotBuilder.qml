@@ -46,6 +46,7 @@ info: qsTr("The <b>Plot Builder (beta)</b> lets you assemble a complete figure i
 
 infoBottom:
 	"## " + qsTr("References") + "\n" +
+	"- SAS Institute. _The CORR Procedure: Confidence and Prediction Ellipses_. https://support.sas.com/documentation/cdl/en/procstat/66703/HTML/default/procstat_corr_details19.htm\n" +
 	"- Engler, J. B. (2025). “Tidyplots Empowers Life Scientists With Easy Code-Based Data Visualization.” _iMeta_, 4, e70018. https://doi.org/10.1002/imt2.70018\n" +
 	"- Engler, J. B. (2024). _tidyplots: Tidy Plots for Scientific Papers_. R package version 0.2.1. Available at: <https://CRAN.R-project.org/package=tidyplots>.\n" +
 	"- Wickham, H., & Seidel, D. (2023). _rlang: Functions for Base Types and Core R and 'Tidyverse' Features_. R package version 1.1.1. Available at: <https://CRAN.R-project.org/package=rlang>.\n" +
@@ -71,6 +72,8 @@ TabView {
 		readonly property bool scaleY: yesRM.checked || variableYPlotBuilder.columnsTypes.includes("scale")
 		readonly property bool hasGroup: yesRM.checked ? groupVarRM.columnsTypes.some(t => t === "nominal" || t === "ordinal") : variableColorPlotBuilder.columnsTypes.some(t => t === "nominal" || t === "ordinal")
 		readonly property bool canSummarize: scaleX || scaleY
+		readonly property bool jointSummary: !yesRM.checked && scaleX && scaleY
+		readonly property bool canPositionSummary: canSummarize && !jointSummary
 		readonly property bool categoryDistribution: hasX && hasY && scaleX !== scaleY
 		readonly property bool canDistribution: scaleX !== scaleY
 		readonly property bool canBoxViolin: canDistribution || (scaleX && scaleY && hasGroup)
@@ -1218,7 +1221,9 @@ TabView {
 
 
 			Label {
-				text: qsTr("Required: a scale response; lines and areas also need a positioning axis")
+				text: plotOptions.jointSummary
+					? qsTr("Position-based sums are unavailable for two scale axes with non-repeated observations.")
+					: qsTr("Required: a scale response; lines and areas also need a positioning axis")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
@@ -1234,7 +1239,7 @@ TabView {
 					name: "addSumBar"
 					label: qsTr("Sum bar")
 					info: qsTr("Enable to add a sum bar to the plot.")
-					enabled: plotOptions.canSummarize
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1265,7 +1270,7 @@ TabView {
 					name: "addSumDash"
 					label: qsTr("Sum dash")
 					info: qsTr("Enable to add dashed lines to the plot.")
-					enabled: plotOptions.canSummarize
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1306,7 +1311,7 @@ TabView {
 					name: "addSumDot"
 					label: qsTr("Sum dot")
 					info: qsTr("Enable to add sum dots to the plot.")
-					enabled: plotOptions.canSummarize
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1349,7 +1354,7 @@ TabView {
 					name: "addSumLine"
 					label: qsTr("Sum line")
 					info: qsTr("Enable to add a sum line to the plot.")
-					enabled: plotOptions.canSummarize && plotOptions.hasX && plotOptions.hasY
+					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1385,7 +1390,7 @@ TabView {
 					name: "addSumArea"
 					label: qsTr("Sum area")
 					info: qsTr("Enable to add a sum area to the plot.")
-					enabled: plotOptions.canSummarize && plotOptions.hasX && plotOptions.hasY
+					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1412,7 +1417,7 @@ TabView {
 					name: "addSumValue"
 					label: qsTr("Sum value")
 					info: qsTr("Enable to add sum values to the plot.")
-					enabled: plotOptions.canSummarize
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1563,11 +1568,13 @@ TabView {
 
 			info: qsTr("Summary layers that display the arithmetic mean of the Y variable for every X (or vice versa). "
 					 + "A single scale axis is sufficient for bars, dots, dashes, values, and error bars. "
-					 + "Mean can be rendered as bar, line, dot, dash, area, or value. "
+					 + "With two scale axes and non-repeated observations, show the coordinate-wise mean as a dot, crosshair, or reference lines per group and panel. "
 					 + "Common controls: <b>Dodge</b> separates sub-groups, <b>Opacity</b> sets opacity, <b>Size/width</b> changes thickness, <b>Outline</b> toggles borders")
 
 			Label {
-				text: qsTr("Required: a scale response; lines and ribbons also need a positioning axis")
+				text: plotOptions.jointSummary
+					? qsTr("Summarize both coordinates, separately per group and panel.")
+					: qsTr("Summarize at each categorical level or repeated-measures position, or along a single scale axis.")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
@@ -1582,7 +1589,7 @@ TabView {
 					name: "addMeanBar"
 					label: qsTr("Mean bar")
 					info: qsTr("Add mean bars")
-					enabled: plotOptions.canSummarize
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMeanBar";  label: qsTr("Dodge");        defaultValue: 0.8 }
@@ -1595,7 +1602,7 @@ TabView {
 					name: "addMeanDash"
 					label: qsTr("Mean dash")
 					info: qsTr("Add dashed mean lines")
-					enabled: plotOptions.canSummarize
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMeanDash";     label: qsTr("Dodge");       defaultValue: 0.8 }
@@ -1608,26 +1615,27 @@ TabView {
 				/* ── Mean dot ── */
 				CheckBox {
 					name: "addMeanDot"
-					label: qsTr("Mean dot")
+					label: plotOptions.jointSummary ? qsTr("Mean center") : qsTr("Mean dot")
 					info: qsTr("Add mean dots")
 					enabled: plotOptions.canSummarize
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DropDown {
-						name: "meanDotMode"
-						id: meanDotMode
-						label: qsTr("Summarize")
+						name: "meanCenterStyle"
+						id: meanCenterStyle
+						label: qsTr("Appearance")
+						visible: plotOptions.jointSummary
 						values: [
-							{ label: qsTr("At each position"), value: "position" },
-							{ label: qsTr("Both coordinates"), value: "center" }
+							{ label: qsTr("Dot"), value: "dot" },
+							{ label: qsTr("Crosshair"), value: "crosshair" },
+							{ label: qsTr("Reference lines"), value: "lines" }
 						]
-						startValue: "position"
-						enabled: plotOptions.scaleX && plotOptions.scaleY
-						onEnabledChanged: { if (!enabled) currentIndex = 0 }
-						info: qsTr("At each position summarizes the response at each position. Both coordinates draws one point at (mean(X), mean(Y)) per group and panel. Error bars remain summaries at each position.")
+						startValue: "dot"
+						info: qsTr("Mark the mean of both coordinates, separately for each group and panel. Crosshair size is visual and does not represent uncertainty.")
 					}
-					DoubleField { name: "dodgeMeanDot"; enabled: meanDotMode.currentValue === "position"; label: qsTr("Dodge");    defaultValue: 0.8 }
-					DoubleField { name: "sizeMeanDot";  label: qsTr("Dot size"); defaultValue: 5 }
+					DoubleField { name: "meanCenterLinewidth"; label: qsTr("Line width"); defaultValue: 0.5; visible: plotOptions.jointSummary }
+					DoubleField { name: "dodgeMeanDot"; visible: !plotOptions.jointSummary; label: qsTr("Dodge");    defaultValue: 0.8 }
+					DoubleField { name: "sizeMeanDot"; visible: !plotOptions.jointSummary || meanCenterStyle.currentValue !== "lines"; label: plotOptions.jointSummary ? qsTr("Marker size") : qsTr("Dot size"); defaultValue: 5 }
 					DoubleField { name: "alphaMeanDot"; label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					DropDown {
 						name: "outlineMeanDot"
@@ -1647,7 +1655,7 @@ TabView {
 					name: "addMeanLine"
 					label: qsTr("Mean line")
 					info: qsTr("Add mean profile lines")
-					enabled: plotOptions.canSummarize && plotOptions.hasX && plotOptions.hasY
+					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMeanLine";   label: qsTr("Dodge");      defaultValue: 0.8 }
@@ -1661,7 +1669,7 @@ TabView {
 					name: "addMeanArea"
 					label: qsTr("Mean area")
 					info: qsTr("Add filled mean areas")
-					enabled: plotOptions.canSummarize && plotOptions.hasX && plotOptions.hasY
+					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMeanArea"; label: qsTr("Dodge");        defaultValue: 0.8 }
@@ -1673,7 +1681,7 @@ TabView {
 					name: "addMeanValue"
 					label: qsTr("Mean value")
 					info: qsTr("Add numeric mean labels")
-					enabled: plotOptions.canSummarize
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField  { name: "fontsizeMeanValue";  label: qsTr("Font size"); defaultValue: 14 }
@@ -1693,6 +1701,42 @@ TabView {
 
 
 
+		Section {
+			title: qsTr("Mean ellipse")
+			info: qsTr("For two scale axes and independent observations, draw an ellipse centered on the arithmetic means, separately per group and panel. SD shows data spread using the sample covariance; SEM uses covariance divided by the number of complete pairs. A radius multiplier of one is not a 95% region. Confidence uses a joint Hotelling T-squared region for the population mean, assuming independent bivariate-normal observations. SD and SEM require at least two complete pairs; confidence requires at least three and a nonsingular covariance. This is not uncertainty around a median. Existing data ellipses under Individual data points remain separate.")
+			CheckBox {
+				name: "addMeanEllipse"
+				label: qsTr("Mean ellipse")
+				enabled: plotOptions.jointSummary
+				onEnabledChanged: { if (!enabled) checked = false }
+				DropDown {
+					name: "meanEllipseType"
+					id: meanEllipseType
+					label: qsTr("Type")
+					values: [
+						{ label: qsTr("SD (data spread)"), value: "sd" },
+						{ label: qsTr("SEM (mean uncertainty)"), value: "sem" },
+						{ label: qsTr("Confidence region"), value: "ci" }
+					]
+					startValue: "sd"
+				}
+				DoubleField { name: "meanEllipseMultiplier"; label: qsTr("Radius multiplier"); defaultValue: 1; min: 0; inclusive: JASP.None; visible: meanEllipseType.currentValue !== "ci" }
+				DoubleField { name: "meanEllipseLevel"; label: qsTr("Confidence level"); defaultValue: 0.95; min: 0; max: 1; inclusive: JASP.None; visible: meanEllipseType.currentValue === "ci" }
+				DoubleField { name: "meanEllipseLinewidth"; label: qsTr("Line width"); defaultValue: 0.8 }
+				DoubleField { name: "meanEllipseOpacity"; label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
+				DropDown {
+					name: "meanEllipseOutline"
+					label: qsTr("Outline")
+					values: [
+						{ label: qsTr("Automatic"), value: "automatic" },
+						{ label: qsTr("Black"), value: "black" },
+						{ label: qsTr("White"), value: "white" }
+					]
+					startValue: "automatic"
+				}
+			}
+		}
+
 		// -------------------------------------------------------------------
 		// Median
 		// -------------------------------------------------------------------
@@ -1701,11 +1745,13 @@ TabView {
 
 			info: qsTr("Summary layers that display the median of the Y variable for every X (or vice versa). "
 					 + "A single scale axis is sufficient for bars, dots, dashes, values, and error bars. "
-					 + "Median can be rendered as bar, line, dot, dash, area, or value. "
+					 + "With two scale axes and non-repeated observations, show the coordinate-wise median as a dot, crosshair, or reference lines per group and panel. "
 					 + "Common controls: <b>Dodge</b> separates sub-groups, <b>Opacity</b> sets opacity, <b>Size/width</b> changes thickness, <b>Outline</b> toggles borders")
 
 			Label {
-				text: qsTr("Required: a scale response; lines and ribbons also need a positioning axis")
+				text: plotOptions.jointSummary
+					? qsTr("Summarize both coordinates, separately per group and panel.")
+					: qsTr("Summarize at each categorical level or repeated-measures position, or along a single scale axis.")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
@@ -1720,7 +1766,7 @@ TabView {
 					name: "addMedianBar"
 					label: qsTr("Median bar")
 					info: qsTr("Add median bars")
-					enabled: plotOptions.canSummarize
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMedianBar";  label: qsTr("Dodge");        defaultValue: 0.8 }
@@ -1734,7 +1780,7 @@ TabView {
 					name: "addMedianDash"
 					label: qsTr("Median dash")
 					info: qsTr("Add dashed median lines")
-					enabled: plotOptions.canSummarize
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMedianDash";     label: qsTr("Dodge");       defaultValue: 0.8 }
@@ -1748,26 +1794,27 @@ TabView {
 				CheckBox {
 					id: addMedianDot
 					name: "addMedianDot"
-					label: qsTr("Median dot")
+					label: plotOptions.jointSummary ? qsTr("Median center") : qsTr("Median dot")
 					info: qsTr("Add median dots")
 					enabled: plotOptions.canSummarize
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DropDown {
-						name: "medianDotMode"
-						id: medianDotMode
-						label: qsTr("Summarize")
+						name: "medianCenterStyle"
+						id: medianCenterStyle
+						label: qsTr("Appearance")
+						visible: plotOptions.jointSummary
 						values: [
-							{ label: qsTr("At each position"), value: "position" },
-							{ label: qsTr("Both coordinates"), value: "center" }
+							{ label: qsTr("Dot"), value: "dot" },
+							{ label: qsTr("Crosshair"), value: "crosshair" },
+							{ label: qsTr("Reference lines"), value: "lines" }
 						]
-						startValue: "position"
-						enabled: plotOptions.scaleX && plotOptions.scaleY
-						onEnabledChanged: { if (!enabled) currentIndex = 0 }
-						info: qsTr("At each position summarizes the response at each position. Both coordinates draws one coordinate-wise median point per group and panel; it is not a spatial median.")
+						startValue: "dot"
+						info: qsTr("Mark the median of both coordinates, separately for each group and panel. Crosshair size is visual and does not represent uncertainty.")
 					}
-					DoubleField { name: "dodgeMedianDot"; enabled: medianDotMode.currentValue === "position"; label: qsTr("Dodge");    defaultValue: 0.8 }
-					DoubleField { name: "sizeMedianDot";  label: qsTr("Dot size"); defaultValue: 5 }
+					DoubleField { name: "medianCenterLinewidth"; label: qsTr("Line width"); defaultValue: 0.5; visible: plotOptions.jointSummary }
+					DoubleField { name: "dodgeMedianDot"; visible: !plotOptions.jointSummary; label: qsTr("Dodge");    defaultValue: 0.8 }
+					DoubleField { name: "sizeMedianDot"; visible: !plotOptions.jointSummary || medianCenterStyle.currentValue !== "lines"; label: plotOptions.jointSummary ? qsTr("Marker size") : qsTr("Dot size"); defaultValue: 5 }
 					DoubleField { name: "alphaMedianDot"; label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					DropDown {
 						name: "outlineMedianDot"
@@ -1788,7 +1835,7 @@ TabView {
 					name: "addMedianLine"
 					label: qsTr("Median line")
 					info: qsTr("Add median profile lines")
-					enabled: plotOptions.canSummarize && plotOptions.hasX && plotOptions.hasY
+					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMedianLine";   label: qsTr("Dodge");      defaultValue: 0.8 }
@@ -1802,7 +1849,7 @@ TabView {
 					name: "addMedianArea"
 					label: qsTr("Median area")
 					info: qsTr("Add filled median areas")
-					enabled: plotOptions.canSummarize && plotOptions.hasX && plotOptions.hasY
+					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMedianArea"; label: qsTr("Dodge");        defaultValue: 0.8 }
@@ -1814,7 +1861,7 @@ TabView {
 					name: "addMedianValue"
 					label: qsTr("Median value")
 					info: qsTr("Add numeric median labels")
-					enabled: plotOptions.canSummarize
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField  { name: "fontsizeMedianValue";  label: qsTr("Font size"); defaultValue: 14 }
@@ -1848,19 +1895,23 @@ TabView {
 					 + "<b>Opacity</b> sets opacity, <b>Black lines</b> toggles outlines")
 
 			Label {
-				text: qsTr("Required: a scale response; lines and ribbons also need a positioning axis")
+				text: plotOptions.jointSummary
+					? qsTr("For two scale axes with non-repeated observations, use Mean ellipse for spread or uncertainty.")
+					: qsTr("Required: a scale response; lines and ribbons also need a positioning axis")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
 
 			Label {
-				text: qsTr("The optimal dodge value is 0 if both X and Y-Axis Variables are continuous")
+				visible: !plotOptions.jointSummary
+				text: qsTr("Use zero dodge to retain numerical positions on a continuous repeated-measures axis.")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
 
 			DoubleField {
 				name: "ribbonDodge"
+				enabled: plotOptions.canPositionSummary
 				label: qsTr("Ribbon dodge")
 				defaultValue: 0.8
 				min: 0
@@ -1878,7 +1929,7 @@ TabView {
 					name: "addRangeErrorBar"
 					label: qsTr("Range error bar")
 					info: qsTr("Add range error bars")
-					enabled: plotOptions.canSummarize
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeRangeErrorBar";   label: qsTr("Dodge");        defaultValue: 0.8 }
@@ -1894,7 +1945,7 @@ TabView {
 					name: "addSDErrorBar"
 					label: qsTr("SD error bar")
 					info: qsTr("Add SD error bars")
-					enabled: plotOptions.canSummarize
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeSDErrorBar";   label: qsTr("Dodge");        defaultValue: 0.8 }
@@ -1910,7 +1961,7 @@ TabView {
 					name: "addSEMErrorBar"
 					label: qsTr("SEM error bar")
 					info: qsTr("Add SEM error bars")
-					enabled: plotOptions.canSummarize
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeSEMErrorBar";   label: qsTr("Dodge");        defaultValue: 0.8 }
@@ -1925,7 +1976,7 @@ TabView {
 					name: "addCI95ErrorBar"
 					label: qsTr("95% CI error bar")
 					info: qsTr("Add 95 % CI error bars")
-					enabled: plotOptions.canSummarize
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeCI95ErrorBar";   label: qsTr("Dodge");        defaultValue: 0.8 }
@@ -1946,7 +1997,7 @@ TabView {
 					name: "addRangeRibbon"
 					label: qsTr("Range ribbon")
 					info: qsTr("Add range ribbons")
-					enabled: plotOptions.canSummarize && plotOptions.hasX && plotOptions.hasY
+					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "alphaRangeRibbon"; label: qsTr("Opacity"); defaultValue: 0.4; min: 0; max: 1 }
@@ -1959,7 +2010,7 @@ TabView {
 					name: "addSdRibbon"
 					label: qsTr("SD ribbon")
 					info: qsTr("Add SD ribbons")
-					enabled: plotOptions.canSummarize && plotOptions.hasX && plotOptions.hasY
+					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "alphaSdRibbon"; label: qsTr("Opacity"); defaultValue: 0.4; min: 0; max: 1 }
@@ -1971,7 +2022,7 @@ TabView {
 					name: "addSemRibbon"
 					label: qsTr("SEM ribbon")
 					info: qsTr("Add SEM ribbons")
-					enabled: plotOptions.canSummarize && plotOptions.hasX && plotOptions.hasY
+					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "alphaSemRibbon"; label: qsTr("Opacity"); defaultValue: 0.4; min: 0; max: 1 }
@@ -1983,7 +2034,7 @@ TabView {
 					name: "addCi95Ribbon"
 					label: qsTr("95% CI ribbon")
 					info: qsTr("Add 95 % CI ribbons")
-					enabled: plotOptions.canSummarize && plotOptions.hasX && plotOptions.hasY
+					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "alphaCi95Ribbon"; label: qsTr("Opacity"); defaultValue: 0.4; min: 0; max: 1 }
@@ -2798,13 +2849,14 @@ TabView {
 			  + "mean_dash: Mean dash<br>"
 			  + "mean_line: Mean line<br>"
 			  + "mean_area: Mean area<br>"
-			  + "mean_dot: Mean dot<br>"
+			  + "mean_dot: Mean dot or center<br>"
+			  + "mean_ellipse: Mean ellipse<br>"
 			  + "mean_value: Mean value<br>"
 			  + "median_bar: Median bar<br>"
 			  + "median_dash: Median dash<br>"
 			  + "median_line: Median line<br>"
 			  + "median_area: Median area<br>"
-			  + "median_dot: Median dot<br>"
+			  + "median_dot: Median dot or center<br>"
 			  + "median_value: Median value<br>"
 			  + "range_errorbar: Range error bar<br>"
 			  + "sd_errorbar: SD error bar<br>"

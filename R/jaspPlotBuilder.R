@@ -439,6 +439,12 @@ addDecodedLabels <- function(p) {
     summaryOptions <- grep("^add(Sum|Mean|Median|Range|SD|SEM|CI95|Sd|Sem|Ci95)", names(tab), value = TRUE)
     if (any(vapply(tab[summaryOptions], isTRUE, logical(1))) && !scaleX && !scaleY)
       .quitAnalysis(gettext("Summary layers require a scale variable on at least one axis."))
+    jointSummary <- !identical(tab$isRM, "RM") && scaleX && scaleY
+    positionSummaries <- setdiff(summaryOptions, c("addMeanDot", "addMedianDot", "addMeanEllipse"))
+    if (jointSummary && any(vapply(tab[positionSummaries], isTRUE, logical(1))))
+      .quitAnalysis(gettext("With two scale axes and non-repeated observations, use a mean or median center and optional mean ellipse. Position-based summaries require a categorical axis, a single scale axis, or repeated measures."))
+    if (isTRUE(tab$addMeanEllipse) && !jointSummary)
+      .quitAnalysis(gettext("Mean ellipses require two scale axes and non-repeated observations."))
     distributionPositions <- hasX && hasY && xor(scaleX, scaleY)
     if ((isTRUE(tab$addHistogram) || isTRUE(tab$addDensity)) && !xor(scaleX, scaleY))
       .quitAnalysis(gettext("Histograms and densities require exactly one scale variable, optionally positioned along a categorical axis."))
@@ -1408,13 +1414,10 @@ addDecodedLabels <- function(p) {
         outline <- .plotBuilderOutlineColor(tab, "MeanDot")
         if (outline != "automatic") argList$color <- outline
 
-        if (identical(tab$meanDotMode, "center")) {
-          if (!(scaleX && scaleY))
-            .quitAnalysis(gettext("A two-dimensional center requires scale variables on both axes."))
-          pointArgs <- list(stat = .plotBuilderCenterStat(mean),
-            size = argList$size, alpha = argList$alpha, shape = 21)
-          if (!is.null(argList$color)) pointArgs$colour <- argList$color
-          return(p + do.call(ggplot2::geom_point, pointArgs))
+        if (jointSummary) {
+          style <- if (is.null(tab$meanCenterStyle)) "dot" else tab$meanCenterStyle
+          linewidth <- if (is.null(tab$meanCenterLinewidth)) 0.5 else tab$meanCenterLinewidth
+          return(p + .plotBuilderCenterLayer(mean, style, argList$size, linewidth, argList$alpha, outline))
         }
         do.call(tidyplots::add_mean_dot, c(list(p), argList))
       }
@@ -1431,15 +1434,29 @@ addDecodedLabels <- function(p) {
         )
         outline <- .plotBuilderOutlineColor(tab, "MedianDot")
         if (outline != "automatic") argList$color <- outline
-        if (identical(tab$medianDotMode, "center")) {
-          if (!(scaleX && scaleY))
-            .quitAnalysis(gettext("A two-dimensional center requires scale variables on both axes."))
-          pointArgs <- list(stat = .plotBuilderCenterStat(stats::median),
-            size = argList$size, alpha = argList$alpha, shape = 21)
-          if (!is.null(argList$color)) pointArgs$colour <- argList$color
-          return(p + do.call(ggplot2::geom_point, pointArgs))
+        if (jointSummary) {
+          style <- if (is.null(tab$medianCenterStyle)) "dot" else tab$medianCenterStyle
+          linewidth <- if (is.null(tab$medianCenterLinewidth)) 0.5 else tab$medianCenterLinewidth
+          return(p + .plotBuilderCenterLayer(stats::median, style, argList$size, linewidth, argList$alpha, outline))
         }
         do.call(tidyplots::add_median_dot, c(list(p), argList))
+      }
+    }
+
+    if (isTRUE(tab$addMeanEllipse)) {
+      ellipseType <- tab$meanEllipseType
+      ellipseMultiplier <- tab$meanEllipseMultiplier
+      ellipseLevel <- tab$meanEllipseLevel
+      if (!ellipseType %in% c("sd", "sem", "ci") ||
+          length(ellipseMultiplier) != 1 || !is.finite(ellipseMultiplier) || ellipseMultiplier <= 0 ||
+          length(ellipseLevel) != 1 || !is.finite(ellipseLevel) || ellipseLevel <= 0 || ellipseLevel >= 1)
+        .quitAnalysis(gettext("Select SD, SEM, or confidence for the mean ellipse, a positive radius multiplier, and a confidence level strictly between zero and one."))
+      layer_calls$mean_ellipse <- function(p) {
+        args <- list(stat = .plotBuilderMeanEllipseStat(ellipseType, ellipseMultiplier, ellipseLevel),
+          alpha = tab$meanEllipseOpacity, linewidth = tab$meanEllipseLinewidth)
+        if (!is.null(tab$meanEllipseOutline) && tab$meanEllipseOutline != "automatic")
+          args$colour <- tab$meanEllipseOutline
+        p + do.call(ggplot2::geom_path, args)
       }
     }
 
@@ -1636,8 +1653,7 @@ addDecodedLabels <- function(p) {
         if (hasGroup) {
           layer$aes_params$group <- NULL
           connected <- grepl("_line$|_area$|_ribbon$|curve_fit", lay)
-          center <- (lay == "mean_dot" && identical(tab$meanDotMode, "center")) ||
-            (lay == "median_dot" && identical(tab$medianDotMode, "center"))
+          center <- jointSummary && lay %in% c("mean_dot", "median_dot", "mean_ellipse")
           layer$mapping$group <- if (connected || center) groupMapping else pointGroupMapping
         }
         singleAxisLayer <- lay %in% c("point", "boxplot", "violin") ||
@@ -1652,8 +1668,7 @@ addDecodedLabels <- function(p) {
         if (averageSubjects || uncertainty) {
           if (averageSubjects)
             layer$mapping$.subject <- ggplot2::aes(.subject = as.numeric(factor(ID)))$.subject
-          jointCenter <- lay == "mean_dot" && identical(tab$meanDotMode, "center")
-          layer$stat <- .plotBuilderSummaryStat(layer$stat, averageSubjects, jointCenter, uncertainty)
+          layer$stat <- .plotBuilderSummaryStat(layer$stat, averageSubjects, uncertainty)
         }
       }
     }

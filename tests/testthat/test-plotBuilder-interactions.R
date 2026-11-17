@@ -369,6 +369,7 @@ test_that("black ribbon and fitted-curve outlines preserve fills and estimates",
   for (element in c("RangeRibbon", "SdRibbon", "SemRibbon", "Ci95Ribbon", "CurveFit")) {
     args <- list(dataset = dataset, addDataPoint = FALSE, colorByGroup = "grouping",
                  variableColorPlotBuilder = "group", colorsAll = "default", curvaFitMethod = "lm")
+    if (element != "CurveFit") args$dataset$x <- factor(args$dataset$x)
     args[[if (element == "CurveFit") "addCurveFitPlotBuilder" else paste0("add", element)]] <- TRUE
     args[[paste0("blackOutline", element)]] <- FALSE
     set.seed(1)
@@ -606,6 +607,8 @@ test_that("joint centers differ from conditional summaries and retain explicit g
     expect_equal(centers$y, as.numeric(tapply(data$y, data$group, fun)))
     expect_no_error(ggplot2::ggplotGrob(plot))
     args[[paste0(tolower(statistic), "DotMode")]] <- "position"
+    expect_equal(ggplot2::ggplot_build(do.call(.plotBuilderTestPlot, args))$data[[1]], centers)
+    args$dataset$x <- factor(args$dataset$x)
     conditional <- ggplot2::ggplot_build(do.call(.plotBuilderTestPlot, args))$data[[1]]
     expect_equal(nrow(conditional), 4)
   }
@@ -952,14 +955,140 @@ test_that("single-axis JASP frames omit hidden axes and respect flipping", {
   expect_warning(ggplot2::ggplotGrob(plot), NA)
 })
 
-test_that("RM joint means do not leak subject aesthetics", {
+test_that("RM means remain at each position despite legacy center settings", {
   data <- data.frame(ID = c(1, 1, 2, 3, 3, 4), x = c(2, 2, 4, 10, 10, 14),
     Value = c(0, 4, 6, 8, 12, 14), group = factor(c("a", "a", "a", "b", "b", "b")))
   plot <- .plotBuilderTestPlot(data, isRM = "RM", xVarRM = "x", groupVarRM = "group",
     colorByGroup = "grouping", addDataPoint = FALSE, addMeanDot = TRUE, meanDotMode = "center")
   expect_warning(built <- ggplot2::ggplot_build(plot), NA)
-  expect_equal(built$data[[1]]$x, c(3, 12))
-  expect_equal(built$data[[1]]$y, c(4, 12))
+  expect_equal(built$data[[1]]$x, c(2, 4, 10, 14))
+  expect_equal(built$data[[1]]$y, c(2, 6, 10, 14))
   expect_false(".subject" %in% names(built$data[[1]]))
   expect_warning(ggplot2::ggplotGrob(plot), NA)
+})
+
+test_that("two-scale centers have independent appearance and retain panels and groups", {
+  data <- data.frame(x = c(1, 2, 4, 8, 10, 12, 14, 18), y = c(3, 1, 5, 4, 8, 6, 7, 11),
+    group = factor(rep(c("a", "b"), each = 4)), facet = factor(rep(c("A", "B"), 4)))
+  for (statistic in c("Mean", "Median")) {
+    for (style in c("dot", "crosshair", "lines")) {
+      args <- list(dataset = data, addDataPoint = FALSE, variableColorPlotBuilder = "group",
+        colorByGroup = "grouping", columnsvariableSplitPlotBuilder = "facet", margins = TRUE,
+        plotStyle = "JASP")
+      args[[paste0("add", statistic, "Dot")]] <- TRUE
+      args[[paste0(tolower(statistic), "CenterStyle")]] <- style
+      plot <- do.call(.plotBuilderTestPlot, args)
+      built <- ggplot2::ggplot_build(plot)
+      layer <- built$data[[1]]
+      margin <- built$layout$layout$PANEL[built$layout$layout$facet == "(all)"]
+      centers <- layer[layer$PANEL == margin, ]
+      fun <- if (statistic == "Mean") mean else median
+      expectedX <- as.numeric(tapply(data$x, data$group, fun))
+      expectedY <- as.numeric(tapply(data$y, data$group, fun))
+      expect_length(unique(layer$PANEL), 3)
+      expect_length(unique(layer$colour), 2)
+      if (style == "lines") {
+        expect_equal(centers$x[is.finite(centers$x)], expectedX)
+        expect_equal(centers$y[is.finite(centers$y)], expectedY)
+        expect_equal(centers$xend[is.finite(centers$xend)], expectedX)
+        expect_equal(centers$yend[is.finite(centers$yend)], expectedY)
+      } else {
+        expect_equal(centers$x, expectedX)
+        expect_equal(centers$y, expectedY)
+        expect_true(all(centers$shape == if (style == "crosshair") 3 else 21))
+      }
+      expect_warning(ggplot2::ggplotGrob(plot), NA)
+    }
+  }
+})
+
+test_that("center colors can summarize a continuous coordinate without dropped aesthetics", {
+  data <- data.frame(x = c(1, 2, 4, 7, 3, 5, 8, 10), y = c(3, 1, 5, 4, 8, 6, 7, 11),
+                     group = factor(rep(c("a", "b"), each = 4)))
+  for (color in c("none", "x", "y", "grouping")) {
+    plot <- .plotBuilderTestPlot(data, variableColorPlotBuilder = "group", colorByGroup = color,
+      addMeanDot = TRUE, meanCenterStyle = "lines", addMeanEllipse = TRUE,
+      pointShapeVariable = "group", flipPlot = TRUE)
+    expect_warning(built <- ggplot2::ggplot_build(plot), NA)
+    expect_equal(nrow(built$data[[2]]), 4)
+    expect_equal(nrow(built$data[[3]]), 242)
+    expect_warning(ggplot2::ggplotGrob(plot), NA)
+  }
+})
+
+test_that("mean ellipses have the specified covariance radius", {
+  data <- data.frame(x = c(-2, -1, 0, 0, 1, 2), y = c(0, 1, -2, 2, -1, 0))
+  n <- nrow(data)
+  for (type in c("sd", "sem", "ci")) {
+    for (level in c(0.8, 0.95)) {
+      plot <- .plotBuilderTestPlot(data, addDataPoint = FALSE, addMeanEllipse = TRUE,
+        meanEllipseType = type, meanEllipseMultiplier = 2, meanEllipseLevel = level)
+      layer <- ggplot2::ggplot_build(plot)$data[[1]]
+      points <- as.matrix(layer[c("x", "y")])
+      squaredDistance <- stats::mahalanobis(points, colMeans(data), stats::cov(data))
+      expected <- switch(type, sd = 4, sem = 4 / n,
+        ci = 2 * (n - 1) / (n * (n - 2)) * stats::qf(level, 2, n - 2))
+      expect_equal(unname(squaredDistance), rep(expected, nrow(points)), tolerance = 1e-8)
+      expect_equal(colMeans(points[-nrow(points), ]), colMeans(data), tolerance = 1e-8)
+      expect_warning(ggplot2::ggplotGrob(plot), NA)
+    }
+  }
+})
+
+test_that("mean ellipses recompute covariance within each group and marginal panel", {
+  data <- expand.grid(index = 1:6, group = factor(c("a", "b")), facet = factor(c("A", "B")))
+  data$x <- data$index + as.numeric(data$group) * 10 + as.numeric(data$facet) * 3
+  data$y <- c(3, 1, 5, 4, 8, 6)[data$index] + as.numeric(data$facet) * 5
+  plot <- .plotBuilderTestPlot(data, addDataPoint = FALSE, addMeanEllipse = TRUE,
+    meanEllipseType = "sem", variableColorPlotBuilder = "group", colorByGroup = "grouping",
+    columnsvariableSplitPlotBuilder = "facet", margins = TRUE)
+  built <- ggplot2::ggplot_build(plot)
+  for (panel in seq_len(nrow(built$layout$layout))) {
+    facet <- as.character(built$layout$layout$facet[panel])
+    for (group in 1:2) {
+      original <- data[data$group == levels(data$group)[group] &
+        (facet == "(all)" | data$facet == facet), c("x", "y")]
+      layer <- built$data[[1]]
+      points <- layer[layer$PANEL == panel & layer$group == group, c("x", "y")]
+      expect_equal(unname(stats::mahalanobis(points, colMeans(original), stats::cov(original))),
+        rep(1 / nrow(original), nrow(points)), tolerance = 1e-8)
+    }
+  }
+  expect_warning(ggplot2::ggplotGrob(plot), NA)
+})
+
+test_that("ellipse sample-size and degeneracy checks retain supported output", {
+  data <- data.frame(x = c(1, 2, 3), y = c(2, 4, 6))
+  for (type in c("sd", "sem")) {
+    plot <- .plotBuilderTestPlot(data[1:2, ], addMeanEllipse = TRUE, meanEllipseType = type)
+    expect_warning(built <- ggplot2::ggplot_build(plot), NA)
+    expect_true(all(is.finite(built$data[[2]]$x)))
+    expect_equal(built$data[[2]]$y, 2 * built$data[[2]]$x)
+  }
+  plot <- .plotBuilderTestPlot(data, addMeanEllipse = TRUE, meanEllipseType = "ci")
+  expect_warning(built <- ggplot2::ggplot_build(plot), "perfect correlation")
+  expect_equal(nrow(built$data[[1]]), 3)
+  expect_equal(nrow(built$data[[2]]), 0)
+  plot <- .plotBuilderTestPlot(data[1:2, ], addMeanEllipse = TRUE, meanEllipseType = "ci")
+  expect_warning(ggplot2::ggplot_build(plot), "three for confidence")
+  expect_error(.plotBuilderTestPlot(data, addMeanEllipse = TRUE, meanEllipseLevel = 1), "strictly between")
+  expect_error(.plotBuilderTestPlot(data, addMeanEllipse = TRUE, meanEllipseMultiplier = 0), "positive radius")
+})
+
+test_that("position summaries are unavailable only for independent two-scale inputs", {
+  data <- data.frame(x = c(1, 1, 2, 2, 3, 3), y = c(1, 2, 4, 8, 3, 7))
+  for (geometry in c("SumBar", "SumDot", "SumDash", "SumLine", "SumArea", "SumValue",
+      "MeanBar", "MeanDash", "MeanLine", "MeanArea", "MeanValue",
+      "MedianBar", "MedianDash", "MedianLine", "MedianArea", "MedianValue",
+      "RangeErrorBar", "SDErrorBar", "SEMErrorBar", "CI95ErrorBar",
+      "RangeRibbon", "SdRibbon", "SemRibbon", "Ci95Ribbon")) {
+    args <- list(dataset = data, addDataPoint = FALSE)
+    args[[paste0("add", geometry)]] <- TRUE
+    expect_error(do.call(.plotBuilderTestPlot, args), "Position-based summaries")
+    args$dataset$x <- ordered(data$x)
+    expect_no_error(ggplot2::ggplot_build(do.call(.plotBuilderTestPlot, args)))
+  }
+  expect_error(.plotBuilderTestPlot(data, variableYPlotBuilder = "", addMeanEllipse = TRUE), "two scale axes")
+  expect_error(.plotBuilderTestPlot(transform(data, ID = 1:6, Value = y), isRM = "RM",
+    xVarRM = "x", addMeanEllipse = TRUE), "non-repeated")
 })

@@ -7,6 +7,38 @@ Upgrades
 	Upgrade
 	{
 		functionName: "jaspPlotBuilder"
+		fromVersion: "0.98.4"
+		toVersion: "0.98.5"
+		ChangeJS
+		{
+			name: "PlotBuilderTab"
+			msg: qsTr("For non-repeated observations with two scale axes, mean and median dots now summarize both coordinates per group and panel. Incompatible position-based summaries are disabled. Repeated-measures summaries remain at each position.")
+			jsFunction: function(options)
+			{
+				var tabs = options["PlotBuilderTab"];
+				for (var i = 0; i < tabs.length; i++) {
+					var tab = tabs[i];
+					delete tab.meanDotMode;
+					delete tab.medianDotMode;
+					var x = tab.variableXPlotBuilder;
+					var y = tab.variableYPlotBuilder;
+					if (tab.isRM !== "RM" && x && y && x.types && y.types &&
+						x.types.indexOf("scale") >= 0 && y.types.indexOf("scale") >= 0) {
+						Object.keys(tab).forEach(function(name) {
+							if (/^add(Sum|Mean|Median|Range|SD|SEM|CI95|Sd|Sem|Ci95)/.test(name) &&
+								["addMeanDot", "addMedianDot", "addMeanEllipse"].indexOf(name) < 0)
+								tab[name] = false;
+						});
+					}
+				}
+				return tabs;
+			}
+		}
+	}
+
+	Upgrade
+	{
+		functionName: "jaspPlotBuilder"
 		fromVersion: "0.98.1"
 		toVersion: "0.98.2"
 		ChangeJS
