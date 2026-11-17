@@ -1092,3 +1092,71 @@ test_that("position summaries are unavailable only for independent two-scale inp
   expect_error(.plotBuilderTestPlot(transform(data, ID = 1:6, Value = y), isRM = "RM",
     xVarRM = "x", addMeanEllipse = TRUE), "non-repeated")
 })
+
+test_that("confidence ellipses detect rank independently of rounding and measurement units", {
+  for (n in c(3, 4, 10, 20)) {
+    for (slope in c(0.3, 1, 3)) {
+      data <- data.frame(x = seq_len(n), y = seq_len(n) * slope)
+      stat <- .plotBuilderMeanEllipseStat("ci", 1, 0.95)
+      expect_warning(result <- stat$compute_group(data, NULL), "perfect correlation")
+      expect_equal(nrow(result), 0)
+      for (type in c("sd", "sem")) {
+        stat <- .plotBuilderMeanEllipseStat(type, 1, 0.95)
+        expect_warning(result <- stat$compute_group(data, NULL), NA)
+        expect_equal(nrow(result), 121)
+      }
+    }
+  }
+  # A narrow but full-rank ellipse must remain available, even in very different units.
+  data <- data.frame(x = 1:10, y = (1:10) + rep(c(-1, 1), 5) * 1e-5)
+  stat <- .plotBuilderMeanEllipseStat("ci", 1, 0.95)
+  expect_warning(original <- stat$compute_group(data, NULL), NA)
+  expect_equal(nrow(original), 121)
+  for (units in list(c(1e-8, 1e8), c(1e8, 1e-8))) {
+    scaled <- data
+    scaled$x <- scaled$x * units[1]
+    scaled$y <- scaled$y * units[2]
+    expect_warning(result <- stat$compute_group(scaled, NULL), NA)
+    expect_equal(nrow(result), 121)
+    expect_true(all(is.finite(as.matrix(result))))
+  }
+  plot <- .plotBuilderTestPlot(data.frame(x = 1:10, y = 1:10), addMeanEllipse = TRUE,
+    meanEllipseType = "ci")
+  expect_warning(built <- ggplot2::ggplot_build(plot), "perfect correlation")
+  expect_equal(nrow(built$data[[1]]), 10)
+  expect_equal(nrow(built$data[[2]]), 0)
+})
+
+test_that("sorting ignores scale and missing axes while preserving categorical ordering", {
+  data <- data.frame(x = c(1, 2, 4, 8), y = c(10, 5, 3, 1))
+  baseline <- .plotBuilderTestPlot(data, addMeanDot = TRUE, addMeanEllipse = TRUE)
+  original <- ggplot2::ggplot_build(baseline)$data
+  for (sortX in c(FALSE, TRUE)) {
+    for (sortY in c(FALSE, TRUE)) {
+      plot <- .plotBuilderTestPlot(data, addMeanDot = TRUE, addMeanEllipse = TRUE,
+        enableSort = sortX, enableSortY = sortY)
+      expect_equal(ggplot2::ggplot_build(plot)$data, original)
+      expect_warning(ggplot2::ggplotGrob(plot), NA)
+    }
+  }
+  for (axis in c("x", "y")) {
+    args <- list(dataset = data, addDataPoint = FALSE, addMeanDot = TRUE,
+      enableSort = TRUE, enableSortY = TRUE)
+    args[[if (axis == "x") "variableYPlotBuilder" else "variableXPlotBuilder"]] <- ""
+    expect_warning(ggplot2::ggplotGrob(do.call(.plotBuilderTestPlot, args)), NA)
+  }
+  data <- data.frame(category = factor(rep(c("a", "b", "c"), each = 2)),
+                     value = c(8, 10, 1, 3, 4, 6))
+  for (axis in c("x", "y")) {
+    for (order in c("Increasing", "Decreasing")) {
+      plot <- .plotBuilderTestPlot(data, addDataPoint = FALSE, addMeanDot = TRUE,
+        variableXPlotBuilder = if (axis == "x") "category" else "value",
+        variableYPlotBuilder = if (axis == "y") "category" else "value",
+        enableSort = TRUE, enableSortY = TRUE, sortXLabelsOrder = order, sortYLabelsOrder = order)
+      built <- ggplot2::ggplot_build(plot)
+      expect_equal(built$layout$panel_params[[1]][[axis]]$get_labels(),
+        if (order == "Increasing") c("b", "c", "a") else c("a", "c", "b"))
+      expect_warning(ggplot2::ggplotGrob(plot), NA)
+    }
+  }
+})

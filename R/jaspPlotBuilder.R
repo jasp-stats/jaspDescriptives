@@ -582,7 +582,7 @@ addDecodedLabels <- function(p) {
 
     # Sort X axis labels (tidyplots::sort_x_axis_labels)----
     enableSort <- tab[["enableSort"]]
-    if (!is.null(enableSort) && enableSort) {
+    if (isTRUE(enableSort) && hasX && !scaleX) {
       sortOrder <- tab[["sortXLabelsOrder"]]
       if (!is.null(sortOrder) && sortOrder %in% c("Increasing", "Decreasing")) {
         reverse_order <- (sortOrder == "Decreasing")
@@ -1989,7 +1989,7 @@ addDecodedLabels <- function(p) {
 
       # --- Optional sorting of the Y axis ---
       enableSortY <- tab[["enableSortY"]]
-      if (isTRUE(enableSortY)) {
+      if (isTRUE(enableSortY) && hasY && !scaleY) {
         sortOrderY <- tab[["sortYLabelsOrder"]]
         if (!is.null(sortOrderY) && sortOrderY %in% c("Increasing", "Decreasing")) {
           reverse_orderY <- (sortOrderY == "Decreasing")

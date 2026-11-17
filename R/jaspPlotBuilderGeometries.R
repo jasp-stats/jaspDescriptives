@@ -83,8 +83,9 @@
         return(data.frame())
       }
       covariance <- stats::cov(data[c("x", "y")])
+      # Standardize before checking rank so the tolerance is independent of measurement units.
       if (type == "ci" && (any(diag(covariance) <= 0) ||
-          abs(stats::cov2cor(covariance)[1, 2]) >= 1)) {
+          qr(scale(data[c("x", "y")]), tol = sqrt(.Machine$double.eps))$rank < 2)) {
         warning(gettext("A confidence ellipse requires variation in both coordinates without perfect correlation. Degenerate groups are omitted."), call. = FALSE)
         return(data.frame())
       }

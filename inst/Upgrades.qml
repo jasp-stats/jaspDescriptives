@@ -7,14 +7,23 @@ Upgrades
 	Upgrade
 	{
 		functionName: "jaspPlotBuilder"
-		fromVersion: "0.98.4"
-		toVersion: "0.98.5"
+		fromVersion: "0.98.5"
+		toVersion: "0.98.6"
 		ChangeJS
 		{
 			name: "PlotBuilderTab"
 			msg: qsTr("For non-repeated observations with two scale axes, mean and median dots now summarize both coordinates per group and panel. Incompatible position-based summaries are disabled. Repeated-measures summaries remain at each position.")
 			jsFunction: function(options)
 			{
+				function isScale(variable) {
+					if (!variable) return false;
+					if (variable.types !== undefined)
+						return variable.types === "scale" ||
+							(Array.isArray(variable.types) && variable.types.indexOf("scale") >= 0);
+					if (variable.value !== undefined) return isScale(variable.value);
+					if (Array.isArray(variable) && variable.length === 1) return isScale(variable[0]);
+					return false;
+				}
 				var tabs = options["PlotBuilderTab"];
 				for (var i = 0; i < tabs.length; i++) {
 					var tab = tabs[i];
@@ -22,8 +31,9 @@ Upgrades
 					delete tab.medianDotMode;
 					var x = tab.variableXPlotBuilder;
 					var y = tab.variableYPlotBuilder;
-					if (tab.isRM !== "RM" && x && y && x.types && y.types &&
-						x.types.indexOf("scale") >= 0 && y.types.indexOf("scale") >= 0) {
+					if (isScale(tab.isRM === "RM" ? tab.xVarRM : x)) tab.enableSort = false;
+					if (tab.isRM === "RM" || isScale(y)) tab.enableSortY = false;
+					if (tab.isRM !== "RM" && isScale(x) && isScale(y)) {
 						Object.keys(tab).forEach(function(name) {
 							if (/^add(Sum|Mean|Median|Range|SD|SEM|CI95|Sd|Sem|Ci95)/.test(name) &&
 								["addMeanDot", "addMedianDot", "addMeanEllipse"].indexOf(name) < 0)

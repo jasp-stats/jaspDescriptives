@@ -16,6 +16,8 @@
 
 # jaspDescriptives (development version)
 
+* Fixed confidence-ellipse rank checks, Plot Builder upgrades for nested saved-variable formats, and sorting after switching an axis to scale.
+
 * Plot Builder summarizes independent two-scale data with per-group mean/median centers (dots, crosshairs, or reference lines). Added separate mean SD, SEM, and Hotelling confidence ellipses. Position-based summaries remain available for categorical axes, single-axis plots, and repeated measures.
 
 * Fixed Plot Builder marginal area-stack totals, count-stack axis limits under the JASP theme, and single-axis sum-stack labels. Removed spurious warnings from single-axis JASP frames and repeated-measures joint means.

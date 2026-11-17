@@ -2207,6 +2207,8 @@ TabView {
 					name: "enableSort"
 					label: qsTr("Sort")
 					checked: false
+					enabled: plotOptions.hasX && !plotOptions.scaleX
+					onEnabledChanged: { if (!enabled) checked = false }
 
 					DropDown {
 						name: "sortXLabelsOrder"
@@ -2291,6 +2293,8 @@ TabView {
 					name: "enableSortY"
 					label: qsTr("Sort")
 					checked: false
+					enabled: plotOptions.hasY && !plotOptions.scaleY
+					onEnabledChanged: { if (!enabled) checked = false }
 
 					DropDown {
 						name: "sortYLabelsOrder"
