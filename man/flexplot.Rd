@@ -27,7 +27,8 @@ flexplot(
   plotWidth = 480,
   theme = "JASP",
   type = "Loess",
-  variables = list(types = list(), value = list())
+  variables = list(types = list(), value = list()),
+  ...
 )
 }
 \arguments{
@@ -59,6 +60,9 @@ Defaults to \code{TRUE}.}
 }}
 
 \item{variables, }{The variable(s) for which we wish to visually assess relationships with the DV. The first variable chosen shows up on the X axis, either as a scatterplot (for numeric predictors) or as a beeswarm plot (for categorical variables). The second variable chosen will show up as different colors/lines/symbols. If the second varaible chosen is numeric, it will be binned first.}
+
+\item{...}{options that are not an argument of this function: the options of an older version of the
+analysis, to be used together with `version`. They are upgraded to the options of this version.}
 }
 \description{
 Flexplot allows the user to create graphical displays of data, using barcharts and histograms for univariate data, and various different types of scatterplots for bivariate and multivariate data.

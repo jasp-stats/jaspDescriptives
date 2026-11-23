@@ -32,6 +32,8 @@
 #' @param plotSpacing, Gap between plots inside the layout (pixels)
 #' @param relHeightWithinRowLayout, Comma-separated numbers that set the height of each row
 #' @param relativeHeight, Relative heights of columns or widths of rows when combining column and row layouts
+#' @param ... options that are not an argument of this function: the options of an older version of the
+#'   analysis, to be used together with `version`. They are upgraded to the options of this version.
 jaspPlotBuilder <- function(
           data = NULL,
           version = "1",
@@ -49,9 +51,15 @@ jaspPlotBuilder <- function(
           plotWidth = 480,
           relHeightWithinRowLayout = "",
           relativeHeight = "",
-          rowSpecifications = list()) {
+          rowSpecifications = list(),
+          ...) {
 
-   options <- mget(names(formals(sys.function())), envir = environment(), inherits = FALSE)
+   options <- mget(setdiff(names(formals(sys.function())), "..."), envir = environment(), inherits = FALSE)
+   options <- c(options, list(...))
+   if (!all(nzchar(names(options))) || anyDuplicated(names(options)))
+      stop("The extra options given to jaspPlotBuilder must be named, each name once.")
+   if (...length() > 0L && missing(version))
+      stop("jaspPlotBuilder has no option ", paste(names(list(...)), collapse = ", "), ". Options of an older version need the `version` they were written for.")
    options[["data"]] <- NULL
    options[["version"]] <- NULL
 

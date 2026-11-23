@@ -40,6 +40,8 @@
 #'   \item \code{"None"}: No line
 #' }
 #' @param variables, The variable(s) for which we wish to visually assess relationships with the DV. The first variable chosen shows up on the X axis, either as a scatterplot (for numeric predictors) or as a beeswarm plot (for categorical variables). The second variable chosen will show up as different colors/lines/symbols. If the second varaible chosen is numeric, it will be binned first.
+#' @param ... options that are not an argument of this function: the options of an older version of the
+#'   analysis, to be used together with `version`. They are upgraded to the options of this version.
 flexplot <- function(
           data = NULL,
           version = "1",
@@ -63,9 +65,15 @@ flexplot <- function(
           plotWidth = 480,
           theme = "JASP",
           type = "Loess",
-          variables = list(types = list(), value = list())) {
+          variables = list(types = list(), value = list()),
+          ...) {
 
-   options <- mget(names(formals(sys.function())), envir = environment(), inherits = FALSE)
+   options <- mget(setdiff(names(formals(sys.function())), "..."), envir = environment(), inherits = FALSE)
+   options <- c(options, list(...))
+   if (!all(nzchar(names(options))) || anyDuplicated(names(options)))
+      stop("The extra options given to flexplot must be named, each name once.")
+   if (...length() > 0L && missing(version))
+      stop("flexplot has no option ", paste(names(list(...)), collapse = ", "), ". Options of an older version need the `version` they were written for.")
    options[["data"]] <- NULL
    options[["version"]] <- NULL
 

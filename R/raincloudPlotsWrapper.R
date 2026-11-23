@@ -53,6 +53,8 @@
 #'    Defaults to \code{FALSE}.
 #' @param tableBoxStatistics, Shows the box statistics in the table: lower whisker, 25th percentile, median, 75th percentile, upper whisker.<br>It can be helpful to un-check this if you are also working with 'Interval around mean' (see Advanced Section).
 #'    Defaults to \code{TRUE}.
+#' @param ... options that are not an argument of this function: the options of an older version of the
+#'   analysis, to be used together with `version`. They are upgraded to the options of this version.
 raincloudPlots <- function(
           data = NULL,
           version = "1",
@@ -119,9 +121,15 @@ raincloudPlots <- function(
           vioOutline = "colorPalette",
           vioOutlineWidth = 1,
           vioSmoothing = 1,
-          widthPlot = 600) {
+          widthPlot = 600,
+          ...) {
 
-   options <- mget(names(formals(sys.function())), envir = environment(), inherits = FALSE)
+   options <- mget(setdiff(names(formals(sys.function())), "..."), envir = environment(), inherits = FALSE)
+   options <- c(options, list(...))
+   if (!all(nzchar(names(options))) || anyDuplicated(names(options)))
+      stop("The extra options given to raincloudPlots must be named, each name once.")
+   if (...length() > 0L && missing(version))
+      stop("raincloudPlots has no option ", paste(names(list(...)), collapse = ", "), ". Options of an older version need the `version` they were written for.")
    options[["data"]] <- NULL
    options[["version"]] <- NULL
 

@@ -144,7 +144,8 @@ jaspPlotBuilder(
   plotWidth = 480,
   relHeightWithinRowLayout = "",
   relativeHeight = "",
-  rowSpecifications = list()
+  rowSpecifications = list(),
+  ...
 )
 }
 \arguments{
@@ -168,6 +169,9 @@ Defaults to \code{FALSE}.}
 \item{relHeightWithinRowLayout, }{Comma-separated numbers that set the height of each row}
 
 \item{relativeHeight, }{Relative heights of columns or widths of rows when combining column and row layouts}
+
+\item{...}{options that are not an argument of this function: the options of an older version of the
+analysis, to be used together with `version`. They are upgraded to the options of this version.}
 }
 \description{
 The <b>Plot Builder (beta)</b> lets you assemble a complete figure in just a few clicks.<br/><br/><ol><li><b>Decide on design:</b> At the very top choose <i>Repeated measurements → Yes</i> if the same subjects are measured more than once (e.g., across time-points or conditions); otherwise leave <i>No</i> selected. </li><li><b>Map your variables:</b> Drag variables from the list on the left into the fields on the right (X-Axis, Y-Axis, etc). </li><li><b>Choose what to display:</b> Expand the <i>Data and geometries</i> accordion to add layers such as raw points, histograms/box-/violin plots, counts, proportions, Mean or Median summaries, etc.</li><li><b>Polish the figure:</b> Use the remaining accordions to fine-tune axes, titles, annotations, themes, colors, sizing, and legend placement.</li>

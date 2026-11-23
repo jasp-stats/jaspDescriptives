@@ -40,7 +40,8 @@ DescriptivesTimeSeries(
   timeSeriesPlot = TRUE,
   timeSeriesPlotDistribution = "none",
   timeSeriesPlotType = "both",
-  timeStart = 1
+  timeStart = 1,
+  ...
 )
 }
 \arguments{
@@ -74,6 +75,9 @@ Defaults to \code{FALSE}.}
 
 \item{timeSeriesPlot, }{Plots the dependent variable (y-axis) over time (x-axis).
 Defaults to \code{TRUE}.}
+
+\item{...}{options that are not an argument of this function: the options of an older version of the
+analysis, to be used together with `version`. They are upgraded to the options of this version.}
 }
 \description{
 Time Series Descriptives allows the user to obtain descriptive statistics and descriptive plots for univariate time-series.

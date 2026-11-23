@@ -43,6 +43,8 @@
 #' @param time, Optional. Complete numeric values order observations from smallest to largest, regardless of gaps. Complete, unambiguous dates and times order observations chronologically. Use 'YYYY-MM-DD' for dates or 'YYYY-MM-DD HH:MM:SS' for dates with times; seconds can be omitted. All variables stay aligned, and spreadsheet row order is unchanged. Tied values retain spreadsheet row order. If any value is missing or cannot be interpreted, or dates are ambiguous, Time is ignored for the entire analysis and a warning is shown. Leave Time empty to use spreadsheet row order. Successive observations are modeled as equally spaced steps; no rows are added for gaps in Time.
 #' @param timeSeriesPlot, Plots the dependent variable (y-axis) over time (x-axis).
 #'    Defaults to \code{TRUE}.
+#' @param ... options that are not an argument of this function: the options of an older version of the
+#'   analysis, to be used together with `version`. They are upgraded to the options of this version.
 DescriptivesTimeSeries <- function(
           data = NULL,
           version = "1",
@@ -79,9 +81,15 @@ DescriptivesTimeSeries <- function(
           timeSeriesPlot = TRUE,
           timeSeriesPlotDistribution = "none",
           timeSeriesPlotType = "both",
-          timeStart = 1) {
+          timeStart = 1,
+          ...) {
 
-   options <- mget(names(formals(sys.function())), envir = environment(), inherits = FALSE)
+   options <- mget(setdiff(names(formals(sys.function())), "..."), envir = environment(), inherits = FALSE)
+   options <- c(options, list(...))
+   if (!all(nzchar(names(options))) || anyDuplicated(names(options)))
+      stop("The extra options given to DescriptivesTimeSeries must be named, each name once.")
+   if (...length() > 0L && missing(version))
+      stop("DescriptivesTimeSeries has no option ", paste(names(list(...)), collapse = ", "), ". Options of an older version need the `version` they were written for.")
    options[["data"]] <- NULL
    options[["version"]] <- NULL
 

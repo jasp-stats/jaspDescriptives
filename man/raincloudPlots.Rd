@@ -72,7 +72,8 @@ raincloudPlots(
   vioOutline = "colorPalette",
   vioOutlineWidth = 1,
   vioSmoothing = 1,
-  widthPlot = 600
+  widthPlot = 600,
+  ...
 )
 }
 \arguments{
@@ -127,6 +128,9 @@ Defaults to \code{FALSE}.}
 
 \item{tableBoxStatistics, }{Shows the box statistics in the table: lower whisker, 25th percentile, median, 75th percentile, upper whisker.<br>It can be helpful to un-check this if you are also working with 'Interval around mean' (see Advanced Section).
 Defaults to \code{TRUE}.}
+
+\item{...}{options that are not an argument of this function: the options of an older version of the
+analysis, to be used together with `version`. They are upgraded to the options of this version.}
 }
 \description{
 This module has a <a href='https://www.youtube.com/watch?v=AAdXUAl_w6E'> YouTube tutorial</a> <br><br>If you use this module, please cite it as:<br>Ott, V. L, van den Bergh, D., Boutin, B., van Doorn, J., Bartoš, F., Judd, N., Luke, K., Kievit, R. A., Groot, L., and Wagenmakers, E.-J. (2024). Informative Data Visualization with Raincloud Plots in JASP. OSF Preprint. <a href="https://doi.org/10.31219/osf.io/gv3ph">https://doi.org/10.31219/osf.io/gv3ph</a>

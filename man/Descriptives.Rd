@@ -108,7 +108,8 @@ Descriptives(
   variance = FALSE,
   varianceCi = FALSE,
   varianceCiLevel = 0.95,
-  varianceCiMethod = "chiSquaredModel"
+  varianceCiMethod = "chiSquaredModel",
+  ...
 )
 }
 \arguments{
@@ -287,6 +288,9 @@ Defaults to \code{FALSE}.}
 Defaults to \code{FALSE}.}
 
 \item{varianceCiMethod, }{How should the confidence interval be computed? By default, we use a analytical approach (chi-square). The alternative option is `Bootstrap`}
+
+\item{...}{options that are not an argument of this function: the options of an older version of the
+analysis, to be used together with `version`. They are upgraded to the options of this version.}
 }
 \description{
 Descriptives allows the user to obtain basic descriptive statistics, histograms and density plots, correlation plots, boxplots, and frequency tables.
