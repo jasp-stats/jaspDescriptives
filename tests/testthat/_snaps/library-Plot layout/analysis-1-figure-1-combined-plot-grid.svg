@@ -434,8 +434,8 @@
 <text x='110.46' y='531.29' text-anchor='middle' style='font-size: 15.30px; font-family: sans;' textLength='42.53px' lengthAdjust='spacingAndGlyphs'>Adelie</text>
 <text x='179.50' y='531.29' text-anchor='middle' style='font-size: 15.30px; font-family: sans;' textLength='65.49px' lengthAdjust='spacingAndGlyphs'>Chinstrap</text>
 <text x='248.53' y='531.29' text-anchor='middle' style='font-size: 15.30px; font-family: sans;' textLength='50.20px' lengthAdjust='spacingAndGlyphs'>Gentoo</text>
-<text x='179.50' y='561.80' text-anchor='middle' style='font-size: 18.00px; font-family: sans;' textLength='105.07px' lengthAdjust='spacingAndGlyphs'>jaspColumn1</text>
-<text transform='translate(22.85,274.84) rotate(-90)' text-anchor='middle' style='font-size: 18.00px; font-family: sans;' textLength='105.07px' lengthAdjust='spacingAndGlyphs'>jaspColumn2</text>
+<text x='179.50' y='561.80' text-anchor='middle' style='font-size: 18.00px; font-family: sans;' textLength='61.05px' lengthAdjust='spacingAndGlyphs'>species</text>
+<text transform='translate(22.85,274.84) rotate(-90)' text-anchor='middle' style='font-size: 18.00px; font-family: sans;' textLength='121.07px' lengthAdjust='spacingAndGlyphs'>bill_length_mm</text>
 <text x='19.70' y='56.36' text-anchor='middle' style='font-size: 18.00px; font-weight: bold; font-family: sans;' textLength='12.01px' lengthAdjust='spacingAndGlyphs'>A</text>
 </g>
 <defs>
@@ -802,11 +802,11 @@
 <text x='444.91' y='531.29' text-anchor='middle' style='font-size: 15.30px; font-family: sans;' textLength='17.02px' lengthAdjust='spacingAndGlyphs'>40</text>
 <text x='515.88' y='531.29' text-anchor='middle' style='font-size: 15.30px; font-family: sans;' textLength='17.02px' lengthAdjust='spacingAndGlyphs'>50</text>
 <text x='586.85' y='531.29' text-anchor='middle' style='font-size: 15.30px; font-family: sans;' textLength='17.02px' lengthAdjust='spacingAndGlyphs'>60</text>
-<text x='486.69' y='561.80' text-anchor='middle' style='font-size: 18.00px; font-family: sans;' textLength='105.07px' lengthAdjust='spacingAndGlyphs'>jaspColumn2</text>
-<text transform='translate(317.28,274.84) rotate(-90)' text-anchor='middle' style='font-size: 18.00px; font-family: sans;' textLength='105.07px' lengthAdjust='spacingAndGlyphs'>jaspColumn3</text>
+<text x='486.69' y='561.80' text-anchor='middle' style='font-size: 18.00px; font-family: sans;' textLength='121.07px' lengthAdjust='spacingAndGlyphs'>bill_length_mm</text>
+<text transform='translate(317.28,274.84) rotate(-90)' text-anchor='middle' style='font-size: 18.00px; font-family: sans;' textLength='117.07px' lengthAdjust='spacingAndGlyphs'>bill_depth_mm</text>
 <rect x='608.10' y='44.39' width='106.42' height='115.18' style='stroke-width: 0.75; stroke: none;' />
 <rect x='608.10' y='44.39' width='106.42' height='115.18' style='stroke-width: 10.67; stroke: none;' />
-<text x='661.31' y='61.98' text-anchor='middle' style='font-size: 15.30px; font-family: sans;' textLength='89.31px' lengthAdjust='spacingAndGlyphs'>jaspColumn1</text>
+<text x='661.31' y='61.98' text-anchor='middle' style='font-size: 15.30px; font-family: sans;' textLength='51.89px' lengthAdjust='spacingAndGlyphs'>species</text>
 <rect x='613.58' y='69.05' width='28.35' height='28.35' style='stroke-width: 10.67; stroke: none;' />
 <circle cx='627.75' cy='83.23' r='3.56' style='stroke-width: 0.71; stroke: #00A9E6; stroke-opacity: 0.50; fill: #00A9E6; fill-opacity: 0.50;' />
 <rect x='614.29' y='69.76' width='26.93' height='26.93' style='stroke-width: 1.07; stroke: #00A9E6; stroke-linecap: butt; stroke-linejoin: miter; fill: #00A9E6; fill-opacity: 0.20;' />

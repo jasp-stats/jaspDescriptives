@@ -554,7 +554,7 @@
 <text x='382.34' y='526.81' text-anchor='middle' style='font-size: 15.30px; font-family: sans;' textLength='8.51px' lengthAdjust='spacingAndGlyphs'>3</text>
 <text x='544.22' y='526.81' text-anchor='middle' style='font-size: 15.30px; font-family: sans;' textLength='8.51px' lengthAdjust='spacingAndGlyphs'>4</text>
 <text x='706.11' y='526.81' text-anchor='middle' style='font-size: 15.30px; font-family: sans;' textLength='8.51px' lengthAdjust='spacingAndGlyphs'>5</text>
-<text x='387.53' y='557.32' text-anchor='middle' style='font-size: 18.00px; font-family: sans;' textLength='105.07px' lengthAdjust='spacingAndGlyphs'>jaspColumn1</text>
-<text transform='translate(27.33,266.19) rotate(-90)' text-anchor='middle' style='font-size: 18.00px; font-family: sans;' textLength='105.07px' lengthAdjust='spacingAndGlyphs'>jaspColumn2</text>
+<text x='387.53' y='557.32' text-anchor='middle' style='font-size: 18.00px; font-family: sans;' textLength='95.04px' lengthAdjust='spacingAndGlyphs'>Neuroticism</text>
+<text transform='translate(27.33,266.19) rotate(-90)' text-anchor='middle' style='font-size: 18.00px; font-family: sans;' textLength='151.12px' lengthAdjust='spacingAndGlyphs'>Conscientiousness</text>
 </g>
 </svg>

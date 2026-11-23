@@ -384,11 +384,11 @@
 <text x='243.70' y='526.81' text-anchor='middle' style='font-size: 15.30px; font-family: sans;' textLength='17.02px' lengthAdjust='spacingAndGlyphs'>40</text>
 <text x='406.38' y='526.81' text-anchor='middle' style='font-size: 15.30px; font-family: sans;' textLength='17.02px' lengthAdjust='spacingAndGlyphs'>50</text>
 <text x='569.06' y='526.81' text-anchor='middle' style='font-size: 15.30px; font-family: sans;' textLength='17.02px' lengthAdjust='spacingAndGlyphs'>60</text>
-<text x='339.47' y='557.32' text-anchor='middle' style='font-size: 18.00px; font-family: sans;' textLength='105.07px' lengthAdjust='spacingAndGlyphs'>jaspColumn2</text>
-<text transform='translate(27.33,266.19) rotate(-90)' text-anchor='middle' style='font-size: 18.00px; font-family: sans;' textLength='105.07px' lengthAdjust='spacingAndGlyphs'>jaspColumn3</text>
+<text x='339.47' y='557.32' text-anchor='middle' style='font-size: 18.00px; font-family: sans;' textLength='121.07px' lengthAdjust='spacingAndGlyphs'>bill_length_mm</text>
+<text transform='translate(27.33,266.19) rotate(-90)' text-anchor='middle' style='font-size: 18.00px; font-family: sans;' textLength='117.07px' lengthAdjust='spacingAndGlyphs'>bill_depth_mm</text>
 <rect x='603.61' y='31.57' width='106.42' height='115.18' style='stroke-width: 0.75; stroke: none;' />
 <rect x='603.61' y='31.57' width='106.42' height='115.18' style='stroke-width: 10.67; stroke: none;' />
-<text x='656.83' y='49.16' text-anchor='middle' style='font-size: 15.30px; font-family: sans;' textLength='89.31px' lengthAdjust='spacingAndGlyphs'>jaspColumn1</text>
+<text x='656.83' y='49.16' text-anchor='middle' style='font-size: 15.30px; font-family: sans;' textLength='51.89px' lengthAdjust='spacingAndGlyphs'>species</text>
 <rect x='609.09' y='56.23' width='28.35' height='28.35' style='stroke-width: 10.67; stroke: none;' />
 <circle cx='623.27' cy='70.40' r='3.56' style='stroke-width: 0.71; stroke: #00A9E6; stroke-opacity: 0.50; fill: #00A9E6; fill-opacity: 0.50;' />
 <rect x='609.80' y='56.94' width='26.93' height='26.93' style='stroke-width: 1.07; stroke: #00A9E6; stroke-linecap: butt; stroke-linejoin: miter; fill: #00A9E6; fill-opacity: 0.20;' />
