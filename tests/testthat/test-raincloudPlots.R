@@ -533,3 +533,179 @@ test_that("plot with custom cloud color matches", {
   testPlot <- results[["state"]][["figures"]][[plotName]][["obj"]]
   jaspTools::expect_equal_plots(testPlot, "custom-cloud-color")
 })
+
+
+
+# 10: Clouds with one observation ----
+rainOneObservationOptions <- function() {
+  options <- jaspTools::analysisOptions("raincloudPlots")
+  options$colorAnyway <- TRUE # the form's default without a secondary factor
+  options$colorPalette <- "colorblind"
+  options$covariatePalette <- "viridis"
+  options$dependentVariables <- "y"
+  options$dependentVariables.types <- "scale"
+  options$heightPlot <- 550
+  options$vioNudge <- 0.3
+  options$widthPlot <- 675
+  options
+}
+
+rainOneObservationPlot <- function(results) {
+  plotResult <- results[["results"]][["containerRaincloudPlots"]][["collection"]][["containerRaincloudPlots_y"]]
+  testthat::expect_identical(plotResult[["status"]], "complete")
+  results[["state"]][["figures"]][[plotResult[["data"]]]][["obj"]]
+}
+
+test_that("plot is drawn when every level of a discrete covariate has one observation", {
+  # jasp-issues#4435: no factor, so one cloud, split by the covariate into seven groups of one observation
+  options <- rainOneObservationOptions()
+  options$covariate <- "k"
+  options$covariate.types <- "nominal"
+  dataset <- data.frame(y = c(12, 18, 21, 27, 16, 24, 14), k = factor(c("A", "B", "C", "D", "E", "F", "G")))
+  results <- jaspTools::runAnalysis("raincloudPlots", dataset, options)
+  testPlot <- rainOneObservationPlot(results)
+  # the violin outline takes the fill colour, so the violin is drawn for the whole cloud, 0.3 right of x = 1
+  violins <- ggplot2::layer_data(testPlot, 1)
+  expect_equal(unique(violins$group), 1)
+  expect_equal(unique(violins$x), 1.3)
+  expect_equal(nrow(ggplot2::layer_data(testPlot, 3)), 7)
+})
+
+test_that("violins keep the nudge of their cloud when the middle cloud has one observation", {
+  options <- rainOneObservationOptions()
+  options$primaryFactor <- "g"
+  options$primaryFactor.types <- "nominal"
+  options$customSides <- TRUE
+  options$numberOfClouds <- 3
+  clouds <- c("Row 0", "Row 1", "Row 2")
+  options$customizationTable <- list(
+    list(levels = clouds, name = "data 1", values = c("L", "R", "L")),
+    list(levels = clouds, name = "data 2", values = c(0, 0, 0)),
+    list(levels = clouds, name = "data 3", values = c(0, 0, 0)),
+    list(levels = clouds, name = "data 4", values = c("#00A9E6", "#00A9E6", "#00A9E6"))
+  )
+  dataset <- data.frame(y = c(4.1, 5.3, 6.2, 5.0, 4.8, 7.4, 6.6, 5.9, 3.7),
+                        g = factor(c("a", "a", "a", "a", "b", "c", "c", "c", "c")))
+  results <- jaspTools::runAnalysis("raincloudPlots", dataset, options)
+  violins <- ggplot2::layer_data(rainOneObservationPlot(results), 1)
+  # cloud b has no violin; clouds a and c are "L", so their violins sit 0.3 left of x = 1 and x = 3
+  expect_equal(sort(unique(violins$group)), c(1, 3))
+  expect_equal(unique(violins$x[violins$group == 1]), 0.7)
+  expect_equal(unique(violins$x[violins$group == 3]), 2.7)
+})
+
+test_that("plot is drawn when a secondary factor leaves a cloud with one observation", {
+  # jasp-issues#3123
+  options <- rainOneObservationOptions()
+  options$primaryFactor <- "g"
+  options$primaryFactor.types <- "nominal"
+  options$secondaryFactor <- "h"
+  options$secondaryFactor.types <- "nominal"
+  dataset <- data.frame(y = c(4.1, 5.3, 6.2, 5.0, 4.8, 7.4, 6.6, 5.9, 3.7, 5.5),
+                        g = factor(rep(c("a", "b"), each = 5)),
+                        h = factor(c("u", "u", "u", "u", "v", "u", "u", "v", "v", "v")))
+  results <- jaspTools::runAnalysis("raincloudPlots", dataset, options)
+  violins <- ggplot2::layer_data(rainOneObservationPlot(results), 1)
+  # clouds a-u, a-v, b-u, b-v; a-v has one observation, so no violin; the others sit 0.3 right of their x
+  expect_equal(sort(unique(violins$group)), c(1, 3, 4))
+  expect_equal(unique(violins$x[violins$group == 1]), 1.3)
+  expect_equal(unique(violins$x[violins$group %in% c(3, 4)]), 2.3)
+})
+
+test_that("plot is drawn when the first covariate level of a cloud has one observation", {
+  options <- rainOneObservationOptions()
+  options$colorAnyway <- FALSE # without the palette on the primary factor, the covariate splits the violins
+  options$covariate <- "k"
+  options$covariate.types <- "nominal"
+  dataset <- data.frame(y = c(10, 20, 22, 25, 14), k = factor(c("A", "B", "B", "B", "B")))
+  results <- jaspTools::runAnalysis("raincloudPlots", dataset, options)
+  violins <- ggplot2::layer_data(rainOneObservationPlot(results), 1)
+  # only level B (group 2) has a violin, 0.3 right of the single cloud at x = 1
+  expect_equal(unique(violins$group), 2)
+  expect_equal(unique(violins$x), 1.3)
+})
+
+test_that("violins keep their cloud's side with a covariate when the middle cloud has one observation", {
+  options <- rainOneObservationOptions()
+  options$primaryFactor <- "g"
+  options$primaryFactor.types <- "nominal"
+  options$covariate <- "k"
+  options$covariate.types <- "nominal"
+  options$customSides <- TRUE
+  options$numberOfClouds <- 3
+  clouds <- c("Row 0", "Row 1", "Row 2")
+  options$customizationTable <- list(
+    list(levels = clouds, name = "data 1", values = c("L", "R", "L")),
+    list(levels = clouds, name = "data 2", values = c(0, 0, 0)),
+    list(levels = clouds, name = "data 3", values = c(0, 0, 0)),
+    list(levels = clouds, name = "data 4", values = c("#00A9E6", "#00A9E6", "#00A9E6"))
+  )
+  dataset <- data.frame(y = c(4.1, 5.3, 6.2, 5.0, 4.8, 7.4, 6.6, 5.9, 3.7),
+                        g = factor(c("a", "a", "a", "a", "b", "c", "c", "c", "c")),
+                        k = factor(c("p", "q", "p", "q", "p", "p", "q", "p", "q")))
+  results <- jaspTools::runAnalysis("raincloudPlots", dataset, options)
+  violins <- ggplot2::layer_data(rainOneObservationPlot(results), 1)
+  # one violin per cloud (the outline takes the fill colour); b has none; a and c are "L": 0.3 left of x = 1 and x = 3
+  expect_equal(sort(unique(violins$group)), c(1, 3))
+  expect_equal(unique(violins$x[violins$group == 1]), 0.7)
+  expect_equal(unique(violins$x[violins$group == 3]), 2.7)
+})
+
+test_that("violins keep their cloud's side with a covariate and a black violin outline", {
+  options <- rainOneObservationOptions()
+  options$colorAnyway <- FALSE
+  options$vioOutline <- "black" # a fixed outline colour, so the covariate does not split the violins
+  options$primaryFactor <- "g"
+  options$primaryFactor.types <- "nominal"
+  options$covariate <- "k"
+  options$covariate.types <- "nominal"
+  options$customSides <- TRUE
+  options$numberOfClouds <- 3
+  clouds <- c("Row 0", "Row 1", "Row 2")
+  options$customizationTable <- list(
+    list(levels = clouds, name = "data 1", values = c("R", "L", "R")),
+    list(levels = clouds, name = "data 2", values = c(0, 0, 0)),
+    list(levels = clouds, name = "data 3", values = c(0, 0, 0)),
+    list(levels = clouds, name = "data 4", values = c("#00A9E6", "#00A9E6", "#00A9E6"))
+  )
+  dataset <- data.frame(y = c(4.1, 5.3, 6.2, 5.0, 4.8, 7.4, 6.6, 5.9, 3.7, 5.5, 6.1, 4.4),
+                        g = factor(rep(c("a", "b", "c"), each = 4)),
+                        k = factor(rep(c("p", "p", "q", "q"), 3)))
+  results <- jaspTools::runAnalysis("raincloudPlots", dataset, options)
+  violins <- ggplot2::layer_data(rainOneObservationPlot(results), 1)
+  # one violin per cloud; a and c are "R": 0.3 right of x = 1 and x = 3; b is "L": 0.3 left of x = 2
+  expect_equal(sort(unique(violins$group)), c(1, 2, 3))
+  expect_equal(unique(violins$x[violins$group == 1]), 1.3)
+  expect_equal(unique(violins$x[violins$group == 2]), 1.7)
+  expect_equal(unique(violins$x[violins$group == 3]), 3.3)
+})
+
+test_that("violins keep their cloud's side when a discrete covariate splits them", {
+  options <- rainOneObservationOptions()
+  options$colorAnyway <- FALSE # without the palette on the primary factor, the covariate splits the violins
+  options$primaryFactor <- "g"
+  options$primaryFactor.types <- "nominal"
+  options$covariate <- "k"
+  options$covariate.types <- "nominal"
+  options$customSides <- TRUE
+  options$numberOfClouds <- 3
+  clouds <- c("Row 0", "Row 1", "Row 2")
+  options$customizationTable <- list(
+    list(levels = clouds, name = "data 1", values = c("L", "R", "R")),
+    list(levels = clouds, name = "data 2", values = c(0, 0, 0)),
+    list(levels = clouds, name = "data 3", values = c(0, 0, 0)),
+    list(levels = clouds, name = "data 4", values = c("#00A9E6", "#00A9E6", "#00A9E6"))
+  )
+  dataset <- data.frame(y = c(4.1, 5.3, 6.2, 5.0, 4.8, 7.4, 6.6, 5.9, 3.7, 5.5, 6.1, 4.4),
+                        g = factor(rep(c("a", "b", "c"), each = 4)),
+                        k = factor(rep(c("p", "q"), 6)))
+  results <- jaspTools::runAnalysis("raincloudPlots", dataset, options)
+  testPlot <- rainOneObservationPlot(results)
+  violins <- ggplot2::layer_data(testPlot, 1)
+  # two violins per cloud (levels p and q); a is "L": 0.3 left of x = 1; b and c are "R": 0.3 right of x = 2 and x = 3
+  expect_equal(sort(unique(violins$group)), 1:6)
+  expect_equal(unique(violins$x[violins$group %in% 1:2]), 0.7)
+  expect_equal(unique(violins$x[violins$group %in% 3:4]), 2.3)
+  expect_equal(unique(violins$x[violins$group %in% 5:6]), 3.3)
+  expect_equal(testPlot$layers[[1]]$geom_params$side, c("l", "l", "r", "r", "r", "r"))
+})

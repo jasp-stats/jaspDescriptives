@@ -16,6 +16,7 @@
 
 # jaspDescriptives (development version)
 
+* Fixed Raincloud Plots stopping with an error when a cloud had one observation, when each level of a discrete covariate had one, or, with the violins split by the covariate, when one covariate level had one; with a custom orientation and a discrete covariate, violins no longer take another cloud's side ([Issue #3123](https://github.com/jasp-stats/jasp-issues/issues/3123), [Issue #4435](https://github.com/jasp-stats/jasp-issues/issues/4435)).
 * Fixed moving-average confidence bands in time-series autocorrelation plots to use only preceding positive lags. Showing zero lag no longer changes the bands at other lags.
 * Time Series Descriptives autocorrelation plots offer two missing-observation choices: exclude cases listwise (default) or use the longest complete segment. Listwise exclusion adds a note explaining that retained observations are treated as consecutive steps and internal gaps are ignored; the data and other outputs are unchanged.
 * Time Series Descriptives uses Time to order whole observations without adding rows for gaps. Unusable or ambiguous Time falls back to spreadsheet row order with a warning; numeric Time filters accept negative values and decimals.
