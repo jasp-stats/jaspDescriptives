@@ -11,14 +11,28 @@ on:
     - cron: '13 22 * * 0'
   # Start it by hand from the Actions tab, on any branch
   workflow_dispatch:
+    inputs:
+      jasp_version:
+        description: 'JASP version: development, or the tag of a JASP release (e.g. v0.99.0.2)'
+        type: string
+        default: 'development'
+      jaspsyntax_source:
+        description: 'Where the jaspSyntax of the development version comes from'
+        type: choice
+        options:
+          - r-universe
+          - github
+        default: 'r-universe'
 
 name: unit-tests
 
 jobs:
 
   unit-tests:
-    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name != github.event.pull_request.base.repo.full_name
     uses: jasp-stats/jasp-actions/.github/workflows/unittests.yml@master
     with:
       needs_JAGS: false
+      # Empty unless the run was started by hand: the reusable workflow then uses development and r-universe
+      jasp_version: ${{ inputs.jasp_version }}
+      jaspsyntax_source: ${{ inputs.jaspsyntax_source }}
 
