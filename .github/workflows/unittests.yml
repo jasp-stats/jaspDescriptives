@@ -1,10 +1,16 @@
 on:
+  # A pull request is tested by the pull_request event, so a push only tests master
   push:
+    branches:
+      - master
     paths: ['**.R', 'tests/**', '**.Rd', '**.c', '**.cpp', '**.h', '**.hpp', 'DESCRIPTION', 'NAMESPACE', 'MAKEVARS', 'MAKEVARS.win', '**.yml', 'renv.lock']
   pull_request:
     paths: ['**.R', 'tests/**', '**.Rd', '**.c', '**.cpp', '**.h', '**.hpp', 'DESCRIPTION', 'NAMESPACE', 'MAKEVARS', 'MAKEVARS.win', 'renv.lock']
+  # Sunday night (UTC)
   schedule:
-    - cron: '13 12 * * 1-5'
+    - cron: '13 22 * * 0'
+  # Start it by hand from the Actions tab, on any branch
+  workflow_dispatch:
 
 name: unit-tests
 
