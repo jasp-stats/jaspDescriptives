@@ -6,6 +6,86 @@ Upgrades
 {
 	Upgrade
 	{
+		functionName: "jaspPlotBuilder"
+		fromVersion: "0.98.5"
+		toVersion: "0.98.6"
+		ChangeJS
+		{
+			name: "PlotBuilderTab"
+			msg: qsTr("For non-repeated observations with two scale axes, mean and median dots now summarize both coordinates per group and panel. Incompatible position-based summaries are disabled. Repeated-measures summaries remain at each position.")
+			jsFunction: function(options)
+			{
+				function isScale(variable) {
+					if (!variable) return false;
+					if (variable.types !== undefined)
+						return variable.types === "scale" ||
+							(Array.isArray(variable.types) && variable.types.indexOf("scale") >= 0);
+					if (variable.value !== undefined) return isScale(variable.value);
+					if (Array.isArray(variable) && variable.length === 1) return isScale(variable[0]);
+					return false;
+				}
+				var tabs = options["PlotBuilderTab"];
+				for (var i = 0; i < tabs.length; i++) {
+					var tab = tabs[i];
+					delete tab.meanDotMode;
+					delete tab.medianDotMode;
+					var x = tab.variableXPlotBuilder;
+					var y = tab.variableYPlotBuilder;
+					if (isScale(tab.isRM === "RM" ? tab.xVarRM : x)) tab.enableSort = false;
+					if (tab.isRM === "RM" || isScale(y)) tab.enableSortY = false;
+					if (tab.isRM !== "RM" && isScale(x) && isScale(y)) {
+						Object.keys(tab).forEach(function(name) {
+							if (/^add(Sum|Mean|Median|Range|SD|SEM|CI95|Sd|Sem|Ci95)/.test(name) &&
+								["addMeanDot", "addMedianDot", "addMeanEllipse"].indexOf(name) < 0)
+								tab[name] = false;
+						});
+					}
+				}
+				return tabs;
+			}
+		}
+	}
+
+	Upgrade
+	{
+		functionName: "jaspPlotBuilder"
+		fromVersion: "0.98.1"
+		toVersion: "0.98.2"
+		ChangeJS
+		{
+			name: "PlotBuilderTab"
+			jsFunction: function(options)
+			{
+				var tabs = options["PlotBuilderTab"];
+				var elements = ["DataPoint", "Boxplot", "Violin", "CountDot", "SumDot", "MeanDot", "MedianDot"];
+				for (var i = 0; i < tabs.length; i++) {
+					if (tabs[i].facetLayout === undefined) {
+						var grid = tabs[i].isRM === "RM" ? tabs[i].gridVarRM : tabs[i].gridVariablePlotBuilder;
+						if (grid && grid.value !== undefined) grid = grid.value;
+						if (Array.isArray(grid)) grid = grid.length > 0 ? grid[0] : "";
+						tabs[i].facetLayout = grid ? "grid" : "rowsColumns";
+					}
+					if (tabs[i].pValueColorMode === undefined)
+						tabs[i].pValueColorMode = ["grouping", "splitColumn", "splitRow"].indexOf(tabs[i].colorByGroup) >= 0 ? "group" : "custom";
+					for (var j = 0; j < elements.length; j++) {
+						var element = elements[j];
+						var black = "blackOutline" + element;
+						var white = element === "DataPoint" ? "whiteBorder" : "whiteOutline" + element;
+						var outline = "outline" + element;
+						// White took precedence when both old checkboxes were selected.
+						if (tabs[i][outline] === undefined)
+							tabs[i][outline] = tabs[i][white] ? "white" : (tabs[i][black] ? "black" : "automatic");
+						delete tabs[i][black];
+						delete tabs[i][white];
+					}
+				}
+				return tabs;
+			}
+		}
+	}
+
+	Upgrade
+	{
 		functionName:	"Descriptives"
 		fromVersion:	"0.16.4"
 		toVersion:		"0.17.0"

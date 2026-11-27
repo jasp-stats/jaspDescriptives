@@ -49,6 +49,21 @@ jaspPlotBuilderInternal <- function(jaspResults, dataset, options) {
 
 # ──────────────────────────────────────────────────────────────────────────────
 removeEmptyStrings <- function(x) Filter(nzchar, x)
+
+.plotBuilderActiveFacets <- function(tab) {
+  facets <- if (identical(tab$isRM, "RM"))
+    list(rows = tab$rowSplitRM, columns = tab$colSplitRM, grid = tab$gridVarRM)
+  else
+    list(rows = tab$rowsvariableSplitPlotBuilder, columns = tab$columnsvariableSplitPlotBuilder,
+         grid = tab$gridVariablePlotBuilder)
+  # Grid took precedence in saved analyses without an explicit layout choice.
+  layout <- tab$facetLayout
+  if (is.null(layout)) layout <- if (length(facets$grid) && nzchar(facets$grid)) "grid" else "rowsColumns"
+  if (layout == "grid") facets[c("rows", "columns")] <- list("", "")
+  else facets$grid <- ""
+  facets
+}
+
 .plotBuilderReadData <- function(options) {
 
   datasetRMList    <- list()
@@ -74,7 +89,7 @@ removeEmptyStrings <- function(x) Filter(nzchar, x)
         f
       })
 
-      expectedVars <- sum(vapply(rm.factors, function(f) length(f$levels), integer(1)))
+      expectedVars <- prod(vapply(rm.factors, function(f) length(f$levels), integer(1)))
       if (length(rm.vars) != expectedVars || any(rm.vars == ""))
         .quitAnalysis(gettext("Please assign a variable to every RM factor (defined in Repeated Measures Factors) within Repeated Measures Cells."))
 
@@ -125,9 +140,9 @@ removeEmptyStrings <- function(x) Filter(nzchar, x)
         tab$variableXPlotBuilder,
         tab$variableYPlotBuilder,
         tab$variableColorPlotBuilder,
-        tab$columnsvariableSplitPlotBuilder,
-        tab$gridVariablePlotBuilder,
-        tab$rowsvariableSplitPlotBuilder,
+        unlist(.plotBuilderActiveFacets(tab)),
+        if (identical(tab$colorByGroup, "splitColumn")) tab$columnsvariableSplitPlotBuilder,
+        if (identical(tab$colorByGroup, "splitRow")) tab$rowsvariableSplitPlotBuilder,
         tab$sizeVariablePlotBuilder,
         tab$labelVariablePlotBuilder,
         tab$pointShapeVariable
@@ -231,6 +246,19 @@ addDecodedLabels <- function(p) {
   p
 }
 
+#HELPER FUNCTION: outline color ----
+
+.plotBuilderOutlineColor <- function(tab, element) {
+  outline <- tab[[paste0("outline", element)]]
+  if (!is.null(outline)) return(outline)
+
+  # Support older options supplied directly through the R interface.
+  whiteOption <- if (element == "DataPoint") "whiteBorder" else paste0("whiteOutline", element)
+  if (isTRUE(tab[[whiteOption]])) return("white")
+  if (isTRUE(tab[[paste0("blackOutline", element)]])) return("black")
+  "automatic"
+}
+
 #HELPER FUNCTION: jitter position ----
 
 .create_point_layer_func <- function(tab, shapeVar = NULL) {
@@ -243,22 +271,25 @@ addDecodedLabels <- function(p) {
       jitter_height = tab[["jitterhPlotBuilder"]],
       jitter_width  = tab[["jitterwPlotBuilder"]],
       size          = tab[["pointsizePlotBuilder"]],
-      alpha         = tab[["alphaPlotBuilder"]],
-      white_border  = tab[["whiteBorder"]]
+      alpha         = tab[["alphaPlotBuilder"]]
     )
 
-    if (isTRUE(tab[["blackOutlineDataPoint"]]))
-      argList$color <- "black"
+    if (is.null(p$mapping$x)) argList$mapping <- ggplot2::aes(x = 1)
+    if (is.null(p$mapping$y)) argList$mapping <- ggplot2::aes(y = 1)
+    outline <- .plotBuilderOutlineColor(tab, "DataPoint")
+    if (outline != "automatic")
+      argList$color <- outline
 
     if (is.null(shapeVar) || !nzchar(shapeVar)) {
-      argList$shape <- ifelse(tab[["emptyCircles"]], 1, 21)
+      argList$shape <- 21
+      if (isTRUE(tab[["emptyCircles"]])) argList$fill <- NA
     }
 
     gp <- do.call(tidyplots::add_data_points_jitter, c(list(p), argList))
 
     if (!is.null(shapeVar) && shapeVar %in% names(p$data)) {
       for (i in seq_along(gp$layers)) {
-        if (inherits(gp$layers[[i]]$geom, "GeomPoint")) {
+        if (inherits(gp$layers[[i]]$geom, "GeomPoint") && inherits(gp$layers[[i]]$stat, "StatIdentity")) {
           gp$layers[[i]]$aes_params$shape <- NULL
           gp$layers[[i]]$mapping$shape    <- rlang::sym(shapeVar)
         }
@@ -273,26 +304,42 @@ addDecodedLabels <- function(p) {
 
 .plotBuilderPlots <- function(dataset, options) {
 
-  datasetRMList <- dataset$datasetRMList
-  datasetNonRMList <- dataset$datasetNonRMList
-
-  # Initialize the list to store plots
+  # Each tab is built on its own: an invalid layer combination (or any other
+  # error) is reported on that plot instead of aborting the other plots and the
+  # plot layout.
   updatedPlots <- list()
+  plotErrors <- list()
 
   for (tab in options[["PlotBuilderTab"]]) {
+    plotId <- as.character(tab$value)
+    plot <- tryCatch(
+      .plotBuilderTabPlot(tab, dataset),
+      error = function(e) {
+        plotErrors[[plotId]] <<- conditionMessage(e)
+        NULL
+      }
+    )
+    if (!is.null(plot))
+      updatedPlots[[plotId]] <- plot
+  }
+
+  return(list(updatedPlots = updatedPlots, plotErrors = plotErrors))
+}
+
+.plotBuilderTabPlot <- function(tab, dataset) {
 
     plotId <- as.character(tab$value)
 
     localData <- if (identical(tab[["isRM"]], "RM")) {
-      datasetRMList[[plotId]]
+      dataset$datasetRMList[[plotId]]
     } else {
-      datasetNonRMList[[plotId]]
+      dataset$datasetNonRMList[[plotId]]
     }
 
     if (is.null(localData) ||
         !is.data.frame(localData) ||
         nrow(localData) == 0) {
-      next
+      return(NULL)
     }
 
 
@@ -314,6 +361,12 @@ addDecodedLabels <- function(p) {
       colsVar   <- encodeColNames(tab[["colSplitRM"]])
       gridVar   <- encodeColNames(tab[["gridVarRM"]])
       sizeVar   <- encodeColNames(tab[["sizeVariablePlotBuilder"]])
+    }
+
+    rmFactorNames <- if (identical(tab[["isRM"]], "RM"))
+      encodeColNames(vapply(tab[["repeatedMeasuresFactors"]], `[[`, character(1), "name")) else character()
+    encodeRMLevel <- function(value, variable) {
+      if (variable %in% rmFactorNames) encodeColNames(value) else value
     }
 
     colorBy <- tab[["colorByGroup"]]
@@ -352,6 +405,11 @@ addDecodedLabels <- function(p) {
       }
     }
 
+    facets <- lapply(.plotBuilderActiveFacets(tab), encodeColNames)
+    rowsVar <- facets$rows
+    colsVar <- facets$columns
+    gridVar <- facets$grid
+
     # The next section is necessary because some functions do not work if the
     # variable is defined as ordinal within JASP.
     # If xVar exists in localData and is non-numeric, convert it to a factor.
@@ -362,8 +420,8 @@ addDecodedLabels <- function(p) {
           # Save the existing order of levels.
           # This preserves any specific ordering already defined (e.g., from JASP settings).
           lvls <- levels(localData[[xVar]])
-          # Convert to a regular factor with the preserved level order.
-          localData[[xVar]] <- factor(as.character(localData[[xVar]]), levels = lvls)
+          # Preserve ordered factors as well as their level order.
+          localData[[xVar]] <- factor(as.character(localData[[xVar]]), levels = lvls, ordered = is.ordered(localData[[xVar]]))
         } else {
           # If xVar is not already a factor (e.g., a character vector),
           # convert it to a factor using the order of first appearance.
@@ -380,13 +438,38 @@ addDecodedLabels <- function(p) {
         if (is.factor(localData[[yVar]])) {
           # Preserve the current factor level order.
           lvls <- levels(localData[[yVar]])
-          localData[[yVar]] <- factor(as.character(localData[[yVar]]), levels = lvls)
+          localData[[yVar]] <- factor(as.character(localData[[yVar]]), levels = lvls, ordered = is.ordered(localData[[yVar]]))
         } else {
           # Convert to a factor using the unique order from the data.
           localData[[yVar]] <- factor(localData[[yVar]], levels = unique(localData[[yVar]]))
         }
       }
     } # end of ordinal/nominal problem section
+
+    hasX <- nzchar(xVar) && xVar %in% names(localData)
+    hasY <- nzchar(yVar) && yVar %in% names(localData)
+    scaleX <- hasX && is.numeric(localData[[xVar]])
+    scaleY <- hasY && is.numeric(localData[[yVar]])
+    groupVar <- encodeColNames(if (identical(tab$isRM, "RM")) tab$groupVarRM else tab$variableColorPlotBuilder)
+    hasGroup <- length(groupVar) == 1 && nzchar(groupVar) && groupVar %in% names(localData) && is.factor(localData[[groupVar]])
+    summaryOptions <- grep("^add(Sum|Mean|Median|Range|SD|SEM|CI95|Sd|Sem|Ci95)", names(tab), value = TRUE)
+    if (any(vapply(tab[summaryOptions], isTRUE, logical(1))) && !scaleX && !scaleY)
+      .quitAnalysis(gettext("Summary layers require a scale variable on at least one axis."))
+    jointSummary <- !identical(tab$isRM, "RM") && scaleX && scaleY
+    positionSummaries <- setdiff(summaryOptions, c("addMeanDot", "addMedianDot", "addMeanEllipse"))
+    if (jointSummary && any(vapply(tab[positionSummaries], isTRUE, logical(1))))
+      .quitAnalysis(gettext("With two scale axes and non-repeated observations, use a mean or median center and optional mean ellipse. Position-based summaries require a categorical axis, a single scale axis, or repeated measures."))
+    if (isTRUE(tab$addMeanEllipse) && !jointSummary)
+      .quitAnalysis(gettext("Mean ellipses require two scale axes and non-repeated observations."))
+    distributionPositions <- hasX && hasY && xor(scaleX, scaleY)
+    if ((isTRUE(tab$addHistogram) || isTRUE(tab$addDensity)) && !xor(scaleX, scaleY))
+      .quitAnalysis(gettext("Histograms and densities require exactly one scale variable, optionally positioned along a categorical axis."))
+    if (isTRUE(tab$addBoxplot) || isTRUE(tab$addViolin)) {
+      if ((!scaleX && !scaleY) || (scaleX && scaleY && !hasGroup))
+        .quitAnalysis(gettext("Boxplots and violins require a scale variable and optional categorical positions or explicit categorical groups."))
+    }
+    if ((isTRUE(tab$addCurveFitPlotBuilder) || isTRUE(tab$addStatEllipse)) && !(scaleX && scaleY))
+      .quitAnalysis(gettext("Fitted curves and ellipses require scale variables on both axes."))
 
     # extract plot id
     plotId <- as.character(tab$value)
@@ -421,6 +504,79 @@ addDecodedLabels <- function(p) {
       tidyplot_args
     )
 
+    if (hasGroup) {
+      statGroupVars <- unique(c(groupVar, if (hasColor && is.factor(localData[[colorVar]])) colorVar))
+      groupMapping <- ggplot2::aes(group = interaction(!!!rlang::syms(statGroupVars), drop = TRUE))$group
+      positionVars <- c(if (hasX && !scaleX) xVar, if (hasY && !scaleY) yVar)
+      pointGroupVars <- unique(c(statGroupVars, positionVars))
+      pointGroupMapping <- ggplot2::aes(group = interaction(!!!rlang::syms(pointGroupVars), drop = TRUE))$group
+      tidyplot_obj$mapping$group <- pointGroupMapping
+    }
+
+    hasRows <- (!is.null(rowsVar) && rowsVar != "")
+    hasCols <- (!is.null(colsVar) && colsVar != "")
+    as_table_value <- tab[["asTable"]] %in% c("bottom-right", 0)
+
+    # Use backticks ONLY inside the formula:
+    if (hasRows && hasCols) {
+      tidyplot_obj <- tidyplot_obj +
+        ggplot2::facet_grid(
+          stats::as.formula(paste0("`", rowsVar, "` ~ `", colsVar, "`")),
+          scales = tab[["scales"]],
+          axes = tab[["axes"]],
+          axis.labels = tab[["axisLabels"]],
+          as.table = as_table_value,
+          space = tab[["space"]],
+          margins = tab[["margins"]]
+        )
+    } else if (hasCols) {
+      tidyplot_obj <- tidyplot_obj +
+        ggplot2::facet_grid(
+          stats::as.formula(paste0(". ~ `", colsVar, "`")),
+          scales = tab[["scales"]],
+          axes = tab[["axes"]],
+          axis.labels = tab[["axisLabels"]],
+          as.table = as_table_value,
+          space = tab[["space"]],
+          margins = tab[["margins"]]
+        )
+    } else if (hasRows) {
+      tidyplot_obj <- tidyplot_obj +
+        ggplot2::facet_grid(
+          stats::as.formula(paste0("`", rowsVar, "` ~ .")),
+          scales = tab[["scales"]],
+          axes = tab[["axes"]],
+          axis.labels = tab[["axisLabels"]],
+          as.table = as_table_value,
+          space = tab[["space"]],
+          margins = tab[["margins"]]
+        )
+    }
+
+    # Facet logic for facet_wrap using gridVariable ----
+    hasGrid <- (!is.null(gridVar) && gridVar != "")
+
+    if (hasGrid) {
+      as_table_value <- if (tab[["asTableFacetWrap"]] %in% c("bottom-rightFacetWrap", 0)) TRUE else FALSE
+
+      nrow_value <- if (!is.null(tab[["nrowFacetWrap"]]) && nchar(trimws(tab[["nrowFacetWrap"]])) > 0)
+        as.numeric(tab[["nrowFacetWrap"]]) else NULL
+      ncol_value <- if (!is.null(tab[["ncolFacetWrap"]]) && nchar(trimws(tab[["ncolFacetWrap"]])) > 0)
+        as.numeric(tab[["ncolFacetWrap"]]) else NULL
+      if (identical(nrow_value, 0)) nrow_value <- NULL
+      if (identical(ncol_value, 0)) ncol_value <- NULL
+
+      tidyplot_obj <- tidyplot_obj +
+        ggplot2::facet_wrap(
+          stats::as.formula(paste0("~ `", gridVar, "`")),
+          nrow = nrow_value,
+          ncol = ncol_value,
+          scales = tab[["scalesFacetWrap"]],
+          as.table = as_table_value,
+          strip.position = tab[["stripPosition"]]
+        )
+    }
+
     # Adjust color labels (tidyplots::rename_color_labels)----
     if (!is.null(tab[["colorLabelRenamer"]]) && length(tab[["colorLabelRenamer"]]) > 0) {
 
@@ -440,6 +596,23 @@ addDecodedLabels <- function(p) {
       }
     }
 
+    # Sort X axis labels (tidyplots::sort_x_axis_labels)----
+    enableSort <- tab[["enableSort"]]
+    if (isTRUE(enableSort) && hasX && !scaleX) {
+      sortOrder <- tab[["sortXLabelsOrder"]]
+      if (!is.null(sortOrder) && sortOrder %in% c("Increasing", "Decreasing")) {
+        reverse_order <- (sortOrder == "Decreasing")
+        aggFun        <- tab[["aggregationFun"]]
+        if (!is.null(aggFun) && aggFun %in% c("mean", "median")) {
+          tidyplot_obj <- tidyplots::sort_x_axis_labels(
+            tidyplot_obj,
+            .reverse = reverse_order,
+            .fun     = aggFun
+          )
+        }
+      }
+    }
+
     #Pre-calculation for determining the positions of jittered points----
     #This is necessary so that the lines connecting the RM points can be
     #ordered. Without it, they may lose their jittered position.
@@ -447,6 +620,8 @@ addDecodedLabels <- function(p) {
     if (tab[["connectRMPlotBuilder"]] && tab[["addDataPoint"]]) {
       point_func <- .create_point_layer_func(tab, shapeVar)
       temp_plot <- point_func(tidyplot_obj)
+      temp_plot$data$.plotBuilderRow <- seq_len(nrow(temp_plot$data))
+      temp_plot$layers[[1]]$mapping$label <- ggplot2::aes(label = .plotBuilderRow)$label
       built_temp <- if (ggplot2::is.ggplot(temp_plot)) {
         ggplot2::ggplot_build(temp_plot)
       } else if (is.list(temp_plot)) {
@@ -459,43 +634,54 @@ addDecodedLabels <- function(p) {
 
     layer_calls <- list()
 
+    addPointOverlay <- function(p, layer) {
+      if (!isTRUE(tab[["margins"]]) || hasGrid)
+        return(p + layer)
+
+      # Margins duplicate observations; keep each set of computed positions in its panel.
+      for (panel in unique(layer$data$PANEL)) {
+        panelLayer <- ggplot2::ggproto(NULL, layer,
+          data = layer$data[layer$data$PANEL == panel, , drop = FALSE],
+          layout = as.integer(panel)
+        )
+        p <- p + panelLayer
+      }
+      p
+    }
+
     # Add data points (tidyplots::add_data_points_jitter)----
     if (tab[["addDataPoint"]]) {
 
-      layer_calls$point <- function(p)
-      {
-        argList <- list(
-          dodge_width   = tab[["pointDodgePlotBuilder"]],
-          jitter_height = tab[["jitterhPlotBuilder"]],
-          jitter_width  = tab[["jitterwPlotBuilder"]],
-          size          = tab[["pointsizePlotBuilder"]],
-          alpha         = tab[["alphaPlotBuilder"]],
-          shape         = ifelse(tab[["emptyCircles"]], 1, 21),
-          white_border  = tab[["whiteBorder"]]
-        )
-        if (tab[["blackOutlineDataPoint"]])
-          argList$color <- "black"
-
-        do.call(tidyplots::add_data_points_jitter, c(list(p), argList))
-      }
+      layer_calls$point <- .create_point_layer_func(tab, shapeVar)
     }
 
     if (tab[["addHistogram"]]) {
       layer_calls$histogram <- function(p) {
+        if (distributionPositions) {
+          return(p + ggplot2::geom_rect(
+            stat = .plotBuilderDistributionStat(TRUE, scaleX, tab$binsPlotBuilder,
+              if (is.null(tab$distributionHeight)) 0.8 else tab$distributionHeight, FALSE),
+            alpha = tab$alphaHistogramPlotBuilder,
+            colour = if (isTRUE(tab$blackHistogramOutline)) "black" else NA))
+        }
+        distributionVar <- if (nzchar(xVar)) xVar else yVar
         fillvar <- NULL
         if (!is.null(colorVar) && colorVar != "" && colorVar %in% names(localData)) {
           fillvar <- colorVar
         }
         mapping_hist <- if (!is.null(fillvar)) {
-          ggplot2::aes(x = .data[[xVar]], y = ..count.., fill = .data[[fillvar]])
+          ggplot2::aes(x = .data[[distributionVar]], y = ..count.., fill = .data[[fillvar]])
         } else {
-          ggplot2::aes(x = .data[[xVar]], y = ..count..)
+          ggplot2::aes(x = .data[[distributionVar]], y = ..count..)
         }
+        if (!nzchar(xVar))
+          mapping_hist[c("x", "y")] <- mapping_hist[c("y", "x")]
         argList <- list(
           mapping = mapping_hist,
+          orientation = if (nzchar(xVar)) "x" else "y",
           bins = tab[["binsPlotBuilder"]],
           alpha = tab[["alphaHistogramPlotBuilder"]],
-          position = "identity",
+          position = if (is.null(tab$histogramPosition)) "identity" else tab$histogramPosition,
           inherit.aes = TRUE
         )
         if (isTRUE(tab[["blackHistogramOutline"]])) {
@@ -521,6 +707,15 @@ addDecodedLabels <- function(p) {
 
     if (tab[["addDensity"]]) {
       layer_calls$density <- function(p) {
+        if (distributionPositions) {
+          return(p + ggplot2::geom_ribbon(
+            stat = .plotBuilderDistributionStat(FALSE, scaleX, tab$binsPlotBuilder,
+              if (is.null(tab$distributionHeight)) 0.8 else tab$distributionHeight, FALSE),
+            orientation = if (scaleX) "x" else "y", alpha = tab$alphaDensityPlotBuilder,
+            linewidth = tab$lineWidthDensity,
+            colour = if (isTRUE(tab$blackDensityOutline)) "black" else NA))
+        }
+        distributionVar <- if (nzchar(xVar)) xVar else yVar
         mode <- tab[["densityOverlayMode"]]
         fillvar <- NULL
         if (!is.null(colorVar) && colorVar != "" && colorVar %in% names(localData)) {
@@ -528,19 +723,22 @@ addDecodedLabels <- function(p) {
         }
         mapping_density <- if (!is.null(fillvar)) {
           if (mode == "count") {
-            ggplot2::aes(x = .data[[xVar]], y = ..count.., fill = .data[[fillvar]], color = .data[[fillvar]])
+            ggplot2::aes(x = .data[[distributionVar]], y = ..count.., fill = .data[[fillvar]], color = .data[[fillvar]])
           } else {
-            ggplot2::aes(x = .data[[xVar]], y = ..scaled.., fill = .data[[fillvar]], color = .data[[fillvar]])
+            ggplot2::aes(x = .data[[distributionVar]], y = ..scaled.., fill = .data[[fillvar]], color = .data[[fillvar]])
           }
         } else {
           if (mode == "count") {
-            ggplot2::aes(x = .data[[xVar]], y = ..count..)
+            ggplot2::aes(x = .data[[distributionVar]], y = ..count..)
           } else {
-            ggplot2::aes(x = .data[[xVar]], y = ..scaled..)
+            ggplot2::aes(x = .data[[distributionVar]], y = ..scaled..)
           }
         }
+        if (!nzchar(xVar))
+          mapping_density[c("x", "y")] <- mapping_density[c("y", "x")]
         argList <- list(
           mapping = mapping_density,
+          orientation = if (nzchar(xVar)) "x" else "y",
           linewidth = tab[["lineWidthDensity"]],
           alpha = tab[["alphaDensityPlotBuilder"]],
           position = "identity",
@@ -548,6 +746,10 @@ addDecodedLabels <- function(p) {
         )
         if (tab[["blackDensityOutline"]]) {
           argList$color <- "black"
+        }
+        if (mode == "count" && isTRUE(tab[["addHistogram"]])) {
+          # Use the histogram's own bin calculation, including free panel scales.
+          argList$stat <- .plotBuilderCountDensityStat(tab[["binsPlotBuilder"]])
         }
         argList <- argList[!sapply(argList, is.null)]
         ggcall <- p + do.call(ggplot2::geom_density, argList)
@@ -579,12 +781,8 @@ addDecodedLabels <- function(p) {
           outlier.size   = tab[["outlierSizeBoxplotPlotBuilder"]],
           coef           = tab[["outlierCoefBoxplotPlotBuilder"]]
         )
-        if (tab[["blackOutlineBoxplot"]]) {
-          argList$color <- "black"
-        }
-        if (tab[["whiteOutlineBoxplot"]]) {
-          argList$color <- "white"
-        }
+        outline <- .plotBuilderOutlineColor(tab, "Boxplot")
+        if (outline != "automatic") argList$color <- outline
         do.call(tidyplots::add_boxplot, c(list(p), argList))
       }
     }
@@ -600,7 +798,7 @@ addDecodedLabels <- function(p) {
           input_text <- paste0("c(", input_text, ")")
         }
 
-        draw_quantiles <- eval(parse(text = input_text))
+        draw_quantiles <- safe_eval_text(input_text)
 
         argList <- list(
           draw_quantiles = draw_quantiles,
@@ -611,12 +809,8 @@ addDecodedLabels <- function(p) {
           scale          = tab[["scaleViolinPlotBuilder"]]
         )
 
-        if (tab[["blackOutlineViolin"]]) {
-          argList$color <- "black"
-        }
-        if (tab[["whiteOutlineViolin"]]) {
-          argList$color <- "white"
-        }
+        outline <- .plotBuilderOutlineColor(tab, "Violin")
+        if (outline != "automatic") argList$color <- outline
 
         do.call(tidyplots::add_violin, c(list(p), argList))
       }
@@ -662,7 +856,16 @@ addDecodedLabels <- function(p) {
           argList$fill  <- "black"
         }
 
-        p <- do.call(tidyplots::add_count_dash, c(list(p), argList))
+        if (!hasX && hasY) {
+          p <- p + ggplot2::geom_errorbar(
+            ggplot2::aes(xmin = ggplot2::after_stat(count), xmax = ggplot2::after_stat(count)),
+            stat = "count", orientation = "y", linewidth = argList$linewidth,
+            width = argList$width, alpha = argList$alpha,
+            position = ggplot2::position_dodge(width = argList$dodge_width))
+          if (isTRUE(tab$blackOutlineCountDash)) p$layers[[length(p$layers)]]$aes_params$colour <- "black"
+        } else {
+          p <- do.call(tidyplots::add_count_dash, c(list(p), argList))
+        }
 
         titleValueY <- tab[["titleYPlotBuilder"]]
         if (!is.null(titleValueY) && titleValueY != "") {
@@ -687,16 +890,13 @@ addDecodedLabels <- function(p) {
           alpha       = tab[["alphaCountLine"]]
         )
 
-        if ((exists("colorBy") && colorBy %in% c("x", "y")) || tab[["blackOutlineCountLine"]]) {
+        if (tab[["blackOutlineCountLine"]]) {
           argList$color <- "black"
-          argList$fill  <- "black"
-        }
-
-        if (exists("colorBy") && colorBy %in% c("x", "y")) {
-          argList$group <- 1
         }
 
         p <- do.call(tidyplots::add_count_line, c(list(p), argList))
+        if (colorBy %in% c("x", "y"))
+          p$layers[[length(p$layers)]]$mapping$group <- ggplot2::aes(group = ggplot2::after_stat(1))$group
 
         titleValueY <- tab[["titleYPlotBuilder"]]
         if (!is.null(titleValueY) && titleValueY != "") {
@@ -741,7 +941,7 @@ addDecodedLabels <- function(p) {
       layer_calls$count_value <- function(p) {
         argList <- list(
           fontsize = tab[["fontsizeCountValue"]],
-          accuracy = eval(parse(text = tab[["accuracyCountValue"]])),
+          accuracy = safe_eval_text(tab[["accuracyCountValue"]]),
           alpha    = tab[["alphaCountValue"]],
           hjust    = tab[["hjustCountValue"]],
           vjust    = tab[["vjustCountValue"]]
@@ -776,6 +976,10 @@ addDecodedLabels <- function(p) {
           width       = tab[["widthSumBar"]],
           alpha       = tab[["alphaSumBar"]]
         )
+        if (xor(hasX, hasY)) {
+          argList$mapping <- if (hasX) ggplot2::aes(y = 1) else ggplot2::aes(x = 1)
+          argList$orientation <- if (hasX) "y" else "x"
+        }
         do.call(tidyplots::add_sum_bar, c(list(p), argList))
       }
     }
@@ -804,7 +1008,7 @@ addDecodedLabels <- function(p) {
       layer_calls$sum_value <- function(p) {
         argList <- list(
           fontsize = tab[["fontsizeSumValue"]],
-          accuracy = eval(parse(text = tab[["accuracySumValue"]])),
+          accuracy = safe_eval_text(tab[["accuracySumValue"]]),
           alpha    = tab[["alphaSumValue"]],
           hjust    = tab[["hjustSumValue"]],
           vjust    = tab[["vjustSumValue"]]
@@ -828,16 +1032,18 @@ addDecodedLabels <- function(p) {
           alpha       = tab[["alphaSumLine"]]
         )
 
-        if ((exists("colorBy") && colorBy %in% c("x", "y")) || tab[["blackOutlineSumLine"]]) {
+        if (tab[["blackOutlineSumLine"]]) {
           argList$color <- "black"
-          argList$fill  <- "black"
         }
 
         if (exists("colorBy") && colorBy %in% c("x", "y")) {
           argList$group <- 1
         }
 
-        do.call(tidyplots::add_sum_line, c(list(p), argList))
+        p <- do.call(tidyplots::add_sum_line, c(list(p), argList))
+        if (colorBy == "y" && is.numeric(localData[[yVar]]) && !tab[["blackOutlineSumLine"]])
+          p$layers[[length(p$layers)]]$mapping$colour <- ggplot2::aes(colour = ggplot2::after_stat(y))$colour
+        p
       }
     }
 
@@ -856,58 +1062,22 @@ addDecodedLabels <- function(p) {
 
     # Add proportion bar and area ####
 
-    # For Bar Stack, use the single "addBarStack" option.
-    if (tab[["addBarStack"]]) {
-      layer_calls$barstack <- function(p) {
-        mode <- tab[["propMode"]]
+    barStackMeasure <- .plotBuilderStackMeasure(tab$stackMeasure, FALSE, localData[[xVar]], localData[[yVar]])
+    areaStackMeasure <- .plotBuilderStackMeasure(tab$stackMeasure, TRUE, localData[[xVar]], localData[[yVar]])
+    hasCountStack <- (isTRUE(tab$addBarStack) && barStackMeasure == "count") ||
+      (isTRUE(tab$addAreaStack) && areaStackMeasure == "count")
 
-        argList <- list(
-          reverse = tab[["reverseBarStack"]],
-          alpha   = tab[["alphaBarStack"]]
-        )
-
-        if (mode == "absolute") {
-          p <- do.call(tidyplots::add_barstack_absolute, c(list(p), argList))
-        } else if (mode == "relative") {
-          p <- do.call(tidyplots::add_barstack_relative, c(list(p), argList))
-        }
-
-        titleValueY <- tab[["titleYPlotBuilder"]]
-        if (!is.null(titleValueY) && titleValueY != "") {
-          p <- p |> tidyplots::adjust_y_axis_title(title = titleValueY)
-        }
-
-        titleValueX <- tab[["titleXPlotBuilder"]]
-        if (!is.null(titleValueX) && titleValueX != "") {
-          p <- p |> tidyplots::adjust_x_axis_title(title = titleValueX)
-        }
-
-        p
-      }
+    if (tab[["addBarStack"]] || tab[["addAreaStack"]]) {
+      if (!hasGroup)
+        .quitAnalysis(gettext("Stacked plots require a categorical Group variable."))
+      facetVars <- intersect(c(rowsVar, colsVar, gridVar), names(localData))
+      if (tab[["addBarStack"]])
+        layer_calls$barstack <- function(p)
+          .plotBuilderStack(p, tab, FALSE, barStackMeasure, xVar, yVar, groupVar, colorVar, facetVars)
+      if (tab[["addAreaStack"]])
+        layer_calls$areastack <- function(p)
+          .plotBuilderStack(p, tab, TRUE, areaStackMeasure, xVar, yVar, groupVar, colorVar, facetVars)
     }
-
-    # For Area Stack, use the single "addAreaStack" option.
-    if (tab[["addAreaStack"]]) {
-      layer_calls$areastack <- function(p) {
-        mode <- tab[["propMode"]]
-
-        argList <- list(
-          reverse    = tab[["reverseAreaStack"]],
-          alpha      = tab[["alphaAreaStack"]],
-          linewidth  = tab[["linewidthAreaStack"]],
-          replace_na = tab[["replaceNaAreaStack"]]
-        )
-
-        if (mode == "absolute") {
-          do.call(tidyplots::add_areastack_absolute, c(list(p), argList))
-        } else if (mode == "relative") {
-          do.call(tidyplots::add_areastack_relative, c(list(p), argList))
-        } else {
-          p  # fallback: return unchanged if invalid mode
-        }
-      }
-    }
-
 
     # Add Mean Bar (tidyplots::add_mean_bar)----
     if (tab[["addMeanBar"]]) {
@@ -917,6 +1087,10 @@ addDecodedLabels <- function(p) {
           alpha       = tab[["alphaMeanBar"]],
           width       = tab[["widthMeanBar"]]
         )
+        if (xor(hasX, hasY)) {
+          argList$mapping <- if (hasX) ggplot2::aes(y = 1) else ggplot2::aes(x = 1)
+          argList$orientation <- if (hasX) "y" else "x"
+        }
         do.call(tidyplots::add_mean_bar, c(list(p), argList))
       }
     }
@@ -949,16 +1123,18 @@ addDecodedLabels <- function(p) {
           linewidth   = tab[["linewidthMeanLine"]]
         )
 
-        if ((exists("colorBy") && colorBy %in% c("x", "y")) || tab[["blackOutlineMeanLine"]]) {
+        if (tab[["blackOutlineMeanLine"]]) {
           argList$color <- "black"
-          argList$fill  <- "black"
         }
 
         if (exists("colorBy") && colorBy %in% c("x", "y")) {
           argList$group <- 1
         }
 
-        do.call(tidyplots::add_mean_line, c(list(p), argList))
+        p <- do.call(tidyplots::add_mean_line, c(list(p), argList))
+        if (colorBy == "y" && is.numeric(localData[[yVar]]) && !tab[["blackOutlineMeanLine"]])
+          p$layers[[length(p$layers)]]$mapping$colour <- ggplot2::aes(colour = ggplot2::after_stat(y))$colour
+        p
       }
     }
 
@@ -981,7 +1157,7 @@ addDecodedLabels <- function(p) {
           dodge_width = tab[["dodgeMeanValue"]],
           alpha       = tab[["alphaMeanValue"]],
           fontsize    = tab[["fontsizeMeanValue"]],
-          accuracy    = eval(parse(text = tab[["accuracyMeanValue"]])),
+          accuracy    = safe_eval_text(tab[["accuracyMeanValue"]]),
           hjust       = tab[["hjustMeanValue"]],
           vjust       = tab[["vjustMeanValue"]]
         )
@@ -1003,6 +1179,10 @@ addDecodedLabels <- function(p) {
           alpha       = tab[["alphaMedianBar"]],
           width       = tab[["widthMedianBar"]]
         )
+        if (xor(hasX, hasY)) {
+          argList$mapping <- if (hasX) ggplot2::aes(y = 1) else ggplot2::aes(x = 1)
+          argList$orientation <- if (hasX) "y" else "x"
+        }
         do.call(tidyplots::add_median_bar, c(list(p), argList))
       }
     }
@@ -1035,16 +1215,18 @@ addDecodedLabels <- function(p) {
           alpha       = tab[["alphaMedianLine"]]
         )
 
-        if ((exists("colorBy") && colorBy %in% c("x", "y")) || tab[["blackOutlineMedianLine"]]) {
+        if (tab[["blackOutlineMedianLine"]]) {
           argList$color <- "black"
-          argList$fill  <- "black"
         }
 
         if (exists("colorBy") && colorBy %in% c("x", "y")) {
           argList$group <- 1
         }
 
-        do.call(tidyplots::add_median_line, c(list(p), argList))
+        p <- do.call(tidyplots::add_median_line, c(list(p), argList))
+        if (colorBy == "y" && is.numeric(localData[[yVar]]) && !tab[["blackOutlineMedianLine"]])
+          p$layers[[length(p$layers)]]$mapping$colour <- ggplot2::aes(colour = ggplot2::after_stat(y))$colour
+        p
       }
     }
 
@@ -1065,7 +1247,7 @@ addDecodedLabels <- function(p) {
       layer_calls$median_value <- function(p) {
         argList <- list(
           fontsize = tab[["fontsizeMedianValue"]],
-          accuracy = eval(parse(text = tab[["accuracyMedianValue"]])),
+          accuracy = safe_eval_text(tab[["accuracyMedianValue"]]),
           alpha    = tab[["alphaMedianValue"]],
           hjust    = tab[["hjustMedianValue"]],
           vjust    = tab[["vjustMedianValue"]]
@@ -1088,7 +1270,7 @@ addDecodedLabels <- function(p) {
           dodge_width = tab[["dodgeSEMErrorBar"]],
           width       = tab[["widthSEMErrorBar"]],
           linewidth   = tab[["linewidthSEMErrorBar"]],
-          alpha       = tab[["transparencySDErrorBar"]]
+          alpha       = tab[["transparencySEMErrorBar"]]
         )
         if (tab[["blackOutlineSEMErrorBar"]]) {
           argList$color <- "black"
@@ -1153,12 +1335,11 @@ addDecodedLabels <- function(p) {
     if (tab[["addSemRibbon"]]) {
       layer_calls$sem_ribbon <- function(p) {
         argList <- list(
-          dodge_width = 0.8,
+          dodge_width = if (is.null(tab$ribbonDodge)) 0.8 else tab$ribbonDodge,
           alpha       = tab[["alphaSemRibbon"]]
         )
         if (tab[["blackOutlineSemRibbon"]]) {
           argList$color <- "black"
-          argList$fill  <- "black"
         }
         do.call(tidyplots::add_sem_ribbon, c(list(p), argList))
       }
@@ -1168,12 +1349,11 @@ addDecodedLabels <- function(p) {
     if (tab[["addRangeRibbon"]]) {
       layer_calls$range_ribbon <- function(p) {
         argList <- list(
-          dodge_width = 0.8,
+          dodge_width = if (is.null(tab$ribbonDodge)) 0.8 else tab$ribbonDodge,
           alpha       = tab[["alphaRangeRibbon"]]
         )
         if (tab[["blackOutlineRangeRibbon"]]) {
           argList$color <- "black"
-          argList$fill  <- "black"
         }
         do.call(tidyplots::add_range_ribbon, c(list(p), argList))
       }
@@ -1183,12 +1363,11 @@ addDecodedLabels <- function(p) {
     if (tab[["addSdRibbon"]]) {
       layer_calls$sd_ribbon <- function(p) {
         argList <- list(
-          dodge_width = 0.8,
+          dodge_width = if (is.null(tab$ribbonDodge)) 0.8 else tab$ribbonDodge,
           alpha       = tab[["alphaSdRibbon"]]
         )
         if (tab[["blackOutlineSdRibbon"]]) {
           argList$color <- "black"
-          argList$fill  <- "black"
         }
         do.call(tidyplots::add_sd_ribbon, c(list(p), argList))
       }
@@ -1198,12 +1377,11 @@ addDecodedLabels <- function(p) {
     if (tab[["addCi95Ribbon"]]) {
       layer_calls$ci95_ribbon <- function(p) {
         argList <- list(
-          dodge_width = 0.8,
+          dodge_width = if (is.null(tab$ribbonDodge)) 0.8 else tab$ribbonDodge,
           alpha       = tab[["alphaCi95Ribbon"]]
         )
         if (tab[["blackOutlineCi95Ribbon"]]) {
           argList$color <- "black"
-          argList$fill  <- "black"
         }
         do.call(tidyplots::add_ci95_ribbon, c(list(p), argList))
       }
@@ -1219,12 +1397,8 @@ addDecodedLabels <- function(p) {
           alpha       = tab[["alphaCountDot"]],
           shape       = 21
         )
-        if (tab[["blackOutlineCountDot"]]) {
-          argList$color <- "black"
-        }
-        if (tab[["whiteOutlineCountDot"]]) {
-          argList$color <- "white"
-        }
+        outline <- .plotBuilderOutlineColor(tab, "CountDot")
+        if (outline != "automatic") argList$color <- outline
         do.call(tidyplots::add_count_dot, c(list(p), argList))
       }
     }
@@ -1238,12 +1412,8 @@ addDecodedLabels <- function(p) {
           alpha       = tab[["alphaSumDot"]],
           shape       = 21
         )
-        if (tab[["blackOutlineSumDot"]]) {
-          argList$color <- "black"
-        }
-        if (tab[["whiteOutlineSumDot"]]) {
-          argList$color <- "white"
-        }
+        outline <- .plotBuilderOutlineColor(tab, "SumDot")
+        if (outline != "automatic") argList$color <- outline
         do.call(tidyplots::add_sum_dot, c(list(p), argList))
       }
     }
@@ -1257,13 +1427,14 @@ addDecodedLabels <- function(p) {
           size        = tab[["sizeMeanDot"]],
           shape       = 21
         )
-        if (tab[["blackOutlineMeanDot"]]) {
-          argList$color <- "black"
-        }
-        if (tab[["whiteOutlineMeanDot"]]) {
-          argList$color <- "white"
-        }
+        outline <- .plotBuilderOutlineColor(tab, "MeanDot")
+        if (outline != "automatic") argList$color <- outline
 
+        if (jointSummary) {
+          style <- if (is.null(tab$meanCenterStyle)) "dot" else tab$meanCenterStyle
+          linewidth <- if (is.null(tab$meanCenterLinewidth)) 0.5 else tab$meanCenterLinewidth
+          return(p + .plotBuilderCenterLayer(mean, style, argList$size, linewidth, argList$alpha, outline))
+        }
         do.call(tidyplots::add_mean_dot, c(list(p), argList))
       }
     }
@@ -1277,13 +1448,31 @@ addDecodedLabels <- function(p) {
           alpha       = tab[["alphaMedianDot"]],
           shape       = 21
         )
-        if (tab[["blackOutlineMedianDot"]]) {
-          argList$color <- "black"
-        }
-        if (tab[["whiteOutlineMedianDot"]]) {
-          argList$color <- "white"
+        outline <- .plotBuilderOutlineColor(tab, "MedianDot")
+        if (outline != "automatic") argList$color <- outline
+        if (jointSummary) {
+          style <- if (is.null(tab$medianCenterStyle)) "dot" else tab$medianCenterStyle
+          linewidth <- if (is.null(tab$medianCenterLinewidth)) 0.5 else tab$medianCenterLinewidth
+          return(p + .plotBuilderCenterLayer(stats::median, style, argList$size, linewidth, argList$alpha, outline))
         }
         do.call(tidyplots::add_median_dot, c(list(p), argList))
+      }
+    }
+
+    if (isTRUE(tab$addMeanEllipse)) {
+      ellipseType <- tab$meanEllipseType
+      ellipseMultiplier <- tab$meanEllipseMultiplier
+      ellipseLevel <- tab$meanEllipseLevel
+      if (!ellipseType %in% c("sd", "sem", "ci") ||
+          length(ellipseMultiplier) != 1 || !is.finite(ellipseMultiplier) || ellipseMultiplier <= 0 ||
+          length(ellipseLevel) != 1 || !is.finite(ellipseLevel) || ellipseLevel <= 0 || ellipseLevel >= 1)
+        .quitAnalysis(gettext("Select SD, SEM, or confidence for the mean ellipse, a positive radius multiplier, and a confidence level strictly between zero and one."))
+      layer_calls$mean_ellipse <- function(p) {
+        args <- list(stat = .plotBuilderMeanEllipseStat(ellipseType, ellipseMultiplier, ellipseLevel),
+          alpha = tab$meanEllipseOpacity, linewidth = tab$meanEllipseLinewidth)
+        if (!is.null(tab$meanEllipseOutline) && tab$meanEllipseOutline != "automatic")
+          args$colour <- tab$meanEllipseOutline
+        p + do.call(ggplot2::geom_path, args)
       }
     }
 
@@ -1292,6 +1481,7 @@ addDecodedLabels <- function(p) {
       layer_calls$curve_fit <- function(p) {
         argList <- list(
           method     = tab[["curvaFitMethod"]],
+          dodge_width = tab[["dodgeCurveFit"]],
           linewidth  = tab[["linewidthCurveFit"]],
           alpha      = tab[["transparencyCurveFit"]],
           se         = tab[["seCurveFit"]]
@@ -1299,7 +1489,6 @@ addDecodedLabels <- function(p) {
 
         if (tab[["blackOutlineCurveFit"]]) {
           argList$color <- "black"
-          argList$fill  <- "black"
         }
 
         if (colorBy %in% c("x", "y")) {
@@ -1321,7 +1510,7 @@ addDecodedLabels <- function(p) {
             x         = eval(parse(text = paste0("c(", tab[["xReferenceLine"]], ")"))),
             linetype  = "dashed",
             linewidth = tab[["linewidhtReferenceLines"]],
-            color     = eval(parse(text = paste0("\"", tab[["colorReferenceLine"]], "\"")))
+            color     = safe_eval_text(paste0("\"", tab[["colorReferenceLine"]], "\""))
           )
         )
       }
@@ -1330,41 +1519,26 @@ addDecodedLabels <- function(p) {
     # Add identity line ----
     if (!is.null(tab[["addIdentityLinePlotBuilder"]]) && tab[["addIdentityLinePlotBuilder"]]) {
       layer_calls$identity_line <- function(p) {
-        if (!is.null(xVar) && xVar %in% colnames(localData) && is.numeric(localData[[xVar]])) {
-          x_min <- min(localData[[xVar]], na.rm = TRUE)
-          x_max <- max(localData[[xVar]], na.rm = TRUE)
-        } else {
-          x_min <- 0
-          x_max <- 1
+        if (!isTRUE(tab[["reversedirectionIdentityLine"]]))
+          return(p + ggplot2::geom_abline(slope = 1, intercept = 0, color = tab[["colorIdentityLine"]]))
+        # The reversed line is the anti-diagonal of the data range; y = -x through
+        # the origin would lie outside the panel for positive data.
+        axisRange <- function(var) {
+          if (!is.null(var) && var %in% colnames(localData) && is.numeric(localData[[var]]))
+            range(localData[[var]], na.rm = TRUE)
+          else
+            c(0, 1)
         }
-
-        if (!is.null(yVar) && yVar %in% colnames(localData) && is.numeric(localData[[yVar]])) {
-          y_min <- min(localData[[yVar]], na.rm = TRUE)
-          y_max <- max(localData[[yVar]], na.rm = TRUE)
-        } else {
-          y_min <- 0
-          y_max <- 1
-        }
-
-        if (!is.null(tab[["reversedirectionIdentityLine"]]) && tab[["reversedirectionIdentityLine"]]) {
-          tidyplots::add_annotation_line(
-            p     = p,
-            x     = x_min,
-            xend  = x_max,
-            y     = y_max,
-            yend  = y_min,
-            color = eval(parse(text = paste0("\"", tab[["colorIdentityLine"]], "\"")))
-          )
-        } else {
-          tidyplots::add_annotation_line(
-            p     = p,
-            x     = x_min,
-            xend  = x_max,
-            y     = y_min,
-            yend  = y_max,
-            color = eval(parse(text = paste0("\"", tab[["colorIdentityLine"]], "\"")))
-          )
-        }
+        xRange <- axisRange(xVar)
+        yRange <- axisRange(yVar)
+        tidyplots::add_annotation_line(
+          p     = p,
+          x     = xRange[1],
+          xend  = xRange[2],
+          y     = yRange[2],
+          yend  = yRange[1],
+          color = tab[["colorIdentityLine"]]
+        )
       }
     }
 
@@ -1378,8 +1552,9 @@ addDecodedLabels <- function(p) {
 
         points_data <- jittered_point_data
 
-        if ("ID" %in% names(localData) && nrow(points_data) == nrow(localData)) {
-          points_data$ID <- localData$ID
+        pointRows <- points_data$label
+        if ("ID" %in% names(localData) && length(pointRows) == nrow(points_data)) {
+          points_data$ID <- localData$ID[pointRows]
         } else {
           warning("Could not connect repeated measures: ID column is missing or data length mismatch.")
           return(p)
@@ -1387,29 +1562,39 @@ addDecodedLabels <- function(p) {
 
         hasColorVar <- !is.null(colorVar) && nzchar(colorVar)
         if (hasColorVar) {
-          points_data[[colorVar]] <- localData[[colorVar]]
+          points_data[[colorVar]] <- localData[[colorVar]][pointRows]
         }
 
-        lines_data <- points_data |> dplyr::arrange(ID, x)
+        facetVars <- intersect(c(rowsVar, colsVar, gridVar), names(localData))
+        points_data[facetVars] <- localData[pointRows, facetVars, drop = FALSE]
+
+        trajectoryVars <- intersect(setdiff(rmFactorNames, xVar), names(localData))
+        points_data[trajectoryVars] <- localData[pointRows, trajectoryVars, drop = FALSE]
+        trajectoryVars <- unique(c("ID", trajectoryVars, if (hasGroup) groupVar))
+        points_data$.trajectory <- interaction(points_data[trajectoryVars], drop = TRUE)
+        lines_data <- points_data |> dplyr::arrange(.trajectory, x)
 
         line_mapping <- if (hasColorVar) {
-          ggplot2::aes(x = x, y = y, group = ID, color = .data[[colorVar]])
+          ggplot2::aes(x = x, y = y, group = .trajectory, color = .data[[colorVar]])
         } else {
-          ggplot2::aes(x = x, y = y, group = ID)
+          ggplot2::aes(x = x, y = y, group = .trajectory)
         }
 
-        p + ggplot2::geom_line(
+        addPointOverlay(p, ggplot2::geom_line(
           data        = lines_data,
           mapping     = line_mapping,
           inherit.aes = FALSE,
           alpha       = tab[["lineRMtransparency"]],
           linewidth   = tab[["lineRMsize"]]
-        )
+        ))
       }
     }
 
     # Add stat ellipse ----
     if(tab[["addStatEllipse"]]) {
+      level <- tab[["levelEllipse"]]
+      if (!is.finite(level) || level <= 0 || (tab[["ellipseType"]] != "euclid" && level >= 1))
+        .quitAnalysis(gettext("Ellipse confidence levels must be strictly between 0 and 1; a Euclidean radius must be positive."))
       layer_calls$stat_ellipse <- function(p) {
         p + ggplot2::stat_ellipse(
           geom    = "polygon",
@@ -1427,7 +1612,9 @@ addDecodedLabels <- function(p) {
     jittered_point_data_lbl <- NULL
     if (hasLabelVar) {
       tmp_plot_lbl   <- .create_point_layer_func(tab)(tidyplot_obj)
-      built_lbl      <- ggplot2::ggplot_build(tmp_plot_lbl[[1]])
+      tmp_plot_lbl$data$.plotBuilderRow <- seq_len(nrow(tmp_plot_lbl$data))
+      tmp_plot_lbl$layers[[1]]$mapping$label <- ggplot2::aes(label = .plotBuilderRow)$label
+      built_lbl      <- ggplot2::ggplot_build(if (ggplot2::is.ggplot(tmp_plot_lbl)) tmp_plot_lbl else tmp_plot_lbl[[1]])
       jittered_point_data_lbl <- built_lbl$data[[1]]
     }
 
@@ -1435,12 +1622,19 @@ addDecodedLabels <- function(p) {
     if (hasLabelVar) {
       layer_calls$point_labels <- function(p) {
 
-        idx <- !is.na(localData[[lblVar]]) & localData[[lblVar]] != ""
-        if (!any(idx) || is.null(jittered_point_data_lbl))
+        if (is.null(jittered_point_data_lbl))
+          return(p)
+        pointRows <- jittered_point_data_lbl$label
+        keep <- !is.na(localData[[lblVar]][pointRows]) & localData[[lblVar]][pointRows] != ""
+        if (!any(keep))
           return(p)
 
-        label_df           <- jittered_point_data_lbl[idx, ]
+        idx <- pointRows[keep]
+        label_df           <- jittered_point_data_lbl[keep, ]
         label_df$label_val <- localData[[lblVar]][idx]
+
+        facetVars <- intersect(c(rowsVar, colsVar, gridVar), names(localData))
+        label_df[facetVars] <- localData[idx, facetVars, drop = FALSE]
 
         hasColor <- !is.null(colorVar) && nzchar(colorVar) && colorVar %in% names(localData)
         if (hasColor)
@@ -1450,7 +1644,7 @@ addDecodedLabels <- function(p) {
         if (hasColor)
           aes_map$colour <- rlang::sym(colorVar)
 
-        p + ggrepel::geom_label_repel(
+        addPointOverlay(p, ggrepel::geom_label_repel(
           data         = label_df,
           mapping      = aes_map,
           size         = tab[["fontsizeDataLabels"]],
@@ -1462,7 +1656,7 @@ addDecodedLabels <- function(p) {
           max.overlaps = Inf,
           show.legend  = FALSE,
           inherit.aes  = FALSE
-        )
+        ))
       }
     }
 
@@ -1481,10 +1675,38 @@ addDecodedLabels <- function(p) {
     }
 
     for (lay in (ordered_layers)) {
+      layerCount <- length(tidyplot_obj$layers)
       tidyplot_obj <- layer_calls[[lay]](tidyplot_obj)
+      if (length(tidyplot_obj$layers) <= layerCount) next
+      for (i in seq.int(layerCount + 1L, length(tidyplot_obj$layers))) {
+        layer <- tidyplot_obj$layers[[i]]
+        if (!isTRUE(layer$inherit.aes)) next
+        if (hasGroup) {
+          layer$aes_params$group <- NULL
+          connected <- grepl("_line$|_area$|_ribbon$|curve_fit", lay)
+          center <- jointSummary && lay %in% c("mean_dot", "median_dot", "mean_ellipse")
+          layer$mapping$group <- if (connected || center) groupMapping else pointGroupMapping
+        }
+        singleAxisLayer <- lay %in% c("point", "boxplot", "violin") ||
+          grepl("^(sum|mean|median)_|_errorbar$|_ribbon$", lay)
+        if (singleAxisLayer && xor(hasX, hasY)) {
+          if (!hasX) layer$mapping$x <- 1 else layer$mapping$y <- 1
+          layer$stat_params$orientation <- if (hasX) "y" else "x"
+          layer$geom_params$orientation <- if (hasX) "y" else "x"
+        }
+        averageSubjects <- identical(tab$isRM, "RM") && grepl("^(mean|sem|ci95)_", lay)
+        uncertainty <- grepl("^(sd|sem|ci95)_", lay)
+        if (averageSubjects || uncertainty) {
+          if (averageSubjects)
+            layer$mapping$.subject <- ggplot2::aes(.subject = as.numeric(factor(ID)))$.subject
+          layer$stat <- .plotBuilderSummaryStat(layer$stat, averageSubjects, uncertainty)
+        }
+      }
     }
 
-    if (length(tab[["titlePlotBuilder"]]) > 0) {
+    if (!is.null(tab[["titlePlotBuilder"]]) &&
+        length(tab[["titlePlotBuilder"]]) > 0 &&
+        nchar(trimws(tab[["titlePlotBuilder"]])) > 0) {
       tidyplot_obj <- tidyplot_obj |>
         tidyplots::add_title(title = tab[["titlePlotBuilder"]])
     }
@@ -1506,7 +1728,7 @@ addDecodedLabels <- function(p) {
         gg <- tidyplot_obj
 
         for (i in seq_along(gg$layers)) {
-          if (inherits(gg$layers[[i]]$geom, "GeomPoint")) {
+          if (inherits(gg$layers[[i]]$geom, "GeomPoint") && inherits(gg$layers[[i]]$stat, "StatIdentity")) {
             gg$layers[[i]]$aes_params$size <- NULL
             gg$layers[[i]]$mapping$size    <- rlang::sym(sizeVar)
           }
@@ -1529,16 +1751,10 @@ addDecodedLabels <- function(p) {
           )
         }
 
-        gg <- gg + ggplot2::guides(
-          size = ggplot2::guide_legend(
-            override.aes = list(shape = 19, fill = "grey70")
-          )
-        )
-
         tidyplot_obj <- gg
       }
 
-     #Point shape by variable ----
+      #Point shape by variable ----
       if (!is.null(shapeVar) && shapeVar %in% colnames(localData)) {
 
         if (length(unique(localData[[shapeVar]])) > 1) {
@@ -1546,20 +1762,19 @@ addDecodedLabels <- function(p) {
           gg <- tidyplot_obj
 
           for (i in seq_along(gg$layers)) {
-            if (inherits(gg$layers[[i]]$geom, "GeomPoint")) {
+            if (inherits(gg$layers[[i]]$geom, "GeomPoint") && inherits(gg$layers[[i]]$stat, "StatIdentity")) {
               gg$layers[[i]]$aes_params$shape <- NULL
               gg$layers[[i]]$mapping$shape <- rlang::sym(shapeVar)
             }
           }
 
-          gg <- gg + ggplot2::scale_shape_discrete(
-            name = decodeColNames(shapeVar)
-          )
-
-          gg <- gg + ggplot2::guides(
-            shape = ggplot2::guide_legend(
-              override.aes = list(fill = "grey70")
-            )
+          shapeCount <- if (is.factor(localData[[shapeVar]])) nlevels(localData[[shapeVar]]) else
+            length(unique(stats::na.omit(localData[[shapeVar]])))
+          shapes <- c(16, 17, 15, 3, 7, 8, setdiff(0:25, c(16, 17, 15, 3, 7, 8)))
+          if (shapeCount > length(shapes))
+            warning(gettext("There are more shape groups than distinct symbols; symbols are repeated."), call. = FALSE)
+          gg <- gg + ggplot2::scale_shape_manual(
+            name = decodeColNames(shapeVar), values = rep(shapes, length.out = shapeCount)
           )
 
           tidyplot_obj <- gg
@@ -1658,34 +1873,6 @@ addDecodedLabels <- function(p) {
         ))
     }
 
-    size_range <- c(tab[["pointSizeMin"]], tab[["pointSizeMax"]])
-    mid_size <- mean(size_range)
-
-    if (!is.null(sizeVar) && sizeVar %in% colnames(localData)) {
-      guides_list <- list()
-
-      if (!is.null(colorVar) && colorVar %in% colnames(localData)) {
-        guides_list$fill <- ggplot2::guide_legend(
-          override.aes = list(size = mid_size)
-        )
-      }
-
-      if (!is.null(shapeVar) && shapeVar %in% colnames(localData)) {
-        guides_list$shape <- ggplot2::guide_legend(
-          override.aes = list(size = mid_size)
-        )
-      }
-
-      if (length(guides_list) > 0) {
-        tidyplot_obj <- tidyplot_obj |>
-          tidyplots::add(
-            do.call(ggplot2::guides, guides_list)
-          )
-      }
-    }
-
-
-
     # Read style choice
     plotStyle    <- tab[["plotStyle"]]
     baseFontSize <- tab[["baseFontSize"]]
@@ -1696,6 +1883,8 @@ addDecodedLabels <- function(p) {
 
     # Adjust X axis (tidyplots::adjust_x_axis)----
     adjust_args_xaxis <- list()
+    # An unassigned axis can still contain numeric positions or computed counts.
+    adjust_args_xaxis$force_continuous <- !hasX
 
     titleValueX <- tab[["titleXPlotBuilder"]]
     if (!is.null(titleValueX) && titleValueX != "") {
@@ -1740,9 +1929,14 @@ addDecodedLabels <- function(p) {
     adjust_args_xaxis$cut_short_scale <- isTRUE(cutShortScale)
 
     # add padding
-    XPaddingFirst <- tab[["XPaddingFirst"]]
-    XPaddingSecond <- tab[["XPaddingSecond"]]
-    adjust_args_xaxis$padding <- c(XPaddingFirst,XPaddingSecond)
+    # Same as for the Y axis: an absent option must not end up in the padding as a zero length value.
+    XPaddingFirst  <- suppressWarnings(as.numeric(tab[["XPaddingFirst"]]))
+    XPaddingSecond <- suppressWarnings(as.numeric(tab[["XPaddingSecond"]]))
+
+    if (length(XPaddingFirst)  != 1 || !is.finite(XPaddingFirst))  XPaddingFirst  <- 0.1
+    if (length(XPaddingSecond) != 1 || !is.finite(XPaddingSecond)) XPaddingSecond <- 0.1
+
+    adjust_args_xaxis$padding <- c(XPaddingFirst, XPaddingSecond)
     if (length(adjust_args_xaxis) > 0) {
       tidyplot_obj <- do.call(
         tidyplots::adjust_x_axis,
@@ -1770,101 +1964,53 @@ addDecodedLabels <- function(p) {
     }
 
 
-    # Sort X axis labels (tidyplots::sort_x_axis_labels)----
-    enableSort <- tab[["enableSort"]]
-    if (!is.null(enableSort) && enableSort) {
-      sortOrder <- tab[["sortXLabelsOrder"]]
-      if (!is.null(sortOrder) && sortOrder %in% c("Increasing", "Decreasing")) {
-        reverse_order <- (sortOrder == "Decreasing")
-        aggFun        <- tab[["aggregationFun"]]
-        if (!is.null(aggFun) && aggFun %in% c("mean", "median")) {
-          tidyplot_obj <- tidyplots::sort_x_axis_labels(
-            tidyplot_obj,
-            .reverse = reverse_order,
-            .fun     = aggFun
-          )
-        }
-      }
-    }
 
     # Adjust Y axis (tidyplots::adjust_y_axis)----
     {
       adjust_args_yaxis <- list()
+      adjust_args_yaxis$force_continuous <- !hasY
 
+      # --- Title ---
       titleValueY <- tab[["titleYPlotBuilder"]]
       if (!is.null(titleValueY) && titleValueY != "") {
         adjust_args_yaxis$title <- titleValueY
       }
 
+      # --- Limits ---
       limitFromY <- suppressWarnings(as.numeric(tab[["limitFromY"]]))
       limitToY   <- suppressWarnings(as.numeric(tab[["limitToY"]]))
-      fromValueY <- suppressWarnings(as.numeric(tab[["breakFromY"]]))
-      toValueY   <- suppressWarnings(as.numeric(tab[["breakToY"]]))
-      byValueY   <- suppressWarnings(as.numeric(tab[["breakByY"]]))
-      user_has_limits <- !is.na(limitFromY) && !is.na(limitToY)
-      user_has_breaks <- !is.na(fromValueY) && !is.na(toValueY) && !is.na(byValueY)
-
-
-      automatic_limit_setting_active <- TRUE
+      user_has_limits <- isTRUE(!is.na(limitFromY) && !is.na(limitToY))
 
       if (user_has_limits) {
         adjust_args_yaxis$limits <- c(limitFromY, limitToY)
-        automatic_limit_setting_active <- FALSE
       }
 
-      if (automatic_limit_setting_active) {
-
-        highest_y_from_annots <- -Inf
-        num_comparisons <- 0
-        if (!is.null(tab[["pairwiseComparisons"]])) {
-          num_comparisons <- length(tab[["pairwiseComparisons"]])
-        }
-
-        if (num_comparisons > 0 && !is.null(tab[["yPositionPValue"]])) {
-          y_pos_base <- suppressWarnings(as.numeric(tab[["yPositionPValue"]]))
-          step_inc   <- suppressWarnings(as.numeric(tab[["stepDistance"]]))
-          if (is.na(step_inc)) step_inc <- 0
-
-          if (is.finite(y_pos_base)) {
-            highest_y_from_annots <- y_pos_base + (num_comparisons - 1) * step_inc
-          }
-        }
-
-        max_y_from_data <- -Inf
-        if (!is.null(yVar) && yVar %in% colnames(localData) && is.numeric(localData[[yVar]])) {
-          max_y_from_data <- max(localData[[yVar]], na.rm = TRUE)
-        }
-
-        required_y_max <- max(max_y_from_data, highest_y_from_annots, na.rm = TRUE)
-
-        if (is.finite(required_y_max)) {
-          min_y <- min(localData[[yVar]], na.rm = TRUE)
-          adjust_args_yaxis$limits <- c(min_y, required_y_max * 1.05)
-        }
-      }
+      # --- Breaks ---
+      fromValueY <- suppressWarnings(as.numeric(tab[["breakFromY"]]))
+      toValueY   <- suppressWarnings(as.numeric(tab[["breakToY"]]))
+      byValueY   <- suppressWarnings(as.numeric(tab[["breakByY"]]))
+      user_has_breaks <- isTRUE(!is.na(fromValueY) && !is.na(toValueY) && !is.na(byValueY))
 
       if (user_has_breaks) {
         adjust_args_yaxis$breaks <- seq(fromValueY, toValueY, byValueY)
       }
 
-      num_comparisons_for_padding <- 0
-      if (!is.null(tab[["pairwiseComparisons"]])) {
-        num_comparisons_for_padding <- length(tab[["pairwiseComparisons"]])
-      }
-
+      # --- Padding ---
+      # An option that is absent gives numeric(0) here, so fall back to the default the qml shows
+      # instead of feeding a zero length value to is.finite(), which would make the test below fail
+      # with "missing value where TRUE/FALSE needed".
       bottom_padding <- suppressWarnings(as.numeric(tab[["YPaddingFirst"]]))
       top_padding    <- suppressWarnings(as.numeric(tab[["YPaddingSecond"]]))
 
-      if (num_comparisons_for_padding > 1) {
-        additional_padding <- (num_comparisons_for_padding - 1) * 0.15
-        top_padding <- top_padding + additional_padding
-      }
+      if (length(bottom_padding) != 1 || !is.finite(bottom_padding)) bottom_padding <- 0.1
+      if (length(top_padding)    != 1 || !is.finite(top_padding))    top_padding    <- 0.1
 
       adjust_args_yaxis$padding <- c(bottom_padding, top_padding)
 
-      adjust_args_yaxis$rotate_labels   <- isTRUE(tab[["rotateYLabel"]])
+      # --- Labels ---
       adjust_args_yaxis$cut_short_scale <- isTRUE(tab[["cutShortScaleY"]])
 
+      # --- Apply ---
       if (length(adjust_args_yaxis) > 0) {
         tidyplot_obj <- do.call(
           tidyplots::adjust_y_axis,
@@ -1872,8 +2018,9 @@ addDecodedLabels <- function(p) {
         )
       }
 
+      # --- Optional sorting of the Y axis ---
       enableSortY <- tab[["enableSortY"]]
-      if (isTRUE(enableSortY)) {
+      if (isTRUE(enableSortY) && hasY && !scaleY) {
         sortOrderY <- tab[["sortYLabelsOrder"]]
         if (!is.null(sortOrderY) && sortOrderY %in% c("Increasing", "Decreasing")) {
           reverse_orderY <- (sortOrderY == "Decreasing")
@@ -1888,6 +2035,7 @@ addDecodedLabels <- function(p) {
         }
       }
     }
+
 
 
     # Adjust Y axis labels (tidyplots::rename_y_axis_labels)----
@@ -1922,7 +2070,11 @@ addDecodedLabels <- function(p) {
     }
 
     if (isTRUE(tab[["flipPlot"]])) {
-      tidyplot_obj <- tidyplot_obj + ggplot2::coord_flip(clip = "off")
+      tidyplot_obj <- tidyplot_obj + ggplot2::coord_flip(
+        xlim = tidyplot_obj$coordinates$limits$x,
+        ylim = tidyplot_obj$coordinates$limits$y,
+        clip = "off"
+      )
     }
 
 
@@ -1941,8 +2093,8 @@ addDecodedLabels <- function(p) {
         fontSize <- as.numeric(rowData$annotationSize)
 
         # Read annotation text color (default is black)
-        colorText <- if (!is.null(rowData$colorAnnotationLine) && nzchar(rowData$colorText)) {
-          rowData$colorAnnotationLine
+        colorText <- if (!is.null(rowData$colorText) && nzchar(rowData$colorText)) {
+          rowData$colorText
         } else {
           "black"
         }
@@ -1960,27 +2112,27 @@ addDecodedLabels <- function(p) {
         facetData <- list()
 
         # Column facet: first check the standard drop-down; if empty, check the RM-specific one.
-        if (!is.null(rowData$ColumnAnnotation) && nzchar(rowData$ColumnAnnotation)) {
+        if (!is.null(colsVar) && nzchar(colsVar) && !is.null(rowData$ColumnAnnotation) && nzchar(rowData$ColumnAnnotation)) {
           facetData[[colsVar]] <- rowData$ColumnAnnotation
-        } else if (!is.null(rowData$RMColumnAnnotation) && nzchar(rowData$RMColumnAnnotation)) {
+        } else if (!is.null(colsVar) && nzchar(colsVar) && !is.null(rowData$RMColumnAnnotation) && nzchar(rowData$RMColumnAnnotation)) {
           facetData[[colsVar]] <- rowData$RMColumnAnnotation
         }
 
-        if (!is.null(rowData$RowAnnotation) && nzchar(rowData$RowAnnotation)) {
+        if (!is.null(rowsVar) && nzchar(rowsVar) && !is.null(rowData$RowAnnotation) && nzchar(rowData$RowAnnotation)) {
           facetData[[rowsVar]] <- rowData$RowAnnotation
-        } else if (!is.null(rowData$RMRowAnnotation) && nzchar(rowData$RMRowAnnotation)) {
+        } else if (!is.null(rowsVar) && nzchar(rowsVar) && !is.null(rowData$RMRowAnnotation) && nzchar(rowData$RMRowAnnotation)) {
           facetData[[rowsVar]] <- rowData$RMRowAnnotation
         }
 
-        if (!is.null(rowData$GridAnnotation) && nzchar(rowData$GridAnnotation)) {
+        if (!is.null(gridVar) && nzchar(gridVar) && !is.null(rowData$GridAnnotation) && nzchar(rowData$GridAnnotation)) {
           facetData[[gridVar]] <- rowData$GridAnnotation
-        } else if (!is.null(rowData$RMGridAnnotation) && nzchar(rowData$RMGridAnnotation)) {
+        } else if (!is.null(gridVar) && nzchar(gridVar) && !is.null(rowData$RMGridAnnotation) && nzchar(rowData$RMGridAnnotation)) {
           facetData[[gridVar]] <- rowData$RMGridAnnotation
         }
 
         if (!is.null(tab[["isRM"]]) && tab[["isRM"]] == "RM" && length(facetData) > 0) {
           for (field in names(facetData)) {
-            facetData[[field]] <- decodeColNames(facetData[[field]])
+            facetData[[field]] <- encodeRMLevel(facetData[[field]], field)
           }
         }
 
@@ -2013,16 +2165,6 @@ addDecodedLabels <- function(p) {
 
     if (!is.null(tab[["annotationLineList"]]) && length(tab[["annotationLineList"]]) > 0) {
 
-      if (!is.null(xVar) && xVar %in% colnames(localData) && !is.factor(localData[[xVar]])) {
-        stop("The X-Axis variable can only be a factor variable. The Y-Axis variable must be either continuous or ordinal.", call. = FALSE)
-      }
-
-      if (!is.null(yVar) && yVar %in% colnames(localData) && !(is.numeric(localData[[yVar]]) || is.ordered(localData[[yVar]]))) {
-        stop("The X-Axis variable can only be a factor variable. The Y-Axis variable must be either continuous or ordinal.", call. = FALSE)
-      }
-
-
-
       for (line in tab[["annotationLineList"]]) {
         if (!is.null(line[["xAnnotation"]]) && nzchar(line[["xAnnotation"]]) &&
             !is.null(line[["xendAnnotation"]]) && nzchar(line[["xendAnnotation"]]) &&
@@ -2052,6 +2194,10 @@ addDecodedLabels <- function(p) {
             gridAnnotLine <- if (!is.null(line[["GridAnnotationCompLine"]])) line[["GridAnnotationCompLine"]] else ""
           }
 
+          colAnnotLine <- encodeRMLevel(colAnnotLine, colsVar)
+          rowAnnotLine <- encodeRMLevel(rowAnnotLine, rowsVar)
+          gridAnnotLine <- encodeRMLevel(gridAnnotLine, gridVar)
+
           thisSegment <- data.frame(
             x = x_val,
             xend = xend_val,
@@ -2059,13 +2205,13 @@ addDecodedLabels <- function(p) {
             yend = yend_val,
             stringsAsFactors = FALSE
           )
-          if (!is.null(colsVar) && nzchar(colAnnotLine)) {
+          if (!is.null(colsVar) && nzchar(colsVar) && nzchar(colAnnotLine)) {
             thisSegment[[colsVar]] <- colAnnotLine
           }
-          if (!is.null(rowsVar) && nzchar(rowAnnotLine)) {
+          if (!is.null(rowsVar) && nzchar(rowsVar) && nzchar(rowAnnotLine)) {
             thisSegment[[rowsVar]] <- rowAnnotLine
           }
-          if (!is.null(gridVar) && nzchar(gridAnnotLine)) {
+          if (!is.null(gridVar) && nzchar(gridVar) && nzchar(gridAnnotLine)) {
             thisSegment[[gridVar]] <- gridAnnotLine
           }
 
@@ -2073,7 +2219,7 @@ addDecodedLabels <- function(p) {
             ggplot2::geom_segment(
               data = thisSegment,
               mapping = ggplot2::aes(x = x, xend = xend, y = y, yend = yend),
-              color = eval(parse(text = paste0("\"", line[["colorAnnotationLine"]], "\""))),
+              color = safe_eval_text(paste0("\"", line[["colorAnnotationLine"]], "\"")),
               inherit.aes = FALSE
             )
 
@@ -2090,16 +2236,16 @@ addDecodedLabels <- function(p) {
             thisText <- data.frame(
               x = x_mid,
               y = y_mid + offset_scaled,
-              label = eval(parse(text = paste0("\"", line[["textAnnotationline"]], "\""))),
+              label = safe_eval_text(paste0("\"", line[["textAnnotationline"]], "\"")),
               stringsAsFactors = FALSE
             )
-            if (!is.null(colsVar) && nzchar(colAnnotLine)) {
+            if (!is.null(colsVar) && nzchar(colsVar) && nzchar(colAnnotLine)) {
               thisText[[colsVar]] <- colAnnotLine
             }
-            if (!is.null(rowsVar) && nzchar(rowAnnotLine)) {
+            if (!is.null(rowsVar) && nzchar(rowsVar) && nzchar(rowAnnotLine)) {
               thisText[[rowsVar]] <- rowAnnotLine
             }
-            if (!is.null(gridVar) && nzchar(gridAnnotLine)) {
+            if (!is.null(gridVar) && nzchar(gridVar) && nzchar(gridAnnotLine)) {
               thisText[[gridVar]] <- gridAnnotLine
             }
 
@@ -2117,7 +2263,8 @@ addDecodedLabels <- function(p) {
     }
 
 
-    if (tab[["propMode"]] == "relative") {
+    # Count stacks replace the response axis; raw response values must not set its limits.
+    if (tab[["propMode"]] == "relative" || hasCountStack) {
       blankLayer <- ggplot2::geom_blank(
         inherit.aes = FALSE
       )
@@ -2128,10 +2275,11 @@ addDecodedLabels <- function(p) {
 
     # Apply theme ----
     if (plotStyle == "JASP") {
+      rangeFrame <- jaspGraphs::geom_rangeframe()
       tidyplot_obj <- tidyplot_obj +
         ggplot2::complete_theme(jaspGraphs::themeJaspRaw(fontsize = baseFontSize, legend.position = legend_position)) +
         blankLayer +
-        jaspGraphs::geom_rangeframe() +
+        rangeFrame +
         ggplot2::theme(
           strip.text = ggplot2::element_text(size = baseFontSize)
         )
@@ -2215,14 +2363,11 @@ addDecodedLabels <- function(p) {
         axis_name <- yAxisTitleSplit
       }
 
-      tidyplot_obj <- tidyplot_obj +
-        ggplot2::scale_y_continuous(
-          sec.axis = ggplot2::sec_axis(~.,
-                                       name   = axis_name,
-                                       breaks = NULL,
-                                       labels = NULL
-          )
-        )
+      yScale <- tidyplot_obj$scales$get_scales("y")
+      if (!yScale$is_discrete()) {
+        yScale$secondary.axis <- ggplot2::sec_axis(~., name = axis_name,
+                                                  breaks = NULL, labels = NULL)
+      }
     }
 
     if (hasCols) {
@@ -2243,63 +2388,6 @@ addDecodedLabels <- function(p) {
         )
     }
 
-    # Use backticks ONLY inside the formula:
-    if (hasRows && hasCols) {
-      tidyplot_obj <- tidyplot_obj +
-        ggplot2::facet_grid(
-          stats::as.formula(paste0("`", rowsVar, "` ~ `", colsVar, "`")),
-          scales = tab[["scales"]],
-          axes = tab[["axes"]],
-          axis.labels = tab[["axisLabels"]],
-          as.table = as_table_value,
-          space = tab[["space"]],
-          margins = tab[["margins"]]
-        )
-    } else if (hasCols) {
-      tidyplot_obj <- tidyplot_obj +
-        ggplot2::facet_grid(
-          stats::as.formula(paste0(". ~ `", colsVar, "`")),
-          scales = tab[["scales"]],
-          axes = tab[["axes"]],
-          axis.labels = tab[["axisLabels"]],
-          as.table = as_table_value,
-          space = tab[["space"]],
-          margins = tab[["margins"]]
-        )
-    } else if (hasRows) {
-      tidyplot_obj <- tidyplot_obj +
-        ggplot2::facet_grid(
-          stats::as.formula(paste0("`", rowsVar, "` ~ .")),
-          scales = tab[["scales"]],
-          axes = tab[["axes"]],
-          axis.labels = tab[["axisLabels"]],
-          as.table = as_table_value,
-          space = tab[["space"]],
-          margins = tab[["margins"]]
-        )
-    }
-
-    # Facet logic for facet_wrap using gridVariable ----
-    hasGrid <- (!is.null(gridVar) && gridVar != "")
-
-    if (hasGrid) {
-      as_table_value <- if (tab[["asTableFacetWrap"]] %in% c("bottom-rightFacetWrap", 0)) TRUE else FALSE
-
-      nrow_value <- if (!is.null(tab[["nrowFacetWrap"]]) && nchar(trimws(tab[["nrowFacetWrap"]])) > 0)
-        as.numeric(tab[["nrowFacetWrap"]]) else NULL
-      ncol_value <- if (!is.null(tab[["ncolFacetWrap"]]) && nchar(trimws(tab[["ncolFacetWrap"]])) > 0)
-        as.numeric(tab[["ncolFacetWrap"]]) else NULL
-
-      tidyplot_obj <- tidyplot_obj +
-        ggplot2::facet_wrap(
-          stats::as.formula(paste0("~ `", gridVar, "`")),
-          nrow = nrow_value,
-          ncol = ncol_value,
-          scales = tab[["scalesFacetWrap"]],
-          as.table = as_table_value,
-          strip.position = tab[["stripPosition"]]
-        )
-    }
 
 
 
@@ -2308,16 +2396,8 @@ addDecodedLabels <- function(p) {
 
     if (!is.null(tab[["pairwiseComparisons"]]) && length(tab[["pairwiseComparisons"]]) > 0) {
 
-      if (!is.null(xVar) && xVar %in% colnames(localData) && !is.factor(localData[[xVar]])) {
-        .quitAnalysis("The X-Axis variable can only be a factor variable.
-             The Y-Axis variable must be either continuous or ordinal.")
-      }
-
-      if (!is.null(yVar) && yVar %in% colnames(localData) && !(is.numeric(localData[[yVar]]) ||
-                                                               is.ordered(localData[[yVar]]))) {
-        .quitAnalysis("The X-Axis variable can only be a factor variable.
-             The Y-Axis variable must be either continuous or ordinal.")
-      }
+      if (!hasX || scaleX)
+        .quitAnalysis(gettext("P-value brackets require a categorical X variable. Use Flip plot for horizontal brackets."))
 
       # universal settings for the p value
       label_size <- tab[["labelSizePValue"]]
@@ -2332,51 +2412,51 @@ addDecodedLabels <- function(p) {
         stringsAsFactors = FALSE
       )
 
-        rmOption <- tab[["isRM"]]
+      rmOption <- tab[["isRM"]]
 
-        if (rmOption == "RM") {
-          dfComparisons$group1 <- encodeColNames(dfComparisons$group1)
-          dfComparisons$group2 <- encodeColNames(dfComparisons$group2)
-        }
+      if (rmOption == "RM") {
+        dfComparisons$group1 <- encodeColNames(dfComparisons$group1)
+        dfComparisons$group2 <- encodeColNames(dfComparisons$group2)
+      }
 
       if (!is.null(colorVar)) {
         dfComparisons$color <- as.character(
           sapply(tab[["pairwiseComparisons"]], function(x) {
             if (rmOption == "RM")
-              x$RMGroupPValue
+              encodeRMLevel(x$RMGroupPValue, colorVar)
             else
               x$GroupPValue  # Use standard value otherwise
           })
         )
       }
 
-      if (!is.null(colsVar)) {
+      if (!is.null(colsVar) && nzchar(colsVar)) {
         dfComparisons[[colsVar]] <- as.character(
           sapply(tab[["pairwiseComparisons"]], function(x) {
             if (rmOption == "RM")
-              x$RMColumnPValue
+              encodeRMLevel(x$RMColumnPValue, colsVar)
             else
               x$ColumnPValue
           })
         )
       }
 
-      if (!is.null(rowsVar)) {
+      if (!is.null(rowsVar) && nzchar(rowsVar)) {
         dfComparisons[[rowsVar]] <- as.character(
           sapply(tab[["pairwiseComparisons"]], function(x) {
             if (rmOption == "RM")
-              x$RMRowPValue
+              encodeRMLevel(x$RMRowPValue, rowsVar)
             else
               x$RowPValue
           })
         )
       }
 
-      if (!is.null(gridVar)) {
+      if (!is.null(gridVar) && nzchar(gridVar)) {
         dfComparisons[[gridVar]] <- as.character(
           sapply(tab[["pairwiseComparisons"]], function(x) {
             if (rmOption == "RM")
-              x$RMGridPValue
+              encodeRMLevel(x$RMGridPValue, gridVar)
             else
               x$GridPValue
           })
@@ -2385,48 +2465,82 @@ addDecodedLabels <- function(p) {
 
 
       colorBy <- tab[["colorByGroup"]]
-      bracket.size <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$bracketSizePValue))
-      tip_length   <- unique(sapply(tab[["pairwiseComparisons"]], function(x) x$tipLengthPValue))
+      dfComparisons$bracket.size <- sapply(tab[["pairwiseComparisons"]], function(x) x$bracketSizePValue)
+      dfComparisons$tip.length <- sapply(tab[["pairwiseComparisons"]], function(x) x$tipLengthPValue)
       stepDistance <- tab[["stepDistance"]]
 
-      pValueColor <- labelcolor  # default
-      if (!is.null(colorVar) && nchar(colorVar) > 0) {
-        if (!colorBy %in% c("x", "y")) {
-          pValueColor <- "color"
-        }
-      }
+      pValueColor <- labelcolor
+      # Missing modes retain the appearance of older saved analyses.
+      if (!identical(tab[["pValueColorMode"]], "custom") && hasColor && !colorBy %in% c("x", "y"))
+        pValueColor <- "color"
 
-      tidyplot_obj <- tidyplot_obj +
-        ggpubr::stat_pvalue_manual(
-          data          = dfComparisons,
-          label         = "p",
-          xmin          = "group1",
-          xmax          = "group2",
-          y.position    = "y.position",
-          size          = label_size,
-          bracket.size  = bracket.size,
-          tip.length    = tip_length,
-          color         = pValueColor,
-          inherit.aes   = FALSE,
-          step.increase = stepDistance
-        )
+      bracketLayer <- ggpubr::stat_pvalue_manual(
+        data          = dfComparisons,
+        label         = "p",
+        xmin          = "group1",
+        xmax          = "group2",
+        y.position    = "y.position",
+        size          = label_size,
+        color         = pValueColor,
+        inherit.aes   = FALSE,
+        step.increase = stepDistance
+      )
+      bracketLayer$stat <- .plotBuilderBracketStat(bracketLayer$stat)
+      # Map per-comparison settings so they follow each bracket through faceting.
+      bracketLayer$aes_params$size <- NULL
+      bracketLayer$mapping$size <- ggplot2::aes(size = I(bracket.size))$size
+      bracketLayer$mapping$tip.length <- ggplot2::aes(tip.length = tip.length)$tip.length
+      tidyplot_obj <- tidyplot_obj + bracketLayer
+    }
+
+    if (distributionPositions && (isTRUE(tab$addHistogram) || isTRUE(tab$addDensity))) {
+      categoryScale <- tidyplot_obj$scales$get_scales(if (scaleX) "y" else "x")
+      height <- if (is.null(tab$distributionHeight)) 0.8 else tab$distributionHeight
+      categoryScale$expand <- ggplot2::expansion(add = c(0.6, height + 0.1))
     }
 
     # asPercentage axis labeling ----
     asPercentage <- isTRUE(tab[["asPercentage"]])
 
-    # Only apply percent labels if the variable is NOT a factor
-    if (asPercentage && !is.factor(localData[[yVar]])) {
-      tidyplot_obj <- tidyplot_obj + ggplot2::scale_y_continuous(labels = scales::percent_format(accuracy = 1))
-    }
-
-    if (asPercentage && !is.factor(localData[[xVar]])) {
-      tidyplot_obj <- tidyplot_obj + ggplot2::scale_x_continuous(labels = scales::percent_format(accuracy = 1))
+    if (asPercentage) {
+      relativeLayers <- which(vapply(tidyplot_obj$layers, function(layer)
+        inherits(layer$position, "PositionFill"), logical(1)))
+      if (length(relativeLayers) > 0) {
+        built <- ggplot2::ggplot_build(tidyplot_obj)
+        for (i in relativeLayers) {
+          axis <- if (isTRUE(built$data[[i]]$flipped_aes[1])) "x" else "y"
+          axisScale <- tidyplot_obj$scales$get_scales(axis)
+          if (is.null(axisScale)) {
+            scaleFunction <- if (axis == "x") ggplot2::scale_x_continuous else ggplot2::scale_y_continuous
+            tidyplot_obj <- tidyplot_obj + scaleFunction(labels = scales::percent_format(accuracy = 1))
+          } else axisScale$labels <- scales::percent_format(accuracy = 1)
+        }
+      }
     }
 
     if (!hasColor) {
       tidyplot_obj <- tidyplot_obj +
         ggplot2::guides(color = "none", fill = "none")
+    }
+
+    usesCountAxis <- hasCountStack ||
+      any(vapply(tab[grep("^add(Count|Histogram|Density)", names(tab))], isTRUE, logical(1)))
+    if (xor(hasX, hasY) && !usesCountAxis) {
+      axis <- if (hasX) "y" else "x"
+      title <- tab[[if (hasX) "titleYPlotBuilder" else "titleXPlotBuilder"]]
+      if (is.null(title) || !nzchar(title))
+        tidyplot_obj <- tidyplot_obj + do.call(ggplot2::labs, stats::setNames(list(NULL), axis))
+      breaks <- tab[[if (hasX) "breakFromY" else "breakFromX"]]
+      if (is.null(breaks) || !nzchar(breaks)) {
+        axisScale <- tidyplot_obj$scales$get_scales(axis)
+        if (is.null(axisScale)) {
+          scaleFunction <- if (hasX) ggplot2::scale_y_continuous else ggplot2::scale_x_continuous
+          tidyplot_obj <- tidyplot_obj + scaleFunction(breaks = NULL)
+        } else axisScale$breaks <- NULL
+        # A hidden axis has no ticks for the JASP range frame to join.
+        if (plotStyle == "JASP")
+          rangeFrame$geom_params$sides <- if (xor(hasX, isTRUE(tab$flipPlot))) "b" else "l"
+      }
     }
 
     # --- Y-Axis Title Centering Logic ------
@@ -2472,11 +2586,7 @@ addDecodedLabels <- function(p) {
       tidyplot_obj <- addDecodedLabels(tidyplot_obj)
     }
 
-    # Save the plot in our results list
-    updatedPlots[[plotId]] <- tidyplot_obj
-  }
-
-  return(list(updatedPlots = updatedPlots))
+    return(tidyplot_obj)
 }
 
 
@@ -2510,7 +2620,9 @@ addDecodedLabels <- function(p) {
       tidyPlot <- tidyPlotsContainer[[plotKey]]
     }
 
-    if (!is.null(updatedPlots[[plotId]])) {
+    if (!is.null(plotResults$plotErrors[[plotId]])) {
+      tidyPlot$setError(plotResults$plotErrors[[plotId]])
+    } else if (!is.null(updatedPlots[[plotId]])) {
       tidyPlot$plotObject <- updatedPlots[[plotId]]
     } else {
       tidyPlot$plotObject <- ggplot2::ggplot() + ggplot2::theme_void()
@@ -2528,7 +2640,8 @@ addDecodedLabels <- function(p) {
     jaspResults[["availablePlotIDs"]] <- availablePlotIDsContainer
   }
 
-  availablePlotIDsDisplay <- names(updatedPlots)
+  # Plots that failed still exist; listing them keeps their IDs usable in the layout.
+  availablePlotIDsDisplay <- c(names(updatedPlots), names(plotResults$plotErrors))
   availablePlotIDsText    <- paste0(
     "Available Plot IDs: ",
     paste(availablePlotIDsDisplay, collapse = ", ")
@@ -2591,12 +2704,12 @@ addDecodedLabels <- function(p) {
           columnsWidth <- paste0("c(", columnsWidth, ")")
         }
         columnsWidth <- tryCatch(
-          eval(parse(text = columnsWidth)),
+          safe_eval_text(columnsWidth),
           error = function(e) {
             rep(1, ncol)
           }
         )
-        if (length(columnsWidth) != ncol) {
+        if (!is.numeric(columnsWidth) || length(columnsWidth) != ncol || any(!is.finite(columnsWidth))) {
           columnsWidth <- rep(1, ncol)
         }
       } else {
@@ -2618,12 +2731,12 @@ addDecodedLabels <- function(p) {
           relativeHeight <- paste0("c(", relativeHeight, ")")
         }
         relativeHeight <- tryCatch(
-          eval(parse(text = relativeHeight)),
+          safe_eval_text(relativeHeight),
           error = function(e) {
             rep(1, ncol)
           }
         )
-        if (length(relativeHeight) != ncol) {
+        if (!is.numeric(relativeHeight) || length(relativeHeight) != ncol || any(!is.finite(relativeHeight))) {
           relativeHeight <- rep(1, ncol)
         }
       } else {
@@ -2663,12 +2776,12 @@ addDecodedLabels <- function(p) {
             rowHeightsStr <- paste0("c(", rowHeightsStr, ")")
           }
           rowHeightsParsed <- tryCatch(
-            eval(parse(text = rowHeightsStr)),
+            safe_eval_text(rowHeightsStr),
             error = function(e) {
               rep(1, nRows)
             }
           )
-          if (length(rowHeightsParsed) == nRows) {
+          if (is.numeric(rowHeightsParsed) && length(rowHeightsParsed) == nRows && all(is.finite(rowHeightsParsed))) {
             rowHeights <- rowHeightsParsed
           }
         }
@@ -2780,12 +2893,12 @@ addDecodedLabels <- function(p) {
             relWidthsStr <- paste0("c(", relWidthsStr, ")")
           }
           relWidthsParsed <- tryCatch(
-            eval(parse(text = relWidthsStr)),
+            safe_eval_text(relWidthsStr),
             error = function(e) {
               rep(1, nPlots)
             }
           )
-          if (length(relWidthsParsed) == nPlots) {
+          if (is.numeric(relWidthsParsed) && length(relWidthsParsed) == nPlots && all(is.finite(relWidthsParsed))) {
             relWidths <- relWidthsParsed
           }
         }
@@ -2854,12 +2967,12 @@ addDecodedLabels <- function(p) {
           relheightWithinRowLayoutStr <- paste0("c(", relheightWithinRowLayoutStr, ")")
         }
         relheightWithinRowLayout <- tryCatch(
-          eval(parse(text = relheightWithinRowLayoutStr)),
+          safe_eval_text(relheightWithinRowLayoutStr),
           error = function(e) {
             rep(1, length(fullRowPlots))
           }
         )
-        if (length(relheightWithinRowLayout) != length(fullRowPlots)) {
+        if (!is.numeric(relheightWithinRowLayout) || length(relheightWithinRowLayout) != length(fullRowPlots) || any(!is.finite(relheightWithinRowLayout))) {
           relheightWithinRowLayout <- rep(1, length(fullRowPlots))
         }
       } else {
@@ -2878,13 +2991,13 @@ addDecodedLabels <- function(p) {
         relativeHeightStr <- paste0("c(", relativeHeightStr, ")")
       }
       relativeHeight <- tryCatch(
-        eval(parse(text = relativeHeightStr)),
+        safe_eval_text(relativeHeightStr),
         error = function(e) {
           c(1, 1)
         }
       )
       if (!is.null(columnGrid) && !is.null(fullRowGrid)) {
-        if (length(relativeHeight) != 2) {
+        if (!is.numeric(relativeHeight) || length(relativeHeight) != 2 || any(!is.finite(relativeHeight))) {
           relativeHeight <- c(1, 1)
         }
       } else {

@@ -26,6 +26,14 @@ import JASP.Controls
 Form {
 columns: 1
 
+component ContentSizedComponentsList: ComponentsList {
+	// Include all rows, the add button, viewport margins, and scrollbar space.
+	preferredHeight: Math.ceil(itemTitle.height + itemGrid.y + itemGrid.height
+		+ (addIconItem.visible ? addIconItem.height : 0)
+		+ 2 * jaspTheme.contentMargin + jaspTheme.scrollbarBoxWidth)
+	Layout.minimumHeight: preferredHeight
+}
+
 info: qsTr("The <b>Plot Builder (beta)</b> lets you assemble a complete figure in just a few clicks.<br/><br/>"
 		+ "<ol><li><b>Decide on design:</b> At the very top choose <i>Repeated measurements → Yes</i> if the same subjects are measured more than once "
 		+ "(e.g., across time-points or conditions); otherwise leave <i>No</i> selected. </li>"
@@ -38,6 +46,7 @@ info: qsTr("The <b>Plot Builder (beta)</b> lets you assemble a complete figure i
 
 infoBottom:
 	"## " + qsTr("References") + "\n" +
+	"- SAS Institute. _The CORR Procedure: Confidence and Prediction Ellipses_. https://support.sas.com/documentation/cdl/en/procstat/66703/HTML/default/procstat_corr_details19.htm\n" +
 	"- Engler, J. B. (2025). “Tidyplots Empowers Life Scientists With Easy Code-Based Data Visualization.” _iMeta_, 4, e70018. https://doi.org/10.1002/imt2.70018\n" +
 	"- Engler, J. B. (2024). _tidyplots: Tidy Plots for Scientific Papers_. R package version 0.2.1. Available at: <https://CRAN.R-project.org/package=tidyplots>.\n" +
 	"- Wickham, H., & Seidel, D. (2023). _rlang: Functions for Base Types and Core R and 'Tidyverse' Features_. R package version 1.1.1. Available at: <https://CRAN.R-project.org/package=rlang>.\n" +
@@ -56,6 +65,18 @@ TabView {
 	name: "PlotBuilderTab"
 	newItemName: qsTr("Plot 1")
 	rowComponent: Group {
+		id: plotOptions
+		readonly property bool hasX: yesRM.checked ? xVarRM.count > 0 : variableXPlotBuilder.count > 0
+		readonly property bool hasY: yesRM.checked ? repeatedMeasuresFactors.count > 0 : variableYPlotBuilder.count > 0
+		readonly property bool scaleX: yesRM.checked ? xVarRM.columnsTypes.includes("scale") : variableXPlotBuilder.columnsTypes.includes("scale")
+		readonly property bool scaleY: yesRM.checked || variableYPlotBuilder.columnsTypes.includes("scale")
+		readonly property bool hasGroup: yesRM.checked ? groupVarRM.columnsTypes.some(t => t === "nominal" || t === "ordinal") : variableColorPlotBuilder.columnsTypes.some(t => t === "nominal" || t === "ordinal")
+		readonly property bool canSummarize: scaleX || scaleY
+		readonly property bool jointSummary: !yesRM.checked && scaleX && scaleY
+		readonly property bool canPositionSummary: canSummarize && !jointSummary
+		readonly property bool categoryDistribution: hasX && hasY && scaleX !== scaleY
+		readonly property bool canDistribution: scaleX !== scaleY
+		readonly property bool canBoxViolin: canDistribution || (scaleX && scaleY && hasGroup)
 
 		childControlsArea.anchors.leftMargin: jaspTheme.contentMargin
 
@@ -96,6 +117,18 @@ TabView {
 					   + "OFF: keep every case and ignore only the specific values that are missing")
 			label: qsTr("Delete missing values listwise")
 			}
+		}
+
+		DropDown {
+			name: "facetLayout"
+			id: facetLayout
+			label: qsTr("Layout")
+			values: [
+				{ label: qsTr("Rows and columns"), value: "rowsColumns" },
+				{ label: qsTr("Grid"), value: "grid" }
+			]
+			startValue: "rowsColumns"
+			info: qsTr("Choose the panel layout. Assignments for the other layout are retained so you can switch back.")
 		}
 
 		Group {
@@ -152,6 +185,7 @@ TabView {
 
 				AssignedVariablesList {
 					name: "columnsvariableSplitPlotBuilder"
+					enabled: facetLayout.currentValue === "rowsColumns"
 					title: qsTr("Split (Columns)")
 					id: columnsvariableSplitPlotBuilder
 					allowedColumns: ["ordinal", "nominal"]
@@ -161,6 +195,7 @@ TabView {
 
 				AssignedVariablesList {
 					name: "rowsvariableSplitPlotBuilder"
+					enabled: facetLayout.currentValue === "rowsColumns"
 					title: qsTr("Split (Rows)")
 					id: rowsvariableSplitPlotBuilder
 					allowedColumns: ["ordinal", "nominal"]
@@ -171,6 +206,7 @@ TabView {
 
 				AssignedVariablesList {
 					name: "gridVariablePlotBuilder"
+					enabled: facetLayout.currentValue === "grid"
 					title: qsTr("Grid")
 					id: gridVariablePlotBuilder
 					allowedColumns: ["ordinal", "nominal"]
@@ -279,6 +315,7 @@ TabView {
 
 				AssignedVariablesList {
 					name: "colSplitRM"
+					enabled: facetLayout.currentValue === "rowsColumns"
 					title: qsTr("Split (Columns)")
 					id: colSplitRM
 					allowedColumns: ["ordinal", "nominal"]
@@ -288,6 +325,7 @@ TabView {
 
 				AssignedVariablesList {
 					name: "rowSplitRM"
+					enabled: facetLayout.currentValue === "rowsColumns"
 					title: qsTr("Split (Rows)")
 					id: rowSplitRM
 					allowedColumns: ["ordinal", "nominal"]
@@ -297,6 +335,7 @@ TabView {
 
 				AssignedVariablesList {
 					name: "gridVarRM"
+					enabled: facetLayout.currentValue === "grid"
 					title: qsTr("Grid")
 					id: gridVarRM
 					allowedColumns: ["ordinal", "nominal"]
@@ -322,7 +361,7 @@ TabView {
 			title: qsTr("Individual data points")
 
 			Label {
-				text: qsTr("Required: X AND Y-Axis Variables")
+				text: qsTr("Required: X or Y-Axis Variable")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
@@ -333,20 +372,7 @@ TabView {
 				id: addDataPoint
 				info: qsTr("Check this option to show individual data points on the plot")
 				columns: 4
-				enabled: (
-							 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
-							 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-
-							 ||
-
-							 // 2. If repeated measures (yesRM) and at least one of the following is true:
-							 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
-
-								  xVarRM.count > 0
-
-								  ))
-							 )
-
+				enabled: plotOptions.hasX || plotOptions.hasY
 				onEnabledChanged: {
 					if (!enabled) {
 						checked = false;
@@ -363,20 +389,6 @@ TabView {
 						value: 3
 						min: 0
 						max: 10
-					}
-
-					CheckBox{
-					name:"sizeByVariable"
-					id: sizeByVariable
-					label: qsTr("Size by variable")
-					info: qsTr("Choose this if you want the point size to be determined by a variable rather than a fixed constant")
-					}
-
-					CheckBox{
-					name:"shapebyVariable"
-					id: shapebyVariable
-					label: qsTr("Shape by variable")
-					info: qsTr("Choose this if you want the point shape to be determined by a variable")
 					}
 				}
 
@@ -406,8 +418,8 @@ TabView {
 					DoubleField {
 						name: "alphaPlotBuilder"
 						id: alphaPlotBuilder
-						label: qsTr("Transparency")
-						info: qsTr("Set the transparency")
+						label: qsTr("Opacity")
+						info: qsTr("Set the opacity (0 = invisible, 1 = opaque)")
 						value: 0.5
 						min: 0
 						max: 1
@@ -425,31 +437,20 @@ TabView {
 				}
 
 				Group{
-					CheckBox {
-						name: "blackOutlineDataPoint"
-						label: qsTr("Black outline")
-						checked: false
+					DropDown {
+						name: "outlineDataPoint"
+						label: qsTr("Outline")
+						values: [
+							{ label: qsTr("Automatic"), value: "automatic" },
+							{ label: qsTr("Black"), value: "black" },
+							{ label: qsTr("White"), value: "white" }
+						]
+						startValue: "automatic"
 						enabled: !shapebyVariable.checked
-						info: qsTr("Add a black outline/border to the elements")
-						onEnabledChanged: {
-							if (!enabled) {
-								checked = false;
-							}
-						}
+						onEnabledChanged: { if (!enabled) currentIndex = 0 }
+						info: qsTr("Choose an automatic, black, or white outline")
 					}
 
-					CheckBox {
-						name: "whiteBorder"
-						label: qsTr("White outline")
-						checked: false
-						enabled: !shapebyVariable.checked
-						info: qsTr("Add a white outline/border to the elements")
-						onEnabledChanged: {
-							if (!enabled) {
-								checked = false;
-							}
-						}
-					}
 
 					CheckBox {
 						name: "emptyCircles"
@@ -465,101 +466,78 @@ TabView {
 					}
 				}
 
-			}
+				Row {
+					Layout.columnSpan: 4
+					spacing: jaspTheme.columnGroupSpacing
 
-			VariablesForm{
-				visible: sizeByVariable.checked
-				enabled: sizeByVariable.checked
-				preferredWidth: jaspForm.width - 2 * jaspTheme.contentMargin
-				preferredHeight: 100 * preferencesModel.uiScale
+					CheckBox {
+						name: "sizeByVariable"
+						id: sizeByVariable
+						label: qsTr("Size by variable")
+						info: qsTr("Choose this if you want the point size to be determined by a variable rather than a fixed constant")
+					}
 
-				AvailableVariablesList {
-					name: "sizeVars"
-					source: [
-						{ name: "allVariablesList", use: "type=scale|ordinal" },
-						{ name: "allVariablesListRM", use: "type=scale|ordinal" }
-					]
-				}
+					DropDown {
+						name: "sizeVariablePlotBuilder"
+						id: sizeVariablePlotBuilder
+						showVariableTypeIcon: true
+						addEmptyValue: true
+						placeholderText: qsTr("<Select Variable>")
+						fieldWidth: 150 * preferencesModel.uiScale
+						allowedColumns: ["scale"]
+						enabled: sizeByVariable.checked
+						onEnabledChanged: { if (!enabled) currentIndex = 0 }
+						info: qsTr("Select a variable to determine point size. The variable is treated as scale.")
+					}
 
-				AssignedVariablesList {
-					id: sizeVariablePlotBuilder
-					allowedColumns: ["scale", "ordinal"]
-					enabled: sizeByVariable.checked
-					name: "sizeVariablePlotBuilder"
-					title: qsTr("Point Size Variable")
-					singleVariable: true
-					onEnabledChanged: {
-						if (!enabled) {
-							while (count > 0) {
-								itemDoubleClicked(0)
-							}
-						}
+					DoubleField {
+						name: "pointSizeMin"
+						label: qsTr("Minimum size")
+						value: 1
+						enabled: sizeByVariable.checked
+					}
+
+					DoubleField {
+						name: "pointSizeMax"
+						label: qsTr("Maximum size")
+						value: 4
+						enabled: sizeByVariable.checked
 					}
 				}
 
-				Group{
-				columns:2
-				DoubleField {
-					name: "pointSizeMin"
-					label: qsTr("Min point size")
-					value: 1
+				Row {
+					Layout.columnSpan: 4
+					spacing: jaspTheme.columnGroupSpacing
 
-				}
-				DoubleField {
-					name: "pointSizeMax"
-					label: qsTr("Max point size")
-					value: 4
+					CheckBox {
+						name: "shapebyVariable"
+						id: shapebyVariable
+						label: qsTr("Shape by variable")
+						info: qsTr("Choose this if you want the point shape to be determined by a variable")
+					}
 
-				}
-				}
-			}
-
-			VariablesForm{
-				preferredWidth: jaspForm.width - 2 * jaspTheme.contentMargin
-				preferredHeight: 100 * preferencesModel.uiScale
-				visible: shapebyVariable.checked
-				enabled: shapebyVariable.checked
-
-				AvailableVariablesList {
-					name: "shapeVars"
-					source: [
-						{ name: "allVariablesList",   use: "type=nominal|ordinal" },
-						{ name: "allVariablesListRM", use: "type=nominal|ordinal" }
-					]
-				}
-
-
-
-				AssignedVariablesList {
-					id: pointShapeVariable
-					allowedColumns: ["nominal", "ordinal"]
-					name: "pointShapeVariable"
-					title: qsTr("Point Shape Variable")
-					singleVariable: true
-					enabled: shapebyVariable.checked
-					onEnabledChanged: {
-						if (!enabled) {
-							while (count > 0) {
-								itemDoubleClicked(0)
-							}
-						}
+					DropDown {
+						name: "pointShapeVariable"
+						id: pointShapeVariable
+						showVariableTypeIcon: true
+						addEmptyValue: true
+						placeholderText: qsTr("<Select Variable>")
+						fieldWidth: 150 * preferencesModel.uiScale
+						allowedColumns: ["nominal"]
+						enabled: shapebyVariable.checked
+						onEnabledChanged: { if (!enabled) currentIndex = 0 }
+						info: qsTr("Select a variable to determine point shape. The variable is treated as nominal.")
 					}
 				}
-
 			}
 
 
 			CheckBox { ///////////////////////
 				name: "addStatEllipse"
 				label: qsTr("Add ellipse")
+				info: qsTr("Draw a data ellipse for each group and panel. The estimator requires at least four usable pairs and a nondegenerate spread on both scale axes.")
 				checked: false
-				enabled: addDataPoint.checked
-				columns: 3
-				info: qsTr("Add a statistical ellipse around the points."
-				+ "'Ellipse type' controls the method:"
-				+ "\"t\" assumes a multivariate t-distribution,"
-				+ "\"Normal\" assumes a multivariate normal distribution,"
-				+ "and \"Euclidean\" draws a circle whose radius equals the value of 'Level'")
+				enabled: plotOptions.scaleX && plotOptions.scaleY
 				onEnabledChanged: {
 					if (!enabled) {
 						checked = false;
@@ -568,6 +546,7 @@ TabView {
 
 				DropDown {
 					name: "ellipseType"
+					id: ellipseType
 					label: qsTr("Ellipse type")
 					values: [
 						{ label: qsTr("t"), value: "t" },
@@ -579,7 +558,7 @@ TabView {
 
 				DoubleField {
 					name: "fillEllipse"
-					label: qsTr("Transparency")
+					label: qsTr("Opacity")
 					value: 0.20
 					min: 0
 					max: 1
@@ -587,11 +566,14 @@ TabView {
 
 				DoubleField {
 					name: "levelEllipse"
-					label: qsTr("Level")
+					label: ellipseType.currentValue === "euclid" ? qsTr("Radius") : qsTr("Level")
 					value: 0.95
 					min: 0
-					max: 1
-					info: qsTr("Confidence level (for t and normal ellipse type) or radius (euclidean ellipse type)")
+					max: ellipseType.currentValue === "euclid" ? Infinity : 1
+					inclusive: JASP.None
+					info: ellipseType.currentValue === "euclid"
+						? qsTr("Positive radius in data units.")
+						: qsTr("Confidence level strictly between 0 and 1.")
 				}
 
 			} /////////////////////////////////////////
@@ -612,7 +594,7 @@ TabView {
 
 				DoubleField {
 					name: "lineRMtransparency"
-					label: qsTr("Transparency")
+					label: qsTr("Opacity")
 					value: 0.5
 				}
 
@@ -634,9 +616,19 @@ TabView {
 			title: qsTr("Distributions (histogram, boxplot, violin)")
 
 			Label {
-				text: qsTr("Required: X OR Y-Axis Variable (histogram); X AND Y-Axis Variables (boxplot, violin)")
+				text: qsTr("Required: a scale variable; optional categorical positions or groups")
 				wrapMode: Text.Wrap
 				color: "black"
+			}
+
+			DoubleField {
+				name: "distributionHeight"
+				label: qsTr("Distribution height")
+				value: 0.8
+				min: 0
+				inclusive: JASP.None
+				visible: plotOptions.categoryDistribution
+				info: qsTr("Height of each histogram or density ridge in category-spacing units. Each group is normalized to the same maximum height; this is not a count axis.")
 			}
 
 			GridLayout {
@@ -653,16 +645,26 @@ TabView {
 						name: "addHistogram"
 						id: addHistogram
 						label: qsTr("Histogram")
-						info: qsTr("Check this option to create histogram for x or y variables. Histogram requires either X-Axis or X-Axis variable, but not both.")
-						enabled: (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0)
-								 && !(variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-
+						info: qsTr("A histogram requires a scale variable. A categorical second axis positions separate normalized histograms; otherwise groups can overlap, stack, or appear side by side.")
+						enabled: plotOptions.canDistribution
 						onEnabledChanged: {
 							if (!enabled) {
 								checked = false;
 							}
 						}
 
+						DropDown {
+							name: "histogramPosition"
+							label: qsTr("Groups")
+							values: [
+								{ label: qsTr("Overlay"), value: "identity" },
+								{ label: qsTr("Stack"), value: "stack" },
+								{ label: qsTr("Side by side"), value: "dodge" }
+							]
+							startValue: "identity"
+							enabled: !plotOptions.categoryDistribution
+							info: qsTr("Arrange groups within shared histogram bins. With a categorical second axis, each distribution instead starts at its category position.")
+						}
 						DoubleField {
 							name: "binsPlotBuilder"
 							label: qsTr("Number of bins")
@@ -674,10 +676,10 @@ TabView {
 
 						DoubleField {
 							name: "alphaHistogramPlotBuilder"
-							label: qsTr("Transparency")
+							label: qsTr("Opacity")
 							id: alphaHistogramPlotBuilder
 							defaultValue: 0.8
-							info: qsTr("Set the transparency")
+							info: qsTr("Set the opacity (0 = invisible, 1 = opaque)")
 							min: 0
 							max: 1
 						}
@@ -694,13 +696,14 @@ TabView {
 						name: "addDensity"
 						id: addDensity
 						label: qsTr("Density")
-						info: qsTr("Check this option to overlay a density estimate on the histogram. Density can be shown as scaled (0–1) or on the histogram count scale.")
-						enabled: (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0)
-								 && !(variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
+						info: qsTr("Estimate a distribution from at least two usable observations in each group and panel. With one scale axis, show scaled (0–1) or count density curves. With a categorical second axis, show normalized ridges along its categories.")
+						enabled: plotOptions.canDistribution
+						onEnabledChanged: { if (!enabled) checked = false }
 
 						// Density overlay mode radiobutton
 						RadioButtonGroup {
 							id: densityOverlayMode
+							enabled: !plotOptions.categoryDistribution
 							name: "densityOverlayMode"
 							title: qsTr("Density overlay mode")
 							radioButtonsOnSameRow: false
@@ -709,7 +712,7 @@ TabView {
 
 							RadioButton {
 								label: qsTr("Count")
-								info: qsTr("Show density on the histogram count scale (area under the curve equals total count)")
+								info: qsTr("With a histogram, scale density by the group sample size and histogram bin width. Without a histogram, show counts per unit of the variable.")
 								value: "count"
 								id: densityCount
 								checked: true
@@ -725,10 +728,10 @@ TabView {
 
 						DoubleField {
 							name: "alphaDensityPlotBuilder"
-							label: qsTr("Transparency")
+							label: qsTr("Opacity")
 							id: alphaDensityPlotBuilder
 							defaultValue: 0.8
-							info: qsTr("Set the transparency for the density overlay")
+							info: qsTr("Set the opacity for the density overlay (0 = invisible, 1 = opaque)")
 							min: 0
 							max: 1
 						}
@@ -759,21 +762,8 @@ TabView {
 					name: "addBoxplot"
 					id: addBoxplot
 					label: qsTr("Boxplot")
-					info: qsTr("Check this option to create boxplot. Boxplot and violin plot require both X-Axis and Y-Axis variables.")
-					enabled: (
-								 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-
-								 ||
-
-								 // 2. If repeated measures (yesRM) and at least one of the following is true:
-								 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
-
-									  xVarRM.count > 0
-
-									  ))
-								 )
-
+					info: qsTr("Check this option to create boxplot. A single scale axis is sufficient. Categorical positions or explicit groups produce separate distributions.")
+					enabled: plotOptions.canBoxViolin
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -792,9 +782,9 @@ TabView {
 
 					DoubleField {
 						name: "alphaBoxplotPlotBuilder"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						id: alphaBoxplotPlotBuilder
-						info: qsTr("Set the transparency")
+						info: qsTr("Set the opacity (0 = invisible, 1 = opaque)")
 						defaultValue: 0.8
 						min: 0
 						max: 1
@@ -851,18 +841,18 @@ TabView {
 						defaultValue: 1
 					}
 
-					CheckBox {
-						name: "blackOutlineBoxplot"
-						label: qsTr("Black outline")
-						checked: true
-						info: qsTr("Add a black outline/border to the elements")
+					DropDown {
+						name: "outlineBoxplot"
+						label: qsTr("Outline")
+						values: [
+							{ label: qsTr("Automatic"), value: "automatic" },
+							{ label: qsTr("Black"), value: "black" },
+							{ label: qsTr("White"), value: "white" }
+						]
+						startValue: "black"
+						info: qsTr("Choose an automatic, black, or white outline")
 					}
 
-					CheckBox {
-						name: "whiteOutlineBoxplot"
-						info: qsTr("Add a white outline/border to the elements")
-						label: qsTr("White outline")
-					}
 
 
 				}
@@ -872,21 +862,8 @@ TabView {
 					name: "addViolin"
 					id: addViolin
 					label: qsTr("Violin plot")
-					info: qsTr("Check this option to add a violin plot to your visualization. Boxplot and violin plot require both x-axis and y-axis variables.")
-					enabled: (
-								 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-
-								 ||
-
-								 // 2. If repeated measures (yesRM) and at least one of the following is true:
-								 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
-
-									  xVarRM.count > 0
-
-									  ))
-								 )
-
+					info: qsTr("Check this option to add a violin plot to your visualization. A single scale axis is sufficient. Categorical positions or explicit groups produce separate distributions.")
+					enabled: plotOptions.canBoxViolin
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -904,10 +881,10 @@ TabView {
 
 					DoubleField {
 						name: "alphaViolinPlotBuilder"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						id: alphaViolinPlotBuilder
 						defaultValue: 0.8
-						info: qsTr("Set the transparency")
+						info: qsTr("Set the opacity (0 = invisible, 1 = opaque)")
 						min: 0
 						max: 1
 					}
@@ -954,19 +931,18 @@ TabView {
 						checked: false
 					}
 
-					CheckBox {
-						name: "blackOutlineViolin"
-						label: qsTr("Black outline")
-						info: qsTr("Add a black outline/border to the elements")
-
+					DropDown {
+						name: "outlineViolin"
+						label: qsTr("Outline")
+						values: [
+							{ label: qsTr("Automatic"), value: "automatic" },
+							{ label: qsTr("Black"), value: "black" },
+							{ label: qsTr("White"), value: "white" }
+						]
+						startValue: "automatic"
+						info: qsTr("Choose an automatic, black, or white outline")
 					}
 
-					CheckBox {
-						name: "whiteOutlineViolin"
-						label: qsTr("White outline")
-						info: qsTr("Add a white outline/border to the elements")
-
-					}
 
 
 				}
@@ -982,10 +958,10 @@ TabView {
 
 		Section {
 			title: qsTr("Amounts (count and sum)")
-			info: qsTr("This section adds layers that visualise amounts. "
+			info: qsTr("Count layers count observations at each distinct value, including exact numeric values; they do not bin continuous data. Repeated-measures counts count observations, not subjects. "
 					 + "<b>Dodge</b> shifts subgroup geoms sideways so they don’t overlap. "
 					 + "<b>Size / Width</b> sets the thickness of bars and lines or the radius of dots. "
-					 + "<b>Transparency (alpha)</b> controls opacity: 0 = invisible, 1 = solid. "
+					 + "<b>Opacity (alpha)</b> controls opacity: 0 = invisible, 1 = solid. "
 					 + "<b>Outline (black / white)</b> toggles a border around the shape. ")
 
 
@@ -1008,9 +984,8 @@ TabView {
 					name: "addCountBar"
 					label: qsTr("Count bar")
 					info: qsTr("Enable to add a count bar to the plot.")
-					enabled: isRM.value === "noRM" && // can't use if RM
-							 ((variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
-							  (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0))
+					enabled: plotOptions.hasX !== plotOptions.hasY
+
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1030,7 +1005,7 @@ TabView {
 					}
 					DoubleField {
 						name: "alphaCountBar"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1042,9 +1017,8 @@ TabView {
 					name: "addCountDash"
 					label: qsTr("Count dash")
 					info: qsTr("Enable to add dashed lines to the plot")
-					enabled: isRM.value === "noRM" && // can't use if RM
-							 ((variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
-							  (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0))
+					enabled: plotOptions.hasX !== plotOptions.hasY
+
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1069,7 +1043,7 @@ TabView {
 					}
 					DoubleField {
 						name: "alphaCountDash"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1086,9 +1060,8 @@ TabView {
 					name: "addCountDot"
 					label: qsTr("Count dot")
 					info: qsTr("Enable to add count dots to the plot")
-					enabled: isRM.value === "noRM" && // can't use if RM
-							 ((variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
-							  (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0))
+					enabled: plotOptions.hasX !== plotOptions.hasY
+
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1110,21 +1083,24 @@ TabView {
 					Group {
 						DoubleField {
 							name: "alphaCountDot"
-							label: qsTr("Transparency")
+							label: qsTr("Opacity")
 							defaultValue: 1
 							min: 0
 							max: 1
 						}
 
-						CheckBox {
-							name: "blackOutlineCountDot"
-							label: qsTr("Black outline")
+						DropDown {
+							name: "outlineCountDot"
+							label: qsTr("Outline")
+							values: [
+								{ label: qsTr("Automatic"), value: "automatic" },
+								{ label: qsTr("Black"), value: "black" },
+								{ label: qsTr("White"), value: "white" }
+							]
+							startValue: "automatic"
+							info: qsTr("Choose an automatic, black, or white outline")
 						}
 
-						CheckBox {
-							name: "whiteOutlineCountDot"
-							label: qsTr("White outline")
-						}
 					}
 				}
 
@@ -1133,9 +1109,8 @@ TabView {
 					name: "addCountLine"
 					label: qsTr("Count line")
 					info: qsTr("Enable to add count lines to the plot")
-					enabled: isRM.value === "noRM" && // can't use if RM
-							 ((variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
-							  (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0))
+					enabled: plotOptions.hasX !== plotOptions.hasY
+
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1156,7 +1131,7 @@ TabView {
 
 					DoubleField {
 						name: "alphaCountLine"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1173,9 +1148,8 @@ TabView {
 					name: "addCountArea"
 					label: qsTr("Count area")
 					info: qsTr("Enable to add a count area to the plot")
-					enabled: isRM.value === "noRM" && // can't use if RM
-							 ((variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
-							  (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0))
+					enabled: plotOptions.hasX !== plotOptions.hasY
+
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1189,7 +1163,7 @@ TabView {
 					}
 					DoubleField {
 						name: "alphaCountArea"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1201,11 +1175,8 @@ TabView {
 					name: "addCountValue"
 					label: qsTr("Count value")
 					info: qsTr("Enable to add count values to the plot")
-					enabled: isRM.value === "noRM" &&
-							 (
-								 (variableXPlotBuilder.count > 0 && variableYPlotBuilder.count === 0) ||
-								 (variableXPlotBuilder.count === 0 && variableYPlotBuilder.count > 0)
-								 )
+					enabled: plotOptions.hasX !== plotOptions.hasY
+
 
 					DoubleField {
 						name: "fontsizeCountValue"
@@ -1221,7 +1192,7 @@ TabView {
 
 					DoubleField {
 						name: "alphaCountValue"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1250,7 +1221,9 @@ TabView {
 
 
 			Label {
-				text: qsTr("Required: X AND Y-Axis Variables")
+				text: plotOptions.jointSummary
+					? qsTr("Position-based sums are unavailable for two scale axes with non-repeated observations.")
+					: qsTr("Required: a scale response; lines and areas also need a positioning axis")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
@@ -1266,20 +1239,7 @@ TabView {
 					name: "addSumBar"
 					label: qsTr("Sum bar")
 					info: qsTr("Enable to add a sum bar to the plot.")
-					enabled: (
-								 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-
-								 ||
-
-								 // 2. If repeated measures (yesRM) and at least one of the following is true:
-								 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
-
-									  xVarRM.count > 0
-
-									  ))
-								 )
-
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1298,7 +1258,7 @@ TabView {
 					}
 					DoubleField {
 						name: "alphaSumBar"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1310,20 +1270,7 @@ TabView {
 					name: "addSumDash"
 					label: qsTr("Sum dash")
 					info: qsTr("Enable to add dashed lines to the plot.")
-					enabled: (
-								 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-
-								 ||
-
-								 // 2. If repeated measures (yesRM) and at least one of the following is true:
-								 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
-
-									  xVarRM.count > 0
-
-									  ))
-								 )
-
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1347,7 +1294,7 @@ TabView {
 					}
 					DoubleField {
 						name: "alphaSumDash"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1364,20 +1311,7 @@ TabView {
 					name: "addSumDot"
 					label: qsTr("Sum dot")
 					info: qsTr("Enable to add sum dots to the plot.")
-					enabled: (
-								 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-
-								 ||
-
-								 // 2. If repeated measures (yesRM) and at least one of the following is true:
-								 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
-
-									  xVarRM.count > 0
-
-									  ))
-								 )
-
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1396,19 +1330,22 @@ TabView {
 					}
 					DoubleField {
 						name: "alphaSumDot"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
 					}
 
-					CheckBox {
-						name: "blackOutlineSumDot"
-						label: qsTr("Black outline")
-					}
-					CheckBox {
-						name: "whiteOutlineSumDot"
-						label: qsTr("White outline")
+					DropDown {
+						name: "outlineSumDot"
+						label: qsTr("Outline")
+						values: [
+							{ label: qsTr("Automatic"), value: "automatic" },
+							{ label: qsTr("Black"), value: "black" },
+							{ label: qsTr("White"), value: "white" }
+						]
+						startValue: "automatic"
+						info: qsTr("Choose an automatic, black, or white outline")
 					}
 				}
 
@@ -1417,20 +1354,7 @@ TabView {
 					name: "addSumLine"
 					label: qsTr("Sum line")
 					info: qsTr("Enable to add a sum line to the plot.")
-					enabled: (
-								 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-
-								 ||
-
-								 // 2. If repeated measures (yesRM) and at least one of the following is true:
-								 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
-
-									  xVarRM.count > 0
-
-									  ))
-								 )
-
+					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1449,7 +1373,7 @@ TabView {
 					}
 					DoubleField {
 						name: "alphaSumLine"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1466,20 +1390,7 @@ TabView {
 					name: "addSumArea"
 					label: qsTr("Sum area")
 					info: qsTr("Enable to add a sum area to the plot.")
-					enabled: (
-								 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-
-								 ||
-
-								 // 2. If repeated measures (yesRM) and at least one of the following is true:
-								 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
-
-									  xVarRM.count > 0
-
-									  ))
-								 )
-
+					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1493,7 +1404,7 @@ TabView {
 					}
 					DoubleField {
 						name: "alphaSumArea"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1506,20 +1417,7 @@ TabView {
 					name: "addSumValue"
 					label: qsTr("Sum value")
 					info: qsTr("Enable to add sum values to the plot.")
-					enabled: (
-								 // 1. If not repeated measures (noRM) and both X and Y variables are assigned
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-
-								 ||
-
-								 // 2. If repeated measures (yesRM) and at least one of the following is true:
-								 (yesRM.checked && repeatedMeasuresFactors.count > 0 && (
-
-									  xVarRM.count > 0
-
-									  ))
-								 )
-
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: {
 						if (!enabled) {
 							checked = false;
@@ -1538,7 +1436,7 @@ TabView {
 					}
 					DoubleField {
 						name: "alphaSumValue"
-						label: qsTr("Transparency")
+						label: qsTr("Opacity")
 						defaultValue: 1
 						min: 0
 						max: 1
@@ -1573,9 +1471,9 @@ TabView {
 
 			info: qsTr("Visualise how each subgroup contributes to the whole "
 					 + "Requires one Group variable plus either an X- or Y-axis variable "
-					 + "Absolute mode stacks raw counts; Relative mode rescales each stack to 0-1 or 0-100 % "
-					 + "Common controls: Transparency sets opacity, Reverse order flips the stack sequence, "
-					 + "Line width outlines area stacks, Replace N/A turns missing groups into a separate slice")
+					 + "Absolute mode stacks counts or sums; Relative mode rescales each stack to 0-1 or 0-100 % "
+					 + "Common controls: Opacity sets opacity, Reverse order flips the stack sequence, "
+					 + "Line width outlines area stacks, Fill missing combinations with zero completes absent X/group combinations; observations with missing grouping values are excluded")
 			columns: 2
 
 			Label {
@@ -1583,6 +1481,21 @@ TabView {
 				wrapMode: Text.Wrap
 				color: "black"
 				Layout.columnSpan: 2
+			}
+
+			DropDown {
+				name: "stackMeasure"
+				label: qsTr("Measure")
+				values: plotOptions.canSummarize ? [
+					{ label: qsTr("Automatic (by variable types)"), value: "auto" },
+					{ label: qsTr("Count"), value: "count" },
+					{ label: qsTr("Sum"), value: "sum" }
+				] : [
+					{ label: qsTr("Automatic (by variable types)"), value: "auto" },
+					{ label: qsTr("Count"), value: "count" }
+				]
+				startValue: "auto"
+				info: qsTr("Count stacks counts at each position (X, or Y for horizontal plots). Sum stacks scale-variable totals. Automatic uses sums for bars with a scale axis and for areas with two axes, and counts otherwise. Relative stacks require nonnegative contributions and positive totals.")
 			}
 
 			RadioButtonGroup {
@@ -1597,7 +1510,7 @@ TabView {
 					value: "absolute"
 					label: qsTr("Absolute")
 					checked: true
-					info: qsTr("Stack heights show raw counts")
+					info: qsTr("Stack heights show counts or sums")
 				}
 				RadioButton {
 					id: relative
@@ -1615,15 +1528,10 @@ TabView {
 					name: "addBarStack"
 					label: qsTr("Bar stack")
 					info: qsTr("Add stacked bars for each category using the selected proportion mode")
-					enabled: ( noRM.checked &&
-							   (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0) &&
-							   variableColorPlotBuilder.count > 0 )
-						  || ( yesRM.checked &&
-							   repeatedMeasuresFactors.count > 0 &&
-							   groupVarRM.count > 0 )
+					enabled: plotOptions.hasGroup && (plotOptions.hasX || plotOptions.hasY) && (!(plotOptions.hasX && plotOptions.hasY) || plotOptions.canSummarize)
 					onEnabledChanged: { if (!enabled) checked = false }
 
-					DoubleField { name: "alphaBarStack";   label: qsTr("Transparency"); defaultValue: 0.8; min: 0; max: 1 }
+					DoubleField { name: "alphaBarStack";   label: qsTr("Opacity"); defaultValue: 0.8; min: 0; max: 1 }
 					CheckBox    { name: "reverseBarStack"; label: qsTr("Reverse order") }
 				}
 
@@ -1631,18 +1539,13 @@ TabView {
 					name: "addAreaStack"
 					label: qsTr("Area stack")
 					info: qsTr("Add stacked areas connected across categories")
-					enabled: ( noRM.checked &&
-							   (variableXPlotBuilder.count > 0 || variableYPlotBuilder.count > 0) &&
-							   variableColorPlotBuilder.count > 0 )
-						  || ( yesRM.checked &&
-							   repeatedMeasuresFactors.count > 0 &&
-							   groupVarRM.count > 0 )
+					enabled: plotOptions.hasGroup && (plotOptions.hasX || plotOptions.hasY) && (!(plotOptions.hasX && plotOptions.hasY) || plotOptions.canSummarize)
 					onEnabledChanged: { if (!enabled) checked = false }
 
-					DoubleField { name: "alphaAreaStack";     label: qsTr("Transparency"); defaultValue: 0.4; min: 0; max: 1 }
+					DoubleField { name: "alphaAreaStack";     label: qsTr("Opacity"); defaultValue: 0.4; min: 0; max: 1 }
 					DoubleField { name: "linewidthAreaStack"; label: qsTr("Line width");  defaultValue: 0.25; min: 0 }
 					CheckBox    { name: "reverseAreaStack";   label: qsTr("Reverse order") }
-					CheckBox    { name: "replaceNaAreaStack"; label: qsTr("Replace N/A"); info: qsTr("Treat missing groups as a separate slice") }
+					CheckBox    { name: "replaceNaAreaStack"; label: qsTr("Fill missing combinations with zero"); info: qsTr("Fill absent combinations of X and group with zero. This does not create a group for missing values.") }
 				}
 
 				CheckBox {
@@ -1664,12 +1567,14 @@ TabView {
 			title: qsTr("Mean")
 
 			info: qsTr("Summary layers that display the arithmetic mean of the Y variable for every X (or vice versa). "
-					 + "Requires both X and Y axes mapped. "
-					 + "Mean can be rendered as bar, line, dot, dash, area, or value. "
-					 + "Common controls: <b>Dodge</b> separates sub-groups, <b>Transparency</b> sets opacity, <b>Size/width</b> changes thickness, <b>Outline</b> toggles borders")
+					 + "A single scale axis is sufficient for bars, dots, dashes, values, and error bars. "
+					 + "With two scale axes and non-repeated observations, show the coordinate-wise mean as a dot, crosshair, or reference lines per group and panel. "
+					 + "Common controls: <b>Dodge</b> separates sub-groups, <b>Opacity</b> sets opacity, <b>Size/width</b> changes thickness, <b>Outline</b> toggles borders")
 
 			Label {
-				text: qsTr("Required: X AND Y-Axis Variables")
+				text: plotOptions.jointSummary
+					? qsTr("Summarize both coordinates, separately per group and panel.")
+					: qsTr("Summarize at each categorical level or repeated-measures position, or along a single scale axis.")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
@@ -1684,12 +1589,11 @@ TabView {
 					name: "addMeanBar"
 					label: qsTr("Mean bar")
 					info: qsTr("Add mean bars")
-					enabled: (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-						   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMeanBar";  label: qsTr("Dodge");        defaultValue: 0.8 }
-					DoubleField { name: "alphaMeanBar";  label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField { name: "alphaMeanBar";  label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					DoubleField { name: "widthMeanBar";  label: qsTr("Bar width");    defaultValue: 0.8 }
 				}
 
@@ -1698,31 +1602,52 @@ TabView {
 					name: "addMeanDash"
 					label: qsTr("Mean dash")
 					info: qsTr("Add dashed mean lines")
-					enabled: (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-						   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMeanDash";     label: qsTr("Dodge");       defaultValue: 0.8 }
 					DoubleField { name: "dashwidthMeanDash"; label: qsTr("Dash width");  defaultValue: 0.8 }
 					DoubleField { name: "linewidthMeanDash"; label: qsTr("Line width");  defaultValue: 1 }
-					DoubleField { name: "alphaMeanDash";     label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField { name: "alphaMeanDash";     label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					CheckBox    { name: "blackOutlineMeanDash"; label: qsTr("Black dash") }
 				}
 
 				/* ── Mean dot ── */
 				CheckBox {
 					name: "addMeanDot"
-					label: qsTr("Mean dot")
+					label: plotOptions.jointSummary ? qsTr("Mean center") : qsTr("Mean dot")
 					info: qsTr("Add mean dots")
-					enabled: (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-						   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
+					enabled: plotOptions.canSummarize
 					onEnabledChanged: { if (!enabled) checked = false }
 
-					DoubleField { name: "dodgeMeanDot"; label: qsTr("Dodge");    defaultValue: 0.8 }
-					DoubleField { name: "sizeMeanDot";  label: qsTr("Dot size"); defaultValue: 5 }
-					DoubleField { name: "alphaMeanDot"; label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
-					CheckBox    { name: "blackOutlineMeanDot"; label: qsTr("Black outline") }
-					CheckBox    { name: "whiteOutlineMeanDot"; label: qsTr("White outline") }
+					DropDown {
+						name: "meanCenterStyle"
+						id: meanCenterStyle
+						label: qsTr("Appearance")
+						visible: plotOptions.jointSummary
+						values: [
+							{ label: qsTr("Dot"), value: "dot" },
+							{ label: qsTr("Crosshair"), value: "crosshair" },
+							{ label: qsTr("Reference lines"), value: "lines" }
+						]
+						startValue: "dot"
+						info: qsTr("Mark the mean of both coordinates, separately for each group and panel. Crosshair size is visual and does not represent uncertainty.")
+					}
+					DoubleField { name: "meanCenterLinewidth"; label: qsTr("Line width"); defaultValue: 0.5; visible: plotOptions.jointSummary }
+					DoubleField { name: "dodgeMeanDot"; visible: !plotOptions.jointSummary; label: qsTr("Dodge");    defaultValue: 0.8 }
+					DoubleField { name: "sizeMeanDot"; visible: !plotOptions.jointSummary || meanCenterStyle.currentValue !== "lines"; label: plotOptions.jointSummary ? qsTr("Marker size") : qsTr("Dot size"); defaultValue: 5 }
+					DoubleField { name: "alphaMeanDot"; label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
+					DropDown {
+						name: "outlineMeanDot"
+						label: qsTr("Outline")
+						values: [
+							{ label: qsTr("Automatic"), value: "automatic" },
+							{ label: qsTr("Black"), value: "black" },
+							{ label: qsTr("White"), value: "white" }
+						]
+						startValue: "automatic"
+						info: qsTr("Choose an automatic, black, or white outline")
+					}
 				}
 
 				/* ── Mean line ── */
@@ -1730,27 +1655,61 @@ TabView {
 					name: "addMeanLine"
 					label: qsTr("Mean line")
 					info: qsTr("Add mean profile lines")
-					enabled: (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-						   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
+					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMeanLine";   label: qsTr("Dodge");      defaultValue: 0.8 }
 					DoubleField { name: "linewidthMeanLine"; label: qsTr("Line width"); defaultValue: 1 }
-					DoubleField { name: "alphaMeanLine";   label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField { name: "alphaMeanLine";   label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					CheckBox    { name: "blackOutlineMeanLine"; label: qsTr("Black line") }
 				}
 
 				/* ── Mean area ── */
 				CheckBox {
 					name: "addMeanArea"
+					visible: !plotOptions.jointSummary
 					label: qsTr("Mean area")
 					info: qsTr("Add filled mean areas")
-					enabled: (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-						   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
+					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMeanArea"; label: qsTr("Dodge");        defaultValue: 0.8 }
-					DoubleField { name: "alphaMeanArea"; label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField { name: "alphaMeanArea"; label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
+				}
+
+				/* ── Mean ellipse (replaces area for joint summaries) ── */
+				CheckBox {
+					name: "addMeanEllipse"
+					label: qsTr("Mean ellipse")
+					info: qsTr("For two scale axes and independent observations, draw an ellipse centered on the arithmetic means, separately per group and panel. SD shows data spread using the sample covariance; SEM uses covariance divided by the number of complete pairs. A radius multiplier of one is not a 95% region. Confidence uses a joint Hotelling T-squared region for the population mean, assuming independent bivariate-normal observations. SD and SEM require at least two complete pairs; confidence requires at least three and a nonsingular covariance. This is not uncertainty around a median. Existing data ellipses under Individual data points remain separate.")
+					visible: plotOptions.jointSummary
+					enabled: plotOptions.jointSummary
+					onEnabledChanged: { if (!enabled) checked = false }
+					DropDown {
+						name: "meanEllipseType"
+						id: meanEllipseType
+						label: qsTr("Type")
+						values: [
+							{ label: qsTr("SD (data spread)"), value: "sd" },
+							{ label: qsTr("SEM (mean uncertainty)"), value: "sem" },
+							{ label: qsTr("Confidence region"), value: "ci" }
+						]
+						startValue: "sd"
+					}
+					DoubleField { name: "meanEllipseMultiplier"; label: qsTr("Radius multiplier"); defaultValue: 1; min: 0; inclusive: JASP.None; visible: meanEllipseType.currentValue !== "ci" }
+					DoubleField { name: "meanEllipseLevel"; label: qsTr("Confidence level"); defaultValue: 0.95; min: 0; max: 1; inclusive: JASP.None; visible: meanEllipseType.currentValue === "ci" }
+					DoubleField { name: "meanEllipseLinewidth"; label: qsTr("Line width"); defaultValue: 0.8 }
+					DoubleField { name: "meanEllipseOpacity"; label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
+					DropDown {
+						name: "meanEllipseOutline"
+						label: qsTr("Outline")
+						values: [
+							{ label: qsTr("Automatic"), value: "automatic" },
+							{ label: qsTr("Black"), value: "black" },
+							{ label: qsTr("White"), value: "white" }
+						]
+						startValue: "automatic"
+					}
 				}
 
 				/* ── Mean value ── */
@@ -1758,8 +1717,7 @@ TabView {
 					name: "addMeanValue"
 					label: qsTr("Mean value")
 					info: qsTr("Add numeric mean labels")
-					enabled: (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-						   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField  { name: "fontsizeMeanValue";  label: qsTr("Font size"); defaultValue: 14 }
@@ -1769,15 +1727,13 @@ TabView {
 						info: qsTr("Sets the rounding increment for the mean value; 0.1 gives one decimal, 0.01 gives two")
 						defaultValue: "0.1"
 					}
-					DoubleField  { name: "alphaMeanValue";     label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField  { name: "alphaMeanValue";     label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					DoubleField  { name: "hjustMeanValue";     label: qsTr("Horizontal justification"); defaultValue: 0.5; min: -Infinity }
 					DoubleField  { name: "vjustMeanValue";     label: qsTr("Vertical justification");   defaultValue: -0.5; min: -Infinity }
 					CheckBox     { name: "blackOutlineMeanValue"; label: qsTr("Black text") }
 				}
 			}
 		}
-
-
 
 		// -------------------------------------------------------------------
 		// Median
@@ -1786,12 +1742,14 @@ TabView {
 			title: qsTr("Median")
 
 			info: qsTr("Summary layers that display the median of the Y variable for every X (or vice versa). "
-					 + "Requires both X and Y axes mapped. "
-					 + "Median can be rendered as bar, line, dot, dash, area, or value. "
-					 + "Common controls: <b>Dodge</b> separates sub-groups, <b>Transparency</b> sets opacity, <b>Size/width</b> changes thickness, <b>Outline</b> toggles borders")
+					 + "A single scale axis is sufficient for bars, dots, dashes, values, and error bars. "
+					 + "With two scale axes and non-repeated observations, show the coordinate-wise median as a dot, crosshair, or reference lines per group and panel. "
+					 + "Common controls: <b>Dodge</b> separates sub-groups, <b>Opacity</b> sets opacity, <b>Size/width</b> changes thickness, <b>Outline</b> toggles borders")
 
 			Label {
-				text: qsTr("Required: X AND Y-Axis Variables")
+				text: plotOptions.jointSummary
+					? qsTr("Summarize both coordinates, separately per group and panel.")
+					: qsTr("Summarize at each categorical level or repeated-measures position, or along a single scale axis.")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
@@ -1806,14 +1764,11 @@ TabView {
 					name: "addMedianBar"
 					label: qsTr("Median bar")
 					info: qsTr("Add median bars")
-					enabled: (
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							  || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMedianBar";  label: qsTr("Dodge");        defaultValue: 0.8 }
-					DoubleField { name: "alphaMedianBar";  label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField { name: "alphaMedianBar";  label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					DoubleField { name: "widthMedianBar";  label: qsTr("Bar width");    defaultValue: 0.8 }
 				}
 
@@ -1823,16 +1778,13 @@ TabView {
 					name: "addMedianDash"
 					label: qsTr("Median dash")
 					info: qsTr("Add dashed median lines")
-					enabled: (
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							  || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMedianDash";     label: qsTr("Dodge");       defaultValue: 0.8 }
 					DoubleField { name: "dashwidthMedianDash"; label: qsTr("Dash width");  defaultValue: 0.8 }
 					DoubleField { name: "linewidthMedianDash"; label: qsTr("Line width");  defaultValue: 1 }
-					DoubleField { name: "alphaMedianDash";     label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField { name: "alphaMedianDash";     label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					CheckBox    { name: "blackOutlineMedianDash"; label: qsTr("Black dash"); enabled: addMedianDash.checked }
 				}
 
@@ -1840,19 +1792,39 @@ TabView {
 				CheckBox {
 					id: addMedianDot
 					name: "addMedianDot"
-					label: qsTr("Median dot")
+					label: plotOptions.jointSummary ? qsTr("Median center") : qsTr("Median dot")
 					info: qsTr("Add median dots")
-					enabled: (
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							  || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canSummarize
 					onEnabledChanged: { if (!enabled) checked = false }
 
-					DoubleField { name: "dodgeMedianDot"; label: qsTr("Dodge");    defaultValue: 0.8 }
-					DoubleField { name: "sizeMedianDot";  label: qsTr("Dot size"); defaultValue: 5 }
-					DoubleField { name: "alphaMedianDot"; label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
-					CheckBox    { name: "blackOutlineMedianDot"; label: qsTr("Black outline"); enabled: addMedianDot.checked }
-					CheckBox    { name: "whiteOutlineMedianDot"; label: qsTr("White outline") }
+					DropDown {
+						name: "medianCenterStyle"
+						id: medianCenterStyle
+						label: qsTr("Appearance")
+						visible: plotOptions.jointSummary
+						values: [
+							{ label: qsTr("Dot"), value: "dot" },
+							{ label: qsTr("Crosshair"), value: "crosshair" },
+							{ label: qsTr("Reference lines"), value: "lines" }
+						]
+						startValue: "dot"
+						info: qsTr("Mark the median of both coordinates, separately for each group and panel. Crosshair size is visual and does not represent uncertainty.")
+					}
+					DoubleField { name: "medianCenterLinewidth"; label: qsTr("Line width"); defaultValue: 0.5; visible: plotOptions.jointSummary }
+					DoubleField { name: "dodgeMedianDot"; visible: !plotOptions.jointSummary; label: qsTr("Dodge");    defaultValue: 0.8 }
+					DoubleField { name: "sizeMedianDot"; visible: !plotOptions.jointSummary || medianCenterStyle.currentValue !== "lines"; label: plotOptions.jointSummary ? qsTr("Marker size") : qsTr("Dot size"); defaultValue: 5 }
+					DoubleField { name: "alphaMedianDot"; label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
+					DropDown {
+						name: "outlineMedianDot"
+						label: qsTr("Outline")
+						values: [
+							{ label: qsTr("Automatic"), value: "automatic" },
+							{ label: qsTr("Black"), value: "black" },
+							{ label: qsTr("White"), value: "white" }
+						]
+						startValue: "automatic"
+						info: qsTr("Choose an automatic, black, or white outline")
+					}
 				}
 
 				/* Median line --------------------------------------------------- */
@@ -1861,15 +1833,12 @@ TabView {
 					name: "addMedianLine"
 					label: qsTr("Median line")
 					info: qsTr("Add median profile lines")
-					enabled: (
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							  || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMedianLine";   label: qsTr("Dodge");      defaultValue: 0.8 }
 					DoubleField { name: "linewidthMedianLine"; label: qsTr("Line width"); defaultValue: 1 }
-					DoubleField { name: "alphaMedianLine";   label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField { name: "alphaMedianLine";   label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					CheckBox    { name: "blackOutlineMedianLine"; label: qsTr("Black line"); enabled: addMedianLine.checked }
 				}
 
@@ -1878,14 +1847,11 @@ TabView {
 					name: "addMedianArea"
 					label: qsTr("Median area")
 					info: qsTr("Add filled median areas")
-					enabled: (
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							  || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeMedianArea"; label: qsTr("Dodge");        defaultValue: 0.8 }
-					DoubleField { name: "alphaMedianArea"; label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField { name: "alphaMedianArea"; label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 				}
 
 				/* Median value -------------------------------------------------- */
@@ -1893,10 +1859,7 @@ TabView {
 					name: "addMedianValue"
 					label: qsTr("Median value")
 					info: qsTr("Add numeric median labels")
-					enabled: (
-								 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							  || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField  { name: "fontsizeMedianValue";  label: qsTr("Font size"); defaultValue: 14 }
@@ -1906,7 +1869,7 @@ TabView {
 						info: qsTr("Sets the rounding increment for the median value; 0.1 gives one decimal, 0.01 gives two")
 						defaultValue: "0.1"
 					}
-					DoubleField  { name: "alphaMedianValue";     label: qsTr("Transparency"); defaultValue: 1; min: 0; max: 1 }
+					DoubleField  { name: "alphaMedianValue";     label: qsTr("Opacity"); defaultValue: 1; min: 0; max: 1 }
 					DoubleField  { name: "hjustMedianValue";     label: qsTr("Horizontal justification"); defaultValue: 0.5; min: -Infinity }
 					DoubleField  { name: "vjustMedianValue";     label: qsTr("Vertical justification");   defaultValue: -0.5; min: -Infinity }
 					CheckBox     { name: "blackOutlineMedianValue"; label: qsTr("Black text") }
@@ -1924,19 +1887,33 @@ TabView {
 
 			info: qsTr("Shows variability with vertical bars or shaded ribbons. "
 					 + "Choose <b>Range</b> (min–max), <b>SD</b>, <b>SEM</b>, or <b>95 % CI</b>. "
+					 + "SD and SEM are centered on the mean; the 95% CI is a bootstrap interval for the mean. "
+					 + "In repeated measures, means, SEM, and 95% CI first average observations within each subject at each position within each group and panel. SD describes the original observations. Groups with fewer than two usable observations (subjects for repeated-measures SEM/CI) are omitted from uncertainty layers. "
 					 + "Common controls: <b>Dodge</b> offsets overlapping groups, <b>Width/Line width</b> adjusts thickness, "
-					 + "<b>Transparency</b> sets opacity, <b>Black lines</b> toggles outlines")
+					 + "<b>Opacity</b> sets opacity, <b>Black lines</b> toggles outlines")
 
 			Label {
-				text: qsTr("Required: X AND Y-Axis Variables")
+				text: plotOptions.jointSummary
+					? qsTr("For two scale axes with non-repeated observations, use Mean ellipse for spread or uncertainty.")
+					: qsTr("Required: a scale response; lines and ribbons also need a positioning axis")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
 
 			Label {
-				text: qsTr("The optimal dodge value is 0 if both X and Y-Axis Variables are continuous")
+				visible: !plotOptions.jointSummary
+				text: qsTr("Use zero dodge to retain numerical positions on a continuous repeated-measures axis.")
 				wrapMode: Text.Wrap
 				color: "black"
+			}
+
+			DoubleField {
+				name: "ribbonDodge"
+				enabled: plotOptions.canPositionSummary
+				label: qsTr("Ribbon dodge")
+				defaultValue: 0.8
+				min: 0
+				info: qsTr("Match the dodge of the corresponding summary line. Use zero to retain numerical positions on a continuous axis.")
 			}
 
 			GridLayout {
@@ -1950,16 +1927,13 @@ TabView {
 					name: "addRangeErrorBar"
 					label: qsTr("Range error bar")
 					info: qsTr("Add range error bars")
-					enabled: (
-								  (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeRangeErrorBar";   label: qsTr("Dodge");        defaultValue: 0.8 }
 					DoubleField { name: "widthRangeErrorBar";   label: qsTr("Width");        defaultValue: 0.3 }
 					DoubleField { name: "linewidthRangeErrorBar"; label: qsTr("Line width"); defaultValue: 1 }
-					DoubleField { name: "transparencyRangeErrorBar"; label: qsTr("Transparency"); defaultValue: 1 }
+					DoubleField { name: "transparencyRangeErrorBar"; label: qsTr("Opacity"); defaultValue: 1 }
 					CheckBox    { name: "blackOutlineRangeErrorBar"; label: qsTr("Black lines") }
 				}
 
@@ -1969,16 +1943,13 @@ TabView {
 					name: "addSDErrorBar"
 					label: qsTr("SD error bar")
 					info: qsTr("Add SD error bars")
-					enabled: (
-								  (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeSDErrorBar";   label: qsTr("Dodge");        defaultValue: 0.8 }
 					DoubleField { name: "widthSDErrorBar";   label: qsTr("Width");        defaultValue: 0.3 }
 					DoubleField { name: "linewidthSDErrorBar"; label: qsTr("Line width"); defaultValue: 1 }
-					DoubleField { name: "transparencySDErrorBar"; label: qsTr("Transparency"); defaultValue: 1 }
+					DoubleField { name: "transparencySDErrorBar"; label: qsTr("Opacity"); defaultValue: 1 }
 					CheckBox    { name: "blackOutlineSDErrorBar"; label: qsTr("Black lines"); enabled: addSDErrorBar.checked }
 				}
 
@@ -1988,16 +1959,13 @@ TabView {
 					name: "addSEMErrorBar"
 					label: qsTr("SEM error bar")
 					info: qsTr("Add SEM error bars")
-					enabled: (
-								  (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeSEMErrorBar";   label: qsTr("Dodge");        defaultValue: 0.8 }
 					DoubleField { name: "widthSEMErrorBar";   label: qsTr("Width");        defaultValue: 0.3 }
 					DoubleField { name: "linewidthSEMErrorBar"; label: qsTr("Line width"); defaultValue: 1 }
-					DoubleField { name: "transparencySEMErrorBar"; label: qsTr("Transparency"); defaultValue: 1 }
+					DoubleField { name: "transparencySEMErrorBar"; label: qsTr("Opacity"); defaultValue: 1 }
 					CheckBox    { name: "blackOutlineSEMErrorBar"; label: qsTr("Black lines"); enabled: addSEMErrorBar.checked }
 				}
 
@@ -2006,16 +1974,13 @@ TabView {
 					name: "addCI95ErrorBar"
 					label: qsTr("95% CI error bar")
 					info: qsTr("Add 95 % CI error bars")
-					enabled: (
-								  (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canPositionSummary
 					onEnabledChanged: { if (!enabled) checked = false }
 
 					DoubleField { name: "dodgeCI95ErrorBar";   label: qsTr("Dodge");        defaultValue: 0.8 }
 					DoubleField { name: "widthCI95ErrorBar";   label: qsTr("Width");        defaultValue: 0.3 }
 					DoubleField { name: "linewidthCI95ErrorBar"; label: qsTr("Line width"); defaultValue: 1 }
-					DoubleField { name: "transparencyCI95ErrorBar"; label: qsTr("Transparency"); defaultValue: 1 }
+					DoubleField { name: "transparencyCI95ErrorBar"; label: qsTr("Opacity"); defaultValue: 1 }
 					CheckBox    { name: "blackOutlineCI95ErrorBar"; label: qsTr("Black lines") }
 				}
 			}
@@ -2030,13 +1995,10 @@ TabView {
 					name: "addRangeRibbon"
 					label: qsTr("Range ribbon")
 					info: qsTr("Add range ribbons")
-					enabled: (
-								  (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
-					DoubleField { name: "alphaRangeRibbon"; label: qsTr("Transparency"); defaultValue: 0.4; min: 0; max: 1 }
+					DoubleField { name: "alphaRangeRibbon"; label: qsTr("Opacity"); defaultValue: 0.4; min: 0; max: 1 }
 					CheckBox    { name: "blackOutlineRangeRibbon"; label: qsTr("Black lines") }
 				}
 
@@ -2046,13 +2008,10 @@ TabView {
 					name: "addSdRibbon"
 					label: qsTr("SD ribbon")
 					info: qsTr("Add SD ribbons")
-					enabled: (
-								  (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
-					DoubleField { name: "alphaSdRibbon"; label: qsTr("Transparency"); defaultValue: 0.4; min: 0; max: 1 }
+					DoubleField { name: "alphaSdRibbon"; label: qsTr("Opacity"); defaultValue: 0.4; min: 0; max: 1 }
 					CheckBox    { name: "blackOutlineSdRibbon"; label: qsTr("Black lines"); enabled: addSdRibbon.checked }
 				}
 
@@ -2061,13 +2020,10 @@ TabView {
 					name: "addSemRibbon"
 					label: qsTr("SEM ribbon")
 					info: qsTr("Add SEM ribbons")
-					enabled: (
-								  (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
-					DoubleField { name: "alphaSemRibbon"; label: qsTr("Transparency"); defaultValue: 0.4; min: 0; max: 1 }
+					DoubleField { name: "alphaSemRibbon"; label: qsTr("Opacity"); defaultValue: 0.4; min: 0; max: 1 }
 					CheckBox    { name: "blackOutlineSemRibbon"; label: qsTr("Black lines") }
 				}
 
@@ -2076,13 +2032,10 @@ TabView {
 					name: "addCi95Ribbon"
 					label: qsTr("95% CI ribbon")
 					info: qsTr("Add 95 % CI ribbons")
-					enabled: (
-								  (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-							   || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-							 )
+					enabled: plotOptions.canPositionSummary && plotOptions.hasX && plotOptions.hasY
 					onEnabledChanged: { if (!enabled) checked = false }
 
-					DoubleField { name: "alphaCi95Ribbon"; label: qsTr("Transparency"); defaultValue: 0.4; min: 0; max: 1 }
+					DoubleField { name: "alphaCi95Ribbon"; label: qsTr("Opacity"); defaultValue: 0.4; min: 0; max: 1 }
 					CheckBox    { name: "blackOutlineCi95Ribbon"; label: qsTr("Black lines") }
 				}
 			}
@@ -2096,12 +2049,12 @@ TabView {
 			title: qsTr("Curve fit and reference lines")
 
 			info: qsTr("Fit trend lines or statistical models and add reference or identity lines for comparison. "
-					 + "Curve fitting requires individual data points. "
+					 + "Curve fitting requires two scale axes; displaying individual points is optional. "
 					 + "Common controls: <b>Method</b> chooses the model, <b>Line width</b> adjusts thickness, "
-					 + "<b>Dodge</b> separates groups, <b>Transparency</b> sets opacity, and <b>Color</b> selects the line colour")
+					 + "<b>Dodge</b> separates groups, <b>Opacity</b> sets opacity, and <b>Color</b> selects the line colour")
 
 			Label {
-				text: qsTr("Required: individual data points (Curve fit)")
+				text: qsTr("Required: two scale axes (curve fit)")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
@@ -2110,7 +2063,7 @@ TabView {
 				name: "addCurveFitPlotBuilder"
 				label: qsTr("Add curve fit")
 				info: qsTr("Fit a model to the data points")
-				enabled: addDataPoint.checked
+				enabled: plotOptions.scaleX && plotOptions.scaleY
 				onEnabledChanged: { if (!enabled) checked = false }
 				columns: 3
 
@@ -2134,11 +2087,11 @@ TabView {
 
 				Group {
 					DoubleField { name: "dodgeCurveFit";        label: qsTr("Dodge");        defaultValue: 0.8; min: 0; max: 1 }
-					DoubleField { name: "transparencyCurveFit"; label: qsTr("Transparency"); defaultValue: 0.2; min: 0; max: 1 }
+					DoubleField { name: "transparencyCurveFit"; label: qsTr("Opacity"); defaultValue: 0.2; min: 0; max: 1 }
 				}
 
 				Group {
-					CheckBox { name: "seCurveFit";           label: qsTr("SE");          checked: true }
+					CheckBox { name: "seCurveFit";           label: qsTr("SE");          checked: true; info: qsTr("Show the fitted model’s confidence band. The model treats rows as independent; this is not the subject-level SEM/CI from the summary layers.") }
 					CheckBox { name: "blackOutlineCurveFit"; label: qsTr("Black lines") }
 				}
 			}
@@ -2172,7 +2125,7 @@ TabView {
 			CheckBox {
 				name: "addIdentityLinePlotBuilder"
 				label: qsTr("Add identity line")
-				info: qsTr("Add identity line (y = x)")
+				info: qsTr("Add identity line (y = x). This comparison is meaningful when both axes have numerical values in comparable units.")
 				CheckBox { name: "reversedirectionIdentityLine"; label: qsTr("Reverse direction") }
 				TextField {
 					name: "colorIdentityLine"; label: qsTr("Line color");
@@ -2252,6 +2205,8 @@ TabView {
 					name: "enableSort"
 					label: qsTr("Sort")
 					checked: false
+					enabled: plotOptions.hasX && !plotOptions.scaleX
+					onEnabledChanged: { if (!enabled) checked = false }
 
 					DropDown {
 						name: "sortXLabelsOrder"
@@ -2269,7 +2224,7 @@ TabView {
 				}
 			}
 
-			ComponentsList {
+			ContentSizedComponentsList {
 				name: "xAxisLabelRenamer"
 				title: qsTr("Rename labels")
 				info: qsTr("Lets you edit them manually")
@@ -2336,6 +2291,8 @@ TabView {
 					name: "enableSortY"
 					label: qsTr("Sort")
 					checked: false
+					enabled: plotOptions.hasY && !plotOptions.scaleY
+					onEnabledChanged: { if (!enabled) checked = false }
 
 					DropDown {
 						name: "sortYLabelsOrder"
@@ -2353,7 +2310,7 @@ TabView {
 				}
 			}
 
-			ComponentsList {
+			ContentSizedComponentsList {
 				name: "yAxisLabelRenamer"
 				title: qsTr("Rename labels")
 				info: qsTr("Lets you edit them manually")
@@ -2403,59 +2360,36 @@ TabView {
 					 + "<b>Label variable</b> shows each point’s value; <b>Custom annotations</b> add free-form text with position controls. "
 					 + "Common controls: <b>Size</b> adjusts text height, <b>White background</b> improves legibility, colour fields accept named or hex colours")
 
-			Label {
-				text: qsTr("Label data by variable")
-				wrapMode: Text.Wrap
-				color: "black"
-			}
-
-			VariablesForm {
+			Row {
 				enabled: addDataPoint.checked
-				preferredWidth: jaspForm.width - 2 * jaspTheme.contentMargin
-				preferredHeight: 100 * preferencesModel.uiScale
+				spacing: jaspTheme.columnGroupSpacing
 
-				AvailableVariablesList {
-					name: "labelVars"
-					source: [
-						{ name: "allVariablesList",   use: ["type=scale","type=ordinal","type=nominal"] },
-						{ name: "allVariablesListRM", use: ["type=scale","type=ordinal","type=nominal"] }
-					]
-				}
-
-				AssignedVariablesList {
-					name:           "labelVariablePlotBuilder"
-					title:          qsTr("Label variable")
+				DropDown {
+					name: "labelVariablePlotBuilder"
+					label: qsTr("Label by variable")
+					showVariableTypeIcon: true
+					addEmptyValue: true
+					placeholderText: qsTr("<Select Variable>")
+					fieldWidth: 150 * preferencesModel.uiScale
 					allowedColumns: ["scale","ordinal","nominal"]
-					singleVariable: true
-					enabled: addDataPoint.checked
-					onEnabledChanged: {
-						if (!enabled) {
-							while (count > 0) {
-								itemDoubleClicked(0)
-							}
-						}
-					}
+					onEnabledChanged: { if (!enabled) currentIndex = 0 }
 					info: qsTr("Variable whose values will be shown next to each point")
 				}
 
-				Group {
-					columns: 2
-					DoubleField {
-						name:  "fontsizeDataLabels"
-						label: qsTr("Size")
-						value: 4
-						fieldWidth: 50
-					}
-					CheckBox {
-						name:  "backgroundDataLabels"
-						label: qsTr("White background")
-						checked: false
-						Layout.fillWidth: false
-					}
+				DoubleField {
+					name:  "fontsizeDataLabels"
+					label: qsTr("Size")
+					value: 4
+					fieldWidth: 50
+				}
+				CheckBox {
+					name:  "backgroundDataLabels"
+					label: qsTr("White background")
+					checked: false
 				}
 			}
 
-			ComponentsList {
+			ContentSizedComponentsList {
 				name: "annotationPlotBuilder"
 				id: annotationPlotBuilder
 				title: qsTr("Custom annotations")
@@ -2495,12 +2429,14 @@ TabView {
 							Group {
 								DoubleField {
 									name: "annotationX"
+									negativeValues: true
 									label: qsTr("X-Axis")
 									defaultValue: 3
 									fieldWidth: 60
 								}
 								DoubleField {
 									name: "annotationY"
+									negativeValues: true
 									label: qsTr("Y-Axis")
 									defaultValue: 3
 									fieldWidth: 60
@@ -2646,6 +2582,7 @@ TabView {
 
 				RadioButtonGroup {
 					name: "colorByGroup"
+					id: colorByGroup
 					title: qsTr("Color by")
 					info: qsTr("Choose what determines element colours")
 					radioButtonsOnSameRow: true
@@ -2680,7 +2617,7 @@ TabView {
 						id: colorYRadio
 						value: "y"
 						label: qsTr("Y variable")
-						info: qsTr("Coloring by Y variable")
+						info: qsTr("Color by the Y variable. For sum, mean, and median lines on a numeric Y axis, colors follow the summarized Y values.")
 						enabled: (variableYPlotBuilder.count > 0 && variableColorPlotBuilder.count === 0) || (groupVarRM.count === 0)
 						checked: false
 						onEnabledChanged: { if (!enabled && checked) checked = false }
@@ -2806,10 +2743,10 @@ TabView {
 				info: qsTr("Fraction of the data range to leave empty inside each axis (0 – 1)")
 				columns: 4
 
-				DoubleField { name: "YPaddingSecond"; label: qsTr("Top");    value: 0.05 }
-				DoubleField { name: "YPaddingFirst";  label: qsTr("Bottom"); value: 0.04 }
-				DoubleField { name: "XPaddingFirst";  label: qsTr("Left");   value: 0.05 }
-				DoubleField { name: "XPaddingSecond"; label: qsTr("Right");  value: 0.05 }
+				DoubleField { name: "YPaddingSecond"; label: qsTr("Top");    value: 0.1 }
+				DoubleField { name: "YPaddingFirst";  label: qsTr("Bottom"); value: 0.1 }
+				DoubleField { name: "XPaddingFirst";  label: qsTr("Left");   value: 0.1 }
+				DoubleField { name: "XPaddingSecond"; label: qsTr("Right");  value: 0.1 }
 			}
 
 			Group {
@@ -2865,7 +2802,7 @@ TabView {
 				}
 			}
 
-			ComponentsList {
+			ContentSizedComponentsList {
 				name: "colorLabelRenamer"
 				title: qsTr("Rename labels")
 				info: qsTr("Edit the text of individual legend entries")
@@ -2914,13 +2851,14 @@ TabView {
 			  + "mean_dash: Mean dash<br>"
 			  + "mean_line: Mean line<br>"
 			  + "mean_area: Mean area<br>"
-			  + "mean_dot: Mean dot<br>"
+			  + "mean_dot: Mean dot or center<br>"
+			  + "mean_ellipse: Mean ellipse<br>"
 			  + "mean_value: Mean value<br>"
 			  + "median_bar: Median bar<br>"
 			  + "median_dash: Median dash<br>"
 			  + "median_line: Median line<br>"
 			  + "median_area: Median area<br>"
-			  + "median_dot: Median dot<br>"
+			  + "median_dot: Median dot or center<br>"
 			  + "median_value: Median value<br>"
 			  + "range_errorbar: Range error bar<br>"
 			  + "sd_errorbar: SD error bar<br>"
@@ -2969,14 +2907,14 @@ TabView {
 			/* section-level help */
 			info: qsTr("Adjust how faceted panels share scales, axes and space. "
 					 + "<b>Scale and axis settings</b> decide whether panels use the same range, which axis lines are drawn and where labels appear. "
-					 + "<b>Layout settings</b> control panel sizes, the position of the highest-value table, optional marginal plots and custom axis titles")
+					 + "<b>Layout settings</b> control panel sizes, facet ordering, optional marginal plots and custom axis titles")
 
 			GridLayout {
 				columns: 2
 				rowSpacing: 10
 				columnSpacing: 20
-				enabled: columnsvariableSplitPlotBuilder.count > 0 || colSplitRM.count > 0
-					  || rowsvariableSplitPlotBuilder.count > 0    || rowSplitRM.count > 0
+				enabled: facetLayout.currentValue === "rowsColumns" && (columnsvariableSplitPlotBuilder.count > 0 || colSplitRM.count > 0
+					  || rowsvariableSplitPlotBuilder.count > 0 || rowSplitRM.count > 0)
 
 				/* ────────── Scale and axis settings ────────── */
 				Label { text: qsTr("Scale and axis settings") }
@@ -3033,8 +2971,8 @@ TabView {
 					RadioButtonGroup {
 						id: asTableGroup
 						name: "asTable"
-						title: qsTr("Highest value at")
-						info: qsTr("Controls where the summary table of highest values is placed inside each facet")
+						title: qsTr("Highest factor level at")
+						info: qsTr("Place the last factor levels at the bottom right or top right of the panel layout. This changes panel order, not the data.")
 						radioButtonsOnSameRow: true
 
 						RadioButton {
@@ -3090,11 +3028,11 @@ TabView {
 
 			/* section-level help */
 			info: qsTr("Arrange panels when a grid variable is mapped. "
-					 + "<b>Layout settings</b> set the facet grid’s rows, columns and where the highest-values table appears, "
+					 + "<b>Layout settings</b> set the facet grid’s rows, columns and the order of factor levels, "
 					 + "<b>Scales and strip settings</b> decide whether panels share axes and where the facet label strip is placed")
 
 			GridLayout {
-				enabled: gridVariablePlotBuilder.count > 0 || gridVarRM.count > 0
+				enabled: facetLayout.currentValue === "grid" && (gridVariablePlotBuilder.count > 0 || gridVarRM.count > 0)
 				columns: 2
 				rowSpacing: 10
 				columnSpacing: 20
@@ -3120,8 +3058,8 @@ TabView {
 
 					RadioButtonGroup {
 						name: "asTableFacetWrap"
-						title: qsTr("Highest value at")
-						info: qsTr("Choose the corner where the summary table of highest values is drawn")
+						title: qsTr("Highest factor level at")
+						info: qsTr("Place the last factor levels at the bottom right or top right of the panel layout. This changes panel order, not the data.")
 						radioButtonsOnSameRow: true
 
 						RadioButton {
@@ -3188,7 +3126,7 @@ TabView {
 					 + "Set colour, text size and vertical spacing, then list each comparison in the table below")
 
 			Label {
-				text: qsTr("Required: X AND Y-Axis Variables")
+				text: qsTr("Required: categorical X; use Flip plot for horizontal brackets")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
@@ -3201,8 +3139,22 @@ TabView {
 					columns: 1
 					info: qsTr("Colour and font size of the P-value text")
 
+					DropDown {
+						name: "pValueColorMode"
+						id: pValueColorMode
+						label: qsTr("Color by")
+						values: [
+							{ label: qsTr("Custom color"), value: "custom" },
+							{ label: qsTr("Group color"), value: "group" }
+						]
+						startValue: "custom"
+						enabled: ["grouping", "splitColumn", "splitRow"].includes(colorByGroup.value)
+						info: qsTr("Use a custom color for brackets and text, or the plot color of the group selected for each comparison.")
+					}
+
 					TextField {
 						name: "labelcolor"
+						enabled: !pValueColorMode.enabled || pValueColorMode.currentValue === "custom"
 						label: qsTr("P value color")
 						info: qsTr("Named or hex colour for the P value text")
 						fieldWidth: 70
@@ -3220,12 +3172,13 @@ TabView {
 				/* ── Vertical placement ── */
 				Group {
 					columns: 1
-					info: qsTr("Starting height and step between stacked brackets (data units)")
+					info: qsTr("Set the starting height in Y-axis data units and the step as a fraction of the panel’s Y range.")
 
 					DoubleField {
 						name: "yPositionPValue"
+						negativeValues: true
 						label: qsTr("Y-Axis position of the first P value")
-						info: qsTr("Initial vertical position for the first bracket")
+						info: qsTr("Initial position on the Y axis. For categorical Y, use category positions 1, 2, and so on.")
 						decimals: 2
 						fieldWidth: 70
 						value: 70
@@ -3234,7 +3187,7 @@ TabView {
 					DoubleField {
 						name: "stepDistance"
 						label: qsTr("Step distance")
-						info: qsTr("Vertical gap between successive brackets")
+						info: qsTr("Vertical gap as a fraction of the panel’s Y range, including bracket heights (0.15 = 15%).")
 						decimals: 2
 						fieldWidth: 70
 						value: 0.15
@@ -3249,7 +3202,7 @@ TabView {
 				}
 			}
 
-			ComponentsList {
+			ContentSizedComponentsList {
 				name: "pairwiseComparisons"
 				title: qsTr("Pairwise comparisons table")
 				id: pairwiseComparisons
@@ -3257,10 +3210,7 @@ TabView {
 				minimumItems: 0
 				maximumItems: -1
 
-				enabled: (
-							 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-						  || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-						 )
+				enabled: plotOptions.hasX && !plotOptions.scaleX
 
 				onEnabledChanged: {
 					if (!enabled) {
@@ -3387,7 +3337,7 @@ TabView {
 			info: qsTr("Draw manual comparison lines (e.g., <b>min–max bars</b> or custom contrasts) with optional text labels")
 
 			Label {
-				text: qsTr("Required: X AND Y-Axis Variables")
+				text: qsTr("Required: X or Y-Axis Variable")
 				wrapMode: Text.Wrap
 				color: "black"
 			}
@@ -3399,17 +3349,14 @@ TabView {
 				color: "black"
 			}
 
-			ComponentsList {
+			ContentSizedComponentsList {
 				name: "annotationLineList"
 				id: annotationLineList
 				title: qsTr("Add annotation lines")
 				addItemManually: true
 				minimumItems: 0
 
-				enabled: (
-							 (noRM.checked && variableXPlotBuilder.count > 0 && variableYPlotBuilder.count > 0)
-						  || (yesRM.checked && repeatedMeasuresFactors.count > 0 && xVarRM.count > 0)
-						 )
+				enabled: plotOptions.hasX || plotOptions.hasY
 
 				onEnabledChanged: {
 					if (!enabled) {
@@ -3443,12 +3390,12 @@ TabView {
 							info: qsTr("Start/end coordinates and facet location")
 
 							Group {
-								DoubleField { name: "xAnnotation";  label: qsTr("X-Axis start"); info: qsTr("Line start on X axis") }
-								DoubleField { name: "xendAnnotation"; label: qsTr("X-Axis end");  info: qsTr("Line end on X axis") }
+								DoubleField { name: "xAnnotation"; negativeValues: true;  label: qsTr("X-Axis start"); info: qsTr("Line start on X axis") }
+								DoubleField { name: "xendAnnotation"; negativeValues: true; label: qsTr("X-Axis end");  info: qsTr("Line end on X axis") }
 							}
 							Group {
-								DoubleField { name: "yAnnotation";  label: qsTr("Y-Axis start"); info: qsTr("Line start on Y axis") }
-								DoubleField { name: "yendAnnotation"; label: qsTr("Y-Axis end"); info: qsTr("Line end on Y axis") }
+								DoubleField { name: "yAnnotation"; negativeValues: true;  label: qsTr("Y-Axis start"); info: qsTr("Line start on Y axis") }
+								DoubleField { name: "yendAnnotation"; negativeValues: true; label: qsTr("Y-Axis end"); info: qsTr("Line end on Y axis") }
 							}
 
 							Group {columns: 1
@@ -3519,7 +3466,7 @@ TabView {
 							DoubleField {
 								name: "textDistanceAnnotationLine"
 								label: qsTr("Label distance")
-								info: qsTr("Vertical offset between the line and its label (data units)")
+								info: qsTr("Vertical offset in tenths of the overall observed Y range (1 = 10% of that range).")
 								defaultValue: 0.5
 								fieldWidth: 60
 							}
@@ -3553,7 +3500,7 @@ Section {
 			placeholderText: qsTr("1,1")
 		}
 
-		ComponentsList {
+		ContentSizedComponentsList {
 			id: rowSpecifications
 			name: "rowSpecifications"
 			title: qsTr("Specify layout")
@@ -3610,7 +3557,7 @@ Section {
 			placeholderText: "1,1"
 		}
 
-		ComponentsList {
+		ContentSizedComponentsList {
 			id: fullRowSpecifications
 			name: "fullRowSpecifications"
 			title: qsTr("Specify layout")

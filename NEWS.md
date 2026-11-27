@@ -16,6 +16,25 @@
 
 # jaspDescriptives (development version)
 
+* Invalid Plot Builder layer combinations now show an error on the affected plot only, so other plots and the plot layout still render. The reversed identity line again spans the data range.
+
+* Fixed confidence-ellipse rank checks, Plot Builder upgrades for nested saved-variable formats, and sorting after switching an axis to scale.
+
+* Plot Builder summarizes independent two-scale data with per-group mean/median centers (dots, crosshairs, or reference lines). Added separate mean SD, SEM, and Hotelling confidence ellipses. Position-based summaries remain available for categorical axes, single-axis plots, and repeated measures.
+
+* Fixed Plot Builder marginal area-stack totals, count-stack axis limits under the JASP theme, and single-axis sum-stack labels. Removed spurious warnings from single-axis JASP frames and repeated-measures joint means.
+
+* Plot Builder supports single-axis points, boxplots, violins, and summaries; categorical histogram/density ridges; grouped histogram layouts; and optional mean/median centers across both coordinates. Geometry availability and help now follow variable types.
+* Plot Builder separates statistical grouping from coloring, provides explicit stack measures, and preserves shape mappings beyond six categories. Repeated-measures means and SEM/CI use subject averages within each plotted position, group, and panel, including margins; trajectories stay within other repeated-measures conditions.
+
+* Fixed Plot Builder outline and summary-line colors, histogram count-density scaling, distribution eligibility, ellipse bounds, and negative annotation coordinates. Clarified opacity, facet ordering, missing-combination filling, and annotation spacing labels and help.
+
+* Plot Builder now selects Grid or Rows and columns explicitly, retaining inactive assignments and migrating saved layouts.
+
+* Plot Builder now offers explicit custom or group colors for P-value brackets, preserving group coloring in saved analyses.
+
+* Replaced conflicting black/white outline checkboxes in Plot Builder with outline color dropdowns and made empty circles independent of outline color. Saved outline selections are migrated automatically.
+
 * Fixed moving-average confidence bands in time-series autocorrelation plots to use only preceding positive lags. Showing zero lag no longer changes the bands at other lags.
 * Time Series Descriptives autocorrelation plots offer two missing-observation choices: exclude cases listwise (default) or use the longest complete segment. Listwise exclusion adds a note explaining that retained observations are treated as consecutive steps and internal gaps are ignored; the data and other outputs are unchanged.
 * Time Series Descriptives uses Time to order whole observations without adding rows for gaps. Unusable or ambiguous Time falls back to spreadsheet row order with a warning; numeric Time filters accept negative values and decimals.
