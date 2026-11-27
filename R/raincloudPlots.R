@@ -614,6 +614,17 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 
 
 
+# .rainPositionNudgeGroups() ----
+# ggplot2::position_nudge() with one horizontal nudge per group (nudgePerGroup[group]),
+# so it does not depend on how many points the density of each violin has.
+.rainPositionNudgeGroups <- function(nudgePerGroup) {
+  ggplot2::ggproto(NULL, ggplot2::PositionNudge,
+    setup_params = function(self, data) list(x = nudgePerGroup[data$group], y = data$nudge_y)
+  )
+}  # End .rainPositionNudgeGroups()
+
+
+
 # .rainGeomRain() ----
 # Call of ggrain:geom_rain() with prior set up of all input arguments
 .rainGeomRain <- function(dataset, options, infoFactorCombinations, vioSides, boxPosition, plotInProgress) {
@@ -651,18 +662,18 @@ raincloudPlotsInternal <- function(jaspResults, dataset, options) {
 
   # Violin positioning
   vioNudgeForEachCloud <- .rainNudgeForEachCloud(options[["vioNudge"]], vioSides)  # Based on default/custom orientation
-  # original, but not reliable, the exact no. points per cloud is _not_ always 512
-  # vioPosVec <- rep(vioNudgeForEachCloud, each = 512)
-  tempPlot <- plotInProgress + ggrain::geom_rain(
-    violin.args = vioArgs,
-    violin.args.pos  = list(width = options[["vioHeight"]]),
-    likert      = FALSE
-  )
-  tempPlotBuild <- ggplot2::ggplot_build(tempPlot)
-  noPoints <- unclass(table(tempPlotBuild@data[[1]]$group))
-  vioPosVec <- rep(vioNudgeForEachCloud, noPoints[seq_along(vioNudgeForEachCloud)])
+  # Violins are drawn per group, and groups with fewer than two observations have no violin. A discrete
+  # covariate splits a cloud into several groups only when it sets the violin outline colour: outline
+  # "colorPalette" without a fill colour. A fixed outline colour or one taken from the fill (see the end of
+  # this function) drops the colour from the grouping. So the nudge and side of each group come from its cloud.
+  vioColorFromCovariate <- vioOutlineOption == "colorPalette" && options[["secondaryFactor"]] == "" && !options[["colorAnyway"]]
+  vioGroupMapping       <- if (vioColorFromCovariate) NULL else ggplot2::aes(colour = ggplot2::after_scale(fill))
+  rowGroups  <- ggplot2::layer_data(plotInProgress + ggplot2::geom_blank(mapping = vioGroupMapping))$group
+  rowClouds  <- as.integer(interaction(dataset$primaryFactor, dataset$secondaryFactor, drop = TRUE, lex.order = TRUE))
+  groupCloud <- rowClouds[match(seq_len(max(rowGroups)), rowGroups)]
   vioArgsPos <- list(
-    width = options[["vioHeight"]], position = ggplot2::position_nudge(x = vioPosVec), side = vioSides
+    width = options[["vioHeight"]], position = .rainPositionNudgeGroups(vioNudgeForEachCloud[groupCloud]),
+    side = vioSides[groupCloud]
   )
 
   # Box positioning
