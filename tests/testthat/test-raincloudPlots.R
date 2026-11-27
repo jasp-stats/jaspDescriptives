@@ -103,11 +103,13 @@ test_that("horizontal plot with both factors and custom axis limits matches", {
   options$colorPalette <- "colorblind"
   options$covariatePalette <- "viridis"
   options$customAxisLimits <- TRUE
+  # one row per cloud in every column, as the form's table has it (it rejects a table of another shape)
+  clouds <- "Row 0"
   options$customizationTable <- list(
-    list(levels = "", name = "", values = "R"),
-    list(levels = "", name = "", values = 0),
-    list(levels = "", name = "", values = 0),
-    list(levels = list(""), name = "", values = list("#00A9E6"))
+    list(levels = clouds, name = "data 1", values = "R"),
+    list(levels = clouds, name = "data 2", values = 0),
+    list(levels = clouds, name = "data 3", values = 0),
+    list(levels = clouds, name = "data 4", values = "#00A9E6")
   )
   options$dependentVariables <- "body_mass_g"
   options$dependentVariables.types <- "scale"
@@ -148,11 +150,13 @@ test_that("plot with both factors, no box, means, meanLines, and, bootstrapped c
   options$boxWidth <- 0.275
   options$colorPalette <- "ggplot2"
   options$covariatePalette <- "viridis"
+  # one row per cloud in every column, as the form's table has it (it rejects a table of another shape)
+  clouds <- "Row 0"
   options$customizationTable <- list(
-    list(levels = "", name = "", values = "R"),
-    list(levels = "", name = "", values = 0),
-    list(levels = "", name = "", values = 0),
-    list(levels = list(""), name = "", values = list("#00A9E6"))
+    list(levels = clouds, name = "data 1", values = "R"),
+    list(levels = clouds, name = "data 2", values = 0),
+    list(levels = clouds, name = "data 3", values = 0),
+    list(levels = clouds, name = "data 4", values = "#00A9E6")
   )
   options$dependentVariables <- "bill_length_mm"
   options$dependentVariables.types <- "scale"
@@ -198,11 +202,13 @@ test_that("table results match for a plot with both factors, no box, means, mean
   options$boxWidth <- 0.275
   options$colorPalette <- "ggplot2"
   options$covariatePalette <- "viridis"
+  # one row per cloud in every column, as the form's table has it (it rejects a table of another shape)
+  clouds <- "Row 0"
   options$customizationTable <- list(
-    list(levels = "", name = "", values = "R"),
-    list(levels = "", name = "", values = 0),
-    list(levels = "", name = "", values = 0),
-    list(levels = list(""), name = "", values = list("#00A9E6"))
+    list(levels = clouds, name = "data 1", values = "R"),
+    list(levels = clouds, name = "data 2", values = 0),
+    list(levels = clouds, name = "data 3", values = 0),
+    list(levels = clouds, name = "data 4", values = "#00A9E6")
   )
   options$dependentVariables <- "bill_length_mm"
   options$dependentVariables.types <- "scale"
@@ -257,11 +263,13 @@ test_that("plot with primary factor and continuous covariate matches", {
   options$covariate <- "bill_depth_mm"
   options$covariate.types <- "scale"
   options$covariatePalette <- "viridis"
+  # one row per cloud in every column, as the form's table has it (it rejects a table of another shape)
+  clouds <- "Row 0"
   options$customizationTable <- list(
-    list(levels = "", name = "", values = "R"),
-    list(levels = "", name = "", values = 0),
-    list(levels = "", name = "", values = 0),
-    list(levels = list(""), name = "", values = list("#00A9E6"))
+    list(levels = clouds, name = "data 1", values = "R"),
+    list(levels = clouds, name = "data 2", values = 0),
+    list(levels = clouds, name = "data 3", values = 0),
+    list(levels = clouds, name = "data 4", values = "#00A9E6")
   )
   options$dependentVariables <- "flipper_length_mm"
   options$dependentVariables.types <- "scale"
@@ -301,11 +309,13 @@ test_that("plot with secondary factor, discrete covariate, and means matches", {
   options$covariate <- "sex"
   options$covariate.types <- "nominal"
   options$covariatePalette <- "colorblind3"
+  # one row per cloud in every column, as the form's table has it (it rejects a table of another shape)
+  clouds <- "Row 0"
   options$customizationTable <- list(
-    list(levels = "", name = "", values = "R"),
-    list(levels = "", name = "", values = 0),
-    list(levels = "", name = "", values = 0),
-    list(levels = list(""), name = "", values = list("#00A9E6"))
+    list(levels = clouds, name = "data 1", values = "R"),
+    list(levels = clouds, name = "data 2", values = 0),
+    list(levels = clouds, name = "data 3", values = 0),
+    list(levels = clouds, name = "data 4", values = "#00A9E6")
   )
   options$dependentVariables <- "body_mass_g"
   options$dependentVariables.types <- "scale"
@@ -346,11 +356,13 @@ test_that("plot for ID over time matches", {
   options$colorPalette <- "sportsTeamsNBA"
   options$covariatePalette <- "viridis"
   options$customSides <- TRUE
+  # one row per cloud in every column, as the form's table has it (it rejects a table of another shape)
+  clouds <- c("Row 0", "Row 1", "Row 2", "Row 3", "Row 4", "Row 5")
   options$customizationTable <- list(
-    list(levels = "", name = "", values = c("L","L", "L", "R", "R", "R")),
-    list(levels = "", name = "", values = 0),
-    list(levels = "", name = "", values = 0),
-    list(levels = list(""), name = "", values = list("#00A9E6"))
+    list(levels = clouds, name = "data 1", values = c("L", "L", "L", "R", "R", "R")),
+    list(levels = clouds, name = "data 2", values = rep(0, 6)),
+    list(levels = clouds, name = "data 3", values = rep(0, 6)),
+    list(levels = clouds, name = "data 4", values = rep("#00A9E6", 6))
   )
   options$dependentVariables <- "sepalWidth"
   options$dependentVariables.types <- "scale"
@@ -397,11 +409,13 @@ test_that("plot with custom mean interval matches", {
   options$boxWidth <- 0.1
   options$colorPalette <- "colorblind"
   options$covariatePalette <- "viridis"
+  # one row per cloud in every column, as the form's table has it (it rejects a table of another shape)
+  clouds <- c("Row 0", "Row 1", "Row 2", "Row 3", "Row 4", "Row 5")
   options$customizationTable <- list(
-    list(levels = "", name = "", values = "R"),
-    list(levels = "", name = "", values = c(2.6, 2.9, 3, 2.53, 3.33, 2.44)),
-    list(levels = "", name = "", values = c(2.85, 3.07, 3.45, 2.91, 3.86, 2.66)),
-    list(levels = list(""), name = "", values = list("#00A9E6"))
+    list(levels = clouds, name = "data 1", values = rep("R", 6)),
+    list(levels = clouds, name = "data 2", values = c(2.6, 2.9, 3, 2.53, 3.33, 2.44)),
+    list(levels = clouds, name = "data 3", values = c(2.85, 3.07, 3.45, 2.91, 3.86, 2.66)),
+    list(levels = clouds, name = "data 4", values = rep("#00A9E6", 6))
   )
   options$dependentVariables <- "sepalWidth"
   options$dependentVariables.types <- "scale"
@@ -444,11 +458,13 @@ test_that("plot with flanking clouds and vioSmoothing matches", {
   options$colorPalette <- "colorblind"
   options$covariatePalette <- "viridis"
   options$customSides <- TRUE
+  # one row per cloud in every column, as the form's table has it (it rejects a table of another shape)
+  clouds <- c("Row 0", "Row 1", "Row 2", "Row 3")
   options$customizationTable <- list(
-    list(levels = "", name = "", values = c("L","L", "R", "R")),
-    list(levels = "", name = "", values = 0),
-    list(levels = "", name = "", values = 0),
-    list(levels = list(""), name = "", values = list("#00A9E6"))
+    list(levels = clouds, name = "data 1", values = c("L", "L", "R", "R")),
+    list(levels = clouds, name = "data 2", values = rep(0, 4)),
+    list(levels = clouds, name = "data 3", values = rep(0, 4)),
+    list(levels = clouds, name = "data 4", values = rep("#00A9E6", 4))
   )
   options$dependentVariables <- "sepalWidth"
   options$dependentVariables.types <- "scale"
