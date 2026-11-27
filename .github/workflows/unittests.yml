@@ -23,6 +23,10 @@ on:
           - r-universe
           - github
         default: 'r-universe'
+      jaspsyntax_ref:
+        description: 'With the github source: jaspSyntax branch, tag or commit (empty means master)'
+        type: string
+        default: ''
 
 name: unit-tests
 
@@ -35,4 +39,5 @@ jobs:
       # Empty unless the run was started by hand: the reusable workflow then uses development and r-universe
       jasp_version: ${{ inputs.jasp_version }}
       jaspsyntax_source: ${{ inputs.jaspsyntax_source }}
+      jaspsyntax_ref: ${{ inputs.jaspsyntax_ref }}
 
